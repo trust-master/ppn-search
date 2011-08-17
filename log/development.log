@@ -24661,3 +24661,1076 @@ Started POST "/companies/9" for 127.0.0.1 at Tue Aug 16 20:10:54 -0500 2011
   [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
   [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
 Completed 200 OK in 79ms (Views: 1.7ms | ActiveRecord: 0.4ms)
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+Migrating to CreateUsers (20110809040642)
+Migrating to AddFnameLnameAndModifiedByToUsers (20110809045345)
+Migrating to AddIsAdminToUsers (20110809052234)
+Migrating to CreateCompanies (20110809121736)
+Migrating to CreateCompanyCategories (20110812001544)
+Migrating to AddCompanyCategoryLinkage (20110812003121)
+Migrating to AddCompanySubcategory (20110812003512)
+Migrating to CreateCompanySubcategories (20110812003533)
+Migrating to CreateServiceAreas (20110814030623)
+Migrating to CreateServiceAreaCoverages (20110814032559)
+Migrating to AddCertificateOfInsuranceFilename (20110814161322)
+Migrating to CreateAffiliations (20110814165034)
+Migrating to AddCompanyIdToAffiliations (20110814180313)
+Migrating to CreateCertifications (20110816030901)
+Migrating to CreateAssociations (20110816054259)
+Migrating to CreateDiscounts (20110817011145)
+  [1m[35mSQL (18.2ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE TABLE "discounts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" integer, "description" varchar(255), "market_id" integer, "title" varchar(255), "start_date" date, "end_date" date, "image_filename" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110817011145')
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.4ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.3ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("affiliations")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("associations")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("certifications")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("companies")[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("company_categories")
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("company_subcategories")[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("discounts")
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("service_area_coverages")[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("service_areas")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("users")[0m
+
+
+Started GET "/companies/9/edit" for 127.0.0.1 at Tue Aug 16 20:16:54 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCompanyCategory Load (0.2ms)[0m  [1mSELECT "company_categories".* FROM "company_categories"[0m
+  [1m[35mCompanySubcategory Load (0.1ms)[0m  SELECT "company_subcategories".* FROM "company_subcategories"
+  [1m[36mServiceArea Load (0.3ms)[0m  [1mSELECT "service_areas".* FROM "service_areas"[0m
+  [1m[35mServiceAreaCoverage Load (0.3ms)[0m  SELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 9)
+  [1m[36mCompanyCategory Load (0.1ms)[0m  [1mSELECT "company_categories".* FROM "company_categories" WHERE "company_categories"."id" = 12 LIMIT 1[0m
+Rendered companies/_form.html.erb (8.4ms)
+Rendered companies/edit.html.erb within layouts/application (10.8ms)
+Completed 200 OK in 149ms (Views: 15.3ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/affiliations/?company_id=9" for 127.0.0.1 at Tue Aug 16 20:16:54 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAffiliation Load (0.2ms)[0m  SELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 9)
+Rendered affiliations/index.html.erb (19.1ms)
+Completed 200 OK in 122ms (Views: 92.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/certifications/?company_id=9" for 127.0.0.1 at Tue Aug 16 20:16:54 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.4ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCertification Load (0.2ms)[0m  [1mSELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 9)[0m
+Rendered certifications/index.html.erb (18.2ms)
+Completed 200 OK in 87ms (Views: 20.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/associations/?company_id=9" for 127.0.0.1 at Tue Aug 16 20:16:54 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAssociation Load (0.2ms)[0m  SELECT "associations".* FROM "associations" WHERE ("associations".company_id = 9)
+Rendered associations/index.html.erb (18.4ms)
+Completed 200 OK in 45ms (Views: 21.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/companies/9/edit" for 127.0.0.1 at Tue Aug 16 20:18:50 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCompanyCategory Load (0.2ms)[0m  [1mSELECT "company_categories".* FROM "company_categories"[0m
+  [1m[35mCompanySubcategory Load (0.1ms)[0m  SELECT "company_subcategories".* FROM "company_subcategories"
+  [1m[36mServiceArea Load (0.2ms)[0m  [1mSELECT "service_areas".* FROM "service_areas"[0m
+  [1m[35mServiceAreaCoverage Load (0.4ms)[0m  SELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 9)
+  [1m[36mCompanyCategory Load (0.2ms)[0m  [1mSELECT "company_categories".* FROM "company_categories" WHERE "company_categories"."id" = 12 LIMIT 1[0m
+Rendered companies/_form.html.erb (8.1ms)
+Rendered companies/edit.html.erb within layouts/application (10.3ms)
+Completed 200 OK in 72ms (Views: 14.2ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/affiliations/?company_id=9" for 127.0.0.1 at Tue Aug 16 20:18:51 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAffiliation Load (0.2ms)[0m  SELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 9)
+Rendered affiliations/index.html.erb (20.2ms)
+Completed 200 OK in 53ms (Views: 24.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/certifications/?company_id=9" for 127.0.0.1 at Tue Aug 16 20:18:51 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.4ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCertification Load (0.2ms)[0m  [1mSELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 9)[0m
+Rendered certifications/index.html.erb (17.7ms)
+Completed 200 OK in 46ms (Views: 20.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/associations/?company_id=9" for 127.0.0.1 at Tue Aug 16 20:18:51 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAssociation Load (0.2ms)[0m  SELECT "associations".* FROM "associations" WHERE ("associations".company_id = 9)
+Rendered associations/index.html.erb (17.0ms)
+Completed 200 OK in 81ms (Views: 18.9ms | ActiveRecord: 0.6ms)
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+Migrating to CreateUsers (20110809040642)
+Migrating to AddFnameLnameAndModifiedByToUsers (20110809045345)
+Migrating to AddIsAdminToUsers (20110809052234)
+Migrating to CreateCompanies (20110809121736)
+Migrating to CreateCompanyCategories (20110812001544)
+Migrating to AddCompanyCategoryLinkage (20110812003121)
+Migrating to AddCompanySubcategory (20110812003512)
+Migrating to CreateCompanySubcategories (20110812003533)
+Migrating to CreateServiceAreas (20110814030623)
+Migrating to CreateServiceAreaCoverages (20110814032559)
+Migrating to AddCertificateOfInsuranceFilename (20110814161322)
+Migrating to CreateAffiliations (20110814165034)
+Migrating to AddCompanyIdToAffiliations (20110814180313)
+Migrating to CreateCertifications (20110816030901)
+Migrating to CreateAssociations (20110816054259)
+Migrating to CreateDiscounts (20110817011145)
+Migrating to AddCompanyIdToDiscount (20110817011744)
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (14.7ms)[0m  [1mALTER TABLE "discounts" ADD "company_id" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110817011744')
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("affiliations")
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("associations")[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("certifications")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("companies")[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("company_categories")
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("company_subcategories")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("discounts")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("service_area_coverages")[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("service_areas")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("users")[0m
+
+
+Started GET "/companies/9/edit" for 127.0.0.1 at Tue Aug 16 20:19:18 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCompanyCategory Load (0.2ms)[0m  [1mSELECT "company_categories".* FROM "company_categories"[0m
+  [1m[35mCompanySubcategory Load (0.1ms)[0m  SELECT "company_subcategories".* FROM "company_subcategories"
+  [1m[36mServiceArea Load (0.2ms)[0m  [1mSELECT "service_areas".* FROM "service_areas"[0m
+  [1m[35mServiceAreaCoverage Load (0.4ms)[0m  SELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 9)
+  [1m[36mCompanyCategory Load (0.2ms)[0m  [1mSELECT "company_categories".* FROM "company_categories" WHERE "company_categories"."id" = 12 LIMIT 1[0m
+Rendered companies/_form.html.erb (8.6ms)
+Rendered companies/edit.html.erb within layouts/application (10.7ms)
+Completed 200 OK in 119ms (Views: 14.4ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/affiliations/?company_id=9" for 127.0.0.1 at Tue Aug 16 20:19:18 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAffiliation Load (0.2ms)[0m  SELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 9)
+Rendered affiliations/index.html.erb (18.6ms)
+Completed 200 OK in 90ms (Views: 20.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/associations/?company_id=9" for 127.0.0.1 at Tue Aug 16 20:19:18 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mAssociation Load (0.2ms)[0m  [1mSELECT "associations".* FROM "associations" WHERE ("associations".company_id = 9)[0m
+Rendered associations/index.html.erb (16.7ms)
+Completed 200 OK in 42ms (Views: 18.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/certifications/?company_id=9" for 127.0.0.1 at Tue Aug 16 20:19:18 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCertification Load (0.2ms)[0m  SELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 9)
+Rendered certifications/index.html.erb (17.4ms)
+Completed 200 OK in 43ms (Views: 19.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/discounts" for 127.0.0.1 at Tue Aug 16 20:21:17 -0500 2011
+  Processing by DiscountsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Completed 500 Internal Server Error in 10ms
+
+RuntimeError (No company id passed while creating a new certification):
+  app/controllers/discounts_controller.rb:13:in `index'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (52.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (56.7ms)
+
+
+Started GET "/discounts?company_id=9" for 127.0.0.1 at Tue Aug 16 20:21:20 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAssociation Load (0.2ms)[0m  SELECT "associations".* FROM "associations" WHERE ("associations".company_id = 9)
+Rendered discounts/index.html.erb within layouts/application (17.2ms)
+Completed 200 OK in 45ms (Views: 21.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/discounts?company_id=9" for 127.0.0.1 at Tue Aug 16 20:21:52 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)[0m
+Rendered discounts/index.html.erb within layouts/application (18.9ms)
+Completed 200 OK in 84ms (Views: 22.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Tue Aug 16 20:22:17 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered discounts/_form.html.erb (41.0ms)
+Rendered discounts/new.html.erb within layouts/application (43.4ms)
+Completed 500 Internal Server Error in 107ms
+
+ActionView::Template::Error (undefined method `uri' for #<Discount:0x1084f7d20>):
+    63: 	</li>	
+    64: 	<li>
+    65: 		<label for="association_uri">Uri</label>
+    66: 		<input type="text" name="association[uri]" id="association_uri" value="<%=form.uri%>"/>
+    67: 	</li>
+    68: 	<li>
+    69: 		<label for="association_description">Description*</label>
+  app/views/discounts/_form.html.erb:66:in `_app_views_discounts__form_html_erb__1456062485_2216895640_1079870'
+  app/views/discounts/new.html.erb:2:in `_app_views_discounts_new_html_erb___1556368417_2216936180_0'
+  app/views/discounts/new.html.erb:1:in `_app_views_discounts_new_html_erb___1556368417_2216936180_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.7ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Tue Aug 16 20:24:52 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered discounts/_form.html.erb (0.2ms)
+Rendered discounts/new.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 32ms (Views: 7.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Tue Aug 16 20:25:44 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered discounts/_form.html.erb (0.5ms)
+Rendered discounts/new.html.erb within layouts/application (2.7ms)
+Completed 500 Internal Server Error in 24ms
+
+ActionView::Template::Error (wrong number of arguments (1 for 0)):
+    3: 		<label for="discount_type">Discount Type*</label>
+    4: 		<select name="discount[type]" id="discount_type">
+    5: 			<option value="">Select...</option>
+    6: 			<% Discount.AvailableTypes.each do |discount_type|%>
+    7: 				<option value="<%= discount_type.id%>"><%= discount_type.name%></option>
+    8: 			<% end %>
+    9: 		</select>
+  app/models/discount.rb:5:in `initialize'
+  app/models/discount.rb:5:in `new'
+  app/models/discount.rb:5:in `AvailableTypes'
+  app/views/discounts/_form.html.erb:6:in `_app_views_discounts__form_html_erb__1456062485_2216022520_1079870'
+  app/views/discounts/new.html.erb:2:in `_app_views_discounts_new_html_erb___1556368417_2216059020_0'
+  app/views/discounts/new.html.erb:1:in `_app_views_discounts_new_html_erb___1556368417_2216059020_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.1ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.3ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Tue Aug 16 20:26:47 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered discounts/_form.html.erb (4.8ms)
+Rendered discounts/new.html.erb within layouts/application (7.1ms)
+Completed 500 Internal Server Error in 66ms
+
+ActionView::Template::Error (uninitialized constant ActionView::CompiledTemplates::Discounts):
+    3: 		<label for="discount_type">Discount Type*</label>
+    4: 		<select name="discount[type]" id="discount_type">
+    5: 			<option value="">Select...</option>
+    6: 			<% Discounts.AvailableTypes.each do |discount_type|%>
+    7: 				<option value="<%= discount_type.id%>"><%= discount_type.name%></option>
+    8: 			<% end %>
+    9: 		</select>
+  app/views/discounts/_form.html.erb:6:in `_app_views_discounts__form_html_erb__1456062485_2217246580_1079870'
+  app/views/discounts/new.html.erb:2:in `_app_views_discounts_new_html_erb___1556368417_2217277240_0'
+  app/views/discounts/new.html.erb:1:in `_app_views_discounts_new_html_erb___1556368417_2217277240_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.1ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.2ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Tue Aug 16 20:27:04 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+ERROR: compiling _app_views_discounts__form_html_erb__1456062485_2214460760_1079870 RAISED compile error
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/discounts/_form.html.erb:17: syntax error, unexpected kENSURE, expecting $end
+Function body:           def _app_views_discounts__form_html_erb__1456062485_2214460760_1079870(local_assigns)
+            _old_virtual_path, @_virtual_path = @_virtual_path, "discounts/_form";_old_output_buffer = @output_buffer;form = local_assigns[:form];;@output_buffer = ActionView::OutputBuffer.new;@output_buffer.safe_concat('<ul>
+	<li>
+		<label for="discount_type">Discount Type*</label>
+		<select name="discount[type]" id="discount_type">
+			<option value="">Select...</option>
+');			 Discount.AvailableTypes 
+@output_buffer.safe_concat('				<option value="');@output_buffer.append= ( discount_type.id);@output_buffer.safe_concat('">');@output_buffer.append= ( discount_type.name);@output_buffer.safe_concat('</option>
+');			 end 
+@output_buffer.safe_concat('		</select>
+	</li>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		discountForm.init();
+	});
+</script>');@output_buffer.to_s
+          ensure
+            @_virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+Backtrace: /Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/discounts/_form.html.erb:17:in `compile'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/template.rb:134:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:54:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/template.rb:127:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/render/partials.rb:333:in `render_partial'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/render/partials.rb:262:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/render/partials.rb:260:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/render/partials.rb:378:in `_render_partial'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/render/rendering.rb:22:in `render'
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/discounts/new.html.erb:2:in `_app_views_discounts_new_html_erb___1556368417_2214483180_0'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/helpers/capture_helper.rb:40:in `capture'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/helpers/capture_helper.rb:172:in `with_output_buffer'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/helpers/capture_helper.rb:40:in `capture'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/helpers/form_helper.rb:545:in `fields_for'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/helpers/form_helper.rb:320:in `form_for'
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/discounts/new.html.erb:1:in `_app_views_discounts_new_html_erb___1556368417_2214483180_0'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/template.rb:135:in `send'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/template.rb:135:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:54:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/template.rb:127:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/render/rendering.rb:59:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/render/rendering.rb:56:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/render/rendering.rb:26:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/rendering.rb:115:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/rendering.rb:109:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/renderers.rb:47:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/compatibility.rb:55:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/rendering.rb:102:in `render_to_string'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/rendering.rb:93:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/rendering.rb:17:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:78:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/railties/controller_runtime.rb:15:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/base.rb:150:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/rendering.rb:11:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/callbacks.rb:18:in `process_action'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:441:in `_run__1761023696__process_action__943997142__callbacks'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:410:in `send'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:410:in `_run_process_action_callbacks'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:94:in `send'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:94:in `run_callbacks'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/rescue.rb:17:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/base.rb:119:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/rendering.rb:41:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal.rb:138:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal.rb:178:in `action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/routing/route_set.rb:62:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/routing/route_set.rb:62:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/routing/route_set.rb:27:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb:148:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:93:in `recognize'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:75:in `optimized_each'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:92:in `recognize'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb:139:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/routing/route_set.rb:493:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/methodoverride.rb:24:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/flash.rb:182:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/cookies.rb:302:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/query_cache.rb:32:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/query_cache.rb:12:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/query_cache.rb:31:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/connection_adapters/abstract/connection_pool.rb:354:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/callbacks.rb:46:in `call'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:416:in `_run_call_callbacks'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/sendfile.rb:107:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/rack/logger.rb:13:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/runtime.rb:17:in `call'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/lock.rb:11:in `synchronize'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/static.rb:30:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/application.rb:168:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/application.rb:77:in `send'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/application.rb:77:in `method_missing'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/rack/log_tailer.rb:14:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/content_length.rb:13:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/handler/webrick.rb:52:in `service'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/handler/webrick.rb:13:in `run'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/server.rb:217:in `start'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/commands/server.rb:65:in `start'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/commands.rb:30
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/commands.rb:27:in `tap'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/commands.rb:27
+script/rails:6:in `require'
+script/rails:6
+Rendered discounts/_form.html.erb (0.6ms)
+Rendered discounts/new.html.erb within layouts/application (2.6ms)
+Completed 500 Internal Server Error in 25ms
+
+ActionView::Template::Error (compile error
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/discounts/_form.html.erb:17: syntax error, unexpected kENSURE, expecting $end):
+    14: 		discountForm.init();
+    15: 	});
+    16: </script>
+  app/views/discounts/_form.html.erb:17:in `compile'
+  app/views/discounts/new.html.erb:2:in `_app_views_discounts_new_html_erb___1556368417_2214483180_0'
+  app/views/discounts/new.html.erb:1:in `_app_views_discounts_new_html_erb___1556368417_2214483180_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.3ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Tue Aug 16 20:27:08 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered discounts/_form.html.erb (0.5ms)
+Rendered discounts/new.html.erb within layouts/application (3.5ms)
+Completed 500 Internal Server Error in 26ms
+
+ActionView::Template::Error (wrong number of arguments (1 for 0)):
+    3: 		<label for="discount_type">Discount Type*</label>
+    4: 		<select name="discount[type]" id="discount_type">
+    5: 			<option value="">Select...</option>
+    6: 			<% Discount.AvailableTypes.each do |discount_type| %>
+    7: 				<option value="<%= discount_type.id%>"><%= discount_type.name%></option>
+    8: 			<% end %>
+    9: 		</select>
+  app/models/discount.rb:5:in `initialize'
+  app/models/discount.rb:5:in `new'
+  app/models/discount.rb:5:in `AvailableTypes'
+  app/views/discounts/_form.html.erb:6:in `_app_views_discounts__form_html_erb__1456062485_2216087360_1079870'
+  app/views/discounts/new.html.erb:2:in `_app_views_discounts_new_html_erb___1556368417_2216119900_0'
+  app/views/discounts/new.html.erb:1:in `_app_views_discounts_new_html_erb___1556368417_2216119900_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.4ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Tue Aug 16 20:27:56 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered discounts/_form.html.erb (0.4ms)
+Rendered discounts/new.html.erb within layouts/application (45.0ms)
+Completed 200 OK in 67ms (Views: 49.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Tue Aug 16 20:29:27 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered discounts/_form.html.erb (0.4ms)
+Rendered discounts/new.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 26ms (Views: 7.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Tue Aug 16 20:33:51 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+ERROR: compiling _app_views_discounts__form_html_erb__1456062485_2216031840_1079870 RAISED compile error
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/discounts/_form.html.erb:7: syntax error, unexpected '<'
+... ? "selected=selected" : "">><%= discount_type.name);@output...
+                              ^
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/discounts/_form.html.erb:12: syntax error, unexpected '<'
+		<label for="discount_description">Description*</label>
+		                                               ^
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/discounts/_form.html.erb:14: unknown regexp option - l
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/discounts/_form.html.erb:16: syntax error, unexpected '<'
+<script type="text/javascript">
+ ^
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/discounts/_form.html.erb:17: syntax error, unexpected $undefined
+	$(document).ready(function() {
+	 ^
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/discounts/_form.html.erb:20: syntax error, unexpected '<', expecting kEND
+</script>');@output_buffer.to_s
+ ^
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/discounts/_form.html.erb:20: unterminated string meets end of file
+Function body:           def _app_views_discounts__form_html_erb__1456062485_2216031840_1079870(local_assigns)
+            _old_virtual_path, @_virtual_path = @_virtual_path, "discounts/_form";_old_output_buffer = @output_buffer;form = local_assigns[:form];;@output_buffer = ActionView::OutputBuffer.new;@output_buffer.safe_concat('<ul>
+	<li>
+		<label for="discount_type">Discount Type*</label>
+		<select name="discount[type]" id="discount_type">
+			<option value="">Select...</option>
+');@output_buffer.append_if_string= 			 Discount.AvailableTypes.each do |discount_type| 
+@output_buffer.safe_concat('				<option value="');@output_buffer.append= ( discount_type.id);@output_buffer.safe_concat('"');@output_buffer.append= ( discount.type == discount_type.id ? "selected=selected" : "">><%= discount_type.name);@output_buffer.safe_concat('</option>
+');			 end 
+@output_buffer.safe_concat('		</select>
+	</li>
+	<li>
+		<label for="discount_description">Description*</label>
+		<textarea>
+	</li>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		discountForm.init();
+	});
+</script>');@output_buffer.to_s
+          ensure
+            @_virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+Backtrace: /Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/discounts/_form.html.erb:20:in `compile'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/template.rb:134:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:54:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/template.rb:127:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/render/partials.rb:333:in `render_partial'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/render/partials.rb:262:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/render/partials.rb:260:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/render/partials.rb:378:in `_render_partial'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/render/rendering.rb:22:in `render'
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/discounts/new.html.erb:2:in `_app_views_discounts_new_html_erb___1556368417_2216073240_0'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/helpers/capture_helper.rb:40:in `capture'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/helpers/capture_helper.rb:172:in `with_output_buffer'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/helpers/capture_helper.rb:40:in `capture'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/helpers/form_helper.rb:545:in `fields_for'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/helpers/form_helper.rb:320:in `form_for'
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/discounts/new.html.erb:1:in `_app_views_discounts_new_html_erb___1556368417_2216073240_0'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/template.rb:135:in `send'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/template.rb:135:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:54:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/template.rb:127:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/render/rendering.rb:59:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/render/rendering.rb:56:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/render/rendering.rb:26:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/rendering.rb:115:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/rendering.rb:109:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/renderers.rb:47:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/compatibility.rb:55:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/rendering.rb:102:in `render_to_string'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/rendering.rb:93:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/rendering.rb:17:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:78:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/railties/controller_runtime.rb:15:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/base.rb:150:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/rendering.rb:11:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/callbacks.rb:18:in `process_action'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:441:in `_run__1761023696__process_action__943997142__callbacks'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:410:in `send'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:410:in `_run_process_action_callbacks'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:94:in `send'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:94:in `run_callbacks'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/rescue.rb:17:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/base.rb:119:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/rendering.rb:41:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal.rb:138:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal.rb:178:in `action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/routing/route_set.rb:62:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/routing/route_set.rb:62:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/routing/route_set.rb:27:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb:148:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:93:in `recognize'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:75:in `optimized_each'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:92:in `recognize'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb:139:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/routing/route_set.rb:493:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/methodoverride.rb:24:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/flash.rb:182:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/cookies.rb:302:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/query_cache.rb:32:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/query_cache.rb:12:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/query_cache.rb:31:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/connection_adapters/abstract/connection_pool.rb:354:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/callbacks.rb:46:in `call'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:416:in `_run_call_callbacks'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/sendfile.rb:107:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/rack/logger.rb:13:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/runtime.rb:17:in `call'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/lock.rb:11:in `synchronize'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/static.rb:30:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/application.rb:168:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/application.rb:77:in `send'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/application.rb:77:in `method_missing'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/rack/log_tailer.rb:14:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/content_length.rb:13:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/handler/webrick.rb:52:in `service'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/handler/webrick.rb:13:in `run'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/server.rb:217:in `start'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/commands/server.rb:65:in `start'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/commands.rb:30
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/commands.rb:27:in `tap'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/commands.rb:27
+script/rails:6:in `require'
+script/rails:6
+Rendered discounts/_form.html.erb (0.8ms)
+Rendered discounts/new.html.erb within layouts/application (2.9ms)
+Completed 500 Internal Server Error in 26ms
+
+ActionView::Template::Error (compile error
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/discounts/_form.html.erb:7: syntax error, unexpected '<'
+... ? "selected=selected" : "">><%= discount_type.name);@output...
+                              ^
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/discounts/_form.html.erb:12: syntax error, unexpected '<'
+		<label for="discount_description">Description*</label>
+		                                               ^
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/discounts/_form.html.erb:14: unknown regexp option - l
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/discounts/_form.html.erb:16: syntax error, unexpected '<'
+<script type="text/javascript">
+ ^
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/discounts/_form.html.erb:17: syntax error, unexpected $undefined
+	$(document).ready(function() {
+	 ^
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/discounts/_form.html.erb:20: syntax error, unexpected '<', expecting kEND
+</script>');@output_buffer.to_s
+ ^
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/discounts/_form.html.erb:20: unterminated string meets end of file):
+    4: 		<select name="discount[type]" id="discount_type">
+    5: 			<option value="">Select...</option>
+    6: 			<% Discount.AvailableTypes.each do |discount_type| %>
+    7: 				<option value="<%= discount_type.id%>"<%= discount.type == discount_type.id ? "selected=selected" : "">><%= discount_type.name%></option>
+    8: 			<% end %>
+    9: 		</select>
+    10: 	</li>
+  app/views/discounts/_form.html.erb:20:in `compile'
+  app/views/discounts/new.html.erb:2:in `_app_views_discounts_new_html_erb___1556368417_2216073240_0'
+  app/views/discounts/new.html.erb:1:in `_app_views_discounts_new_html_erb___1556368417_2216073240_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.0ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Tue Aug 16 20:34:03 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered discounts/_form.html.erb (9.3ms)
+Rendered discounts/new.html.erb within layouts/application (11.5ms)
+Completed 500 Internal Server Error in 70ms
+
+ActionView::Template::Error (undefined local variable or method `discount' for #<#<Class:0x10853f4b8>:0x10853b160>):
+    4: 		<select name="discount[type]" id="discount_type">
+    5: 			<option value="">Select...</option>
+    6: 			<% Discount.AvailableTypes.each do |discount_type| %>
+    7: 				<option value="<%= discount_type.id%>"<%= discount.type == discount_type.id ? "selected=selected" : ""%>><%= discount_type.name%></option>
+    8: 			<% end %>
+    9: 		</select>
+    10: 	</li>
+  app/views/discounts/_form.html.erb:7:in `_app_views_discounts__form_html_erb__1456062485_2217291940_1079870'
+  app/views/discounts/_form.html.erb:6:in `each'
+  app/views/discounts/_form.html.erb:6:in `_app_views_discounts__form_html_erb__1456062485_2217291940_1079870'
+  app/views/discounts/new.html.erb:2:in `_app_views_discounts_new_html_erb___1556368417_2217321220_0'
+  app/views/discounts/new.html.erb:1:in `_app_views_discounts_new_html_erb___1556368417_2217321220_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.3ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Tue Aug 16 20:34:09 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered discounts/_form.html.erb (0.4ms)
+Rendered discounts/new.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 25ms (Views: 7.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Tue Aug 16 20:34:20 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered discounts/_form.html.erb (0.5ms)
+Rendered discounts/new.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 27ms (Views: 8.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Wed Aug 17 08:29:18 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered discounts/_form.html.erb (0.5ms)
+Rendered discounts/new.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 25ms (Views: 7.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Wed Aug 17 08:31:17 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered discounts/_form.html.erb (0.5ms)
+Rendered discounts/new.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 28ms (Views: 10.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Wed Aug 17 08:32:30 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered discounts/_form.html.erb (0.9ms)
+Rendered discounts/new.html.erb within layouts/application (3.0ms)
+Completed 500 Internal Server Error in 25ms
+
+ActionView::Template::Error (undefined method `market' for #<Discount:0x1082bca60>):
+    22: 		<select name="discount[market]" id="discount_market">
+    23: 			<option value="">Select...</option>
+    24: 			<% Discount.AvailableMarkets.each do |market| %>
+    25: 				<option value="<%= market.id%>"<%= form.market == market.id ? "selected=selected" : ""%>><%= market.name%></option>
+    26: 			<% end %>
+    27: 		</select>
+    28: 	</li>
+  app/views/discounts/_form.html.erb:25:in `_app_views_discounts__form_html_erb__1456062485_2215691380_1079870'
+  app/views/discounts/_form.html.erb:24:in `each'
+  app/views/discounts/_form.html.erb:24:in `_app_views_discounts__form_html_erb__1456062485_2215691380_1079870'
+  app/views/discounts/new.html.erb:2:in `_app_views_discounts_new_html_erb___1556368417_2215731580_0'
+  app/views/discounts/new.html.erb:1:in `_app_views_discounts_new_html_erb___1556368417_2215731580_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.6ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Wed Aug 17 08:32:57 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered discounts/_form.html.erb (0.9ms)
+Rendered discounts/new.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 34ms (Views: 9.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Wed Aug 17 08:35:33 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered discounts/_form.html.erb (9.0ms)
+Rendered discounts/new.html.erb within layouts/application (11.4ms)
+Completed 500 Internal Server Error in 70ms
+
+ActionView::Template::Error (undefined local variable or method `market' for #<#<Class:0x1085a0da8>:0x10859dba8>):
+    35: <ul>
+    36: 	<li>
+    37: 		<label for="discount_start_date">Start Date</label>
+    38: 		<input type="text" name="discount[start_date]" id="discount_start_date" value="<%= market.start_date%>"/>
+    39: 	</li>
+    40: 	<li>
+    41: 		<label for="discount_end_date">End Date</label>
+  app/views/discounts/_form.html.erb:38:in `_app_views_discounts__form_html_erb__1456062485_2217489920_1079870'
+  app/views/discounts/new.html.erb:2:in `_app_views_discounts_new_html_erb___1556368417_2217530980_0'
+  app/views/discounts/new.html.erb:1:in `_app_views_discounts_new_html_erb___1556368417_2217530980_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.1ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.4ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Wed Aug 17 08:40:31 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered discounts/_form.html.erb (9.2ms)
+Rendered discounts/new.html.erb within layouts/application (11.7ms)
+Completed 500 Internal Server Error in 57ms
+
+ActionView::Template::Error (undefined local variable or method `market' for #<#<Class:0x107f8e0f0>:0x107f8b328>):
+    35: <ul>
+    36: 	<li>
+    37: 		<label for="discount_start_date">Start Date</label>
+    38: 		<input type="text" name="discount[start_date]" id="discount_start_date" value="<%= market.start_date%>"/>
+    39: 	</li>
+    40: 	<li>
+    41: 		<label for="discount_end_date">End Date</label>
+  app/views/discounts/_form.html.erb:38:in `_app_views_discounts__form_html_erb__1456062485_2214331200_1079870'
+  app/views/discounts/new.html.erb:2:in `_app_views_discounts_new_html_erb___1556368417_2214349800_0'
+  app/views/discounts/new.html.erb:1:in `_app_views_discounts_new_html_erb___1556368417_2214349800_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (45.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (49.9ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Wed Aug 17 08:40:55 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered discounts/_form.html.erb (8.2ms)
+Rendered discounts/new.html.erb within layouts/application (10.5ms)
+Completed 500 Internal Server Error in 37ms
+
+ActionView::Template::Error (undefined local variable or method `discount' for #<#<Class:0x1082bf9e0>:0x1082bd1b8>):
+    35: <ul>
+    36: 	<li>
+    37: 		<label for="discount_start_date">Start Date</label>
+    38: 		<input type="text" name="discount[start_date]" id="discount_start_date" value="<%= discount.start_date%>"/>
+    39: 	</li>
+    40: 	<li>
+    41: 		<label for="discount_end_date">End Date</label>
+  app/views/discounts/_form.html.erb:38:in `_app_views_discounts__form_html_erb__1456062485_2215979740_1079870'
+  app/views/discounts/new.html.erb:2:in `_app_views_discounts_new_html_erb___1556368417_2216019520_0'
+  app/views/discounts/new.html.erb:1:in `_app_views_discounts_new_html_erb___1556368417_2216019520_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.5ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.6ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Wed Aug 17 08:41:05 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered discounts/_form.html.erb (0.7ms)
+Rendered discounts/new.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 64ms (Views: 7.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Wed Aug 17 08:46:16 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered discounts/_form.html.erb (0.9ms)
+Rendered discounts/new.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 25ms (Views: 7.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Wed Aug 17 08:46:39 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered discounts/_form.html.erb (0.7ms)
+Rendered discounts/new.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 25ms (Views: 7.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Wed Aug 17 08:48:06 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered discounts/_form.html.erb (0.7ms)
+Rendered discounts/new.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 25ms (Views: 7.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Wed Aug 17 08:48:31 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered discounts/_form.html.erb (0.8ms)
+Rendered discounts/new.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 69ms (Views: 8.2ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/discounts" for 127.0.0.1 at Wed Aug 17 08:52:29 -0500 2011
+  Processing by DiscountsController#create as HTML
+  Parameters: {"discount"=>{"start_date"=>"08/03/2011", "type"=>"1", "end_date"=>"08/10/2011", "market_id"=>"1"}, "image_file"=>#<ActionDispatch::Http::UploadedFile:0x108163858 @tempfile=#<File:/var/folders/4m/1rtbz52x3k3353w2rx_lz1lh0000gn/T/RackMultipart20110817-2880-1yzcc9h-0>, @original_filename="2011-01-01.png", @headers="Content-Disposition: form-data; name=\"image_file\"; filename=\"2011-01-01.png\"\r\nContent-Type: image/png\r\n", @content_type="image/png">, "authenticity_token"=>"4vIEo9RJIuyJOEz7dqZlQQ+96oYdWerMSD8ccAkfpoE=", "utf8"=>"\342\234\223"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+WARNING: Can't mass-assign protected attributes: type
+  [1m[36mCompany Load (0.2ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" IS NULL LIMIT 1[0m
+Completed 500 Internal Server Error in 71ms
+
+RuntimeError (Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id):
+  app/controllers/discounts_controller.rb:10:in `create'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (11.0ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Wed Aug 17 08:52:43 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered discounts/_form.html.erb (0.7ms)
+Rendered discounts/new.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 25ms (Views: 7.3ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/discounts" for 127.0.0.1 at Wed Aug 17 08:53:17 -0500 2011
+  Processing by DiscountsController#create as HTML
+  Parameters: {"discount"=>{"start_date"=>"08/17/2011", "type"=>"1", "company_id"=>"9", "end_date"=>"08/24/2011", "market_id"=>"1"}, "image_file"=>#<ActionDispatch::Http::UploadedFile:0x108447150 @tempfile=#<File:/var/folders/4m/1rtbz52x3k3353w2rx_lz1lh0000gn/T/RackMultipart20110817-2880-16msc0n-0>, @original_filename="2011-01-01.png", @headers="Content-Disposition: form-data; name=\"image_file\"; filename=\"2011-01-01.png\"\r\nContent-Type: image/png\r\n", @content_type="image/png">, "authenticity_token"=>"4vIEo9RJIuyJOEz7dqZlQQ+96oYdWerMSD8ccAkfpoE=", "utf8"=>"\342\234\223"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+WARNING: Can't mass-assign protected attributes: type
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mAREL (0.6ms)[0m  INSERT INTO "discounts" ("description", "end_date", "market_id", "company_id", "created_at", "type", "title", "start_date", "updated_at", "image_filename") VALUES (NULL, '2011-08-24', 1, 9, '2011-08-17 13:53:18.082244', NULL, NULL, '2011-08-17', '2011-08-17 13:53:18.082244', '2011-01-01.png')
+Completed 200 OK in 73ms (Views: 3.1ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Wed Aug 17 09:21:53 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered discounts/_form.html.erb (0.7ms)
+Rendered discounts/new.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 76ms (Views: 7.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/discounts" for 127.0.0.1 at Wed Aug 17 09:22:08 -0500 2011
+  Processing by DiscountsController#create as HTML
+  Parameters: {"discount"=>{"start_date"=>"08/17/2011", "type"=>"1", "company_id"=>"9", "description"=>"test", "end_date"=>"08/19/2011", "market_id"=>"1"}, "image_file"=>#<ActionDispatch::Http::UploadedFile:0x108154ee8 @tempfile=#<File:/var/folders/4m/1rtbz52x3k3353w2rx_lz1lh0000gn/T/RackMultipart20110817-2880-15i7fqt-0>, @original_filename="2011-01-01.png", @headers="Content-Disposition: form-data; name=\"image_file\"; filename=\"2011-01-01.png\"\r\nContent-Type: image/png\r\n", @content_type="image/png">, "authenticity_token"=>"4vIEo9RJIuyJOEz7dqZlQQ+96oYdWerMSD8ccAkfpoE=", "utf8"=>"\342\234\223"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+WARNING: Can't mass-assign protected attributes: type
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mAREL (24.2ms)[0m  [1mINSERT INTO "discounts" ("description", "type", "end_date", "image_filename", "created_at", "start_date", "market_id", "company_id", "updated_at", "title") VALUES ('test', NULL, '2011-08-19', '2011-01-01.png', '2011-08-17 14:22:08.206863', '2011-08-17', 1, 9, '2011-08-17 14:22:08.206863', NULL)[0m
+Completed 200 OK in 117ms (Views: 3.9ms | ActiveRecord: 24.9ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Wed Aug 17 09:24:21 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered discounts/_form.html.erb (0.8ms)
+Rendered discounts/new.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 39ms (Views: 8.8ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/discounts" for 127.0.0.1 at Wed Aug 17 09:24:38 -0500 2011
+  Processing by DiscountsController#create as HTML
+  Parameters: {"discount"=>{"start_date"=>"08/10/2011", "title"=>"test title", "type"=>"1", "company_id"=>"9", "description"=>"test description", "end_date"=>"08/23/2011", "market_id"=>"1"}, "image_file"=>#<ActionDispatch::Http::UploadedFile:0x10847da98 @tempfile=#<File:/var/folders/4m/1rtbz52x3k3353w2rx_lz1lh0000gn/T/RackMultipart20110817-2880-1dyx28w-0>, @original_filename="2011-01-01.png", @headers="Content-Disposition: form-data; name=\"image_file\"; filename=\"2011-01-01.png\"\r\nContent-Type: image/png\r\n", @content_type="image/png">, "authenticity_token"=>"4vIEo9RJIuyJOEz7dqZlQQ+96oYdWerMSD8ccAkfpoE=", "utf8"=>"\342\234\223"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+WARNING: Can't mass-assign protected attributes: type
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mAREL (0.2ms)[0m  INSERT INTO "discounts" ("type", "market_id", "created_at", "updated_at", "description", "end_date", "company_id", "title", "start_date", "image_filename") VALUES (NULL, 1, '2011-08-17 14:24:38.880145', '2011-08-17 14:24:38.880145', 'test description', '2011-08-23', 9, 'test title', '2011-08-10', '2011-01-01.png')
+Completed 200 OK in 51ms (Views: 2.4ms | ActiveRecord: 0.8ms)

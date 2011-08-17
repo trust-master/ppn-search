@@ -1,4 +1,6 @@
 ComTrustmasterWww::Application.routes.draw do
+  resources :discounts
+
   resources :associations
 
   resources :certifications

@@ -1,0 +1,35 @@
+class Discount < ActiveRecord::Base
+    belongs_to :company
+    
+    def self.AvailableMarkets
+        return [ 
+            Market.new({:id => 1, :name => "Minneapolis"}),
+            Market.new({:id => 1, :name => "Saint Paul"}),
+            Market.new({:id => 1, :name => "Eden Prairie"})
+        ]
+    end
+    def self.AvailableTypes
+        return [ 
+            DiscountType.new({:id => 1, :name => "Super Deep"}),
+            DiscountType.new({:id => 1, :name => "Deep"}),
+            DiscountType.new({:id => 1, :name => "Sort of Deep"})
+        ]
+    end
+end
+class DiscountType
+    attr_accessor :id
+    attr_accessor :name
+    def initialize params
+        @id = params[:id]
+        @name = params[:name]
+    end
+end
+class Market
+    attr_accessor :id
+    attr_accessor :name
+    def initialize params
+        @id = params[:id]
+        @name = params[:name]
+    end
+end
+

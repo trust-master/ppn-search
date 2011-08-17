@@ -4,7 +4,7 @@ $(document).ready(function() {
 	companiesNew.init();
 
 	companyCategoryNew.init();
-
+	datePickers.init();
 	deleteLinks.init();
 
 	usersEdit.init();
@@ -491,6 +491,62 @@ var companiesNew = {
 				"company[zip_code]": { required: true, digits: true}
 			},
 			onkeyup: false
+		});
+	}
+};
+var datePickers = {
+	submissionCallback: null,
+	init: function() {
+		$('.datepicker').datepicker();
+	}
+};
+var discountForm = {
+	submissionCallback: null,
+	init: function() {
+		if ($('.discount_form').length !== 0) {
+			this.initSubmission();
+			this.initValidation();
+		}
+	},
+	initSubmission: function() {
+		var rootObject = this;
+		var uri = $('.discount_form').attr('action');
+		
+		$('.discount_form').ajaxForm({
+			dataType: 'json',
+			url: uri,
+            success: function(data) {
+				if (data.success) {
+					rootObject.submissionCallback == null ? alert('No callback specified.') : rootObject.submissionCallback();
+				} else {
+					alert('An error occured during your submission.  We have been notified.');
+				}
+			},
+            type: 'POST'
+        });
+	},
+	initValidation: function() {
+		$('.discount_form input[type="submit"]').attr('disabled',true);
+		$('.discount_form').validate({
+			rules: {
+				"discount[type]": {required: true},
+				"discount[description]": {required: true},
+				"image_file": {required: true},
+				"discount[market]": {required: true},
+				"discount[start_date]": {required: true},
+				"discount[end_date]": {required: true}
+			},
+			onkeyup: false
+		});
+		$('.discount_form').bind('change keyup', function() {
+			if ($(this).validate().checkForm())
+			{
+				$('.discount_form input[type="submit"]').attr('disabled',false);
+			}
+			else
+			{
+				$('.discount_form input[type="submit"]').attr('disabled',true);
+			}
 		});
 	}
 };

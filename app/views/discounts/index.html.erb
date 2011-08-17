@@ -1,0 +1,5 @@
+<% @company.discounts.each do |discount| %>
+	<li class="object_container">
+		<%= render :partial => "show", :object => discount %>
+	</li>
+<% end %>
