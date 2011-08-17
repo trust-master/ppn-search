@@ -24503,3 +24503,161 @@ Started GET "/associations/?company_id=9" for 127.0.0.1 at Tue Aug 16 07:45:30 -
   [1m[36mAssociation Load (0.2ms)[0m  [1mSELECT "associations".* FROM "associations" WHERE ("associations".company_id = 9)[0m
 Rendered associations/index.html.erb (18.7ms)
 Completed 200 OK in 46ms (Views: 20.8ms | ActiveRecord: 0.6ms)
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from service at /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104)
+
+
+Started GET "/" for 127.0.0.1 at Tue Aug 16 20:07:57 -0500 2011
+  Processing by UsersController#login as HTML
+Rendered users/login.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 51ms (Views: 33.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/login" for 127.0.0.1 at Tue Aug 16 20:08:06 -0500 2011
+  Processing by UsersController#login as HTML
+  Parameters: {"authenticity_token"=>"4vIEo9RJIuyJOEz7dqZlQQ+96oYdWerMSD8ccAkfpoE=", "utf8"=>"\342\234\223", "return_uri"=>"", "user"=>{"email_address"=>"testing.administrator@test.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (20.8ms)[0m  [1mSELECT "users".* FROM "users" WHERE (email_address = 'testing.administrator@test.com') LIMIT 1[0m
+Redirected to http://localhost:3000
+Completed 302 Found in 71ms
+
+
+Started GET "/" for 127.0.0.1 at Tue Aug 16 20:08:06 -0500 2011
+  Processing by UsersController#login as HTML
+  [1m[35mSQL (0.5ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Redirected to http://localhost:3000/users/
+Completed 302 Found in 11ms
+
+
+Started GET "/users/" for 127.0.0.1 at Tue Aug 16 20:08:06 -0500 2011
+  Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Rendered users/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 16ms (Views: 5.5ms | ActiveRecord: 21.7ms)
+
+
+Started GET "/companies" for 127.0.0.1 at Tue Aug 16 20:08:12 -0500 2011
+  Processing by CompaniesController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (4.2ms)[0m  [1mSELECT "companies".* FROM "companies"[0m
+Rendered companies/index.html.erb within layouts/application (14.9ms)
+Completed 200 OK in 103ms (Views: 19.5ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/companies/9/edit" for 127.0.0.1 at Tue Aug 16 20:08:14 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCompanyCategory Load (0.5ms)[0m  SELECT "company_categories".* FROM "company_categories"
+  [1m[36mCompanySubcategory Load (0.2ms)[0m  [1mSELECT "company_subcategories".* FROM "company_subcategories"[0m
+  [1m[35mServiceArea Load (0.3ms)[0m  SELECT "service_areas".* FROM "service_areas"
+  [1m[36mServiceAreaCoverage Load (0.4ms)[0m  [1mSELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 9)[0m
+  [1m[35mCompanyCategory Load (0.1ms)[0m  SELECT "company_categories".* FROM "company_categories" WHERE "company_categories"."id" = 12 LIMIT 1
+Rendered companies/_form.html.erb (8.2ms)
+Rendered companies/edit.html.erb within layouts/application (10.5ms)
+Completed 200 OK in 137ms (Views: 14.4ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/affiliations/?company_id=9" for 127.0.0.1 at Tue Aug 16 20:08:15 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mAffiliation Load (0.2ms)[0m  [1mSELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 9)[0m
+Rendered affiliations/index.html.erb (58.6ms)
+Completed 200 OK in 113ms (Views: 74.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/certifications/?company_id=9" for 127.0.0.1 at Tue Aug 16 20:08:15 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCertification Load (0.2ms)[0m  SELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 9)
+Rendered certifications/index.html.erb (17.4ms)
+Completed 200 OK in 43ms (Views: 19.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/associations/?company_id=9" for 127.0.0.1 at Tue Aug 16 20:08:15 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mAssociation Load (0.2ms)[0m  [1mSELECT "associations".* FROM "associations" WHERE ("associations".company_id = 9)[0m
+Rendered associations/index.html.erb (17.4ms)
+Completed 200 OK in 81ms (Views: 19.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/companies/9/edit" for 127.0.0.1 at Tue Aug 16 20:10:42 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCompanyCategory Load (0.2ms)[0m  SELECT "company_categories".* FROM "company_categories"
+  [1m[36mCompanySubcategory Load (0.1ms)[0m  [1mSELECT "company_subcategories".* FROM "company_subcategories"[0m
+  [1m[35mServiceArea Load (0.2ms)[0m  SELECT "service_areas".* FROM "service_areas"
+  [1m[36mServiceAreaCoverage Load (0.4ms)[0m  [1mSELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 9)[0m
+  [1m[35mCompanyCategory Load (0.1ms)[0m  SELECT "company_categories".* FROM "company_categories" WHERE "company_categories"."id" = 12 LIMIT 1
+Rendered companies/_form.html.erb (8.7ms)
+Rendered companies/edit.html.erb within layouts/application (11.1ms)
+Completed 200 OK in 116ms (Views: 14.9ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/affiliations/?company_id=9" for 127.0.0.1 at Tue Aug 16 20:10:42 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mAffiliation Load (0.2ms)[0m  [1mSELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 9)[0m
+Rendered affiliations/index.html.erb (18.5ms)
+Completed 200 OK in 84ms (Views: 20.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/associations/?company_id=9" for 127.0.0.1 at Tue Aug 16 20:10:43 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAssociation Load (0.2ms)[0m  SELECT "associations".* FROM "associations" WHERE ("associations".company_id = 9)
+Rendered associations/index.html.erb (16.3ms)
+Completed 200 OK in 40ms (Views: 18.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/certifications/?company_id=9" for 127.0.0.1 at Tue Aug 16 20:10:43 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCertification Load (0.2ms)[0m  [1mSELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 9)[0m
+Rendered certifications/index.html.erb (17.1ms)
+Completed 200 OK in 42ms (Views: 19.1ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/companies/9" for 127.0.0.1 at Tue Aug 16 20:10:49 -0500 2011
+  Processing by CompaniesController#update as JSON
+  Parameters: {"company_category"=>{"name"=>""}, "company"=>{"emergency_services"=>"1", "about"=>"Test of the about saving.", "twenty_four_hour_service"=>"1", "description"=>"", "company_category_id"=>"12", "general_info"=>""}, "service_area_coverages"=>[{"service_area_id"=>"1", "coverage_type"=>"2"}, {"service_area_id"=>"2", "coverage_type"=>"0"}, {"service_area_id"=>"3", "coverage_type"=>"0"}, {"service_area_id"=>"4", "coverage_type"=>"0"}, {"service_area_id"=>"5", "coverage_type"=>"0"}, {"service_area_id"=>"6", "coverage_type"=>"0"}, {"service_area_id"=>"7", "coverage_type"=>"0"}, {"service_area_id"=>"8", "coverage_type"=>"0"}, {"service_area_id"=>"9", "coverage_type"=>"0"}], "id"=>"9"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mServiceAreaCoverage Load (0.3ms)[0m  SELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 9)
+  [1m[36mAREL (0.4ms)[0m  [1mUPDATE "service_area_coverages" SET "company_id" = NULL WHERE "service_area_coverages"."company_id" = 9 AND "service_area_coverages"."id" IN (119, 120, 121, 122, 123, 124, 125, 126, 127)[0m
+  [1m[35mAREL (11.6ms)[0m  INSERT INTO "service_area_coverages" ("company_id", "service_area_id", "updated_at", "created_at", "coverage_type") VALUES (9, 1, '2011-08-17 01:10:49.768995', '2011-08-17 01:10:49.768995', 2)
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "service_area_coverages" ("company_id", "service_area_id", "updated_at", "created_at", "coverage_type") VALUES (9, 2, '2011-08-17 01:10:49.856493', '2011-08-17 01:10:49.856493', 0)[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO "service_area_coverages" ("company_id", "service_area_id", "updated_at", "created_at", "coverage_type") VALUES (9, 3, '2011-08-17 01:10:49.860516', '2011-08-17 01:10:49.860516', 0)
+  [1m[36mAREL (0.4ms)[0m  [1mINSERT INTO "service_area_coverages" ("company_id", "service_area_id", "updated_at", "created_at", "coverage_type") VALUES (9, 4, '2011-08-17 01:10:49.864888', '2011-08-17 01:10:49.864888', 0)[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "service_area_coverages" ("company_id", "service_area_id", "updated_at", "created_at", "coverage_type") VALUES (9, 5, '2011-08-17 01:10:49.868772', '2011-08-17 01:10:49.868772', 0)
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "service_area_coverages" ("company_id", "service_area_id", "updated_at", "created_at", "coverage_type") VALUES (9, 6, '2011-08-17 01:10:49.872194', '2011-08-17 01:10:49.872194', 0)[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO "service_area_coverages" ("company_id", "service_area_id", "updated_at", "created_at", "coverage_type") VALUES (9, 7, '2011-08-17 01:10:49.876096', '2011-08-17 01:10:49.876096', 0)
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "service_area_coverages" ("company_id", "service_area_id", "updated_at", "created_at", "coverage_type") VALUES (9, 8, '2011-08-17 01:10:49.880593', '2011-08-17 01:10:49.880593', 0)[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "service_area_coverages" ("company_id", "service_area_id", "updated_at", "created_at", "coverage_type") VALUES (9, 9, '2011-08-17 01:10:49.884524', '2011-08-17 01:10:49.884524', 0)
+Completed 200 OK in 225ms (Views: 6.7ms | ActiveRecord: 15.5ms)
+
+
+Started POST "/companies/9" for 127.0.0.1 at Tue Aug 16 20:10:54 -0500 2011
+  Processing by CompaniesController#update as HTML
+  Parameters: {"company"=>{"business_status_type"=>"1", "personal_license_type"=>"1", "business_certificate_type"=>"1", "filing_number"=>"STAT001", "business_certificate_number"=>"BUS001", "personal_license_number"=>"PERS001", "insurance_expiration_month"=>"7", "insurance_expiration_year"=>"2014"}, "id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+Completed 200 OK in 79ms (Views: 1.7ms | ActiveRecord: 0.4ms)

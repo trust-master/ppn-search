@@ -347,7 +347,7 @@ var companiesEditForm = {
 		var rootObject = this;
 		var uri = $('#form_destination').val();
 		$('<input type="hidden" name="_method" value="put"/>').appendTo('form');
-		$('form').ajaxForm({
+		$('.company_form_step_1_form, .company_form_step_2_form, .company_form_step_3_form').ajaxForm({
 			url: uri,
             success: function (data) {
 				if (data.success) {
