@@ -1,0 +1,81 @@
+<ul>
+	<li>
+		<label for="affiliation_name">Affiliation Name*</label>
+		<input type="text" name="affiliation[name]" id="affiliation_name"/>
+	</li>
+	<li>
+		<label for="affiliation_title">Affiliation Title*</label>
+		<input type="text" name="affiliation[title]" id="affiliation_title"/>
+	</li>
+	<li>
+		<input type="checkbox" name="affiliation[current_member]" id="affiliation_current_member" value="1"/>
+		<label for="affiliation_current_member">I am a current member</label>
+	</li>
+	<li>
+		<label for="affiliation_start_month">Start Month*</label>
+		<select name="affiliation[start_month]" id="affiliation_start_month">
+			<option value="">Select...</option>
+			<option value="1">January</option>
+			<option value="2">February</option>
+			<option value="3">March</option>
+			<option value="4">April</option>
+			<option value="5">May</option>
+			<option value="6">June</option>
+			<option value="7">July</option>
+			<option value="8">August</option>
+			<option value="9">September</option>
+			<option value="10">October</option>
+			<option value="11">November</option>
+			<option value="12">December</option> 
+		</select>
+		<label for="affiliation_start_year">Start Year*</label>
+		<select name="affiliation[start_year]" id="affiliation_start_year">
+			<option value="">Select...</option>
+			<% (1964..2014).each do |year| %>
+				<option value="<%= year%>"><%= year %></option>
+			<% end %>
+		</select>
+	</li>
+	<li>
+		<label for="affiliation_end_month">End Month*</label>
+		<select name="affiliation[end_month]" id="affiliation_end_month">
+			<option value="">Select...</option>
+			<option value="1">January</option>
+			<option value="2">February</option>
+			<option value="3">March</option>
+			<option value="4">April</option>
+			<option value="5">May</option>
+			<option value="6">June</option>
+			<option value="7">July</option>
+			<option value="8">August</option>
+			<option value="9">September</option>
+			<option value="10">October</option>
+			<option value="11">November</option>
+			<option value="12">December</option> 
+		</select>
+		<label for="affiliation_end_year">End Year*</label>
+		<select name="affiliation[end_year]" id="affiliation_end_year">
+			<option value="">Select...</option>
+			<% (1964..2014).each do |year| %>
+				<option value="<%= year%>"><%= year %></option>
+			<% end %>
+		</select>
+	</li>	
+	<li>
+		<label for="affiliation_uri">Uri</label>
+		<input type="text" name="affiliation[uri]" id="affiliation_uri" value="<%=form.uri%>"/>
+	</li>
+	<li>
+		<label for="affiliation_description">Description*</label>
+		<textarea name="affiliation[description]" id="affiliation_description"><%=form.description%></textarea>
+	</li>
+	<li>
+		<input type="hidden" name="affiliation[company_id]" id="affiliation_company_id" value="<%= form.company_id%>"/>
+		<input type="submit"/>
+	</li>
+</ul>
+<script type="text/javascript">
+	$(document).ready(function() {
+		affiliationForm.init();
+	});
+</script>

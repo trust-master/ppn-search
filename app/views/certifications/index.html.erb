@@ -1,0 +1,5 @@
+<% @company.certifications.each do |certification| %>
+	<li class="object_container">
+		<%= render :partial => "show", :object => certification %>
+	</li>
+<% end %>

@@ -1,0 +1,5 @@
+<% @company.associations.each do |association| %>
+	<li class="object_container">
+		<%= render :partial => "show", :object => association %>
+	</li>
+<% end %>

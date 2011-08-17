@@ -1,0 +1,3 @@
+<%= form_for @association, :url => { :action => "create" }, :html => { :class => "association_form"} do |f| %>
+	<%= render :partial => "form", :object => @association%>
+<% end %>

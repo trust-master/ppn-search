@@ -1,0 +1,2 @@
+class CompanySubcategoriesController < ApplicationController
+end

@@ -1,0 +1,21 @@
+<ul>
+	<li>
+		<label>Name</label>
+		<span><%= show.name %></span>
+	</li>
+	<li>
+		<label>Title</label>
+		<span><%= show.title %></span>
+	</li>
+	<li>
+		<label>Certificate</label>
+		<span class="uploaded_filename"><%= show.certificate_filename%></span>
+	</li>
+	<li>
+		<label>Description</label>
+		<p><%= show.description %></p>
+	</li>
+	<li>
+		<a href="/certifications/<%=show.id%>/delete" class="delete">Delete</a>
+	</li>
+</ul>
