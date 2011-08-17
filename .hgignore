@@ -1,0 +1,7 @@
+.bundle
+db/development.sqlite3
+log/*.log
+tmp/*
+assets/data/*
+.DS_Store
+.orig
