@@ -26115,3 +26115,705 @@ Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:20:44 -050
 Rendered discounts/_show.html.erb (0.7ms)
 Rendered discounts/index.html.erb within layouts/application (31.8ms)
 Completed 200 OK in 76ms (Views: 37.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:22:16 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.5ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mDiscount Load (0.4ms)[0m  SELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)
+Rendered discounts/_show.html.erb (0.8ms)
+Rendered discounts/index.html.erb within layouts/application (31.9ms)
+Completed 200 OK in 65ms (Views: 35.5ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/discounts/1" for 127.0.0.1 at Fri Aug 19 08:22:36 -0500 2011
+  Processing by DiscountsController#destroy as 
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mDiscount Load (0.2ms)[0m  SELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 1 LIMIT 1
+  [1m[36mAREL (0.2ms)[0m  [1mDELETE FROM "discounts" WHERE "discounts"."id" = 1[0m
+Completed 200 OK in 34ms (Views: 11.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:22:40 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mDiscount Load (0.2ms)[0m  SELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)
+Rendered discounts/index.html.erb within layouts/application (20.9ms)
+Completed 200 OK in 58ms (Views: 25.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:23:05 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.5ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)[0m
+Rendered discounts/index.html.erb (20.0ms)
+Completed 200 OK in 48ms (Views: 21.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/companies" for 127.0.0.1 at Fri Aug 19 08:28:38 -0500 2011
+  Processing by CompaniesController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies"[0m
+Rendered companies/index.html.erb within layouts/application (15.2ms)
+Completed 200 OK in 94ms (Views: 35.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/companies/9/edit" for 127.0.0.1 at Fri Aug 19 08:28:42 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCompanyCategory Load (0.3ms)[0m  SELECT "company_categories".* FROM "company_categories"
+  [1m[36mCompanySubcategory Load (0.2ms)[0m  [1mSELECT "company_subcategories".* FROM "company_subcategories"[0m
+  [1m[35mServiceArea Load (0.5ms)[0m  SELECT "service_areas".* FROM "service_areas"
+  [1m[36mServiceAreaCoverage Load (0.3ms)[0m  [1mSELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 9)[0m
+  [1m[35mCompanyCategory Load (0.1ms)[0m  SELECT "company_categories".* FROM "company_categories" WHERE "company_categories"."id" = 12 LIMIT 1
+Rendered companies/_form.html.erb (10.6ms)
+Rendered companies/edit.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 218ms (Views: 29.7ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/affiliations/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:28:42 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.4ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mAffiliation Load (0.3ms)[0m  [1mSELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 9)[0m
+Rendered affiliations/index.html.erb (39.6ms)
+Completed 200 OK in 86ms (Views: 48.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/certifications/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:28:42 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCertification Load (0.2ms)[0m  SELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 9)
+Rendered certifications/index.html.erb (38.0ms)
+Completed 200 OK in 128ms (Views: 55.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/associations/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:28:42 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mAssociation Load (0.2ms)[0m  [1mSELECT "associations".* FROM "associations" WHERE ("associations".company_id = 9)[0m
+Rendered associations/index.html.erb (35.6ms)
+Completed 200 OK in 80ms (Views: 51.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/companies/9/edit" for 127.0.0.1 at Fri Aug 19 08:29:09 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCompanyCategory Load (0.2ms)[0m  SELECT "company_categories".* FROM "company_categories"
+  [1m[36mCompanySubcategory Load (0.1ms)[0m  [1mSELECT "company_subcategories".* FROM "company_subcategories"[0m
+  [1m[35mServiceArea Load (0.3ms)[0m  SELECT "service_areas".* FROM "service_areas"
+  [1m[36mServiceAreaCoverage Load (0.4ms)[0m  [1mSELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 9)[0m
+  [1m[35mCompanyCategory Load (0.1ms)[0m  SELECT "company_categories".* FROM "company_categories" WHERE "company_categories"."id" = 12 LIMIT 1
+Rendered companies/_form.html.erb (8.5ms)
+Rendered companies/edit.html.erb within layouts/application (10.5ms)
+Completed 200 OK in 80ms (Views: 14.3ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/affiliations/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:29:09 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mAffiliation Load (0.2ms)[0m  [1mSELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 9)[0m
+Rendered affiliations/index.html.erb (22.8ms)
+Completed 200 OK in 75ms (Views: 25.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/associations/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:29:09 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.4ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAssociation Load (0.2ms)[0m  SELECT "associations".* FROM "associations" WHERE ("associations".company_id = 9)
+Rendered associations/index.html.erb (28.0ms)
+Completed 200 OK in 101ms (Views: 30.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/certifications/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:29:10 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCertification Load (0.2ms)[0m  [1mSELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 9)[0m
+Rendered certifications/index.html.erb (18.0ms)
+Completed 200 OK in 46ms (Views: 20.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:29:10 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mDiscount Load (0.2ms)[0m  SELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)
+Rendered discounts/index.html.erb (19.6ms)
+Completed 200 OK in 96ms (Views: 21.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/companies/9/edit" for 127.0.0.1 at Fri Aug 19 08:29:29 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCompanyCategory Load (0.2ms)[0m  [1mSELECT "company_categories".* FROM "company_categories"[0m
+  [1m[35mCompanySubcategory Load (0.1ms)[0m  SELECT "company_subcategories".* FROM "company_subcategories"
+  [1m[36mServiceArea Load (0.2ms)[0m  [1mSELECT "service_areas".* FROM "service_areas"[0m
+  [1m[35mServiceAreaCoverage Load (0.3ms)[0m  SELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 9)
+  [1m[36mCompanyCategory Load (0.3ms)[0m  [1mSELECT "company_categories".* FROM "company_categories" WHERE "company_categories"."id" = 12 LIMIT 1[0m
+Rendered companies/_form.html.erb (9.4ms)
+Rendered companies/edit.html.erb within layouts/application (12.3ms)
+Completed 200 OK in 131ms (Views: 15.8ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/affiliations/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:29:29 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAffiliation Load (0.2ms)[0m  SELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 9)
+Rendered affiliations/index.html.erb (68.1ms)
+Completed 200 OK in 101ms (Views: 70.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/associations/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:29:30 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.5ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mAssociation Load (0.2ms)[0m  [1mSELECT "associations".* FROM "associations" WHERE ("associations".company_id = 9)[0m
+Rendered associations/index.html.erb (19.7ms)
+Completed 200 OK in 52ms (Views: 23.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/certifications/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:29:30 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCertification Load (0.2ms)[0m  SELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 9)
+Rendered certifications/index.html.erb (62.1ms)
+Completed 200 OK in 90ms (Views: 64.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:29:30 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.5ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)[0m
+Rendered discounts/index.html.erb (19.8ms)
+Completed 200 OK in 49ms (Views: 21.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Fri Aug 19 08:29:33 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered discounts/_form.html.erb (56.7ms)
+Rendered discounts/new.html.erb (58.8ms)
+Completed 200 OK in 78ms (Views: 61.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/companies/9/edit" for 127.0.0.1 at Fri Aug 19 08:29:57 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCompanyCategory Load (0.4ms)[0m  [1mSELECT "company_categories".* FROM "company_categories"[0m
+  [1m[35mCompanySubcategory Load (0.2ms)[0m  SELECT "company_subcategories".* FROM "company_subcategories"
+  [1m[36mServiceArea Load (0.4ms)[0m  [1mSELECT "service_areas".* FROM "service_areas"[0m
+  [1m[35mServiceAreaCoverage Load (0.4ms)[0m  SELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 9)
+  [1m[36mCompanyCategory Load (0.2ms)[0m  [1mSELECT "company_categories".* FROM "company_categories" WHERE "company_categories"."id" = 12 LIMIT 1[0m
+Rendered companies/_form.html.erb (12.4ms)
+Rendered companies/edit.html.erb within layouts/application (14.9ms)
+Completed 200 OK in 83ms (Views: 18.7ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/affiliations/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:29:57 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.4ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAffiliation Load (0.3ms)[0m  SELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 9)
+Rendered affiliations/index.html.erb (30.1ms)
+Completed 200 OK in 67ms (Views: 32.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/associations/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:29:57 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.5ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mAssociation Load (0.2ms)[0m  [1mSELECT "associations".* FROM "associations" WHERE ("associations".company_id = 9)[0m
+Rendered associations/index.html.erb (19.4ms)
+Completed 200 OK in 103ms (Views: 23.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/certifications/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:29:57 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCertification Load (0.2ms)[0m  SELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 9)
+Rendered certifications/index.html.erb (21.0ms)
+Completed 200 OK in 50ms (Views: 22.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:29:57 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mDiscount Load (0.3ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)[0m
+Rendered discounts/index.html.erb (24.3ms)
+Completed 200 OK in 116ms (Views: 26.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Fri Aug 19 08:30:00 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered discounts/_form.html.erb (0.8ms)
+Rendered discounts/new.html.erb (2.9ms)
+Completed 200 OK in 23ms (Views: 5.1ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/discounts" for 127.0.0.1 at Fri Aug 19 08:30:34 -0500 2011
+  Processing by DiscountsController#create as HTML
+  Parameters: {"discount"=>{"start_date"=>"08/17/2011", "title"=>"This is a test title", "type_id"=>"1", "company_id"=>"9", "description"=>"Test Description", "end_date"=>"08/24/2011", "market_id"=>"1"}, "image_file"=>#<ActionDispatch::Http::UploadedFile:0x10bf11ce0 @tempfile=#<File:/var/folders/4m/1rtbz52x3k3353w2rx_lz1lh0000gn/T/RackMultipart20110819-272-1kfx56p-0>, @original_filename="TM_Provider_profile_v2.5.pdf", @headers="Content-Disposition: form-data; name=\"image_file\"; filename=\"TM_Provider_profile_v2.5.pdf\"\r\nContent-Type: application/pdf\r\n", @content_type="application/pdf">, "authenticity_token"=>"/0oqoIvTAb2iwLQWDOgPwuGOCF7WUPId1GFh45pEfHc=", "utf8"=>"\342\234\223"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mAREL (0.4ms)[0m  [1mINSERT INTO "discounts" ("description", "end_date", "title", "start_date", "company_id", "updated_at", "image_filename", "market_id", "created_at", "type_id") VALUES ('Test Description', '2011-08-24', 'This is a test title', '2011-08-17', 9, '2011-08-19 13:30:34.324850', 'TM_Provider_profile_v2.5.pdf', 1, '2011-08-19 13:30:34.324850', 1)[0m
+Completed 200 OK in 110ms (Views: 1.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/companies/9/edit" for 127.0.0.1 at Fri Aug 19 08:31:40 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCompanyCategory Load (0.2ms)[0m  SELECT "company_categories".* FROM "company_categories"
+  [1m[36mCompanySubcategory Load (0.1ms)[0m  [1mSELECT "company_subcategories".* FROM "company_subcategories"[0m
+  [1m[35mServiceArea Load (0.3ms)[0m  SELECT "service_areas".* FROM "service_areas"
+  [1m[36mServiceAreaCoverage Load (0.5ms)[0m  [1mSELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 9)[0m
+  [1m[35mCompanyCategory Load (0.1ms)[0m  SELECT "company_categories".* FROM "company_categories" WHERE "company_categories"."id" = 12 LIMIT 1
+Rendered companies/_form.html.erb (7.9ms)
+Rendered companies/edit.html.erb within layouts/application (9.9ms)
+Completed 200 OK in 128ms (Views: 14.2ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/affiliations/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:31:40 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mAffiliation Load (0.2ms)[0m  [1mSELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 9)[0m
+Rendered affiliations/index.html.erb (20.7ms)
+Completed 200 OK in 109ms (Views: 23.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/associations/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:31:41 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAssociation Load (0.2ms)[0m  SELECT "associations".* FROM "associations" WHERE ("associations".company_id = 9)
+Rendered associations/index.html.erb (18.0ms)
+Completed 200 OK in 56ms (Views: 20.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:31:41 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)[0m
+Rendered discounts/_show.html.erb (0.5ms)
+Rendered discounts/index.html.erb (25.5ms)
+Completed 500 Internal Server Error in 107ms
+
+ActionView::Template::Error (Could not locate type by id 2 in the enum):
+    3: 		<%= show.title %>
+    4: 	</td>
+    5: 	<td>
+    6: 		<%= show.type_name %>
+    7: 	</td>
+    8: 	<td>
+    9: 		<%= show.start_date %>
+  app/models/discount.rb:6:in `type_name'
+  app/views/discounts/_show.html.erb:6:in `_app_views_discounts__show_html_erb__361853178_2246211160_1430750'
+  app/views/discounts/index.html.erb:13:in `_app_views_discounts_index_html_erb__176487074_2247340540_0'
+  app/views/discounts/index.html.erb:12:in `_app_views_discounts_index_html_erb__176487074_2247340540_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.4ms)
+
+
+Started GET "/certifications/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:31:41 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCertification Load (0.2ms)[0m  SELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 9)
+Rendered certifications/index.html.erb (22.0ms)
+Completed 200 OK in 53ms (Views: 24.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Fri Aug 19 08:31:44 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered discounts/_form.html.erb (0.8ms)
+Rendered discounts/new.html.erb (3.1ms)
+Completed 200 OK in 23ms (Views: 5.2ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/discounts" for 127.0.0.1 at Fri Aug 19 08:32:07 -0500 2011
+  Processing by DiscountsController#create as HTML
+  Parameters: {"discount"=>{"start_date"=>"08/11/2011", "title"=>"asetas", "type_id"=>"1", "company_id"=>"9", "description"=>"Test asertaset", "end_date"=>"08/24/2011", "market_id"=>"1"}, "image_file"=>#<ActionDispatch::Http::UploadedFile:0x10be66958 @tempfile=#<File:/var/folders/4m/1rtbz52x3k3353w2rx_lz1lh0000gn/T/RackMultipart20110819-272-4cequ5-0>, @original_filename="TM_Provider_profile_v2.5.pdf", @headers="Content-Disposition: form-data; name=\"image_file\"; filename=\"TM_Provider_profile_v2.5.pdf\"\r\nContent-Type: application/pdf\r\n", @content_type="application/pdf">, "authenticity_token"=>"/0oqoIvTAb2iwLQWDOgPwuGOCF7WUPId1GFh45pEfHc=", "utf8"=>"\342\234\223"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "discounts" ("company_id", "updated_at", "image_filename", "type_id", "title", "market_id", "end_date", "description", "created_at", "start_date") VALUES (9, '2011-08-19 13:32:07.522650', 'TM_Provider_profile_v2.5.pdf', 1, 'asetas', 1, '2011-08-24', 'Test asertaset', '2011-08-19 13:32:07.522650', '2011-08-11')
+Completed 200 OK in 150ms (Views: 2.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:32:07 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.5ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mDiscount Load (0.4ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)[0m
+Rendered discounts/_show.html.erb (2.8ms)
+Rendered discounts/index.html.erb (50.1ms)
+Completed 500 Internal Server Error in 95ms
+
+ActionView::Template::Error (Could not locate type by id 2 in the enum):
+    3: 		<%= show.title %>
+    4: 	</td>
+    5: 	<td>
+    6: 		<%= show.type_name %>
+    7: 	</td>
+    8: 	<td>
+    9: 		<%= show.start_date %>
+  app/models/discount.rb:6:in `type_name'
+  app/views/discounts/_show.html.erb:6:in `_app_views_discounts__show_html_erb__361853178_2244897520_1430750'
+  app/views/discounts/index.html.erb:13:in `_app_views_discounts_index_html_erb__176487074_2245746980_0'
+  app/views/discounts/index.html.erb:12:in `_app_views_discounts_index_html_erb__176487074_2245746980_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (10.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (18.0ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:32:19 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mDiscount Load (0.2ms)[0m  SELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)
+Rendered discounts/_show.html.erb (0.6ms)
+Rendered discounts/index.html.erb (26.2ms)
+Completed 500 Internal Server Error in 54ms
+
+ActionView::Template::Error (Could not locate type by id 2 in the enum):
+    3: 		<%= show.title %>
+    4: 	</td>
+    5: 	<td>
+    6: 		<%= show.type_name %>
+    7: 	</td>
+    8: 	<td>
+    9: 		<%= show.start_date %>
+  app/models/discount.rb:6:in `type_name'
+  app/views/discounts/_show.html.erb:6:in `_app_views_discounts__show_html_erb__361853178_2244635480_1430750'
+  app/views/discounts/index.html.erb:13:in `_app_views_discounts_index_html_erb__176487074_2245658860_0'
+  app/views/discounts/index.html.erb:12:in `_app_views_discounts_index_html_erb__176487074_2245658860_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.2ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:32:52 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)[0m
+Rendered discounts/index.html.erb (18.8ms)
+Completed 200 OK in 102ms (Views: 20.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/companies/9/edit" for 127.0.0.1 at Fri Aug 19 08:32:56 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCompanyCategory Load (0.2ms)[0m  SELECT "company_categories".* FROM "company_categories"
+  [1m[36mCompanySubcategory Load (0.1ms)[0m  [1mSELECT "company_subcategories".* FROM "company_subcategories"[0m
+  [1m[35mServiceArea Load (0.2ms)[0m  SELECT "service_areas".* FROM "service_areas"
+  [1m[36mServiceAreaCoverage Load (0.4ms)[0m  [1mSELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 9)[0m
+  [1m[35mCompanyCategory Load (0.2ms)[0m  SELECT "company_categories".* FROM "company_categories" WHERE "company_categories"."id" = 12 LIMIT 1
+Rendered companies/_form.html.erb (14.9ms)
+Rendered companies/edit.html.erb within layouts/application (61.6ms)
+Completed 200 OK in 123ms (Views: 65.4ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/affiliations/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:32:56 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mAffiliation Load (0.3ms)[0m  [1mSELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 9)[0m
+Rendered affiliations/index.html.erb (30.6ms)
+Completed 200 OK in 62ms (Views: 33.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/associations/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:32:56 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAssociation Load (0.2ms)[0m  SELECT "associations".* FROM "associations" WHERE ("associations".company_id = 9)
+Rendered associations/index.html.erb (17.7ms)
+Completed 200 OK in 107ms (Views: 19.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:32:57 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)[0m
+Rendered discounts/index.html.erb (19.2ms)
+Completed 200 OK in 50ms (Views: 21.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/certifications/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:32:57 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCertification Load (0.2ms)[0m  SELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 9)
+Rendered certifications/index.html.erb (17.7ms)
+Completed 200 OK in 94ms (Views: 19.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Fri Aug 19 08:32:59 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered discounts/_form.html.erb (0.8ms)
+Rendered discounts/new.html.erb (2.8ms)
+Completed 200 OK in 23ms (Views: 5.0ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/discounts" for 127.0.0.1 at Fri Aug 19 08:33:15 -0500 2011
+  Processing by DiscountsController#create as HTML
+  Parameters: {"discount"=>{"start_date"=>"08/17/2011", "title"=>"asetaest", "type_id"=>"1", "company_id"=>"9", "description"=>"testsaetaset", "end_date"=>"08/31/2011", "market_id"=>"1"}, "image_file"=>#<ActionDispatch::Http::UploadedFile:0x10be33198 @tempfile=#<File:/var/folders/4m/1rtbz52x3k3353w2rx_lz1lh0000gn/T/RackMultipart20110819-272-qb6iev-0>, @original_filename="TM_Provider_profile_v2.5.pdf", @headers="Content-Disposition: form-data; name=\"image_file\"; filename=\"TM_Provider_profile_v2.5.pdf\"\r\nContent-Type: application/pdf\r\n", @content_type="application/pdf">, "authenticity_token"=>"/0oqoIvTAb2iwLQWDOgPwuGOCF7WUPId1GFh45pEfHc=", "utf8"=>"\342\234\223"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "discounts" ("market_id", "type_id", "updated_at", "title", "image_filename", "start_date", "description", "created_at", "end_date", "company_id") VALUES (1, 1, '2011-08-19 13:33:15.153285', 'asetaest', 'TM_Provider_profile_v2.5.pdf', '2011-08-17', 'testsaetaset', '2011-08-19 13:33:15.153285', '2011-08-31', 9)
+Completed 200 OK in 144ms (Views: 1.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:33:15 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mDiscount Load (0.3ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)[0m
+Rendered discounts/_show.html.erb (0.9ms)
+Rendered discounts/index.html.erb (33.9ms)
+Completed 500 Internal Server Error in 134ms
+
+ActionView::Template::Error (Could not locate type by id 4 in the enum):
+    3: 		<%= show.title %>
+    4: 	</td>
+    5: 	<td>
+    6: 		<%= show.type_name %>
+    7: 	</td>
+    8: 	<td>
+    9: 		<%= show.start_date %>
+  app/models/discount.rb:6:in `type_name'
+  app/views/discounts/_show.html.erb:6:in `_app_views_discounts__show_html_erb__361853178_2246343540_1430750'
+  app/views/discounts/index.html.erb:13:in `_app_views_discounts_index_html_erb__176487074_2247516340_0'
+  app/views/discounts/index.html.erb:12:in `_app_views_discounts_index_html_erb__176487074_2247516340_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (7.4ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (14.8ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:33:19 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mDiscount Load (0.2ms)[0m  SELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)
+Rendered discounts/_show.html.erb (0.6ms)
+Rendered discounts/index.html.erb (24.2ms)
+Completed 500 Internal Server Error in 49ms
+
+ActionView::Template::Error (Could not locate type by id 4 in the enum):
+    3: 		<%= show.title %>
+    4: 	</td>
+    5: 	<td>
+    6: 		<%= show.type_name %>
+    7: 	</td>
+    8: 	<td>
+    9: 		<%= show.start_date %>
+  app/models/discount.rb:6:in `type_name'
+  app/views/discounts/_show.html.erb:6:in `_app_views_discounts__show_html_erb__361853178_2243731780_1430750'
+  app/views/discounts/index.html.erb:13:in `_app_views_discounts_index_html_erb__176487074_2244285800_0'
+  app/views/discounts/index.html.erb:12:in `_app_views_discounts_index_html_erb__176487074_2244285800_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.7ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:33:45 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)[0m
+Rendered discounts/_show.html.erb (0.7ms)
+Rendered discounts/index.html.erb (25.0ms)
+Completed 200 OK in 50ms (Views: 26.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/companies/9/edit" for 127.0.0.1 at Fri Aug 19 08:33:53 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCompanyCategory Load (0.2ms)[0m  SELECT "company_categories".* FROM "company_categories"
+  [1m[36mCompanySubcategory Load (0.1ms)[0m  [1mSELECT "company_subcategories".* FROM "company_subcategories"[0m
+  [1m[35mServiceArea Load (0.2ms)[0m  SELECT "service_areas".* FROM "service_areas"
+  [1m[36mServiceAreaCoverage Load (0.3ms)[0m  [1mSELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 9)[0m
+  [1m[35mCompanyCategory Load (0.1ms)[0m  SELECT "company_categories".* FROM "company_categories" WHERE "company_categories"."id" = 12 LIMIT 1
+Rendered companies/_form.html.erb (8.1ms)
+Rendered companies/edit.html.erb within layouts/application (10.2ms)
+Completed 200 OK in 134ms (Views: 13.9ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/affiliations/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:33:54 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mAffiliation Load (0.2ms)[0m  [1mSELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 9)[0m
+Rendered affiliations/index.html.erb (24.9ms)
+Completed 200 OK in 125ms (Views: 28.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/associations/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:33:54 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.4ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAssociation Load (0.2ms)[0m  SELECT "associations".* FROM "associations" WHERE ("associations".company_id = 9)
+Rendered associations/index.html.erb (23.9ms)
+Completed 200 OK in 58ms (Views: 26.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/certifications/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:33:54 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCertification Load (0.2ms)[0m  [1mSELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 9)[0m
+Rendered certifications/index.html.erb (17.5ms)
+Completed 200 OK in 95ms (Views: 19.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:33:54 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mDiscount Load (0.2ms)[0m  SELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)
+Rendered discounts/_show.html.erb (0.8ms)
+Rendered discounts/index.html.erb (26.0ms)
+Completed 200 OK in 58ms (Views: 28.8ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/discounts/4" for 127.0.0.1 at Fri Aug 19 08:34:00 -0500 2011
+  Processing by DiscountsController#destroy as 
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mDiscount Load (0.2ms)[0m  SELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 4 LIMIT 1
+  [1m[36mAREL (0.2ms)[0m  [1mDELETE FROM "discounts" WHERE "discounts"."id" = 4[0m
+Completed 200 OK in 22ms (Views: 0.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/companies/9/edit" for 127.0.0.1 at Fri Aug 19 08:34:02 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCompanyCategory Load (0.2ms)[0m  SELECT "company_categories".* FROM "company_categories"
+  [1m[36mCompanySubcategory Load (0.1ms)[0m  [1mSELECT "company_subcategories".* FROM "company_subcategories"[0m
+  [1m[35mServiceArea Load (0.3ms)[0m  SELECT "service_areas".* FROM "service_areas"
+  [1m[36mServiceAreaCoverage Load (0.3ms)[0m  [1mSELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 9)[0m
+  [1m[35mCompanyCategory Load (0.1ms)[0m  SELECT "company_categories".* FROM "company_categories" WHERE "company_categories"."id" = 12 LIMIT 1
+Rendered companies/_form.html.erb (8.3ms)
+Rendered companies/edit.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 72ms (Views: 14.2ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/affiliations/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:34:02 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.5ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mAffiliation Load (0.3ms)[0m  [1mSELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 9)[0m
+Rendered affiliations/index.html.erb (28.6ms)
+Completed 200 OK in 67ms (Views: 31.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/associations/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:34:02 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAssociation Load (0.2ms)[0m  SELECT "associations".* FROM "associations" WHERE ("associations".company_id = 9)
+Rendered associations/index.html.erb (23.5ms)
+Completed 200 OK in 58ms (Views: 25.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/certifications/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:34:02 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCertification Load (0.2ms)[0m  [1mSELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 9)[0m
+Rendered certifications/index.html.erb (21.4ms)
+Completed 200 OK in 48ms (Views: 23.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:34:02 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.4ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mDiscount Load (0.2ms)[0m  SELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)
+Rendered discounts/index.html.erb (18.7ms)
+Completed 200 OK in 46ms (Views: 20.7ms | ActiveRecord: 0.7ms)

@@ -275,6 +275,7 @@ var companiesEditForm = {
 			this.initAffiliations();
 			this.initAssociations();
 			this.initCertifications();
+			this.initDiscounts();
 			this.initSubmission();
 			this.initTabs();
 			this.initValidation();
@@ -338,6 +339,27 @@ var companiesEditForm = {
 				certificationForm.submissionCallback = function() {
 					dialog.dialog('close');
 					$('.certifications_index').load('/certifications/?company_id=' + companyId);
+				};
+			});
+			return false;
+		});
+	},
+	initDiscounts: function() {
+		var companyId = $('#company_id').val();
+		$('.discounts_index').load('/discounts/?company_id=' + companyId);
+		
+		$('.discount_new').click(function() {
+			var dialog = $('#discount_new_dialog');
+			if (dialog.length == 0) {
+				dialog = $('<div id="discount_new_dialog" class="hidden"></div>');
+				dialog.appendTo($('body'));
+			}
+			
+			dialog.load('/discounts/new?company_id='+companyId, function() {
+				dialog.dialog({modal: true, width:960});
+				discountForm.submissionCallback = function() {
+					dialog.dialog('close');
+					$('.discounts_index').load('/discounts/?company_id=' + companyId);
 				};
 			});
 			return false;

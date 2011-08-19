@@ -1,6 +1,8 @@
 class DiscountsController < ApplicationController
     before_filter :must_be_admin
 
+    layout nil
+    
     def create
          @discount = Discount.new(params[:discount])
          @company = Company.find_by_id @discount.company_id
