@@ -346,7 +346,24 @@ var companiesEditForm = {
 	},
 	initDiscounts: function() {
 		var companyId = $('#company_id').val();
-		$('.discounts_index').load('/discounts/?company_id=' + companyId);
+		$('.discounts_index').load('/discounts/?company_id=' + companyId, function() {
+			$('.discounts_index .edit').click(function() {
+				var dialog = $('#discount_edit_dialog');
+				if (dialog.length == 0) {
+					dialog = $('<div id="discount_edit_dialog" class="hidden"></div>');
+					dialog.appendTo($('body'));
+				}
+
+				dialog.load($(this).attr('href'), function() {
+					dialog.dialog({modal: true, width:960});
+					discountForm.submissionCallback = function() {
+						dialog.dialog('close');
+						$('.discounts_index').load('/discounts/?company_id=' + companyId);
+					};
+				});
+				return false;
+			});
+		});
 		
 		$('.discount_new').click(function() {
 			var dialog = $('#discount_new_dialog');
@@ -364,6 +381,7 @@ var companiesEditForm = {
 			});
 			return false;
 		});
+		
 	},
 	initSubmission: function() {
 		var rootObject = this;

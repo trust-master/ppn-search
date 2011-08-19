@@ -20,6 +20,11 @@ class DiscountsController < ApplicationController
              render :json => { :success => false, :message => @discount.errors}
          end
      end
+     def edit
+         raise "No discount id passed while editing a discount" if params[:id].nil?
+         @discount = Discount.find params[:id]
+         raise "Could not locate discount #{params[:id]} for editing" if @discount.nil?
+     end
      def index
          raise "No company id passed while creating a new certification" if params[:company_id].nil?
          @company = Company.find_by_id params[:company_id]
@@ -32,6 +37,13 @@ class DiscountsController < ApplicationController
      end
      def update
          @discount = Discount.find(params[:id])
+         if params[:image_file]
+              @discount.image_filename = params[:image_file].original_filename
+              path = "assets/data/#{@discount.company_id}/discounts"
+              FileUtils.mkdir_p path unless File.exists?(path) && File.directory?(path)
+              File.open("#{path}/#{@discount.image_filename}", "wb"){|f| f.write(params[:image_file].read) }
+          end
+         
          if @discount.update_attributes(params[:discount])
              render :json => {:success => true, :discount => @discount}
          else
