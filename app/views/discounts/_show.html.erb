@@ -1,9 +1,17 @@
-<p>
-	<% if show.current_member == true %>
-		Currently associated with <%= show.name %>
-	<% else %>
-		Associated with <%= show.name %> from <%= show.start_month %> / <%= show.start_year %>
-		until <%= show.end_month %> / <%= show.end_year %>.
-	<% end %>
-</p>
-<span><a href="/associations/<%=show.id%>/delete" class="delete">Delete</a></span>
+<tr class="object_container">
+	<td>
+		<%= show.title %>
+	</td>
+	<td>
+		<%= show.type_name %>
+	</td>
+	<td>
+		<%= show.start_date %>
+	</td>
+	<td>
+		<%= show.end_date%>
+	</td>
+	<td>
+		<span><a href="/discounts/<%=show.id%>/delete" class="delete">Delete</a></span>
+	</td>
+</tr>

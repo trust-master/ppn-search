@@ -1,6 +1,11 @@
 class Discount < ActiveRecord::Base
     belongs_to :company
-    
+    validates_presence_of :type, :title, :start_date, :end_date
+    def type_name
+        type = Discount.AvailableTypes.find{|item| item.id == self.id }
+        raise "Could not locate type by id #{self.id} in the enum" if type.nil?
+        return type.name
+    end
     def self.AvailableMarkets
         return [ 
             Market.new({:id => 1, :name => "Minneapolis"}),

@@ -2,7 +2,7 @@
 <ul>
 	<li>
 		<label for="discount_type">Discount Type*</label>
-		<select name="discount[type]" id="discount_type">
+		<select name="discount[type_id]" id="discount_type_id">
 			<option value="">Select...</option>
 			<% Discount.AvailableTypes.each do |discount_type| %>
 				<option value="<%= discount_type.id%>"<%= form.type == discount_type.id ? "selected=selected" : ""%>><%= discount_type.name%></option>

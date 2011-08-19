@@ -25734,3 +25734,384 @@ WARNING: Can't mass-assign protected attributes: type
 [0m
   [1m[35mAREL (0.2ms)[0m  INSERT INTO "discounts" ("type", "market_id", "created_at", "updated_at", "description", "end_date", "company_id", "title", "start_date", "image_filename") VALUES (NULL, 1, '2011-08-17 14:24:38.880145', '2011-08-17 14:24:38.880145', 'test description', '2011-08-23', 9, 'test title', '2011-08-10', '2011-01-01.png')
 Completed 200 OK in 51ms (Views: 2.4ms | ActiveRecord: 0.8ms)
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from service at /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104)
+
+
+Started GET "/discounts" for 127.0.0.1 at Fri Aug 19 08:01:15 -0500 2011
+  Processing by DiscountsController#index as HTML
+DEPRECATION WARNING: Using #request_uri is deprecated. Use fullpath instead. (called from must_be_admin at /Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/controllers/application_controller.rb:6)
+Redirected to http://localhost:3000/?return_uri=/discounts
+Completed 302 Found in 1ms
+
+
+Started GET "/?return_uri=/discounts" for 127.0.0.1 at Fri Aug 19 08:01:16 -0500 2011
+  Processing by UsersController#login as HTML
+  Parameters: {"return_uri"=>"/discounts"}
+Rendered users/login.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 78ms (Views: 42.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/login" for 127.0.0.1 at Fri Aug 19 08:01:36 -0500 2011
+  Processing by UsersController#login as HTML
+  Parameters: {"authenticity_token"=>"/0oqoIvTAb2iwLQWDOgPwuGOCF7WUPId1GFh45pEfHc=", "utf8"=>"\342\234\223", "return_uri"=>"/discounts", "user"=>{"email_address"=>"testing.administrator@test.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (14.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE (email_address = 'testing.administrator@test.com') LIMIT 1[0m
+Redirected to http://localhost:3000/discounts
+Completed 302 Found in 68ms
+
+
+Started GET "/discounts" for 127.0.0.1 at Fri Aug 19 08:01:36 -0500 2011
+  Processing by DiscountsController#index as HTML
+  [1m[35mSQL (0.5ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Completed 500 Internal Server Error in 10ms
+
+RuntimeError (No company id passed while creating a new certification):
+  app/controllers/discounts_controller.rb:22:in `index'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (10.7ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Fri Aug 19 08:01:40 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered discounts/_form.html.erb (1.3ms)
+Rendered discounts/new.html.erb within layouts/application (21.3ms)
+Completed 200 OK in 97ms (Views: 38.2ms | ActiveRecord: 15.0ms)
+
+
+Started GET "/discounts/discounts?company_id=9" for 127.0.0.1 at Fri Aug 19 08:05:11 -0500 2011
+
+AbstractController::ActionNotFound (The action 'show' could not be found for DiscountsController):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/unknown_action.erb within rescues/layout (0.4ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:05:17 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (13.1ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mDiscount Load (0.7ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)[0m
+Rendered discounts/_show.html.erb (13.8ms)
+Rendered discounts/index.html.erb within layouts/application (116.4ms)
+Completed 500 Internal Server Error in 207ms
+
+ActionView::Template::Error (undefined method `current_member' for #<Discount:0x10b97b6a0>):
+    1: <p>
+    2: 	<% if show.current_member == true %>
+    3: 		Currently associated with <%= show.name %>
+    4: 	<% else %>
+    5: 		Associated with <%= show.name %> from <%= show.start_month %> / <%= show.start_year %>
+  app/views/discounts/_show.html.erb:2:in `_app_views_discounts__show_html_erb__361853178_2245400140_1430750'
+  app/views/discounts/index.html.erb:3:in `_app_views_discounts_index_html_erb__176487074_2245490100_0'
+  app/views/discounts/index.html.erb:1:in `_app_views_discounts_index_html_erb__176487074_2245490100_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (12.3ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:07:54 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mDiscount Load (0.4ms)[0m  SELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)
+Rendered discounts/_show.html.erb (0.8ms)
+Rendered discounts/_show.html.erb (0.6ms)
+Rendered discounts/_show.html.erb (0.6ms)
+Rendered discounts/index.html.erb within layouts/application (74.3ms)
+Completed 200 OK in 101ms (Views: 77.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:08:37 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)[0m
+Rendered discounts/index.html.erb within layouts/application (56.1ms)
+Completed 200 OK in 84ms (Views: 60.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/discounts/new" for 127.0.0.1 at Fri Aug 19 08:08:39 -0500 2011
+  Processing by DiscountsController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Completed 500 Internal Server Error in 10ms
+
+RuntimeError (No company id passed while creating a new certification):
+  app/controllers/discounts_controller.rb:26:in `new'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.6ms)
+
+
+Started GET "/discounts/new" for 127.0.0.1 at Fri Aug 19 08:09:09 -0500 2011
+  Processing by DiscountsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Completed 500 Internal Server Error in 55ms
+
+RuntimeError (No company id passed while creating a new certification):
+  app/controllers/discounts_controller.rb:26:in `new'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.1ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:09:11 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mDiscount Load (0.2ms)[0m  SELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)
+Rendered discounts/index.html.erb within layouts/application (18.9ms)
+Completed 200 OK in 45ms (Views: 22.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:09:22 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)[0m
+Rendered discounts/index.html.erb within layouts/application (25.9ms)
+Completed 200 OK in 64ms (Views: 32.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Fri Aug 19 08:09:24 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered discounts/_form.html.erb (0.8ms)
+Rendered discounts/new.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 26ms (Views: 7.5ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/discounts" for 127.0.0.1 at Fri Aug 19 08:09:45 -0500 2011
+  Processing by DiscountsController#create as HTML
+  Parameters: {"discount"=>{"start_date"=>"08/03/2011", "title"=>"This is a test title", "type"=>"1", "company_id"=>"9", "description"=>"This is a test description", "end_date"=>"08/25/2011", "market_id"=>"1"}, "image_file"=>#<ActionDispatch::Http::UploadedFile:0x10bf80960 @tempfile=#<File:/var/folders/4m/1rtbz52x3k3353w2rx_lz1lh0000gn/T/RackMultipart20110819-272-a2vean-0>, @original_filename="TM_Provider_profile_v2.5.pdf", @headers="Content-Disposition: form-data; name=\"image_file\"; filename=\"TM_Provider_profile_v2.5.pdf\"\r\nContent-Type: application/pdf\r\n", @content_type="application/pdf">, "authenticity_token"=>"/0oqoIvTAb2iwLQWDOgPwuGOCF7WUPId1GFh45pEfHc=", "utf8"=>"\342\234\223"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+WARNING: Can't mass-assign protected attributes: type
+  [1m[35mCompany Load (0.4ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mAREL (9.2ms)[0m  [1mINSERT INTO "discounts" ("end_date", "market_id", "updated_at", "company_id", "created_at", "start_date", "title", "image_filename", "description", "type") VALUES ('2011-08-25', 1, '2011-08-19 13:09:46.134935', 9, '2011-08-19 13:09:46.134935', '2011-08-03', 'This is a test title', 'TM_Provider_profile_v2.5.pdf', 'This is a test description', NULL)[0m
+Completed 200 OK in 311ms (Views: 4.2ms | ActiveRecord: 9.9ms)
+
+
+Started GET "/discounts/" for 127.0.0.1 at Fri Aug 19 08:09:52 -0500 2011
+  Processing by DiscountsController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Completed 500 Internal Server Error in 10ms
+
+RuntimeError (No company id passed while creating a new certification):
+  app/controllers/discounts_controller.rb:22:in `index'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.7ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:09:58 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)[0m
+Rendered discounts/_show.html.erb (0.6ms)
+Rendered discounts/index.html.erb within layouts/application (25.9ms)
+Completed 200 OK in 53ms (Views: 29.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:12:42 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mDiscount Load (0.2ms)[0m  SELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)
+Rendered discounts/_show.html.erb (0.6ms)
+Rendered discounts/index.html.erb within layouts/application (32.0ms)
+Completed 200 OK in 59ms (Views: 35.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Fri Aug 19 08:12:43 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered discounts/_form.html.erb (0.8ms)
+Rendered discounts/new.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 26ms (Views: 7.6ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/discounts" for 127.0.0.1 at Fri Aug 19 08:13:19 -0500 2011
+  Processing by DiscountsController#create as HTML
+  Parameters: {"discount"=>{"start_date"=>"08/18/2011", "title"=>"Super Discount Today", "type"=>"1", "company_id"=>"9", "description"=>"Test Description", "end_date"=>"08/24/2011", "market_id"=>"1"}, "image_file"=>#<ActionDispatch::Http::UploadedFile:0x10bea81a0 @tempfile=#<File:/var/folders/4m/1rtbz52x3k3353w2rx_lz1lh0000gn/T/RackMultipart20110819-272-815qhf-0>, @original_filename="TM_Provider_profile_v2.5.pdf", @headers="Content-Disposition: form-data; name=\"image_file\"; filename=\"TM_Provider_profile_v2.5.pdf\"\r\nContent-Type: application/pdf\r\n", @content_type="application/pdf">, "authenticity_token"=>"/0oqoIvTAb2iwLQWDOgPwuGOCF7WUPId1GFh45pEfHc=", "utf8"=>"\342\234\223"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+WARNING: Can't mass-assign protected attributes: type
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Completed 200 OK in 223ms (Views: 2.0ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/discounts" for 127.0.0.1 at Fri Aug 19 08:13:46 -0500 2011
+  Processing by DiscountsController#create as HTML
+  Parameters: {"discount"=>{"start_date"=>"08/18/2011", "title"=>"Super Discount Today", "type"=>"1", "company_id"=>"9", "description"=>"Test Description", "end_date"=>"08/24/2011", "market_id"=>"1"}, "image_file"=>#<ActionDispatch::Http::UploadedFile:0x10be92468 @tempfile=#<File:/var/folders/4m/1rtbz52x3k3353w2rx_lz1lh0000gn/T/RackMultipart20110819-272-wrfjs7-0>, @original_filename="TM_Provider_profile_v2.5.pdf", @headers="Content-Disposition: form-data; name=\"image_file\"; filename=\"TM_Provider_profile_v2.5.pdf\"\r\nContent-Type: application/pdf\r\n", @content_type="application/pdf">, "authenticity_token"=>"/0oqoIvTAb2iwLQWDOgPwuGOCF7WUPId1GFh45pEfHc=", "utf8"=>"\342\234\223"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+WARNING: Can't mass-assign protected attributes: type
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Completed 200 OK in 115ms (Views: 3.2ms | ActiveRecord: 0.4ms)
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+Migrating to CreateUsers (20110809040642)
+Migrating to AddFnameLnameAndModifiedByToUsers (20110809045345)
+Migrating to AddIsAdminToUsers (20110809052234)
+Migrating to CreateCompanies (20110809121736)
+Migrating to CreateCompanyCategories (20110812001544)
+Migrating to AddCompanyCategoryLinkage (20110812003121)
+Migrating to AddCompanySubcategory (20110812003512)
+Migrating to CreateCompanySubcategories (20110812003533)
+Migrating to CreateServiceAreas (20110814030623)
+Migrating to CreateServiceAreaCoverages (20110814032559)
+Migrating to AddCertificateOfInsuranceFilename (20110814161322)
+Migrating to CreateAffiliations (20110814165034)
+Migrating to AddCompanyIdToAffiliations (20110814180313)
+Migrating to CreateCertifications (20110816030901)
+Migrating to CreateAssociations (20110816054259)
+Migrating to CreateDiscounts (20110817011145)
+Migrating to AddCompanyIdToDiscount (20110817011744)
+Migrating to MoveTypeToProperName (20110819131427)
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.5ms)[0m  [1mALTER TABLE "discounts" ADD "type_id" integer[0m
+  [1m[35mSQL (0.7ms)[0m  CREATE TEMPORARY TABLE "altered_discounts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" integer, "description" varchar(255), "market_id" integer, "title" varchar(255), "start_date" date, "end_date" date, "image_filename" varchar(255), "created_at" datetime, "updated_at" datetime, "company_id" integer, "type_id" integer) 
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("discounts")[0m
+  [1m[35mSQL (0.2ms)[0m  DROP TABLE "discounts"
+  [1m[36mSQL (0.1ms)[0m  [1mCREATE TABLE "discounts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar(255), "market_id" integer, "title" varchar(255), "start_date" date, "end_date" date, "image_filename" varchar(255), "created_at" datetime, "updated_at" datetime, "company_id" integer, "type_id" integer) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("altered_discounts")
+  [1m[36mSQL (0.2ms)[0m  [1mDROP TABLE "altered_discounts"[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110819131427')
+  [1m[36mSQL (0.3ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("affiliations")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("associations")[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("certifications")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("companies")[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("company_categories")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("company_subcategories")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("discounts")
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("service_area_coverages")[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("service_areas")
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("users")[0m
+
+
+Started GET "/discounts/new?company_id=9" for 127.0.0.1 at Fri Aug 19 08:16:26 -0500 2011
+  Processing by DiscountsController#new as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered discounts/_form.html.erb (0.8ms)
+Rendered discounts/new.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 27ms (Views: 8.6ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/discounts" for 127.0.0.1 at Fri Aug 19 08:16:43 -0500 2011
+  Processing by DiscountsController#create as HTML
+  Parameters: {"discount"=>{"start_date"=>"08/17/2011", "title"=>"test", "type_id"=>"1", "company_id"=>"9", "description"=>"test", "end_date"=>"08/24/2011", "market_id"=>"1"}, "image_file"=>#<ActionDispatch::Http::UploadedFile:0x10be66138 @tempfile=#<File:/var/folders/4m/1rtbz52x3k3353w2rx_lz1lh0000gn/T/RackMultipart20110819-272-1vrufze-0>, @original_filename="TM_Provider_profile_v2.5.pdf", @headers="Content-Disposition: form-data; name=\"image_file\"; filename=\"TM_Provider_profile_v2.5.pdf\"\r\nContent-Type: application/pdf\r\n", @content_type="application/pdf">, "authenticity_token"=>"/0oqoIvTAb2iwLQWDOgPwuGOCF7WUPId1GFh45pEfHc=", "utf8"=>"\342\234\223"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mAREL (0.4ms)[0m  [1mINSERT INTO "discounts" ("type_id", "title", "start_date", "market_id", "image_filename", "end_date", "company_id", "updated_at", "created_at", "description") VALUES (1, 'test', '2011-08-17', 1, 'TM_Provider_profile_v2.5.pdf', '2011-08-24', 9, '2011-08-19 13:16:43.528925', '2011-08-19 13:16:43.528925', 'test')[0m
+Completed 200 OK in 145ms (Views: 3.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:17:08 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mDiscount Load (0.2ms)[0m  SELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)
+Rendered discounts/_show.html.erb (0.7ms)
+Rendered discounts/index.html.erb within layouts/application (25.3ms)
+Completed 200 OK in 91ms (Views: 30.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:20:23 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)[0m
+Rendered discounts/_show.html.erb (1.2ms)
+Rendered discounts/index.html.erb within layouts/application (25.0ms)
+Completed 500 Internal Server Error in 104ms
+
+ActionView::Template::Error (undefined method `AvailableTypes' for #<Discount:0x10be110c0>):
+    3: 		<%= show.title %>
+    4: 	</td>
+    5: 	<td>
+    6: 		<%= show.type_name %>
+    7: 	</td>
+    8: 	<td>
+    9: 		<%= show.start_date %>
+  app/models/discount.rb:5:in `type_name'
+  app/views/discounts/_show.html.erb:6:in `_app_views_discounts__show_html_erb__361853178_2246892400_1430750'
+  app/views/discounts/index.html.erb:14:in `_app_views_discounts_index_html_erb__176487074_2247856280_0'
+  app/views/discounts/index.html.erb:13:in `_app_views_discounts_index_html_erb__176487074_2247856280_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.7ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:20:35 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.5ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mDiscount Load (0.2ms)[0m  SELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)
+Rendered discounts/_show.html.erb (0.6ms)
+Rendered discounts/index.html.erb within layouts/application (79.1ms)
+Completed 500 Internal Server Error in 110ms
+
+ActionView::Template::Error (undefined method `first' for #<DiscountType:0x10bf60688 @id=1, @name="Super Deep">):
+    3: 		<%= show.title %>
+    4: 	</td>
+    5: 	<td>
+    6: 		<%= show.type_name %>
+    7: 	</td>
+    8: 	<td>
+    9: 		<%= show.start_date %>
+  app/models/discount.rb:5:in `type_name'
+  app/views/discounts/_show.html.erb:6:in `_app_views_discounts__show_html_erb__361853178_2247831320_1430750'
+  app/views/discounts/index.html.erb:14:in `_app_views_discounts_index_html_erb__176487074_2244465960_0'
+  app/views/discounts/index.html.erb:13:in `_app_views_discounts_index_html_erb__176487074_2244465960_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (10.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (14.6ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:20:44 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)[0m
+Rendered discounts/_show.html.erb (0.7ms)
+Rendered discounts/index.html.erb within layouts/application (31.8ms)
+Completed 200 OK in 76ms (Views: 37.9ms | ActiveRecord: 0.9ms)

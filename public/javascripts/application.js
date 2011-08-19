@@ -529,7 +529,7 @@ var discountForm = {
 		$('.discount_form input[type="submit"]').attr('disabled',true);
 		$('.discount_form').validate({
 			rules: {
-				"discount[type]": {required: true},
+				"discount[type_id]": {required: true},
 				"discount[description]": {required: true},
 				"image_file": {required: true},
 				"discount[market]": {required: true},

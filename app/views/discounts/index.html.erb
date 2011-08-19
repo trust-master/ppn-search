@@ -1,5 +1,17 @@
-<% @company.discounts.each do |discount| %>
-	<li class="object_container">
-		<%= render :partial => "show", :object => discount %>
-	</li>
-<% end %>
+<a href="/discounts/new?company_id=<%=@company.id%>">Add a Discount</a>
+<table>
+	<thead>
+		<tr>
+			<th>Discount Name</th>
+			<th>Discount Type</th>
+			<th>Start Date</th>
+			<th>End Date</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @company.discounts.each do |discount| %>		
+			<%= render :partial => "show", :object => discount %>
+		<% end %>
+	</tbody>
+</table>
