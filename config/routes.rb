@@ -1,5 +1,9 @@
 ComTrustmasterWww::Application.routes.draw do
-  resources :discounts
+  resources :discounts do
+      member do
+          get 'show_image'
+      end
+  end
 
   resources :associations
 

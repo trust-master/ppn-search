@@ -35,6 +35,15 @@ class DiscountsController < ApplicationController
          @discount = Discount.new
          @discount.company_id = params[:company_id]
      end
+    def show_image
+        @discount = Discount.find params[:id]
+        raise "Could not locate discount with id of #{params[:id]}" if @discount.nil?
+        path = "assets/data/#{@discount.company_id}/discounts/#{@discount.image_filename}"
+        image_does_not_exist = @discount.image_filename.nil? or !File.exists? path
+        path = image_does_not_exist ? "public/images/fpo-default-discount.jpeg" : path
+        data = File.open(path,"rb").read
+        send_data(data , :filename => @discount.image_filename, :type=>"image/jpeg")
+    end
      def update
          @discount = Discount.find(params[:id])
          if params[:image_file]

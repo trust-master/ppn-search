@@ -28640,3 +28640,498 @@ Started GET "/discounts/?company_id=9" for 127.0.0.1 at Fri Aug 19 08:48:25 -050
 Rendered discounts/_show.html.erb (1.2ms)
 Rendered discounts/index.html.erb (46.8ms)
 Completed 200 OK in 153ms (Views: 49.9ms | ActiveRecord: 1.0ms)
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from service at /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104)
+
+
+Started GET "/" for 127.0.0.1 at Wed Aug 24 19:19:59 -0500 2011
+  Processing by UsersController#login as HTML
+Rendered users/login.html.erb within layouts/application (11.5ms)
+Completed 200 OK in 120ms (Views: 67.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/login" for 127.0.0.1 at Wed Aug 24 19:20:07 -0500 2011
+  Processing by UsersController#login as HTML
+  Parameters: {"authenticity_token"=>"ybOBFZVwBpMRhpXMt6rcbSO41Br7gVmqbz+wxytxaEA=", "utf8"=>"\342\234\223", "return_uri"=>"", "user"=>{"email_address"=>"testing.administrator@test.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (20.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE (email_address = 'testing.administrator@test.com') LIMIT 1[0m
+Redirected to http://localhost:3000
+Completed 302 Found in 62ms
+
+
+Started GET "/" for 127.0.0.1 at Wed Aug 24 19:20:07 -0500 2011
+  Processing by UsersController#login as HTML
+  [1m[35mSQL (0.5ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Redirected to http://localhost:3000/users/
+Completed 302 Found in 12ms
+
+
+Started GET "/users/" for 127.0.0.1 at Wed Aug 24 19:20:07 -0500 2011
+  Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Rendered users/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 24ms (Views: 12.9ms | ActiveRecord: 21.2ms)
+
+
+Started GET "/users/companies" for 127.0.0.1 at Wed Aug 24 19:20:30 -0500 2011
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"companies"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 0 LIMIT 1[0m
+Completed 404 Not Found in 7ms
+
+ActiveRecord::RecordNotFound (Couldn't find User with ID=companies):
+  app/controllers/users_controller.rb:114:in `find_user'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (10.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.2ms)
+
+
+Started GET "/companies" for 127.0.0.1 at Wed Aug 24 19:20:34 -0500 2011
+  Processing by CompaniesController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (14.0ms)[0m  [1mSELECT "companies".* FROM "companies"[0m
+Rendered companies/index.html.erb within layouts/application (16.6ms)
+Completed 200 OK in 178ms (Views: 63.8ms | ActiveRecord: 14.7ms)
+
+
+Started GET "/companies/9/edit" for 127.0.0.1 at Wed Aug 24 19:20:36 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCompanyCategory Load (0.5ms)[0m  SELECT "company_categories".* FROM "company_categories"
+  [1m[36mCompanySubcategory Load (0.2ms)[0m  [1mSELECT "company_subcategories".* FROM "company_subcategories"[0m
+  [1m[35mServiceArea Load (0.5ms)[0m  SELECT "service_areas".* FROM "service_areas"
+  [1m[36mServiceAreaCoverage Load (0.6ms)[0m  [1mSELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 9)[0m
+  [1m[35mCompanyCategory Load (0.1ms)[0m  SELECT "company_categories".* FROM "company_categories" WHERE "company_categories"."id" = 12 LIMIT 1
+Rendered companies/_form.html.erb (12.5ms)
+Rendered companies/edit.html.erb within layouts/application (21.1ms)
+Completed 200 OK in 224ms (Views: 36.8ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/certifications/?company_id=9" for 127.0.0.1 at Wed Aug 24 19:20:36 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCertification Load (0.2ms)[0m  [1mSELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 9)[0m
+Rendered certifications/index.html.erb (44.6ms)
+Completed 200 OK in 155ms (Views: 76.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/affiliations/?company_id=9" for 127.0.0.1 at Wed Aug 24 19:20:36 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAffiliation Load (0.2ms)[0m  SELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 9)
+Rendered affiliations/index.html.erb (64.5ms)
+Completed 200 OK in 120ms (Views: 94.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/associations/?company_id=9" for 127.0.0.1 at Wed Aug 24 19:20:36 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mAssociation Load (0.2ms)[0m  [1mSELECT "associations".* FROM "associations" WHERE ("associations".company_id = 9)[0m
+Rendered associations/index.html.erb (33.3ms)
+Completed 200 OK in 96ms (Views: 69.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Wed Aug 24 19:20:37 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mDiscount Load (0.2ms)[0m  SELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)
+Rendered discounts/_show.html.erb (0.8ms)
+Rendered discounts/index.html.erb (59.9ms)
+Completed 200 OK in 141ms (Views: 72.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/discounts/5/edit" for 127.0.0.1 at Wed Aug 24 19:20:39 -0500 2011
+  Processing by DiscountsController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mDiscount Load (0.2ms)[0m  SELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 5 LIMIT 1
+Rendered discounts/_form.html.erb (1.5ms)
+Rendered discounts/edit.html.erb (14.3ms)
+Completed 200 OK in 54ms (Views: 37.4ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/discounts/5" for 127.0.0.1 at Wed Aug 24 19:21:05 -0500 2011
+  Processing by DiscountsController#update as HTML
+  Parameters: {"discount"=>{"start_date"=>"2011-08-17", "title"=>"A True Test Again", "type_id"=>"1", "company_id"=>"9", "description"=>"testastaset", "end_date"=>"2011-08-31", "market_id"=>"1"}, "image_file"=>#<ActionDispatch::Http::UploadedFile:0x1042e3740 @tempfile=#<File:/var/folders/4m/1rtbz52x3k3353w2rx_lz1lh0000gn/T/RackMultipart20110824-495-1h16j2u-0>, @original_filename="photo-2.jpg", @headers="Content-Disposition: form-data; name=\"image_file\"; filename=\"photo-2.jpg\"\r\nContent-Type: image/jpeg\r\n", @content_type="image/jpeg">, "authenticity_token"=>"ybOBFZVwBpMRhpXMt6rcbSO41Br7gVmqbz+wxytxaEA=", "utf8"=>"\342\234\223", "id"=>"5"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mDiscount Load (0.2ms)[0m  SELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 5 LIMIT 1
+  [1m[36mAREL (0.3ms)[0m  [1mUPDATE "discounts" SET "type_id" = 1, "updated_at" = '2011-08-25 00:21:05.183833', "image_filename" = 'photo-2.jpg' WHERE "discounts"."id" = 5[0m
+Completed 200 OK in 93ms (Views: 2.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Wed Aug 24 19:21:05 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.5ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mDiscount Load (0.2ms)[0m  SELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)
+Rendered discounts/_show.html.erb (0.8ms)
+Rendered discounts/index.html.erb (85.7ms)
+Completed 200 OK in 129ms (Views: 89.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/companies/9/edit" for 127.0.0.1 at Wed Aug 24 19:26:24 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCompanyCategory Load (0.2ms)[0m  [1mSELECT "company_categories".* FROM "company_categories"[0m
+  [1m[35mCompanySubcategory Load (0.1ms)[0m  SELECT "company_subcategories".* FROM "company_subcategories"
+  [1m[36mServiceArea Load (0.3ms)[0m  [1mSELECT "service_areas".* FROM "service_areas"[0m
+  [1m[35mServiceAreaCoverage Load (0.4ms)[0m  SELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 9)
+  [1m[36mCompanyCategory Load (0.1ms)[0m  [1mSELECT "company_categories".* FROM "company_categories" WHERE "company_categories"."id" = 12 LIMIT 1[0m
+Rendered companies/_form.html.erb (11.1ms)
+Rendered companies/edit.html.erb within layouts/application (14.8ms)
+Completed 200 OK in 133ms (Views: 29.7ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/affiliations/?company_id=9" for 127.0.0.1 at Wed Aug 24 19:26:25 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAffiliation Load (0.2ms)[0m  SELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 9)
+Rendered affiliations/index.html.erb (22.2ms)
+Completed 200 OK in 115ms (Views: 35.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/certifications/?company_id=9" for 127.0.0.1 at Wed Aug 24 19:26:25 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCertification Load (0.2ms)[0m  [1mSELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 9)[0m
+Rendered certifications/index.html.erb (21.2ms)
+Completed 200 OK in 60ms (Views: 33.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/associations/?company_id=9" for 127.0.0.1 at Wed Aug 24 19:26:25 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAssociation Load (0.2ms)[0m  SELECT "associations".* FROM "associations" WHERE ("associations".company_id = 9)
+Rendered associations/index.html.erb (17.7ms)
+Completed 200 OK in 46ms (Views: 20.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Wed Aug 24 19:26:25 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mDiscount Load (0.3ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)[0m
+Rendered discounts/_show.html.erb (0.8ms)
+Rendered discounts/index.html.erb (31.1ms)
+Completed 200 OK in 105ms (Views: 34.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/discounts/5/edit" for 127.0.0.1 at Wed Aug 24 19:26:27 -0500 2011
+  Processing by DiscountsController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 5 LIMIT 1[0m
+Rendered discounts/_form.html.erb (1.2ms)
+Rendered discounts/edit.html.erb (8.1ms)
+Completed 200 OK in 26ms (Views: 10.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/discounts/5/show_image" for 127.0.0.1 at Wed Aug 24 19:26:41 -0500 2011
+
+ActionController::RoutingError (No route matches "/discounts/5/show_image"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/discounts/5/show_image" for 127.0.0.1 at Wed Aug 24 19:27:08 -0500 2011
+
+NameError (undefined local variable or method `show_image' for #<ActionDispatch::Routing::Mapper:0x103c80da8>):
+  config/routes.rb:4
+  config/routes.rb:3
+  config/routes.rb:2
+  config/routes.rb:1
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (5.6ms)
+
+
+Started GET "/discounts/5/show_image" for 127.0.0.1 at Wed Aug 24 19:27:16 -0500 2011
+  Processing by DiscountsController#show_image as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 5 LIMIT 1[0m
+Completed 500 Internal Server Error in 73ms
+
+NameError (undefined local variable or method `data' for #<DiscountsController:0x103ccfa98>):
+  app/controllers/discounts_controller.rb:44:in `show_image'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.0ms)
+
+
+Started GET "/discounts/5/show_image" for 127.0.0.1 at Wed Aug 24 19:30:03 -0500 2011
+  Processing by DiscountsController#show_image as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 5 LIMIT 1[0m
+Completed 500 Internal Server Error in 24ms
+
+NameError (undefined local variable or method `’image' for #<DiscountsController:0x104030fe8>):
+  app/controllers/discounts_controller.rb:45:in `show_image'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.7ms)
+
+
+Started GET "/discounts/5/show_image" for 127.0.0.1 at Wed Aug 24 19:30:39 -0500 2011
+  Processing by DiscountsController#show_image as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 5 LIMIT 1[0m
+Completed 500 Internal Server Error in 70ms
+
+NameError (undefined local variable or method `’rb’' for #<DiscountsController:0x103d16510>):
+  app/controllers/discounts_controller.rb:44:in `show_image'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.3ms)
+
+
+Started GET "/discounts/5/show_image" for 127.0.0.1 at Wed Aug 24 19:31:54 -0500 2011
+  Processing by DiscountsController#show_image as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 5 LIMIT 1[0m
+Completed 500 Internal Server Error in 27ms
+
+NameError (undefined local variable or method `’image' for #<DiscountsController:0x103eacaf0>):
+  app/controllers/discounts_controller.rb:45:in `show_image'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.5ms)
+
+
+Started GET "/discounts/5/show_image" for 127.0.0.1 at Wed Aug 24 19:31:56 -0500 2011
+  Processing by DiscountsController#show_image as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mDiscount Load (0.3ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 5 LIMIT 1[0m
+Completed 500 Internal Server Error in 34ms
+
+NameError (undefined local variable or method `’image' for #<DiscountsController:0x10436a6f0>):
+  app/controllers/discounts_controller.rb:45:in `show_image'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (10.7ms)
+
+
+Started GET "/discounts/5/show_image" for 127.0.0.1 at Wed Aug 24 19:31:57 -0500 2011
+  Processing by DiscountsController#show_image as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 5 LIMIT 1[0m
+Completed 500 Internal Server Error in 27ms
+
+NameError (undefined local variable or method `’image' for #<DiscountsController:0x103e4ce48>):
+  app/controllers/discounts_controller.rb:45:in `show_image'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (55.4ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (60.4ms)
+
+
+Started GET "/discounts/5/show_image" for 127.0.0.1 at Wed Aug 24 19:31:57 -0500 2011
+  Processing by DiscountsController#show_image as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 5 LIMIT 1[0m
+Completed 500 Internal Server Error in 24ms
+
+NameError (undefined local variable or method `’image' for #<DiscountsController:0x104254180>):
+  app/controllers/discounts_controller.rb:45:in `show_image'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (8.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.8ms)
+
+
+Started GET "/discounts/5/show_image" for 127.0.0.1 at Wed Aug 24 19:32:09 -0500 2011
+  Processing by DiscountsController#show_image as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mDiscount Load (0.3ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 5 LIMIT 1[0m
+Completed 500 Internal Server Error in 28ms
+
+RuntimeError (assets/data/9/discounts/photo-2.jpg):
+  app/controllers/discounts_controller.rb:44:in `show_image'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (8.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.2ms)
+
+
+Started GET "/discounts/5/show_image" for 127.0.0.1 at Wed Aug 24 19:32:11 -0500 2011
+  Processing by DiscountsController#show_image as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mDiscount Load (0.3ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 5 LIMIT 1[0m
+Completed 500 Internal Server Error in 28ms
+
+RuntimeError (assets/data/9/discounts/photo-2.jpg):
+  app/controllers/discounts_controller.rb:44:in `show_image'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (10.8ms)
+
+
+Started GET "/discounts/5/show_image" for 127.0.0.1 at Wed Aug 24 19:32:13 -0500 2011
+  Processing by DiscountsController#show_image as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mDiscount Load (0.3ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 5 LIMIT 1[0m
+Completed 500 Internal Server Error in 71ms
+
+RuntimeError (assets/data/9/discounts/photo-2.jpg):
+  app/controllers/discounts_controller.rb:44:in `show_image'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (10.1ms)
+
+
+Started GET "/discounts/5/show_image" for 127.0.0.1 at Wed Aug 24 19:32:49 -0500 2011
+  Processing by DiscountsController#show_image as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 5 LIMIT 1[0m
+Completed 500 Internal Server Error in 25ms
+
+NameError (undefined local variable or method `’image' for #<DiscountsController:0x103f8a990>):
+  app/controllers/discounts_controller.rb:45:in `show_image'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (8.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (12.7ms)
+
+
+Started GET "/discounts/5/show_image" for 127.0.0.1 at Wed Aug 24 19:33:14 -0500 2011
+  Processing by DiscountsController#show_image as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 5 LIMIT 1[0m
+Rendered text template (0.0ms)
+Sent data photo-2.jpg (51.9ms)
+Completed 200 OK in 78ms (Views: 51.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/affiliations/?company_id=9" for 127.0.0.1 at Wed Aug 24 19:33:16 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.9ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAffiliation Load (1.4ms)[0m  SELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 9)
+Rendered affiliations/index.html.erb (30.1ms)
+Completed 200 OK in 98ms (Views: 60.9ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/associations/?company_id=9" for 127.0.0.1 at Wed Aug 24 19:33:16 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mAssociation Load (0.2ms)[0m  [1mSELECT "associations".* FROM "associations" WHERE ("associations".company_id = 9)[0m
+Rendered associations/index.html.erb (23.5ms)
+Completed 200 OK in 69ms (Views: 39.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/certifications/?company_id=9" for 127.0.0.1 at Wed Aug 24 19:33:16 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.5ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCertification Load (0.2ms)[0m  SELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 9)
+Rendered certifications/index.html.erb (21.3ms)
+Completed 200 OK in 110ms (Views: 29.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Wed Aug 24 19:33:17 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)[0m
+Rendered discounts/_show.html.erb (1.2ms)
+Rendered discounts/index.html.erb (82.8ms)
+Completed 200 OK in 119ms (Views: 85.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/discounts/5/edit" for 127.0.0.1 at Wed Aug 24 19:35:52 -0500 2011
+  Processing by DiscountsController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 5 LIMIT 1[0m
+Rendered discounts/_form.html.erb (1.1ms)
+Rendered discounts/edit.html.erb (7.9ms)
+Completed 200 OK in 26ms (Views: 10.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/discounts/5/edit" for 127.0.0.1 at Wed Aug 24 19:36:25 -0500 2011
+  Processing by DiscountsController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 5 LIMIT 1[0m
+Rendered discounts/_form.html.erb (1.1ms)
+Rendered discounts/edit.html.erb (8.1ms)
+Completed 200 OK in 26ms (Views: 10.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/discounts/5/show_image" for 127.0.0.1 at Wed Aug 24 19:36:25 -0500 2011
+  Processing by DiscountsController#show_image as 
+  Parameters: {"id"=>"5"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 5 LIMIT 1[0m
+Rendered text template (0.0ms)
+Sent data photo-2.jpg (1.0ms)
+Completed 200 OK in 23ms (Views: 0.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/discounts/5/edit" for 127.0.0.1 at Wed Aug 24 19:36:51 -0500 2011
+  Processing by DiscountsController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 5 LIMIT 1[0m
+Rendered discounts/_form.html.erb (1.5ms)
+Rendered discounts/edit.html.erb (8.2ms)
+Completed 200 OK in 27ms (Views: 10.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/discounts/5/show_image" for 127.0.0.1 at Wed Aug 24 19:36:52 -0500 2011
+  Processing by DiscountsController#show_image as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 5 LIMIT 1[0m
+Rendered text template (0.0ms)
+Sent data photo-2.jpg (1.1ms)
+Completed 200 OK in 34ms (Views: 0.9ms | ActiveRecord: 0.5ms)
