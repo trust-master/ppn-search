@@ -1,6 +1,7 @@
 ComTrustmasterWww::Application.routes.draw do
   resources :discounts do
       member do
+          post 'destroy_image'
           get 'show_image'
       end
   end

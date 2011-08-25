@@ -1,6 +1,6 @@
 <h2>Design Your Discount</h2>
 <div>
-	<img src="/discounts/<%=form.id%>/show_image" alt="Discount Image"/>
+	<img src="/discounts/<%=form.id%>/show_image" class="discount_image" alt="Discount Image"/>
 	<a href="/discounts/<%=form.id%>/show_image">Download Image</a>
 </div>
 <ul>
@@ -14,17 +14,20 @@
 		</select>
 	</li>
 	<li>
-		<label for="discount_description">Description*</label>
-		<textarea name="discount[description]" id="discount_description"><%=form.description%></textarea>
-	</li>
-	<li>
 		<label for="discount_title">Title*</label>
 		<input name="discount[title]" id="discount_title" value="<%=form.title%>"/>
 	</li>
 	<li>
-		<label for="image_file">Certificate*</label>
+		<label for="discount_description">Description*</label>
+		<textarea name="discount[description]" id="discount_description"><%=form.description%></textarea>
+	</li>
+	<li>
+		<label for="image_file">Discount Image*</label>
 		<input type="file" name="image_file" id="image__file">
 		<span class="uploaded_filename"><%= form.image_filename.nil? ? "None uploaded" : form.image_filename %></span>
+		<% unless form.image_filename.nil? %>
+			<span class="remove_image"><a href="/discounts/<%=form.id%>/destroy_image">Remove Image</a></span>
+		<% end %>
 	</li>
 </ul>
 <h2>Location</h2>

@@ -544,9 +544,28 @@ var discountForm = {
 	submissionCallback: null,
 	init: function() {
 		if ($('.discount_form').length !== 0) {
+			this.initImageDestroyLinks();
 			this.initSubmission();
 			this.initValidation();
 		}
+	},
+	initImageDestroyLinks: function() {
+		$('.discount_form .remove_image a').click(function() {
+			var rootObject = $(this);
+			if ( confirm("Are you sure you want to delete this?") )
+	        	$.ajax({
+	                url: this.href,
+	                type: 'post',
+	                success: function(data) {
+						if (!data.success) { alert('There was an error removing your image.  Message was ' + data.message);return false;}						
+						rootObject.fadeOut();
+						$('.uploaded_filename').fadeOut();
+						$('.discount_image').attr('src', '/images/fpo-default-discount.jpeg');
+	                }
+	            });
+			
+			return false;
+		});
 	},
 	initSubmission: function() {
 		var rootObject = this;

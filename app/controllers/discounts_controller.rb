@@ -20,6 +20,23 @@ class DiscountsController < ApplicationController
              render :json => { :success => false, :message => @discount.errors}
          end
      end
+    def destroy_image
+        begin
+            @discount = Discount.find params[:id]
+            raise "Could not locate discount with id of #{params[:id]}" if @discount.nil?
+            path = "assets/data/#{@discount.company_id}/discounts/#{@discount.image_filename}"
+            image_does_not_exist = @discount.image_filename.nil? or !File.exists? path
+            
+            @discount.image_filename = nil
+            @discount.save
+            
+            File.delete(path) unless image_does_not_exist
+            
+            render :json => { :success => true, :message => nil }
+        rescue ex
+            render :json => { :success => false, :message => ex.message }
+        end
+    end
      def edit
          raise "No discount id passed while editing a discount" if params[:id].nil?
          @discount = Discount.find params[:id]
