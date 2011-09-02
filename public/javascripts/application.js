@@ -528,6 +528,7 @@ var companiesNew = {
 				"company[email_address]": {required: true, email: true},
 				"company[main_phone_number]": {required: true, phoneUS: true},
 				"company[address_1]": {required: true},
+				"company[city]": {required: true},
 				"company[state]": {required: true},
 				"company[zip_code]": { required: true, digits: true}
 			},
@@ -543,8 +544,9 @@ var companiesSearch = {
 		}
 	},
 	initSearchBox: function() {
-		$('.companies_search input[type="text"]').change(function() {
+		var search = function() {
 			if (companiesSearch.isSearching) return;
+			$('.loading_graphic').show();
 			
 			companiesSearch.isSearching = true;
 			setTimeout('companiesSearch.isSearching = false;', 500);
@@ -554,11 +556,15 @@ var companiesSearch = {
 				type: 'post',
                 data: { 'company_name': $('#company_name').val() },
                 success: function(data) {
+					$('.loading_graphic').hide();
 					if (!data.success) { alert('There was an error running your search.  Please try again later.');console.log(data.message);return false;}
-					alert('hooray');
+					$('.companies_index_search').empty();
+					$("#company_template").tmpl(data.companies).appendTo(".companies_index_search");
                 }
             });
-		});
+		};
+		$('.companies_search input[type="text"]').change(search);
+		$('.companies_search input[type="text"]').keypress(search);
 	}
 };
 var datePickers = {

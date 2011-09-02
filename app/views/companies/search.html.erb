@@ -1,7 +1,22 @@
+<!-- This is the template for displaying companies, data's inserted by javascript -->
+<script id="company_template" type="text/x-jquery-tmpl">
+	<li class="company">
+		<input type="hidden" class="company_id" value="${company.id}"/>
+		<span class="company_name">${company.name}</span>
+		<span class="company_address">
+			${company.address_1}{{if company.address_2}} ${company.address_2}{{/if}}, ${company.city}, ${company.state}, ${company.zip_code}
+		</span>
+		<span class="company_phone_number">${company.main_phone_number}</span>
+		<span class="company_web_site">${company.web_site}</span>
+	</li>
+</script>
+
+
 <h1>Provider Search</h1>
 <div class="">
 	<form action="/companies/search_json" method="GET" class="companies_search">
 		<input type="text" id="company_name" name="company_name"/>
+		<img src="/images/loading_small.gif" alt="Loading..." class="loading_graphic hidden"/>
 	</form>
 </div>
 
