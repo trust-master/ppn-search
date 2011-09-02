@@ -15,14 +15,12 @@ class CompaniesController < ApplicationController
     end
   end
 
-  # GET /companies/1
-  # GET /companies/1.xml
-  def show
-    respond_to do |wants|
-      wants.html # show.html.erb
-      wants.xml  { render :xml => @company }
+    def show
+        @company = Company.find_by_id params[:id]
+        raise "Could not locate company by id #{params[:id]}" unless @company
+        
+        render :layout => nil
     end
-  end
 
   # GET /companies/new
   # GET /companies/new.xml

@@ -30946,3 +30946,1143 @@ Started POST "/companies/search_json" for 127.0.0.1 at Thu Sep 01 22:25:01 -0500
   [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
   [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE (name like 'test%')[0m
 Completed 200 OK in 48ms (Views: 27.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 22:54:34 -0500 2011
+
+SyntaxError (/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/controllers/companies_controller.rb:21: syntax error, unexpected '\n', expecting tASSOC
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/controllers/companies_controller.rb:118: syntax error, unexpected $end, expecting kEND):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (5.7ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 22:54:51 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.4ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Completed 500 Internal Server Error in 95ms
+
+ActionView::MissingTemplate (Missing template companies/show with {:handlers=>[:rxml, :builder, :rjs, :rhtml, :erb], :formats=>[:html], :locale=>[:en, :en]} in view paths "/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.5ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 22:54:57 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+Completed 500 Internal Server Error in 28ms
+
+ActionView::MissingTemplate (Missing template companies/show with {:handlers=>[:rxml, :builder, :rjs, :rhtml, :erb], :formats=>[:html], :locale=>[:en, :en]} in view paths "/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.5ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 22:55:02 -0500 2011
+
+SyntaxError (/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/controllers/companies_controller.rb:21: syntax error, unexpected '\n', expecting tASSOC
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/controllers/companies_controller.rb:118: syntax error, unexpected $end, expecting kEND):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (51.7ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 22:57:04 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Completed 500 Internal Server Error in 48ms
+
+ArgumentError (wrong number of arguments (1 for 0)):
+  app/controllers/companies_controller.rb:22:in `show'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.4ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 22:57:10 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+Rendered companies/_show.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 31ms (Views: 5.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 22:57:32 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Rendered companies/show.html.erb (0.2ms)
+Completed 200 OK in 27ms (Views: 2.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 22:58:51 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+Rendered companies/show.html.erb (0.2ms)
+Completed 200 OK in 69ms (Views: 1.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 22:59:36 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.5ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Rendered companies/show.html.erb (13.7ms)
+Completed 200 OK in 47ms (Views: 15.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:00:19 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+ERROR: compiling _app_views_companies_show_html_erb___1810185411_2280961900_0 RAISED compile error
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/companies/show.html.erb:18: syntax error, unexpected kENSURE, expecting kEND
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/companies/show.html.erb:20: syntax error, unexpected $end, expecting kEND
+Function body:           def _app_views_companies_show_html_erb___1810185411_2280961900_0(local_assigns)
+            _old_virtual_path, @_virtual_path = @_virtual_path, "companies/show";_old_output_buffer = @output_buffer;;@output_buffer = ActionView::OutputBuffer.new;@output_buffer.safe_concat('<ul class="company_show_tabs">
+	<li>
+		<a href="#" target_tab="provider_info">Provider Info</a>
+	</li>
+	<li>
+		<a href="#" target_tab="service_info">Service Info</a>
+	</li>
+	<li>
+		<a href="#" target_tab="credential_info">Credential Info</a>
+	</li>
+	<li>
+		<a href="#" target_tab="discounts">Discounts</a>
+	</li>
+</ul>
+<div class="provider_info">
+	<h1>');@output_buffer.append= ( @company.name); if @company.in_business_since ;@output_buffer.safe_concat('In business since ');@output_buffer.append= (@company.in_business_since.year);@output_buffer.safe_concat('</h1>
+</div>');@output_buffer.to_s
+          ensure
+            @_virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+Backtrace: /Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/companies/show.html.erb:20:in `compile'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/template.rb:134:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:54:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/template.rb:127:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/render/rendering.rb:59:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/render/rendering.rb:56:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/render/rendering.rb:26:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/rendering.rb:115:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/rendering.rb:109:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/renderers.rb:47:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/compatibility.rb:55:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/rendering.rb:102:in `render_to_string'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/rendering.rb:93:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/rendering.rb:17:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:78:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/railties/controller_runtime.rb:15:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/controllers/companies_controller.rb:22:in `show'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/base.rb:150:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/rendering.rb:11:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/callbacks.rb:18:in `process_action'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:446:in `_run__421641518__process_action__453433196__callbacks'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:410:in `send'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:410:in `_run_process_action_callbacks'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:94:in `send'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:94:in `run_callbacks'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/rescue.rb:17:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/base.rb:119:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/rendering.rb:41:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal.rb:138:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal.rb:178:in `action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/routing/route_set.rb:62:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/routing/route_set.rb:62:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/routing/route_set.rb:27:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb:148:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:93:in `recognize'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:96:in `optimized_each'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:92:in `recognize'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb:139:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/routing/route_set.rb:493:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/methodoverride.rb:24:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/flash.rb:182:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/cookies.rb:302:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/query_cache.rb:32:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/query_cache.rb:12:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/query_cache.rb:31:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/connection_adapters/abstract/connection_pool.rb:354:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/callbacks.rb:46:in `call'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:416:in `_run_call_callbacks'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/sendfile.rb:107:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/rack/logger.rb:13:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/runtime.rb:17:in `call'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/lock.rb:11:in `synchronize'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/static.rb:30:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/application.rb:168:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/application.rb:77:in `send'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/application.rb:77:in `method_missing'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/rack/log_tailer.rb:14:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/content_length.rb:13:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/handler/webrick.rb:52:in `service'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/handler/webrick.rb:13:in `run'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/server.rb:217:in `start'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/commands/server.rb:65:in `start'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/commands.rb:30
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/commands.rb:27:in `tap'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/commands.rb:27
+script/rails:6:in `require'
+script/rails:6
+Rendered companies/show.html.erb (0.5ms)
+Completed 500 Internal Server Error in 81ms
+
+ActionView::Template::Error (compile error
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/companies/show.html.erb:18: syntax error, unexpected kENSURE, expecting kEND
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/companies/show.html.erb:20: syntax error, unexpected $end, expecting kEND):
+    15: <div class="provider_info">
+    16: 	<h1><%= @company.name%><% if @company.in_business_since %>In business since <%=@company.in_business_since.year%></h1>
+    17: </div>
+  app/views/companies/show.html.erb:20:in `compile'
+  app/controllers/companies_controller.rb:22:in `show'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (28.5ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (34.4ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:00:28 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.5ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Rendered companies/show.html.erb (12.8ms)
+Completed 200 OK in 91ms (Views: 14.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/companies/edit/9" for 127.0.0.1 at Thu Sep 01 23:00:35 -0500 2011
+
+ActionController::RoutingError (No route matches "/companies/edit/9"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/companies/9/edit" for 127.0.0.1 at Thu Sep 01 23:00:40 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCompanyCategory Load (0.2ms)[0m  SELECT "company_categories".* FROM "company_categories"
+  [1m[36mCompanySubcategory Load (0.1ms)[0m  [1mSELECT "company_subcategories".* FROM "company_subcategories"[0m
+  [1m[35mServiceArea Load (0.3ms)[0m  SELECT "service_areas".* FROM "service_areas"
+  [1m[36mServiceAreaCoverage Load (0.3ms)[0m  [1mSELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 9)[0m
+  [1m[35mCompanyCategory Load (0.1ms)[0m  SELECT "company_categories".* FROM "company_categories" WHERE "company_categories"."id" = 12 LIMIT 1
+Rendered companies/_form.html.erb (9.0ms)
+Rendered companies/edit.html.erb within layouts/application (12.2ms)
+Completed 200 OK in 155ms (Views: 48.6ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/affiliations/?company_id=9" for 127.0.0.1 at Thu Sep 01 23:00:40 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mAffiliation Load (0.2ms)[0m  [1mSELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 9)[0m
+Rendered affiliations/index.html.erb (72.6ms)
+Completed 200 OK in 149ms (Views: 84.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/associations/?company_id=9" for 127.0.0.1 at Thu Sep 01 23:00:40 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAssociation Load (0.2ms)[0m  SELECT "associations".* FROM "associations" WHERE ("associations".company_id = 9)
+Rendered associations/index.html.erb (18.9ms)
+Completed 200 OK in 61ms (Views: 34.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/certifications/?company_id=9" for 127.0.0.1 at Thu Sep 01 23:00:40 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCertification Load (0.2ms)[0m  [1mSELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 9)[0m
+Rendered certifications/index.html.erb (23.7ms)
+Completed 200 OK in 114ms (Views: 33.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Thu Sep 01 23:00:40 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mDiscount Load (0.2ms)[0m  SELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)
+Rendered discounts/_show.html.erb (0.7ms)
+Rendered discounts/index.html.erb (71.5ms)
+Completed 200 OK in 108ms (Views: 74.0ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/companies/9" for 127.0.0.1 at Thu Sep 01 23:01:29 -0500 2011
+  Processing by CompaniesController#update as JSON
+  Parameters: {"company"=>{"name"=>"Test Business 2", "main_phone_number"=>"320-333-3333", "fax_number"=>"", "city"=>"Saint Cloud", "in_business_since"=>"08/01/2011", "zip_code"=>"56304", "mobile_phone_number"=>"", "address_1"=>"12345 Main Street", "web_site"=>"", "address_2"=>"", "email_address"=>"support@testbusiness1.com", "state"=>"MN"}, "id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mAREL (25.3ms)[0m  [1mUPDATE "companies" SET "in_business_since" = '2011-08-01', "updated_at" = '2011-09-02 04:01:29.875785' WHERE "companies"."id" = 9[0m
+Completed 200 OK in 68ms (Views: 3.8ms | ActiveRecord: 25.7ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:01:33 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+Rendered companies/show.html.erb (13.3ms)
+Completed 200 OK in 42ms (Views: 15.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:03:40 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+ERROR: compiling _app_views_companies_show_html_erb___1810185411_2281154400_0 RAISED compile error
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/companies/show.html.erb:19: syntax error, unexpected ':', expecting ')'
+... ( company.address_2.nil? "" : " #{company.address_2}");@out...
+                              ^
+Function body:           def _app_views_companies_show_html_erb___1810185411_2281154400_0(local_assigns)
+            _old_virtual_path, @_virtual_path = @_virtual_path, "companies/show";_old_output_buffer = @output_buffer;;@output_buffer = ActionView::OutputBuffer.new;@output_buffer.safe_concat('<ul class="company_show_tabs">
+	<li>
+		<a href="#" target_tab="provider_info">Provider Info</a>
+	</li>
+	<li>
+		<a href="#" target_tab="service_info">Service Info</a>
+	</li>
+	<li>
+		<a href="#" target_tab="credential_info">Credential Info</a>
+	</li>
+	<li>
+		<a href="#" target_tab="discounts">Discounts</a>
+	</li>
+</ul>
+<div class="provider_info">
+	<h1>');@output_buffer.append= ( @company.name); if @company.in_business_since ;@output_buffer.safe_concat(' In business since ');@output_buffer.append= (@company.in_business_since.year); end ;@output_buffer.safe_concat('</h1>
+	<ul>
+		<li>
+			');@output_buffer.append= (company.address_1);@output_buffer.append= ( company.address_2.nil? "" : " #{company.address_2}");@output_buffer.safe_concat(',
+			');@output_buffer.append= (company.city);@output_buffer.safe_concat(', ');@output_buffer.append= (company.state);@output_buffer.safe_concat(', ');@output_buffer.append= (company.zip_code);@output_buffer.safe_concat('
+');@output_buffer.safe_concat('		</li>
+	</ul>
+</div>');@output_buffer.to_s
+          ensure
+            @_virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+Backtrace: /Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/companies/show.html.erb:26:in `compile'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/template.rb:134:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:54:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/template.rb:127:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/render/rendering.rb:59:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/render/rendering.rb:56:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_view/render/rendering.rb:26:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/rendering.rb:115:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/rendering.rb:109:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/renderers.rb:47:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/compatibility.rb:55:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/rendering.rb:102:in `render_to_string'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/rendering.rb:93:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/rendering.rb:17:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:78:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/railties/controller_runtime.rb:15:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/controllers/companies_controller.rb:22:in `show'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/base.rb:150:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/rendering.rb:11:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/callbacks.rb:18:in `process_action'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:446:in `_run__421641518__process_action__453433196__callbacks'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:410:in `send'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:410:in `_run_process_action_callbacks'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:94:in `send'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:94:in `run_callbacks'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/rescue.rb:17:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/base.rb:119:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/abstract_controller/rendering.rb:41:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal.rb:138:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_controller/metal.rb:178:in `action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/routing/route_set.rb:62:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/routing/route_set.rb:62:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/routing/route_set.rb:27:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb:148:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:93:in `recognize'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:96:in `optimized_each'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb:92:in `recognize'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb:139:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/routing/route_set.rb:493:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/methodoverride.rb:24:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/flash.rb:182:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/cookies.rb:302:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/query_cache.rb:32:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/query_cache.rb:12:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/query_cache.rb:31:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.9/lib/active_record/connection_adapters/abstract/connection_pool.rb:354:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/callbacks.rb:46:in `call'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/callbacks.rb:416:in `_run_call_callbacks'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/sendfile.rb:107:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/rack/logger.rb:13:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/runtime.rb:17:in `call'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.9/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/lock.rb:11:in `synchronize'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/static.rb:30:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/application.rb:168:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/application.rb:77:in `send'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/application.rb:77:in `method_missing'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/rack/log_tailer.rb:14:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/content_length.rb:13:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/handler/webrick.rb:52:in `service'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/handler/webrick.rb:13:in `run'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.3/lib/rack/server.rb:217:in `start'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/commands/server.rb:65:in `start'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/commands.rb:30
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/commands.rb:27:in `tap'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.9/lib/rails/commands.rb:27
+script/rails:6:in `require'
+script/rails:6
+Rendered companies/show.html.erb (0.6ms)
+Completed 500 Internal Server Error in 71ms
+
+ActionView::Template::Error (compile error
+/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views/companies/show.html.erb:19: syntax error, unexpected ':', expecting ')'
+... ( company.address_2.nil? "" : " #{company.address_2}");@out...
+                              ^):
+    16: 	<h1><%= @company.name%><% if @company.in_business_since %> In business since <%=@company.in_business_since.year%><% end %></h1>
+    17: 	<ul>
+    18: 		<li>
+    19: 			<%=company.address_1%><%= company.address_2.nil? "" : " #{company.address_2}"%>,
+    20: 			<%=company.city%>, <%=company.state%>, <%=company.zip_code%>
+    21: 		</li>
+    22: 	</ul>
+  app/views/companies/show.html.erb:26:in `compile'
+  app/controllers/companies_controller.rb:22:in `show'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (17.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (22.2ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:03:58 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+Rendered companies/show.html.erb (23.5ms)
+Completed 500 Internal Server Error in 102ms
+
+ActionView::Template::Error (undefined local variable or method `company' for #<#<Class:0x1100a2880>:0x110099eb0>):
+    16: 	<h1><%= @company.name%><% if @company.in_business_since %> In business since <%=@company.in_business_since.year%><% end %></h1>
+    17: 	<ul>
+    18: 		<li>
+    19: 			<%=company.address_1%><%= company.address_2.nil? ? "" : " #{company.address_2}"%>,
+    20: 			<%=company.city%>, <%=company.state%>, <%=company.zip_code%>
+    21: 		</li>
+    22: 	</ul>
+  app/views/companies/show.html.erb:19:in `_app_views_companies_show_html_erb___1810185411_2281993740_0'
+  app/controllers/companies_controller.rb:22:in `show'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (11.4ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:04:11 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Rendered companies/show.html.erb (58.1ms)
+Completed 200 OK in 91ms (Views: 60.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:04:38 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+Rendered companies/show.html.erb (13.7ms)
+Completed 200 OK in 45ms (Views: 15.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:04:46 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Rendered companies/show.html.erb (16.3ms)
+Completed 200 OK in 90ms (Views: 18.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:05:06 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+Rendered companies/show.html.erb (13.7ms)
+Completed 200 OK in 86ms (Views: 15.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:05:35 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Rendered companies/show.html.erb (13.5ms)
+Completed 200 OK in 41ms (Views: 15.3ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/companies/9" for 127.0.0.1 at Thu Sep 01 23:05:44 -0500 2011
+  Processing by CompaniesController#update as JSON
+  Parameters: {"company"=>{"name"=>"Test Business 2", "main_phone_number"=>"320-333-3333", "fax_number"=>"", "city"=>"Saint Cloud", "in_business_since"=>"08/01/2011", "zip_code"=>"56304", "mobile_phone_number"=>"", "address_1"=>"12345 Main Street", "web_site"=>"", "address_2"=>"Apt 35", "email_address"=>"support@testbusiness1.com", "state"=>"MN"}, "id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAREL (27.3ms)[0m  UPDATE "companies" SET "address_2" = 'Apt 35', "updated_at" = '2011-09-02 04:05:44.573626' WHERE "companies"."id" = 9
+Completed 200 OK in 122ms (Views: 6.0ms | ActiveRecord: 27.7ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:05:47 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Rendered companies/show.html.erb (22.4ms)
+Completed 200 OK in 118ms (Views: 25.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:05:50 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+Rendered companies/show.html.erb (13.2ms)
+Completed 200 OK in 42ms (Views: 14.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/companies/9/edit" for 127.0.0.1 at Thu Sep 01 23:05:54 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCompanyCategory Load (0.2ms)[0m  [1mSELECT "company_categories".* FROM "company_categories"[0m
+  [1m[35mCompanySubcategory Load (0.1ms)[0m  SELECT "company_subcategories".* FROM "company_subcategories"
+  [1m[36mServiceArea Load (0.2ms)[0m  [1mSELECT "service_areas".* FROM "service_areas"[0m
+  [1m[35mServiceAreaCoverage Load (0.4ms)[0m  SELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 9)
+  [1m[36mCompanyCategory Load (0.1ms)[0m  [1mSELECT "company_categories".* FROM "company_categories" WHERE "company_categories"."id" = 12 LIMIT 1[0m
+Rendered companies/_form.html.erb (8.2ms)
+Rendered companies/edit.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 74ms (Views: 14.3ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/affiliations/?company_id=9" for 127.0.0.1 at Thu Sep 01 23:05:54 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.4ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAffiliation Load (0.2ms)[0m  SELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 9)
+Rendered affiliations/index.html.erb (31.6ms)
+Completed 200 OK in 80ms (Views: 48.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/certifications/?company_id=9" for 127.0.0.1 at Thu Sep 01 23:05:54 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCertification Load (0.2ms)[0m  [1mSELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 9)[0m
+Rendered certifications/index.html.erb (17.4ms)
+Completed 200 OK in 47ms (Views: 23.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/associations/?company_id=9" for 127.0.0.1 at Thu Sep 01 23:05:54 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAssociation Load (0.2ms)[0m  SELECT "associations".* FROM "associations" WHERE ("associations".company_id = 9)
+Rendered associations/index.html.erb (17.3ms)
+Completed 200 OK in 82ms (Views: 19.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Thu Sep 01 23:05:55 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)[0m
+Rendered discounts/_show.html.erb (0.7ms)
+Rendered discounts/index.html.erb (28.6ms)
+Completed 200 OK in 66ms (Views: 32.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/companies/9/edit" for 127.0.0.1 at Thu Sep 01 23:06:11 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCompanyCategory Load (0.2ms)[0m  SELECT "company_categories".* FROM "company_categories"
+  [1m[36mCompanySubcategory Load (0.1ms)[0m  [1mSELECT "company_subcategories".* FROM "company_subcategories"[0m
+  [1m[35mServiceArea Load (0.3ms)[0m  SELECT "service_areas".* FROM "service_areas"
+  [1m[36mServiceAreaCoverage Load (0.4ms)[0m  [1mSELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 9)[0m
+  [1m[35mCompanyCategory Load (0.1ms)[0m  SELECT "company_categories".* FROM "company_categories" WHERE "company_categories"."id" = 12 LIMIT 1
+Rendered companies/_form.html.erb (8.6ms)
+Rendered companies/edit.html.erb within layouts/application (10.8ms)
+Completed 200 OK in 77ms (Views: 15.1ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/affiliations/?company_id=9" for 127.0.0.1 at Thu Sep 01 23:06:12 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mAffiliation Load (0.2ms)[0m  [1mSELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 9)[0m
+Rendered affiliations/index.html.erb (70.6ms)
+Completed 200 OK in 108ms (Views: 72.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/associations/?company_id=9" for 127.0.0.1 at Thu Sep 01 23:06:12 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAssociation Load (0.2ms)[0m  SELECT "associations".* FROM "associations" WHERE ("associations".company_id = 9)
+Rendered associations/index.html.erb (17.9ms)
+Completed 200 OK in 48ms (Views: 19.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/certifications/?company_id=9" for 127.0.0.1 at Thu Sep 01 23:06:12 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCertification Load (0.2ms)[0m  [1mSELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 9)[0m
+Rendered certifications/index.html.erb (17.9ms)
+Completed 200 OK in 92ms (Views: 19.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Thu Sep 01 23:06:12 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mDiscount Load (0.2ms)[0m  SELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)
+Rendered discounts/_show.html.erb (0.7ms)
+Rendered discounts/index.html.erb (69.7ms)
+Completed 200 OK in 105ms (Views: 71.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:06:14 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.7ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Rendered companies/show.html.erb (24.3ms)
+Completed 200 OK in 64ms (Views: 27.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:06:41 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.4ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+Rendered companies/show.html.erb (14.4ms)
+Completed 200 OK in 113ms (Views: 17.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:06:51 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Rendered companies/show.html.erb (17.4ms)
+Completed 200 OK in 105ms (Views: 19.2ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/companies/9" for 127.0.0.1 at Thu Sep 01 23:07:01 -0500 2011
+  Processing by CompaniesController#update as JSON
+  Parameters: {"company"=>{"name"=>"Test Business 2", "main_phone_number"=>"320-333-3333", "fax_number"=>"", "city"=>"Saint Cloud", "in_business_since"=>"2011-08-01", "zip_code"=>"56304", "mobile_phone_number"=>"", "address_1"=>"12345 Main Street", "web_site"=>"", "address_2"=>"", "email_address"=>"support@testbusiness1.com", "state"=>"MN"}, "id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  UPDATE "companies" SET "updated_at" = '2011-09-02 04:07:01.967816', "address_2" = '' WHERE "companies"."id" = 9
+Completed 200 OK in 49ms (Views: 6.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:07:03 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.4ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Rendered companies/show.html.erb (15.0ms)
+Completed 200 OK in 53ms (Views: 16.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:07:22 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+Rendered companies/show.html.erb (17.7ms)
+Completed 200 OK in 98ms (Views: 19.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:08:19 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.5ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Rendered companies/show.html.erb (17.5ms)
+Completed 200 OK in 61ms (Views: 19.8ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/companies/9" for 127.0.0.1 at Thu Sep 01 23:08:25 -0500 2011
+  Processing by CompaniesController#update as JSON
+  Parameters: {"company"=>{"name"=>"Test Business 2", "main_phone_number"=>"320-333-3333", "fax_number"=>"", "city"=>"Saint Cloud", "in_business_since"=>"2011-08-01", "zip_code"=>"56304", "mobile_phone_number"=>"", "address_1"=>"12345 Main Street", "web_site"=>"", "address_2"=>"Apt 35", "email_address"=>"support@testbusiness1.com", "state"=>"MN"}, "id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  UPDATE "companies" SET "updated_at" = '2011-09-02 04:08:26.027799', "address_2" = 'Apt 35' WHERE "companies"."id" = 9
+Completed 200 OK in 49ms (Views: 6.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:08:27 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Rendered companies/show.html.erb (18.7ms)
+Completed 200 OK in 109ms (Views: 21.1ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/companies/9" for 127.0.0.1 at Thu Sep 01 23:08:32 -0500 2011
+  Processing by CompaniesController#update as JSON
+  Parameters: {"company"=>{"name"=>"Test Business 2", "main_phone_number"=>"320-333-3333", "fax_number"=>"", "city"=>"Saint Cloud", "in_business_since"=>"2011-08-01", "zip_code"=>"56304", "mobile_phone_number"=>"", "address_1"=>"12345 Main Street", "web_site"=>"", "address_2"=>"", "email_address"=>"support@testbusiness1.com", "state"=>"MN"}, "id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  UPDATE "companies" SET "updated_at" = '2011-09-02 04:08:32.690363', "address_2" = '' WHERE "companies"."id" = 9
+Completed 200 OK in 50ms (Views: 6.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:08:34 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Rendered companies/show.html.erb (13.4ms)
+Completed 200 OK in 40ms (Views: 15.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:08:59 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+Rendered companies/show.html.erb (14.1ms)
+Completed 200 OK in 98ms (Views: 16.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:09:29 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.5ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Rendered companies/show.html.erb (16.9ms)
+Completed 200 OK in 66ms (Views: 20.0ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/companies/9" for 127.0.0.1 at Thu Sep 01 23:09:39 -0500 2011
+  Processing by CompaniesController#update as JSON
+  Parameters: {"company"=>{"name"=>"Test Business 2", "main_phone_number"=>"320-333-3333", "fax_number"=>"", "city"=>"Saint Cloud", "in_business_since"=>"2011-08-01", "zip_code"=>"56304", "mobile_phone_number"=>"", "address_1"=>"12345 Main Street", "web_site"=>"http://google.com", "address_2"=>"", "email_address"=>"support@testbusiness1.com", "state"=>"MN"}, "id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  UPDATE "companies" SET "web_site" = 'http://google.com', "updated_at" = '2011-09-02 04:09:39.647551' WHERE "companies"."id" = 9
+Completed 200 OK in 54ms (Views: 3.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/companies/9/edit" for 127.0.0.1 at Thu Sep 01 23:10:45 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCompanyCategory Load (0.2ms)[0m  [1mSELECT "company_categories".* FROM "company_categories"[0m
+  [1m[35mCompanySubcategory Load (0.1ms)[0m  SELECT "company_subcategories".* FROM "company_subcategories"
+  [1m[36mServiceArea Load (0.3ms)[0m  [1mSELECT "service_areas".* FROM "service_areas"[0m
+  [1m[35mServiceAreaCoverage Load (0.4ms)[0m  SELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 9)
+  [1m[36mCompanyCategory Load (0.2ms)[0m  [1mSELECT "company_categories".* FROM "company_categories" WHERE "company_categories"."id" = 12 LIMIT 1[0m
+Rendered companies/_form.html.erb (9.9ms)
+Rendered companies/edit.html.erb within layouts/application (12.3ms)
+Completed 200 OK in 135ms (Views: 16.7ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/affiliations/?company_id=9" for 127.0.0.1 at Thu Sep 01 23:10:45 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.4ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mAffiliation Load (0.2ms)[0m  SELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 9)
+Rendered affiliations/index.html.erb (20.8ms)
+Completed 200 OK in 83ms (Views: 47.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/associations/?company_id=9" for 127.0.0.1 at Thu Sep 01 23:10:45 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mAssociation Load (0.2ms)[0m  [1mSELECT "associations".* FROM "associations" WHERE ("associations".company_id = 9)[0m
+Rendered associations/index.html.erb (22.0ms)
+Completed 200 OK in 109ms (Views: 36.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/discounts/?company_id=9" for 127.0.0.1 at Thu Sep 01 23:10:46 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mDiscount Load (0.2ms)[0m  SELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 9)
+Rendered discounts/_show.html.erb (0.8ms)
+Rendered discounts/index.html.erb (77.4ms)
+Completed 200 OK in 110ms (Views: 80.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/certifications/?company_id=9" for 127.0.0.1 at Thu Sep 01 23:10:46 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCertification Load (0.2ms)[0m  [1mSELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 9)[0m
+Rendered certifications/index.html.erb (20.1ms)
+Completed 200 OK in 140ms (Views: 113.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:11:06 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+Rendered companies/show.html.erb (13.4ms)
+Completed 200 OK in 42ms (Views: 15.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/companies/search?company_name=test" for 127.0.0.1 at Thu Sep 01 23:12:50 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered companies/search.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 41ms (Views: 24.2ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/companies/search_json" for 127.0.0.1 at Thu Sep 01 23:12:53 -0500 2011
+  Processing by CompaniesController#search_json as 
+  Parameters: {"company_name"=>""}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE (name like '%')[0m
+Completed 200 OK in 44ms (Views: 22.2ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/companies/search_json" for 127.0.0.1 at Thu Sep 01 23:12:54 -0500 2011
+  Processing by CompaniesController#search_json as 
+  Parameters: {"company_name"=>"test"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.4ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE (name like 'test%')[0m
+Completed 200 OK in 92ms (Views: 21.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/companies/search?company_name=test" for 127.0.0.1 at Thu Sep 01 23:13:28 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered companies/search.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 17ms (Views: 5.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/companies/search_json" for 127.0.0.1 at Thu Sep 01 23:13:30 -0500 2011
+  Processing by CompaniesController#search_json as 
+  Parameters: {"company_name"=>""}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE (name like '%')
+Completed 200 OK in 51ms (Views: 28.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:13:31 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Rendered companies/show.html.erb (13.0ms)
+Completed 200 OK in 84ms (Views: 15.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/companies/search?company_name=test" for 127.0.0.1 at Thu Sep 01 23:14:12 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered companies/search.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 17ms (Views: 5.3ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/companies/search_json" for 127.0.0.1 at Thu Sep 01 23:14:13 -0500 2011
+  Processing by CompaniesController#search_json as 
+  Parameters: {"company_name"=>""}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE (name like '%')
+Completed 200 OK in 48ms (Views: 25.6ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/companies/search_json" for 127.0.0.1 at Thu Sep 01 23:14:13 -0500 2011
+  Processing by CompaniesController#search_json as 
+  Parameters: {"company_name"=>"test"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE (name like 'test%')
+Completed 200 OK in 94ms (Views: 33.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:14:14 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Rendered companies/show.html.erb (18.3ms)
+Completed 200 OK in 45ms (Views: 20.7ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/companies/search_json" for 127.0.0.1 at Thu Sep 01 23:14:17 -0500 2011
+  Processing by CompaniesController#search_json as 
+  Parameters: {"company_name"=>"test"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE (name like 'test%')[0m
+Completed 200 OK in 52ms (Views: 28.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:14:19 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+Rendered companies/show.html.erb (13.3ms)
+Completed 200 OK in 83ms (Views: 15.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:14:20 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Rendered companies/show.html.erb (12.8ms)
+Completed 200 OK in 40ms (Views: 15.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:14:20 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+Rendered companies/show.html.erb (13.0ms)
+Completed 200 OK in 40ms (Views: 15.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:14:20 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Rendered companies/show.html.erb (13.3ms)
+Completed 200 OK in 88ms (Views: 15.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:14:21 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+Rendered companies/show.html.erb (13.6ms)
+Completed 200 OK in 42ms (Views: 16.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/companies/search?company_name=test" for 127.0.0.1 at Thu Sep 01 23:15:10 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered companies/search.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 23ms (Views: 10.2ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/companies/search_json" for 127.0.0.1 at Thu Sep 01 23:15:13 -0500 2011
+  Processing by CompaniesController#search_json as 
+  Parameters: {"company_name"=>""}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE (name like '%')[0m
+Completed 200 OK in 89ms (Views: 25.5ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/companies/search_json" for 127.0.0.1 at Thu Sep 01 23:15:14 -0500 2011
+  Processing by CompaniesController#search_json as 
+  Parameters: {"company_name"=>"test"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE (name like 'test%')[0m
+Completed 200 OK in 43ms (Views: 21.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:15:14 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+Rendered companies/show.html.erb (13.5ms)
+Completed 200 OK in 83ms (Views: 15.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:15:17 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Rendered companies/show.html.erb (13.4ms)
+Completed 200 OK in 82ms (Views: 56.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:15:18 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+Rendered companies/show.html.erb (13.6ms)
+Completed 200 OK in 40ms (Views: 16.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:15:18 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
+Rendered companies/show.html.erb (13.6ms)
+Completed 200 OK in 93ms (Views: 15.9ms | ActiveRecord: 0.4ms)

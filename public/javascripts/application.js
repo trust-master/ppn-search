@@ -435,7 +435,9 @@ var companiesEditForm = {
 				"company[email_address]": {required: true, email: true},
 				"company[main_phone_number]": {required: true, phoneUS: true},
 				"company[address_1]": {required: true},
+				"company[city]": {required: true},
 				"company[state]": {required: true},
+				"company[web_site]": {url: true},
 				"company[zip_code]": { required: true, digits: true}
 			},
 			onkeyup: false
@@ -530,6 +532,7 @@ var companiesNew = {
 				"company[address_1]": {required: true},
 				"company[city]": {required: true},
 				"company[state]": {required: true},
+				"company[web_site]": {url: true},
 				"company[zip_code]": { required: true, digits: true}
 			},
 			onkeyup: false
@@ -542,6 +545,15 @@ var companiesSearch = {
 		if ($('.companies_search').length !== 0) {
 			this.initSearchBox();
 		}
+	},
+	initCompanyDisplay: function() {
+		$('.company').click(function() {
+			var $this = $(this);
+			var id = $this.find('.company_id').val();
+			$('.company_show').html('<img src="/images/loading_small.gif" alt="Loading..."/>');
+			$('.company_show').load('/companies/' + id);
+			$this.addClass('active');
+		});
 	},
 	initSearchBox: function() {
 		var search = function() {
@@ -560,6 +572,7 @@ var companiesSearch = {
 					if (!data.success) { alert('There was an error running your search.  Please try again later.');console.log(data.message);return false;}
 					$('.companies_index_search').empty();
 					$("#company_template").tmpl(data.companies).appendTo(".companies_index_search");
+					companiesSearch.initCompanyDisplay();
                 }
             });
 		};
