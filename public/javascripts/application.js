@@ -2,6 +2,7 @@ $(document).ready(function() {
 	companiesEditForm.init();
 	companiesIndex.init();
 	companiesNew.init();
+	companiesSearch.init();
 
 	companyCategoryNew.init();
 	datePickers.init();
@@ -531,6 +532,32 @@ var companiesNew = {
 				"company[zip_code]": { required: true, digits: true}
 			},
 			onkeyup: false
+		});
+	}
+};
+var companiesSearch = {
+	isSearching: null,
+	init: function() {
+		if ($('.companies_search').length !== 0) {
+			this.initSearchBox();
+		}
+	},
+	initSearchBox: function() {
+		$('.companies_search input[type="text"]').change(function() {
+			if (companiesSearch.isSearching) return;
+			
+			companiesSearch.isSearching = true;
+			setTimeout('companiesSearch.isSearching = false;', 500);
+			
+			$.ajax({
+                url: $('.companies_search').attr('action'),
+				type: 'post',
+                data: { 'company_name': $('#company_name').val() },
+                success: function(data) {
+					if (!data.success) { alert('There was an error running your search.  Please try again later.');console.log(data.message);return false;}
+					alert('hooray');
+                }
+            });
 		});
 	}
 };

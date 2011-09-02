@@ -20,7 +20,12 @@ ComTrustmasterWww::Application.routes.draw do
 
   resources :company_categories
 
-  resources :companies
+    resources :companies do
+        collection do
+            get 'search'
+            post 'search_json'
+        end
+    end
 
     resources :users do
         collection do

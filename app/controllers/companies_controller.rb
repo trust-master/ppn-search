@@ -64,7 +64,19 @@ class CompaniesController < ApplicationController
             render :json => { :success => false, :message => @company.errors}
         end
     end
-
+    def search
+       
+    end
+    def search_json
+        begin
+            raise "No search term provided" unless params[:company_name]
+            escaped_name =  params[:company_name].gsub ('%', '\%').gsub ('_', '\_')
+            @companies = Company.find (:all, :conditions=> ["name like ?", escaped_name + "%"])
+            render :json => { :success => true, :companies => @companies }
+        rescue Exception => ex
+            render :json => { :success => false, :message => ex.to_s}
+        end
+    end
     # PUT /companies/1
     # PUT /companies/1.xml
     def update

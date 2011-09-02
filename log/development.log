@@ -29986,3 +29986,402 @@ Started POST "/discounts/5/destroy_image" for 127.0.0.1 at Wed Aug 24 20:12:21 -
   [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE "discounts"."id" = 5 LIMIT 1[0m
   [1m[35mAREL (0.3ms)[0m  UPDATE "discounts" SET "image_filename" = NULL, "updated_at" = '2011-08-25 01:12:21.804983' WHERE "discounts"."id" = 5
 Completed 200 OK in 25ms (Views: 0.3ms | ActiveRecord: 0.6ms)
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from service at /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104)
+
+
+Started GET "/" for 127.0.0.1 at Thu Sep 01 21:11:27 -0500 2011
+  Processing by UsersController#login as HTML
+Rendered users/login.html.erb within layouts/application (11.6ms)
+Completed 200 OK in 63ms (Views: 36.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/login" for 127.0.0.1 at Thu Sep 01 21:11:36 -0500 2011
+  Processing by UsersController#login as HTML
+  Parameters: {"authenticity_token"=>"pxsooqe2nlN+UG+wZUionFFjXoBexabmt2NHyeu/rXY=", "utf8"=>"\342\234\223", "return_uri"=>"", "user"=>{"email_address"=>"testing.administrator@test.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (14.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE (email_address = 'testing.administrator@test.com') LIMIT 1[0m
+Redirected to http://localhost:3000
+Completed 302 Found in 66ms
+
+
+Started GET "/" for 127.0.0.1 at Thu Sep 01 21:11:36 -0500 2011
+  Processing by UsersController#login as HTML
+  [1m[35mSQL (0.5ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Redirected to http://localhost:3000/users/
+Completed 302 Found in 11ms
+
+
+Started GET "/users/" for 127.0.0.1 at Thu Sep 01 21:11:36 -0500 2011
+  Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Rendered users/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 31ms (Views: 20.4ms | ActiveRecord: 15.5ms)
+
+
+Started GET "/users/companies" for 127.0.0.1 at Thu Sep 01 21:11:41 -0500 2011
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"companies"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 0 LIMIT 1[0m
+Completed 404 Not Found in 6ms
+
+ActiveRecord::RecordNotFound (Couldn't find User with ID=companies):
+  app/controllers/users_controller.rb:114:in `find_user'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (13.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (22.8ms)
+
+
+Started GET "/companies" for 127.0.0.1 at Thu Sep 01 21:11:45 -0500 2011
+  Processing by CompaniesController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (14.1ms)[0m  [1mSELECT "companies".* FROM "companies"[0m
+Rendered companies/index.html.erb within layouts/application (18.6ms)
+Completed 200 OK in 109ms (Views: 34.4ms | ActiveRecord: 14.5ms)
+
+
+Started GET "/companies/search" for 127.0.0.1 at Thu Sep 01 21:33:50 -0500 2011
+
+AbstractController::ActionNotFound (The action 'search' could not be found for CompaniesController):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/unknown_action.erb within rescues/layout (0.8ms)
+
+
+Started GET "/companies/search" for 127.0.0.1 at Thu Sep 01 21:34:06 -0500 2011
+  Processing by CompaniesController#search as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Completed 500 Internal Server Error in 38ms
+
+ActionView::MissingTemplate (Missing template companies/search with {:handlers=>[:rxml, :builder, :rjs, :rhtml, :erb], :formats=>[:html], :locale=>[:en, :en]} in view paths "/Users/jordantcox/Dropbox/Code/com.Trustmaster.Www/app/views"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.5ms)
+
+
+Started GET "/companies/search" for 127.0.0.1 at Thu Sep 01 21:36:15 -0500 2011
+  Processing by CompaniesController#search as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered companies/search.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 15ms (Views: 5.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/companies/search?company_name=" for 127.0.0.1 at Thu Sep 01 21:36:17 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>""}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered companies/search.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 15ms (Views: 5.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/companies/search?company_name=" for 127.0.0.1 at Thu Sep 01 21:36:19 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>""}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered companies/search.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 52ms (Views: 4.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/companies/search?company_name=" for 127.0.0.1 at Thu Sep 01 21:37:09 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>""}
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."name" = '' LIMIT 1[0m
+Rendered companies/search.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 53ms (Views: 7.1ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/companies/search?company_name=test" for 127.0.0.1 at Thu Sep 01 21:37:11 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.2ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."name" = 'test' LIMIT 1[0m
+Rendered companies/search.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 28ms (Views: 5.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/companies/search?company_name=test" for 127.0.0.1 at Thu Sep 01 21:38:29 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE (name like 'test%')[0m
+Rendered companies/search.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 70ms (Views: 4.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/companies/search?company_name=test" for 127.0.0.1 at Thu Sep 01 21:39:10 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE (name like 'test%')[0m
+Rendered companies/search.html.erb within layouts/application (55.8ms)
+Completed 200 OK in 82ms (Views: 59.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/companies/search?company_name=test" for 127.0.0.1 at Thu Sep 01 21:44:53 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered companies/search.html.erb within layouts/application (0.4ms)
+Completed 500 Internal Server Error in 14ms
+
+ActionView::Template::Error (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.each):
+    6: </div>
+    7: 
+    8: <ul class="companies_index_search">
+    9: 	<% @companies.each do |company| %>
+    10: 		<li>
+    11: 			<%= company.name %>
+    12: 		</li>
+  app/views/companies/search.html.erb:9:in `_app_views_companies_search_html_erb__428186758_2280293840_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (7.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (15.2ms)
+
+
+Started GET "/companies/search?company_name=test" for 127.0.0.1 at Thu Sep 01 21:45:12 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered companies/search.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 16ms (Views: 5.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/companies/search_json?company_name=test" for 127.0.0.1 at Thu Sep 01 21:45:20 -0500 2011
+  Processing by CompaniesController#show as HTML
+  Parameters: {"company_name"=>"test", "id"=>"search_json"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.2ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 0 LIMIT 1[0m
+Completed 404 Not Found in 20ms
+
+ActiveRecord::RecordNotFound (Couldn't find Company with ID=search_json):
+  app/controllers/companies_controller.rb:114:in `find_company'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (9.4ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.6ms)
+
+
+Started GET "/companies/search_json?company_name=test" for 127.0.0.1 at Thu Sep 01 21:45:31 -0500 2011
+  Processing by CompaniesController#search_json as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE (name like 'test%')[0m
+Completed 200 OK in 122ms (Views: 58.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/companies/search?company_name=test" for 127.0.0.1 at Thu Sep 01 21:50:36 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered companies/search.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 17ms (Views: 5.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/companies/search?company_name=test" for 127.0.0.1 at Thu Sep 01 21:50:53 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered companies/search.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 24ms (Views: 7.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/companies/search?company_name=test" for 127.0.0.1 at Thu Sep 01 21:51:08 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered companies/search.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 20ms (Views: 7.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/companies/search?company_name=test" for 127.0.0.1 at Thu Sep 01 21:51:21 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered companies/search.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 22ms (Views: 5.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/companies/search?company_name=test" for 127.0.0.1 at Thu Sep 01 21:51:38 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered companies/search.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 54ms (Views: 5.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/companies/search" for 127.0.0.1 at Thu Sep 01 21:51:40 -0500 2011
+  Processing by CompaniesController#search as 
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered companies/search.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 23ms (Views: 13.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/companies/search?company_name=test" for 127.0.0.1 at Thu Sep 01 21:52:06 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered companies/search.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 70ms (Views: 5.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/companies/search_json" for 127.0.0.1 at Thu Sep 01 21:52:13 -0500 2011
+  Processing by CompaniesController#search_json as 
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Completed 500 Internal Server Error in 10ms
+
+RuntimeError (No search term provided):
+  app/controllers/companies_controller.rb:71:in `search_json'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.9ms)
+
+
+Started GET "/companies/search?company_name=test" for 127.0.0.1 at Thu Sep 01 21:52:51 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered companies/search.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 15ms (Views: 4.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/companies/search_json" for 127.0.0.1 at Thu Sep 01 21:52:54 -0500 2011
+  Processing by CompaniesController#search_json as 
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Completed 500 Internal Server Error in 10ms
+
+NameError (undefined local variable or method `ex' for #<CompaniesController:0x10fd34c48>):
+  app/controllers/companies_controller.rb:76:in `search_json'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.5ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.5ms)
+
+
+Started GET "/companies/search_json?company_name=test" for 127.0.0.1 at Thu Sep 01 21:53:03 -0500 2011
+  Processing by CompaniesController#search_json as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.5ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE (name like 'test%')[0m
+Completed 200 OK in 50ms (Views: 22.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/companies/search_json" for 127.0.0.1 at Thu Sep 01 21:53:06 -0500 2011
+  Processing by CompaniesController#search_json as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Completed 500 Internal Server Error in 11ms
+
+NameError (undefined local variable or method `ex' for #<CompaniesController:0x10fae4c90>):
+  app/controllers/companies_controller.rb:76:in `search_json'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.5ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (48.7ms)
+
+
+Started GET "/companies/search_json" for 127.0.0.1 at Thu Sep 01 21:53:15 -0500 2011
+  Processing by CompaniesController#search_json as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Completed 200 OK in 12ms (Views: 1.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/companies/search?company_name=test" for 127.0.0.1 at Thu Sep 01 21:53:19 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered companies/search.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 22ms (Views: 7.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/companies/search_json" for 127.0.0.1 at Thu Sep 01 21:53:22 -0500 2011
+  Processing by CompaniesController#search_json as 
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Completed 200 OK in 16ms (Views: 6.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/companies/search_json" for 127.0.0.1 at Thu Sep 01 21:53:27 -0500 2011
+  Processing by CompaniesController#search_json as 
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Completed 200 OK in 16ms (Views: 6.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/companies/search?company_name=test" for 127.0.0.1 at Thu Sep 01 21:53:42 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered companies/search.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 15ms (Views: 5.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/companies/search_json" for 127.0.0.1 at Thu Sep 01 21:53:43 -0500 2011
+  Processing by CompaniesController#search_json as 
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Completed 200 OK in 16ms (Views: 6.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/companies/search?company_name=test" for 127.0.0.1 at Thu Sep 01 21:54:43 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered companies/search.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 15ms (Views: 5.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/companies/search_json" for 127.0.0.1 at Thu Sep 01 21:54:46 -0500 2011
+  Processing by CompaniesController#search_json as 
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Completed 200 OK in 16ms (Views: 6.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/companies/search?company_name=test" for 127.0.0.1 at Thu Sep 01 21:54:58 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered companies/search.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 15ms (Views: 4.9ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/companies/search_json" for 127.0.0.1 at Thu Sep 01 21:54:59 -0500 2011
+
+ActionController::RoutingError (No route matches "/companies/search_json"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/companies/search?company_name=test" for 127.0.0.1 at Thu Sep 01 21:55:14 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered companies/search.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 15ms (Views: 5.5ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/companies/search_json" for 127.0.0.1 at Thu Sep 01 21:55:16 -0500 2011
+  Processing by CompaniesController#search_json as 
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Completed 200 OK in 16ms (Views: 6.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/companies/search?company_name=test" for 127.0.0.1 at Thu Sep 01 21:55:33 -0500 2011
+  Processing by CompaniesController#search as HTML
+  Parameters: {"company_name"=>"test"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered companies/search.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 65ms (Views: 8.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/companies/search_json" for 127.0.0.1 at Thu Sep 01 21:55:35 -0500 2011
+  Processing by CompaniesController#search_json as 
+  Parameters: {"company_name"=>"test"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE (name like 'test%')
+Completed 200 OK in 41ms (Views: 20.4ms | ActiveRecord: 0.4ms)
