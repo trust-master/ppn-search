@@ -584,6 +584,10 @@ var companiesSearch = {
 			companiesSearch.searchTimer = setTimeout('companiesSearch.performSearch();', 300);			
 		};
 		$search_box.keypress(search);
+		$search_box.change(function() {
+			if ($(this).val() == '') search();
+		});
+		search(); // prepopulate
 		$search_box.watermark('Provider Name');
 	},
 	performSearch: function() {
@@ -592,10 +596,14 @@ var companiesSearch = {
 			type: 'post',
             data: { 'company_name': $('#company_name').val() },
             success: function(data) {
+				$companies_index = $('.companies_index_search');
 				$('.loading_graphic').hide();
 				if (!data.success) { alert('There was an error running your search.  Please try again later.');console.log(data.message);return false;}
-				$('.companies_index_search').empty();
-				$("#company_template").tmpl(data.companies).appendTo(".companies_index_search");
+				$companies_index.empty();
+				if (data.companies.length > 0)
+					$("#company_template").tmpl(data.companies).appendTo($companies_index);
+				else
+					$('.companies_index_search_no_data_template .no_data').clone().appendTo($companies_index);
 				companiesSearch.initCompanyDisplay();
             }
         });
