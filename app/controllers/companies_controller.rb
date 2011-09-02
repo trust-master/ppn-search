@@ -3,7 +3,14 @@ require 'fileutils'
 class CompaniesController < ApplicationController
   before_filter :find_company, :only => [:show, :edit, :update, :destroy]
   before_filter :must_be_admin
-
+    def create
+        @company = Company.new params[:company]
+        if @company.save
+            render :json => { :success => true, :company_id => @company.id}
+        else
+            render :json => { :success => false, :message => @company.errors}
+        end
+    end
   # GET /companies
   # GET /companies.xml
   def index
@@ -26,7 +33,8 @@ class CompaniesController < ApplicationController
   # GET /companies/new.xml
   def new
     @company = Company.new
-
+    @company_categories = []
+    @service_areas = []
     respond_to do |wants|
       wants.html # new.html.erb
       wants.xml  { render :xml => @company }
@@ -54,14 +62,7 @@ class CompaniesController < ApplicationController
         end
     end
 
-    def create
-        @company = Company.new(params[:company])
-        if @company.save
-            render :json => { :success => true, :company_id => @company.id}
-        else
-            render :json => { :success => false, :message => @company.errors}
-        end
-    end
+
     def search
        
     end

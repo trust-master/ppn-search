@@ -272,7 +272,7 @@ var companyCategoryNew = {
 };
 var companiesEditForm = {
 	init: function() {
-		if ($('.company_form_nav').length !== 0) {
+		if ($('.company_form_nav').length !== 0 && $('.new_company').length == 0) {
 			this.initAffiliations();
 			this.initAssociations();
 			this.initCertifications();
@@ -492,7 +492,7 @@ var companiesNew = {
 	},
 	initSubmission: function() {
 		var uri = $('#form_destination').val();
-		$('.company_form_step_1 form').ajaxForm({
+		$('.company_form_step_1_form').ajaxForm({
 			url: uri,
             success: function (data) {
 				if (data.success) {

@@ -32086,3 +32086,589 @@ Started GET "/companies/9" for 127.0.0.1 at Thu Sep 01 23:15:18 -0500 2011
   [1m[36mCACHE (0.0ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1[0m
 Rendered companies/show.html.erb (13.6ms)
 Completed 200 OK in 93ms (Views: 15.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/companies/search_json" for 127.0.0.1 at Thu Sep 01 23:15:49 -0500 2011
+  Processing by CompaniesController#search_json as 
+  Parameters: {"company_name"=>"test"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.5ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE (name like 'test%')[0m
+Completed 200 OK in 90ms (Views: 66.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/companies/" for 127.0.0.1 at Thu Sep 01 23:15:53 -0500 2011
+  Processing by CompaniesController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.5ms)[0m  [1mSELECT "companies".* FROM "companies"[0m
+Rendered companies/index.html.erb within layouts/application (17.8ms)
+Completed 200 OK in 66ms (Views: 25.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/companies/new" for 127.0.0.1 at Thu Sep 01 23:15:55 -0500 2011
+  Processing by CompaniesController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered companies/_form.html.erb (14.4ms)
+Rendered companies/new.html.erb within layouts/application (15.9ms)
+Completed 500 Internal Server Error in 91ms
+
+ActionView::Template::Error (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.each):
+    86: 		<h2>Service Coverage</h2>
+    87: 		<ul>
+    88: 			<% i = 0 %>
+    89: 			<% @service_areas.each do |service_area|%>
+    90: 				<% 
+    91: 					service_area_coverage = company.service_area_coverages.find_all{|item| item.service_area_id == service_area.id}.first()
+    92: 					raise "Could not locate service_area_coverage for #{service_area.name} (#{service_area.id})" if service_area_coverage.nil?
+  app/views/companies/_form.html.erb:89:in `_app_views_companies__form_html_erb__79088273_2280893000_2183244'
+  app/views/companies/new.html.erb:5:in `_app_views_companies_new_html_erb__948182711_2280921200_0'
+  app/controllers/companies_controller.rb:30:in `new'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.7ms)
+
+
+Started GET "/companies/new" for 127.0.0.1 at Thu Sep 01 23:16:41 -0500 2011
+  Processing by CompaniesController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered companies/_form.html.erb (16.5ms)
+Rendered companies/new.html.erb within layouts/application (18.5ms)
+Completed 500 Internal Server Error in 96ms
+
+ActionView::Template::Error (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.each):
+    109: 				<label for="company_company_category">Select a Category</label>
+    110: 				<select name="company[company_category_id]" id="company_company_category_id">
+    111: 					<option value="-1">Select a Category</option>
+    112: 					<% @company_categories.each do |company_category| %>
+    113: 						<option value="<%= company_category.id %>" 
+    114: 							<%= !company.company_category.nil? && company.company_category.id == company_category.id ? "selected=selected" : ""%>
+    115: 						><%= company_category.name%></option>
+  app/views/companies/_form.html.erb:112:in `_app_views_companies__form_html_erb__79088273_2281618900_2183244'
+  app/views/companies/new.html.erb:5:in `_app_views_companies_new_html_erb__948182711_2281632820_0'
+  app/controllers/companies_controller.rb:30:in `new'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.9ms)
+
+
+Started GET "/companies/new" for 127.0.0.1 at Thu Sep 01 23:16:54 -0500 2011
+  Processing by CompaniesController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered companies/_form.html.erb (81.8ms)
+Rendered companies/new.html.erb within layouts/application (85.9ms)
+Completed 200 OK in 120ms (Views: 91.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/affiliations/?company_id=" for 127.0.0.1 at Thu Sep 01 23:16:54 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>""}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 0 LIMIT 1
+Rendered affiliations/index.html.erb (0.5ms)
+Completed 500 Internal Server Error in 42ms
+
+ActionView::Template::Error (undefined method `affiliations' for nil:NilClass):
+    1: <% @company.affiliations.each do |affiliation| %>
+    2: 	<li class="object_container">
+    3: 		<%= render :partial => "show", :object => affiliation %>
+    4: 	</li>
+  app/views/affiliations/index.html.erb:1:in `_app_views_affiliations_index_html_erb___840958866_2278462200_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (10.8ms)
+
+
+Started GET "/associations/?company_id=" for 127.0.0.1 at Thu Sep 01 23:16:54 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>""}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.2ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 0 LIMIT 1
+Rendered associations/index.html.erb (0.5ms)
+Completed 500 Internal Server Error in 33ms
+
+ActionView::Template::Error (undefined method `associations' for nil:NilClass):
+    1: <% @company.associations.each do |association| %>
+    2: 	<li class="object_container">
+    3: 		<%= render :partial => "show", :object => association %>
+    4: 	</li>
+  app/views/associations/index.html.erb:1:in `_app_views_associations_index_html_erb___986870824_2278827680_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.7ms)
+
+
+Started GET "/discounts/?company_id=" for 127.0.0.1 at Thu Sep 01 23:16:54 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>""}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.2ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 0 LIMIT 1
+Rendered discounts/index.html.erb (0.4ms)
+Completed 500 Internal Server Error in 28ms
+
+ActionView::Template::Error (undefined method `discounts' for nil:NilClass):
+    9: 		</tr>
+    10: 	</thead>
+    11: 	<tbody>
+    12: 		<% @company.discounts.each do |discount| %>		
+    13: 			<%= render :partial => "show", :object => discount %>
+    14: 		<% end %>
+    15: 	</tbody>
+  app/views/discounts/index.html.erb:12:in `_app_views_discounts_index_html_erb__176487074_2280678760_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.6ms)
+
+
+Started GET "/certifications/?company_id=" for 127.0.0.1 at Thu Sep 01 23:16:54 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>""}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.2ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 0 LIMIT 1
+Rendered certifications/index.html.erb (0.4ms)
+Completed 500 Internal Server Error in 75ms
+
+ActionView::Template::Error (undefined method `certifications' for nil:NilClass):
+    1: <% @company.certifications.each do |certification| %>
+    2: 	<li class="object_container">
+    3: 		<%= render :partial => "show", :object => certification %>
+    4: 	</li>
+  app/views/certifications/index.html.erb:1:in `_app_views_certifications_index_html_erb__839316796_2281774800_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.1ms)
+
+
+Started POST "/companies/" for 127.0.0.1 at Thu Sep 01 23:17:30 -0500 2011
+
+ActionController::RoutingError (No route matches "/companies"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/companies/" for 127.0.0.1 at Thu Sep 01 23:17:37 -0500 2011
+  Processing by CompaniesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.4ms)[0m  SELECT "companies".* FROM "companies"
+Rendered companies/index.html.erb within layouts/application (17.4ms)
+Completed 200 OK in 46ms (Views: 22.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/companies/" for 127.0.0.1 at Thu Sep 01 23:17:40 -0500 2011
+  Processing by CompaniesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.6ms)[0m  SELECT "companies".* FROM "companies"
+Rendered companies/index.html.erb within layouts/application (15.6ms)
+Completed 200 OK in 42ms (Views: 19.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/companies/new" for 127.0.0.1 at Thu Sep 01 23:18:36 -0500 2011
+  Processing by CompaniesController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered companies/_form.html.erb (14.9ms)
+Rendered companies/new.html.erb within layouts/application (17.0ms)
+Completed 200 OK in 44ms (Views: 21.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/affiliations/?company_id=" for 127.0.0.1 at Thu Sep 01 23:18:36 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>""}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.2ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 0 LIMIT 1[0m
+Rendered affiliations/index.html.erb (0.5ms)
+Completed 500 Internal Server Error in 28ms
+
+ActionView::Template::Error (undefined method `affiliations' for nil:NilClass):
+    1: <% @company.affiliations.each do |affiliation| %>
+    2: 	<li class="object_container">
+    3: 		<%= render :partial => "show", :object => affiliation %>
+    4: 	</li>
+  app/views/affiliations/index.html.erb:1:in `_app_views_affiliations_index_html_erb___840958866_2279974860_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.4ms)
+
+
+Started GET "/certifications/?company_id=" for 127.0.0.1 at Thu Sep 01 23:18:36 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>""}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.2ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 0 LIMIT 1[0m
+Rendered certifications/index.html.erb (0.4ms)
+Completed 500 Internal Server Error in 78ms
+
+ActionView::Template::Error (undefined method `certifications' for nil:NilClass):
+    1: <% @company.certifications.each do |certification| %>
+    2: 	<li class="object_container">
+    3: 		<%= render :partial => "show", :object => certification %>
+    4: 	</li>
+  app/views/certifications/index.html.erb:1:in `_app_views_certifications_index_html_erb__839316796_2281483280_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.8ms)
+
+
+Started GET "/associations/?company_id=" for 127.0.0.1 at Thu Sep 01 23:18:36 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>""}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.2ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 0 LIMIT 1[0m
+Rendered associations/index.html.erb (0.5ms)
+Completed 500 Internal Server Error in 32ms
+
+ActionView::Template::Error (undefined method `associations' for nil:NilClass):
+    1: <% @company.associations.each do |association| %>
+    2: 	<li class="object_container">
+    3: 		<%= render :partial => "show", :object => association %>
+    4: 	</li>
+  app/views/associations/index.html.erb:1:in `_app_views_associations_index_html_erb___986870824_2278732660_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (47.4ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (52.8ms)
+
+
+Started GET "/discounts/?company_id=" for 127.0.0.1 at Thu Sep 01 23:18:36 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>""}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.2ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 0 LIMIT 1[0m
+Rendered discounts/index.html.erb (0.5ms)
+Completed 500 Internal Server Error in 32ms
+
+ActionView::Template::Error (undefined method `discounts' for nil:NilClass):
+    9: 		</tr>
+    10: 	</thead>
+    11: 	<tbody>
+    12: 		<% @company.discounts.each do |discount| %>		
+    13: 			<%= render :partial => "show", :object => discount %>
+    14: 		<% end %>
+    15: 	</tbody>
+  app/views/discounts/index.html.erb:12:in `_app_views_discounts_index_html_erb__176487074_2279776880_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.4ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.2ms)
+
+
+Started POST "/companies/" for 127.0.0.1 at Thu Sep 01 23:18:56 -0500 2011
+
+ActionController::RoutingError (No route matches "/companies"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started POST "/companies/" for 127.0.0.1 at Thu Sep 01 23:19:02 -0500 2011
+
+ActionController::RoutingError (No route matches "/companies"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at Thu Sep 01 23:19:45 -0500 2011
+  Processing by UsersController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered users/new.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 17ms (Views: 6.5ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/companies/9" for 127.0.0.1 at Thu Sep 01 23:20:09 -0500 2011
+  Processing by CompaniesController#update as JSON
+  Parameters: {"company"=>{"name"=>"Test Business 2", "main_phone_number"=>"320-333-3333", "fax_number"=>"", "city"=>"Saint Cloud", "in_business_since"=>"2011-08-01", "zip_code"=>"56304", "mobile_phone_number"=>"", "address_1"=>"12345 Main Street", "web_site"=>"http://google.com", "address_2"=>"", "email_address"=>"support@testbusiness1.com", "state"=>"MN"}, "id"=>"9"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 9 LIMIT 1
+Completed 200 OK in 43ms (Views: 3.4ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/companies/" for 127.0.0.1 at Thu Sep 01 23:20:25 -0500 2011
+
+ActionController::RoutingError (No route matches "/companies"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at Thu Sep 01 23:21:39 -0500 2011
+  Processing by UsersController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+Rendered users/new.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 17ms (Views: 6.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/companies/new" for 127.0.0.1 at Thu Sep 01 23:23:59 -0500 2011
+  Processing by CompaniesController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered companies/_form.html.erb (64.1ms)
+Rendered companies/new.html.erb within layouts/application (66.5ms)
+Completed 200 OK in 98ms (Views: 71.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/companies/" for 127.0.0.1 at Thu Sep 01 23:24:21 -0500 2011
+  Processing by CompaniesController#create as 
+  Parameters: {"company"=>{"name"=>"Jordan T. Cox", "main_phone_number"=>"320-761-3394", "fax_number"=>"", "city"=>"Becker", "in_business_since"=>"", "zip_code"=>"55319", "mobile_phone_number"=>"", "address_1"=>"12345 Main Street", "web_site"=>"", "address_2"=>"", "email_address"=>"jordan.t.cox@gmail.com", "state"=>"MN"}}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "companies" ("web_site", "is_active", "name", "twenty_four_hour_service", "is_insurance", "business_certificate_number", "emergency_services", "business_certificate_type", "main_phone_number", "email_address", "discount_title", "filing_number", "fax_number", "description", "discount_end_date", "address_1", "about", "certificate_of_insurance_filename", "created_at", "insurance_expiration_month", "discount_description", "discount_type", "zip_code", "address_2", "state", "personal_license_type", "personal_license_number", "mobile_phone_number", "in_business_since", "insurance_expiration_year", "general_info", "business_status_type", "discount_start_date", "company_category_id", "updated_at", "city") VALUES ('', NULL, 'Jordan T. Cox', NULL, NULL, NULL, NULL, NULL, '320-761-3394', 'jordan.t.cox@gmail.com', NULL, NULL, '', NULL, NULL, '12345 Main Street', NULL, NULL, '2011-09-02 04:24:21.748627', NULL, NULL, NULL, '55319', '', 'MN', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, '2011-09-02 04:24:21.748627', 'Becker')
+Completed 200 OK in 47ms (Views: 6.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/companies/13/edit" for 127.0.0.1 at Thu Sep 01 23:24:21 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.4ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 13 LIMIT 1
+  [1m[36mCompanyCategory Load (0.3ms)[0m  [1mSELECT "company_categories".* FROM "company_categories"[0m
+  [1m[35mCompanySubcategory Load (0.1ms)[0m  SELECT "company_subcategories".* FROM "company_subcategories"
+  [1m[36mServiceArea Load (0.5ms)[0m  [1mSELECT "service_areas".* FROM "service_areas"[0m
+  [1m[35mServiceAreaCoverage Load (0.3ms)[0m  SELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 13)
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "service_area_coverages" ("service_area_id", "coverage_type", "updated_at", "created_at", "company_id") VALUES (1, 0, '2011-09-02 04:24:21.946496', '2011-09-02 04:24:21.946496', 13)[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "service_area_coverages" ("service_area_id", "coverage_type", "updated_at", "created_at", "company_id") VALUES (2, 0, '2011-09-02 04:24:21.952510', '2011-09-02 04:24:21.952510', 13)
+  [1m[36mAREL (0.2ms)[0m  [1mINSERT INTO "service_area_coverages" ("service_area_id", "coverage_type", "updated_at", "created_at", "company_id") VALUES (3, 0, '2011-09-02 04:24:21.956737', '2011-09-02 04:24:21.956737', 13)[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "service_area_coverages" ("service_area_id", "coverage_type", "updated_at", "created_at", "company_id") VALUES (4, 0, '2011-09-02 04:24:21.961557', '2011-09-02 04:24:21.961557', 13)
+  [1m[36mAREL (0.2ms)[0m  [1mINSERT INTO "service_area_coverages" ("service_area_id", "coverage_type", "updated_at", "created_at", "company_id") VALUES (5, 0, '2011-09-02 04:24:21.965623', '2011-09-02 04:24:21.965623', 13)[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO "service_area_coverages" ("service_area_id", "coverage_type", "updated_at", "created_at", "company_id") VALUES (6, 0, '2011-09-02 04:24:21.970031', '2011-09-02 04:24:21.970031', 13)
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "service_area_coverages" ("service_area_id", "coverage_type", "updated_at", "created_at", "company_id") VALUES (7, 0, '2011-09-02 04:24:22.020473', '2011-09-02 04:24:22.020473', 13)[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "service_area_coverages" ("service_area_id", "coverage_type", "updated_at", "created_at", "company_id") VALUES (8, 0, '2011-09-02 04:24:22.025359', '2011-09-02 04:24:22.025359', 13)
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "service_area_coverages" ("service_area_id", "coverage_type", "updated_at", "created_at", "company_id") VALUES (9, 0, '2011-09-02 04:24:22.030463', '2011-09-02 04:24:22.030463', 13)[0m
+Rendered companies/_form.html.erb (7.3ms)
+Rendered companies/edit.html.erb within layouts/application (9.8ms)
+Completed 200 OK in 185ms (Views: 14.9ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/affiliations/?company_id=13" for 127.0.0.1 at Thu Sep 01 23:24:22 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"13"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 13 LIMIT 1[0m
+  [1m[35mAffiliation Load (0.2ms)[0m  SELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 13)
+Rendered affiliations/index.html.erb (31.3ms)
+Completed 200 OK in 73ms (Views: 33.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/associations/?company_id=13" for 127.0.0.1 at Thu Sep 01 23:24:22 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"13"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 13 LIMIT 1
+  [1m[36mAssociation Load (0.3ms)[0m  [1mSELECT "associations".* FROM "associations" WHERE ("associations".company_id = 13)[0m
+Rendered associations/index.html.erb (24.6ms)
+Completed 200 OK in 61ms (Views: 26.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/certifications/?company_id=13" for 127.0.0.1 at Thu Sep 01 23:24:22 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"13"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 13 LIMIT 1[0m
+  [1m[35mCertification Load (0.2ms)[0m  SELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 13)
+Rendered certifications/index.html.erb (17.7ms)
+Completed 200 OK in 89ms (Views: 19.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/discounts/?company_id=13" for 127.0.0.1 at Thu Sep 01 23:24:22 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"13"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 13 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 13)[0m
+Rendered discounts/index.html.erb (19.5ms)
+Completed 200 OK in 51ms (Views: 21.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/companies/13/edit" for 127.0.0.1 at Thu Sep 01 23:25:32 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"13"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 13 LIMIT 1[0m
+  [1m[35mCompanyCategory Load (0.2ms)[0m  SELECT "company_categories".* FROM "company_categories"
+  [1m[36mCompanySubcategory Load (0.1ms)[0m  [1mSELECT "company_subcategories".* FROM "company_subcategories"[0m
+  [1m[35mServiceArea Load (0.3ms)[0m  SELECT "service_areas".* FROM "service_areas"
+  [1m[36mServiceAreaCoverage Load (0.3ms)[0m  [1mSELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 13)[0m
+Rendered companies/_form.html.erb (6.7ms)
+Rendered companies/edit.html.erb within layouts/application (8.9ms)
+Completed 200 OK in 73ms (Views: 13.0ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/affiliations/?company_id=13" for 127.0.0.1 at Thu Sep 01 23:25:32 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"13"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.5ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 13 LIMIT 1[0m
+  [1m[35mAffiliation Load (0.2ms)[0m  SELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 13)
+Rendered affiliations/index.html.erb (26.0ms)
+Completed 200 OK in 72ms (Views: 28.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/associations/?company_id=13" for 127.0.0.1 at Thu Sep 01 23:25:32 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"13"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 13 LIMIT 1
+  [1m[36mAssociation Load (0.2ms)[0m  [1mSELECT "associations".* FROM "associations" WHERE ("associations".company_id = 13)[0m
+Rendered associations/index.html.erb (17.6ms)
+Completed 200 OK in 43ms (Views: 19.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/certifications/?company_id=13" for 127.0.0.1 at Thu Sep 01 23:25:32 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"13"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 13 LIMIT 1[0m
+  [1m[35mCertification Load (0.2ms)[0m  SELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 13)
+Rendered certifications/index.html.erb (18.3ms)
+Completed 200 OK in 87ms (Views: 20.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/discounts/?company_id=13" for 127.0.0.1 at Thu Sep 01 23:25:32 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"13"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 13 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 13)[0m
+Rendered discounts/index.html.erb (18.6ms)
+Completed 200 OK in 49ms (Views: 20.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/companies/13/edit" for 127.0.0.1 at Thu Sep 01 23:25:44 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"13"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 13 LIMIT 1[0m
+  [1m[35mCompanyCategory Load (0.2ms)[0m  SELECT "company_categories".* FROM "company_categories"
+  [1m[36mCompanySubcategory Load (0.1ms)[0m  [1mSELECT "company_subcategories".* FROM "company_subcategories"[0m
+  [1m[35mServiceArea Load (0.3ms)[0m  SELECT "service_areas".* FROM "service_areas"
+  [1m[36mServiceAreaCoverage Load (0.4ms)[0m  [1mSELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 13)[0m
+Rendered companies/_form.html.erb (6.7ms)
+Rendered companies/edit.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 74ms (Views: 13.1ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/affiliations/?company_id=13" for 127.0.0.1 at Thu Sep 01 23:25:44 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"13"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 13 LIMIT 1[0m
+  [1m[35mAffiliation Load (0.3ms)[0m  SELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 13)
+Rendered affiliations/index.html.erb (80.7ms)
+Completed 200 OK in 115ms (Views: 83.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/associations/?company_id=13" for 127.0.0.1 at Thu Sep 01 23:25:44 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"13"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 13 LIMIT 1
+  [1m[36mAssociation Load (0.2ms)[0m  [1mSELECT "associations".* FROM "associations" WHERE ("associations".company_id = 13)[0m
+Rendered associations/index.html.erb (17.6ms)
+Completed 200 OK in 47ms (Views: 19.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/certifications/?company_id=13" for 127.0.0.1 at Thu Sep 01 23:25:44 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"13"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 13 LIMIT 1[0m
+  [1m[35mCertification Load (0.2ms)[0m  SELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 13)
+Rendered certifications/index.html.erb (18.2ms)
+Completed 200 OK in 96ms (Views: 20.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/discounts/?company_id=13" for 127.0.0.1 at Thu Sep 01 23:25:44 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"13"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 13 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 13)[0m
+Rendered discounts/index.html.erb (63.4ms)
+Completed 200 OK in 94ms (Views: 65.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/companies/new" for 127.0.0.1 at Thu Sep 01 23:25:47 -0500 2011
+  Processing by CompaniesController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+Rendered companies/_form.html.erb (15.9ms)
+Rendered companies/new.html.erb within layouts/application (18.5ms)
+Completed 200 OK in 57ms (Views: 22.9ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/companies/" for 127.0.0.1 at Thu Sep 01 23:26:15 -0500 2011
+  Processing by CompaniesController#create as 
+  Parameters: {"company"=>{"name"=>"Secondary Test Business", "main_phone_number"=>"320-761-3394", "fax_number"=>"", "city"=>"Saint Cloud", "in_business_since"=>"08/31/2011", "zip_code"=>"56301", "mobile_phone_number"=>"", "address_1"=>"1234 Main STreet", "web_site"=>"http://google.com", "address_2"=>"", "email_address"=>"jordan.t.cox@gmail.com", "state"=>"MN"}}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "companies" ("web_site", "mobile_phone_number", "name", "general_info", "address_2", "emergency_services", "updated_at", "business_certificate_number", "business_status_type", "personal_license_type", "fax_number", "state", "personal_license_number", "in_business_since", "main_phone_number", "email_address", "description", "discount_title", "is_insurance", "about", "discount_start_date", "discount_end_date", "certificate_of_insurance_filename", "filing_number", "created_at", "city", "insurance_expiration_year", "discount_description", "company_category_id", "is_active", "business_certificate_type", "discount_type", "insurance_expiration_month", "twenty_four_hour_service", "address_1", "zip_code") VALUES ('http://google.com', '', 'Secondary Test Business', NULL, '', NULL, '2011-09-02 04:26:15.680450', NULL, NULL, NULL, '', 'MN', NULL, '2011-08-31', '320-761-3394', 'jordan.t.cox@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2011-09-02 04:26:15.680450', 'Saint Cloud', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1234 Main STreet', '56301')
+Completed 200 OK in 101ms (Views: 6.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/companies/14/edit" for 127.0.0.1 at Thu Sep 01 23:26:15 -0500 2011
+  Processing by CompaniesController#edit as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.6ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 14 LIMIT 1
+  [1m[36mCompanyCategory Load (0.3ms)[0m  [1mSELECT "company_categories".* FROM "company_categories"[0m
+  [1m[35mCompanySubcategory Load (0.2ms)[0m  SELECT "company_subcategories".* FROM "company_subcategories"
+  [1m[36mServiceArea Load (0.4ms)[0m  [1mSELECT "service_areas".* FROM "service_areas"[0m
+  [1m[35mServiceAreaCoverage Load (0.2ms)[0m  SELECT "service_area_coverages".* FROM "service_area_coverages" WHERE ("service_area_coverages".company_id = 14)
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "service_area_coverages" ("updated_at", "created_at", "coverage_type", "service_area_id", "company_id") VALUES ('2011-09-02 04:26:15.895030', '2011-09-02 04:26:15.895030', 0, 1, 14)[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "service_area_coverages" ("updated_at", "created_at", "coverage_type", "service_area_id", "company_id") VALUES ('2011-09-02 04:26:15.899931', '2011-09-02 04:26:15.899931', 0, 2, 14)
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "service_area_coverages" ("updated_at", "created_at", "coverage_type", "service_area_id", "company_id") VALUES ('2011-09-02 04:26:15.903929', '2011-09-02 04:26:15.903929', 0, 3, 14)[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO "service_area_coverages" ("updated_at", "created_at", "coverage_type", "service_area_id", "company_id") VALUES ('2011-09-02 04:26:15.908508', '2011-09-02 04:26:15.908508', 0, 4, 14)
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "service_area_coverages" ("updated_at", "created_at", "coverage_type", "service_area_id", "company_id") VALUES ('2011-09-02 04:26:15.912762', '2011-09-02 04:26:15.912762', 0, 5, 14)[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "service_area_coverages" ("updated_at", "created_at", "coverage_type", "service_area_id", "company_id") VALUES ('2011-09-02 04:26:15.916685', '2011-09-02 04:26:15.916685', 0, 6, 14)
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "service_area_coverages" ("updated_at", "created_at", "coverage_type", "service_area_id", "company_id") VALUES ('2011-09-02 04:26:15.921636', '2011-09-02 04:26:15.921636', 0, 7, 14)[0m
+  [1m[35mAREL (0.2ms)[0m  INSERT INTO "service_area_coverages" ("updated_at", "created_at", "coverage_type", "service_area_id", "company_id") VALUES ('2011-09-02 04:26:15.925771', '2011-09-02 04:26:15.925771', 0, 8, 14)
+  [1m[36mAREL (0.2ms)[0m  [1mINSERT INTO "service_area_coverages" ("updated_at", "created_at", "coverage_type", "service_area_id", "company_id") VALUES ('2011-09-02 04:26:15.929718', '2011-09-02 04:26:15.929718', 0, 9, 14)[0m
+Rendered companies/_form.html.erb (7.8ms)
+Rendered companies/edit.html.erb within layouts/application (9.9ms)
+Completed 200 OK in 210ms (Views: 15.2ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/affiliations/?company_id=14" for 127.0.0.1 at Thu Sep 01 23:26:16 -0500 2011
+  Processing by AffiliationsController#index as HTML
+  Parameters: {"company_id"=>"14"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.5ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 14 LIMIT 1[0m
+  [1m[35mAffiliation Load (0.2ms)[0m  SELECT "affiliations".* FROM "affiliations" WHERE ("affiliations".company_id = 14)
+Rendered affiliations/index.html.erb (21.5ms)
+Completed 200 OK in 133ms (Views: 26.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/associations/?company_id=14" for 127.0.0.1 at Thu Sep 01 23:26:16 -0500 2011
+  Processing by AssociationsController#index as HTML
+  Parameters: {"company_id"=>"14"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 14 LIMIT 1
+  [1m[36mAssociation Load (0.2ms)[0m  [1mSELECT "associations".* FROM "associations" WHERE ("associations".company_id = 14)[0m
+Rendered associations/index.html.erb (17.6ms)
+Completed 200 OK in 44ms (Views: 20.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/certifications/?company_id=14" for 127.0.0.1 at Thu Sep 01 23:26:16 -0500 2011
+  Processing by CertificationsController#index as HTML
+  Parameters: {"company_id"=>"14"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = 14 LIMIT 1[0m
+  [1m[35mCertification Load (0.2ms)[0m  SELECT "certifications".* FROM "certifications" WHERE ("certifications".company_id = 14)
+Rendered certifications/index.html.erb (29.1ms)
+Completed 200 OK in 61ms (Views: 31.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/discounts/?company_id=14" for 127.0.0.1 at Thu Sep 01 23:26:16 -0500 2011
+  Processing by DiscountsController#index as HTML
+  Parameters: {"company_id"=>"14"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = 14 LIMIT 1
+  [1m[36mDiscount Load (0.2ms)[0m  [1mSELECT "discounts".* FROM "discounts" WHERE ("discounts".company_id = 14)[0m
+Rendered discounts/index.html.erb (19.7ms)
+Completed 200 OK in 105ms (Views: 21.8ms | ActiveRecord: 0.7ms)
