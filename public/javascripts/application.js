@@ -270,6 +270,22 @@ var companyCategoryNew = {
 		});
 	}
 };
+var companyShow = {
+	init: function() { 
+		if ($('.company_show_tabs').length !== 0) {
+			this.initTabs();
+		}
+	},
+	initTabs: function() {
+		$('.company_show_tabs a').click(function() {
+			var target_tab = $(this).attr('target_tab');
+			if (target_tab == null || target_tab == '') { console.log('No target tab!'); return;}
+			$('.target_tab').hide();
+			$('.' + target_tab).show();
+			return false;
+		});
+	},
+};
 var companiesEditForm = {
 	init: function() {
 		if ($('.company_form_nav').length !== 0 && $('.new_company').length == 0) {
@@ -561,16 +577,16 @@ var companiesSearch = {
 		});
 	},
 	initSearchBox: function() {
+		var $search_box = $('.companies_search input[type="text"]');
 		var search = function() {
 			$('.loading_graphic').show();
 			if (companiesSearch.searchTimer != null) clearTimeout(companiesSearch.searchTimer);
 			companiesSearch.searchTimer = setTimeout('companiesSearch.performSearch();', 300);			
 		};
-		$('.companies_search input[type="text"]').change(search);
-		$('.companies_search input[type="text"]').keypress(search);
+		$search_box.keypress(search);
+		$search_box.watermark('Provider Name');
 	},
 	performSearch: function() {
-
 		$.ajax({
             url: $('.companies_search').attr('action'),
 			type: 'post',

@@ -12,7 +12,7 @@
 		<a href="#" target_tab="discounts">Discounts</a>
 	</li>
 </ul>
-<div class="provider_info">
+<div class="provider_info target_tab">
 	<h1><%= @company.name%><% if @company.in_business_since %> In business since <%=@company.in_business_since.year%><% end %></h1>
 	<ul>
 		<li>
@@ -29,3 +29,17 @@
 		<% end %>
 	</ul>
 </div>
+<div class="service_info target_tab hidden">
+	<h1>Service Info</h1>
+</div>
+<div class="credential_info target_tab hidden">
+	<h1>Credential Info</h1>
+</div>
+<div class="discounts target_tab hidden">
+	<h1>Discounts</h1>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		companyShow.init();
+	});
+</script>
