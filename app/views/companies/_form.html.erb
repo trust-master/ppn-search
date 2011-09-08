@@ -201,6 +201,32 @@
 				<input type="text" name="company[personal_license_number]" id="company_personal_license_number" value="<%=company.personal_license_number%>">
 			</li>
 		</ul>
+		<ul class="personal_license">
+			<li>
+				<label for="personal_certificate_name">Name</label>
+				<input type="textbox" id="personal_certificate_name" name="personal_certificate[name]" value="<%= company.personal_certificate.name%>"/>
+			</li>
+			<li>
+				<label for="personal_certificate_address">Address</label>
+				<input type="textbox" id="personal_certificate_address" name="personal_certificate[address]" value="<%= company.personal_certificate.address%>"/>
+			</li>
+			<li>
+				<label for="personal_certificate_certificate_type">Type</label>
+				<input type="textbox" id="personal_certificate_certificate_type" name="personal_certificate[certificate_type]" value="<%= company.personal_certificate.certificate_type%>"/>
+			</li>
+			<li>
+				<label for="personal_certificate_status">Status</label>
+				<input type="textbox" id="personal_certificate_status" name="personal_certificate[status]" value="<%= company.personal_certificate.status%>"/>
+			</li>
+			<li>
+				<label for="personal_certificate_print_date">Print Date</label>
+				<input type="textbox" class="datepicker" id="personal_certificate_print_date" name="personal_certificate[print_date]" value="<%= company.personal_certificate.print_date%>"/>
+			</li>
+			<li>
+				<label for="personal_certificate_continuing_education">Continuing Education</label>
+				<input type="textbox" id="personal_certificate_continuing_education" name="personal_certificate[continuing_education]" value="<%= company.personal_certificate.continuing_education%>"/>
+			</li>
+		</ul>
 		<h2>Business License/Certificate</h2>
 		<ul>
 			<li>

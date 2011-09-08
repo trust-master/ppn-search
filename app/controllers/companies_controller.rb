@@ -47,6 +47,8 @@ class CompaniesController < ApplicationController
         @company_subcategories = CompanySubcategory.all
         @service_areas = ServiceArea.all
         
+        @company.personal_certificate = PersonalCertificate.new if @company.personal_certificate.nil?
+        
         @service_areas.each do |service_area|
             coverage = @company.service_area_coverages.find_all{|item| item.service_area_id == service_area.id}.first()
             needs_saving = false
@@ -79,6 +81,9 @@ class CompaniesController < ApplicationController
     # PUT /companies/1
     # PUT /companies/1.xml
     def update
+        @company.personal_certificate = PersonalCertificate.new params[:personal_certificate]
+        @company.personal_certificate.company_id = @company.id
+        
         if !params[:service_area_coverages].nil? and params[:service_area_coverages].count > 0
             @company.service_area_coverages.delete_all
             params[:service_area_coverages].each do |entry|

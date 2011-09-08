@@ -5,4 +5,5 @@ class Company < ActiveRecord::Base
     has_many :certifications
     has_many :discounts
     has_many :service_area_coverages
+    has_one :personal_certificate
 end
