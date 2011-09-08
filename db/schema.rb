@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110908130049) do
+ActiveRecord::Schema.define(:version => 20110908131145) do
 
   create_table "affiliations", :force => true do |t|
     t.string   "name"
@@ -40,6 +40,27 @@ ActiveRecord::Schema.define(:version => 20110908130049) do
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "business_certificates", :force => true do |t|
+    t.string   "name"
+    t.string   "business_as"
+    t.string   "address"
+    t.string   "city_state_zip"
+    t.string   "license_number"
+    t.string   "license_type"
+    t.string   "company_structure"
+    t.string   "status"
+    t.date     "original_issue_date"
+    t.date     "expiration_date"
+    t.date     "print_date"
+    t.string   "responsible_person_name"
+    t.string   "responsible_person_license_number"
+    t.string   "contractors_phone_number"
+    t.string   "enforcement_action"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "company_id"
   end
 
   create_table "certifications", :force => true do |t|

@@ -47,6 +47,7 @@ class CompaniesController < ApplicationController
         @company_subcategories = CompanySubcategory.all
         @service_areas = ServiceArea.all
         
+        @company.business_certificate = BusinessCertificate.new if @company.business_certificate.nil?
         @company.personal_certificate = PersonalCertificate.new if @company.personal_certificate.nil?
         
         @service_areas.each do |service_area|
@@ -81,6 +82,9 @@ class CompaniesController < ApplicationController
     # PUT /companies/1
     # PUT /companies/1.xml
     def update
+        @company.business_certificate = BusinessCertificate.new params[:business_certificate]
+        @company.business_certificate.company_id = @company.id
+        
         @company.personal_certificate = PersonalCertificate.new params[:personal_certificate]
         @company.personal_certificate.company_id = @company.id
         

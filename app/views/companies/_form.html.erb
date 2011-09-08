@@ -243,6 +243,64 @@
 				<input type="text" name="company[business_certificate_number]" id="company_business_certificate_number" value="<%=company.business_certificate_number%>">
 			</li>
 		</ul>
+		<ul class="business_certificate">
+			<li>
+				<label for="business_certificate_name">Name</label>
+				<input type="textbox" id="business_certificate_name" name="business_certificate[name]" value="<%= company.business_certificate.name%>"/>
+			</li>
+			<li>
+				<label for="business_certificate_business_as">Doing Business As</label>
+				<input type="textbox" id="business_certificate_business_as" name="business_certificate[business_as]" value="<%= company.business_certificate.business_as%>"/>
+			</li>
+			<li>
+				<label for="business_certificate_address">Address</label>
+				<input type="textbox" id="business_certificate_address" name="business_certificate[address]" value="<%= company.business_certificate.address%>"/>
+			</li>
+			<li>
+				<label for="business_certificate_city_state_zip">Continuing Education</label>
+				<input type="textbox" id="business_certificate_city_state_zip" name="business_certificate[city_state_zip]" value="<%= company.business_certificate.city_state_zip%>"/>
+			</li>
+			<li>
+				<label for="business_certificate_license_type">License Type</label>
+				<input type="textbox" id="business_certificate_license_type" name="business_certificate[license_type]" value="<%= company.business_certificate.license_type%>"/>
+			</li>
+			<li>
+				<label for="business_certificate_company_structure">Company Structure</label>
+				<input type="textbox" id="business_certificate_company_structure" name="business_certificate[company_structure]" value="<%= company.business_certificate.company_structure%>"/>
+			</li>
+			<li>
+				<label for="business_certificate_status">Status</label>
+				<input type="textbox" id="business_certificate_status" name="business_certificate[status]" value="<%= company.business_certificate.status%>"/>
+			</li>
+			<li>
+				<label for="business_certificate_original_issue_date">Original Issue Date</label>
+				<input type="textbox" class="datepicker" id="business_certificate_original_issue_date" name="business_certificate[original_issue_date]" value="<%= company.business_certificate.original_issue_date%>"/>
+			</li>
+			<li>
+				<label for="business_certificate_expiration_date">Expiration Date</label>
+				<input type="textbox" class="datepicker" id="business_certificate_expiration_date" name="business_certificate[expiration_date]" value="<%= company.business_certificate.expiration_date%>"/>
+			</li>
+			<li>
+				<label for="business_certificate_print_date">Original Issue Date</label>
+				<input type="textbox" class="datepicker" id="business_certificate_print_date" name="business_certificate[print_date]" value="<%= company.business_certificate.print_date%>"/>
+			</li>
+			<li>
+				<label for="business_certificate_responsible_person_name">Responsible Person Name</label>
+				<input type="textbox" id="business_certificate_responsible_person_name" name="business_certificate[responsible_person_name]" value="<%= company.business_certificate.responsible_person_name%>"/>
+			</li>
+			<li>
+				<label for="business_certificate_responsible_person_license_number">Responsible Person License Number</label>
+				<input type="textbox" id="business_certificate_responsible_person_license_number" name="business_certificate[license_number]" value="<%= company.business_certificate.license_number%>"/>
+			</li>
+			<li>
+				<label for="business_certificate_contractors_phone_number">Contractor's Phone Number</label>
+				<input type="textbox" id="business_certificate_contractors_phone_number" name="business_certificate[contractors_phone_number]" value="<%= company.business_certificate.contractors_phone_number%>"/>
+			</li>
+			<li>
+				<label for="business_certificate_enforcement_action">Enforcement Action</label>
+				<input type="textbox" id="business_certificate_enforcement_action" name="business_certificate[enforcement_action]" value="<%= company.business_certificate.enforcement_action%>"/>
+			</li>
+		</ul>
 		<h2>Business Status</h2>
 		<ul>
 			<li>
