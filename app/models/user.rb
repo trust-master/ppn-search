@@ -1,12 +1,12 @@
 class User < ActiveRecord::Base
-    validates_length_of :email_address, :within => 3..40
-    
+    validates_length_of :email_address, within: 3..40
+
     validates_uniqueness_of :email_address
-    validates_format_of :email_address, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message => "Invalid email"
-    
+    validates_format_of :email_address, with: /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, message: "Invalid email"
+
     attr_protected :id, :password_salt
     attr_accessor :change_password, :password, :password_confirm
-    
+
     def password=(pass)
         if self.change_password
             @password=pass
@@ -27,8 +27,8 @@ class User < ActiveRecord::Base
         nil
     end
     def self.encrypt(pass, salt)
-        raise "Password was nil" if pass.nil? 
-        raise "Salt was nil" if salt.nil? 
+        raise "Password was nil" if pass.nil?
+        raise "Salt was nil" if salt.nil?
         Digest::SHA1.hexdigest(pass+salt)
     end
     def self.random_string(len)

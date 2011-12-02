@@ -1,3 +1,3 @@
 class ServiceAreaCoveragesController < ApplicationController
-    has_many :service_area_coverages
+  has_many :service_area_coverages
 end
