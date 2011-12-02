@@ -1,8 +1,8 @@
 # Be sure to restart your server when you modify this file.
 
-ComTrustmasterWww::Application.config.session_store :cookie_store, :key => '_com.Trustmaster.Www_session'
+ServiceProviderPortal::Application.config.session_store :cookie_store, :key => '_TrustMaster_ServiceProvider_Portal_session'
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
 # (create the session table with "rails generate session_migration")
-# ComTrustmasterWww::Application.config.session_store :active_record_store
+# ServiceProviderPortal::Application.config.session_store :active_record_store

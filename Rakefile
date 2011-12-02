@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-ComTrustmasterWww::Application.load_tasks
+ServiceProviderPortal::Application.load_tasks

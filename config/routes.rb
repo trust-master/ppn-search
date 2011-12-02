@@ -1,4 +1,4 @@
-ComTrustmasterWww::Application.routes.draw do
+ServiceProviderPortal::Application.routes.draw do
   resources :discounts do
       member do
           post 'destroy_image'
