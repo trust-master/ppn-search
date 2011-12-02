@@ -29,3 +29,5 @@ gem "rake", "0.8.7"
 # group :development, :test do
 #   gem 'webrat'
 # end
+
+gem 'tailor', :path => '../tailor'
