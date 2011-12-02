@@ -5,9 +5,9 @@ class AssociationsController < ApplicationController
   def create
     @association = Association.new(params[:association])
     if @association.save
-      render json: { success: true, association: @association}
+      render json: { success: true, association: @association }
     else
-      render json: { success: false, message: @association.errors}
+      render json: { success: false, message: @association.errors }
     end
   end
 
@@ -26,9 +26,9 @@ class AssociationsController < ApplicationController
   def update
     @association = Association.find(params[:id])
     if @association.update_attributes(params[:association])
-      render json: {success: true, association: @association}
+      render json: {success: true, association: @association }
     else
-      render json: {success: false, message: @association.errors}
+      render json: {success: false, message: @association.errors }
     end
   end
 

@@ -10,13 +10,15 @@ class CertificationsController < ApplicationController
       @certification.certificate_filename = params[:certificate_file].original_filename
       path = "assets/data/#{@company.id}/certifications"
       FileUtils.mkdir_p path unless File.exists?(path) && File.directory?(path)
-      File.open("#{path}/#{@certification.certificate_filename}", "wb"){|f| f.write(params[:certificate_file].read) }
+      File.open("#{path}/#{@certification.certificate_filename}", "wb") do |f|
+        f.write(params[:certificate_file].read)
+      end
     end
 
     if @certification.save
-      render json: { success: true, certification: @certification}
+      render json: { success: true, certification: @certification }
     else
-      render json: { success: false, message: @certification.errors}
+      render json: { success: false, message: @certification.errors }
     end
   end
 
@@ -41,9 +43,9 @@ class CertificationsController < ApplicationController
   def update
     @certification = Certification.find(params[:id])
     if @certification.update_attributes(params[:certification])
-      render json: {success: true, certification: @certification}
+      render json: {success: true, certification: @certification }
     else
-      render json: {success: false, message: @certification.errors}
+      render json: {success: false, message: @certification.errors }
     end
   end
 

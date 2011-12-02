@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :find_user, only: [:show, :edit, :update, :destroy]
-  before_filter :must_be_admin, except: [ :login, :logout ]
+  before_filter :must_be_admin, except: [:login, :logout]
 
   def create
     @user = User.new(params[:user])
@@ -9,10 +9,10 @@ class UsersController < ApplicationController
       if @user.save
         flash[:notice] = 'User was successfully created.'
         wants.html { redirect_to(@user) }
-        wants.xml  { render xml: @user, status: :created, location: @user }
+        wants.xml { render xml: @user, status: :created, location: @user }
       else
         wants.html { render action: "new" }
-        wants.xml  { render xml: @user.errors, status: :unprocessable_entity }
+        wants.xml { render xml: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
     respond_to do |wants|
       wants.html # index.html.erb
-      wants.xml  { render xml: @users }
+      wants.xml { render xml: @users }
     end
   end
 
@@ -72,14 +72,14 @@ class UsersController < ApplicationController
 
     respond_to do |wants|
       wants.html # new.html.erb
-      wants.xml  { render xml: @user }
+      wants.xml { render xml: @user }
     end
   end
 
   def show
     respond_to do |wants|
       wants.html # show.html.erb
-      wants.xml  { render xml: @user }
+      wants.xml { render xml: @user }
     end
   end
 
@@ -89,10 +89,10 @@ class UsersController < ApplicationController
       if @user.update_attributes(params[:user])
         flash[:notice] = 'User was successfully updated.'
         wants.html { redirect_to(@user) }
-        wants.xml  { head :ok }
+        wants.xml { head :ok }
       else
         wants.html { render action: "edit" }
-        wants.xml  { render xml: @user.errors, status: :unprocessable_entity }
+        wants.xml { render xml: @user.errors, status: :unprocessable_entity }
       end
     end
   end

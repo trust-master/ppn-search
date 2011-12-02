@@ -11,13 +11,15 @@ class DiscountsController < ApplicationController
       @discount.image_filename = params[:image_file].original_filename
       path = "assets/data/#{@company.id}/discounts"
       FileUtils.mkdir_p path unless File.exists?(path) && File.directory?(path)
-      File.open("#{path}/#{@discount.image_filename}", "wb"){|f| f.write(params[:image_file].read) }
+      File.open("#{path}/#{@discount.image_filename}", "wb") do |f|
+        f.write(params[:image_file].read)
+      end
     end
 
     if @discount.save
-      render json: { success: true, discount: @discount}
+      render json: { success: true, discount: @discount }
     else
-      render json: { success: false, message: @discount.errors}
+      render json: { success: false, message: @discount.errors }
     end
   end
 
@@ -63,8 +65,8 @@ class DiscountsController < ApplicationController
     path = "assets/data/#{@discount.company_id}/discounts/#{@discount.image_filename}"
     image_does_not_exist = @discount.image_filename.nil? or !File.exists? path
     path = image_does_not_exist ? "public/images/fpo-default-discount.jpeg" : path
-    data = File.open(path,"rb").read
-    send_data(data , filename: @discount.image_filename, :type=>"image/jpeg")
+    data = File.open(path, "rb").read
+    send_data(data, filename: @discount.image_filename, type: "image/jpeg")
   end
 
   def update
@@ -73,13 +75,15 @@ class DiscountsController < ApplicationController
       @discount.image_filename = params[:image_file].original_filename
       path = "assets/data/#{@discount.company_id}/discounts"
       FileUtils.mkdir_p path unless File.exists?(path) && File.directory?(path)
-      File.open("#{path}/#{@discount.image_filename}", "wb"){|f| f.write(params[:image_file].read) }
+      File.open("#{path}/#{@discount.image_filename}", "wb") do |f|
+        f.write(params[:image_file].read)
+      end
     end
 
     if @discount.update_attributes(params[:discount])
-      render json: {success: true, discount: @discount}
+      render json: { success: true, discount: @discount }
     else
-      render json: {success: false, message: @discount.errors}
+      render json: { success: false, message: @discount.errors }
     end
   end
 
