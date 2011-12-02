@@ -17,7 +17,7 @@ gem 'jquery-ui-themes'
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
-gem 'ruby-debug19', require: 'ruby-debug'
+#gem 'ruby-debug19', require: 'ruby-debug'
 
 gem "paperclip" # Paperclip allows you to attach files to ActiveRecord Objects
 
@@ -62,7 +62,9 @@ group :development do
 end
 
 group :development, :test do
-  gem 'cucumber'
+  gem 'cucumber-rails'
+  gem 'spork'
+  gem 'database_cleaner'
 end
 
 
