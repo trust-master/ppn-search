@@ -16,7 +16,7 @@ class CreateBusinessCertificates < ActiveRecord::Migration
             t.string :responsible_person_license_number
             t.string :contractors_phone_number
             t.string :enforcement_action
-            
+
             t.timestamps
         end
     end

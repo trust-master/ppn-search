@@ -4,7 +4,7 @@ class CreateServiceAreaCoverages < ActiveRecord::Migration
             t.integer :company_id
             t.integer :service_area_id
             t.integer :coverage_type
-            
+
             t.timestamps
         end
     end

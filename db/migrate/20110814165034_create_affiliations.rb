@@ -8,10 +8,10 @@ class CreateAffiliations < ActiveRecord::Migration
             t.integer :start_year
             t.integer :end_month
             t.integer :end_year
-            
+
             t.string :uri
             t.string :description
-            
+
             t.timestamps
         end
     end

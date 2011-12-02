@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration
             t.column :email_address, :string
             t.column :password_hash, :string
             t.column :password_salt, :string
-            
+
             t.column :created_by, :string
             t.timestamps
         end

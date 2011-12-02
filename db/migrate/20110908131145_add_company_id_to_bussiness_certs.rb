@@ -1,5 +1,5 @@
 class AddCompanyIdToBussinessCerts < ActiveRecord::Migration
-    def self.up        
+    def self.up
         change_table :business_certificates do |t|
             t.integer :company_id
         end
