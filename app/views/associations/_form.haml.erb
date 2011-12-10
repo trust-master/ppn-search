@@ -1,0 +1,65 @@
+%ul
+  %li
+    %label{:for => "association_name"} Association Name*
+    %input#association_name{:name => "association[name]", :type => "text"}/
+  %li
+    %label{:for => "association_title"} Association Title*
+    %input#association_title{:name => "association[title]", :type => "text"}/
+  %li
+    %input#association_current_member{:name => "association[current_member]", :type => "checkbox", :value => "1"}/
+    %label{:for => "association_current_member"} I am a current member
+  %li
+    %label{:for => "association_start_month"} Start Month*
+    %select#association_start_month{:name => "association[start_month]"}
+      %option{:value => ""} Select...
+      %option{:value => "1"} January
+      %option{:value => "2"} February
+      %option{:value => "3"} March
+      %option{:value => "4"} April
+      %option{:value => "5"} May
+      %option{:value => "6"} June
+      %option{:value => "7"} July
+      %option{:value => "8"} August
+      %option{:value => "9"} September
+      %option{:value => "10"} October
+      %option{:value => "11"} November
+      %option{:value => "12"} December
+    %label{:for => "association_start_year"} Start Year*
+    %select#association_start_year{:name => "association[start_year]"}
+      %option{:value => ""} Select...
+      - (1964..2014).each do |year|
+        %option{:value => year}= year
+  %li
+    %label{:for => "association_end_month"} End Month*
+    %select#association_end_month{:name => "association[end_month]"}
+      %option{:value => ""} Select...
+      %option{:value => "1"} January
+      %option{:value => "2"} February
+      %option{:value => "3"} March
+      %option{:value => "4"} April
+      %option{:value => "5"} May
+      %option{:value => "6"} June
+      %option{:value => "7"} July
+      %option{:value => "8"} August
+      %option{:value => "9"} September
+      %option{:value => "10"} October
+      %option{:value => "11"} November
+      %option{:value => "12"} December
+    %label{:for => "association_end_year"} End Year*
+    %select#association_end_year{:name => "association[end_year]"}
+      %option{:value => ""} Select...
+      - (1964..2014).each do |year|
+        %option{:value => year}= year
+  %li
+    %label{:for => "association_uri"} Uri
+    %input#association_uri{:name => "association[uri]", :type => "text", :value => form.uri}/
+  %li
+    %label{:for => "association_description"} Description*
+    %textarea#association_description{:name => "association[description]"}= form.description
+  %li
+    %input#association_company_id{:name => "association[company_id]", :type => "hidden", :value => form.company_id}/
+    %input{:type => "submit"}/
+:javascript
+  $(document).ready(function() {
+    associationForm.init();
+  });

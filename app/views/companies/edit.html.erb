@@ -1,7 +1,0 @@
-<a href="/companies/">Return to Index</a>
-<h2>Edit <%= @company.name %></h2>
-<div class="notifications hidden"></div>
-<fieldset class="edit_company">
-  <input type="hidden" id="form_destination" value="/companies/<%=@company.id%>">
-  <%= render :partial => 'form', :locals => { :company => @company }%>
-</fieldset>

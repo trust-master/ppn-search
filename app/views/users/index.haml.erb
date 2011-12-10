@@ -1,0 +1,24 @@
+%h2 Users Index
+%a{:href => "/users/new"} Add a User
+%table.users_index
+  %thead
+    %tr
+      %td Email Address
+      %td Full Name
+      %td User Type
+      %td Password Hash
+      %td Actions
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td
+          %a{:href => "/users/#{user.id}"}= user.email
+        %td
+          = user.first_name
+          = user.last_name
+        %td= user.is_admin? ? "Admin" : "User"
+        %td= user.password_hash
+        %td
+          %a{:href => "/users/#{user.id}/edit"} Edit
+          |
+          %a.delete{:href => "/users/#{user.id}/delete"} Delete

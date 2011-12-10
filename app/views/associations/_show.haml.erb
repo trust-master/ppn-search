@@ -1,0 +1,8 @@
+%p
+  - if show.current_member == true
+    Currently associated with #{show.name}
+  - else
+    Associated with #{show.name} from #{show.start_month} / #{show.start_year}
+    until #{show.end_month} / #{show.end_year}.
+%span
+  %a.delete{:href => "/associations/#{show.id}/delete"} Delete

@@ -1,0 +1,21 @@
+%ul
+  %li
+    %label{:for => "certification_name"} Name*
+    %input#certification_name{:name => "certification[name]", :type => "text"}/
+  %li
+    %label{:for => "certification_title"} Title*
+    %input#certification_title{:name => "certification[title]", :type => "text"}/
+  %li
+    %label{:for => "certificate_file"} Certificate*
+    %input#certificate_file{:name => "certificate_file", :type => "file"}/
+    %span.uploaded_filename= form.certificate_filename.nil? ? "None uploaded" : form.certificate_filename
+  %li
+    %label{:for => "certification_description"} Description*
+    %textarea#certification_description{:name => "certification[description]"}= form.description
+  %li
+    %input#certification_company_id{:name => "certification[company_id]", :type => "hidden", :value => form.company_id}/
+    %input{:type => "submit"}/
+:javascript
+  $(document).ready(function() {
+    certificationForm.init();
+  });

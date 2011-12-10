@@ -1,0 +1,25 @@
+%h2 Companies Index
+%a{:href => "/companies/new"} Add a Company
+%table.companies_index
+  %thead
+    %tr
+      %td Name
+      %td Address
+      %td Actions
+  %tbody
+    - @companies.each do |company|
+      %tr
+        %td
+          %a{:href => "/company/#{company.id}"}= company.name
+        %td
+          = company.address_1
+          %br/
+          - unless company.address_2.nil?
+            = company.address_2
+            %br/
+          = company.state
+          , #{company.zip_code}
+        %td
+          %a{:href => "/companies/#{company.id}/edit"} Edit
+          |
+          %a.delete{:href => "/companies/#{company.id}/delete"} Delete

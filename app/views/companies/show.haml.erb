@@ -1,0 +1,36 @@
+%ul.company_show_tabs
+  %li
+    %a{:href => "#", :target_tab => "provider_info"} Provider Info
+  %li
+    %a{:href => "#", :target_tab => "service_info"} Service Info
+  %li
+    %a{:href => "#", :target_tab => "credential_info"} Credential Info
+  %li
+    %a{:href => "#", :target_tab => "discounts"} Discounts
+.provider_info.target_tab
+  %h1
+    = @company.name
+    - if @company.in_business_since
+      In business since #{@company.in_business_since.year}
+  %ul
+    %li
+      = @company.address_1
+      - unless @company.address_2 == ""
+        = @company.address_2
+      ,
+      \#{@company.city}, #{@company.state}, #{@company.zip_code}
+    %li
+      = @company.main_phone_number
+    - unless @company.web_site == ""
+      %li
+        = @company.web_site
+.service_info.target_tab.hidden
+  %h1 Service Info
+.credential_info.target_tab.hidden
+  %h1 Credential Info
+.discounts.target_tab.hidden
+  %h1 Discounts
+:javascript
+  $(document).ready(function() {
+    companyShow.init();
+  });

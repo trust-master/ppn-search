@@ -1,0 +1,11 @@
+%table.discounts_index
+  %thead
+    %tr
+      %th Discount Name
+      %th Discount Type
+      %th Start Date
+      %th End Date
+      %th Actions
+  %tbody
+    - @company.discounts.each do |discount|
+      = render :partial => "show", :object => discount

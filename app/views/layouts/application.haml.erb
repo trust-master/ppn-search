@@ -1,0 +1,24 @@
+!!!
+%html
+  %head
+    %title TrustMaster
+    = stylesheet_link_tag :application
+    = javascript_link_tag :application
+  %body
+    - if flash[:notice ]
+      .notice
+        = flash[:notice]
+    - unless @logged_in_user.nil?
+      %ul
+        %li
+          Welcome #{"#{@logged_in_user.first_name} #{@logged_in_user.last_name}"}
+        %li
+          %a{:href => "/users/logout"} Logout
+    %ul.menu
+      %li
+        %a{:href => "/users/"} Users
+      %li
+        %a{:href => "/companies/"} Companies
+      %li
+        %a{:href => "/companies/search"} Search
+    = yield

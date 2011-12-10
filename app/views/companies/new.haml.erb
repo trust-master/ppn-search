@@ -1,0 +1,5 @@
+%a{:href => "/companies/"} Return to Index
+%h2 Create Company
+%fieldset.new_company
+  %input#form_destination{:type => "hidden", :value => "/companies/"}/
+  = render :partial => 'form', :locals => { :company => @company }

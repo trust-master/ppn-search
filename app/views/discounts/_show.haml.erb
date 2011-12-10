@@ -1,0 +1,14 @@
+%tr.object_container
+  %td
+    = show.title
+  %td
+    = show.type_name
+  %td
+    = show.start_date
+  %td
+    = show.end_date
+  %td
+    %span
+      %a.edit{:href => "/discounts/#{show.id}/edit"} Edit
+    %span
+      %a.delete{:href => "/discounts/#{show.id}/delete"} Delete

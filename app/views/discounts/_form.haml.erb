@@ -1,0 +1,49 @@
+%h2 Design Your Discount
+%div
+  %img.discount_image{:alt => "Discount Image", :src => "/discounts/#{form.id}/show_image"}/
+  %a{:href => "/discounts/#{form.id}/show_image"} Download Image
+%ul
+  %li
+    %label{:for => "discount_type"} Discount Type*
+    %select#discount_type_id{:name => "discount[type_id]"}
+      %option{:value => ""} Select...
+      - Discount.AvailableTypes.each do |discount_type|
+        <option value="#{discount_type.id}"#{form.type_id == discount_type.id ? "selected=selected" : ""}>#{discount_type.name}
+  %li
+    %label{:for => "discount_title"} Title*
+    %input#discount_title{:name => "discount[title]", :value => form.title}/
+  %li
+    %label{:for => "discount_description"} Description*
+    %textarea#discount_description{:name => "discount[description]"}= form.description
+  %li
+    %label{:for => "image_file"} Discount Image*
+    %input#image__file{:name => "image_file", :type => "file"}/
+    %span.uploaded_filename= form.image_filename.nil? ? "None uploaded" : form.image_filename
+    - unless form.image_filename.nil?
+      %span.remove_image
+        %a{:href => "/discounts/#{form.id}/destroy_image"} Remove Image
+%h2 Location
+%ul
+  %li
+    %label{:for => "discount_market_id"} Market*
+    %select#discount_market_id{:name => "discount[market_id]"}
+      %option{:value => ""} Select...
+      - Discount.AvailableMarkets.each do |market|
+        <option value="#{market.id}"#{form.market_id == market.id ? "selected=selected" : ""}>#{market.name}
+%h2 Scheduling
+%ul
+  %li
+    %label{:for => "discount_start_date"} Start Date*
+    %input#discount_start_date.datepicker{:name => "discount[start_date]", :type => "text", :value => form.start_date}/
+  %li
+    %label{:for => "discount_end_date"} End Date*
+    %input#discount_end_date.datepicker{:name => "discount[end_date]", :type => "text", :value => form.end_date}/
+%ul
+  %li
+    %input#discount_company_id{:name => "discount[company_id", :type => "hidden", :value => form.company_id}/
+    %input{:type => "submit"}/
+:javascript
+  $(document).ready(function() {
+    datePickers.init();
+    discountForm.init();
+  });

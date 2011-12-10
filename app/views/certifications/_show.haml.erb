@@ -1,0 +1,15 @@
+%ul
+  %li
+    %label Name
+    %span= show.name
+  %li
+    %label Title
+    %span= show.title
+  %li
+    %label Certificate
+    %span.uploaded_filename= show.certificate_filename
+  %li
+    %label Description
+    %p= show.description
+  %li
+    %a.delete{:href => "/certifications/#{show.id}/delete"} Delete
