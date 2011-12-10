@@ -17,9 +17,11 @@ gem 'jquery-ui-themes'
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
-gem "paperclip" # Paperclip allows you to attach files to ActiveRecord Objects
-
+gem "carrierwave" # CarrierWave allows you to attach files to ActiveRecord Objects
 #gem 'aws-s3', require: 'aws/s3' # Access to Amazon S3
+
+gem 'cancan' # for authorization
+
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
