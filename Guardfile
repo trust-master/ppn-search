@@ -12,7 +12,7 @@ guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAIL
   watch(%r{features/support/}) { :cucumber }
 end
 
-guard 'annotate', :routes => true do
+guard 'annotate', :routes => true, :tests => true , :tests => true  do
   watch( 'db/schema.rb' )
   watch( 'config/routes.rb' )
 end

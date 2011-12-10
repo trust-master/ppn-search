@@ -3,6 +3,7 @@
 # Table name: service_areas
 #
 #  id         :integer         not null, primary key
+#  market_id  :integer
 #  name       :string(255)
 #  created_at :datetime
 #  updated_at :datetime

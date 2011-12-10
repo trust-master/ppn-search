@@ -2,17 +2,19 @@
 #
 # Table name: users
 #
-#  id            :integer         not null, primary key
-#  email_address :string(255)
-#  password_hash :string(255)
-#  password_salt :string(255)
-#  created_by    :string(255)
-#  created_at    :datetime
-#  updated_at    :datetime
-#  first_name    :string(255)
-#  last_name     :string(255)
-#  updated_by    :string(255)
-#  is_admin      :boolean
+#  id                 :integer         not null, primary key
+#  active             :boolean         default(FALSE)
+#  company_id         :integer
+#  email              :string(255)
+#  password_digest    :string(255)
+#  first_name         :string(255)
+#  middle_name        :string(255)
+#  last_name          :string(255)
+#  created_by_user_id :integer
+#  updated_by_user_id :integer
+#  role               :string(255)     default("User")
+#  created_at         :datetime
+#  updated_at         :datetime
 #
 
 class User < ActiveRecord::Base

@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(:version => 20111210050744) do
     t.datetime "updated_at"
   end
 
+  add_index "affiliations", ["company_id"], :name => "index_affiliations_on_company_id"
+
   create_table "associations", :force => true do |t|
     t.integer  "company_id"
     t.string   "name"
@@ -36,6 +38,8 @@ ActiveRecord::Schema.define(:version => 20111210050744) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "associations", ["company_id"], :name => "index_associations_on_company_id"
 
   create_table "business_filings", :force => true do |t|
     t.integer  "company_id"
@@ -52,6 +56,10 @@ ActiveRecord::Schema.define(:version => 20111210050744) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "business_filings", ["company_id"], :name => "index_business_filings_on_company_id"
+  add_index "business_filings", ["status_id"], :name => "index_business_filings_on_status_id"
+  add_index "business_filings", ["type_id"], :name => "index_business_filings_on_type_id"
 
   create_table "business_licenses", :force => true do |t|
     t.integer  "company_id"
@@ -77,6 +85,10 @@ ActiveRecord::Schema.define(:version => 20111210050744) do
     t.datetime "updated_at"
   end
 
+  add_index "business_licenses", ["company_id"], :name => "index_business_licenses_on_company_id"
+  add_index "business_licenses", ["status_id"], :name => "index_business_licenses_on_status_id"
+  add_index "business_licenses", ["type_id"], :name => "index_business_licenses_on_type_id"
+
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -92,6 +104,8 @@ ActiveRecord::Schema.define(:version => 20111210050744) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "certifications", ["company_id"], :name => "index_certifications_on_company_id"
 
   create_table "companies", :force => true do |t|
     t.boolean  "active",                   :default => false
@@ -120,6 +134,9 @@ ActiveRecord::Schema.define(:version => 20111210050744) do
     t.datetime "updated_at"
   end
 
+  add_index "companies", ["deleted_by_user_id"], :name => "index_companies_on_deleted_by_user_id"
+  add_index "companies", ["insurance_state_id"], :name => "index_companies_on_insurance_state_id"
+
   create_table "company_categories", :force => true do |t|
     t.integer  "company_id"
     t.integer  "sub_category_id"
@@ -127,13 +144,19 @@ ActiveRecord::Schema.define(:version => 20111210050744) do
     t.datetime "updated_at"
   end
 
+  add_index "company_categories", ["company_id"], :name => "index_company_categories_on_company_id"
+  add_index "company_categories", ["sub_category_id"], :name => "index_company_categories_on_sub_category_id"
+
   create_table "company_service_areas", :force => true do |t|
     t.integer  "company_id"
-    t.integer  "service_area_id_id"
-    t.boolean  "partial_only",       :default => false
+    t.integer  "service_area_id"
+    t.boolean  "partial_only",    :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "company_service_areas", ["company_id"], :name => "index_company_service_areas_on_company_id"
+  add_index "company_service_areas", ["service_area_id"], :name => "index_company_service_areas_on_service_area_id"
 
   create_table "countries", :force => true do |t|
     t.string   "name"
@@ -159,6 +182,10 @@ ActiveRecord::Schema.define(:version => 20111210050744) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "discounts", ["company_id"], :name => "index_discounts_on_company_id"
+  add_index "discounts", ["market_id"], :name => "index_discounts_on_market_id"
+  add_index "discounts", ["type_id"], :name => "index_discounts_on_type_id"
 
   create_table "filing_status", :force => true do |t|
     t.string   "name"
@@ -194,6 +221,10 @@ ActiveRecord::Schema.define(:version => 20111210050744) do
     t.datetime "updated_at"
   end
 
+  add_index "locations", ["company_id"], :name => "index_locations_on_company_id"
+  add_index "locations", ["country_id"], :name => "index_locations_on_country_id"
+  add_index "locations", ["state_id"], :name => "index_locations_on_state_id"
+
   create_table "markets", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -219,12 +250,18 @@ ActiveRecord::Schema.define(:version => 20111210050744) do
     t.datetime "updated_at"
   end
 
+  add_index "personal_licenses", ["company_id"], :name => "index_personal_licenses_on_company_id"
+  add_index "personal_licenses", ["status_id"], :name => "index_personal_licenses_on_status_id"
+  add_index "personal_licenses", ["type_id"], :name => "index_personal_licenses_on_type_id"
+
   create_table "service_areas", :force => true do |t|
     t.integer  "market_id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "service_areas", ["market_id"], :name => "index_service_areas_on_market_id"
 
   create_table "states", :force => true do |t|
     t.integer  "country_id"
@@ -233,12 +270,16 @@ ActiveRecord::Schema.define(:version => 20111210050744) do
     t.datetime "updated_at"
   end
 
+  add_index "states", ["country_id"], :name => "index_states_on_country_id"
+
   create_table "sub_categories", :force => true do |t|
     t.integer  "category_id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "sub_categories", ["category_id"], :name => "index_sub_categories_on_category_id"
 
   create_table "user_password_resets", :force => true do |t|
     t.integer  "user_id"
@@ -249,6 +290,8 @@ ActiveRecord::Schema.define(:version => 20111210050744) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "user_password_resets", ["user_id"], :name => "index_user_password_resets_on_user_id"
 
   create_table "users", :force => true do |t|
     t.boolean  "active",             :default => false
@@ -264,5 +307,9 @@ ActiveRecord::Schema.define(:version => 20111210050744) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["company_id"], :name => "index_users_on_company_id"
+  add_index "users", ["created_by_user_id"], :name => "index_users_on_created_by_user_id"
+  add_index "users", ["updated_by_user_id"], :name => "index_users_on_updated_by_user_id"
 
 end

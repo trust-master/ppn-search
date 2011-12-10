@@ -66,6 +66,8 @@ class SetUpDatabase < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :companies, :deleted_by_user_id
+    add_index :companies, :insurance_state_id
 
     %w[associations affiliations].each do |table_name|
       create_table table_name, :force => true do |t|
@@ -86,6 +88,8 @@ class SetUpDatabase < ActiveRecord::Migration
 
         t.timestamps
       end
+
+      add_index table_name, :company_id
     end
 
     create_table "certifications", :force => true do |t|
@@ -99,6 +103,7 @@ class SetUpDatabase < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :certifications, :company_id
 
     create_table "users", :force => true do |t|
       t.boolean  :active, :nil => false, :default => false
@@ -121,6 +126,10 @@ class SetUpDatabase < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :users, :company_id
+    add_index :users, :created_by_user_id
+    add_index :users, :updated_by_user_id
+
 
     create_table :user_password_resets, :force => true do |t|
       t.references :user, :nil => false
@@ -130,6 +139,8 @@ class SetUpDatabase < ActiveRecord::Migration
       t.datetime   :expires_at, :nil => false # separate from timestamps so we can push the expiration between edit/update actions
       t.timestamps
     end
+    add_index :user_password_resets, :user_id
+
 
     # If Mike and Dan decide to go this route
     #  create_table :memberships, :force => true do |t|
@@ -137,6 +148,8 @@ class SetUpDatabase < ActiveRecord::Migration
     #    t.references :company, :nil => false
     #    role :string, :nil => false, :default => "User"
     #  end
+    #  add_index :memberships, :user_id
+    #  add_index :memberships, :company_id
 
     #create_table "business_certificates", :force => true do |t|
     create_table "business_licenses", :force => true do |t|
@@ -171,6 +184,10 @@ class SetUpDatabase < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :business_licenses, :company_id
+    add_index :business_licenses, :type_id
+    add_index :business_licenses, :status_id
+
 
     #create_table "personal_certificates", :force => true do |t|
     create_table :personal_licenses, :force => true do |t|
@@ -196,6 +213,9 @@ class SetUpDatabase < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :personal_licenses, :company_id
+    add_index :personal_licenses, :type_id
+    add_index :personal_licenses, :status_id
 
     create_table :license_types, :force => true do |t|
       t.string :name, :nil => false
@@ -233,6 +253,9 @@ class SetUpDatabase < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :business_filings, :company_id
+    add_index :business_filings, :type_id
+    add_index :business_filings, :status_id
 
     create_table :filing_types, :force => true do |t|
       t.string :name, :nil => false
@@ -254,6 +277,7 @@ class SetUpDatabase < ActiveRecord::Migration
       t.string :name, :nil => false
       t.timestamps
     end
+    add_index :sub_categories, :category_id
 
     create_table "company_categories", :force => true do |t|
       t.references :company, :nil => false
@@ -263,6 +287,8 @@ class SetUpDatabase < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :company_categories, :company_id
+    add_index :company_categories, :sub_category_id
 
     #  create_table "company_subcategories", :force => true do |t|
     #    t.string   "name"
@@ -290,14 +316,19 @@ class SetUpDatabase < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :discounts, :company_id
+    add_index :discounts, :type_id
+    add_index :discounts, :market_id
 
     #create_table "service_area_coverages", :force => true do |t|
     create_table :company_service_areas, :force => true do |t|
       t.references :company, :nil => false
-      t.references :service_area_id, :nil => false
+      t.references :service_area, :nil => false
       t.boolean    :partial_only, :nil => false, :default => false # was "coverage_type"
       t.timestamps
     end
+    add_index :company_service_areas, :company_id
+    add_index :company_service_areas, :service_area_id
 
     create_table :markets, :force => true do |t|
       t.string   :name, :nil => false
@@ -309,6 +340,7 @@ class SetUpDatabase < ActiveRecord::Migration
       t.string   "name", :nil => false
       t.timestamps
     end
+    add_index :service_areas, :market_id
 
     create_table :countries, :force => true do |t|
       t.string   :name, :nil => false
@@ -322,6 +354,7 @@ class SetUpDatabase < ActiveRecord::Migration
       t.string   :name, :nil => false
       t.timestamps
     end
+    add_index :states, :country_id
 
     create_table :locations, :force => true do |t|
       t.references :company, :nil => false
@@ -334,5 +367,8 @@ class SetUpDatabase < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :locations, :company_id
+    add_index :locations, :state_id
+    add_index :locations, :country_id
   end
 end

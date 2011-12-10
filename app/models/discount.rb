@@ -2,17 +2,17 @@
 #
 # Table name: discounts
 #
-#  id             :integer         not null, primary key
-#  description    :string(255)
-#  market_id      :integer
-#  title          :string(255)
-#  start_date     :date
-#  end_date       :date
-#  image_filename :string(255)
-#  created_at     :datetime
-#  updated_at     :datetime
-#  company_id     :integer
-#  type_id        :integer
+#  id          :integer         not null, primary key
+#  company_id  :integer
+#  type_id     :integer
+#  title       :string(255)
+#  description :string(255)
+#  image       :string(255)
+#  market_id   :integer
+#  start_date  :date
+#  end_date    :date
+#  created_at  :datetime
+#  updated_at  :datetime
 #
 
 class Discount < ActiveRecord::Base

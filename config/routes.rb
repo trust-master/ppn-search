@@ -40,7 +40,7 @@ ServiceProviderPortal::Application.routes.draw do
   root :to => "users#login"
 end
 #== Route Map
-# Generated on 09 Dec 2011 22:08
+# Generated on 10 Dec 2011 05:33
 #
 #            show_image_discount GET    /discounts/:id/show_image(.:format)        {:action=>"show_image", :controller=>"discounts"}
 #                      discounts GET    /discounts(.:format)                       {:action=>"index", :controller=>"discounts"}

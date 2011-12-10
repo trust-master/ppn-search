@@ -1,11 +1,11 @@
 # == Schema Information
 #
-# Table name: service_area_coverages
+# Table name: company_service_areas
 #
 #  id              :integer         not null, primary key
 #  company_id      :integer
 #  service_area_id :integer
-#  coverage_type   :integer
+#  partial_only    :boolean         default(FALSE)
 #  created_at      :datetime
 #  updated_at      :datetime
 #

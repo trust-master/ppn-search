@@ -1,17 +1,24 @@
 # == Schema Information
 #
-# Table name: personal_certificates
+# Table name: personal_licenses
 #
 #  id                   :integer         not null, primary key
 #  company_id           :integer
+#  type_id              :integer
+#  status_id            :integer
+#  number               :string(255)
 #  name                 :string(255)
-#  status               :string(255)
-#  print_date           :date
+#  address              :string(255)
+#  address2             :string(255)
+#  city                 :string(255)
+#  state                :string(255)
+#  zip                  :string(255)
+#  issued_on            :date
+#  expires_on           :date
+#  printed_on           :date
 #  continuing_education :string(255)
 #  created_at           :datetime
 #  updated_at           :datetime
-#  certificate_type     :string(255)
-#  address              :string(255)
 #
 
 class PersonalLicense < ActiveRecord::Base
