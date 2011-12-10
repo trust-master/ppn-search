@@ -37,12 +37,6 @@ GIT
       guard (>= 0.8.4)
 
 GIT
-  remote: http://github.com/rtlong/annotate_models.git
-  revision: ab62e8c131c9a67d687fa23ed5ee05c3bf450852
-  specs:
-    annotate (2.4.1.beta1)
-
-GIT
   remote: http://github.com/rtlong/guard-shell.git
   revision: 1b93320440b54c10afc9358ff77675f453f51c08
   specs:
@@ -161,6 +155,7 @@ GEM
       activesupport (= 3.1.3)
     activesupport (3.1.3)
       multi_json (~> 1.0)
+    annotate (2.4.0)
     arel (2.2.1)
     arrayfields (4.7.4)
     bcrypt-ruby (3.0.1)
@@ -363,7 +358,7 @@ PLATFORMS
 DEPENDENCIES
   Saikuro!
   active_reload
-  annotate!
+  annotate
   bcrypt-ruby (~> 3.0.0)
   capybara
   churn!

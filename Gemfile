@@ -36,7 +36,7 @@ group :development do
 
   # Prints db schema tidbits in all the models, tests, and fixtures, also shows `rake routes` output in routes.rb.
   # Use Ryan's fork to get FactoryGirl annotation awesomeness.
-  gem 'annotate', git: 'http://github.com/rtlong/annotate_models.git', require: false
+  gem 'annotate', require: false
 
   # Makes development FASTER! Yay! https://github.com/paneq/active_reload
   gem 'active_reload'
