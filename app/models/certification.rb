@@ -13,5 +13,6 @@
 #
 
 class Certification < ActiveRecord::Base
-    validates_presence_of :name
+  belongs_to :company
+  validates_presence_of :name
 end

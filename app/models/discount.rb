@@ -17,6 +17,9 @@
 
 class Discount < ActiveRecord::Base
   belongs_to :company
+  belongs_to :type, :class_name => DiscountType
+  belongs_to :market
+
   validates_presence_of :type_id, :title, :start_date, :end_date
 
   def type_name
@@ -42,26 +45,3 @@ class Discount < ActiveRecord::Base
   end
 
 end
-
-class DiscountType
-  attr_accessor :id
-  attr_accessor :name
-
-  def initialize params
-    @id = params[:id]
-    @name = params[:name]
-  end
-
-end
-
-class Market
-  attr_accessor :id
-  attr_accessor :name
-
-  def initialize params
-    @id = params[:id]
-    @name = params[:name]
-  end
-
-end
-

@@ -10,7 +10,7 @@
 #  updated_at      :datetime
 #
 
-class ServiceAreaCoverage < ActiveRecord::Base
-    belongs_to :company
-    has_one :service_area
+class CompanyServiceArea < ActiveRecord::Base
+  belongs_to :company
+  belongs_to :service_area
 end
