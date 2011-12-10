@@ -1,9 +1,9 @@
 <p>
-	<% if show.current_member == true %>
-		Currently affiliated with <%= show.name %>
-	<% else %>
-		Affiliated with <%= show.name %> from <%= show.start_month %> / <%= show.start_year %>
-		until <%= show.end_month %> / <%= show.end_year %>.
-	<% end %>
+  <% if show.current_member == true %>
+    Currently affiliated with <%= show.name %>
+  <% else %>
+    Affiliated with <%= show.name %> from <%= show.start_month %> / <%= show.start_year %>
+    until <%= show.end_month %> / <%= show.end_year %>.
+  <% end %>
 </p>
 <span><a href="/affiliations/<%=show.id%>/delete" class="delete">Delete</a></span>

@@ -1,81 +1,81 @@
 <ul>
-	<li>
-		<label for="association_name">Association Name*</label>
-		<input type="text" name="association[name]" id="association_name"/>
-	</li>
-	<li>
-		<label for="association_title">Association Title*</label>
-		<input type="text" name="association[title]" id="association_title"/>
-	</li>
-	<li>
-		<input type="checkbox" name="association[current_member]" id="association_current_member" value="1"/>
-		<label for="association_current_member">I am a current member</label>
-	</li>
-	<li>
-		<label for="association_start_month">Start Month*</label>
-		<select name="association[start_month]" id="association_start_month">
-			<option value="">Select...</option>
-			<option value="1">January</option>
-			<option value="2">February</option>
-			<option value="3">March</option>
-			<option value="4">April</option>
-			<option value="5">May</option>
-			<option value="6">June</option>
-			<option value="7">July</option>
-			<option value="8">August</option>
-			<option value="9">September</option>
-			<option value="10">October</option>
-			<option value="11">November</option>
-			<option value="12">December</option> 
-		</select>
-		<label for="association_start_year">Start Year*</label>
-		<select name="association[start_year]" id="association_start_year">
-			<option value="">Select...</option>
-			<% (1964..2014).each do |year| %>
-				<option value="<%= year%>"><%= year %></option>
-			<% end %>
-		</select>
-	</li>
-	<li>
-		<label for="association_end_month">End Month*</label>
-		<select name="association[end_month]" id="association_end_month">
-			<option value="">Select...</option>
-			<option value="1">January</option>
-			<option value="2">February</option>
-			<option value="3">March</option>
-			<option value="4">April</option>
-			<option value="5">May</option>
-			<option value="6">June</option>
-			<option value="7">July</option>
-			<option value="8">August</option>
-			<option value="9">September</option>
-			<option value="10">October</option>
-			<option value="11">November</option>
-			<option value="12">December</option> 
-		</select>
-		<label for="association_end_year">End Year*</label>
-		<select name="association[end_year]" id="association_end_year">
-			<option value="">Select...</option>
-			<% (1964..2014).each do |year| %>
-				<option value="<%= year%>"><%= year %></option>
-			<% end %>
-		</select>
-	</li>	
-	<li>
-		<label for="association_uri">Uri</label>
-		<input type="text" name="association[uri]" id="association_uri" value="<%=form.uri%>"/>
-	</li>
-	<li>
-		<label for="association_description">Description*</label>
-		<textarea name="association[description]" id="association_description"><%=form.description%></textarea>
-	</li>
-	<li>
-		<input type="hidden" name="association[company_id]" id="association_company_id" value="<%= form.company_id%>"/>
-		<input type="submit"/>
-	</li>
+  <li>
+    <label for="association_name">Association Name*</label>
+    <input type="text" name="association[name]" id="association_name"/>
+  </li>
+  <li>
+    <label for="association_title">Association Title*</label>
+    <input type="text" name="association[title]" id="association_title"/>
+  </li>
+  <li>
+    <input type="checkbox" name="association[current_member]" id="association_current_member" value="1"/>
+    <label for="association_current_member">I am a current member</label>
+  </li>
+  <li>
+    <label for="association_start_month">Start Month*</label>
+    <select name="association[start_month]" id="association_start_month">
+      <option value="">Select...</option>
+      <option value="1">January</option>
+      <option value="2">February</option>
+      <option value="3">March</option>
+      <option value="4">April</option>
+      <option value="5">May</option>
+      <option value="6">June</option>
+      <option value="7">July</option>
+      <option value="8">August</option>
+      <option value="9">September</option>
+      <option value="10">October</option>
+      <option value="11">November</option>
+      <option value="12">December</option>
+    </select>
+    <label for="association_start_year">Start Year*</label>
+    <select name="association[start_year]" id="association_start_year">
+      <option value="">Select...</option>
+      <% (1964..2014).each do |year| %>
+        <option value="<%= year%>"><%= year %></option>
+      <% end %>
+    </select>
+  </li>
+  <li>
+    <label for="association_end_month">End Month*</label>
+    <select name="association[end_month]" id="association_end_month">
+      <option value="">Select...</option>
+      <option value="1">January</option>
+      <option value="2">February</option>
+      <option value="3">March</option>
+      <option value="4">April</option>
+      <option value="5">May</option>
+      <option value="6">June</option>
+      <option value="7">July</option>
+      <option value="8">August</option>
+      <option value="9">September</option>
+      <option value="10">October</option>
+      <option value="11">November</option>
+      <option value="12">December</option>
+    </select>
+    <label for="association_end_year">End Year*</label>
+    <select name="association[end_year]" id="association_end_year">
+      <option value="">Select...</option>
+      <% (1964..2014).each do |year| %>
+        <option value="<%= year%>"><%= year %></option>
+      <% end %>
+    </select>
+  </li>
+  <li>
+    <label for="association_uri">Uri</label>
+    <input type="text" name="association[uri]" id="association_uri" value="<%=form.uri%>"/>
+  </li>
+  <li>
+    <label for="association_description">Description*</label>
+    <textarea name="association[description]" id="association_description"><%=form.description%></textarea>
+  </li>
+  <li>
+    <input type="hidden" name="association[company_id]" id="association_company_id" value="<%= form.company_id%>"/>
+    <input type="submit"/>
+  </li>
 </ul>
 <script type="text/javascript">
-	$(document).ready(function() {
-		associationForm.init();
-	});
+  $(document).ready(function() {
+    associationForm.init();
+  });
 </script>

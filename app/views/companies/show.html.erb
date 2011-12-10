@@ -1,45 +1,45 @@
 <ul class="company_show_tabs">
-	<li>
-		<a href="#" target_tab="provider_info">Provider Info</a>
-	</li>
-	<li>
-		<a href="#" target_tab="service_info">Service Info</a>
-	</li>
-	<li>
-		<a href="#" target_tab="credential_info">Credential Info</a>
-	</li>
-	<li>
-		<a href="#" target_tab="discounts">Discounts</a>
-	</li>
+  <li>
+    <a href="#" target_tab="provider_info">Provider Info</a>
+  </li>
+  <li>
+    <a href="#" target_tab="service_info">Service Info</a>
+  </li>
+  <li>
+    <a href="#" target_tab="credential_info">Credential Info</a>
+  </li>
+  <li>
+    <a href="#" target_tab="discounts">Discounts</a>
+  </li>
 </ul>
 <div class="provider_info target_tab">
-	<h1><%= @company.name%><% if @company.in_business_since %> In business since <%=@company.in_business_since.year%><% end %></h1>
-	<ul>
-		<li>
-			<%=@company.address_1%><% unless @company.address_2 == "" %> <%=@company.address_2%><% end %>,
-			<%=@company.city%>, <%=@company.state%>, <%=@company.zip_code%>
-		</li>
-		<li>
-			<%= @company.main_phone_number%>
-		</li>
-		<% unless @company.web_site == ""%>
-			<li>
-				<%= @company.web_site %>
-			</li>
-		<% end %>
-	</ul>
+  <h1><%= @company.name%><% if @company.in_business_since %> In business since <%=@company.in_business_since.year%><% end %></h1>
+  <ul>
+    <li>
+      <%=@company.address_1%><% unless @company.address_2 == "" %> <%=@company.address_2%><% end %>,
+      <%=@company.city%>, <%=@company.state%>, <%=@company.zip_code%>
+    </li>
+    <li>
+      <%= @company.main_phone_number%>
+    </li>
+    <% unless @company.web_site == ""%>
+      <li>
+        <%= @company.web_site %>
+      </li>
+    <% end %>
+  </ul>
 </div>
 <div class="service_info target_tab hidden">
-	<h1>Service Info</h1>
+  <h1>Service Info</h1>
 </div>
 <div class="credential_info target_tab hidden">
-	<h1>Credential Info</h1>
+  <h1>Credential Info</h1>
 </div>
 <div class="discounts target_tab hidden">
-	<h1>Discounts</h1>
+  <h1>Discounts</h1>
 </div>
 <script type="text/javascript">
-	$(document).ready(function() {
-		companyShow.init();
-	});
+  $(document).ready(function() {
+    companyShow.init();
+  });
 </script>

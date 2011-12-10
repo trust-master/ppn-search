@@ -4,7 +4,7 @@
     <thead>
         <tr>
             <td>Name</td>
-			<td>Address</td>
+      <td>Address</td>
             <td>Actions</td>
         </tr>
     </thead>
@@ -12,18 +12,18 @@
         <% @companies.each do |company| %>
             <tr>
                 <td><a href="/company/<%=company.id%>"><%= company.name%></td>
-				<td>
-					<%= company.address_1%><br/>
-					<% unless company.address_2.nil?%>
-						<%= company.address_2%><br/>
-					<% end %>
-					<%= company.state %>, <%= company.zip_code%>
-				</td>
+        <td>
+          <%= company.address_1%><br/>
+          <% unless company.address_2.nil?%>
+            <%= company.address_2%><br/>
+          <% end %>
+          <%= company.state %>, <%= company.zip_code%>
+        </td>
                 <td>
-					<a href="/companies/<%=company.id%>/edit">Edit</a>
-					|
-					<a href="/companies/<%=company.id%>/delete" class="delete">Delete</a>
-				</td>
+          <a href="/companies/<%=company.id%>/edit">Edit</a>
+          |
+          <a href="/companies/<%=company.id%>/delete" class="delete">Delete</a>
+        </td>
             </tr>
         <% end %>
     </tbody>

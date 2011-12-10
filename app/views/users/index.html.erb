@@ -4,8 +4,8 @@
     <thead>
         <tr>
             <td>Email Address</td>
-			<td>Full Name</td>
-			<td>User Type</td>
+      <td>Full Name</td>
+      <td>User Type</td>
             <td>Password Hash</td>
             <td>Actions</td>
         </tr>
@@ -14,14 +14,14 @@
         <% @users.each do |user| %>
             <tr>
                 <td><a href="/users/<%=user.id%>"><%= user.email_address%></td>
-				<td><%= user.first_name%> <%= user.last_name%></td>
-				<td><%= user.is_admin? ? "Admin" : "User" %></td>
+        <td><%= user.first_name%> <%= user.last_name%></td>
+        <td><%= user.is_admin? ? "Admin" : "User" %></td>
                 <td><%= user.password_hash%></td>
                 <td>
-					<a href="/users/<%=user.id%>/edit">Edit</a>
-					|
-					<a href="/users/<%=user.id%>/delete" class="delete">Delete</a>
-				</td>
+          <a href="/users/<%=user.id%>/edit">Edit</a>
+          |
+          <a href="/users/<%=user.id%>/delete" class="delete">Delete</a>
+        </td>
             </tr>
         <% end %>
     </tbody>

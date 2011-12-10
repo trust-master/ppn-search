@@ -24,10 +24,10 @@
                 <label for="user_last_name">Last Name*</label>
                 <input type="text" name="user[last_name]" id="user_last_name" value="<%=@user.last_name%>"/>
             </li>
-			<li>
-				<label for="user_is_admin">Is Admin?</label>
-				<input type="checkbox" name="user[is_admin]" id="user_is_admin" <%= @user.is_admin? ? "checked=checked" : ""%> value="1"/>
-			</li>
+      <li>
+        <label for="user_is_admin">Is Admin?</label>
+        <input type="checkbox" name="user[is_admin]" id="user_is_admin" <%= @user.is_admin? ? "checked=checked" : ""%> value="1"/>
+      </li>
             <li>
                 <label for="user_change_password">Change Password?</label>
                 <input type="checkbox" name="user[change_password]" id="user_change_password"/>

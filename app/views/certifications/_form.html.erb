@@ -1,28 +1,28 @@
 <ul class="">
-	<li>
-		<label for="certification_name">Name*</label>
-		<input type="text" name="certification[name]" id="certification_name"/>
-	</li>
-	<li>
-		<label for="certification_title">Title*</label>
-		<input type="text" name="certification[title]" id="certification_title"/>
-	</li>
-	<li>
-		<label for="certificate_file">Certificate*</label>
-		<input type="file" name="certificate_file" id="certificate_file">
-		<span class="uploaded_filename"><%= form.certificate_filename.nil? ? "None uploaded" : form.certificate_filename %></span>
-	</li>
-	<li>
-		<label for="certification_description">Description*</label>
-		<textarea name="certification[description]" id="certification_description"><%= form.description %></textarea>
-	</li>
-	<li>
-		<input type="hidden" name="certification[company_id]" id="certification_company_id" value="<%= form.company_id%>"/>
-		<input type="submit"/>
-	</li>
+  <li>
+    <label for="certification_name">Name*</label>
+    <input type="text" name="certification[name]" id="certification_name"/>
+  </li>
+  <li>
+    <label for="certification_title">Title*</label>
+    <input type="text" name="certification[title]" id="certification_title"/>
+  </li>
+  <li>
+    <label for="certificate_file">Certificate*</label>
+    <input type="file" name="certificate_file" id="certificate_file">
+    <span class="uploaded_filename"><%= form.certificate_filename.nil? ? "None uploaded" : form.certificate_filename %></span>
+  </li>
+  <li>
+    <label for="certification_description">Description*</label>
+    <textarea name="certification[description]" id="certification_description"><%= form.description %></textarea>
+  </li>
+  <li>
+    <input type="hidden" name="certification[company_id]" id="certification_company_id" value="<%= form.company_id%>"/>
+    <input type="submit"/>
+  </li>
 </ul>
 <script type="text/javascript">
-	$(document).ready(function() {
-		certificationForm.init();
-	});
+  $(document).ready(function() {
+    certificationForm.init();
+  });
 </script>

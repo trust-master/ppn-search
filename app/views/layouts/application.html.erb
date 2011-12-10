@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>TrustMaster</title>
-	<%= stylesheet_link_tag :all %>
-	<link rel="stylesheet" type="text/css" href="/stylesheets/ui-lightness/jquery-ui-1.8.15.custom.css" media="all" />
-	
-	<script type="text/javascript" src="/javascripts/jquery-1.6.2.min.js"></script>
-	<script type="text/javascript" src="/javascripts/jquery-ui-1.8.15.custom.min.js"></script>
-	<script type="text/javascript" src="/javascripts/jquery.form.js"></script>
-	<script type="text/javascript" src="/javascripts/jquery.templates.min.js"></script>
-	<script type="text/javascript" src="/javascripts/jquery.validate.min.js"></script>
-	<script type="text/javascript" src="/javascripts/jquery.watermark.min.js"></script>
-	<script type="text/javascript" src="/javascripts/application.js"></script>
+  <title>TrustMaster</title>
+  <%= stylesheet_link_tag :all %>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/ui-lightness/jquery-ui-1.8.15.custom.css" media="all" />
+
+  <script type="text/javascript" src="/javascripts/jquery-1.6.2.min.js"></script>
+  <script type="text/javascript" src="/javascripts/jquery-ui-1.8.15.custom.min.js"></script>
+  <script type="text/javascript" src="/javascripts/jquery.form.js"></script>
+  <script type="text/javascript" src="/javascripts/jquery.templates.min.js"></script>
+  <script type="text/javascript" src="/javascripts/jquery.validate.min.js"></script>
+  <script type="text/javascript" src="/javascripts/jquery.watermark.min.js"></script>
+  <script type="text/javascript" src="/javascripts/application.js"></script>
 </head>
 <body>
 <% if flash[:notice ]%>
@@ -20,15 +20,15 @@
     </div>
 <% end %>
 <% unless @logged_in_user.nil? %>
-	<ul>
-		<li>Welcome <%= "#{@logged_in_user.first_name} #{@logged_in_user.last_name}" %></li>
-		<li><a href="/users/logout">Logout</a></li>
-	</ul>
+  <ul>
+    <li>Welcome <%= "#{@logged_in_user.first_name} #{@logged_in_user.last_name}" %></li>
+    <li><a href="/users/logout">Logout</a></li>
+  </ul>
 <% end %>
 <ul class="menu">
-	<li><a href="/users/">Users</a></li>
-	<li><a href="/companies/">Companies</a></li>
-	<li><a href="/companies/search">Search</a></li>
+  <li><a href="/users/">Users</a></li>
+  <li><a href="/companies/">Companies</a></li>
+  <li><a href="/companies/search">Search</a></li>
 </ul>
 <%= yield %>
 

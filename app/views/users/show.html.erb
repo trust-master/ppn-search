@@ -6,22 +6,22 @@
             <label>Email Address</label>
             <span><%= @user.email_address%></span>
         </li>
-		<li>
-			<label>First Name</label>
-			<span><%= @user.first_name%></span>
-		</li>
-		<li>
-			<label>Last Name</label>
-			<span><%= @user.last_name%></span>
-		</li>
-		<li>
-			<label>User Type</label>
-			<span><%= @user.is_admin ? "Administrator" : "User"%></span>
-		</li>
-		<li>
-			<label>Password Hash</label>
-			<span><%= @user.password_hash%></span>
-		</li>
+    <li>
+      <label>First Name</label>
+      <span><%= @user.first_name%></span>
+    </li>
+    <li>
+      <label>Last Name</label>
+      <span><%= @user.last_name%></span>
+    </li>
+    <li>
+      <label>User Type</label>
+      <span><%= @user.is_admin ? "Administrator" : "User"%></span>
+    </li>
+    <li>
+      <label>Password Hash</label>
+      <span><%= @user.password_hash%></span>
+    </li>
         <li>
             <label>Created By</label>
             <span><%= @user.created_by%></span>
