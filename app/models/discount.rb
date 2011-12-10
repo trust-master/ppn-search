@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: discounts
+#
+#  id             :integer         not null, primary key
+#  description    :string(255)
+#  market_id      :integer
+#  title          :string(255)
+#  start_date     :date
+#  end_date       :date
+#  image_filename :string(255)
+#  created_at     :datetime
+#  updated_at     :datetime
+#  company_id     :integer
+#  type_id        :integer
+#
+
 class Discount < ActiveRecord::Base
   belongs_to :company
   validates_presence_of :type_id, :title, :start_date, :end_date

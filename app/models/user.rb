@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id            :integer         not null, primary key
+#  email_address :string(255)
+#  password_hash :string(255)
+#  password_salt :string(255)
+#  created_by    :string(255)
+#  created_at    :datetime
+#  updated_at    :datetime
+#  first_name    :string(255)
+#  last_name     :string(255)
+#  updated_by    :string(255)
+#  is_admin      :boolean
+#
+
 class User < ActiveRecord::Base
     validates_length_of :email_address, within: 3..40
 
