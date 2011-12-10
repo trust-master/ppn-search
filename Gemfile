@@ -22,6 +22,7 @@ gem "carrierwave" # CarrierWave allows you to attach files to ActiveRecord Objec
 
 gem 'cancan' # for authorization
 
+gem 'formtastic'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'

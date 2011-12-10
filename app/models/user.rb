@@ -22,13 +22,13 @@ class User < ActiveRecord::Base
   belongs_to :created_by_user, :class_name => User
   belongs_to :updated_by_user, :class_name => User
 
-  validates_length_of :email_address, within: 3..40
+#  validates_length_of :email_address, within: 3..40
 
-  validates_uniqueness_of :email_address
-  validates_format_of :email_address, with: /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, message: "Invalid email"
+#  validates_uniqueness_of :email_address
+#  validates_format_of :email_address, with: /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, message: "Invalid email"
 
-  attr_protected :id, :password_salt
-  attr_accessor :change_password, :password, :password_confirm
+#  attr_protected :id, :password_salt
+#  attr_accessor :change_password, :password, :password_confirm
 
   def password=(pass)
     if self.change_password
@@ -60,5 +60,13 @@ class User < ActiveRecord::Base
     newpass = ""
     1.upto(len) { |i| newpass << chars[rand(chars.size-1)] }
     return newpass
+  end
+
+  def admin?
+    role.admin?
+  end
+
+  def role
+    ActiveSupport::StringInquirer.new(read_attribute :role)
   end
 end
