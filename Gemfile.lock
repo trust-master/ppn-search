@@ -380,6 +380,7 @@ DEPENDENCIES
   guard-rspec!
   guard-shell!
   guard-spork
+  haml
   jquery-rails
   jquery-ui-themes
   libnotify
