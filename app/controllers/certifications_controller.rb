@@ -1,6 +1,5 @@
 class CertificationsController < ApplicationController
-  before_filter :must_be_admin
-  layout nil
+  load_and_authorize_resource
 
   def create
     @certification = Certification.new(params[:certification])

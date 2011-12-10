@@ -1,3 +1,0 @@
-class ServiceAreaCoveragesController < ApplicationController
-
-end

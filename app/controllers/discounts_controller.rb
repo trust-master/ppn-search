@@ -1,7 +1,5 @@
 class DiscountsController < ApplicationController
-  before_filter :must_be_admin
-
-  layout nil
+  load_and_authorize_resource
 
   def create
     @discount = Discount.new(params[:discount])

@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :find_user, :only => [:show, :edit, :update, :destroy]
-  before_filter :must_be_admin, :except => [:login, :logout]
+  load_and_authorize_resource
 
   def create
     @user = User.new(params[:user])

@@ -1,8 +1,7 @@
-require 'fileutils'
-
 class CompaniesController < ApplicationController
+  load_and_authorize_resource
+
   before_filter :find_company, :only => [:show, :edit, :update, :destroy]
-  before_filter :must_be_admin
 
   def create
     @company = Company.new params[:company]
@@ -91,16 +90,6 @@ class CompaniesController < ApplicationController
       params[:service_area_coverages].each do |entry|
         service_area_coverage = ServiceAreaCoverage.new(entry)
         @company.service_area_coverages << service_area_coverage
-      end
-    end
-    if params[:certificate_of_insurance]
-      old_path = "assets/data/#{@company.id}/#{@company.certificate_of_insurance_filename}"
-      File.delete old_path if File.exists? old_path
-      @company.certificate_of_insurance_filename = params[:certificate_of_insurance].original_filename
-      path = "assets/data/#{@company.id}/"
-      FileUtils.mkdir_p path unless File.exists?(path) && File.directory?(path)
-      File.open("#{path}/#{@company.certificate_of_insurance_filename}", "wb") do |f|
-        f.write(params[:certificate_of_insurance].read)
       end
     end
     if @company.update_attributes(params[:company])

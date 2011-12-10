@@ -1,6 +1,5 @@
 class AffiliationsController < ApplicationController
-  before_filter :must_be_admin
-  layout nil
+  load_and_authorize_resource
 
   def create
     @affiliation = Affiliation.new(params[:affiliation])

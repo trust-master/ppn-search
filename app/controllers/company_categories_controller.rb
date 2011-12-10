@@ -1,4 +1,5 @@
 class CompanyCategoriesController < ApplicationController
+  load_and_authorize_resource
 
   def create
     @company_category = CompanyCategory.new(params[:company_category])

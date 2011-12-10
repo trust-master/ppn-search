@@ -1,6 +1,5 @@
 class AssociationsController < ApplicationController
-  before_filter :must_be_admin
-  layout nil
+  load_and_authorize_resource
 
   def create
     @association = Association.new(params[:association])
