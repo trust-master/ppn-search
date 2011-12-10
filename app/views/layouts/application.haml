@@ -1,24 +1,26 @@
 !!!
 %html
   %head
-    %title TrustMaster
+    %title= ['TrustMaster', yield(:title)].flatten.compact.join(': ')
+
     = stylesheet_link_tag :application
     = javascript_include_tag :application
+
   %body
-    - if flash[:notice ]
-      .notice
-        = flash[:notice]
+    - flash.each do |flash, messages|
+      - Array.wrap(messages).each do |msg|
+        .flash{:class => type}= msg
+
     - unless @logged_in_user.nil?
       %ul
-        %li
-          Welcome #{"#{@logged_in_user.first_name} #{@logged_in_user.last_name}"}
-        %li
-          %a{:href => "/users/logout"} Logout
+        %li Welcome #{"#{@logged_in_user.first_name} #{@logged_in_user.last_name}"}
+        %li= link_to 'Logout', logout_path
+
     %ul.menu
-      %li
-        %a{:href => "/users/"} Users
-      %li
-        %a{:href => "/companies/"} Companies
-      %li
-        %a{:href => "/companies/search"} Search
+      %li= link_to 'Users', users_path
+      %li= link_to 'Companies', companies_path
+      %li= link_to 'Search', search_companies_path
+
+    %h1= yield(:title).empty? ? [controller.controller_name.titleize, controller.action_name].join('#') : yield(:title)
+
     = yield

@@ -4,7 +4,7 @@ class CompaniesController < ApplicationController
   before_filter :find_company, :only => [:show, :edit, :update, :destroy]
 
   def create
-    @company = Company.new params[:company]
+    #@company = Company.new params[:company]
     if @company.save
       render({ :json => { :success => true, :company_id => @company.id } })
     else
@@ -13,7 +13,7 @@ class CompaniesController < ApplicationController
   end
 
   def index
-    @companies = Company.all
+    #@companies = Company.all
 
     respond_to do |wants|
       wants.html # index.html.erb
@@ -22,14 +22,14 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    @company = Company.find_by_id params[:id]
+    #@company = Company.find_by_id params[:id]
     raise "Could not locate company by id #{params[:id]}" unless @company
 
     render :layout => nil
   end
 
   def new
-    @company = Company.new
+    #@company = Company.new
     @company_categories = []
     @service_areas = []
     respond_to do |wants|
@@ -39,12 +39,11 @@ class CompaniesController < ApplicationController
   end
 
   def edit
-    @company_categories = CompanyCategory.all
-    @company_subcategories = CompanySubcategory.all
+    @categories = Category.include(:sub_categories).all
     @service_areas = ServiceArea.all
 
-    @company.business_certificate = BusinessCertificate.new if @company.business_certificate.nil?
-    @company.personal_certificate = PersonalCertificate.new if @company.personal_certificate.nil?
+    @company.business_license or @company.business_license = BusinessLicense.new
+    @company.personal_license or @company.personal_license = PersonalLicense.new
 
     @service_areas.each do |service_area|
       coverage = @company.service_area_coverages.find_all { |item|
@@ -79,11 +78,11 @@ class CompaniesController < ApplicationController
   end
 
   def update
-    @company.business_certificate = BusinessCertificate.new params[:business_certificate]
-    @company.business_certificate.company_id = @company.id
+    @company.business_license = BusinessLicense.new params[:business_license]
+    @company.business_license.company_id = @company.id
 
-    @company.personal_certificate = PersonalCertificate.new params[:personal_certificate]
-    @company.personal_certificate.company_id = @company.id
+    @company.personal_license = PersonalLicense.new params[:personal_license]
+    @company.personal_license.company_id = @company.id
 
     if !params[:service_area_coverages].nil? and params[:service_area_coverages].count > 0
       @company.service_area_coverages.delete_all
@@ -109,12 +108,6 @@ class CompaniesController < ApplicationController
       wants.html { redirect_to(companies_url) }
       wants.xml { head :ok }
     end
-  end
-
-  private
-
-  def find_company
-    @company = Company.find(params[:id])
   end
 
 end

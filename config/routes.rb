@@ -1,9 +1,9 @@
 ServiceProviderPortal::Application.routes.draw do
   resources :discounts do
-      member do
-          post 'destroy_image'
-          get 'show_image'
-      end
+    member do
+      post 'destroy_image'
+      get 'show_image'
+    end
   end
 
   resources :associations
@@ -20,21 +20,21 @@ ServiceProviderPortal::Application.routes.draw do
 
   resources :company_categories
 
-    resources :companies do
-        collection do
-            get 'search'
-            post 'search_json'
-        end
+  resources :companies do
+    collection do
+      get :search
+      post 'search_json'
     end
+  end
 
-    resources :users do
-        collection do
-            get 'login'
-            post 'login'
-            get 'logout'
-            get 'validate_email_is_unique'
-        end
+  resources :users do
+    collection do
+      get 'login'
+      post 'login'
+      get 'logout'
+      get 'validate_email_is_unique'
     end
+  end
 
 
   root :to => "users#login"

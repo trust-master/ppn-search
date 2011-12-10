@@ -1,23 +1,16 @@
-%a{:href => "/users/"} Return to Index
-%h2
-  Showing #{@user.email}
+- content_for :title, "Showing #{@user.email}"
+
 .user_show_container
   %ul
     %li
       %label Email Address
       %span= @user.email
     %li
-      %label First Name
-      %span= @user.first_name
-    %li
-      %label Last Name
-      %span= @user.last_name
+      %label Name
+      %span= @user.display_name
     %li
       %label User Type
-      %span= @user.is_admin ? "Administrator" : "User"
-    %li
-      %label Password Hash
-      %span= @user.password_hash
+      %span= @user.role
     %li
       %label Created By
       %span= @user.created_by

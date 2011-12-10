@@ -13,9 +13,7 @@
       %tr
         %td
           %a{:href => "/users/#{user.id}"}= user.email
-        %td
-          = user.first_name
-          = user.last_name
+        %td== user.display_name
         %td= user.is_admin? ? "Admin" : "User"
         %td= user.password_hash
         %td

@@ -48,9 +48,9 @@ class Company < ActiveRecord::Base
 
   has_many :locations
 
-  has_one :business_certificate
-  has_one :personal_certificate
+  has_one :business_license
+  has_one :personal_license
   has_one :business_filing
 
-  belongs_to :insurance_state, :class_name => State
+  belongs_to :insurance_state, :class_name => 'State'
 end

@@ -1,33 +1,3 @@
-%a{:href => "/users/"} Return to Index
-%h2 Edit User
-%fieldset
-  = form_for @user, :url => { :action => "update" }, :html => { :class => 'edit_user'} do |f|
-    - if @user.errors
-      .validation_summary
-        %ul
-          - @user.errors.each do |error|
-            %li= error
-    %ul
-      %li
-        %label{:for => "user_email"} Email Address*
-        %input#user_email{:name => "user[email]", :type => "text", :value => @user.email}/
-      %li
-        %label{:for => "user_first_name"} First Name*
-        %input#user_first_name{:name => "user[first_name]", :type => "text", :value => @user.first_name}/
-      %li
-        %label{:for => "user_last_name"} Last Name*
-        %input#user_last_name{:name => "user[last_name]", :type => "text", :value => @user.last_name}/
-      %li
-        %label{:for => "user_is_admin"} Is Admin?
-        %input#user_is_admin{:type=>"checkbox", :name=>"user[is_admin]",:checked => @user.is_admin?}/
-      %li
-        %label{:for => "user_change_password"} Change Password?
-        %input#user_change_password{:name => "user[change_password]", :type => "checkbox"}/
-      %li.change_password
-        %label{:for => "user_password"} Password
-        %input#user_password{:name => "user[password]", :type => "password"}/
-      %li.change_password
-        %label{:for => "password_confirm"} Password (confirm)
-        %input#user_password_confirm{:name => "user[password_confirm]", :type => "password"}/
-      %li
-        %input{:type => "submit"}/
+= semantic_form_for @user do |f|
+  = f.inputs
+  = f.buttons

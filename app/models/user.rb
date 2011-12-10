@@ -19,8 +19,8 @@
 
 class User < ActiveRecord::Base
   belongs_to :company
-  belongs_to :created_by_user, :class_name => User
-  belongs_to :updated_by_user, :class_name => User
+  belongs_to :created_by_user, :class_name => 'User'
+  belongs_to :updated_by_user, :class_name => 'User'
 
 #  validates_length_of :email_address, within: 3..40
 
@@ -68,5 +68,9 @@ class User < ActiveRecord::Base
 
   def role
     ActiveSupport::StringInquirer.new(read_attribute :role)
+  end
+
+  def display_name
+    [first_name, middle_name, last_name].compact.join(' ')
   end
 end
