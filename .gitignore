@@ -36,3 +36,6 @@ _yardoc
 
 # node-specific foreman config
 /.foreman
+
+# Wiki source
+/wiki

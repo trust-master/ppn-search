@@ -17,9 +17,9 @@ class DiscountsController < ApplicationController
     end
 
     if @discount.save
-      render json: { success: true, discount: @discount }
+      render :json => { :success => true, :discount => @discount }
     else
-      render json: { success: false, message: @discount.errors }
+      render :json => { :success => false, :message => @discount.errors }
     end
   end
 
@@ -35,9 +35,9 @@ class DiscountsController < ApplicationController
 
       File.delete(path) unless image_does_not_exist
 
-      render json: { success: true, message: nil }
+      render :json => { :success => true, :message => nil }
     rescue ex
-      render json: { success: false, message: ex.message }
+      render :json => { :success => false, :message => ex.message }
     end
   end
 
@@ -66,7 +66,7 @@ class DiscountsController < ApplicationController
     image_does_not_exist = @discount.image_filename.nil? or !File.exists? path
     path = image_does_not_exist ? "public/images/fpo-default-discount.jpeg" : path
     data = File.open(path, "rb").read
-    send_data(data, filename: @discount.image_filename, type: "image/jpeg")
+    send_data(data, :filename => @discount.image_filename, :type => "image/jpeg")
   end
 
   def update
@@ -81,15 +81,15 @@ class DiscountsController < ApplicationController
     end
 
     if @discount.update_attributes(params[:discount])
-      render json: { success: true, discount: @discount }
+      render :json => { :success => true, :discount => @discount }
     else
-      render json: { success: false, message: @discount.errors }
+      render :json => { :success => false, :message => @discount.errors }
     end
   end
 
   def destroy
     @discount = Discount.find(params[:id])
     @discount.destroy
-    render json: { success: true }
+    render :json => { :success => true }
   end
 end

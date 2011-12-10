@@ -16,9 +16,9 @@ class CertificationsController < ApplicationController
     end
 
     if @certification.save
-      render json: { success: true, certification: @certification }
+      render :json => { :success => true, :certification => @certification }
     else
-      render json: { success: false, message: @certification.errors }
+      render :json => { :success => false, :message => @certification.errors }
     end
   end
 
@@ -32,7 +32,7 @@ class CertificationsController < ApplicationController
   def destroy
     @certification = Certification.find(params[:id])
     @certification.destroy
-    render json: { success: true }
+    render :json => { :success => true }
   end
 
   def index
@@ -43,9 +43,9 @@ class CertificationsController < ApplicationController
   def update
     @certification = Certification.find(params[:id])
     if @certification.update_attributes(params[:certification])
-      render json: {success: true, certification: @certification }
+      render :json => {:success => true, :certification => @certification }
     else
-      render json: {success: false, message: @certification.errors }
+      render :json => {:success => false, :message => @certification.errors }
     end
   end
 

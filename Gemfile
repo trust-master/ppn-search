@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '~> 3.1.1'
-
+gem 'pg'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -17,24 +17,22 @@ gem 'jquery-ui-themes'
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
-#gem 'ruby-debug19', require: 'ruby-debug'
-
 gem "paperclip" # Paperclip allows you to attach files to ActiveRecord Objects
 
 #gem 'aws-s3', require: 'aws/s3' # Access to Amazon S3
+
+# To use debugger
+# gem 'ruby-debug19', :require => 'ruby-debug'
 
 # Use thin instead of Webrick. You can use thin instead of webrick using `bundle exec rails server thin` or
 # `bundle exec thin start`
 gem 'thin', require: false
 
-group :test do
-  # Pretty printed test output
-  gem 'turn', require: false
-end
+# Use unicorn as the web server
+# gem 'unicorn'
 
 group :development do
-  gem 'sqlite3'
-  gem 'tailor', path: '../tailor'
+  gem 'tailor', git: 'http://github.com/rtlong/tailor.git', require: false
 
   # Prints db schema tidbits in all the models, tests, and fixtures, also shows `rake routes` output in routes.rb.
   # Use Ryan's fork to get FactoryGirl annotation awesomeness.
@@ -44,29 +42,52 @@ group :development do
   gem 'active_reload'
 
   # https://github.com/guard/guard # http://intridea.com/2011/8/25/hire-a-guard-for-your-project
-  gem 'guard', '>= 0.7.0.rc1', require: false
+  gem 'guard', '>= 0.8.8', require: false
 
   # Restart the Rails development server automatically
   gem 'guard-rails', git: 'http://github.com/guard/guard-rails.git', require: false
 
   # Run the appropriate RSpec test(s) automatically
-  #gem 'guard-rspec', git: 'http://github.com/guard/guard-rspec.git', require: false
+  gem 'guard-rspec', git: 'http://github.com/guard/guard-rspec.git', require: false
 
   # Run a shell command automatically
-  # gem 'guard-shell', git: 'http://github.com/rtlong/guard-shell.git', require: false
+  gem 'guard-shell', git: 'http://github.com/rtlong/guard-shell.git', require: false
 
   # Annotate models/tests/fixtures/etc when db is modified and routes when routes.rb is changed
   gem 'guard-annotate', git: 'http://github.com/guard/guard-annotate.git', require: false
+
+  gem 'guard-cucumber', require: false
+  #gem 'guard-jasmine', require: false
+
+  gem 'guard-bundler', require: false
+
+  gem 'guard-rails_best_practices', '>= 0.1.2', git: 'http://github.com/MatthewHager/guard-rails_best_practices.git', require: false
+
+  gem 'guard-cucumber', require: false
+  gem 'guard-spork', require: false
 
   gem "sass" # Add sass just for generators
 end
 
 group :development, :test do
   gem 'cucumber-rails'
-  gem 'spork'
+  gem 'spork', '~> 0.9.0.rc'
   gem 'database_cleaner'
+  gem 'rspec'
+  gem 'capybara'
 end
 
+group :development, :metrics do
+  gem 'metrical', require: false
+  gem 'metric_fu', git: 'https://github.com/jscruggs/metric_fu.git', require: false
+  gem 'flay', require: false
+  gem 'flog', require: false
+  gem 'reek', git: 'https://github.com/rtlong/reek.git', require: false
+  gem 'roodi', git: 'https://github.com/rtlong/roodi.git', require: false
+  gem 'Saikuro', git: 'https://github.com/hedtek/Saikuro.git', require: false
+  gem 'churn', git: 'https://github.com/danmayer/churn.git', require: false
+  gem 'rails_best_practices', git: 'https://github.com/flyerhzm/rails_best_practices.git', require: false
+end
 
 # Gems only for certain operating system environments.
 #

@@ -6,6 +6,15 @@ GIT
     rb-fsevent (0.4.3.1pre1)
 
 GIT
+  remote: http://github.com/MatthewHager/guard-rails_best_practices.git
+  revision: 3506ddbe0a8cca25566c714ddb07fa721b3889f6
+  specs:
+    guard-rails_best_practices (0.1.2)
+      activesupport
+      guard (>= 0.8.4)
+      rails_best_practices (>= 1.1.0)
+
+GIT
   remote: http://github.com/guard/guard-annotate.git
   revision: e5651b0c97d4655cfb37f1195ab1b5b4a7ee3d7c
   specs:
@@ -21,16 +30,104 @@ GIT
       guard (>= 0.2.2)
 
 GIT
+  remote: http://github.com/guard/guard-rspec.git
+  revision: 05434648fcf5224a6795ff8631a39e0618384b0a
+  specs:
+    guard-rspec (0.5.9)
+      guard (>= 0.8.4)
+
+GIT
   remote: http://github.com/rtlong/annotate_models.git
   revision: ab62e8c131c9a67d687fa23ed5ee05c3bf450852
   specs:
     annotate (2.4.1.beta1)
 
-PATH
-  remote: ../tailor
+GIT
+  remote: http://github.com/rtlong/guard-shell.git
+  revision: 1b93320440b54c10afc9358ff77675f453f51c08
+  specs:
+    guard-shell (0.1.1)
+      guard (>= 0.2.0)
+
+GIT
+  remote: http://github.com/rtlong/tailor.git
+  revision: e3b2062c35d50e88c30d636598246ca6b302adc1
   specs:
     tailor (0.1.5)
       term-ansicolor (>= 1.0.5)
+
+GIT
+  remote: https://github.com/danmayer/churn.git
+  revision: b03d2fad34b496259b52e76de075db1a876e6db9
+  specs:
+    churn (0.0.15)
+      arrayfields (= 4.7.4)
+      chronic (>= 0.2.3)
+      chronic (>= 0.2.3)
+      fattr (= 2.2.0)
+      hirb (= 0.5.0)
+      hirb
+      jeweler (= 1.6.4)
+      json (= 1.6.1)
+      json_pure
+      main
+      main (>= 4.6.0)
+      map (= 4.3.0)
+      ruby_parser (= 2.3.1)
+      ruby_parser (~> 2.3)
+      sexp_processor (= 3.0.7)
+      sexp_processor (~> 3.0.3)
+
+GIT
+  remote: https://github.com/flyerhzm/rails_best_practices.git
+  revision: 75233057a1c4e53b6a8f91c969f846c3104513dc
+  specs:
+    rails_best_practices (1.5.3)
+      activesupport
+      colored
+      erubis
+      i18n
+      progressbar
+      sexp_processor
+
+GIT
+  remote: https://github.com/hedtek/Saikuro.git
+  revision: 67be93b1e9c846bdc66c6fffb2aab87bafb821ef
+  specs:
+    Saikuro (1.2.1)
+
+GIT
+  remote: https://github.com/jscruggs/metric_fu.git
+  revision: 4c12cfa9cf20e38d4d1e3e01455613ff48563ad8
+  specs:
+    metric_fu (2.1.1)
+      Saikuro (>= 1.1.0)
+      activesupport (>= 2.0.0)
+      chronic (~> 0.3.0)
+      churn (>= 0.0.7)
+      flay (>= 1.2.1)
+      flog (>= 2.3.0)
+      rails_best_practices (>= 0.6.4)
+      rcov (>= 0.8.3.3)
+      reek (>= 1.2.6)
+      roodi (>= 2.1.0)
+      syntax
+
+GIT
+  remote: https://github.com/rtlong/reek.git
+  revision: 7a5fa2fbabb130aa66e8c504cc45dbd573942814
+  specs:
+    reek (1.2.8.20111201)
+      ruby2ruby (~> 1.2)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
+
+GIT
+  remote: https://github.com/rtlong/roodi.git
+  revision: 05b9c56c376e2dfe7123f6ef129014f0f9cc4be3
+  specs:
+    roodi (2.1.0.20111013125706)
+      ruby_parser
 
 GEM
   remote: http://rubygems.org/
@@ -64,8 +161,8 @@ GEM
       activesupport (= 3.1.3)
     activesupport (3.1.3)
       multi_json (~> 1.0)
-    ansi (1.4.1)
     arel (2.2.1)
+    arrayfields (4.7.4)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
     capybara (1.1.2)
@@ -77,6 +174,7 @@ GEM
       xpath (~> 0.1.4)
     childprocess (0.2.3)
       ffi (~> 1.0.6)
+    chronic (0.3.0)
     cocaine (0.2.0)
     coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
@@ -85,6 +183,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.1.3)
+    colored (1.2)
     cucumber (1.1.3)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.2)
@@ -102,7 +201,14 @@ GEM
     eventmachine (0.12.10)
     execjs (1.2.9)
       multi_json (~> 1.0)
+    fattr (2.2.0)
     ffi (1.0.11)
+    flay (1.4.3)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
+    flog (2.5.3)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
     frontend-helpers (0.1.1)
       haml-rails
       rails (~> 3.1.0)
@@ -110,10 +216,20 @@ GEM
       sprockets
     gherkin (2.6.8)
       json (>= 1.4.6)
+    git (1.2.5)
     growl_notify (0.0.3)
       rb-appscript
     guard (0.8.8)
       thor (~> 0.14.6)
+    guard-bundler (0.1.3)
+      bundler (>= 1.0.0)
+      guard (>= 0.2.2)
+    guard-cucumber (0.7.4)
+      cucumber (>= 0.10)
+      guard (>= 0.8.3)
+    guard-spork (0.4.0)
+      guard (>= 0.8.4)
+      spork (>= 0.8.4)
     haml (3.1.4)
     haml-rails (0.3.4)
       actionpack (~> 3.0)
@@ -121,17 +237,32 @@ GEM
       haml (~> 3.0)
       railties (~> 3.0)
     hike (1.2.1)
+    hirb (0.5.0)
     i18n (0.6.0)
+    jeweler (1.6.4)
+      bundler (~> 1.0)
+      git (>= 1.2.5)
+      rake
     jquery-rails (1.0.19)
       railties (~> 3.0)
       thor (~> 0.14)
     jquery-ui-themes (0.0.4)
-    json (1.6.3)
+    json (1.6.1)
+    json_pure (1.6.3)
     libnotify (0.5.9)
     mail (2.3.0)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    main (4.6.0)
+      arrayfields (>= 4.7.4)
+      fattr (>= 2.1.0)
+      map (>= 2.0.0)
+    map (4.3.0)
+    metrical (0.0.7)
+      main (~> 4.6.0)
+      metric_fu (~> 2.1.1)
+      rake
     mime-types (1.17.2)
     multi_json (1.0.4)
     nokogiri (1.5.0)
@@ -140,7 +271,10 @@ GEM
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
       mime-types
+    pg (0.12.0)
+      rake-compiler (~> 0.7)
     polyglot (0.3.3)
+    progressbar (0.9.2)
     rack (1.3.5)
     rack-cache (1.1)
       rack (>= 0.4)
@@ -166,11 +300,27 @@ GEM
       rdoc (~> 3.4)
       thor (~> 0.14.6)
     rake (0.9.2.2)
+    rake-compiler (0.7.9)
+      rake
     rb-appscript (0.6.1)
     rb-inotify (0.8.8)
       ffi (>= 0.5.0)
+    rcov (0.9.11)
     rdoc (3.11)
       json (~> 1.4)
+    rspec (2.7.0)
+      rspec-core (~> 2.7.0)
+      rspec-expectations (~> 2.7.0)
+      rspec-mocks (~> 2.7.0)
+    rspec-core (2.7.1)
+    rspec-expectations (2.7.0)
+      diff-lcs (~> 1.1.2)
+    rspec-mocks (2.7.0)
+    ruby2ruby (1.3.1)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
+    ruby_parser (2.3.1)
+      sexp_processor (~> 3.0)
     rubyzip (0.9.5)
     sass (3.1.11)
     sass-rails (3.1.5)
@@ -183,12 +333,13 @@ GEM
       ffi (~> 1.0.9)
       multi_json (~> 1.0.4)
       rubyzip
-    spork (0.8.5)
+    sexp_processor (3.0.7)
+    spork (0.9.0.rc9)
     sprockets (2.0.3)
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sqlite3 (1.3.4)
+    syntax (1.0.0)
     term-ansicolor (1.0.7)
     thin (1.3.1)
       daemons (>= 1.0.9)
@@ -199,8 +350,6 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
-    turn (0.8.3)
-      ansi
     tzinfo (0.3.31)
     uglifier (1.1.0)
       execjs (>= 0.3.0)
@@ -212,29 +361,45 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  Saikuro!
   active_reload
   annotate!
   bcrypt-ruby (~> 3.0.0)
+  capybara
+  churn!
   coffee-rails (~> 3.1.1)
   cucumber-rails
   database_cleaner
+  flay
+  flog
   frontend-helpers
   growl_notify
-  guard (>= 0.7.0.rc1)
+  guard (>= 0.8.8)
   guard-annotate!
+  guard-bundler
+  guard-cucumber
   guard-rails!
+  guard-rails_best_practices (>= 0.1.2)!
+  guard-rspec!
+  guard-shell!
+  guard-spork
   jquery-rails
   jquery-ui-themes
   libnotify
+  metric_fu!
+  metrical
   paperclip
+  pg
   rails (~> 3.1.1)
+  rails_best_practices!
   rb-fsevent!
   rb-inotify
+  reek!
+  roodi!
+  rspec
   sass
   sass-rails (~> 3.1.4)
-  spork
-  sqlite3
+  spork (~> 0.9.0.rc)
   tailor!
   thin
-  turn
   uglifier (>= 1.0.3)

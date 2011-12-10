@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :find_user, only: [:show, :edit, :update, :destroy]
-  before_filter :must_be_admin, except: [:login, :logout]
+  before_filter :find_user, :only => [:show, :edit, :update, :destroy]
+  before_filter :must_be_admin, :except => [:login, :logout]
 
   def create
     @user = User.new(params[:user])
@@ -9,10 +9,10 @@ class UsersController < ApplicationController
       if @user.save
         flash[:notice] = 'User was successfully created.'
         wants.html { redirect_to(@user) }
-        wants.xml { render xml: @user, status: :created, location: @user }
+        wants.xml { render :xml => @user, :status => :created, :location => @user }
       else
-        wants.html { render action: "new" }
-        wants.xml { render xml: @user.errors, status: :unprocessable_entity }
+        wants.html { render :action => "new" }
+        wants.xml { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       @user.destroy
       head :ok
     rescue Exception => ex
-      render text: ex.message, status: 500
+      render :text => ex.message, :status => 500
       return
     end
   end
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
     respond_to do |wants|
       wants.html # index.html.erb
-      wants.xml { render xml: @users }
+      wants.xml { render :xml => @users }
     end
   end
 
@@ -72,14 +72,14 @@ class UsersController < ApplicationController
 
     respond_to do |wants|
       wants.html # new.html.erb
-      wants.xml { render xml: @user }
+      wants.xml { render :xml => @user }
     end
   end
 
   def show
     respond_to do |wants|
       wants.html # show.html.erb
-      wants.xml { render xml: @user }
+      wants.xml { render :xml => @user }
     end
   end
 
@@ -91,8 +91,8 @@ class UsersController < ApplicationController
         wants.html { redirect_to(@user) }
         wants.xml { head :ok }
       else
-        wants.html { render action: "edit" }
-        wants.xml { render xml: @user.errors, status: :unprocessable_entity }
+        wants.html { render :action => "edit" }
+        wants.xml { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -100,7 +100,7 @@ class UsersController < ApplicationController
   def validate_email_is_unique
     @user = User.find_by_email_address params[:user][:email_address]
     respond_to do |wants|
-      wants.json { render json: @user.nil? }
+      wants.json { render :json => @user.nil? }
     end
   end
 
