@@ -17,7 +17,7 @@
         #header
           %h1
             = link_to root_url do
-              = image_tag asset_path('logo-trustmaster.gif'), alt: 'Trust Master'
+              = image_tag asset_path('logo-trustmaster.gif'), alt: 'Trust Master Logo'
           .header-nav
             - if current_user
               %span.welcome Welcome #{current_user.display_name}
@@ -36,7 +36,7 @@
                       = link_to "Basic Info"
                       = link_to "Privacy Settings"
                       = link_to "Notifications & Alerts"
-                  %li.logout
+                  %li.nav-logout
                     = link_to logout_path do
                       %span Logout
                 .clear
@@ -56,7 +56,7 @@
             - Array.wrap(messages).each do |msg|
               .flash{ class: flash }= msg
 
-          %h1= yield(:title).empty? ? [controller.controller_name.titleize, controller.action_name].join('#') : yield(:title)
+          %h2= yield(:title).empty? ? [controller.controller_name.titleize, controller.action_name].join('#') : yield(:title)
 
           = yield
 

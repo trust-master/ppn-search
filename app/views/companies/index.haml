@@ -1,10 +1,11 @@
-%h2 Companies Index
+- content_for :title, 'Companies'
+
 %a{:href => "/companies/new"} Add a Company
+
 %table.companies_index
   %thead
     %tr
       %td Name
-      %td Address
       %td Actions
   %tbody
     - @companies.each do |company|
@@ -13,6 +14,5 @@
           = link_to company.name, company
 
         %td
-          %a{:href => "/companies/#{company.id}/edit"} Edit
-          |
-          %a.delete{:href => "/companies/#{company.id}/delete"} Delete
+          = link_to "Edit", company, action: :edit
+          = link_to "Delete", company, action: :delete, class: :delete
