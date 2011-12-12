@@ -304,6 +304,7 @@ ActiveRecord::Schema.define(:version => 20111210050744) do
     t.integer  "created_by_user_id"
     t.integer  "updated_by_user_id"
     t.string   "role",               :default => "User"
+    t.datetime "logged_in_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

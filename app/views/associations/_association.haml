@@ -1,0 +1,8 @@
+%p
+  - if true
+    Currently associated with #{association.name}
+  - else
+    Associated with #{association.name} from #{association.start_month} / #{association.start_year}
+    until #{association.end_month} / #{association.end_year}.
+%span
+  = link_to 'Delete', [association.company, association], :method => :delete

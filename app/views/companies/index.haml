@@ -10,15 +10,8 @@
     - @companies.each do |company|
       %tr
         %td
-          %a{:href => "/company/#{company.id}"}= company.name
-        %td
-          = company.address_1
-          %br/
-          - unless company.address_2.nil?
-            = company.address_2
-            %br/
-          = company.state
-          , #{company.zip_code}
+          = link_to company.name, company
+
         %td
           %a{:href => "/companies/#{company.id}/edit"} Edit
           |

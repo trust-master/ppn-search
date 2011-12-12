@@ -1,0 +1,8 @@
+%p
+  - if affiliation.current_member == true
+    Currently affiliated with #{affiliation.name}
+  - else
+    Affiliated with #{affiliation.name} from #{affiliation.start_month} / #{affiliation.start_year}
+    until #{affiliation.end_month} / #{affiliation.end_year}.
+%span
+  %a.delete{:href => "/affiliations/#{affiliation.id}/delete"} Delete

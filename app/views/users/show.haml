@@ -11,15 +11,17 @@
     %li
       %label User Type
       %span= @user.role
-    %li
-      %label Created By
-      %span= @user.created_by
+    - if @user.created_by_user
+      %li
+        %label Created By
+        %span= link_to @user.created_by_user.display_name, @user.created_by_user
     %li
       %label Created At
       %span= @user.created_at
-    %li
-      %label Updated By
-      %span= @user.updated_by
+    - if @user.updated_by_user
+      %li
+        %label Updated By
+        %span= link_to @user.updated_by_user.display_name, @user.updated_by_user
     %li
       %label Updated At
       %span= @user.updated_at

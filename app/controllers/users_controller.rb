@@ -2,83 +2,38 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def create
-    @user = User.new(params[:user])
-
     respond_to do |wants|
       if @user.save
         flash[:notice] = 'User was successfully created.'
         wants.html { redirect_to(@user) }
-        wants.xml { render :xml => @user, :status => :created, :location => @user }
       else
         wants.html { render :action => "new" }
-        wants.xml { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    begin
-      raise "Could not locate the specified user" if @user.nil?
-      raise "You cannot delete your own user" if @user.id == @logged_in_user.id
-      @user.destroy
-      head :ok
-    rescue Exception => ex
-      render :text => ex.message, :status => 500
-      return
-    end
+    @user.destroy
   end
 
   def edit
   end
 
   def index
-    @users = User.all
-
     respond_to do |wants|
-      wants.html # index.html.erb
-      wants.xml { render :xml => @users }
+      wants.html
     end
-  end
-
-  def login
-    @return_uri = params[:return_uri]
-    unless @logged_in_user.nil?
-      redirect_to @logged_in_user.is_admin ? "/users/" : "/somewhre"
-      return
-    end
-    unless params[:user]
-      @user = User.new
-      return
-    end
-    user = User.authenticate(params[:user][:email_address], params[:user][:password])
-    if user.nil?
-      @user = User.new(params[:user])
-      flash[:notice] = "Invalid email address / password."
-      return
-    end
-    session[:user_id] = user.id
-    redirect_to @return_uri.nil? ? "/users/" : @return_uri
-  end
-
-  def logout
-    session[:user_id] = nil
-    flash[:notice] = "You have been logged out.  Thank you for using Trustmaster."
-    redirect_to "/users/login"
   end
 
   def new
-    @user = User.new
-
     respond_to do |wants|
-      wants.html # new.html.erb
-      wants.xml { render :xml => @user }
+      wants.html
     end
   end
 
   def show
     respond_to do |wants|
-      wants.html # show.html.erb
-      wants.xml { render :xml => @user }
+      wants.html
     end
   end
 
@@ -88,25 +43,10 @@ class UsersController < ApplicationController
       if @user.update_attributes(params[:user])
         flash[:notice] = 'User was successfully updated.'
         wants.html { redirect_to(@user) }
-        wants.xml { head :ok }
       else
         wants.html { render :action => "edit" }
-        wants.xml { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
-  end
-
-  def validate_email_is_unique
-    @user = User.find_by_email_address params[:user][:email_address]
-    respond_to do |wants|
-      wants.json { render :json => @user.nil? }
-    end
-  end
-
-  private
-
-  def find_user
-    @user = User.find(params[:id])
   end
 
 end

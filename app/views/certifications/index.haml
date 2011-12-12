@@ -1,3 +1,1 @@
-- @company.certifications.each do |certification|
-  %li.object_container
-    = render :partial => "show", :object => certification
+= render :partial => "show", :collection => @company.certifications

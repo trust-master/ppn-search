@@ -3,20 +3,19 @@
 %table.users_index
   %thead
     %tr
-      %td Email Address
-      %td Full Name
-      %td User Type
-      %td Password Hash
+      %td User Name
+      %td Company
+      %td Last Login Date
+      %td Active?
       %td Actions
   %tbody
     - @users.each do |user|
       %tr
+        %td= user.display_name
+        %td= user.company.name
+        %td= user.logged_in_at
+        %td= user.active ? 'Y' : 'N'
         %td
-          %a{:href => "/users/#{user.id}"}= user.email
-        %td== user.display_name
-        %td= user.is_admin? ? "Admin" : "User"
-        %td= user.password_hash
-        %td
-          %a{:href => "/users/#{user.id}/edit"} Edit
+          = link_to 'Edit', user, :action => :edit
           |
-          %a.delete{:href => "/users/#{user.id}/delete"} Delete
+          = link_to 'Delete', user, :action => :delete

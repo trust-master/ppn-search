@@ -15,7 +15,6 @@ end
 
 gem "frontend-helpers"
 gem 'jquery-rails'
-gem 'jquery-ui-themes'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
@@ -73,6 +72,10 @@ group :development do
   gem 'guard-spork', require: false
 
   gem "sass" # Add sass just for generators
+
+  # For seeding my dev DB with fake data
+  gem 'faker'
+  gem 'populator'
 end
 
 group :development, :test do

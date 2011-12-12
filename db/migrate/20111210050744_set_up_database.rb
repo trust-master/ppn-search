@@ -124,6 +124,7 @@ class SetUpDatabase < ActiveRecord::Migration
       t.string   :role, :nil => false, :default => "User" # going to use CanCan, so we'll store User role as a string
       # t.boolean  "is_admin"
 
+      t.datetime :logged_in_at
       t.timestamps
     end
     add_index :users, :company_id

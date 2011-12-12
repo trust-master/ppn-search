@@ -13,64 +13,59 @@
 #  created_by_user_id :integer
 #  updated_by_user_id :integer
 #  role               :string(255)     default("User")
+#  logged_in_at       :datetime
 #  created_at         :datetime
 #  updated_at         :datetime
 #
 
 class User < ActiveRecord::Base
   belongs_to :company
-  belongs_to :created_by_user, :class_name => 'User'
-  belongs_to :updated_by_user, :class_name => 'User'
+  belongs_to :created_by_user, class_name: 'User'
+  belongs_to :updated_by_user, class_name: 'User'
 
-#  validates_length_of :email_address, within: 3..40
+  before_save { |u| u.updated_by_user = User.current_user }
+  before_create { |u| u.created_by_user = User.current_user }
 
-#  validates_uniqueness_of :email_address
-#  validates_format_of :email_address, with: /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, message: "Invalid email"
+  has_secure_password
 
-#  attr_protected :id, :password_salt
-#  attr_accessor :change_password, :password, :password_confirm
+  validates :email, presence: true, uniqueness: true, email: true
+  validates_presence_of :first_name, :last_name, :role, :company_id
+  validates_presence_of :password, :password_confirmation, on: :create
 
-  def password=(pass)
-    if self.change_password
-      @password=pass
-      self.password_salt = User.random_string(10)
-      self.password_hash = User.encrypt(@password, self.password_salt)
+  attr_accessible :first_name, :middle_name, :last_name, :email, :password, :password_confirmation, :role, :company_id
+  attr_protected :role, :company_id, as: :default
+  attr_protected [], as: :admin
+
+  # method used for authentication
+  def self.find_by_email_and_password(email, password)
+    user = self.where(email: email).first
+    if user and user.authenticate(password)
+      user.touch :logged_in_at
+      return user
     end
   end
-  def send_new_password
-    new_pass = User.random_string(10)
-    self.password = self.password_confirmation = new_pass
-    self.save
-    Notifications.deliver_forgot_password(self.email, self.login, new_pass)
-  end
-  def self.authenticate(email_address, pass)
-    u=find(:first, :conditions=>["email_address = ?", email_address])
-    return nil if u.nil?
-    return u if User.encrypt(pass, u.password_salt)==u.password_hash
-    nil
-  end
-  def self.encrypt(pass, salt)
-    raise "Password was nil" if pass.nil?
-    raise "Salt was nil" if salt.nil?
-    Digest::SHA1.hexdigest(pass+salt)
-  end
-  def self.random_string(len)
-    #generate a random password consisting of strings and digits
-    chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
-    newpass = ""
-    1.upto(len) { |i| newpass << chars[rand(chars.size-1)] }
-    return newpass
-  end
 
+  # compatibility method for old code
   def admin?
     role.admin?
   end
 
+  # wrapper for StringInquirer
   def role
-    ActiveSupport::StringInquirer.new(read_attribute :role)
+    ActiveSupport::StringInquirer.new read_attribute(:role)
   end
 
+  # helper for easily concatenating a user's names
   def display_name
     [first_name, middle_name, last_name].compact.join(' ')
   end
+
+  # used by `set_current_user_in_user_model` in ApplicationController
+  def self.current_user=(user)
+    @@current_user = user
+  end
+  def self.current_user
+    @@current_user if defined? @@current_user
+  end
+
 end

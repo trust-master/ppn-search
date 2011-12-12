@@ -9,6 +9,7 @@
 #  updated_at      :datetime
 #
 
+# This class is a join model between Company and SubCategory
 class CompanyCategory < ActiveRecord::Base
   belongs_to :company
   belongs_to :sub_category

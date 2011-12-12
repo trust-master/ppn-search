@@ -14,7 +14,7 @@ end
 
 guard 'annotate', :routes => true, :tests => true , :tests => true  do
   watch( 'db/schema.rb' )
-  watch( 'config/routes.rb' )
+  #watch( 'config/routes.rb' ) # disabled because it caused a restart 'echo'
 end
 
 guard 'cucumber', :cli => '--profile guard' do

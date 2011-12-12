@@ -10,20 +10,14 @@
 .provider_info.target_tab
   %h1
     = @company.name
-    - if @company.in_business_since
-      In business since #{@company.in_business_since.year}
+  - if @company.in_business_since
+    In business since #{@company.in_business_since.year}
   %ul
     %li
-      = @company.address_1
-      - unless @company.address_2 == ""
-        = @company.address_2
-      ,
-      \#{@company.city}, #{@company.state}, #{@company.zip_code}
-    %li
-      = @company.main_phone_number
-    - unless @company.web_site == ""
+      = @company.phone_main
+    - if @company.website_url
       %li
-        = @company.web_site
+        = @company.website_url
 .service_info.target_tab.hidden
   %h1 Service Info
 .credential_info.target_tab.hidden
