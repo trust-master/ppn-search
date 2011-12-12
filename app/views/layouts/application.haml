@@ -4,23 +4,88 @@
     %title= ['TrustMaster', yield(:title)].flatten.compact.join(': ')
 
     = stylesheet_link_tag :application
+    /[if IE 8]
+      = stylesheet_link_tag :ie8
+    /[if lte IE 7]
+      = stylesheet_link_tag :ie7
     = javascript_include_tag :application
 
   %body
-    - flash.each do |flash, messages|
-      - Array.wrap(messages).each do |msg|
-        .flash{:class => type}= msg
 
-    - unless @logged_in_user.nil?
-      %ul
-        %li Welcome #{"#{@logged_in_user.first_name} #{@logged_in_user.last_name}"}
-        %li= link_to 'Logout', logout_path
+    .wrapper-outer
+      #wrapper
+        #header
+          %h1
+            = link_to root_url do
+              = image_tag asset_path('logo-trustmaster.gif'), alt: 'Trust Master'
+          .header-nav
+            - if current_user
+              %span.welcome Welcome #{current_user.display_name}
+              .account-links
+                %ul
+                  %li.nav-profile
+                    = link_to(current_user, action: :edit) do
+                      %span Profile
+                    .dropdown
+                      = link_to "View Profile", current_user
+                      = link_to "Edit Profile", current_user, action: :edit
+                  %li.nav-account
+                    = link_to() do
+                      %span Account
+                    .dropdown
+                      = link_to "Basic Info"
+                      = link_to "Privacy Settings"
+                      = link_to "Notifications & Alerts"
+                  %li.logout
+                    = link_to logout_path do
+                      %span Logout
+                .clear
+          .search
+            = form_tag companies_path do
+              %fieldset
+                %input{type: :text}
+                %input{type: :submit}
 
-    %ul.menu
-      %li= link_to 'Users', users_path
-      %li= link_to 'Companies', companies_path
-      %li= link_to 'Search', search_companies_path
+          .main-nav
+            %ul
+              %li.active= link_to "Search PPN", companies_path
+              %li= link_to "ADMIN", '/admin'
 
-    %h1= yield(:title).empty? ? [controller.controller_name.titleize, controller.action_name].join('#') : yield(:title)
+        #content
+          - flash.each do |flash, messages|
+            - Array.wrap(messages).each do |msg|
+              .flash{ class: flash }= msg
 
-    = yield
+          %h1= yield(:title).empty? ? [controller.controller_name.titleize, controller.action_name].join('#') : yield(:title)
+
+          = yield
+
+      #footer
+        .footer-links
+          %ul
+            %li
+              = link_to "Terms & Conditions", '/terms'
+              |&nbsp;
+            %li
+              = link_to "Privacy Policy", '/privacy-policy'
+              |&nbsp;
+            %li
+              = link_to "About Us", '/about'
+              |&nbsp;
+            %li
+              = link_to "Contact Us", '/contact'
+
+        .trust-logos= image_tag asset_path('trust-logos.png'), alt: 'Verisign'
+
+        .social-media
+          %h5 Follow Us On
+          %ul
+            %li
+              = link_to '/follow/twitter' do
+                = image_tag asset_path('twitter.png'), alt: 'Twitter'
+            %li
+              = link_to '/follow/facebook' do
+                = image_tag asset_path('facebook.png'), alt: 'Facebook'
+        .clear
+
+      .copyright &copy; 2011 Trust Master, LLC. All Rights Reserved.
