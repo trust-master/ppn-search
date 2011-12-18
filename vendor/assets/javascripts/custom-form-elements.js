@@ -59,13 +59,6 @@ Example:
 
             // Merge options
             self.options = $.extend({}, CustomFormElements.options, options || {});
-            var css = [
-                'input.', self.options.styled, '{display:none;}',
-                'select.', self.options.styled, '{position:relative;width:', self.options.selectWidth, 'px;opacity:0;filter:alpha(opacity=0);z-index:5;}',
-                '.' + d + ',.' + r + '{opacity:0.5;filter:alpha(opacity=50);}'
-            ];
-
-            $('<style>' + css.join('') + '</style>').appendTo('head');
 
             self.repaint();
         },
@@ -191,11 +184,11 @@ Example:
 
     // Default CustomFormElements options
     CustomFormElements.options = {
-        'styled': 'styled',
-        'uniqueClassName': 'customFormElement',
+        'styled': 'cf_styled',
+        'uniqueClassName': 'cf_element',
         'checkboxHeight': 12,
         'radioHeight': 11,
-        'selectWidth': 161
+        'selectWidth': 192
     };
 
     // Save some space

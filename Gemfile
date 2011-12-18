@@ -24,7 +24,10 @@ gem "carrierwave" # CarrierWave allows you to attach files to ActiveRecord Objec
 
 gem 'cancan' # for authorization
 
-gem 'formtastic'
+gem 'simple_form'
+gem 'nested_form', git: 'https://github.com/fxposter/nested_form.git'
+
+gem 'rack-webconsole'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'

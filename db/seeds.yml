@@ -1,4 +1,39 @@
 ---
+service_areas:
+  - market: Minneapolis / St. Paul, MN
+    service_areas:
+      - Anoka
+      - Carver
+      - Chisago
+      - Dakota
+      - Goodhue
+      - Hennepin
+      - Isanti
+      - McLeod
+      - Ramsey
+      - Rice
+      - Scott
+      - Washington
+      - Wright
+      - Pierce
+      - St. Croix
+  - market: St. Cloud, MN
+    service_areas:
+      - St. Cloud
+      - Benton County
+      - Foley
+      - Sauk Rapids
+      - Sartell
+      - Sherburne County
+      - Big Lake
+      - Becker
+      - Elk River
+      - Princeton
+      - Zimmerman
+      - Stearns County
+      - St. Augusta
+      - Waite Park
+
 countries:
   - name: United States
     code: US

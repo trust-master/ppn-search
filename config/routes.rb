@@ -40,7 +40,7 @@ ServiceProviderPortal::Application.routes.draw do
   root :to => "companies#index"
 end
 #== Route Map
-# Generated on 12 Dec 2011 03:58
+# Generated on 17 Dec 2011 22:03
 #
 #                show_image_discount GET    /discounts/:id/show_image(.:format)                              {:action=>"show_image", :controller=>"discounts"}
 #                          discounts GET    /discounts(.:format)                                             {:action=>"index", :controller=>"discounts"}
@@ -128,4 +128,4 @@ end
 #                                    DELETE /sessions/:id(.:format)                                          {:action=>"destroy", :controller=>"sessions"}
 #                              login        /login(.:format)                                                 {:controller=>"sessions", :action=>"new"}
 #                             logout        /logout(.:format)                                                {:controller=>"sessions", :action=>"delete"}
-#                               root        /                                                                {:controller=>"users", :action=>"login"}
+#                               root        /                                                                {:controller=>"companies", :action=>"index"}

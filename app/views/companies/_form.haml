@@ -1,3 +1,196 @@
-= semantic_form_for @company do |f|
-  = f.inputs
-  = f.buttons
+= simple_form_for @company do |f|
+  #company-basic-info
+    %fieldset
+      %h3 Company Name
+      %ul
+        = f.input :name, label: 'Company Name'
+        = f.input :in_business_since, as: 'string', placeholder: 'ex: 2002'
+
+    %fieldset
+      %h3 Contact Info
+      %ul
+        = f.input :email, label: 'Company Email', placeholder: 'ex: info@example.com'
+        = f.input :phone_main, label: 'Main', placeholder: 'ex: 612-555-1234'
+        = f.input :phone_mobile, label: 'Mobile'
+        = f.input :phone_fax, label: 'Fax'
+
+    %fieldset
+      %h3 Website
+      %ul
+        = f.input :website_url, label: 'Website', placeholder: 'http://example.com'
+
+    = f.simple_fields_for @company.locations do |l|
+      %fieldset
+        %h3 Address
+        %ul
+          = l.input :city
+          = l.input :zip
+          = l.input :state, collection: State.all, wrapper_html: { class: 'select-wrap-container' }, input_html: { class: 'cf_styled' }
+          = l.input :country, collection: Country.all, wrapper_html: { class: 'select-wrap-container' }, input_html: { class: 'cf_styled' }
+          %li
+            %a.add
+              .icon
+              Add Location
+
+    %fieldset
+      %h3 Admin
+      %ul
+        %li
+          %label Admin Email
+          %span.current-data
+            = @company.admin_email
+            = link_to '[Edit]', ''
+        %li
+          %a.add
+            .icon
+            Add an Account Admin
+
+  #company-service-info
+    %fieldset
+      %h3 Business Description
+      %ul
+        = f.input :about
+        = f.input :description
+        = f.input :general_info
+
+    %fieldset
+      %h3 Service Area
+      %ul
+        -#= collection_select :market, Market.all, :id, :name, wrapper_html: { class: 'select-wrap-container' }, input_html: { class: 'cf_styled' }
+        -#
+          %li
+            = f.grouped_collection_select :service_areas, Market.all, :service_areas, :name, :id, :name, wrapper_html: { class: 'select-wrap-container' }, input_html: { class: 'cf_styled' }
+
+        -#= f.association :service_areas, as: 'check_boxes' #, :collection => ServiceArea.all.group_by(&:market)
+        / This is totally temporary...
+        %li.select-wrap-container
+          = label_tag :market, "Market:"
+          .select-wrap
+            = select_tag :market, options_from_collection_for_select(Market.all, :id, :name), { class: 'cf_styled' }
+          .clear
+
+        - Market.all.each do |m|
+          %li.market{id: "market-#{m.id}"}
+            %span= m.name
+          - m.service_areas.each do |s|
+            - id = "company[service_areas][#{s.name.underscore}]"
+            %li.radio-options.service_area
+              .checkbox-wrap
+                %input.checkbox{type: :checkbox, name: id, id: id}
+                %label{for: id}= s.name
+              .radio.disabled{id: "#{id}[partial]"}
+                = radio_button "#{id}[partial]", '0', true, disabled: true, id: "#{id}[partial]-all"
+                = label_tag "#{id}[partial]-all", 'All'
+                = radio_button "#{id}[partial]", '1', false, disabled: true, id: "#{id}[partial]-partial"
+                = label_tag "#{id}[partial]-partial", 'Partial'
+
+
+    %fieldset.alt-section
+      %h3 Service Category
+      %ul
+        %li
+          .search-filter
+            .select-wrap
+              = select_tag :category, options_from_collection_for_select(Category.all, :id, :name), { class: 'cf_styled' }
+            .select-wrap
+              = select_tag :sub_category, options_from_collection_for_select(SubCategory.all, :id, :name), { class: 'cf_styled', disabled: true }
+            %a.search-filter-delete
+              .icon
+              Delete
+            .clear
+        %li
+          %a.add
+            .icon
+            Add a Service Category
+
+    %fieldset
+      %h3 Operations
+      %ul
+        = f.input :offers_24_hour_service, as: :radio, label: "24-Hour Service", wrapper_html: { class: 'radio-options' }, label_html: { class: 'btn-label' }
+        = f.input :offers_emergency_service, as: :radio, label: "Emergency Service", wrapper_html: { class: 'radio-options' }, label_html: { class: 'btn-label' }
+
+  #company-credentials
+    %fieldset
+      %h3 Insurance
+      %ul
+        = f.input :insured, as: :radio, label: "Insured", wrapper_html: { class: 'radio-options radio-options-alt' }, label_html: { class: 'btn-label' }
+        = f.input :insurance_certificate, as: :file, label: "Certificate of Insurance"
+        = f.input :insurance_valid_from
+        = f.input :insurance_valid_until
+        = f.association :insurance_state
+
+    %fieldset
+      %h3 License & Bonding Info
+      = f.simple_fields_for @company.personal_license do |l|
+        %ul
+          %li
+            %h4 Personal License/Certificate
+          = l.association :type
+          = l.input :number
+
+      = f.simple_fields_for @company.business_license do |l|
+        %ul
+          %li
+            %h4 Business/Contractor License/Certificate
+          = l.association :type
+          = l.input :number
+
+
+    %fieldset
+      %h3 Business Status
+      = f.simple_fields_for @company.business_filing do |l|
+        %ul
+          %li
+            %h4 Business/Contractor License/Certificate
+          = l.association :type
+          = l.input :number
+
+    %fieldset
+      %h3 Affiliations
+      = f.simple_fields_for @company.affiliations do |l|
+        %ul
+          = l.input :name
+          = l.input :title
+          = l.input :started_on
+          = l.input :ended_on
+          = l.input :url
+          = l.input :description
+      %ul
+        %li
+          %a.add
+            .icon
+            Add an Affiliation
+
+    %fieldset
+      %h3 Associations
+      = f.simple_fields_for @company.associations do |l|
+        %ul
+          = l.input :name
+          = l.input :title
+          = l.input :started_on
+          = l.input :ended_on
+          = l.input :url
+          = l.input :description
+      %ul
+        %li
+          %a.add
+            .icon
+            Add an Association
+
+    %fieldset
+      %h3 Certifications
+      = f.simple_fields_for @company.certifications do |l|
+        %ul
+          = l.input :name
+          = l.input :title
+          = l.input :certificate
+          = l.input :description
+      %ul
+        %li
+          %a.add
+            .icon
+            Add a Certification
+
+  %fieldset.last
+    = link_to "Cancel", '', class: :cancel
+    = f.submit 'Save', class: :save

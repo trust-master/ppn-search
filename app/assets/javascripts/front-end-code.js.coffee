@@ -1,10 +1,10 @@
 $(document).ready ->
   dropdownMenu.init()
-  $(".checkbox").button()
+  $("input[type='checkbox']").button()
   currentDateValue.init()
   moreInfo.init()
   deactivateModal.init()
-  cf = new CustomFormElements(selectWidth: 192)
+  cf = new CustomFormElements()
 
 deactivateModal =
   init: ->
@@ -17,10 +17,12 @@ deactivateModal =
       false
 
 dropdownMenu = init: ->
-  $(".account-links li a").hover (->
-    $(this).parent().children(".dropdown").show()
+  $("ul.account-links li").hover (->
+    $(this).addClass('hover')
+    #$('ul:first',this).css('visibility', 'visible')
   ), ->
-    $(this).parent().children(".dropdown").hide()
+    $(this).removeClass('hover')
+    #$('ul:first',this).css('visibility', 'hidden')
 
 currentDateValue =
   init: ->

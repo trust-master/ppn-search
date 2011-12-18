@@ -28,9 +28,9 @@ guard 'rails' do
   watch(%r{^(config|lib)/.*})
 end
 
-guard 'rails_best_practices' do
-  watch(%r{^app/(.+)\.rb$})
-end
+#guard 'rails_best_practices' do
+#  watch(%r{^app/(.+)\.rb$})
+#end
 
 #guard 'rspec', :version => 2 do
 #  watch(%r{^spec/.+_spec\.rb$})

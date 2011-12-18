@@ -76,6 +76,16 @@ success_msg "There are now #{STATE_ids.count} States."
 LOCATION_ids = Location.all_ids
 success_msg "There are now #{LOCATION_ids.count} Locations."
 
-
-
 ########################
+
+SEED_DATA[:service_areas].each do |s|
+  market = Market.find_or_create_by_name s['market']
+  s['service_areas'].each do |a|
+    ServiceArea.find_or_create_by_name_and_market_id a, market.id
+  end
+end
+
+MARKET_ids = Market.all_ids
+success_msg "There are now #{MARKET_ids.count} Markets."
+SERVICE_AREA_ids = ServiceArea.all_ids
+success_msg "There are now #{SERVICE_AREA_ids.count} ServiceAreas."

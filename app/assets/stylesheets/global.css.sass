@@ -1,3 +1,5 @@
+@import sprites
+
 /* ---------------------------------------------------------------------
  *	Global
  *------------------------------------------------------------------------*/
@@ -34,10 +36,13 @@ p
   margin-bottom: 15px
 
 input
-  &[type="text"], &[type="password"]
+  &[type="text"], &[type="password"], &[type="tel"], &[type="email"], &[type="number"], &[type="url"], &[type="search"]
     border: 1px solid #d5d5d5
     height: 22px
     vertical-align: top
+
+\:focus
+  outline: 5px auto #499fe8
 
 textarea
   border: 1px solid #c6c6c6
@@ -50,6 +55,9 @@ textarea
 .clear
   height: 0
   clear: both
+
+.hidden
+  display: none
 
 /* ---------------------------------------------------------------------
  *	Main Wrappers
@@ -104,12 +112,13 @@ h3
   right: 33px
   top: 53px
   input
-    &[type="text"]
+    &[type="text"], &[type="search"]
       width: 187px
     &[type="submit"]
-      background: url(/assets/btn-search.gif) 0 0 no-repeat
-      width: 28px
-      height: 26px
+      @include btn-search
+      //  background: url(/assets/btn-search.gif) 0 0 no-repeat
+      //  width: 28px
+      //  height: 26px
       text-indent: -9999px
       border: 0
       margin-left: -4px
@@ -124,59 +133,66 @@ h3
  *	Header > Account Links
  *------------------------------------------------------------------------*/
 
-.account-links
+ul.account-links
   height: 24px
   float: left
-  li
+  & > li
+    float: left
+    zoom: 1
     position: relative
     z-index: 100
-    a span
-      background: url(/assets/account-links-divider.gif) right 3px no-repeat
-      display: inline-block
-      width: 75px
-  a
-    background: url(/assets/bg-account-links.gif) no-repeat
-    width: 75px
-    display: block
-    height: 24px
-    padding-left: 40px
-    line-height: 24px
-  li
-    &.nav-account a
-      background-position: -114px 0px
-    &.nav-logout a
-      background-position: -235px 0px
-      span
-        background: none
-    a:hover
-      background-position: 0px -24px
-    &.nav-account a:hover
-      background-position: -114px -24px
-    &.nav-logout a:hover
-      background-position: -235px -24px
+    background: url(/assets/bg-account-links.gif) no-repeat 0 0
+    width: 115px
+
+    &.nav-profile
+      background-position: 0 0
+      &.hover
+        background-position: 0 -24px
+    &.nav-account
+      background-position: -114px 0
+      &.hover
+        background-position: -114px -24px
+    &.nav-logout
+      background-position: -235px 0
+      &.hover
+        background-position: -235px -24px
+    &.hover
+      ul
+        visibility: visible
+
+    .divider
+      @include account-links-divider
+      //background: url(/assets/account-links-divider.gif) right 3px no-repeat
+      float: right
+      margin: 3px 0 0 0
+    a
+      // This is the top level menu label
+      display: block
+      height: 24px
+      padding-left: 40px
+      line-height: 24px
+
+    ul //submenu
+      visibility: hidden
+      position: absolute
+      top: 100%
+      left: 1px
+      background-color: #efefef
+      padding: 10px
+      z-index: 1
+      width: 150px
+      border: 1px solid #d5d5d5
+      border-top: 0
+      li
+        float: none
+        // This is second/deeper menu item.
+        a
+          background: none
+          padding-left: 0
+          width: auto
 
 .edit-mode
   background: #ececec
-
-/* ---------------------------------------------------------------------
- *	Account Links > Dropdown
- *------------------------------------------------------------------------*/
-
-.account-links .dropdown
-  position: absolute
-  top: 22px
-  left: 1px
-  background-color: #efefef
-  padding: 10px
-  z-index: 1
-  width: 150px
-  border: 1px solid #d5d5d5
-  border-top: 0
-  display: none
-  a
-    background: none
-    padding-left: 0
-    width: auto
 
 /* ---------------------------------------------------------------------
  *	Header > Main Nav
@@ -207,7 +223,7 @@ h3
       a, &:hover a
         color: #fff
 
-.account-links li, .col
+.col
   float: left
 
 /* ---------------------------------------------------------------------
@@ -291,13 +307,14 @@ h3
   border: 1px solid #dcdcdc
 
 .provider-search-input-wrap
-  background: url(/assets/search-provider-input.png) 0 0 no-repeat
-  width: 299px
-  height: 32px
+  @include search-provider-input
+  //background: url(/assets/search-provider-input.png) 0 0 no-repeat
+  //width: 299px
+  //height: 32px
   float: left
 
 .provider-search input
-  &[type="text"]
+  &[type="text"], &[type="search"]
     border: 0
     background: none
     width: 261px
@@ -309,9 +326,10 @@ h3
     vertical-align: middle
     padding-top: 6px
   &[type="submit"]
-    background: url(/assets/btn-provider-search.gif) 0 0 no-repeat
-    width: 85px
-    height: 30px
+    @include btn-provider-search
+    //background: url(/assets/btn-provider-search.gif) 0 0 no-repeat
+    //width: 85px
+    //height: 30px
     text-indent: -9999px
     display: inline-block
     float: left
@@ -346,19 +364,22 @@ h3
     float: left
     margin-right: 14px
   .next, .prev
-    background: url(/assets/pagination-next.png) 0 3px no-repeat
     width: 10px
     height: 16px
     text-indent: -9999px
     display: block
+  .next
+    @include pagination-next
+    //background: url(/assets/pagination-next.png) 0 3px no-repeat
+  .prev
+    @include pagination-prev
+    //background-image: url(/assets/pagination-prev.png)
 
 .pagination-bottom
   overflow: hidden
   margin-top: 10px
   margin-bottom: 10px
 
-.pagination-nav .prev
-  background-image: url(/assets/pagination-prev.png)
 
 /* ---------------------------------------------------------------------
  *	Content > 2 col wide > Provider  Search > Result List
@@ -461,26 +482,28 @@ a.website
   background-repeat: no-repeat
   background-attachment: scroll
 
-.select
+.cf_element.select
+  @include select-category
+  //background-position: 0 0
+  //background-color: transparent
+  //background-repeat: no-repeat
+  //background-attachment: scroll
+  //background: url(/assets/select-category.gif) 0 0 no-repeat
+  width: 155px
+  height: 23px
   display: inline-block
   cursor: pointer
-  background-position: 0 0
-  background-color: transparent
-  background-repeat: no-repeat
-  background-attachment: scroll
-  background: url(/assets/select-category.gif) 0 0 no-repeat
   color: #666
   font: 11px / 21px arial, sans-serif
   overflow: hidden
   position: absolute
-  padding: 3px 24px 0 11px
-  width: 192px
-  height: 28px
+  padding: 5px 24px 0 11px
 
 .date-span
-  .select
-    width: 123px !important
-    background: url(/assets/select-sm.gif) 0 0 no-repeat
+  .cf_element.select
+    @include select-sm
+    //background: url(/assets/select-sm.gif) 0 0 no-repeat
+    //width: 123px !important
     font: 11px / 21px arial, sans-serif
     font-weight: normal
   label
@@ -509,22 +532,51 @@ select
     border-bottom: 1px solid #dcdcdc
 
 fieldset
+  h3
+    margin-bottom: 15px
   li
     margin-bottom: 15px
     /*	position: relative;*/
-  label
-    width: 140px
-    text-align: right
-    font-size: 13px
-    display: inline-block
-    margin-right: 8px
-    vertical-align: top
-  li label.main-label
-    display: block
-    width: auto
-    text-align: left
-    font-weight: bold
-    margin-bottom: 20px
+
+    input
+      &[type="text"], &[type="password"], &[type="tel"], &[type="email"], &[type="number"], &[type="url"], &[type="search"]
+        width: 274px
+        padding-left: 5px
+
+    label
+      width: 140px
+      text-align: right
+      font-size: 13px
+      display: inline-block
+      margin-right: 8px
+      vertical-align: top
+      &.main-label
+        display: block
+        width: auto
+        text-align: left
+        font-weight: bold
+        margin-bottom: 20px
+        span
+          font-weight: normal
+
+    input[type="checkbox"]
+      width: auto
+    .checkbox-wrap
+      float: left
+      margin-right: 20px
+      width: 105px
+      font-size: 11px
+      label
+        &.select-all
+          width: auto
+        width: 80px
+        font-size: 11px
+        .ui-button span
+          color: #edeeee
+    //div.radio,li.radio
+      //float: left
+      label
+        width: 70px
 
 .note
   font-style: italic
@@ -532,53 +584,25 @@ fieldset
   margin-left: 330px
   color: #666
 
-fieldset li
-  label.main-label span
-    font-weight: normal
-  input[type="text"]
-    width: 274px
-    padding-left: 5px
-
-input[type="password"]
-  width: 274px
-  padding-left: 5px
-
-fieldset h3
-  margin-bottom: 15px
-
 .add
-  background: url(/assets/btn-add.png) 0 0 no-repeat
-  padding-left: 25px
+  //background: url(/assets/btn-add.png) 0 0 no-repeat
+  //padding-left: 25px
   display: inline-block
   font-weight: bold
   margin: 10px 0 10px 148px
   line-height: 20px
+  .icon
+    @include btn-add
+    display: inline-block
+    vertical-align: top
 
 #content fieldset.last
   text-align: center
   border-bottom: 0
   padding-bottom: 25px
 
-input
-  &.save, &.submit-license
-    background: url(/assets/btn-save.png) 0 0 no-repeat
-    width: 85px
-    height: 28px
-    display: inline-block
-    color: #fff
-    font-weight: bold
-    border: 0
-    font-size: 14px
-    cursor: pointer
-    margin-left: 10px
-    text-align: center
-
-a.cancel, .login input[type="submit"]
-  background: url(/assets/btn-save.png) 0 0 no-repeat
-  width: 85px
-  height: 28px
+a.cancel, .login input[type="submit"], input.save, input.update, input.submit-license
   display: inline-block
-  color: #fff
   font-weight: bold
   border: 0
   font-size: 14px
@@ -587,36 +611,33 @@ a.cancel, .login input[type="submit"]
   text-align: center
 
 a.cancel
-  background: url(/assets/btn-cancel.png) 0 0 no-repeat
-  height: 31px
+  @include btn-cancel
+  //background: url(/assets/btn-cancel.png) 0 0 no-repeat
+  //height: 31px
   line-height: 31px
   vertical-align: top
   color: #4e4e4e
 
+  &:hover
+    //background-position: 0 -31px
+    text-decoration: none
+
+.login input[type="submit"], input.save, input.update, input.submit-license
+  @include btn-save
+  //background: url(/assets/btn-save.png) 0 0 no-repeat
+  //width: 85px
+  //height: 28px
+  color: #fff
+
+  //&:hover
+    //background-position: 0px -29px
+
 input.submit-license
   margin-left: 351px
-
-a.cancel:hover
-  background-position: 0 -31px
-  text-decoration: none
-
-input.save:hover, .login input[type="submit"]:hover, input.submit-license:hover
-  background-position: 0px -29px
 
 .current-data
   display: inline-block
   font-size: 12px
-
-fieldset li
-  .radio label
-    width: 70px
-  .checkbox-wrap
-    float: left
-    margin-right: 20px
-    width: 105px
-    font-size: 11px
-  .radio
-    float: left
 
 .radio-options
   overflow: hidden
@@ -624,17 +645,6 @@ fieldset li
 
 .radio-1
   margin-left: 0
-
-fieldset li
-  .checkbox-wrap label
-    &.select-all
-      width: auto
-    width: 80px
-    font-size: 11px
-    .ui-button span
-      color: #edeeee
-  input[type="checkbox"]
-    width: auto
 
 .ui-button
   background: url(/assets/ui-btn.gif) 0 bottom repeat-x !important
@@ -711,24 +721,38 @@ fieldset li.radio-options-alt
 /* ---------------------------------------------------------------------
  *	My Profile
  *------------------------------------------------------------------------*/
+#edit-profile-page
+  h3 a
+    font-size: 12px
+    text-transform: capitalize
 
-h3 a
-  font-size: 12px
-  text-transform: capitalize
+  .required
+    font-size: 11px
+    color: #666
+    margin-left: 155px
 
-.required
-  font-size: 11px
-  color: #666
-  margin-left: 155px
+  .edit-link
+    font-size: 12px
 
-.edit-link
-  font-size: 12px
+  #deactivate-account
+    display: none
+
+  fieldset.deactivate-account
+    padding-bottom: 30px
+
+  .notify
+    width: auto
+    font-size: 12px
+    color: #666
+
+.search-filter-delete
+  float: left
+  margin: 5px 0 0 10px
 
 .deactivate, .search-filter-delete
   display: inline-block
   color: #991e1e
   font-weight: bold
-  background: url(/assets/icon-remove-sm.gif) 0 0 no-repeat
   padding-left: 20px
   font-size: 12px
 
@@ -736,16 +760,19 @@ a.remove
   display: inline-block
   color: #991e1e
   font-weight: bold
-  background: url(/assets/icon-remove-sm.gif) 0 0 no-repeat
   padding-left: 20px
   font-size: 12px
   display: block
   font-size: 12px
   margin: 10px 0 10px 145px
 
-.search-filter-delete
-  float: left
-  margin: 5px 0 0 10px
+.deactivate, .search-filter-delete, a.remove
+  .icon
+    display: inline-block
+    vertical-align: top
+    @include icon-remove-sm
+    //background: url(/assets/icon-remove-sm.gif) 0 0 no-repeat
+
 
 .error
   color: #991e1e
@@ -753,17 +780,6 @@ a.remove
   font-size: 11px
   clear: left
   margin-left: 80px
-
-#deactivate-account
-  display: none
-
-fieldset.deactivate-account
-  padding-bottom: 30px
-
-.notify
-  width: auto
-  font-size: 12px
-  color: #666
 
 .login form
   width: 600px
@@ -791,74 +807,75 @@ fieldset.deactivate-account
  *	Discounts
  *------------------------------------------------------------------------*/
 
-table
-  border: 1px solid #ccc
-  border-top: 0
-  thead th
-    padding: 6px
-    background: url(/assets/bg-table-head.gif) 0 0 repeat-x
-    border-top: 1px solid #ccc
-    border-bottom: 1px solid #ccc
-    vertical-align: middle
-    text-align: left
-    white-space: nowrap
-    a
-      color: #4e4e4e
-      display: block
-      padding-right: 10px
-      font-size: 12px
-      background: url(/assets/table-divider.gif) right center no-repeat
-    &.last
-      a, span
-        background: none
-      text-align: center
-      width: 130px
+#discounts-page
+  table
+    border: 1px solid #ccc
+    border-top: 0
+    thead th
+      padding: 6px
+      background: url(/assets/bg-table-head.gif) 0 0 repeat-x
+      border-top: 1px solid #ccc
+      border-bottom: 1px solid #ccc
+      vertical-align: middle
+      text-align: left
+      white-space: nowrap
       a
-        margin-left: 5px
-    a span
-      background: url(/assets/sort-arrow-down.gif) right center no-repeat
+        color: #4e4e4e
+        display: block
+        padding-right: 10px
+        font-size: 12px
+        background: url(/assets/table-divider.gif) right center no-repeat
+      &.last
+        a, span
+          background: none
+        text-align: center
+        width: 130px
+        a
+          margin-left: 5px
+      a span
+        background: url(/assets/sort-arrow-down.gif) right center no-repeat
+        display: inline-block
+        padding-right: 22px
+    td
+      font-size: 12px
+      padding: 10px 10px 10px 5px
+      border-bottom: 1px solid #ececec
+
+  a
+    &.edit
+      margin: 0
+    &.delete
+      margin: 0
+      margin-left: 10px
+      background: url(/assets/icon-remove-sm.gif) 0 center no-repeat
+      padding-left: 25px
+      color: #991e1e
+      font-size: 11px
+      line-height: 22px
       display: inline-block
-      padding-right: 22px
-  td
-    font-size: 12px
-    padding: 10px 10px 10px 5px
-    border-bottom: 1px solid #ececec
+      font-weight: bold
+    &.edit
+      background: url(/assets/icon-remove-sm.gif) 0 center no-repeat
+      padding-left: 25px
+      color: #991e1e
+      font-size: 11px
+      line-height: 22px
+      display: inline-block
+      font-weight: bold
+      background: url(/assets/icon-edit.png) 0 0 no-repeat
+      color: #333
+      font-weight: bold
+      padding-left: 28px
 
-a
-  &.edit
-    margin: 0
-  &.delete
-    margin: 0
-    margin-left: 10px
-    background: url(/assets/icon-remove-sm.gif) 0 center no-repeat
-    padding-left: 25px
-    color: #991e1e
-    font-size: 11px
-    line-height: 22px
-    display: inline-block
-    font-weight: bold
-  &.edit
-    background: url(/assets/icon-remove-sm.gif) 0 center no-repeat
-    padding-left: 25px
-    color: #991e1e
-    font-size: 11px
-    line-height: 22px
-    display: inline-block
-    font-weight: bold
-    background: url(/assets/icon-edit.png) 0 0 no-repeat
-    color: #333
-    font-weight: bold
-    padding-left: 28px
+  #discounts
+    .add
+      margin-left: 0
+      line-height: 20px
+    fieldset
+      border: none
 
-#discounts
-  .add
-    margin-left: 0
-    line-height: 20px
-  fieldset
-    border: none
-
-table thead th.sorting a span
-  background: url(/assets/sort-arrow-up.gif) right center no-repeat
+  table thead th.sorting a span
+    background: url(/assets/sort-arrow-up.gif) right center no-repeat
 
 /* ---------------------------------------------------------------------
  *	Jquery Datepicker
@@ -874,28 +891,27 @@ table thead th.sorting a span
 fieldset li input.date
   width: 100px
 
-.ui-datepicker-prev .ui-icon
-  background: url(/assets/date-arrow-l.png) 0 0 no-repeat !important
-  cursor: pointer
-
-.ui-datepicker-prev-hover
+.ui-datepicker-prev, .ui-datepicker-prev-hover
   .ui-icon
-    background: url(/assets/date-arrow-l.png) 0 0 no-repeat !important
+    @include date-arrow-l
+    //background: url(/assets/date-arrow-l.png) 0 0 no-repeat !important
     cursor: pointer
+
+.ui-datepicker-prev-hover, .ui-datepicker-next-hover
   background: none !important
 
-.ui-datepicker-next-hover
-  background: none !important
-
-.ui-datepicker-next .ui-icon, .ui-datepicker-next-hover .ui-icon
-  background: url(/assets/datepicker-arrow-r.png) 0 0 no-repeat !important
-  cursor: pointer
+.ui-datepicker-next, .ui-datepicker-next-hover
+  .ui-icon
+    @include date-arrow-r
+    //background: url(/assets/datepicker-arrow-r.png) 0 0 no-repeat !important
+    cursor: pointer
 
 .ui-datepicker-header .ui-datepicker-title
   color: white
 
 .ui-datepicker-trigger
-  background: url(/assets/icon-calendar.png) 0 0 no-repeat
+  @include icon-calendar
+  //background: url(/assets/icon-calendar.png) 0 0 no-repeat
   border: 0
   width: 26px
   height: 26px
@@ -966,7 +982,8 @@ fieldset li
 
 .tooltip
   .tooltip-content
-    background: url(/assets/tooltip-top.png) 0 0 no-repeat
+    @include tooltip-top
+    //background: url(/assets/tooltip-top.png) 0 0 no-repeat
     width: 159px
     margin-bottom: 50px
     position: relative

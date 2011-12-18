@@ -1,1 +1,20 @@
-= render :partial => 'form'
+- content_for :title, "Company: #{@company.name}"
+
+.col.col-a
+  .sidebar-nav
+    %ul
+      %li.active
+        %a{href: '#basic'} Basic Info
+      %li
+        %a{href: '#service'} Service Info
+      %li
+        %a{href: '#credentials'} Credentials
+      %li
+        %a{href: '#alerts'} Alerts
+      %li
+        %a{href: '#discounts'} Discounts
+      %li
+        %a{href: '#users'} Company Users
+
+.col.col-b
+  = render :partial => 'form'

@@ -24,6 +24,8 @@ class CompaniesController < ApplicationController
   end
 
   def new
+    @personal_license = @company.personal_license.build
+
     respond_to do |wants|
       wants.html
       wants.json { render json: @company }
@@ -31,6 +33,13 @@ class CompaniesController < ApplicationController
   end
 
   def edit
+    @company.build_personal_license if @company.personal_license.nil?
+    @company.build_business_license if @company.business_license.nil?
+    @company.build_business_filing if @company.business_filing.nil?
+    @company.affiliations.build if @company.affiliations.empty?
+    @company.associations.build if @company.associations.empty?
+    @company.certifications.build if @company.certifications.empty?
+    @company.locations.build if @company.locations.empty?
 
   end
 

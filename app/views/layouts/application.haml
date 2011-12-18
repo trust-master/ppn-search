@@ -21,25 +21,23 @@
           .header-nav
             - if current_user
               %span.welcome Welcome #{current_user.display_name}
-              .account-links
-                %ul
-                  %li.nav-profile
-                    = link_to(current_user, action: :edit) do
-                      %span Profile
-                    .dropdown
-                      = link_to "View Profile", current_user
-                      = link_to "Edit Profile", current_user, action: :edit
-                  %li.nav-account
-                    = link_to() do
-                      %span Account
-                    .dropdown
-                      = link_to "Basic Info"
-                      = link_to "Privacy Settings"
-                      = link_to "Notifications & Alerts"
-                  %li.nav-logout
-                    = link_to logout_path do
-                      %span Logout
-                .clear
+              %ul.account-links
+                %li.nav-profile
+                  .divider
+                  = link_to 'Profile', current_user, action: :edit
+                  %ul.dropdown
+                    %li= link_to "View Profile", current_user
+                    %li= link_to "Edit Profile", current_user, action: :edit
+                %li.nav-account
+                  .divider
+                  = link_to 'Account', ''
+                  %ul.dropdown
+                    %li= link_to "Basic Info"
+                    %li= link_to "Privacy Settings"
+                    %li= link_to "Notifications & Alerts"
+                %li.nav-logout
+                  = link_to 'Logout', logout_path
+              .clear
           .search
             = form_tag companies_path do
               %fieldset
@@ -51,12 +49,13 @@
               %li.active= link_to "Search PPN", companies_path
               %li= link_to "ADMIN", '/admin'
 
-        #content
+        #content{class: yield(:content_div_class)}
+
+          %h2= yield(:title).empty? ? [controller.controller_name.titleize, controller.action_name].join('#') : yield(:title)
+
           - flash.each do |flash, messages|
             - Array.wrap(messages).each do |msg|
               .flash{ class: flash }= msg
-
-          %h2= yield(:title).empty? ? [controller.controller_name.titleize, controller.action_name].join('#') : yield(:title)
 
           = yield
 
