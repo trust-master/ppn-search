@@ -19,40 +19,31 @@
 #
 
 class User < ActiveRecord::Base
+  ROLES = %w[Admin CompanyAdmin User].freeze
+  set_inheritance_column :role
+
   belongs_to :company
   belongs_to :created_by_user, class_name: 'User'
   belongs_to :updated_by_user, class_name: 'User'
 
-  before_save { |u| u.updated_by_user = User.current_user }
-  before_create { |u| u.created_by_user = User.current_user }
+  before_save { |u| u.updated_by_user = self.class.current_user }
+  before_create { |u| u.created_by_user = self.class.current_user }
 
   has_secure_password
 
   validates :email, presence: true, uniqueness: true, email: true
   validates_presence_of :first_name, :last_name, :role, :company_id
   validates_presence_of :password, :password_confirmation, on: :create
+  validates :role, inclusion: { in: ROLES }
 
-  attr_accessible :first_name, :middle_name, :last_name, :email, :password, :password_confirmation, :role, :company_id
-  attr_protected :role, :company_id, as: :default
-  attr_protected [], as: :admin
+  attr_accessible :first_name, :middle_name, :last_name, :email, :password, :password_confirmation,
+    as: [:default, :admin]
+  attr_accessible :role, :company_id, as: :admin
 
-  # method used for authentication
-  def self.find_by_email_and_password(email, password)
-    user = self.where(email: email).first
-    if user and user.authenticate(password)
-      user.touch :logged_in_at
-      return user
-    end
-  end
-
-  # compatibility method for old code
-  def admin?
-    role.admin?
-  end
 
   # wrapper for StringInquirer
   def role
-    ActiveSupport::StringInquirer.new read_attribute(:role)
+    @role ||= UserRole.new(read_attribute(:role))
   end
 
   # helper for easily concatenating a user's names
@@ -60,12 +51,22 @@ class User < ActiveRecord::Base
     [first_name, middle_name, last_name].compact.join(' ')
   end
 
-  # used by `set_current_user_in_user_model` in ApplicationController
-  def self.current_user=(user)
-    @@current_user = user
-  end
-  def self.current_user
-    @@current_user if defined? @@current_user
-  end
+  class << self
+    # method used for authentication
+    def find_by_email_and_password(email, password)
+      user = self.where(email: email).first
+      if user and user.authenticate(password)
+        user.touch :logged_in_at
+        return user
+      end
+    end
 
+    # used by `set_current_user_in_user_model` in ApplicationController
+    def current_user=(user)
+      @@current_user = user
+    end
+    def current_user
+      @@current_user if defined? @@current_user
+    end
+  end
 end
