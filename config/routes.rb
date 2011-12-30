@@ -24,7 +24,7 @@ ServiceProviderPortal::Application.routes.draw do
   root :to => 'companies#index'
 end
 #== Route Map
-# Generated on 30 Dec 2011 00:44
+# Generated on 30 Dec 2011 04:18
 #
 #                                    POST   /companies/:company_id/associations(.:format)                    {:action=>"create", :controller=>"associations"}
 #            new_company_association GET    /companies/:company_id/associations/new(.:format)                {:action=>"new", :controller=>"associations"}

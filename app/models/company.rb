@@ -1,34 +1,3 @@
-# == Schema Information
-#
-# Table name: companies
-#
-#  id                       :integer         not null, primary key
-#  active                   :boolean         default(FALSE)
-#  visible                  :boolean         default(FALSE)
-#  deleted_at               :datetime
-#  deleted_by_user_id       :integer
-#  admin_email              :string(255)
-#  name                     :string(255)
-#  email                    :string(255)
-#  phone_main               :string(255)
-#  phone_mobile             :string(255)
-#  phone_fax                :string(255)
-#  website_url              :string(255)
-#  in_business_since        :date
-#  about                    :string(255)
-#  description              :text
-#  general_info             :text
-#  offers_24_hour_service   :boolean         default(FALSE)
-#  offers_emergency_service :boolean         default(FALSE)
-#  insured                  :boolean         default(FALSE)
-#  insurance_state_id       :integer
-#  insurance_certificate    :string(255)
-#  insurance_valid_from     :date
-#  insurance_valid_until    :date
-#  created_at               :datetime
-#  updated_at               :datetime
-#
-
 class Company < ActiveRecord::Base
   has_many :company_categories
   has_many :sub_categories, :through => :company_categories
@@ -76,3 +45,4 @@ class Company < ActiveRecord::Base
   end
 
 end
+
