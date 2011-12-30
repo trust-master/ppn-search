@@ -4,3 +4,15 @@ class SubCategory < ActiveRecord::Base
   has_many :companies, :through => :company_categories
 end
 
+
+# == Schema Information
+#
+# Table name: sub_categories
+#
+#  id          :integer         not null, primary key
+#  category_id :integer
+#  name        :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+

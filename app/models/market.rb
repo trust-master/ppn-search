@@ -5,3 +5,14 @@ class Market < ActiveRecord::Base
   has_many :companies, :through => :company_service_areas
 end
 
+
+# == Schema Information
+#
+# Table name: markets
+#
+#  id         :integer         not null, primary key
+#  name       :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+

@@ -4,3 +4,18 @@ class Location < ActiveRecord::Base
   belongs_to :country
 end
 
+
+# == Schema Information
+#
+# Table name: locations
+#
+#  id         :integer         not null, primary key
+#  company_id :integer
+#  city       :string(255)
+#  state_id   :integer
+#  zip        :string(255)
+#  country_id :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+

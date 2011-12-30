@@ -4,3 +4,14 @@ class LicenseStatus < ActiveRecord::Base
   has_many :personal_licenses
 end
 
+
+# == Schema Information
+#
+# Table name: license_status
+#
+#  id         :integer         not null, primary key
+#  name       :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
