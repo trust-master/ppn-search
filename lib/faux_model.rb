@@ -1,7 +1,4 @@
-# -------------------------------------------------------------------------------
-# Faux model object that plays well with formtastic; this is used for example in
-# a contact form which generates a request to salesforce
-# -------------------------------------------------------------------------------
+# Faux model object that plays well with formtastic
 class FauxModel
   include ActiveModel::Validations
   include ActiveModel::Conversion

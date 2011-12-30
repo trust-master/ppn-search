@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-  load_resource
+  #load_resource
+  load_and_authorize_resource
 
   def new
     respond_to do |format|
@@ -12,18 +13,18 @@ class SessionsController < ApplicationController
     session[:user_id] = user.id if user
     respond_to do |format|
       if user
-        format.html { redirect_to root_url, notice: 'Successfully logged in.' }
+        format.html { redirect_to root_url, notice: t('authentication.login.success') }
       else
-        format.html { render action: "new", error: "Problem with email or password." }
+        format.html { flash.now[:error] = t('authentication.login.failure'); render action: "new" }
       end
     end
   end
 
-  def delete
+  def destroy
     reset_session # wipes out everything during logout
 
     respond_to do |format|
-      format.html { redirect_to root_url }
+      format.html { redirect_to login_url, notice: t('authentication.logout.success') }
       format.json { head :ok }
     end
   end

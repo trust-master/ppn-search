@@ -1,5 +1,10 @@
 class ApplicationController < ActionController::Base
   before_filter :set_current_user_in_user_model
+  check_authorization
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to login_path, :alert => exception.message
+  end
 
   private
 

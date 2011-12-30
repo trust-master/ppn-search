@@ -27,12 +27,12 @@ end
 
 guard 'rails' do
   watch('Gemfile.lock')
-  watch(%r{^(config|lib)/.*})
+  watch(%r{^(config|lib)/.rb})
 end
 
-#guard 'rails_best_practices' do
-#  watch(%r{^app/(.+)\.rb$})
-#end
+guard 'rails_best_practices' do
+  watch(%r{^app/(.+)\.rb$})
+end
 
 #guard 'rspec', :version => 2 do
 #  watch(%r{^spec/.+_spec\.rb$})
@@ -69,6 +69,4 @@ end
 
 guard 'bundler' do
   watch('Gemfile')
-  # Uncomment next line if Gemfile contain `gemspec' command
-  # watch(/^.+\.gemspec/)
 end

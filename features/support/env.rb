@@ -13,6 +13,8 @@ Spork.prefork do
   # need to restart spork for it take effect.
 
   require 'cucumber/rails'
+
+  Capybara.default_selector = :css
 end
 
 Spork.each_run do

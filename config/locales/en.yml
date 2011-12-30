@@ -3,3 +3,9 @@
 
 en:
   hello: "Hello world"
+  authentication:
+    login:
+      success: You've been logged in!
+      failure: That email and/or password is incorrect.
+    logout:
+      success: You've been logged out!

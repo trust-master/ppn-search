@@ -87,6 +87,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'rspec'
   gem 'capybara'
+  gem 'launchy'
 end
 
 group :development, :metrics do

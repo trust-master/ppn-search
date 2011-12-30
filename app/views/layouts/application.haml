@@ -24,10 +24,10 @@
               %ul.account-links
                 %li.nav-profile
                   .divider
-                  = link_to 'Profile', current_user, action: :edit
+                  = link_to 'Profile', edit_profile_path
                   %ul.dropdown
-                    %li= link_to "View Profile", current_user
-                    %li= link_to "Edit Profile", current_user, action: :edit
+                    %li= link_to "View Profile", profile_path
+                    %li= link_to "Edit Profile", edit_profile_path
                 %li.nav-account
                   .divider
                   = link_to 'Account', ''

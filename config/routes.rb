@@ -1,58 +1,31 @@
 ServiceProviderPortal::Application.routes.draw do
 
-  resources :discounts do
-    member do
-      post 'destroy_image'
-      get 'show_image'
-    end
-  end
-
-
   resources :companies do
-    collection do
-      get :search
-      post 'search_json'
-    end
-
     resources :associations
     resources :certifications
     resources :affiliations
     resources :service_area_coverages
     resources :service_areas
     resources :company_subcategories
-    resources :company_categories
+    resources :categories
+    resources :discounts
   end
 
-  resources :users do
-    collection do
-      get 'login'
-      post 'login'
-      get 'logout'
-      get 'validate_email_is_unique'
-    end
+  resources :users
+
+  resource :profile
+  resource :session, only: [:new, :create, :destroy]
+
+  scope controller: :sessions do
+    get :login, action: :new, as: :login
+    get :logout, action: :destroy, as: :logout
   end
 
-  resources :sessions #, only: [:new, :create, :delete]
-
-  match '/login' => 'sessions#new', as: 'login'
-  match '/logout' => 'sessions#delete', as: 'logout'
-
-  root :to => "companies#index"
+  root :to => 'companies#index'
 end
 #== Route Map
-# Generated on 29 Dec 2011 06:06
+# Generated on 30 Dec 2011 00:44
 #
-#                show_image_discount GET    /discounts/:id/show_image(.:format)                              {:action=>"show_image", :controller=>"discounts"}
-#                          discounts GET    /discounts(.:format)                                             {:action=>"index", :controller=>"discounts"}
-#                                    POST   /discounts(.:format)                                             {:action=>"create", :controller=>"discounts"}
-#                       new_discount GET    /discounts/new(.:format)                                         {:action=>"new", :controller=>"discounts"}
-#                      edit_discount GET    /discounts/:id/edit(.:format)                                    {:action=>"edit", :controller=>"discounts"}
-#                           discount GET    /discounts/:id(.:format)                                         {:action=>"show", :controller=>"discounts"}
-#                                    PUT    /discounts/:id(.:format)                                         {:action=>"update", :controller=>"discounts"}
-#                                    DELETE /discounts/:id(.:format)                                         {:action=>"destroy", :controller=>"discounts"}
-#                   search_companies GET    /companies/search(.:format)                                      {:action=>"search", :controller=>"companies"}
-#              search_json_companies POST   /companies/search_json(.:format)                                 {:action=>"search_json", :controller=>"companies"}
-#               company_associations GET    /companies/:company_id/associations(.:format)                    {:action=>"index", :controller=>"associations"}
 #                                    POST   /companies/:company_id/associations(.:format)                    {:action=>"create", :controller=>"associations"}
 #            new_company_association GET    /companies/:company_id/associations/new(.:format)                {:action=>"new", :controller=>"associations"}
 #           edit_company_association GET    /companies/:company_id/associations/:id/edit(.:format)           {:action=>"edit", :controller=>"associations"}
@@ -94,13 +67,20 @@ end
 #        company_company_subcategory GET    /companies/:company_id/company_subcategories/:id(.:format)       {:action=>"show", :controller=>"company_subcategories"}
 #                                    PUT    /companies/:company_id/company_subcategories/:id(.:format)       {:action=>"update", :controller=>"company_subcategories"}
 #                                    DELETE /companies/:company_id/company_subcategories/:id(.:format)       {:action=>"destroy", :controller=>"company_subcategories"}
-#         company_company_categories GET    /companies/:company_id/company_categories(.:format)              {:action=>"index", :controller=>"company_categories"}
-#                                    POST   /companies/:company_id/company_categories(.:format)              {:action=>"create", :controller=>"company_categories"}
-#       new_company_company_category GET    /companies/:company_id/company_categories/new(.:format)          {:action=>"new", :controller=>"company_categories"}
-#      edit_company_company_category GET    /companies/:company_id/company_categories/:id/edit(.:format)     {:action=>"edit", :controller=>"company_categories"}
-#           company_company_category GET    /companies/:company_id/company_categories/:id(.:format)          {:action=>"show", :controller=>"company_categories"}
-#                                    PUT    /companies/:company_id/company_categories/:id(.:format)          {:action=>"update", :controller=>"company_categories"}
-#                                    DELETE /companies/:company_id/company_categories/:id(.:format)          {:action=>"destroy", :controller=>"company_categories"}
+#                 company_categories GET    /companies/:company_id/categories(.:format)                      {:action=>"index", :controller=>"categories"}
+#                                    POST   /companies/:company_id/categories(.:format)                      {:action=>"create", :controller=>"categories"}
+#               new_company_category GET    /companies/:company_id/categories/new(.:format)                  {:action=>"new", :controller=>"categories"}
+#              edit_company_category GET    /companies/:company_id/categories/:id/edit(.:format)             {:action=>"edit", :controller=>"categories"}
+#                   company_category GET    /companies/:company_id/categories/:id(.:format)                  {:action=>"show", :controller=>"categories"}
+#                                    PUT    /companies/:company_id/categories/:id(.:format)                  {:action=>"update", :controller=>"categories"}
+#                                    DELETE /companies/:company_id/categories/:id(.:format)                  {:action=>"destroy", :controller=>"categories"}
+#                  company_discounts GET    /companies/:company_id/discounts(.:format)                       {:action=>"index", :controller=>"discounts"}
+#                                    POST   /companies/:company_id/discounts(.:format)                       {:action=>"create", :controller=>"discounts"}
+#               new_company_discount GET    /companies/:company_id/discounts/new(.:format)                   {:action=>"new", :controller=>"discounts"}
+#              edit_company_discount GET    /companies/:company_id/discounts/:id/edit(.:format)              {:action=>"edit", :controller=>"discounts"}
+#                   company_discount GET    /companies/:company_id/discounts/:id(.:format)                   {:action=>"show", :controller=>"discounts"}
+#                                    PUT    /companies/:company_id/discounts/:id(.:format)                   {:action=>"update", :controller=>"discounts"}
+#                                    DELETE /companies/:company_id/discounts/:id(.:format)                   {:action=>"destroy", :controller=>"discounts"}
 #                          companies GET    /companies(.:format)                                             {:action=>"index", :controller=>"companies"}
 #                                    POST   /companies(.:format)                                             {:action=>"create", :controller=>"companies"}
 #                        new_company GET    /companies/new(.:format)                                         {:action=>"new", :controller=>"companies"}
@@ -108,10 +88,6 @@ end
 #                            company GET    /companies/:id(.:format)                                         {:action=>"show", :controller=>"companies"}
 #                                    PUT    /companies/:id(.:format)                                         {:action=>"update", :controller=>"companies"}
 #                                    DELETE /companies/:id(.:format)                                         {:action=>"destroy", :controller=>"companies"}
-#                        login_users GET    /users/login(.:format)                                           {:action=>"login", :controller=>"users"}
-#                                    POST   /users/login(.:format)                                           {:action=>"login", :controller=>"users"}
-#                       logout_users GET    /users/logout(.:format)                                          {:action=>"logout", :controller=>"users"}
-#     validate_email_is_unique_users GET    /users/validate_email_is_unique(.:format)                        {:action=>"validate_email_is_unique", :controller=>"users"}
 #                              users GET    /users(.:format)                                                 {:action=>"index", :controller=>"users"}
 #                                    POST   /users(.:format)                                                 {:action=>"create", :controller=>"users"}
 #                           new_user GET    /users/new(.:format)                                             {:action=>"new", :controller=>"users"}
@@ -119,13 +95,15 @@ end
 #                               user GET    /users/:id(.:format)                                             {:action=>"show", :controller=>"users"}
 #                                    PUT    /users/:id(.:format)                                             {:action=>"update", :controller=>"users"}
 #                                    DELETE /users/:id(.:format)                                             {:action=>"destroy", :controller=>"users"}
-#                           sessions GET    /sessions(.:format)                                              {:action=>"index", :controller=>"sessions"}
-#                                    POST   /sessions(.:format)                                              {:action=>"create", :controller=>"sessions"}
-#                        new_session GET    /sessions/new(.:format)                                          {:action=>"new", :controller=>"sessions"}
-#                       edit_session GET    /sessions/:id/edit(.:format)                                     {:action=>"edit", :controller=>"sessions"}
-#                            session GET    /sessions/:id(.:format)                                          {:action=>"show", :controller=>"sessions"}
-#                                    PUT    /sessions/:id(.:format)                                          {:action=>"update", :controller=>"sessions"}
-#                                    DELETE /sessions/:id(.:format)                                          {:action=>"destroy", :controller=>"sessions"}
-#                              login        /login(.:format)                                                 {:controller=>"sessions", :action=>"new"}
-#                             logout        /logout(.:format)                                                {:controller=>"sessions", :action=>"delete"}
+#                            profile POST   /profile(.:format)                                               {:action=>"create", :controller=>"profiles"}
+#                        new_profile GET    /profile/new(.:format)                                           {:action=>"new", :controller=>"profiles"}
+#                       edit_profile GET    /profile/edit(.:format)                                          {:action=>"edit", :controller=>"profiles"}
+#                                    GET    /profile(.:format)                                               {:action=>"show", :controller=>"profiles"}
+#                                    PUT    /profile(.:format)                                               {:action=>"update", :controller=>"profiles"}
+#                                    DELETE /profile(.:format)                                               {:action=>"destroy", :controller=>"profiles"}
+#                            session POST   /session(.:format)                                               {:action=>"create", :controller=>"sessions"}
+#                        new_session GET    /session/new(.:format)                                           {:action=>"new", :controller=>"sessions"}
+#                                    DELETE /session(.:format)                                               {:action=>"destroy", :controller=>"sessions"}
+#                              login GET    /login(.:format)                                                 {:action=>"new", :controller=>"sessions"}
+#                             logout GET    /logout(.:format)                                                {:action=>"destroy", :controller=>"sessions"}
 #                               root        /                                                                {:controller=>"companies", :action=>"index"}
