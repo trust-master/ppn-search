@@ -92,4 +92,8 @@
 
       .copyright &copy; 2011 Trust Master, LLC. All Rights Reserved.
 
-  = whereuat # the helper to load the Whereuat plugin to aid PivotalTracker story management
+  #development
+    %h2 Development Stuff
+    = render partial: 'disqus', locals: { identifier: [controller.controller_name, controller.action_name].join('#') }
+    - if Rails.env.staging?
+      = whereuat # the helper to load the Whereuat plugin to aid PivotalTracker story management
