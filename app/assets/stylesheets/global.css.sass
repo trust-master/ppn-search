@@ -78,11 +78,30 @@ textarea
   background-color: #f7f7f7
   overflow: hidden
   min-height: 600px
-  h2
+  h2, .flash
     margin-left: 256px
+    margin-right: 10px
 
-.col-2-wide h2
-  margin-left: 0 !important
+  .flash
+    border: 1px solid black
+    padding: 5px
+    //margin-left: 256px
+    &.error, &.alert
+      background-color: #FFBCBC
+      border-color: #540000
+    &.notice
+      background-color: #d5ffcc
+      border-color: #8da887
+    &.warning
+      background-color: #bfbfff
+      border-color: #3f3f54
+
+
+.col-2-wide
+  h2, .flash
+    margin:
+      left: 0 !important
+      right: 10px !important
 
 #header
   overflow: hidden
@@ -220,7 +239,7 @@ ul.account-links
       text-decoration: none
       color: #003a70
     &.active
-      a, &:hover a
+      &, a, &:hover a
         color: #fff
 
 .col
@@ -240,38 +259,42 @@ ul.account-links
     li
       border-top: 1px solid #dcdcdc
       line-height: 36px
+
       &:hover
         background: #cccccc url(/assets/arrow-sb-active.gif) 95% center no-repeat
 
-.result-list li:hover
-  background: #cccccc url(/assets/arrow-sb-active.gif) 95% center no-repeat
-  color: #003A70
+        a
+          color: #003a70
+          text-decoration: none
 
-.col-a .sidebar-nav li.active
-  background: #499fe8 url(/assets/arrow-sb-hover.gif) 95% center no-repeat
+      &.active
+        background: #499fe8 url(/assets/arrow-sb-hover.gif) 95% center no-repeat
 
-.result-list li.active
-  background: #499fe8 url(/assets/arrow-sb-hover.gif) 95% center no-repeat
-  a
-    color: #003A70
-  color: white
+        a, &:hover a
+          color: white
+          text-decoration: none
 
-.col-a .sidebar-nav li
-  &:hover a
-    color: #003a70
-    text-decoration: none
-  &:first-child
-    border-top: none
-  &.active
-    a, &:hover a
+      &:first-child
+        border-top: none
+
+      a
+        text-transform: uppercase
+        color: #aaaaaa
+        font-weight: bold
+        display: block
+        padding-left: 13px
+
+.result-list
+  li
+    &:hover
+      background: #cccccc url(/assets/arrow-sb-active.gif) 95% center no-repeat
+      color: #003A70
+
+    &.active
+      background: #499fe8 url(/assets/arrow-sb-hover.gif) 95% center no-repeat
       color: white
-      text-decoration: none
-  a
-    text-transform: uppercase
-    color: #aaaaaa
-    font-weight: bold
-    display: block
-    padding-left: 13px
+      a
+        color: #003A70
 
 .col-b
   background-color: #fff
@@ -781,9 +804,12 @@ a.remove
   clear: left
   margin-left: 80px
 
-.login form
-  width: 600px
-  margin: 0 auto
+.login
+  .flash
+    margin-right: 256px !important
+  form
+    width: 600px
+    margin: 0 auto
 
 .login-btns
   margin-left: 142px

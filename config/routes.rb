@@ -15,16 +15,17 @@ ServiceProviderPortal::Application.routes.draw do
 
   resource :profile
   resource :session, only: [:new, :create, :destroy]
+  resources :password_resets
 
   scope controller: :sessions do
     get :login, action: :new, as: :login
     get :logout, action: :destroy, as: :logout
   end
 
-  root :to => 'companies#index'
+  root :to => 'sessions#new'
 end
 #== Route Map
-# Generated on 30 Dec 2011 04:18
+# Generated on 07 Jan 2012 22:10
 #
 #                                    POST   /companies/:company_id/associations(.:format)                    {:action=>"create", :controller=>"associations"}
 #            new_company_association GET    /companies/:company_id/associations/new(.:format)                {:action=>"new", :controller=>"associations"}
@@ -104,6 +105,13 @@ end
 #                            session POST   /session(.:format)                                               {:action=>"create", :controller=>"sessions"}
 #                        new_session GET    /session/new(.:format)                                           {:action=>"new", :controller=>"sessions"}
 #                                    DELETE /session(.:format)                                               {:action=>"destroy", :controller=>"sessions"}
+#                    password_resets GET    /password_resets(.:format)                                       {:action=>"index", :controller=>"password_resets"}
+#                                    POST   /password_resets(.:format)                                       {:action=>"create", :controller=>"password_resets"}
+#                 new_password_reset GET    /password_resets/new(.:format)                                   {:action=>"new", :controller=>"password_resets"}
+#                edit_password_reset GET    /password_resets/:id/edit(.:format)                              {:action=>"edit", :controller=>"password_resets"}
+#                     password_reset GET    /password_resets/:id(.:format)                                   {:action=>"show", :controller=>"password_resets"}
+#                                    PUT    /password_resets/:id(.:format)                                   {:action=>"update", :controller=>"password_resets"}
+#                                    DELETE /password_resets/:id(.:format)                                   {:action=>"destroy", :controller=>"password_resets"}
 #                              login GET    /login(.:format)                                                 {:action=>"new", :controller=>"sessions"}
 #                             logout GET    /logout(.:format)                                                {:action=>"destroy", :controller=>"sessions"}
-#                               root        /                                                                {:controller=>"companies", :action=>"index"}
+#                               root        /                                                                {:controller=>"sessions", :action=>"new"}

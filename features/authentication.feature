@@ -10,12 +10,18 @@ Feature: Authentication
 
   Scenario: User with correct credentials attempts log-in
     When I enter a valid email and password
-    Then I should see the login success message
+    Then I should see the session.new success message
 
   Scenario: User with an incorrect email attempts log-in
     When I enter an invalid email and any password
-    Then I should see the login failure message
+    Then I should see the session.new failure message
 
   Scenario: User with correct email but incorrect password attempts log-in
     When I enter an valid email and invalid password
-    Then I should see the login failure message
+    Then I should see the session.new failure message
+
+  Scenario: Logged in user attempts log out
+    When I enter a valid email and password
+      And click the log out button
+    Then I should see the session.destroy success message
+

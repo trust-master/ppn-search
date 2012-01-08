@@ -14,6 +14,10 @@ When(/^I go to the log[- ]?in page$/) do
   visit(login_path)
 end
 
+When(/^click the log[- ]?out (?:button|link)$/) do
+  click_link 'Logout'
+end
+
 When(/^I enter a valid email and password$/) do
   within 'form.session' do
     fill_in 'Email', with: 'test@test.com'

@@ -18,8 +18,8 @@
           %h1
             = link_to root_url do
               = image_tag asset_path('logo-trustmaster.gif'), alt: 'Trust Master Logo'
-          .header-nav
-            - if current_user
+          - if current_user
+            .header-nav
               %span.welcome Welcome #{current_user.display_name}
               %ul.account-links
                 %li.nav-profile
@@ -38,16 +38,19 @@
                 %li.nav-logout
                   = link_to 'Logout', logout_path
               .clear
-          .search
-            = form_tag companies_path do
-              %fieldset
-                %input{type: :text}
-                %input{type: :submit}
+            .search
+              = form_tag companies_path do
+                %fieldset
+                  %input{type: :text}
+                  %input{type: :submit}
 
           .main-nav
             %ul
-              %li.active= link_to "Search PPN", companies_path
-              %li= link_to "ADMIN", '/admin'
+              - if current_user
+                %li.active= link_to "Search PPN", companies_path
+                %li= link_to "ADMIN", '/admin'
+              - else
+                %li.active= link_to_unless_current 'Login', login_path
 
         #content{class: yield(:content_div_class)}
 

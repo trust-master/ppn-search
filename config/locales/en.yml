@@ -2,10 +2,41 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
-  authentication:
-    login:
+  session:
+    new:
       success: You've been logged in!
       failure: That email and/or password is incorrect.
-    logout:
+    destroy:
       success: You've been logged out!
+
+    cant_log_in: Can't log in?
+    did_you_forget: Did you forget your password?
+    recover: Recover it here.
+    why: Why are we making you log in again?
+    more: More text that is warm and friendly.
+
+  helpers:
+    submit:
+      session:
+        create: Login
+
+  simple_form:
+    labels:
+      defaults:
+        email: Email Address
+        password: Password
+    hints:
+      defaults:
+        email: Your Email Address
+        password: Your Trust Master Password
+    placeholders:
+      defaults:
+        email: name@example.com
+        password: '***'
+
+  unauthorized:
+    manage:
+      all: "Not authorized to %{action} %{subject}."
+    # update:
+    #   all:
+
