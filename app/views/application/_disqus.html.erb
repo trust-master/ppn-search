@@ -1,3 +1,4 @@
+<a id="comments_link" href='#disqus_thread' data-disqus-identifier="<%= identifier %>">Comments</a>
 <div id="comments">
   <h3>Comments &mdash; <code><%= identifier %></code></h3>
   <div id="disqus_thread"></div>
@@ -6,13 +7,9 @@
     var disqus_developer = 1; // developer mode on, so we can use Disqus on localhost
     var disqus_identifier = "<%= identifier %>";
 
-
     (function() {
-      var dsq = document.createElement('script');
-      dsq.async = true;
-      dsq.type = 'text/javascript';
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      $.getScript('http://' + disqus_shortname + '.disqus.com/count.js');
+      $.getScript('http://' + disqus_shortname + '.disqus.com/embed.js');
     })();
   </script>
 </div>
