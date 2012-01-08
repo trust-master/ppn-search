@@ -102,6 +102,10 @@ group :development, :metrics do
   gem 'rails_best_practices', git: 'https://github.com/flyerhzm/rails_best_practices.git', require: false
 end
 
+group :development, :staging do
+  gem 'whereuat', git: 'https://github.com/gmanley/whereuat.git'
+end
+
 # Gems only for certain operating system environments.
 #
 # Avoid installing those which you don't need by adding, for example, `--without windows:linux`
