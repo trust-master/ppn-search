@@ -95,5 +95,5 @@
   #development
     %h2 Development Stuff
     = render partial: 'disqus', locals: { identifier: [controller.controller_name, controller.action_name].join('#') }
-    - if Rails.env.staging?
+    - unless Rails.env.production?
       = whereuat # the helper to load the Whereuat plugin to aid PivotalTracker story management

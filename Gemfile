@@ -103,7 +103,7 @@ group :development, :metrics do
 end
 
 group :development, :staging do
-  gem 'whereuat', git: 'https://github.com/gmanley/whereuat.git'
+  gem 'whereuat', git: 'https://github.com/rtlong/whereuat.git'
 end
 
 # Gems only for certain operating system environments.

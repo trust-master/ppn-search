@@ -91,15 +91,6 @@ GIT
     nested_form (0.1.1)
 
 GIT
-  remote: https://github.com/gmanley/whereuat.git
-  revision: f0d5235141a9c563ac95d8b2e51199dff82c6ff1
-  specs:
-    whereuat (0.1.0)
-      haml (>= 2.2.0)
-      pivotal-tracker (>= 0.1.3)
-      rack (>= 1.0.0)
-
-GIT
   remote: https://github.com/hedtek/Saikuro.git
   revision: 67be93b1e9c846bdc66c6fffb2aab87bafb821ef
   specs:
@@ -137,6 +128,15 @@ GIT
   specs:
     roodi (2.1.0.20111013125706)
       ruby_parser
+
+GIT
+  remote: https://github.com/rtlong/whereuat.git
+  revision: a5c7aec64af28848616f93911fac6f849c4cfbd2
+  specs:
+    whereuat (0.1.0)
+      haml (>= 2.2.0)
+      pivotal-tracker (>= 0.1.3)
+      rack (>= 1.0.0)
 
 GEM
   remote: http://rubygems.org/
