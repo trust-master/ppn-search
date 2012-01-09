@@ -12,13 +12,13 @@ guard 'spork', cucumber_env: { 'RAILS_ENV' => 'test' }, rspec_env: { 'RAILS_ENV'
   watch(%r{features/support/}) { :cucumber }
 end
 
-guard 'annotate', routes: true, tests: true , tests: true, position: :top  do
+guard 'annotate', tests: true, position: :top  do
   watch( 'db/schema.rb' )
-  #watch( 'config/routes.rb' ) # disabled because it caused a restart 'echo'
 end
 
 guard 'cucumber', cli: '--profile guard' do
   watch(%r{^features/.+\.feature$})
+  watch(%r{^(?:app|lib|config)/.+$})
   watch(%r{^features/support/.+$}) { 'features' }
   watch(%r{^features/step_definitions/(.+)_steps\.rb$}) do |m|
     Dir[File.join("**/#{m[1]}.feature")][0] || 'features'
@@ -27,12 +27,15 @@ end
 
 guard 'rails' do
   watch('Gemfile.lock')
-  watch(%r{^(config|lib)/.rb})
+  watch('config/application.rb')
+  watch('config/environment.rb')
+  watch(%r{^config/environments/.+\.rb$})
+  watch(%r{^config/initializers/.+\.rb$})
 end
 
-guard 'rails_best_practices' do
-  watch(%r{^app/(.+)\.rb$})
-end
+# guard 'rails_best_practices' do
+#   watch(%r{^app/(.+)\.rb$})
+# end
 
 #guard 'rspec', :version => 2 do
 #  watch(%r{^spec/.+_spec\.rb$})
@@ -63,10 +66,10 @@ end
 # Add files and commands to this file, like the example:
 #   watch('file/path') { `command(s)` }
 #
-#guard 'shell' do
-#  watch('(.*).txt') {|m| `tail #{m[0]}` }
-#end
-
-guard 'bundler' do
-  watch('Gemfile')
+guard 'shell' do
+  watch('config/routes.rb') { IO.popen('annotate -r') { |f| puts f.gets } }
 end
+
+# guard 'bundler' do
+#   watch('Gemfile.lock')
+# end

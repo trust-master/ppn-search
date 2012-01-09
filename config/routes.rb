@@ -10,8 +10,9 @@ ServiceProviderPortal::Application.routes.draw do
     resources :categories
     resources :discounts
   end
-
-  resources :users
+  namespace :admin do
+    resources :users
+  end
 
   resource :profile
   resource :session, only: [:new, :create, :destroy]
@@ -25,7 +26,7 @@ ServiceProviderPortal::Application.routes.draw do
   root :to => 'sessions#new'
 end
 #== Route Map
-# Generated on 08 Jan 2012 04:59
+# Generated on 08 Jan 2012 05:41
 #
 #                                    POST   /companies/:company_id/associations(.:format)                    {:action=>"create", :controller=>"associations"}
 #            new_company_association GET    /companies/:company_id/associations/new(.:format)                {:action=>"new", :controller=>"associations"}
@@ -89,13 +90,13 @@ end
 #                            company GET    /companies/:id(.:format)                                         {:action=>"show", :controller=>"companies"}
 #                                    PUT    /companies/:id(.:format)                                         {:action=>"update", :controller=>"companies"}
 #                                    DELETE /companies/:id(.:format)                                         {:action=>"destroy", :controller=>"companies"}
-#                              users GET    /users(.:format)                                                 {:action=>"index", :controller=>"users"}
-#                                    POST   /users(.:format)                                                 {:action=>"create", :controller=>"users"}
-#                           new_user GET    /users/new(.:format)                                             {:action=>"new", :controller=>"users"}
-#                          edit_user GET    /users/:id/edit(.:format)                                        {:action=>"edit", :controller=>"users"}
-#                               user GET    /users/:id(.:format)                                             {:action=>"show", :controller=>"users"}
-#                                    PUT    /users/:id(.:format)                                             {:action=>"update", :controller=>"users"}
-#                                    DELETE /users/:id(.:format)                                             {:action=>"destroy", :controller=>"users"}
+#                        admin_users GET    /admin/users(.:format)                                           {:action=>"index", :controller=>"admin/users"}
+#                                    POST   /admin/users(.:format)                                           {:action=>"create", :controller=>"admin/users"}
+#                     new_admin_user GET    /admin/users/new(.:format)                                       {:action=>"new", :controller=>"admin/users"}
+#                    edit_admin_user GET    /admin/users/:id/edit(.:format)                                  {:action=>"edit", :controller=>"admin/users"}
+#                         admin_user GET    /admin/users/:id(.:format)                                       {:action=>"show", :controller=>"admin/users"}
+#                                    PUT    /admin/users/:id(.:format)                                       {:action=>"update", :controller=>"admin/users"}
+#                                    DELETE /admin/users/:id(.:format)                                       {:action=>"destroy", :controller=>"admin/users"}
 #                            profile POST   /profile(.:format)                                               {:action=>"create", :controller=>"profiles"}
 #                        new_profile GET    /profile/new(.:format)                                           {:action=>"new", :controller=>"profiles"}
 #                       edit_profile GET    /profile/edit(.:format)                                          {:action=>"edit", :controller=>"profiles"}

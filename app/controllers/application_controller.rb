@@ -3,7 +3,11 @@ class ApplicationController < ActionController::Base
   check_authorization
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to login_path, :alert => exception.message
+    if current_user
+      redirect_to root_url, :alert => exception.message
+    else # ask to log in if use is not currently
+      redirect_to login_path, :alert => I18n.t('unauthorized.not_authenticated')
+    end
   end
 
   private

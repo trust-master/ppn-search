@@ -35,8 +35,10 @@ en:
         password: '***'
 
   unauthorized:
-    manage:
-      all: "Not authorized to %{action} %{subject}."
-    # update:
-    #   all:
+    default: "You are not authorized to %{action} %{subject}."
+    not_authenticated: "You must log in before you can do that."
+  #   manage:
+  #     all: "Not authorized to %{action} %{subject}."
+  #   update:
+  #     all:
 
