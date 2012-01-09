@@ -4,6 +4,7 @@ gem 'rails', '~> 3.1.1'
 gem 'pg'
 
 gem 'haml'
+gem 'liquid'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -26,8 +27,6 @@ gem 'cancan' # for authorization
 
 gem 'simple_form'
 gem 'nested_form', git: 'https://github.com/fxposter/nested_form.git'
-
-gem 'rack-webconsole'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
@@ -74,11 +73,14 @@ group :development do
   gem 'guard-cucumber', require: false
   gem 'guard-spork', require: false
 
-  gem "sass" # Add sass just for generators
+  gem "sass" # Add sass just for generators, asset compilation
 
   # For seeding my dev DB with fake data
   gem 'faker'
   gem 'populator'
+
+  # access the rails console right within the web browser
+  gem 'rack-webconsole'
 end
 
 group :development, :test do
@@ -90,7 +92,7 @@ group :development, :test do
   gem 'launchy'
 end
 
-group :development, :metrics do
+group :development do
   gem 'metrical', require: false
   gem 'metric_fu', git: 'https://github.com/jscruggs/metric_fu.git', require: false
   gem 'flay', require: false
@@ -99,7 +101,7 @@ group :development, :metrics do
   gem 'roodi', git: 'https://github.com/rtlong/roodi.git', require: false
   gem 'Saikuro', git: 'https://github.com/hedtek/Saikuro.git', require: false
   gem 'churn', git: 'https://github.com/danmayer/churn.git', require: false
-  gem 'rails_best_practices', git: 'https://github.com/flyerhzm/rails_best_practices.git', require: false
+  gem 'rails_best_practices', git: 'https://github.com/railsbp/rails_best_practices.git', require: false
 end
 
 group :development, :staging do
@@ -111,12 +113,12 @@ end
 # Avoid installing those which you don't need by adding, for example, `--without windows:linux`
 # to your `bundle install` command. You should only need do this once, as it will be remembered.
 
-# Mac OS X
-group :darwin do
-  # The filesystem event and system notifications that Guard wants, for OS X
-  gem 'growl_notify', require: false # Growl notifications
-  gem 'rb-fsevent', git: 'git://github.com/ttilley/rb-fsevent.git', branch: 'pre-compiled-gem-one-off', require: false # FSEvent support
-end
+# Mac OS X; commented out until we need them, since Heroku does not like these
+# group :darwin do
+#   # The filesystem event and system notifications that Guard wants, for OS X
+#   gem 'growl_notify', require: false # Growl notifications
+#   gem 'rb-fsevent', git: 'git://github.com/ttilley/rb-fsevent.git', branch: 'pre-compiled-gem-one-off', require: false # FSEvent support
+# end
 
 # Linux
 group :linux do
