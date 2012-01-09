@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111210050744) do
+ActiveRecord::Schema.define(:version => 20120109074547) do
 
   create_table "affiliations", :force => true do |t|
     t.integer  "company_id"
@@ -281,17 +281,18 @@ ActiveRecord::Schema.define(:version => 20111210050744) do
 
   add_index "sub_categories", ["category_id"], :name => "index_sub_categories_on_category_id"
 
-  create_table "user_password_resets", :force => true do |t|
+  create_table "user_auth_tokens", :force => true do |t|
     t.integer  "user_id"
     t.string   "token"
-    t.string   "requested_by_ip"
+    t.string   "type"
+    t.string   "fullfilled_by_ip"
+    t.datetime "fullfilled_at"
     t.datetime "email_sent_at"
     t.datetime "expires_at"
     t.datetime "created_at"
+    t.string   "created_by_ip"
     t.datetime "updated_at"
   end
-
-  add_index "user_password_resets", ["user_id"], :name => "index_user_password_resets_on_user_id"
 
   create_table "users", :force => true do |t|
     t.boolean  "active",             :default => false
