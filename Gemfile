@@ -28,6 +28,9 @@ gem 'cancan' # for authorization
 gem 'simple_form'
 gem 'nested_form', git: 'https://github.com/fxposter/nested_form.git'
 
+# ActiveRecord-friendly default values - https://github.com/FooBarWidget/default_value_for
+#gem 'default_value_for'
+
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
@@ -87,7 +90,8 @@ group :development, :test do
   gem 'cucumber-rails'
   gem 'spork', '~> 0.9.0.rc'
   gem 'database_cleaner'
-  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails', :require => false
   gem 'capybara'
   gem 'launchy'
 end

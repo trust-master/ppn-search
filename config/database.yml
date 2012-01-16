@@ -40,5 +40,5 @@ production:
   username: TrustMaster
   password: tmspp
 
-cucumber:
-  <<: *test
+# cucumber:
+#   <<: *test
