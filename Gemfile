@@ -79,7 +79,6 @@ group :development do
   gem "sass" # Add sass just for generators, asset compilation
 
   # For seeding my dev DB with fake data
-  gem 'faker'
   gem 'populator'
 
   # access the rails console right within the web browser
@@ -94,6 +93,7 @@ group :development, :test do
   gem 'factory_girl_rails', :require => false
   gem 'capybara'
   gem 'launchy'
+  gem 'faker' # Used in some of the Factories to generate fake data; used in seeds.rb
 end
 
 group :development do
