@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.1.1'
+gem 'rails', '>= 3.1.1'
 gem 'pg'
 
 gem 'haml'
@@ -9,8 +9,8 @@ gem 'liquid'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.1.4'
-  gem 'coffee-rails', '~> 3.1.1'
+  gem 'sass-rails',   '>= 3.1.4'
+  gem 'coffee-rails', '>= 3.1.1'
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -18,7 +18,7 @@ gem "frontend-helpers"
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '>= 3.0.0'
 
 gem "carrierwave" # CarrierWave allows you to attach files to ActiveRecord Objects
 #gem 'aws-s3', require: 'aws/s3' # Access to Amazon S3
@@ -52,7 +52,7 @@ group :development do
   gem 'active_reload'
 
   # https://github.com/guard/guard # http://intridea.com/2011/8/25/hire-a-guard-for-your-project
-  gem 'guard', '>= 0.8.8', require: false
+  gem 'guard', '>= 0.10.0', require: false
 
   # Restart the Rails development server automatically
   gem 'guard-rails', git: 'http://github.com/guard/guard-rails.git', require: false
@@ -61,7 +61,7 @@ group :development do
   gem 'guard-rspec', git: 'http://github.com/guard/guard-rspec.git', require: false
 
   # Run a shell command automatically
-  gem 'guard-shell', git: 'http://github.com/rtlong/guard-shell.git', require: false
+  #gem 'guard-shell', git: 'http://github.com/rtlong/guard-shell.git', require: false
 
   # Annotate models/tests/fixtures/etc when db is modified and routes when routes.rb is changed
   gem 'guard-annotate', git: 'http://github.com/guard/guard-annotate.git', require: false
@@ -88,7 +88,7 @@ end
 
 group :development, :test do
   gem 'cucumber-rails'
-  gem 'spork', '~> 0.9.0.rc'
+  gem 'spork', '>= 0.9.0'
   gem 'database_cleaner'
   gem 'rspec-rails'
   gem 'factory_girl_rails', :require => false
@@ -97,14 +97,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'metrical', require: false
-  gem 'metric_fu', git: 'https://github.com/jscruggs/metric_fu.git', require: false
-  gem 'flay', require: false
-  gem 'flog', require: false
-  gem 'reek', git: 'https://github.com/rtlong/reek.git', require: false
-  gem 'roodi', git: 'https://github.com/rtlong/roodi.git', require: false
-  gem 'Saikuro', git: 'https://github.com/hedtek/Saikuro.git', require: false
-  gem 'churn', git: 'https://github.com/danmayer/churn.git', require: false
   gem 'rails_best_practices', git: 'https://github.com/railsbp/rails_best_practices.git', require: false
 end
 
