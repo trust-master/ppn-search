@@ -104,6 +104,10 @@ group :development, :staging do
   gem 'whereuat', git: 'https://github.com/rtlong/whereuat.git'
 end
 
+group :production, :staging do
+  gem 'newrelic_rpm'
+end
+
 # Gems only for certain operating system environments.
 #
 # Avoid installing those which you don't need by adding, for example, `--without windows:linux`
