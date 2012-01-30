@@ -13,7 +13,7 @@ Feature: Request Password Reset
      And I fill in email
      And I fill in first name
      And I submit the form
-    Then I should see the Password_Reset:new success message
+    Then I should see the Password_Reset:new success body message
      And I should receive an email with my password reset link
 
   Scenario Outline: Request an invalid password reset (one or more fields don't match)

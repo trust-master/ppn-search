@@ -11,33 +11,39 @@ en:
     destroy:
       action: Log Out
       success: You've been logged out!
-
     cant_log_in: Can't log in?
     did_you_forget: Did you forget your password?
     recover: Recover it here.
     why: Why are we making you log in again?
     more: More text that is warm and friendly.
+
   password_reset:
     new:
       instructions:
         Please enter the email address with which you log in and then your first name, for
         verification. We will email to you a link that will let you set a new password.
-      success: Please check your email for the link to reset your password.
+      success:
+        title: Check Your Email!
+        body: Please check your email for the link to reset your password.
       failure:
         Either that email address or the name you entered did not match any user in the system. If
-        you feel thisis incorrect, please try again.
+        you feel this is incorrect, please try again.
     show:
-      instructions:
-        "Please set a new login password."
+      instructions: Please set a new login password.
     update:
-      success:
-        "Your password was changed successfully! You have been logged in."
+      success: Your password was changed successfully! You have been logged in.
       failure:
-        "Something was wrong with your passwords. Please choose a password that conforms to the complexity requirements outlined below. "
+        Something was wrong with your passwords. Please choose a password that conforms to the complexity requirements outlined below.
+    inactive:
+      title: Password Reset has Expired!
+      message: 'Sorry! That password-reset URL has either expired or been fullfilled, already.'
+      try_again: Click here to request a new one.
+
   user:
     password_complexity:
       summary: "Your password must meet the following restrictions: at least 6 characters in length, include at least one number and at least one non-alphanumeric character, use no elements from your email address or your name or that of your company."
-      error: "Invalid password!"
+      error: 'Invalid password!'
+
   helpers:
     submit:
       session:
@@ -55,14 +61,14 @@ en:
         password: Your Trust Master Password
     placeholders:
       defaults:
-        email: name@example.com
+        email: 'name@example.com'
         password: '***'
 
   unauthorized:
-    default: "You are not authorized to %{action} %{subject}."
-    not_authenticated: "You must log in before you can do that."
+    default: 'You are not authorized to %{action} %{subject}.'
+    not_authenticated: You must log in before you can do that.
   #   manage:
-  #     all: "Not authorized to %{action} %{subject}."
+  #     all: Not authorized to %{action} %{subject}.
   #   update:
   #     all:
 

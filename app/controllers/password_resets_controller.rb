@@ -18,7 +18,7 @@ class PasswordResetsController < ApplicationController
 
       UserMailer.password_reset(token).deliver
 
-      render text: t('password_reset.new.success')
+      render :success
 
     else
       redirect_to new_password_reset_path, flash: { error: t('password_reset.new.failure') }
@@ -28,16 +28,16 @@ class PasswordResetsController < ApplicationController
   # The show action will be used when fullfilling the reset (the reset URL will point to this)
   def show
     @token = PasswordReset.find_by_token(params[:id])
-    if @token.valid?
+    if @token and @token.active?
       @user = @token.user
     else
-      render text: t('password_reset.show.failure'), status: :gone
+      render :inactive, status: :gone
     end
   end
 
   def update
     @token = PasswordReset.find_by_token(params[:id])
-    if @token.valid?
+    if @token and @token.active?
       @user = @token.user
 
       @user.password, @user.password_confirmation =
@@ -55,7 +55,7 @@ class PasswordResetsController < ApplicationController
         render :show
       end
     else
-      render text: t('password_reset.show.failure'), status: :gone
+      render :inactive, status: :gone
     end
   end
 end
