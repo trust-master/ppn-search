@@ -62,6 +62,10 @@ class UserAuthToken < ActiveRecord::Base
   def active?
     not inactive?
   end
+
+  def to_param
+    token
+  end
 end
 
 # == Schema Information

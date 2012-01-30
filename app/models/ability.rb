@@ -11,12 +11,15 @@ class Ability
       else
         can :read, :all
         can :destroy, Session
+        can :manage, User, :id => user.id
       end
     else # guest
       # no permissions
     end
 
+
     can :create, Session
+    can [:create, :read, :update], PasswordReset
 
     # The first argument to `can` is the action you are giving the user permission to do.
     # If you pass :manage it will apply to every action. Other common actions here are

@@ -1,0 +1,10 @@
+- content_for :title, 'Reset Password'
+
+%p= t('password_reset.show.instructions')
+
+= simple_form_for @token, url: password_reset_path(@token) do |f|
+  = f.simple_fields_for :user, @user do |u|
+    %ul
+      = u.input :password
+      = u.input :password_confirmation
+    = u.submit 'Reset My Password', id: 'submit'

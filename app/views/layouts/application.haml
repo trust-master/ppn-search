@@ -24,19 +24,19 @@
               %ul.account-links
                 %li.nav-profile
                   .divider
-                  = link_to 'Profile', edit_profile_path
+                  = link_to 'Profile', edit_user_path
                   %ul.dropdown
-                    %li= link_to "View Profile", profile_path
-                    %li= link_to "Edit Profile", edit_profile_path
+                    %li= link_to 'View Profile', user_path
+                    %li= link_to 'Edit Profile', edit_user_path
                 %li.nav-account
                   .divider
                   = link_to 'Account', ''
                   %ul.dropdown
-                    %li= link_to "Basic Info"
-                    %li= link_to "Privacy Settings"
-                    %li= link_to "Notifications & Alerts"
+                    %li= link_to 'Basic Info'
+                    %li= link_to 'Privacy Settings'
+                    %li= link_to 'Notifications & Alerts'
                 %li.nav-logout
-                  = link_to 'Logout', logout_path
+                  = link_to t('session.destroy.action'), logout_path
               .clear
             .search
               = form_tag companies_path do

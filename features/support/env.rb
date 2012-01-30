@@ -15,10 +15,16 @@ Spork.prefork do
   require 'cucumber/rails'
 
   Capybara.default_selector = :css
+
+  require_relative 'mailer_macros'
+  include MailerMacros
 end
 
 Spork.each_run do
   # This code will be run each time you run your specs.
+
+  require 'factory_girl_rails'
+  require 'factory_girl/step_definitions'
 
   # By default, any exception happening in your Rails application will bubble up
   # to Cucumber so that your scenario will fail. This is a different from how

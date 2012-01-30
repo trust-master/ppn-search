@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   load_and_authorize_resource
 
   def new
-    # since this action is the root of the site, redirect to a usable page, when already logged in.
+    # redirect to a usable page, when already logged in.
     if current_user
       redirect_to companies_path
     else

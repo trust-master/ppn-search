@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   belongs_to :created_by_user, class_name: 'User'
   belongs_to :updated_by_user, class_name: 'User'
   has_many :auth_tokens, class_name: 'UserAuthToken'
+  has_many :password_resets
 
   before_save { |u| u.updated_by_user = self.class.current_user }
   before_create { |u| u.created_by_user = self.class.current_user }
@@ -16,6 +17,7 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :role, :company_id
   validates_presence_of :password, :password_confirmation, on: :create
   validates :role, inclusion: { in: ROLES }
+  validates :password, password: true
 
   attr_accessible :first_name, :middle_name, :last_name, :email, :password, :password_confirmation,
     as: [:default, :admin]

@@ -7,7 +7,7 @@ FactoryGirl.define do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     email { "#{[first_name, last_name].join('.')}@Trust-Master.com" }
-    password 'test'
+    password 'test123!'
     password_confirmation { password }
     company
   end

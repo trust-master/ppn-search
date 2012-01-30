@@ -1,0 +1,10 @@
+- content_for :title, 'Reset Password'
+
+%p= t('password_reset.new.instructions')
+
+= simple_form_for @password_reset, url: password_resets_path do |f|
+  %fieldset
+    %ul
+      = f.input :email
+      = f.input :name
+    = f.submit 'Reset My Password', id: 'submit'
