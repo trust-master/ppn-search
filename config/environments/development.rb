@@ -30,4 +30,14 @@ ServiceProviderPortal::Application.configure do
 
   # Set the default url options for ActionMailer (so it knows how to generate URLs, for example)
   config.action_mailer.default_url_options = { :host => "localhost:3000" }
+
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => ENV['GOOGLE_DOMAIN'] || 'gmail.com',
+    :user_name            => ENV['GOOGLE_USER'],
+    :password             => ENV['GOOGLE_PASS'],
+    :authentication       => "plain",
+    :enable_starttls_auto => true
+  }
 end

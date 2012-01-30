@@ -51,9 +51,6 @@ ServiceProviderPortal::Application.configure do
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   config.assets.precompile += %w( ie8.css ie7.css whereuat.js whereuat.css )
 
-  # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
-
   # Enable threaded mode
   # config.threadsafe!
 
@@ -64,6 +61,19 @@ ServiceProviderPortal::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
+  # Disable delivery errors, bad email addresses will be ignored
+  # config.action_mailer.raise_delivery_errors = false
+
   # Set the default url options for ActionMailer (so it knows how to generate URLs, for example)
   config.action_mailer.default_url_options = { :host => "trust-master.herokuapp.com" }
+
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => ENV['GOOGLE_DOMAIN'] || 'gmail.com',
+    :user_name            => ENV['GOOGLE_USER'],
+    :password             => ENV['GOOGLE_PASS'],
+    :authentication       => "plain",
+    :enable_starttls_auto => true
+  }
 end

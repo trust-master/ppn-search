@@ -10,8 +10,7 @@ guard 'rails' do
 end
 
 guard 'spork', cucumber_env: { 'RAILS_ENV' => 'test' }, rspec_env: { 'RAILS_ENV' => 'test' } do
-  watch('config/application.rb')
-  watch('config/environment.rb')
+  watch(%r{^config/(?:application|environment|routes).rb$})
   watch(%r{^config/environments/.+\.rb$})
   watch(%r{^config/initializers/.+\.rb$})
   watch(/Gemfile(?:.lock)?/)
@@ -64,9 +63,9 @@ end
 # Add files and commands to this file, like the example:
 #   watch('file/path') { `command(s)` }
 #
-guard 'shell' do
-  watch('config/routes.rb') { IO.popen('annotate -r') { |f| puts f.gets } }
-end
+# guard 'shell' do
+#   watch('config/routes.rb') { IO.popen('annotate -r') { |f| puts f.gets } }
+# end
 
 # guard 'bundler' do
 #   watch('Gemfile.lock')

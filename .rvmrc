@@ -1,3 +1,36 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-rvm use --create 1.9.3@trust-master
+ruby_string="ruby-1.9.3-p0"
+gemset_pattern="trust[_-]?master"
+
+if $(rvm list strings | grep -q ${ruby_string}) ; then
+
+  gemset="$( rvm list gemsets | grep -E "${ruby_string}@${gemset_pattern}" | head | sed -E "s/^(=>)?\s+(${ruby_string}@${gemset_pattern})\s*\[\s*\w+\s*]/\2/gi" )"
+
+  if [[ -n "$gemset" ]]; then
+    rvm use 1.9.3@${gemset}
+  else
+    rvm use 1.9.3
+  fi
+
+  # Ensure that Bundler is installed, install it if it is not.
+  if ! [[ -n $(which bundle) ]]; then
+    echo "Installing bundler"
+    gem install bundler
+  fi
+
+else
+  # Even though the exact ruby we wanted isn't installed, load any 1.9.3 it can.
+  rvm use 1.9.3
+
+  # Notify the user to install the desired interpreter before proceeding.
+  echo -e "${ruby_string} was not found, please run the following commands and then cd back into the project directory.\n"
+
+  echo "rvm get head # update rvm to newest version"
+  echo "rvm reload # reload rvm after update"
+  echo "rvm install 1.9.3 # Install the newest stable ruby-1.9.3"
+  echo ""
+  echo "If this installs a ruby newer than ${ruby_string}, please update the .rvmrc file to reflect this most-recent 1.9.3 stable release."
+  echo "Also, if you already have a 1.9.3 installed, you can look into 'rvm upgrade' (http://beginrescueend.com/rubies/upgrading/)"
+
+fi
