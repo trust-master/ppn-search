@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   ROLES = %w[Admin CompanyAdmin User].freeze
-  set_inheritance_column :role
+  self.inheritance_column = :role
 
   belongs_to :company
   belongs_to :created_by_user, class_name: 'User'

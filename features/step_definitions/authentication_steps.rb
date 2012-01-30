@@ -4,8 +4,8 @@ end
 
 Given(/^a valid user exists in the database$/) do
   c = Company.create(name: 'Company')
-  u = User.new(first_name: 'Test', last_name: 'User', company_id: c.id,
-        password: 'test', password_confirmation: 'test', email: 'test@test.com')
+  u = User.new({ first_name: 'Test', last_name: 'User', company_id: c.id,
+          password: 'test', password_confirmation: 'test', email: 'test@test.com' }, without_protection: true)
   u.company = c
   u.save
 end

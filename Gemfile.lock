@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/jnicklas/carrierwave.git
+  revision: 719a13ce976940fd793d4ed70db1c4fb1c705ff4
+  specs:
+    carrierwave (0.6.0.beta)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+
+GIT
   remote: http://github.com/MatthewHager/guard-rails_best_practices.git
   revision: 3506ddbe0a8cca25566c714ddb07fa721b3889f6
   specs:
@@ -106,8 +114,6 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-    carrierwave (0.5.8)
-      activesupport (~> 3.0)
     childprocess (0.3.0)
       ffi (~> 1.0.6)
     coffee-rails (3.2.2)
@@ -283,7 +289,7 @@ DEPENDENCIES
   bcrypt-ruby
   cancan
   capybara
-  carrierwave
+  carrierwave!
   coffee-rails
   cucumber-rails
   database_cleaner
