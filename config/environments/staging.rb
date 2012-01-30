@@ -68,12 +68,12 @@ ServiceProviderPortal::Application.configure do
   config.action_mailer.default_url_options = { :host => "trust-master.herokuapp.com" }
 
   config.action_mailer.smtp_settings = {
-    :address              => "smtp.gmail.com",
-    :port                 => 587,
-    :domain               => ENV['GOOGLE_DOMAIN'] || 'gmail.com',
-    :user_name            => ENV['GOOGLE_USER'],
-    :password             => ENV['GOOGLE_PASS'],
-    :authentication       => "plain",
-    :enable_starttls_auto => true
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'heroku.com'
   }
+  config.action_mailer.delivery_method = :smtp
 end
