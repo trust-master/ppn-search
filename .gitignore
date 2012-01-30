@@ -15,6 +15,9 @@
 .sass-cache
 .rspec
 
+# Pre-Compiled Assets
+/public/assets
+
 # KDE dingleberries
 .directory
 
