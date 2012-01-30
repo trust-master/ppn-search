@@ -7,3 +7,4 @@ default: <%= std_opts %> features
 wip: --drb --tags @wip:3 --wip features
 rerun: --drb <%= rerun_opts %> --format rerun --out rerun.txt --strict --tags ~@wip
 guard: --drb --format progress --strict --tags ~@wip
+ci: --format Formatters::HTML --out tmp/features.html
