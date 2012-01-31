@@ -2,6 +2,11 @@ class BusinessFiling < ActiveRecord::Base
   belongs_to :company
   belongs_to :type, :class_name => 'FilingType'
   belongs_to :status, :class_name => 'FilingStatus'
+
+  # attr_accessible :company_id, :type_id, :status_id, :number, :name, :registered_office_address,
+  #   :originally_filed_on, :in_good_standing_as_of, :chapter, :duration, :agent_name, :created_at,
+  #   :updated_at
+
 end
 
 

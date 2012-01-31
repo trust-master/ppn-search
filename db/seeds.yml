@@ -34,6 +34,88 @@ service_areas:
       - St. Augusta
       - Waite Park
 
+license_types:
+  mn:
+    personal:
+      - 1st Class A Engineer
+      - 1st Class B Engineer
+      - 1st Class C Engineer
+      - 1st Class P Engineer
+      - 2nd Class A Engineer
+      - 2nd Class B Engineer
+      - 2nd Class C Engineer
+      - Accessibility Specialist
+      - Backflow Prevention Rebuilder
+      - Backflow Prevention Tester
+      - Boat Master
+      - Boiler Inspector Competency
+      - Building Official Limited
+      - CE Instructor
+      - Certified Building Official
+      - Chief A Engineer
+      - Chief B Engineer
+      - Chief C Engineer
+      - Electrical Engineer
+      - Historical Boiler Engineer
+      - HPP Contracting Pipefitter
+      - HPP Journeyman Pipefitter
+      - Installer A
+      - Installer B
+      - Journeyman A Electrician
+      - Journeyman B Electrician
+      - Journeyman Elevator Constr
+      - Journeyman Plumber
+      - Lineman
+      - Maintenance Electrician
+      - Master A Electrician
+      - Master B Electrician
+      - Master Elevator Constructor
+      - Master Plumber
+      - Medical Gas Certificate
+      - Power Limited Technician
+      - Qualifying Builder
+      - Qualifying Installer
+      - Qualifying Remodeler
+      - Qualifying Roofer
+      - Reg Unl Electrician
+      - Reg Unl Elevator Constructor
+      - Reg Unl HPP Pipefitter
+      - Reg Unl Plumber
+      - Reg Unl Power Limited Tech
+      - Restricted Journeyman Plumber
+      - Restricted Master Plumber
+      - Special Engineer
+      - Water Conditioning Journeyman
+      - Water Conditioning Master
+    business:
+      - CE Sponsor
+      - CE Sponsor - Individual
+      - Cert Of Exemption-Builder
+      - Cert Of Exemption-Remodeler
+      - Cert Of Exemption-Roofer
+      - Class A Electrical Contractor
+      - Class B Electrical Contractor
+      - Elevator Contractor
+      - High Pressure Piping Business
+      - Independent Contractor
+      - Manufactured Home Installer
+      - Mechanical Contractor Bond
+      - Mfd Home Dealer
+      - Mfd Home Dealer Subagency
+      - Mfd Home Limited Dealer
+      - Mfd Home Manufacturer
+      - Plumbing Bond
+      - Plumbing Contractor
+      - Registered Employer Electrical
+      - Registered Employer Plumbing
+      - Residential Bldg Contractor
+      - Residential Remodeler
+      - Residential Roofer
+      - Restricted Plumbing Contractor
+      - Sign Contractor Bond
+      - Technology Systems Contractor
+      - Water Conditioning Contractor
+
 countries:
   - name: United States
     code: US

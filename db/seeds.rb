@@ -1,5 +1,8 @@
 require 'faker'
 require 'populator'
+require 'open-uri'
+require 'nokogiri'
+require 'mechanize'
 require Rails.root.join('lib','monkey_patches.rb')
 
 module ActiveRecord
@@ -155,5 +158,55 @@ print "\n"
 
 USER_ids = User.all_ids
 
-success_msg "There are now #{Admin.count} Admin users, #{User.where(role: 'CompanyAdmin').count}
-Company Admins, and #{User.count} total users."
+success_msg "There are now #{Admin.count} Admin users, #{User.where(role: 'CompanyAdmin').count} " <<
+  "Company Admins, and #{User.count} total users."
+
+#######################
+puts "\nPopulating License types from the MN DLI License Lookup Page...\n"
+
+MN = State.find_by_name('Minnesota')
+agent = Mechanize.new
+
+print '  Getting Personal License Types... '
+
+options = begin
+    page = agent.get('https://secure.doli.state.mn.us/lookup/AdvancedSearch.aspx')
+    print '!'
+    page.parser.xpath("//select[@name='ddlLicType']/option[not(@value='ALL')]/text()").map{ |node|
+      node.to_s.strip.downcase.titleize.gsub(/\b(Ce|Hpp)\b/){ |word| word.upcase }
+    }
+  rescue Exception => e
+    # Load from YAML
+    SEED_DATA[:license_types][:mn][:personal]
+  end
+
+options.each do |license_type|
+  PersonalLicenseType.find_or_create_by_name(license_type, state_id: MN.id)
+  print '.'
+end
+
+print "\n  Getting Business License Types... "
+begin
+  form = page.form('form1')
+  form.radiobutton_with(name: "licenseType", value: "rbBusiness").check
+  page = form.submit
+  print '!'
+
+  options = page.parser.xpath("//select[@name='ddlLicType']/option[not(@value='ALL')]/text()").map{ |node|
+    node.to_s.strip.split('-').map{ |s|
+      s.downcase.titleize.gsub(/\b(Ce|Hpp)\b/){ |word| word.upcase }
+    }.join('-')
+  }
+rescue Exception => e
+  # Load from YAML
+  options = SEED_DATA[:license_types][:mn][:business]
+end
+
+options.each do |license_type|
+  BusinessLicenseType.find_or_create_by_name(license_type, state_id: MN.id)
+  print '.'
+end
+print "\n"
+
+success_msg "There are now #{PersonalLicenseType.count} types of PersonalLicense " <<
+  "and #{BusinessLicenseType.count} types of BusinessLicense"

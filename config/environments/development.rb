@@ -47,4 +47,7 @@ ServiceProviderPortal::Application.configure do
     :authentication       => "plain",
     :enable_starttls_auto => true
   }
+
+  # Don't bother with actually queueing tasks in development
+  Resque.inline = true
 end

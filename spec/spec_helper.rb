@@ -39,6 +39,9 @@ Spork.prefork do
   # As suggested on http://stackoverflow.com/questions/5913255/spork-and-cache-classes-problem-with-
   # rspec-factory-girl-and-datamapper
   ActiveSupport::Dependencies.clear
+
+  # to force Resque to run jobs synchronously
+  Resque.inline = true
 end
 
 Spork.each_run do

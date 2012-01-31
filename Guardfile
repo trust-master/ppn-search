@@ -9,6 +9,12 @@ guard 'rails' do
   watch(/Gemfile(?:.lock)?/)
 end
 
+# guard 'resque', environment: 'development', task: 'resque:work', verbose: false, trace: false, queue: '*', count: 1
+# guard 'resque', environment: 'development' do
+#   watch(%r{^app/(.+)\.rb})
+#   watch(%r{^lib/(.+)\.rb})
+# end
+
 guard 'spork', cucumber_env: { 'RAILS_ENV' => 'test' }, rspec_env: { 'RAILS_ENV' => 'test' } do
   watch(%r{^config/(?:application|environment|routes).rb$})
   watch(%r{^config/environments/.+\.rb$})

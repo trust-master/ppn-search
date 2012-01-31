@@ -1,8 +1,7 @@
-class LicenseType < ActiveRecord::Base
-  belongs_to :state
+
+class PersonalLicenseType < LicenseType
+  has_many :personal_licenses
 end
-
-
 # == Schema Information
 #
 # Table name: license_types

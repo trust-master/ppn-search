@@ -28,6 +28,13 @@ gem 'nested_form', git: 'https://github.com/fxposter/nested_form.git'
 # Use thin instead of Webrick
 gem 'thin', require: false
 
+# For the screen-scraping component
+gem 'nokogiri'
+gem 'mechanize'
+
+# For background tasks (like scraping the MN DoLI website, or sending emails)
+gem 'resque'
+
 # Gems used only for assets and not required in production environments by default.
 group :assets do
   gem 'sass-rails'
@@ -70,14 +77,17 @@ group :development do
 
   gem 'guard-cucumber', require: false
   gem 'guard-spork', require: false
+  gem 'guard-resque', require: false
 
-  gem "sass" # Add sass just for generators, asset compilation
+  gem 'sass' # Add sass just for generators, asset compilation
 
   # For seeding my dev DB with fake data
   gem 'populator'
 
   # access the rails console right within the web browser
   gem 'rack-webconsole'
+
+  gem 'railroad', git: 'https://github.com/kirillrdy/railroad3.git' # bx railroad -a -i -o full_models.dot -M
 end
 
 group :development, :test do
