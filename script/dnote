@@ -6,4 +6,4 @@
 GIT_REVISION=$(git rev-list --max-count=1 HEAD)
 
 
-bundle exec dnote -f html/file -o tmp/notes.html -t 'Current Code Annotations' -l TODO:FIXME:NOTE:OPTIMIZE:CHANGED:REFACTOR:REVIEW  -u "https://bitbucket.org/rtlong/trustmaster-sp-portal/src/${GIT_REVISION}/%s#cl-%d"   ./{app,config,db,lib,spec}/** Gemfile Procfile Vagrantfile Guardfile Rakefile config.ru .irbrc .rvmrc
+bundle exec dnote --debug -f html/file -o tmp/notes.html -t 'Current Code Annotations' -l TODO:FIXME:NOTE:OPTIMIZE:CHANGED:REFACTOR:REVIEW  -u "https://bitbucket.org/rtlong/trustmaster-sp-portal/src/${GIT_REVISION}/%s#cl-%d"   ./{app,config,db,lib,spec,features,public,script}/**/*.{rb,css,js,coffee,sass,scss,haml,html,erb,conf,feature,md,markdown,metrics,rake,txt,yml,xml} Gemfile Procfile Vagrantfile Guardfile Rakefile config.ru .irbrc .rvmrc
