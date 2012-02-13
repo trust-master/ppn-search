@@ -5,32 +5,8 @@ ServiceProviderPortal::Application.configure do
   config.cache_classes = true
 
   # Full error reports are disabled and caching is turned on
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
-
-  # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
-
-  # Compress JavaScripts and CSS
-  config.assets.compress = true
-  config.assets.css_compressor = :yui
-  config.assets.js_compressor = :uglifier
-
-  # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
-
-  # Generate digests for assets URLs
-  config.assets.digest = true
-
-  # Defaults to Rails.root.join("public/assets")
-  # config.assets.manifest = YOUR_PATH
-
-  # Specifies the header that your server uses for sending files
-  # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
-  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
-
-  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
 
   # See everything in the log (default is :info)
   # config.log_level = :debug
@@ -44,18 +20,6 @@ ServiceProviderPortal::Application.configure do
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
 
-  # Enable serving of images, stylesheets, and JavaScripts from an asset server
-  # config.action_controller.asset_host = "http://assets.example.com"
-
-  # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( ie8.css ie7.css whereuat.js whereuat.css )
-
-  # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
-
-  # Enable threaded mode
-  # config.threadsafe!
-
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)
   config.i18n.fallbacks = true
@@ -67,16 +31,53 @@ ServiceProviderPortal::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-  # Set the default url options for ActionMailer (so it knows how to generate URLs, for example)
-  config.action_mailer.default_url_options = { :host => "trust-master.herokuapp.com" }
+  # Only use best-standards-support built into browsers
+  config.action_dispatch.best_standards_support = :builtin
 
-  ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.sendgrid.net',
-    :port           => '587',
-    :authentication => :plain,
-    :user_name      => ENV['SENDGRID_USERNAME'],
-    :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => 'heroku.com'
+  # Raise exception on mass assignment protection for Active Record models
+  config.active_record.mass_assignment_sanitizer = :strict
+
+  ### ASSETS ###
+
+  # Defaults to Rails.root.join("public/assets")
+  # config.assets.manifest = YOUR_PATH
+
+  # Enable Rails's static asset server (to serve assets on Heroku)
+  config.serve_static_assets = true
+
+  # Compress JavaScripts and CSS
+  config.assets.compress = true
+  config.assets.css_compressor = :yui
+  config.assets.js_compressor = :uglifier
+
+  # Don't fallback to assets pipeline if a precompiled asset is missed
+  config.assets.compile = false
+
+  # Generate digests for assets URLs
+  config.assets.digest = true
+
+  # Enable serving of images, stylesheets, and JavaScripts from an asset server
+  # config.action_controller.asset_host = "http://assets.example.com"
+
+  # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
+  config.assets.precompile += %w( ie8.css ie7.css whereuat.js whereuat.css )
+
+  ### ActionMailer ###
+
+  # Disable delivery errors, bad email addresses will be ignored
+  config.action_mailer.raise_delivery_errors = false
+
+  config.action_mailer.delivery_method = :smtp
+  # Set the default url options for ActionMailer (so it knows how to generate URLs, for example)
+  config.action_mailer.default_url_options = {
+    host: 'trust-master.herokuapp.com'
   }
-  ActionMailer::Base.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :port           => ENV['MAILGUN_SMTP_PORT'],
+    :address        => ENV['MAILGUN_SMTP_SERVER'],
+    :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+    :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+    :domain         => 'trust-master.heroku.com',
+    :authentication => :plain,
+  }
 end

@@ -7,14 +7,11 @@ ServiceProviderPortal::Application.configure do
   config.cache_classes = false
 
   # Log error messages when you accidentally call methods on nil.
-  #config.whiny_nils = true
+  config.whiny_nils = true
 
   # Show full error reports and disable caching
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
-
-  # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -29,24 +26,27 @@ ServiceProviderPortal::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   config.active_record.auto_explain_threshold_in_seconds = 0.5
 
+  ### ASSETS ###
+
   # Do not compress assets
   config.assets.compress = false
 
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  # Set the default url options for ActionMailer (so it knows how to generate URLs, for example)
-  config.action_mailer.default_url_options = { :host => "localhost:3000" }
+  ### ActionMailer ###
 
-  config.action_mailer.smtp_settings = {
-    :address              => "smtp.gmail.com",
-    :port                 => 587,
-    :domain               => ENV['GOOGLE_DOMAIN'] || 'gmail.com',
-    :user_name            => ENV['GOOGLE_USER'],
-    :password             => ENV['GOOGLE_PASS'],
-    :authentication       => "plain",
-    :enable_starttls_auto => true
-  }
+  # Set the default url options for ActionMailer (so it knows how to generate URLs, for example)
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
+  # Send mails to a file within tmp/mails/
+  config.action_mailer.file_settings = { path: Rails.root.join('tmp','mails') }
+  config.action_mailer.delivery_method = :file
+
+  # Don't care if the mailer can't send
+  config.action_mailer.raise_delivery_errors = true
+
+  ### Resque ###
 
   # Don't bother with actually queueing tasks in development
   Resque.inline = true

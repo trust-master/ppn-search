@@ -74,6 +74,7 @@ group :development do
   gem 'guard-bundler', require: false
 
   gem 'guard-rails_best_practices', git: 'http://github.com/MatthewHager/guard-rails_best_practices.git', require: false
+  gem 'rails_best_practices', git: 'https://github.com/railsbp/rails_best_practices.git', require: false
 
   gem 'guard-cucumber', require: false
   gem 'guard-spork', require: false
@@ -88,6 +89,9 @@ group :development do
   gem 'rack-webconsole'
 
   gem 'railroad', git: 'https://github.com/kirillrdy/railroad3.git' # bx railroad -a -i -o full_models.dot -M
+
+  # To enumerate all TODO's and FIXME's in the code
+  gem 'dnote'
 end
 
 group :development, :test do
@@ -99,10 +103,6 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'faker' # Used in some of the Factories to generate fake data; used in seeds.rb
-end
-
-group :development do
-  gem 'rails_best_practices', git: 'https://github.com/railsbp/rails_best_practices.git', require: false
 end
 
 group :development, :staging do

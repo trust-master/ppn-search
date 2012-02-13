@@ -1,79 +1,33 @@
+require_relative 'production'
+
 ServiceProviderPortal::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
-  # Code is not reloaded between requests
-  config.cache_classes = true
-
-  # Full error reports are disabled and caching is turned on
-  config.consider_all_requests_local       = true # default is false
-  config.action_controller.perform_caching = true
-
-  # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
-
-  # Compress JavaScripts and CSS
-  config.assets.compress = false
-  # config.assets.css_compressor = :yui
-  # config.assets.js_compressor = :uglifier
-
-  # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
-
-  # Generate digests for assets URLs
-  config.assets.digest = true
-
-  # Expands the lines which load the assets
-  config.assets.debug = true
-
-
-  # Defaults to Rails.root.join("public/assets")
-  # config.assets.manifest = YOUR_PATH
-
-  # Specifies the header that your server uses for sending files
-  # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
-  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
-
-  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  # Full error reports are enabled
+  config.consider_all_requests_local = true
 
   # See everything in the log (default is :info)
-  # config.log_level = :debug
+  config.log_level = :debug
 
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new
 
-  # Use a different cache store in production
-  # config.cache_store = :mem_cache_store
-
-  # Enable serving of images, stylesheets, and JavaScripts from an asset server
-  # config.action_controller.asset_host = "http://assets.example.com"
-
-  # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( ie8.css ie7.css whereuat.js whereuat.css )
-
-  # Enable threaded mode
-  # config.threadsafe!
-
-  # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
-  # the I18n.default_locale when a translation can not be found)
-  config.i18n.fallbacks = true
-
   # Send deprecation notices to registered listeners
-  config.active_support.deprecation = :notify
+  config.active_support.deprecation = :log
+
+  ### ASSETS ###
+
+  # Allow passing debug_assets=true as a query parameter to load pages with unpackaged assets
+  config.assets.allow_debugging = true
+
+  ### ActionMailer ###
 
   # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Set the default url options for ActionMailer (so it knows how to generate URLs, for example)
-  config.action_mailer.default_url_options = { :host => "trust-master.herokuapp.com" }
-
-  config.action_mailer.smtp_settings = {
-    :address        => 'smtp.sendgrid.net',
-    :port           => '587',
-    :authentication => :plain,
-    :user_name      => ENV['SENDGRID_USERNAME'],
-    :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => 'heroku.com'
+  config.action_mailer.default_url_options = {
+    host: 'trust-master.herokuapp.com'
   }
   config.action_mailer.delivery_method = :smtp
 end

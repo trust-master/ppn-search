@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# This script is meant to be run by Jenkins CI server upon deployment attempt. It will run the dnote
+# binary, outputting an HTML file to tmp/notes.html which will then be available per-build on Jenkins
+
+GIT_REVISION=$(git rev-list --max-count=1 HEAD)
+
+
+bundle exec dnote -f html/file -o tmp/notes.html -t 'Current Code Annotations' -l TODO:FIXME:NOTE:OPTIMIZE:CHANGED:REFACTOR:REVIEW  -u "https://bitbucket.org/rtlong/trustmaster-sp-portal/src/${GIT_REVISION}/%s#cl-%d"   ./{app,config,db,lib,spec}/** Gemfile Procfile Vagrantfile Guardfile Rakefile config.ru .irbrc .rvmrc
