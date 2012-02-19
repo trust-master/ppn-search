@@ -1,19 +1,10 @@
 GIT
   remote: git://github.com/jnicklas/carrierwave.git
-  revision: 719a13ce976940fd793d4ed70db1c4fb1c705ff4
+  revision: efaafc49422984df90f4ca0961ad54959861b3dc
   specs:
     carrierwave (0.6.0.beta)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
-
-GIT
-  remote: http://github.com/MatthewHager/guard-rails_best_practices.git
-  revision: 3506ddbe0a8cca25566c714ddb07fa721b3889f6
-  specs:
-    guard-rails_best_practices (0.1.2)
-      activesupport
-      guard (>= 0.8.4)
-      rails_best_practices (>= 1.1.0)
 
 GIT
   remote: http://github.com/guard/guard-annotate.git
@@ -38,6 +29,14 @@ GIT
       guard (>= 0.10.0)
 
 GIT
+  remote: http://github.com/railsjedi/guard-resque.git
+  revision: b7ade0304368751f4cc4308493ab72cbbd9b793b
+  specs:
+    guard-resque (0.0.4)
+      guard (>= 0.8)
+      resque
+
+GIT
   remote: http://github.com/rtlong/tailor.git
   revision: e3b2062c35d50e88c30d636598246ca6b302adc1
   specs:
@@ -46,27 +45,9 @@ GIT
 
 GIT
   remote: https://github.com/fxposter/nested_form.git
-  revision: fa902fd355539efe467ef315efa2f69edcbb991e
+  revision: f4213e1d883963ea64bce6f7c9ece15d085485b9
   specs:
-    nested_form (0.1.1)
-
-GIT
-  remote: https://github.com/kirillrdy/railroad3.git
-  revision: 54ee4f46ec75746aca2b1d69555e3e2b9fd2cd91
-  specs:
-    railroad (0.5.0)
-
-GIT
-  remote: https://github.com/railsbp/rails_best_practices.git
-  revision: 34ef8f24078f8c7171577a12d43e4796ad1f5f2e
-  specs:
-    rails_best_practices (1.7.2)
-      activesupport
-      colored
-      erubis
-      i18n
-      progressbar
-      sexp_processor
+    nested_form (0.2.0)
 
 GIT
   remote: https://github.com/rtlong/whereuat.git
@@ -107,7 +88,7 @@ GEM
     activesupport (3.2.1)
       i18n (~> 0.6)
       multi_json (~> 1.0)
-    addressable (2.2.6)
+    addressable (2.2.7)
     annotate (2.4.0)
     arel (3.0.0)
     bcrypt-ruby (3.0.1)
@@ -120,7 +101,7 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-    childprocess (0.3.0)
+    childprocess (0.3.1)
       ffi (~> 1.0.6)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -129,7 +110,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.2.0)
-    colored (1.2)
     cucumber (1.1.4)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.2)
@@ -140,25 +120,25 @@ GEM
       capybara (>= 1.1.2)
       cucumber (>= 1.1.3)
       nokogiri (>= 1.5.0)
-    daemons (1.1.6)
+    daemons (1.1.8)
     database_cleaner (0.7.1)
     diff-lcs (1.1.3)
     dnote (1.7.1)
-    domain_name (0.5.1)
+    domain_name (0.5.2)
       unf (~> 0.0.3)
     erubis (2.7.0)
     eventmachine (0.12.10)
     execjs (1.3.0)
       multi_json (~> 1.0)
-    factory_girl (2.5.0)
-      activesupport
-    factory_girl_rails (1.6.0)
-      factory_girl (~> 2.5.0)
+    factory_girl (2.6.0)
+      activesupport (>= 2.3.9)
+    factory_girl_rails (1.7.0)
+      factory_girl (~> 2.6.0)
       railties (>= 3.0.0)
     faker (1.0.1)
       i18n (~> 0.4)
     ffi (1.0.11)
-    gherkin (2.7.6)
+    gherkin (2.7.7)
       json (>= 1.4.6)
     guard (1.0.0)
       ffi (>= 0.5.0)
@@ -169,10 +149,7 @@ GEM
     guard-cucumber (0.7.5)
       cucumber (>= 0.10)
       guard (>= 0.8.3)
-    guard-resque (0.0.3)
-      guard (>= 0.8)
-      resque
-    guard-spork (0.5.1)
+    guard-spork (0.5.2)
       guard (>= 0.10.0)
       spork (>= 0.8.4)
     haml (3.1.4)
@@ -185,6 +162,7 @@ GEM
       railties (>= 3.2.0.beta, < 5.0)
       thor (~> 0.14)
     json (1.6.5)
+    json_pure (1.6.5)
     launchy (2.0.5)
       addressable (~> 2.2.6)
     libnotify (0.7.2)
@@ -194,22 +172,23 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mechanize (2.1)
+    mechanize (2.2.1)
       domain_name (~> 0.5, >= 0.5.1)
+      mime-types (~> 1.17, >= 1.17.2)
       net-http-digest_auth (~> 1.1, >= 1.1.1)
-      net-http-persistent (~> 2.3, >= 2.3.2)
+      net-http-persistent (~> 2.5, >= 2.5.2)
       nokogiri (~> 1.4)
       ntlm-http (~> 0.1, >= 0.1.1)
       webrobots (~> 0.0, >= 0.0.9)
     mime-types (1.17.2)
-    multi_json (1.0.4)
+    multi_json (1.1.0)
     net-http-digest_auth (1.2)
-    net-http-persistent (2.3.3)
-    newrelic_rpm (3.3.1)
+    net-http-persistent (2.5.2)
+    newrelic_rpm (3.3.2)
     nokogiri (1.5.0)
     ntlm-http (0.1.1)
-    pg (0.12.2)
-    pivotal-tracker (0.4.1)
+    pg (0.13.1)
+    pivotal-tracker (0.5.1)
       builder
       builder
       happymapper (>= 0.3.2)
@@ -220,7 +199,6 @@ GEM
       rest-client (~> 1.6.0)
     polyglot (0.3.3)
     populator (1.0.0)
-    progressbar (0.9.2)
     rack (1.4.1)
     rack-cache (1.1)
       rack (>= 0.4)
@@ -256,11 +234,19 @@ GEM
     redis (2.2.2)
     redis-namespace (1.0.3)
       redis (< 3.0.0)
-    resque (1.19.0)
+    resque (1.20.0)
       multi_json (~> 1.0)
       redis-namespace (~> 1.0.2)
       sinatra (>= 0.9.2)
       vegas (~> 0.1.2)
+    resque-retry (0.2.2)
+      rake
+      resque (>= 1.8.0)
+      resque-scheduler (>= 1.8.0)
+    resque-scheduler (1.9.9)
+      redis (>= 2.0.1)
+      resque (>= 1.8.0)
+      rufus-scheduler
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rspec (2.8.0)
@@ -276,18 +262,19 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.8.0)
-    rubyzip (0.9.5)
-    sass (3.1.12)
+    rubyzip (0.9.6.1)
+    rufus-scheduler (2.0.16)
+      tzinfo (>= 0.3.23)
+    sass (3.1.15)
     sass-rails (3.2.4)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    selenium-webdriver (2.18.0)
-      childprocess (>= 0.2.5)
+    selenium-webdriver (2.13.0)
+      childprocess (>= 0.2.1)
       ffi (~> 1.0.9)
-      multi_json (~> 1.0.4)
+      json_pure
       rubyzip
-    sexp_processor (3.0.10)
     simple_form (1.5.2)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
@@ -319,8 +306,7 @@ GEM
     unf_ext (0.0.4)
     vegas (0.1.11)
       rack (>= 1.0.0)
-    webrobots (0.0.12)
-      nokogiri (>= 1.4.4)
+    webrobots (0.0.13)
     xpath (0.1.4)
       nokogiri (~> 1.3)
 
@@ -334,6 +320,7 @@ DEPENDENCIES
   capybara
   carrierwave!
   coffee-rails
+  cucumber (~> 1.1.0, != 1.1.5)
   cucumber-rails
   database_cleaner
   dnote
@@ -344,8 +331,7 @@ DEPENDENCIES
   guard-bundler
   guard-cucumber
   guard-rails!
-  guard-rails_best_practices!
-  guard-resque
+  guard-resque!
   guard-rspec!
   guard-spork
   haml
@@ -360,11 +346,10 @@ DEPENDENCIES
   pg
   populator
   rack-webconsole
-  railroad!
   rails (~> 3.2.1)
-  rails_best_practices!
   rb-inotify
   resque
+  resque-retry
   rspec-rails
   sass
   sass-rails

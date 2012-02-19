@@ -4,10 +4,9 @@ require 'json'
 module Jobs
   module Scrapers
     module Minnesota
-      module AbstractDOLIScraper
-        extend AbstractScraper
+      class AbstractDOLIScraper < AbstractScraper
 
-        def parse_page(license_type, license_number, ids)
+        def self.parse_page(license_type, license_number, ids)
 
           url = [ DOLI_BASE_URL,
                   { Advanced: 'yes', LicNo: license_number.strip,
@@ -42,9 +41,11 @@ module Jobs
 
           output[:lic_status] = LicenseStatus.find_or_create_by_name(output[:lic_status].titlecase)
 
-          [:ce_status, :name, :relation_name, :address1].each do |k|
+          [:ce_status, :name].each do |k|
             output[k] = output[k].titlecase if output[k]
           end
+
+          output[:enforcement_action] = output[:enforcement_action] == 'YES'
 
           if output[:address2]
             output[:address2].gsub!(/([\s\w]+\w)\s*,\s*([A-Z]{2})\s*(\d{5}(?:-\d{4})?)/i){ |m|

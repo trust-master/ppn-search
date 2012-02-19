@@ -34,6 +34,7 @@ gem 'mechanize'
 
 # For background tasks (like scraping the MN DoLI website, or sending emails)
 gem 'resque'
+gem 'resque-retry'
 
 # Gems used only for assets and not required in production environments by default.
 group :assets do
@@ -73,12 +74,12 @@ group :development do
 
   gem 'guard-bundler', require: false
 
-  gem 'guard-rails_best_practices', git: 'http://github.com/MatthewHager/guard-rails_best_practices.git', require: false
-  gem 'rails_best_practices', git: 'https://github.com/railsbp/rails_best_practices.git', require: false
+  # gem 'guard-rails_best_practices', git: 'http://github.com/MatthewHager/guard-rails_best_practices.git', require: false
+  # gem 'rails_best_practices', git: 'https://github.com/railsbp/rails_best_practices.git', require: false
 
   gem 'guard-cucumber', require: false
   gem 'guard-spork', require: false
-  gem 'guard-resque', require: false
+  gem 'guard-resque', git: 'http://github.com/railsjedi/guard-resque.git', require: false
 
   gem 'sass' # Add sass just for generators, asset compilation
 
@@ -88,7 +89,7 @@ group :development do
   # access the rails console right within the web browser
   gem 'rack-webconsole'
 
-  gem 'railroad', git: 'https://github.com/kirillrdy/railroad3.git' # bx railroad -a -i -o full_models.dot -M
+  # gem 'railroad', git: 'https://github.com/kirillrdy/railroad3.git' # bx railroad -a -i -o full_models.dot -M
 
   # To enumerate all TODO's and FIXME's in the code
   gem 'dnote'
@@ -96,6 +97,7 @@ end
 
 group :development, :test do
   gem 'cucumber-rails'
+  gem 'cucumber', '~> 1.1.0', '!= 1.1.5'
   gem 'spork'
   gem 'database_cleaner'
   gem 'rspec-rails'

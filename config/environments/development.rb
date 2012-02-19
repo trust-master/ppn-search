@@ -49,5 +49,5 @@ ServiceProviderPortal::Application.configure do
   ### Resque ###
 
   # Don't bother with actually queueing tasks in development
-  Resque.inline = true
+  #Resque.inline = true
 end

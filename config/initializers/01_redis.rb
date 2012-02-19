@@ -1,4 +1,4 @@
-local = 'redis://localhost:6379/2'
+local = 'redis://localhost:6379/0'
 
 ServiceProviderPortal::Application.configure do
   if ENV["REDISTOGO_URL"]
