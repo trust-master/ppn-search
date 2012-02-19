@@ -48,29 +48,23 @@ group :production, :staging do
 end
 
 group :development do
-  gem 'tailor', git: 'http://github.com/rtlong/tailor.git', require: false
+  gem 'tailor', require: false
 
   # Prints db schema tidbits in all the models, tests, and fixtures, also shows `rake routes` output in routes.rb.
-  # Use Ryan's fork to get FactoryGirl annotation awesomeness.
+
   gem 'annotate', require: false
 
   # https://github.com/guard/guard # http://intridea.com/2011/8/25/hire-a-guard-for-your-project
   gem 'guard', require: false
 
   # Restart the Rails development server automatically
-  gem 'guard-rails', git: 'http://github.com/guard/guard-rails.git', require: false
+  gem 'guard-rails', require: false
 
   # Run the appropriate RSpec test(s) automatically
-  gem 'guard-rspec', git: 'http://github.com/guard/guard-rspec.git', require: false
-
-  # Run a shell command automatically
-  #gem 'guard-shell', git: 'http://github.com/rtlong/guard-shell.git', require: false
+  gem 'guard-rspec', require: false
 
   # Annotate models/tests/fixtures/etc when db is modified and routes when routes.rb is changed
-  gem 'guard-annotate', git: 'http://github.com/guard/guard-annotate.git', require: false
-
-  gem 'guard-cucumber', require: false
-  #gem 'guard-jasmine', require: false
+  gem 'guard-annotate', require: false
 
   gem 'guard-bundler', require: false
 
@@ -96,8 +90,8 @@ group :development do
 end
 
 group :development, :test do
-  gem 'cucumber-rails'
-  gem 'cucumber', '~> 1.1.0', '!= 1.1.5'
+  gem 'cucumber-rails', require: false
+  gem 'cucumber'
   gem 'spork'
   gem 'database_cleaner'
   gem 'rspec-rails'
