@@ -33,7 +33,7 @@ gem 'nokogiri'
 gem 'mechanize'
 
 # For background tasks (like scraping the MN DoLI website, or sending emails)
-gem 'resque'
+gem 'resque', git: 'https://github.com/rtlong/resque.git'
 gem 'resque-retry'
 
 # Gems used only for assets and not required in production environments by default.

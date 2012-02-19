@@ -9,6 +9,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: personal_licenses
@@ -24,6 +25,7 @@ end
 #  enforcement_action   :boolean         default(FALSE)
 #  name                 :string(255)
 #  address              :text
+#  phone_number         :string(255)
 #  issued_on            :date
 #  expires_on           :date
 #  printed_on           :date

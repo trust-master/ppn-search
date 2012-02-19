@@ -56,6 +56,7 @@ class RestructureLicensesAndBusinessFilings < ActiveRecord::Migration
       t.string     :name,          nil: false
 
       t.text     :address # there's no need to separate these fields...
+      t.string   :phone_number
 
       t.date     :issued_on
       t.date     :expires_on
