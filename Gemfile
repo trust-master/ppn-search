@@ -36,6 +36,9 @@ gem 'mechanize'
 gem 'resque', git: 'https://github.com/rtlong/resque.git'
 gem 'resque-retry'
 
+# Clean up view logic
+gem 'draper'
+
 # Gems used only for assets and not required in production environments by default.
 group :assets do
   gem 'sass-rails'
@@ -73,7 +76,7 @@ group :development do
 
   gem 'guard-cucumber', require: false
   gem 'guard-spork', require: false
-  gem 'guard-resque', git: 'http://github.com/railsjedi/guard-resque.git', require: false
+  gem 'guard-resque', require: false
 
   gem 'sass' # Add sass just for generators, asset compilation
 
