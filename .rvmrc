@@ -13,12 +13,6 @@ if $(rvm list strings | grep -q ${ruby_string}) ; then
     rvm use 1.9.3
   fi
 
-  # Ensure that Bundler is installed, install it if it is not.
-  if ! [[ -n $(which bundle) ]]; then
-    echo "Installing bundler"
-    gem install bundler
-  fi
-
 else
   # Even though the exact ruby we wanted isn't installed, load any 1.9.3 it can.
   rvm use 1.9.3
@@ -33,4 +27,10 @@ else
   echo "If this installs a ruby newer than ${ruby_string}, please update the .rvmrc file to reflect this most-recent 1.9.3 stable release."
   echo "Also, if you already have a 1.9.3 installed, you can look into 'rvm upgrade' (http://beginrescueend.com/rubies/upgrading/)"
 
+fi
+
+# Ensure that Bundler is installed, install it if it is not.
+if ! [[ -n $(which bundle) ]]; then
+  echo "Installing bundler"
+  gem install bundler
 fi
