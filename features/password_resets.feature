@@ -45,8 +45,9 @@ Feature: Request Password Reset
     Examples:
       | password   | password_confirmation | expected_result |
       | aoeuidhtns | aoeuidhtns            | fail            |
-      | aoe        | aoe                   | fail            |
+      | 123456     | 123456                | fail            |
       | aoe123     | aoe123                | fail            |
       | aoe123#    | aoe123                | fail            |
+      | ae2#       | ae2#                  | fail            |
       | aoe123#    | aoe123#               | succeed         |
 

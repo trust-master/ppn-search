@@ -12,7 +12,7 @@ end
 # guard 'resque', environment: 'development', task: 'resque:work', verbose: false, trace: false,
 #                 queue: '*', count: 1
 
-guard 'resque', environment: :development, verbose: true do
+guard 'resque', environment: :development, verbose: true, trace: true do
   watch(%r{^app/(.+)\.rb})
   watch(%r{^lib/(.+)\.rb})
 end

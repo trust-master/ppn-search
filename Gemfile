@@ -12,7 +12,6 @@ gem 'haml'
 gem 'liquid'
 
 # Inject jQuery into the asset pipeline
-gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby'
@@ -44,6 +43,9 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
+
+  gem 'jquery-rails'
+  gem 'formalize-rails'
 end
 
 group :production, :staging do

@@ -4,11 +4,11 @@
                 <div class="col-a col">
                     <div class="sidebar-nav">
                         <ul>
-                            <li><a href="">Basic Info</a></li>
-                            <li ><a href="">Service Info</a></li>
-                            <li class="active"><a href="">Credentials</a></li>
-                            <li><a href="">Alerts</a></li>
-                            <li><a href="">Discounts</a></li>
+                            <li><a href="/basic-info.php">Basic Info</a></li>
+                            <li><a href="/service-info.php">Service Info</a></li>
+                            <li class="active"><a href="/credentials.php">Credentials</a></li>
+                            <li><a href="/alerts.php">Alerts</a></li>
+                            <li><a href="/discounts.php">Discounts</a></li>
                         </ul>
                     </div><!-- closes sidebar nav -->
                 </div><!-- closes col a -->
@@ -20,13 +20,13 @@
                                 <li class="radio-options radio-options-alt">
 
                                     <label class="btn-label">Insurance</label>
-                                    <div class="radio radio2">               
+                                    <div class="radio radio2">
                                        <input type="radio" id="radio-insurance1" name="insurance" />
                                        <label for="radio-insurance1">Yes</label>
                                        <input type="radio" id="radio-insurance2" name="insurance" checked="checked" />
-                                       <label for="radio-insurance2">No</label>            
+                                       <label for="radio-insurance2">No</label>
                                     </div>
-                                    
+
                                 </li>
                                 <li>
                                     <label>Certificate of Insurance</label>
@@ -62,7 +62,7 @@
                                 </li>
                             </ul>
                         </fieldset>
-                        
+
                         <fieldset>
                              <h3>License &amp; Bonding Info</h3>
                              <ul>
@@ -81,7 +81,7 @@
                                  <li class="tooltip-wrap">
                                     <label >License #</label>
                                     <input type="text" /><a href="" class='more-info'>What is this?</a>
-                                      <!-- tooltip  --> 
+                                      <!-- tooltip  -->
                                             <div class="tooltip">
                                                 <div class="tooltip-content">
                                                     <a href="" class="tooltip-close">X</a>
@@ -111,7 +111,7 @@
                                  <li class="tooltip-wrap">
                                     <label >License #</label>
                                     <input type="text" /><a href="" class='more-info'>What is this?</a>
-                                      <!-- tooltip  --> 
+                                      <!-- tooltip  -->
                                             <div class="tooltip">
                                                 <div class="tooltip-content">
                                                     <a href="" class="tooltip-close">X</a>
@@ -126,7 +126,7 @@
                                  </li>
                             </ul>
                          </fieldset>
-                         
+
                          <!-- hidden until submit -->
                          <fieldset class="retrieved-values">
                              <h3>License &amp; Bonding Info</h3>
@@ -180,7 +180,7 @@
                             </ul>
                          </fieldset>
                          <!-- .end bonding info  -->
-                         
+
                          <fieldset>
                               <h3>Business Status</h3>
                               <ul>
@@ -198,7 +198,7 @@
                                   <li class="tooltip-wrap">
                                      <label >Filing Number</label>
                                      <input type="text" /><a href="" class='more-info'>What is this?</a>
-                                       <!-- tooltip  --> 
+                                       <!-- tooltip  -->
                                              <div class="tooltip">
                                                  <div class="tooltip-content">
                                                      <a href="" class="tooltip-close">X</a>
@@ -213,7 +213,7 @@
                                   </li>
                              </ul>
                          </fieldset>
-                         
+
                          <fieldset>
                               <h3>Business Status <a href="">[Change]</a></h3>
                               <div class="business-status-info">
@@ -236,7 +236,7 @@
                                     <div class="bsi-col2"></div>
                               </div>
                          </fieldset>
-                         
+
                          <fieldset>
                             <h3>Affiliations</h3>
                             <ul>

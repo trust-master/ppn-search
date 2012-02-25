@@ -113,6 +113,8 @@ GEM
     faker (1.0.1)
       i18n (~> 0.4)
     ffi (1.0.11)
+    formalize-rails (0.1.1)
+      railties (~> 3.1)
     gherkin (2.9.0)
       json (>= 1.4.6)
     guard (1.0.0)
@@ -309,6 +311,7 @@ DEPENDENCIES
   draper
   factory_girl_rails
   faker
+  formalize-rails
   guard
   guard-annotate
   guard-bundler

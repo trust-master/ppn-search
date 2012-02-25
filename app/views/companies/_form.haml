@@ -1,13 +1,15 @@
 = simple_form_for @company do |f|
   #company-basic-info
     %fieldset
-      %h3 Company Name
+      %legend
+        %h3 Company Name
       %ul
         = f.input :name, label: 'Company Name'
         = f.input :in_business_since, as: 'string', placeholder: 'ex: 2002'
 
     %fieldset
-      %h3 Contact Info
+      %legend
+        %h3 Contact Info
       %ul
         = f.input :email, label: 'Company Email', placeholder: 'ex: info@example.com'
         = f.input :phone_main, label: 'Main', placeholder: 'ex: 612-555-1234'
@@ -15,25 +17,29 @@
         = f.input :phone_fax, label: 'Fax'
 
     %fieldset
-      %h3 Website
+      %legend
+        %h3 Website
       %ul
         = f.input :website_url, label: 'Website', placeholder: 'http://example.com'
 
-    = f.simple_fields_for @company.locations do |l|
-      %fieldset
-        %h3 Address
+    %fieldset
+      %legend
+        %h3 Locations
+      = f.simple_fields_for :locations do |l|
         %ul
           = l.input :city
           = l.input :zip
-          = l.input :state, collection: State.all, wrapper_html: { class: 'select-wrap-container' }, input_html: { class: 'cf_styled' }
-          = l.input :country, collection: Country.all, wrapper_html: { class: 'select-wrap-container' }, input_html: { class: 'cf_styled' }
-          %li
-            %a.add
-              .icon
-              Add Location
+          = l.association :state, wrapper_html: { class: 'select-wrap-container' }, input_html: { class: 'cf_styled' }
+          = l.association :country, wrapper_html: { class: 'select-wrap-container' }, input_html: { class: 'cf_styled' }
+      %ul
+        %li
+          %a.add
+            .icon
+            Add Location
 
     %fieldset
-      %h3 Admin
+      %legend
+        %h3 Admin
       %ul
         %li
           %label Admin Email
@@ -47,46 +53,53 @@
 
   #company-service-info
     %fieldset
-      %h3 Business Description
+      %legend
+        %h3 Business Description
       %ul
         = f.input :about
         = f.input :description
         = f.input :general_info
 
     %fieldset
-      %h3 Service Area
-      %ul
-        -#= collection_select :market, Market.all, :id, :name, wrapper_html: { class: 'select-wrap-container' }, input_html: { class: 'cf_styled' }
+      %legend
+        %h3 Service Area
+      %ul#markets-selection
         -#
-          %li
-            = f.grouped_collection_select :service_areas, Market.all, :service_areas, :name, :id, :name, wrapper_html: { class: 'select-wrap-container' }, input_html: { class: 'cf_styled' }
-
-        -#= f.association :service_areas, as: 'check_boxes' #, :collection => ServiceArea.all.group_by(&:market)
-        / This is totally temporary...
-        %li.select-wrap-container
-          = label_tag :market, "Market:"
-          .select-wrap
-            = select_tag :market, options_from_collection_for_select(Market.all, :id, :name), { class: 'cf_styled' }
-          .clear
-
+          %li.select-wrap-container
+            = label_tag :market, "Market:"
+            .select-wrap
+              = select_tag :market, options_for_select(Market.all.map{|m| [m.name, '#'+dom_id(m)]}), multiple: true
+            .clear
         - Market.all.each do |m|
-          %li.market{id: "market-#{m.id}"}
-            %span= m.name
-          - m.service_areas.each do |s|
-            - id = "company[service_areas][#{s.name.underscore}]"
-            %li.radio-options.service_area
-              .checkbox-wrap
-                %input.checkbox{type: :checkbox, name: id, id: id}
-                %label{for: id}= s.name
-              .radio.disabled{id: "#{id}[partial]"}
-                = radio_button "#{id}[partial]", '0', true, disabled: true, id: "#{id}[partial]-all"
-                = label_tag "#{id}[partial]-all", 'All'
-                = radio_button "#{id}[partial]", '1', false, disabled: true, id: "#{id}[partial]-partial"
-                = label_tag "#{id}[partial]-partial", 'Partial'
+          %li.checkbox-wrap
+            = check_box :market_toggle, m.id, class: 'checkbox', data: {market_selector: '#'+dom_id(m)}
+            = label :market_toggle, m.id, m.name
 
+      - Market.all.each do |m|
+        = div_for m, style: "display: none" do
+          %h4= m.name
+          = content_tag :a, class: 'remove', data: {market_id: m.id} do
+            .icon
+            Remove
+          %ul
+            - m.service_areas.each do |s|
+              - id = "company[service_areas]"
+              %li.radio-options.service_area
+                .checkbox-wrap
+                  = check_box id, s.name.underscore, {class: 'checkbox'}
+                  = label id, s.name.underscore, s.name
+                - id = "#{id}[#{s.name.underscore}]"
+                .radio
+                  %span
+                    = radio_button id, 'partial', '0', checked: true, disabled: true
+                    = label id, 'partial', 'All', value: '0'
+                  %span
+                    = radio_button id, 'partial', '1', disabled: true
+                    = label id, 'partial', 'Partial', value: '1'
 
     %fieldset.alt-section
-      %h3 Service Category
+      %legend
+        %h3 Service Category
       %ul
         %li
           .search-filter
@@ -104,14 +117,16 @@
             Add a Service Category
 
     %fieldset
-      %h3 Operations
+      %legend
+        %h3 Operations
       %ul
         = f.input :offers_24_hour_service, as: :radio, label: "24-Hour Service", wrapper_html: { class: 'radio-options' }, label_html: { class: 'btn-label' }
         = f.input :offers_emergency_service, as: :radio, label: "Emergency Service", wrapper_html: { class: 'radio-options' }, label_html: { class: 'btn-label' }
 
   #company-credentials
     %fieldset
-      %h3 Insurance
+      %legend
+        %h3 Insurance
       %ul
         = f.input :insured, as: :radio, label: "Insured", wrapper_html: { class: 'radio-options radio-options-alt' }, label_html: { class: 'btn-label' }
         = f.input :insurance_certificate, as: :file, label: "Certificate of Insurance"
@@ -120,49 +135,44 @@
         = f.association :insurance_state
 
     %fieldset
-      %h3 License & Bonding Info
-      = f.simple_fields_for @company.personal_license do |l|
+      %legend
+        %h3 License & Bonding Info
+      = f.simple_fields_for :personal_licenses do |l|
         %ul
           %li
             %h4 Personal License/Certificate
-          = l.association :type
-          = l.input :number
+            = l.input :number
 
-      = f.simple_fields_for @company.business_license do |l|
+      = f.simple_fields_for :business_licenses do |l|
         %ul
           %li
             %h4 Business/Contractor License/Certificate
-          = l.association :type
-          = l.input :number
+            = l.input :number
 
 
     %fieldset
-      %h3 Business Status
-      = f.simple_fields_for @company.business_filing do |l|
+      %legend
+        %h3 Business Status
+      = f.simple_fields_for :business_filing do |l|
         %ul
           %li
-            %h4 Business/Contractor License/Certificate
-          = l.association :type
-          = l.input :number
+            = l.input :number
 
     %fieldset
-      %h3 Affiliations
-      = f.simple_fields_for @company.affiliations do |l|
-        %ul
-          = l.input :name
-          = l.input :title
-          = l.input :started_on
-          = l.input :ended_on
-          = l.input :url
-          = l.input :description
+      %legend
+        %h3 Affiliations
+      = f.simple_fields_for :affiliations do |l|
+        %ul= render 'affiliations/fields', builder: l
       %ul
         %li
-          %a.add
-            .icon
-            Add an Affiliation
+          = f.simple_fields_for Affiliation.new, child_index: 'aoesntsnt' do |a|
+            = link_to '#', class: 'add', onclick: "$(this).parents(\"ul\").before(\"<hr><ul>#{escape_javascript(render('affiliations/fields', builder:  a))}</ul>\"); return false;" do
+              .icon
+              Add an Affiliation
 
     %fieldset
-      %h3 Associations
+      %legend
+        %h3 Associations
       = f.simple_fields_for @company.associations do |l|
         %ul
           = l.input :name
@@ -178,7 +188,8 @@
             Add an Association
 
     %fieldset
-      %h3 Certifications
+      %legend
+        %h3 Certifications
       = f.simple_fields_for @company.certifications do |l|
         %ul
           = l.input :name

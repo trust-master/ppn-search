@@ -7,6 +7,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require_tree ../../../vendor/assets
-// require unsorted
+//= require jquery.formalize
+//
+// require_tree ../../../vendor/assets
+//= require unsorted
 //= require front-end-code

@@ -18,8 +18,8 @@ class AffiliationsController < ApplicationController
   def new
     raise "No company id passed while creating a new certification" if params[:company_id].nil?
 
-    @affiliation = Affiliation.new
-    @affiliation.company_id = params[:company_id]
+    @company = Company.find(params[:company_id])
+    @affiliation = @company.affiliations.build
   end
 
   def update

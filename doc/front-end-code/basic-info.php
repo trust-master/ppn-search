@@ -4,11 +4,11 @@
                 <div class="col-a col">
                     <div class="sidebar-nav">
                         <ul>
-                            <li class="active"><a href="">Basic Info</a></li>
-                            <li><a href="">Service Info</a></li>
-                            <li><a href="">Credentials</a></li>
-                            <li><a href="">Alerts</a></li>
-                            <li><a href="">Discounts</a></li>
+                            <li class="active"><a href="/basic-info.php">Basic Info</a></li>
+                            <li><a href="/service-info.php">Service Info</a></li>
+                            <li><a href="/credentials.php">Credentials</a></li>
+                            <li><a href="/alerts.php">Alerts</a></li>
+                            <li><a href="/discounts.php">Discounts</a></li>
                         </ul>
                     </div><!-- closes sidebar nav -->
                 </div><!-- closes col a -->
@@ -27,7 +27,7 @@
                                 </li>
                             </ul>
                         </fieldset>
-                        
+
                         <fieldset>
                              <h3>Contact Info</h3>
                              <ul>
@@ -49,7 +49,7 @@
                                  </li>
                              </ul>
                          </fieldset>
-                         
+
                          <fieldset>
                               <h3>Website</h3>
                               <ul>
@@ -60,7 +60,7 @@
 
                               </ul>
                           </fieldset>
-                          
+
                           <fieldset>
                                <h3>Address</h3>
                                <ul>
