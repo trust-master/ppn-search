@@ -26,16 +26,17 @@
       %legend
         %h3 Locations
       = f.simple_fields_for :locations do |l|
-        %ul
-          = l.input :city
-          = l.input :zip
-          = l.association :state, wrapper_html: { class: 'select-wrap-container' }, input_html: { class: 'cf_styled' }
-          = l.association :country, wrapper_html: { class: 'select-wrap-container' }, input_html: { class: 'cf_styled' }
+        = render 'locations/fields', builder: l
       %ul
         %li
-          %a.add
+          / TODO: Move this to the front-end-code file
+          %a.add{onclick: "$(this).parents(\"ul\").before($(\"#location_template\").html().replace(/_ID_/g,(new Date()).valueOf())); return false;"}
             .icon
-            Add Location
+            Add a Location
+      %script#location_template{type: 'text/html'}
+        - cache 'company_location_fields_template' do
+          = f.simple_fields_for :locations, Location.new, child_index: '_ID_' do |a|
+            = render 'locations/fields', builder: a
 
     %fieldset
       %legend
@@ -60,33 +61,38 @@
         = f.input :description
         = f.input :general_info
 
+
     %fieldset
       %legend
         %h3 Service Area
       %ul#markets-selection
+        - Market.all.each do |m|
+          %li.checkbox-wrap
+            = check_box :market_toggle, m.id, class: 'checkbox', data: {market_selector: '#'+dom_id(m)}
+            = label :market_toggle, m.id, m.name
+
         -#
           %li.select-wrap-container
             = label_tag :market, "Market:"
             .select-wrap
               = select_tag :market, options_for_select(Market.all.map{|m| [m.name, '#'+dom_id(m)]}), multiple: true
             .clear
-        - Market.all.each do |m|
-          %li.checkbox-wrap
-            = check_box :market_toggle, m.id, class: 'checkbox', data: {market_selector: '#'+dom_id(m)}
-            = label :market_toggle, m.id, m.name
 
-      - Market.all.each do |m|
+      - Market.includes(:service_areas).all.each do |m|
         = div_for m, style: "display: none" do
           %h4= m.name
           = content_tag :a, class: 'remove', data: {market_id: m.id} do
             .icon
             Remove
-          %ul
+          = f.collection_check_boxes :service_area_ids, m.service_areas, :id, :name
+
+          -#
+            %ul
             - m.service_areas.each do |s|
               - id = "company[service_areas]"
-              %li.radio-options.service_area
+              %li.service_area
                 .checkbox-wrap
-                  = check_box id, s.name.underscore, {class: 'checkbox'}
+                  = check_box id, s.name.underscore #, {class: 'checkbox'}
                   = label id, s.name.underscore, s.name
                 - id = "#{id}[#{s.name.underscore}]"
                 .radio
@@ -97,16 +103,17 @@
                     = radio_button id, 'partial', '1', disabled: true
                     = label id, 'partial', 'Partial', value: '1'
 
+
     %fieldset.alt-section
       %legend
         %h3 Service Category
       %ul
         %li
           .search-filter
-            .select-wrap
-              = select_tag :category, options_from_collection_for_select(Category.all, :id, :name), { class: 'cf_styled' }
-            .select-wrap
-              = select_tag :sub_category, options_from_collection_for_select(SubCategory.all, :id, :name), { class: 'cf_styled', disabled: true }
+            .selectwrap
+              = select_tag :category, options_from_collection_for_select(Category.all, :id, :name) #, { class: 'cf_styled' }
+            .selectwrap
+              = select_tag :sub_category, options_from_collection_for_select(SubCategory.all, :id, :name) #, { class: 'cf_styled', disabled: true }
             %a.search-filter-delete
               .icon
               Delete
@@ -120,15 +127,15 @@
       %legend
         %h3 Operations
       %ul
-        = f.input :offers_24_hour_service, as: :radio, label: "24-Hour Service", wrapper_html: { class: 'radio-options' }, label_html: { class: 'btn-label' }
-        = f.input :offers_emergency_service, as: :radio, label: "Emergency Service", wrapper_html: { class: 'radio-options' }, label_html: { class: 'btn-label' }
+        = f.input :offers_24_hour_service, as: :radio, label: "24-Hour Service" #, wrapper_html: { class: 'radio-options' }, label_html: { class: 'btn-label' }
+        = f.input :offers_emergency_service, as: :radio, label: "Emergency Service" #, wrapper_html: { class: 'radio-options' }, label_html: { class: 'btn-label' }
 
   #company-credentials
     %fieldset
       %legend
         %h3 Insurance
       %ul
-        = f.input :insured, as: :radio, label: "Insured", wrapper_html: { class: 'radio-options radio-options-alt' }, label_html: { class: 'btn-label' }
+        = f.input :insured, as: :radio, label: "Insured" #, wrapper_html: { class: 'radio-options radio-options-alt' }, label_html: { class: 'btn-label' }
         = f.input :insurance_certificate, as: :file, label: "Certificate of Insurance"
         = f.input :insurance_valid_from
         = f.input :insurance_valid_until
@@ -137,70 +144,90 @@
     %fieldset
       %legend
         %h3 License & Bonding Info
-      = f.simple_fields_for :personal_licenses do |l|
-        %ul
-          %li
-            %h4 Personal License/Certificate
-            = l.input :number
 
-      = f.simple_fields_for :business_licenses do |l|
-        %ul
-          %li
-            %h4 Business/Contractor License/Certificate
-            = l.input :number
+      %ul
+        %li
+          %h4 Personal License/Certificate
+        = f.simple_fields_for :personal_licenses do |l|
+          = l.input :number
+        %li
+          / TODO: Move this to the front-end-code file
+          %a.add{onclick: "$(this).parents(\"li\").before($(\"#personal_license_template\").html().replace(/_ID_/g,(new Date()).valueOf())); return false;"}
+            .icon
+            Add Another
+      %script#personal_license_template{type: 'text/html'}
+        - cache 'company_personal_license_fields_template' do
+          = f.simple_fields_for :personal_licenses, PersonalLicense.new, child_index: '_ID_' do |a|
+            = a.input :number
+
+      %ul
+        %li
+          %h4 Business/Contractor License/Certificate
+        = f.simple_fields_for :business_licenses do |l|
+          = l.input :number
+        %li
+          / TODO: Move this to the front-end-code file
+          %a.add{onclick: "$(this).parents(\"li\").before($(\"#business_license_template\").html().replace(/_ID_/g,(new Date()).valueOf())); return false;"}
+            .icon
+            Add Another
+      %script#business_license_template{type: 'text/html'}
+        - cache 'company_business_license_fields_template' do
+          = f.simple_fields_for :business_licenses, BusinessLicense.new, child_index: '_ID_' do |a|
+            = a.input :number
 
 
     %fieldset
       %legend
         %h3 Business Status
-      = f.simple_fields_for :business_filing do |l|
-        %ul
-          %li
-            = l.input :number
+      %ul
+        = f.simple_fields_for :business_filing do |l|
+          = l.input :number
 
     %fieldset
       %legend
         %h3 Affiliations
       = f.simple_fields_for :affiliations do |l|
-        %ul= render 'affiliations/fields', builder: l
+        = render 'affiliations/fields', builder: l
       %ul
         %li
-          = f.simple_fields_for Affiliation.new, child_index: 'aoesntsnt' do |a|
-            = link_to '#', class: 'add', onclick: "$(this).parents(\"ul\").before(\"<hr><ul>#{escape_javascript(render('affiliations/fields', builder:  a))}</ul>\"); return false;" do
-              .icon
-              Add an Affiliation
+          / TODO: Move this to the front-end-code file
+          %a.add{onclick: "$(this).parents(\"ul\").before($(\"#affiliation_template\").html().replace(/_ID_/g,(new Date()).valueOf())); return false;"}
+            .icon
+            Add an Affiliation
+      %script#affiliation_template{type: 'text/html'}
+        - cache 'company_affiliation_fields_template' do
+          = f.simple_fields_for :affiliations, Affiliation.new, child_index: '_ID_' do |a|
+            = render 'affiliations/fields', builder:  a
 
     %fieldset
       %legend
         %h3 Associations
-      = f.simple_fields_for @company.associations do |l|
-        %ul
-          = l.input :name
-          = l.input :title
-          = l.input :started_on
-          = l.input :ended_on
-          = l.input :url
-          = l.input :description
+      = f.simple_fields_for :associations do |l|
+        = render 'associations/fields', builder: l
       %ul
         %li
-          %a.add
+          %a.add{onclick: "$(this).parents(\"ul\").before($(\"#association_template\").html().replace(/_ID_/g,(new Date()).valueOf())); return false;"}
             .icon
             Add an Association
+      %script#association_template{type: 'text/html'}
+        - cache 'company_association_fields_template' do
+          = f.simple_fields_for :associations, Association.new, child_index: '_ID_' do |a|
+            = render 'associations/fields', builder:  a
 
     %fieldset
       %legend
         %h3 Certifications
-      = f.simple_fields_for @company.certifications do |l|
-        %ul
-          = l.input :name
-          = l.input :title
-          = l.input :certificate
-          = l.input :description
+      = f.simple_fields_for :certifications do |l|
+        = render 'certifications/fields', builder: l
       %ul
         %li
-          %a.add
+          %a.add{onclick: "$(this).parents(\"ul\").before($(\"#certification_template\").html().replace(/_ID_/g,(new Date()).valueOf())); return false;"}
             .icon
-            Add a Certification
+            Add an Certification
+      %script#certification_template{type: 'text/html'}
+        - cache 'company_certification_fields_template' do
+          = f.simple_fields_for :certifications, Certification.new, child_index: '_ID_' do |a|
+            = render 'certifications/fields', builder:  a
 
   %fieldset.last
     = link_to "Cancel", '', class: :cancel

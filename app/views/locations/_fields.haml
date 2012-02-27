@@ -1,0 +1,6 @@
+= content_tag_for :ul, builder.object do
+  = builder.input :city
+  = builder.input :zip
+  -#= builder.association :country, priority: ['United States']
+  = builder.input :state do
+    = builder.grouped_collection_select :state_id, Country.includes(:states), :states, :name, :id, :name

@@ -1,5 +1,7 @@
 = simple_form_for [@company, @affiliation] do |f|
-  = render 'fields', builder: f
+
+  %fieldset
+    = render 'fields', builder: f
 
   %fieldset.last
     = link_to "Cancel", '', class: :cancel

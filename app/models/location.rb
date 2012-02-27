@@ -2,6 +2,11 @@ class Location < ActiveRecord::Base
   belongs_to :company
   belongs_to :state
   belongs_to :country
+
+  def state_id=(id)
+    write_attribute(:state_id, id)
+    write_attribute(:country_id, State.find(id).country_id)
+  end
 end
 
 

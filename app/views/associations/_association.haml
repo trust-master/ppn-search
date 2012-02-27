@@ -1,8 +1,8 @@
 %p
-  - if true
+  - if association.ended_on.nil?
     Currently associated with #{association.name}
   - else
-    Associated with #{association.name} from #{association.start_month} / #{association.start_year}
-    until #{association.end_month} / #{association.end_year}.
+    Affiliated with #{association.name} from #{association.started_on.to_s}
+    until #{association.ended_on.to_s}.
 %span
-  = link_to 'Delete', [association.company, association], :method => :delete
+  = link_to 'Delete', [@company, association], :method => :delete

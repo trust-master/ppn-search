@@ -29,7 +29,8 @@ $(document).ready ->
     button.get()[0].checked = false
     button.change()
 
-  $('.radio-options .radio').buttonset().buttonset('disable')
+  $('.radio-options .radio').buttonset()
+  $('.service_area .ui-buttonset').buttonset('disable')
 
 # deactivateModal =
 #   init: ->

@@ -1,6 +1,8 @@
 class CompaniesController < ApplicationController
   load_and_authorize_resource
 
+  before_filter :build_associated_if_neccesary, only: %w[new edit]
+
   def index
   end
 
@@ -8,7 +10,6 @@ class CompaniesController < ApplicationController
   end
 
   def new
-    build_associated_if_neccesary
   end
 
   def create
@@ -24,7 +25,6 @@ class CompaniesController < ApplicationController
   end
 
   def edit
-    build_associated_if_neccesary
   end
 
   def update

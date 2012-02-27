@@ -1,12 +1,12 @@
 %ul
   %li
     %label Name
-    %span= show.name
+    %span= certification.name
   %li
     %label Title
-    %span= show.title
+    %span= certification.title
   %li
     %label Description
-    %p= show.description
+    %p= certification.description
   %li
-    %a.delete{:href => "/certifications/#{show.id}/delete"} Delete
+    = link_to 'Delete', [@company, certification], method: :delete, class: :delete
