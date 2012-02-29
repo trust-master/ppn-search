@@ -1,6 +1,6 @@
 $(document).ready ->
   dropdownMenu.init()
-  $("input[type='checkbox']").button()
+  # $("input[type='checkbox']").button()
   $(".market .service_area input[type='checkbox']").change ->
       # inputs = $(this).parents('li.service_area').find('.radio input')
       buttonset = $(this).parents('li.service_area').find('.radio')
@@ -29,8 +29,20 @@ $(document).ready ->
     button.get()[0].checked = false
     button.change()
 
-  $('.radio-options .radio').buttonset()
-  $('.service_area .ui-buttonset').buttonset('disable')
+  # $('li.radio div.radio').buttonset()
+  # $('.service_area .ui-buttonset').buttonset('disable')
+
+  $('#add_sub_category').change ->
+    if this.value != ''
+      li = $("#sub_category_#{this.value}")
+      li.show()
+      li.parents('div.category').show()
+      li.find("input[type='hidden'].destroy").val('false')
+
+  $('#service_categories .category .sub_category a.remove').click ->
+    $(this).parents('li.sub_category')
+      .hide()
+      .find("input[type='hidden'].destroy").val('true')
 
 # deactivateModal =
 #   init: ->

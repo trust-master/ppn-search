@@ -1,6 +1,8 @@
 class CompanyServiceArea < ActiveRecord::Base
   belongs_to :company
-  belongs_to :service_area
+  belongs_to :service_area, include: :market
+
+  delegate :market, :market_id, to: :service_area
 end
 
 

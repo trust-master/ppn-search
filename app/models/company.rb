@@ -1,7 +1,7 @@
 class Company < ActiveRecord::Base
-  has_many :company_categories
-  has_many :sub_categories, :through => :company_categories
-  has_many :categories, :through => :sub_categories
+  has_many :company_categories, include: {sub_category: :category}
+  has_many :sub_categories, through: :company_categories, uniq: true, readonly: true
+  has_many :categories,     through: :sub_categories,     uniq: true, readonly: true
 
   has_many :affiliations
   has_many :associations
@@ -9,9 +9,9 @@ class Company < ActiveRecord::Base
 
   has_many :discounts
 
-  has_many :company_service_areas
-  has_many :service_areas, :through => :company_service_areas
-  has_many :markets, :through => :service_areas
+  has_many :company_service_areas, include: {service_area: :market}
+  has_many :service_areas, through: :company_service_areas, uniq: true, readonly: true
+  has_many :markets,       through: :service_areas,         uniq: true, readonly: true
 
   has_many :locations
 
@@ -22,14 +22,15 @@ class Company < ActiveRecord::Base
   has_many :users
   has_many :admins
 
-  belongs_to :insurance_state, :class_name => 'State'
+  belongs_to :insurance_state, class_name: 'State'
 
   accepts_nested_attributes_for :affiliations, :associations, :certifications,
-    reject_if: lambda { |r| r.values_at(:name, :title).all?(&:blank?) }
+      reject_if: proc { |attributes| attributes.values_at(:name, :title).all?(&:blank?) }, allow_destroy: true
   accepts_nested_attributes_for :locations,
-    reject_if: lambda { |r| r.values_at(:city, :zip, :state_id, :country_id).all?(&:blank?) }
+      reject_if: proc { |attributes| attributes.values_at(:city, :zip).all?(&:blank?) }, allow_destroy: true
   accepts_nested_attributes_for :business_licenses, :personal_licenses, :business_filing,
-    reject_if: lambda { |r| r[:number].blank? }
+      reject_if: proc { |attributes| attributes[:number].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :company_service_areas, :company_categories, allow_destroy: true
 
   attr_accessible :admin_email, :name, :email, :phone_main, :phone_mobile, :phone_fax, :website_url,
     :in_business_since, :about, :description, :general_info, :offers_24_hour_service,
@@ -38,7 +39,7 @@ class Company < ActiveRecord::Base
   # also make sure all the nested attributes are accessible
   attr_accessible :affiliations_attributes, :associations_attributes, :certifications_attributes,
     :locations_attributes, :business_licenses_attributes, :personal_licenses_attributes,
-    :business_filing_attributes
+    :business_filing_attributes, :company_service_areas_attributes, :company_categories_attributes
 
   def to_param
     [id, name.parameterize].join('-')

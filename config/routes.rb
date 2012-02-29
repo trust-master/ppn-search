@@ -4,9 +4,7 @@ ServiceProviderPortal::Application.routes.draw do
     resources :associations
     resources :certifications
     resources :affiliations
-    resources :service_area_coverages
     resources :service_areas
-    resources :company_subcategories
     resources :categories
     resources :discounts
   end
@@ -15,7 +13,8 @@ ServiceProviderPortal::Application.routes.draw do
   end
 
   resource :user, path: 'profile', only: [:show, :edit, :update]
-  resources :password_resets, only: [:new, :create, :show, :update], constraints: { id: /[a-zA-Z0-9\-_]{12}/ }
+  resources :password_resets, only: [:new, :create, :show, :update],
+    constraints: { id: /[a-zA-Z0-9\-_]{12}/ }
 
   resource :session, only: [:new, :create, :destroy]
 
