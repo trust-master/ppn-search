@@ -1,36 +1,31 @@
-$(document).ready ->
-  dropdownMenu.init()
+$(document).ready =>
+  @dropdownMenu.init()
+  @removeLinks.init()
+
   # $("input[type='checkbox']").button()
-  $(".market .service_area input[type='checkbox']").change ->
-      # inputs = $(this).parents('li.service_area').find('.radio input')
-      buttonset = $(this).parents('li.service_area').find('.radio')
+
+  $(".market .service_area input.destroy").change ->
+      inputs = $(this).parents('li.service_area').find('.radio_buttons input')
+      buttonset = $(this).parents('li.service_area').find('.radio_buttons')
       if this.checked
-        # inputs.removeAttr('disabled')
-        # inputs.button('enable')
+        inputs.removeAttr('disabled')
         buttonset.buttonset('enable')
       else
-        # inputs.attr('disabled', true)
-        # inputs.button('disable')
+        inputs.attr('disabled', true)
         buttonset.buttonset('disable')
-      # inputs.button('refresh')
 
   # currentDateValue.init()
   # moreInfo.init()
   # deactivateModal.init()
   # cf = new CustomFormElements()
 
-  # $('select#market').change ->
-  #   $('#market option').each ->
-  #     $($(this).val()).toggle(this.selected)
-  $("#markets-selection input[type='checkbox']").change ->
-    $($(this).data('market-selector')).toggle(this.checked)
-  $('.market a.remove').click ->
-    button = $('#market_toggle_'+$(this).data('market-id'))
-    button.get()[0].checked = false
-    button.change()
+  $("#company_markets_add_market").change ->
+    if this.value != ''
+      $("#market_#{this.value}")
+        .show()
 
-  # $('li.radio div.radio').buttonset()
-  # $('.service_area .ui-buttonset').buttonset('disable')
+  # $('.radio_buttons').buttonset()
+  # $('.service_area:not(:has(.destroy[checked])) .radio_buttons').buttonset('disable')
 
   $('#add_sub_category').change ->
     if this.value != ''
@@ -39,12 +34,57 @@ $(document).ready ->
       li.parents('div.category').show()
       li.find("input[type='hidden'].destroy").val('false')
 
-  $('#service_categories .category .sub_category a.remove').click ->
-    $(this).parents('li.sub_category')
-      .hide()
-      .find("input[type='hidden'].destroy").val('true')
+  $('#service_areas .market a.collapse').click ->
+    market = $(this).parents('.market')
+    areas = market.find(".service_area").map ->
+      if $(this).find('input.destroy').get()[0].checked
+        [
+          $(this).find('label.name').text(),
+          if $(this).find('.input.partial_only input[value="true"]').get()[0].checked then '*' else ''
+        ].join('')
 
-# deactivateModal =
+    market.find('.collapsed_summary span').html(areas.get().join(', ')).parent().show()
+    market.find('ul.service_areas').hide()
+    $(this).siblings('.expand').show()
+    $(this).hide()
+
+  $('#service_areas .market a.expand').click ->
+    market = $(this).parents('.market')
+    market.find('.collapsed_summary').hide()
+    market.find('ul.service_areas').show()
+    $(this).siblings('.collapse').show()
+    $(this).hide()
+
+@removeLinks =
+  init: ->
+    this.bind() if $('a.remove').length isnt 0
+
+  bind: ->
+    $('#service_categories .category .sub_category a.remove').click ->
+      $(this).parents('li.sub_category')
+        .hide()
+        .find("input[type='hidden'].destroy").val('true')
+
+    $('#locations ul.location a.remove').click ->
+      $(this).parents('ul.location')
+        .hide()
+        .find("input[type='hidden'].destroy").val('true')
+
+    $('#licenses ul li a.remove').click ->
+      $(this).parents('li')
+        .hide()
+        .find("input[type='hidden'].destroy").val('true')
+
+    $('.market a.remove').click ->
+      market = $(this).parents('.market')
+      market
+        .hide()
+        .find('.service_area input.destroy').each ->
+          this.checked = false
+          $(this).change()
+
+
+# @deactivateModal =
 #   init: ->
 #     self = this
 #     self.bind()  if $(".deactivate").length isnt 0
@@ -54,13 +94,14 @@ $(document).ready ->
 #       $("#deactivate-account").dialog title: "Deactivate Account"
 #       false
 
-dropdownMenu = init: ->
-  $("ul.account-links li").hover (->
-    $(this).addClass('hover')
-    #$('ul:first',this).css('visibility', 'visible')
-  ), ->
-    $(this).removeClass('hover')
-    #$('ul:first',this).css('visibility', 'hidden')
+@dropdownMenu =
+  init: ->
+    $("ul.account-links li").hover (->
+      $(this).addClass('hover')
+      #$('ul:first',this).css('visibility', 'visible')
+    ), ->
+      $(this).removeClass('hover')
+      #$('ul:first',this).css('visibility', 'hidden')
 
 # currentDateValue =
 #   init: ->

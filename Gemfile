@@ -22,7 +22,6 @@ gem 'carrierwave', git: 'git://github.com/jnicklas/carrierwave.git'
 gem 'cancan' # for authorization
 
 gem 'simple_form'
-gem 'nested_form', git: 'https://github.com/fxposter/nested_form.git'
 
 # Use thin instead of Webrick
 gem 'thin', require: false

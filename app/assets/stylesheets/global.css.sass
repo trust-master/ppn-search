@@ -693,7 +693,7 @@ input.submit-license
 .btn-label
   float: left
 
-.more-info
+.more-info, .hint
   font-size: 11px
   font-style: italic
   display: inline-block
@@ -742,7 +742,12 @@ fieldset li.radio-options-alt
     display: inline-block
     margin-right: 5px
 
-form.company
+form
+  fieldset
+    legend
+      margin-top: 15px
+
+form.new_company, form.edit_company
   fieldset#service_categories
     ul
       li.sub_category
@@ -757,6 +762,50 @@ form.company
           padding: 0 250px 0 0
           display: inline-block
           margin: 0
+
+  fieldset#locations
+    ul.location
+      border-bottom: 1px solid #ddd
+      margin: 15px 0 0 0
+
+      a.remove
+        float: right
+        margin: 0
+
+  fieldset#licenses
+    ul
+      li
+        a.remove
+          display: inline-block
+          margin: 0
+
+  fieldset#service_areas
+    ul#markets-selection
+      li
+    div.market
+      border-top: 1px solid #ddd
+
+      .actions
+        float: right
+        margin-top: 20px
+        a
+          display: inline
+        a.remove
+          margin: 0
+
+      h4
+      ul
+        li.service_area
+
+      .collapsed_summary
+        display: none
+        padding-left: 50px
+        font-style: oblique
+
+  fieldset#affiliations, fieldset#associations, fieldset#certifications
+    ul
+      border-top: 1px solid #ddd
+      padding-top: 15px
 
 /* ---------------------------------------------------------------------
  *	My Profile
@@ -802,15 +851,31 @@ a.remove
   font-weight: bold
   padding-left: 20px
   font-size: 12px
-  display: block
+  cursor: pointer
+
+a.collapse, a.expand
+  display: inline-block
+  color: #00ADEF
+  font-weight: bold
+  padding-left: 20px
   font-size: 12px
-  margin: 10px 0 10px 145px
+  cursor: pointer
+
+  .icon
+    display: inline-block
+    vertical-align: sub
+    margin-right: 3px
+a.collapse .icon
+  @include sort-arrow-up
+a.expand .icon
+  @include sort-arrow-down
 
 .deactivate, .search-filter-delete, a.remove
   .icon
     display: inline-block
-    vertical-align: top
+    vertical-align: text-top
     @include icon-remove-sm
+    margin-right: 3px
     //background: url(/assets/icon-remove-sm.gif) 0 0 no-repeat
 
 

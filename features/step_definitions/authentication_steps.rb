@@ -19,7 +19,7 @@ When(/^click the log[- ]?out (?:button|link)$/) do
 end
 
 When(/^I enter a valid email and password$/) do
-  within 'form.session' do
+  within 'form.new_session' do
     fill_in 'Email', with: 'test@test.com'
     fill_in 'Password', with: 'test123!'
     click_button 'login'
@@ -27,7 +27,7 @@ When(/^I enter a valid email and password$/) do
 end
 
 When(/^I enter an invalid email and any password$/) do
-  within 'form.session' do
+  within 'form.new_session' do
     fill_in 'Email', with: 'invalid.email@nonexistent-domain.coe'
     fill_in 'Password', with: 'aaa'
     click_button 'login'
@@ -35,7 +35,7 @@ When(/^I enter an invalid email and any password$/) do
 end
 
 When(/^I enter an valid email and invalid password$/) do
-  within 'form.session' do
+  within 'form.new_session' do
     fill_in 'Email', with: 'test@test.com'
     fill_in 'Password', with: 'aaa'
     click_button 'login'

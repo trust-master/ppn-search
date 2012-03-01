@@ -11,7 +11,7 @@
       %legend
         %h3 Contact Info
       %ul
-        = f.input :email
+        = f.input :email, hint: 'Company Email Address'
         = f.input :phone_main
         = f.input :phone_mobile
         = f.input :phone_fax
@@ -26,17 +26,25 @@
       %legend
         %h3 Locations
       = f.simple_fields_for :locations do |l|
-        = render 'locations/fields', builder: l
+        = content_tag_for :ul, l.object do
+          %a.remove
+            .icon
+            Remove
+          = render 'locations/fields', builder: l
       %ul
         %li
           / TODO: Move this to the front-end-code file
-          %a.add{onclick: "$(this).parents(\"ul\").before($(\"#location_template\").html().replace(/_ID_/g,(new Date()).valueOf())); return false;"}
+          %a.add{onclick: "$(this).parents(\"ul\").before($(\"#location_template\").html().replace(/_ID_/g,(new Date()).valueOf())); window.removeLinks.bind(); return false;"}
             .icon
             Add a Location
       %script#location_template{type: 'text/html'}
         - cache 'company_location_fields_template' do
           = f.simple_fields_for :locations, Location.new, child_index: '_ID_' do |a|
-            = render 'locations/fields', builder: a
+            = content_tag_for :ul, a.object do
+              %a.remove
+                .icon
+                Remove
+              = render 'locations/fields', builder: a
 
     %fieldset#admin
       %legend
@@ -66,37 +74,37 @@
       %legend
         %h3 Service Area
       %ul#markets-selection
-        = dev_note 'This is the button version, which I like a little better.'
-        - @markets.keys.each do |m|
-          %li
-            / This input just controls the form via JS, and is not meant to submit values that are consumed
-            = check_box :market_toggle, m.id, class: 'checkbox', data: {market_selector: '#'+dom_id(m)}
-            = label :market_toggle, m.id, m.name
-
-        = dev_note do
-          This is the multiple select version. Not functional, or styled right now, but I wanted you to see it for comparison. This would have to come with a notice such as: 'Use CTRL+Click to select multiple markets.'
-        %li
-          = label_tag :market, 'Market:'
-          = select_tag :market, options_for_select(@markets.keys.map{|m| [m.name, '#'+dom_id(m)]}), multiple: true
-          .clear
+        = f.simple_fields_for :markets do |m| # this :markets will be ignored by the controller
+          = m.input :add_market, collection: @markets.keys, value_method: :id, label_method: :name
 
       - @markets.each_pair do |market, company_service_areas|
-        = content_tag_for :div, market, style: 'display: none;' do
-          %h4= market.name
-          = content_tag :a, class: 'remove', data: {market_id: market.id} do
-            .icon
-            Remove
+        = div_for market, style: hidden_if(company_service_areas.all?(&:new_record?)) do
 
-          %ul
+          .actions
+            %a.collapse<
+              .icon<>
+              Collapse
+            %a.expand{style: 'display:none;'}<
+              .icon<>
+              Expand
+            %a.remove<
+              .icon<>
+              Remove this Market
+
+          %h4= market.name
+
+          %ul.service_areas
             = f.simple_fields_for :company_service_areas, company_service_areas do |s|
               - csa = s.object
               = content_tag_for :li, csa.service_area do
                 = s.hidden_field :service_area_id
 
-                %ul
-                  / That <ul> is just until I tell simpleform not to wrap these inputs in <li> elements
-                  = s.input :_destroy, as: :inverse_boolean, label: csa.service_area.name, input_html: {checked: !csa.new_record?}
-                  = s.input :partial_only, collection: [[false, 'All'],[true, 'Partial']], as: :radio, label: false, label_method: :last, value_method: :first
+                = s.input :_destroy, as: :inverse_boolean, label: csa.service_area.name, input_html: {checked: !csa.new_record?, class: :destroy}, wrapper_tag: :span, label_html: {class: :name}
+                = s.input :partial_only, collection: [[false, 'All'],[true, 'Partial']], as: :radio_buttons, label: false, label_method: :last, value_method: :first, wrapper_tag: :span, wrapper_html: {class: :partial_only}
+
+          .collapsed_summary
+            %span This will contain the summary
+            .hint * indicates only partial coverage
 
     %fieldset.alt-section#service_categories
       %legend
@@ -125,15 +133,15 @@
       %legend
         %h3 Operations
       %ul
-        = f.input :offers_24_hour_service,   as: :radio
-        = f.input :offers_emergency_service, as: :radio
+        = f.input :offers_24_hour_service,   as: :radio_buttons
+        = f.input :offers_emergency_service, as: :radio_buttons
 
   #company-credentials
     %fieldset#insurance
       %legend
         %h3 Insurance
       %ul
-        = f.input :insured, as: :radio
+        = f.input :insured, as: :radio_buttons
         = f.input :insurance_certificate, as: :file
         = f.input :insurance_valid_from
         = f.input :insurance_valid_until
@@ -144,42 +152,68 @@
         %h3 License & Bonding Info
 
       %ul#personal_licenses
-        %li
-          %h4 Personal License/Certificate
+        %h4 Personal License/Certificate
+        %a.hint{href: '#popup'} What is this?
+
         = f.simple_fields_for :personal_licenses do |l|
-          = l.input :number
+          = content_tag_for :li, l.object do
+            = l.input :number, wrapper: false, disabled: true
+            = l.hidden_field :_destroy, class: :destroy
+            %a.remove
+              .icon
+              Delete
         %li
           / TODO: Move this to the front-end-code file
-          %a.add{onclick: "$(this).parents(\"li\").before($(\"#personal_license_template\").html().replace(/_ID_/g,(new Date()).valueOf())); return false;"}
+          %a.add{onclick: "$(this).parents(\"li\").before($(\"#personal_license_template\").html().replace(/_ID_/g,(new Date()).valueOf())); window.removeLinks.bind(); return false;"}
             .icon
             Add Another
       %script#personal_license_template{type: 'text/html'}
         - cache 'company_personal_license_fields_template' do
           = f.simple_fields_for :personal_licenses, PersonalLicense.new, child_index: '_ID_' do |a|
-            = a.input :number
+            = content_tag_for :li, a.object do
+              = a.input :number, wrapper: false
+              = a.hidden_field :_destroy, class: :destroy
+              %a.remove
+                .icon
+                Delete
 
       %ul#business_licenses
-        %li
-          %h4 Business/Contractor License/Certificate
+        %h4 Business/Contractor License/Certificate
+        %a.hint{href: '#popup'} What is this?
+
         = f.simple_fields_for :business_licenses do |l|
-          = l.input :number
+          = content_tag_for :li, l.object do
+            = l.input :number, wrapper: false, disabled: true
+            = l.hidden_field :_destroy, class: :destroy
+            %a.remove
+              .icon
+              Delete
         %li
           / TODO: Move this to the front-end-code file
-          %a.add{onclick: "$(this).parents(\"li\").before($(\"#business_license_template\").html().replace(/_ID_/g,(new Date()).valueOf())); return false;"}
+          %a.add{onclick: "$(this).parents(\"li\").before($(\"#business_license_template\").html().replace(/_ID_/g,(new Date()).valueOf())); window.removeLinks.bind(); return false;"}
             .icon
             Add Another
       %script#business_license_template{type: 'text/html'}
         - cache 'company_business_license_fields_template' do
           = f.simple_fields_for :business_licenses, BusinessLicense.new, child_index: '_ID_' do |a|
-            = a.input :number
-
+            = content_tag_for :li, a.object do
+              = a.input :number, wrapper: false
+              = a.hidden_field :_destroy, class: :destroy
+              %a.remove
+                .icon
+                Delete
 
     %fieldset#business_status
       %legend
         %h3 Business Status
+
+      = dev_note do
+        This will act much like the above fields: the current filing number will not be editable, but you'll be able to change the filing number assigned to your company via a new text field
+
       %ul
         = f.simple_fields_for :business_filing do |l|
-          = l.input :number
+          = l.hidden_field :_destroy, class: :destroy
+          = l.input :number, hint: "What is this?", hint_tag: :a, hint_html: {href: ''}
 
     %fieldset#affiliations
       %legend
@@ -189,7 +223,7 @@
       %ul
         %li
           / TODO: Move this to the front-end-code file
-          %a.add{onclick: "$(this).parents(\"ul\").before($(\"#affiliation_template\").html().replace(/_ID_/g,(new Date()).valueOf())); return false;"}
+          %a.add{onclick: "$(this).parents(\"ul\").before($(\"#affiliation_template\").html().replace(/_ID_/g,(new Date()).valueOf())); window.removeLinks.bind(); return false;"}
             .icon
             Add an Affiliation
       %script#affiliation_template{type: 'text/html'}
@@ -204,7 +238,7 @@
         = render 'associations/fields', builder: l
       %ul
         %li
-          %a.add{onclick: "$(this).parents(\"ul\").before($(\"#association_template\").html().replace(/_ID_/g,(new Date()).valueOf())); return false;"}
+          %a.add{onclick: "$(this).parents(\"ul\").before($(\"#association_template\").html().replace(/_ID_/g,(new Date()).valueOf())); window.removeLinks.bind(); return false;"}
             .icon
             Add an Association
       %script#association_template{type: 'text/html'}
@@ -219,7 +253,7 @@
         = render 'certifications/fields', builder: l
       %ul
         %li
-          %a.add{onclick: "$(this).parents(\"ul\").before($(\"#certification_template\").html().replace(/_ID_/g,(new Date()).valueOf())); return false;"}
+          %a.add{onclick: "$(this).parents(\"ul\").before($(\"#certification_template\").html().replace(/_ID_/g,(new Date()).valueOf())); window.removeLinks.bind(); return false;"}
             .icon
             Add an Certification
       %script#certification_template{type: 'text/html'}
