@@ -1,0 +1,105 @@
+// This file is interpreted in the context of
+// .wrapper-outer #wrapper #content
+
+form.new_company, form.edit_company
+
+
+
+  fieldset
+    &#service_categories
+      div.category
+        margin: 15px 0
+        padding-left: 30px
+
+        h4
+          margin: 0
+
+        ul
+          li.sub_category
+            list-style: disc
+            margin: 5px 0
+            margin-left: 30px
+
+            span
+              display: inline-block
+              width: 175px
+
+            a.remove
+              display: inline-block
+              margin: 0
+
+      ul.add_new_category
+        margin-bottom: 25px
+        padding-top: 20px
+        border-bottom: 1px solid #ddd
+
+    &#locations
+      ul.location
+        border-bottom: 1px solid #ddd
+        margin: 15px 0 0 0
+
+        a.remove
+          float: right
+          margin: 0
+
+    &#licenses
+      ul
+        li
+          a.remove
+            display: inline-block
+            margin: 0
+
+          & > dl
+            margin: 15px 100px
+
+            dl
+              clear:both
+
+            dt
+              float: left
+              clear: both
+              width: 150px
+              font-weight: bold
+
+            dd
+              padding-left: 160px
+
+            dt,dd
+              border-top: 1px solid #ccc
+
+              &:nth-of-type(even)
+                background-color: #D8D8D8
+
+    &#service_areas
+      ul#markets-selection
+        li
+
+      div.market
+        border-top: 1px solid #ddd
+
+        .actions
+          float: right
+          margin-top: 20px
+
+          a
+            display: inline
+
+          a.remove
+            margin: 0
+
+        h4
+
+        ul
+          li.service_area
+
+        .collapsed_summary
+          display: none
+          padding-left: 50px
+          font-style: oblique
+
+    &#affiliations, &#associations, &#certifications
+      ul
+        border-bottom: 1px solid #ddd
+
+        &:last-of-type
+          border-bottom: none

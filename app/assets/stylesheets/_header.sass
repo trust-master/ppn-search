@@ -1,0 +1,127 @@
+// This file is interpreted in the context of
+// .wrapper-outer > #wrapper > #header
+
+&
+  background: white url(/assets/bg-header.gif) 0 bottom repeat-x
+
+// Logo
+h1
+  float: left
+  a
+    img
+
+// User Nav
+.header-nav
+  float: right
+
+  .welcome
+    float: left
+    font-size: 16px
+    margin-right: 13px
+    display: inline-block
+
+  a:hover
+    text-decoration: none
+
+  // Account Links
+  ul.account-links
+    height: 24px
+    float: left
+
+    & > li
+      float: left
+      zoom: 1
+      position: relative
+      z-index: 100
+      background: url(/assets/bg-account-links.gif) no-repeat 0 0
+      width: 115px
+
+      &.nav-profile
+        background-position: 0 0
+        &.hover
+          background-position: 0 -24px
+      &.nav-account
+        background-position: -114px 0
+        &.hover
+          background-position: -114px -24px
+      &.nav-logout
+        background-position: -235px 0
+        &.hover
+          background-position: -235px -24px
+      &.hover
+        ul
+          visibility: visible
+
+      .divider
+        @include account-links-divider
+        float: right
+        margin: 3px 0 0 0
+
+      a
+        // This is the top level menu label
+        display: block
+        height: 24px
+        padding-left: 40px
+        line-height: 24px
+
+      ul
+        // submenu
+        visibility: hidden
+        position: absolute
+        top: 100%
+        left: 1px
+        background-color: #efefef
+        padding: 10px
+        z-index: 1
+        width: 150px
+        border: 1px solid #d5d5d5
+        border-top: 0
+        li
+          float: none
+          // This is second/deeper menu item.
+          a
+            background: none
+            padding-left: 0
+            width: auto
+
+.search
+  position: absolute
+  right: 33px
+  top: 53px
+  input
+    &[type="text"], &[type="search"]
+      width: 187px
+    &[type="submit"]
+      @include btn-search
+      text-indent: -9999px
+      border: 0
+      margin-left: -4px
+      line-height: 75px
+
+// Main Nav (search/admin)
+.main-nav
+  margin-bottom: -5px
+  margin-left: 685px
+  overflow: hidden
+  bottom: 10px
+  position: absolute
+  right: 33px
+  li
+    float: left
+    text-transform: uppercase
+    line-height: 34px
+    padding: 0 27px
+    &:hover
+      background: #cccccc
+    &.active
+      background-color: #00adef
+      &:hover
+        background-color: #00adef
+    &:hover a
+      text-decoration: none
+      color: #00adef
+    &.active
+      &, a, &:hover a
+        color: #fff
+
+

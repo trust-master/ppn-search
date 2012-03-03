@@ -1,5 +1,9 @@
-= content_tag_for :ul, builder.object do
+%ul[builder.object]
+
   = builder.input :name
+
   = builder.input :title
+
   = builder.input :certificate, as: :file
+
   = builder.input :description

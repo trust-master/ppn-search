@@ -1,0 +1,46 @@
+.tooltip-wrap
+  position: relative
+  z-index: 1
+
+.tooltip
+  position: absolute
+  z-index: 500
+  right: 116px
+  top: 20px
+  font-size: 12px
+  display: none
+
+
+.tooltip
+  .tooltip-content
+    @include tooltip-top
+    width: 159px
+    margin-bottom: 50px
+    position: relative
+    padding: 20px 20px 3px 10px
+    zoom: 1
+  li
+    font-style: italic
+
+.tooltip-inner
+  position: absolute
+  left: 0
+  bottom: -7px
+  width: 191px
+  height: 7px
+  background: url(/assets/tooltip-bottom.png) 0 bottom no-repeat
+
+.tooltip-close
+  top: 20px
+  right: 10px
+  font-size: 11px
+  position: absolute
+
+.ui-dialog .ui-dialog-titlebar
+  background: #efefef
+  color: #333
+  border: 1px solid #ccc
+  a.ui-state-hover
+    .ui-icon-closethick
+      background-position: -96px -128px
+    background: none

@@ -26,21 +26,24 @@
       %legend
         %h3 Locations
       = f.simple_fields_for :locations do |l|
-        = content_tag_for :ul, l.object do
+        %ul[l.object]
           %a.remove
             .icon
             Remove
+
           = render 'locations/fields', builder: l
+
       %ul
         %li
           / TODO: Move this to the front-end-code file
           %a.add{onclick: "$(this).parents(\"ul\").before($(\"#location_template\").html().replace(/_ID_/g,(new Date()).valueOf())); window.removeLinks.bind(); return false;"}
             .icon
             Add a Location
+
       %script#location_template{type: 'text/html'}
         - cache 'company_location_fields_template' do
           = f.simple_fields_for :locations, Location.new, child_index: '_ID_' do |a|
-            = content_tag_for :ul, a.object do
+            %ul[a.object]
               %a.remove
                 .icon
                 Remove
@@ -55,6 +58,13 @@
           %span.current-data
             = @company.admin_email
             = link_to '[Edit]', ''
+
+        = dev_note do
+          How is this supposed to work??
+
+          :ruby
+            puts __FILE__, __LINE__
+
         %li
           %a.add
             .icon
@@ -64,21 +74,22 @@
     %fieldset#description
       %legend
         %h3 Business Description
+
       %ul
         = f.input :about
         = f.input :description
         = f.input :general_info
 
-
     %fieldset#service_areas
       %legend
         %h3 Service Area
+
       %ul#markets-selection
         = f.simple_fields_for :markets do |m| # this :markets will be ignored by the controller
           = m.input :add_market, collection: @markets.keys, value_method: :id, label_method: :name
 
       - @markets.each_pair do |market, company_service_areas|
-        = div_for market, style: hidden_if(company_service_areas.all?(&:new_record?)) do
+        %div[market]{hidden_if(company_service_areas.all?(&:new_record?))}
 
           .actions
             %a.collapse<
@@ -96,42 +107,50 @@
           %ul.service_areas
             = f.simple_fields_for :company_service_areas, company_service_areas do |s|
               - csa = s.object
-              = content_tag_for :li, csa.service_area do
+              %li[csa.service_area]
                 = s.hidden_field :service_area_id
 
-                = s.input :_destroy, as: :inverse_boolean, label: csa.service_area.name, input_html: {checked: !csa.new_record?, class: :destroy}, wrapper_tag: :span, label_html: {class: :name}
-                = s.input :partial_only, collection: [[false, 'All'],[true, 'Partial']], as: :radio_buttons, label: false, label_method: :last, value_method: :first, wrapper_tag: :span, wrapper_html: {class: :partial_only}
+                = s.input :_destroy, as: :inverse_boolean, label: csa.service_area.name,
+                    input_html: {checked: !csa.new_record?, class: :destroy}, wrapper_tag: :span,
+                    label_html: {class: :name}
+                = s.input :partial_only, collection: [[false, 'All'],[true, 'Partial']],
+                    as: :radio_buttons, label: false, label_method: :last, value_method: :first,
+                    wrapper_tag: :span, wrapper_html: {class: :partial_only}
 
           .collapsed_summary
             %span This will contain the summary
             .hint * indicates only partial coverage
 
-    %fieldset.alt-section#service_categories
+    %fieldset#service_categories
       %legend
-        %h3 Service Category
+        %h3 Service Categories
+
+      %ul.add_new_category
+        = f.simple_fields_for :category do |c|
+          = c.input :add_category, as: :grouped_select,
+              collection: Category.includes(:sub_categories), group_method: :sub_categories,
+              group_label_method: :name, label_method: :name, value_method: :id
+
       - @categories.each_pair do |category, company_categories|
-        = div_for category, style: hidden_if(company_categories.all?(&:new_record?)) do
+        %div[category]{hidden_if(company_categories.all?(&:new_record?))}
           %h4= category.name
           %ul
             = f.simple_fields_for :company_categories, company_categories do |c|
-              = content_tag_for :li, c.object.sub_category, style: hidden_if(c.object.new_record?) do
+              %li[c.object.sub_category]{hidden_if(c.object.new_record?)}
                 = c.hidden_field :_destroy, class: :destroy # this class is for the JS to find it
                 = c.hidden_field :sub_category_id, class: :sub_category_id
-                = c.object.sub_category.name
+
+                %span= c.object.sub_category.name
 
                 %a.remove
                   .icon
-                  Delete
+                  Remove
                 .clear
-
-      .add_new_category
-        / TODO: Switch this to using 2 drop-downs (using JS, leave this HTML here, so it degrades)
-        = label_tag :add_sub_category, "Add new Category"
-        = select_tag :add_sub_category, option_groups_from_collection_for_select(Category.includes(:sub_categories), :sub_categories, :name, :id, :name), include_blank: true
 
     %fieldset#operations
       %legend
         %h3 Operations
+
       %ul
         = f.input :offers_24_hour_service,   as: :radio_buttons
         = f.input :offers_emergency_service, as: :radio_buttons
@@ -140,6 +159,7 @@
     %fieldset#insurance
       %legend
         %h3 Insurance
+
       %ul
         = f.input :insured, as: :radio_buttons
         = f.input :insurance_certificate, as: :file
@@ -156,21 +176,26 @@
         %a.hint{href: '#popup'} What is this?
 
         = f.simple_fields_for :personal_licenses do |l|
-          = content_tag_for :li, l.object do
+          %li.input[l.object]
             = l.input :number, wrapper: false, disabled: true
             = l.hidden_field :_destroy, class: :destroy
+
             %a.remove
               .icon
               Delete
+
+            = render l.object
+
         %li
           / TODO: Move this to the front-end-code file
           %a.add{onclick: "$(this).parents(\"li\").before($(\"#personal_license_template\").html().replace(/_ID_/g,(new Date()).valueOf())); window.removeLinks.bind(); return false;"}
             .icon
             Add Another
+
       %script#personal_license_template{type: 'text/html'}
         - cache 'company_personal_license_fields_template' do
           = f.simple_fields_for :personal_licenses, PersonalLicense.new, child_index: '_ID_' do |a|
-            = content_tag_for :li, a.object do
+            %li.input[a.object]
               = a.input :number, wrapper: false
               = a.hidden_field :_destroy, class: :destroy
               %a.remove
@@ -182,23 +207,27 @@
         %a.hint{href: '#popup'} What is this?
 
         = f.simple_fields_for :business_licenses do |l|
-          = content_tag_for :li, l.object do
+          %li.input[l.object]
             = l.input :number, wrapper: false, disabled: true
             = l.hidden_field :_destroy, class: :destroy
+
             %a.remove
               .icon
               Delete
+
         %li
           / TODO: Move this to the front-end-code file
           %a.add{onclick: "$(this).parents(\"li\").before($(\"#business_license_template\").html().replace(/_ID_/g,(new Date()).valueOf())); window.removeLinks.bind(); return false;"}
             .icon
             Add Another
+
       %script#business_license_template{type: 'text/html'}
         - cache 'company_business_license_fields_template' do
           = f.simple_fields_for :business_licenses, BusinessLicense.new, child_index: '_ID_' do |a|
-            = content_tag_for :li, a.object do
+            %li.input[a.object]
               = a.input :number, wrapper: false
               = a.hidden_field :_destroy, class: :destroy
+
               %a.remove
                 .icon
                 Delete
@@ -218,14 +247,17 @@
     %fieldset#affiliations
       %legend
         %h3 Affiliations
+
       = f.simple_fields_for :affiliations do |l|
         = render 'affiliations/fields', builder: l
+
       %ul
         %li
           / TODO: Move this to the front-end-code file
           %a.add{onclick: "$(this).parents(\"ul\").before($(\"#affiliation_template\").html().replace(/_ID_/g,(new Date()).valueOf())); window.removeLinks.bind(); return false;"}
             .icon
             Add an Affiliation
+
       %script#affiliation_template{type: 'text/html'}
         - cache 'company_affiliation_fields_template' do
           = f.simple_fields_for :affiliations, Affiliation.new, child_index: '_ID_' do |a|
@@ -234,13 +266,16 @@
     %fieldset#associations
       %legend
         %h3 Associations
+
       = f.simple_fields_for :associations do |l|
         = render 'associations/fields', builder: l
+
       %ul
         %li
           %a.add{onclick: "$(this).parents(\"ul\").before($(\"#association_template\").html().replace(/_ID_/g,(new Date()).valueOf())); window.removeLinks.bind(); return false;"}
             .icon
             Add an Association
+
       %script#association_template{type: 'text/html'}
         - cache 'company_association_fields_template' do
           = f.simple_fields_for :associations, Association.new, child_index: '_ID_' do |a|
@@ -249,18 +284,21 @@
     %fieldset#certifications
       %legend
         %h3 Certifications
+
       = f.simple_fields_for :certifications do |l|
         = render 'certifications/fields', builder: l
+
       %ul
         %li
           %a.add{onclick: "$(this).parents(\"ul\").before($(\"#certification_template\").html().replace(/_ID_/g,(new Date()).valueOf())); window.removeLinks.bind(); return false;"}
             .icon
             Add an Certification
+
       %script#certification_template{type: 'text/html'}
         - cache 'company_certification_fields_template' do
           = f.simple_fields_for :certifications, Certification.new, child_index: '_ID_' do |a|
             = render 'certifications/fields', builder:  a
 
   %fieldset.last#buttons
-    = link_to "Cancel", '', class: :cancel
+    = link_to "Cancel", @company, class: :cancel
     = f.submit 'Save', class: :save

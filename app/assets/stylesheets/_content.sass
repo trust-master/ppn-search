@@ -1,0 +1,67 @@
+// this file is interpreted in the context of
+// .wrapper-outer #wrapper #content
+
+
+@import ui_datepicker
+@import tooltip
+@import companies
+@import search
+@import profile
+@import discounts
+@import forms
+
+#col-a
+  @import sidebar_nav
+
+.flash
+  border: 1px solid black
+  padding: 5px
+
+  &.error, &.alert
+    background-color: #FFBCBC
+    border-color: #540000
+
+  &.notice
+    background-color: #d5ffcc
+    border-color: #8da887
+
+  &.warning
+    background-color: #bfbfff
+    border-color: #3f3f54
+
+
+a.remove, a.collapse, a.expand
+  display: inline-block
+  font-weight: bold
+  padding-left: 20px
+  font-size: 12px
+  cursor: pointer
+
+  .icon
+    display: inline-block
+    vertical-align: text-top
+    margin-right: 3px
+
+a.remove
+  color: $red
+  .icon
+    @include icon-remove-sm
+
+a.collapse, a.expand
+  color: $blue
+  .icon
+    vertical-align: sub
+
+a.collapse .icon
+  @include sort-arrow-up
+
+a.expand .icon
+  @include sort-arrow-down
+
+// NOTE: No clue where this is meant to be used...
+.error
+  color: $red
+  margin: 10px 0
+  font-size: 11px
+  clear: left
+  margin-left: 80px

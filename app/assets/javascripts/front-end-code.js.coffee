@@ -27,7 +27,7 @@ $(document).ready =>
   # $('.radio_buttons').buttonset()
   # $('.service_area:not(:has(.destroy[checked])) .radio_buttons').buttonset('disable')
 
-  $('#add_sub_category').change ->
+  $('#company_category_add_category').change ->
     if this.value != ''
       li = $("#sub_category_#{this.value}")
       li.show()

@@ -1,0 +1,8 @@
+= content_tag_for :dl, personal_license do
+  - personal_license.attributes.except('raw_data').each_pair do |key, value|
+    - if value.present?
+      %dt== #{key.humanize}:
+      %dd
+        %pre= value.to_s
+
+.clear

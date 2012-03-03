@@ -12,6 +12,6 @@ module ApplicationHelper
   end
 
   def hidden_if(boolean)
-    boolean ? 'display: none;' : nil
+    { style: boolean ? 'display: none;' : nil }
   end
 end

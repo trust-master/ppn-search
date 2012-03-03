@@ -1,0 +1,38 @@
+.ui-datepicker-header
+  background: $blue !important
+
+.ui-datepicker-calendar .ui-state-highlight
+  background: white !important
+  font-weight: bold
+
+fieldset li input.date
+  width: 100px
+
+.ui-datepicker-prev, .ui-datepicker-prev-hover
+  .ui-icon
+    @include date-arrow-l
+    //background: url(/assets/date-arrow-l.png) 0 0 no-repeat !important
+    cursor: pointer
+
+.ui-datepicker-prev-hover, .ui-datepicker-next-hover
+  background: none !important
+
+.ui-datepicker-next, .ui-datepicker-next-hover
+  .ui-icon
+    @include date-arrow-r
+    //background: url(/assets/datepicker-arrow-r.png) 0 0 no-repeat !important
+    cursor: pointer
+
+.ui-datepicker-header .ui-datepicker-title
+  color: white
+
+.ui-datepicker-trigger
+  @include icon-calendar
+  //background: url(/assets/icon-calendar.png) 0 0 no-repeat
+  border: 0
+  width: 26px
+  height: 26px
+  text-indent: -9999px
+  display: inline-block
+  margin-left: 10px
+  cursor: pointer

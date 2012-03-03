@@ -1,6 +1,6 @@
 - content_for :title, "Company: #{@company.name}"
 
-.col.col-a
+#col-a
   .sidebar-nav
     %ul
       %li.active
@@ -16,5 +16,4 @@
       %li
         %a{href: '#users'} Company Users
 
-.col.col-b
-  = render :partial => 'form'
+#col-b= render 'form'

@@ -52,9 +52,9 @@
               - else
                 %li.active= link_to_unless_current 'Login', login_path
 
-        #content{ class: yield(:content_div_class) }
+        #content{class: [yield(:content_div_class).presence || 'col-2', page_class] }
 
-          %h2= yield(:title).presence || [controller.controller_name.titleize, controller.action_name].join('#')
+          %h2= yield(:title).presence || view_identifier
 
           - flash.each do |bucket, messages|
             - Array.wrap(messages).each do |msg|
@@ -62,20 +62,13 @@
 
           = yield
 
+          .clear
+
       #footer
         .footer-links
           %ul
-            %li
-              = link_to 'Terms & Conditions', '/terms'
-              |&nbsp;
-            %li
-              = link_to 'Privacy Policy', '/privacy-policy'
-              |&nbsp;
-            %li
-              = link_to 'About Us', '/about'
-              |&nbsp;
-            %li
-              = link_to 'Contact Us', '/contact'
+            = list_of [:terms, :privacy_policy, :about, :contact] do |page_id|
+              = link_to t(page_id, scope: :page_names), page_id.to_s.prepend('/')
 
         .trust-logos= image_tag asset_path('trust-logos.png'), alt: 'Verisign'
 
@@ -94,6 +87,6 @@
 
   #development
     %h2 Development Stuff
-    = render partial: 'disqus', locals: { identifier: view_identifier }
+    = render 'disqus', identifier: view_identifier
     - unless Rails.env.production?
       = whereuat # the helper to load the Whereuat plugin to aid PivotalTracker story management

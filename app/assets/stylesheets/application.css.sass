@@ -1,0 +1,66 @@
+@import colors
+
+@import normalize
+@import reset
+@import formalize
+@import jquery-ui-custom
+
+@import sprites
+
+body
+  font-size: 14px
+  line-height: 18px
+  font-family: Arial,Verdana, Helvetica, sans-serif
+  background-color: #e9e9e9
+  color: #4e4e4e
+
+a
+  color: $blue
+
+h2
+  font-size: 22px
+  margin-bottom: 15px
+  line-height: 26px
+
+h3
+  font-size: 15px
+  text-transform: uppercase
+
+h4
+  font-size: 13px
+  margin: 20px 15px
+
+h6
+  margin: 10px 0
+
+p
+  margin-bottom: 15px
+
+\:focus
+  outline: 5px auto $blue
+
+input
+  &[type="text"], &[type="password"], &[type="tel"], &[type="email"], &[type="number"],
+  &[type="url"], &[type="search"]
+    border: 1px solid $light-grey
+    height: 22px
+    vertical-align: top
+
+textarea
+  border: 1px solid $light-grey
+  width: 280px
+  height: 70px
+
+.alt-content
+  margin-left: 200px
+
+.clear
+  height: 0
+  clear: both
+
+.hidden
+  display: none
+
+@import wrappers
+
+@import development

@@ -8,4 +8,4 @@
       %th Actions
   %tbody
     - @company.discounts.each do |discount|
-      = render :partial => "show", :object => discount
+      = render discount

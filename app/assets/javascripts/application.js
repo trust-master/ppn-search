@@ -12,3 +12,5 @@
 // require_tree ../../../vendor/assets
 //= require unsorted
 //= require front-end-code
+//= require_self
+

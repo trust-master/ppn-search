@@ -1,0 +1,32 @@
+.sidebar-nav
+  background-color: white
+  width: 226px
+  margin: 0 auto
+  border: 1px solid $light-grey
+  li
+    border-top: 1px solid $light-grey
+    line-height: 36px
+
+    &:hover
+      background: $grey url(/assets/arrow-sb-active.gif) 95% center no-repeat
+
+      a
+        color: $blue
+        text-decoration: none
+
+    &.active
+      background: $blue url(/assets/arrow-sb-hover.gif) 95% center no-repeat
+
+      a, &:hover a
+        color: white
+        text-decoration: none
+
+    &:first-child
+      border-top: none
+
+    a
+      text-transform: uppercase
+      color: #aaaaaa
+      font-weight: bold
+      display: block
+      padding-left: 13px

@@ -1,0 +1,98 @@
+// This file is interpreted in the global context
+
+#discounts-page
+  table
+    border: 1px solid #ccc
+    border-top: 0
+    thead th
+      padding: 6px
+      background: url(/assets/bg-table-head.gif) 0 0 repeat-x
+      border-top: 1px solid #ccc
+      border-bottom: 1px solid #ccc
+      vertical-align: middle
+      text-align: left
+      white-space: nowrap
+      a
+        color: #4e4e4e
+        display: block
+        padding-right: 10px
+        font-size: 12px
+        background: url(/assets/table-divider.gif) right center no-repeat
+      &.last
+        a, span
+          background: none
+        text-align: center
+        width: 130px
+        a
+          margin-left: 5px
+      a span
+        background: url(/assets/sort-arrow-down.gif) right center no-repeat
+        display: inline-block
+        padding-right: 22px
+    td
+      font-size: 12px
+      padding: 10px 10px 10px 5px
+      border-bottom: 1px solid #ececec
+
+  a
+    &.edit
+      margin: 0
+    &.delete
+      margin: 0
+      margin-left: 10px
+      background: url(/assets/icon-remove-sm.gif) 0 center no-repeat
+      padding-left: 25px
+      color: $red
+      font-size: 11px
+      line-height: 22px
+      display: inline-block
+      font-weight: bold
+    &.edit
+      background: url(/assets/icon-remove-sm.gif) 0 center no-repeat
+      padding-left: 25px
+      color: $red
+      font-size: 11px
+      line-height: 22px
+      display: inline-block
+      font-weight: bold
+      background: url(/assets/icon-edit.png) 0 0 no-repeat
+      color: #333
+      font-weight: bold
+      padding-left: 28px
+
+  #discounts
+    .add
+      margin-left: 0
+      line-height: 20px
+    fieldset
+      border: none
+
+  table thead th.sorting a span
+    background: url(/assets/sort-arrow-up.gif) right center no-repeat
+
+
+.design-discount
+  float: left
+  width: 450px
+  font-size: 12px
+
+.discount-img
+  float: right
+  width: 180px
+  background: #ececec
+  border: 1px solid #ddd
+  padding-bottom: 20px
+  text-align: center
+  img
+    background-color: #ccc
+    width: 80%
+    margin: 0 auto
+    display: block
+  a
+    font-size: 13px
+    font-weight: bold
+    display: inline-block
+    padding: 5px
+    background: url(/assets/icon-download.png) 0 center no-repeat
+    padding-left: 23px
+    margin-top: 10px
