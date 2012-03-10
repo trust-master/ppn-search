@@ -1,0 +1,18 @@
+= form.simple_fields_for :associations do |association|
+  %ul[association.object]
+    %li.actions
+      = include_remove_link
+
+    = render 'associations/fields', builder: association
+
+.actions
+  = include_add_link
+
+  %script.template{type: 'text/html'}
+    - cache 'company_association_fields_template' do
+      = form.simple_fields_for :associations, Association.new, child_index: '_ID_' do |new_association|
+        %ul[new_association.object]
+          %li.actions
+            = include_remove_link
+
+          = render 'associations/fields', builder:  new_association

@@ -1,13 +1,14 @@
 class SessionsController < ApplicationController
-  #load_resource
   load_and_authorize_resource
+
+  respond_to :html, :json, :yaml
 
   def new
     # redirect to a usable page, when already logged in.
     if current_user
       redirect_to companies_path
     else
-      respond_to do |format|
+      respond_with @session do |format|
         format.html
       end
     end
@@ -18,11 +19,11 @@ class SessionsController < ApplicationController
 
     user = User.find_by_email_and_password(@session.email, @session.password)
     session[:user_id] = user.id if user
-    respond_to do |format|
+    respond_with @session do |format|
       if user
-        format.html { redirect_to companies_path, notice: t('session.new.success') }
+        format.html { redirect_to companies_path, notice: t('success', scope: ['sessions.new']) }
       else
-        format.html { flash.now[:error] = t('session.new.failure'); render action: "new" }
+        format.html { flash.now[:error] = t('failure', scope: ['sessions.new']); render action: "new" }
       end
     end
   end
@@ -30,8 +31,8 @@ class SessionsController < ApplicationController
   def destroy
     reset_session # wipes out everything during logout
 
-    respond_to do |format|
-      format.html { redirect_to login_url, notice: t('session.destroy.success') }
+    respond_with @session do |format|
+      format.html { redirect_to login_url, notice: t('success', scope: ['sessions.destroy']) }
       format.json { head :ok }
     end
   end

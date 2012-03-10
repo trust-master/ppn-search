@@ -1,0 +1,42 @@
+%h5= business_filing.display_identifier
+
+- if business_filing.persisted? and business_filing.fetched?
+
+  .data
+    %table
+      %tbody.parsed
+        - business_filing.attributes_for_detailed_display.each do |key, value|
+          %tr
+            %th= key
+            %td= value.is_a?(String) ? simple_format(value) : (value || '-').to_s
+      %tbody.raw
+        - business_filing.raw_data.each do |key, value|
+          %tr
+            %th= key
+            %td
+              - if value.present?
+                - case value
+                - when Hash
+                  %table
+                    %tbody
+                      - value.each do |key, val|
+                        %tr
+                          %th= key
+                          %td= (val || '-').to_s
+                - when Array
+                  %ul
+                    = list_of value.compact.flatten do |v|
+                      = v.to_s
+                - else
+                  = value.to_s
+              - else
+                \-
+
+    .meta
+      .last_updated= t('.last_updated', time: time_ago_in_words(business_filing.fetched_at))
+      .raw_data_message
+        %span.message= t('.raw_data.message')
+        %a{data: {alternate_text: t('.raw_data.switch_to_parsed')}}= t('.raw_data.switch_to_raw')
+
+- else
+  .no_data= t('.raw_data.no_data')

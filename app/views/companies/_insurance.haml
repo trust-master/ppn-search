@@ -1,0 +1,9 @@
+%ul
+  = form.input :insured, as: :radio_buttons
+  - if @company.insurance_certificate?
+    %li.input
+      = image_tag @company.insurance_certificate.url, width: 200
+  = form.input :insurance_certificate, as: :file
+  = form.input :insurance_valid_from
+  = form.input :insurance_valid_until
+  = form.association :insurance_state

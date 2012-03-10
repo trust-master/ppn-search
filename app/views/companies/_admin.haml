@@ -1,0 +1,12 @@
+%ul
+  %li
+    %label= Company.human_attribute_name(:admin_email)
+    %span.current_data
+      = @company.admin_email
+      = link_to '[Edit]', ''
+
+  = dev_note do
+    How is this supposed to work??
+
+  %li
+    = include_add_link :admin_email

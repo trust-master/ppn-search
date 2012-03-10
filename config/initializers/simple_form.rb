@@ -1,7 +1,8 @@
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
+  default_options = {tag: :li, class: :input, error_class: :error}
 
-  config.wrappers tag: :li, class: :input, error_class: :error do |w|
+  config.wrappers default_options do |w|
     w.use :html5
     w.use :placeholder
 
@@ -9,6 +10,14 @@ SimpleForm.setup do |config|
     w.use :input
     w.use :hint, wrap_with: {tag: :span, class: :hint}
     w.use :error, wrap_with: {tag: :span, class: :error}
+  end
+
+  config.wrappers :login, default_options do |w|
+    w.use :html5
+    w.use :placeholder
+
+    w.use :label
+    w.use :input
   end
 
   # Method used to tidy up errors.
@@ -50,3 +59,5 @@ SimpleForm.setup do |config|
   # When false, do not use translations for labels, hints or placeholders.
   # config.translate = true
 end
+
+

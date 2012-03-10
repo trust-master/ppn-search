@@ -1,0 +1,25 @@
+%h4= t('.header')
+.popup
+  %a.hint= t(:what_is_this?)
+  .content= t('.what_is_this?')
+
+= form.simple_fields_for :business_licenses do |business_license|
+  %div[business_license.object]
+    = business_license.hidden_field :_destroy, class: :destroy
+    .actions
+      = include_remove_link
+    = render business_license.object
+
+.actions
+  = include_add_link
+
+  %script.template{type: 'text/html'}
+    -# cache 'company_business_license_fields_template' do
+    = form.simple_fields_for :business_licenses, BusinessLicense.new, child_index: '_ID_' do |new_business_license|
+      %ul[new_business_license.object]
+        .actions
+          = include_remove_link
+        %h5 New License
+        = new_business_license.association :issuing_state, disabled: true
+        = new_business_license.input :number
+        = new_business_license.hidden_field :_destroy, class: :destroy

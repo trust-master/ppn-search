@@ -4,5 +4,6 @@
   - else
     Affiliated with #{association.name} from #{association.started_on.to_s}
     until #{association.ended_on.to_s}.
+
 %span
   = link_to 'Delete', [@company, association], :method => :delete

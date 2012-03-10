@@ -11,7 +11,6 @@ gem 'haml'
 # Use liquid templates for User-editable templates, i.e. mailers
 gem 'liquid'
 
-# Inject jQuery into the asset pipeline
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby'
@@ -30,12 +29,23 @@ gem 'thin', require: false
 gem 'nokogiri'
 gem 'mechanize'
 
+gem 'redis'
+
+# Use Redis to do caching, i18n, and sessions
+git 'https://github.com/jodosha/redis-store.git' do
+  gem 'redis-store'
+  gem 'redis-rails'
+  gem 'redis-i18n'
+  gem 'redis-rack-cache'
+end
+
 # For background tasks (like scraping the MN DoLI website, or sending emails)
 gem 'resque', git: 'https://github.com/rtlong/resque.git'
 gem 'resque-retry'
 
 # Clean up view logic
-gem 'draper'
+# gem 'garnish'
+gem 'active_decorator'
 
 # Gems used only for assets and not required in production environments by default.
 group :assets do
@@ -43,8 +53,11 @@ group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
 
+  # Inject jQuery into the asset pipeline
   gem 'jquery-rails'
   gem 'formalize-rails'
+
+  gem 'bourbon'
 end
 
 group :production, :staging do
@@ -91,6 +104,9 @@ group :development do
 
   # To enumerate all TODO's and FIXME's in the code
   gem 'dnote'
+
+  gem 'pry-rails'
+  gem 'pry-doc'
 end
 
 group :development, :test do

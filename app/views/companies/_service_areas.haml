@@ -1,0 +1,30 @@
+%ul#markets_selection
+  = simple_fields_for :market_selection do |m|
+    = m.input :add_market, collection: @markets.keys, value_method: :id, label_method: :name
+
+- @markets.each_pair do |market, company_service_areas|
+  %div[market]{hidden_if(company_service_areas.all?(&:new_record?))}
+
+    .actions
+      = include_collapse_link  :market
+      = include_expand_link :market
+      = include_remove_link :market
+
+    %h4= market.name
+
+    %ul.service_areas
+      = form.simple_fields_for :company_service_areas, company_service_areas do |s|
+        - csa = s.object
+        %li[csa.service_area]
+          = s.hidden_field :service_area_id
+
+          = s.input :_destroy, as: :inverse_boolean, label: csa.service_area.name,
+              input_html: {checked: !csa.new_record?, class: :destroy}, wrapper_tag: :span,
+              label_html: {class: :name}
+          = s.input :partial_only, collection: service_areas_partial_only_collection,
+              as: :radio_buttons, label: false, label_method: :last, value_method: :first,
+              wrapper_tag: :span, wrapper_html: {class: :partial_only}, input_html: {disabled: csa.new_record?}
+
+    .collapsed_summary
+      %span This will contain the summary
+      .hint= t('.markets.collapsed_explanation')

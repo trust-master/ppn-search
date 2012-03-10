@@ -1,17 +1,41 @@
+@charset 'UTF-8'
+
 @import whereuat
 
 .translation_missing
-  margin: 0
-  padding: 0
-  line-height: inherit
-  float: none
-  border: none
-  background-color: #f99 !important
+  margin: 0               !important
+  padding: 0              !important
+  line-height: inherit    !important
+  float: none             !important
+  width: auto             !important
+  border: none            !important
+  background-color: #f99  !important
+
+dfn, .tk, .translation_key
+  background-color: white
+  color: #8700C5
+  display: inline-block
+  font-size: 11px
+  font-weight: bold
+  height: 11px
+  line-height: 11px
+  margin: 3px
+  overflow: hidden
+  position: absolute
+  white-space: nowrap
+  width: 6px
+  font-style: normal
+
+  &:before
+    content: "T: "
+  &:hover
+    width: auto
+    border-bottom: 1px dotted #8700C5
 
 #uat-bar
   top: 200px !important
 
-.wrapper-outer #wrapper #content
+#wrapper #content
   .dev_note
     border-top: 1px solid #ccc
     left: -260px

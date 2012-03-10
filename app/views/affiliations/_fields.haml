@@ -1,16 +1,7 @@
-%ul[builder.object]
-
-  = builder.input :name
-
-  = builder.input :title
-
-  = builder.input :started_on, as: :string
-
-  = builder.input :ended_on, as: :string
-
-  = dev_note do
-    TODO: Add a field here to allow user to mark that last one as 'nil'
-
-  = builder.input :url
-
-  = builder.input :description
+= builder.input :name
+= builder.input :title
+= builder.input :started_on, as: :string
+= builder.input :ended_on, as: :string
+= dev_note "TODO: Add a field here to allow user to mark that last one as 'nil'"
+= builder.input :url
+= builder.input :description

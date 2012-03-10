@@ -1,9 +1,25 @@
-= content_tag_for :dl, personal_license do
-  - personal_license.attributes.except('raw_data').each_pair do |key, value|
-    - if value.present?
-      %dt== #{key.humanize}:
-      %dd
-        %pre= value.to_s
+%h5= personal_license.display_identifier
 
-.clear
+- if personal_license.persisted? and personal_license.fetched?
+  .data
 
+    %table
+      %tbody.parsed
+        - personal_license.attributes_for_detailed_display.each do |key, value|
+          %tr
+            %th= key
+            %td= value.is_a?(String) ? simple_format(value) : (value || '-').to_s
+      %tbody.raw
+        - personal_license.raw_data.each do |key, value|
+          %tr
+            %th= key
+            %td= value.is_a?(String) ? simple_format(value) : (value || '-').to_s
+
+    .meta
+      .last_updated= t('.last_updated', time: time_ago_in_words(personal_license.fetched_at))
+      .raw_data_message
+        %span.message= t('.raw_data.message')
+        %a{data: {alternate_text: t('.raw_data.switch_to_parsed')}}= t('.raw_data.switch_to_raw')
+
+- else
+  .no_data= t('.raw_data.no_data')

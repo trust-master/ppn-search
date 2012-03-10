@@ -44,7 +44,9 @@ module Jobs::Scrapers
           address:      output[:address],
           phone_number: output[:phone],
 
-          raw_data: output.stringify_keys
+          raw_data: output.stringify_keys,
+
+          fetched_at: Time.now
         )
       end
 

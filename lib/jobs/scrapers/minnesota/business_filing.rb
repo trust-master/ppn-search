@@ -84,7 +84,9 @@ module Jobs::Scrapers
 
           registered_agents:         props[:registered_agents].try(:to_sentence),
 
-          raw_data:                  props.stringify_keys
+          raw_data:                  props.stringify_keys,
+
+          fetched_at: Time.now
         )
       end
 

@@ -8,8 +8,9 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery.formalize
+//= require jQuery.scrollTo
 //
-// require_tree ../../../vendor/assets
+//= require_tree ../../../vendor/assets
 //= require unsorted
 //= require front-end-code
 //= require_self

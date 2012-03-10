@@ -1,0 +1,25 @@
+.popup
+  %a.hint= t(:what_is_this?)
+  .content= t('.what_is_this?')
+
+= form.simple_fields_for :business_filing do |business_filing|
+  %div[business_filing.object]
+    = business_filing.hidden_field :_destroy, class: :destroy
+    .actions
+      = include_remove_link
+    = render business_filing.object
+
+.actions
+  = include_add_link
+
+  %script.template{type: 'text/html'}
+    -# cache 'company_business_filing_fields_template' do
+    = form.simple_fields_for :business_filing, PersonalLicense.new, child_index: '_ID_' do |new_business_filing|
+      %ul[new_business_filing.object]
+        = new_business_filing.hidden_field :_destroy, class: :destroy
+
+        .actions
+          = include_remove_link
+
+        = new_business_filing.association :issuing_state, disabled: true
+        = new_business_filing.input :number

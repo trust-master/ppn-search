@@ -13,7 +13,7 @@ Feature: Request Password Reset
      And I fill in email
      And I fill in first name
      And I submit the form
-    Then I should see the Password_Reset:new success body message
+    Then I should see the Password_Resets success body message
      And I should receive an email with my password reset link
 
   Scenario Outline: Request an invalid password reset (one or more fields don't match)
@@ -22,7 +22,7 @@ Feature: Request Password Reset
      And I fill in first name with '<name>'
      And I submit the form
     Then I should be at the new password reset path
-     And I should see the Password_Reset:new failure message
+     And I should see the Password_Resets:new failure message
      And I should not receive an email
 
     Examples:
@@ -36,7 +36,7 @@ Feature: Request Password Reset
   Scenario Outline: Fullfill Password Reset
     Given I request a password reset
     When I go to the URL from the password reset email
-    Then I should see the Password_Reset:show instructions message
+    Then I should see the Password_Resets:show instructions message
     When I fill in Password with '<password>'
      And I fill in Password Confirmation with '<password_confirmation>'
      And I submit the form

@@ -5,7 +5,7 @@ module Jobs
       MBLS_BASE_URL = 'http://mblsportal.sos.state.mn.us/Business/BusinessSearch'
 
       def self.id
-        State.where(name: 'Minnesota').pluck(:id).first
+        @@id ||= State.where(name: 'Minnesota').pluck(:id).first
       end
 
     end

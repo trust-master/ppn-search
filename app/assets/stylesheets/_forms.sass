@@ -1,54 +1,6 @@
 // this file is interpreted in the context of
 // .wrapper-outer #wrapper #content
 
-.select-wrap
-  position: relative
-
-.radio, .checkbox
-  display: inline-block
-  cursor: pointer
-  background-position: 0 0
-  background-color: transparent
-  background-repeat: no-repeat
-  background-attachment: scroll
-
-.cf_element.select
-  @include select-category
-  width: 155px
-  height: 23px
-  display: inline-block
-  cursor: pointer
-  color: #666
-  font: 11px / 21px arial, sans-serif
-  overflow: hidden
-  position: absolute
-  padding: 5px 24px 0 11px
-
-.date-span
-  .cf_element.select
-    @include select-sm
-    font: 11px / 21px arial, sans-serif
-    font-weight: normal
-
-  label
-    margin-right: 0
-
-  select
-    width: 132px !important
-
-.select-wrap-container
-  label
-    float: left
-
-  .select-wrap
-    float: left
-    top: -4px
-
-select
-  height: 31px
-
-.search-filter .select-wrap
-  float: left
 
 fieldset
   margin: 15px
@@ -57,19 +9,37 @@ fieldset
   font-size: 13px
 
   legend
+    margin-top: 0
+
     h3
+
+  .instructions
+    clear: both
+    padding-left: 10px
 
   li
     margin: 15px 0
 
     input
-      &[type="text"], &[type="password"], &[type="tel"], &[type="email"], &[type="number"],
-      &[type="url"], &[type="search"]
+      &[type="text"],
+      &[type="password"],
+      &[type="tel"],
+      &[type="email"],
+      &[type="number"],
+      &[type="url"],
+      &[type="search"]
         width: 274px
         padding-left: 5px
 
-    input[type="checkbox"]
-      width: auto
+      &[type="checkbox"]
+        width: auto
+
+    // hints
+    .more-info, .hint
+      font-size: 11px
+      font-style: italic
+      display: inline-block
+      margin-left: 10px
 
     label
       width: 140px
@@ -79,16 +49,8 @@ fieldset
       margin-right: 8px
       vertical-align: top
 
-      &.main-label
-        display: block
-        width: auto
-        text-align: left
-        font-weight: bold
-        margin-bottom: 20px
-
-        span
-          font-weight: normal
-
+    select
+      height: 31px
 
     .checkbox-wrap
       float: left
@@ -106,11 +68,9 @@ fieldset
         .ui-button span
           color: #edeeee
 
-    //
-      div.radio,li.radio
-        // float: left
-        label
-          width: 70px
+  .actions
+    clear: both
+    margin-left: 10px
 
 .note
   font-style: italic
@@ -121,13 +81,14 @@ fieldset
 a.add
   display: inline-block
   font-weight: bold
-  margin: 10px 0 10px 148px
+  margin: 10px 0 10px 0px
   line-height: 20px
 
   .icon
     @include btn-add
     display: inline-block
     vertical-align: top
+    margin-right: 4px
 
 fieldset.last
   text-align: center
@@ -153,6 +114,61 @@ a.cancel
   @include btn-save
   color: white
 
+button, input[type="reset"], input[type="submit"], input[type="button"]
+  border-radius: 0
+  text-shadow: none
+
+.radio, .checkbox
+  display: inline-block
+  cursor: pointer
+  background-position: 0 0
+  background-color: transparent
+  background-repeat: no-repeat
+  background-attachment: scroll
+
+.cf_element.select
+  @include select-category
+  width: 155px
+  height: 23px
+  display: inline-block
+  cursor: pointer
+  color: #666
+  font: 13px / 23px arial, sans-serif
+  overflow: hidden
+  position: absolute
+  padding: 5px 24px 0 11px
+
+.date-span
+  .cf_element.select
+    @include select-sm
+    font: 11px / 21px arial, sans-serif
+    font-weight: normal
+
+  label
+    margin-right: 0
+
+  select
+    width: 132px !important
+
+.input.select, .input.grouped_select
+  label
+    float: left
+
+  select
+    // float: left
+    top: -4px
+    position: relative
+
+.input.radio_buttons
+  span.radio
+    label
+      width: auto
+      text-align: left
+      padding: 0 6px
+
+.search-filter
+  .select-wrap
+    float: left
 
 .current-data
   display: inline-block
@@ -168,15 +184,15 @@ a.cancel
 .ui-button
   background: url(/assets/ui-btn.gif) 0 bottom repeat-x !important
   border: #c4c4c4
+  text-align: center
+  span
+    color: #666
 
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active
   background: url(/assets/bg-active2.gif) 0 0 repeat-x !important
 
 .radio-public .ui-state-active
   background: url(/assets/bg-public-active.gif) 0 0 repeat-x !important
-
-.ui-button span
-  color: #666
 
 .ui-state-active span
   color: white
@@ -187,12 +203,6 @@ a.cancel
 
 .btn-label
   float: left
-
-.more-info, .hint
-  font-size: 11px
-  font-style: italic
-  display: inline-block
-  margin-left: 10px
 
 .date-span
   .select-wrap
@@ -223,23 +233,3 @@ a.cancel
   margin-left: 96px
   .add
     margin-left: 0
-
-fieldset li.radio-options-alt
-  margin-left: 0
-  overflow: hidden
-
-.retrieved-values
-  font-size: 12px
-  li
-    margin-bottom: 5px
-    margin-left: 25px
-  strong
-    display: inline-block
-    margin-right: 5px
-
-form
-  fieldset
-    margin-top: 15px
-    legend
-      margin-top: 0
-

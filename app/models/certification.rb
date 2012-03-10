@@ -1,6 +1,8 @@
 class Certification < ActiveRecord::Base
   belongs_to :company
-  validates_presence_of :name
+  # validates_presence_of :name
+
+  mount_uploader :certificate, CertificateUploader
 end
 
 

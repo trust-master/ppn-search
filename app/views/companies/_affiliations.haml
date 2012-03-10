@@ -1,0 +1,18 @@
+= form.simple_fields_for :affiliations do |affiliation|
+  %ul[affiliation.object]
+    %li.actions
+      = include_remove_link
+
+    = render 'affiliations/fields', builder: affiliation
+
+.actions
+  = include_add_link
+
+  %script.template{type: 'text/html'}
+    - cache 'company_affiliation_fields_template' do
+      = form.simple_fields_for :affiliations, Affiliation.new, child_index: '_ID_' do |new_affiliation|
+        %ul[new_affiliation.object]
+          %li.actions
+            = include_remove_link
+
+          = render 'affiliations/fields', builder:  new_affiliation

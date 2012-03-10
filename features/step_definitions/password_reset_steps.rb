@@ -1,5 +1,5 @@
 When(/^I click the reset password link$/) do
-  click_link I18n.t('session.recover')
+  click_link I18n.t('sessions.new.recover')
 end
 
 When(/^I fill in email$/) do
@@ -19,7 +19,7 @@ When(/^I fill in first name with '(.*?)'$/) do |value|
 end
 
 When(/^I submit the form$/) do
-  click_button 'submit'
+  click_on 'submit'
 end
 
 Then(/^I should receive an email with my password reset link$/) do
@@ -49,22 +49,22 @@ When(/^I go to the URL from the password reset email$/) do
 end
 
 Then(/^I should be logged in$/) do
-  page.should have_content(I18n.t('session.destroy.action'))
+  page.should have_xpath(".//a[@href=\"#{logout_path}\"]")
 end
 
 Then(/^the Password Reset should (\w+)$/i) do |expected_result|
   case expected_result.downcase
   when 'fail'
-    step('I should see the Password_Reset:update failure message')
-    step('I should see the Password_Reset:show instructions message')
+    step('I should see the Password_Resets:update failure message')
+    step('I should see the Password_Resets:show instructions message')
   when 'succeed'
     step('I should be logged in')
-    step('I should see the Password_Reset:update success message')
+    step('I should see the Password_Resets:update success message')
     step('I should be at the root path')
   end
 end
 
 When(/^I fill in (Password(?: Confirmation)?) with '(.+?)'$/i) do |field_name, password|
-  label = I18n.translate("simple_form.labels.defaults.#{field_name.downcase.gsub(/\s+/,'_')}")
-  fill_in field_name, with: password
+  label = I18n.translate("simple_form.labels.user.#{field_name.downcase.gsub(/\s+/,'_')}")
+  fill_in label, with: password
 end

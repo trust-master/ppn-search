@@ -1,11 +1,9 @@
 // This file is interpreted in the context of
-// .wrapper-outer #wrapper #content
+// .wrapper-outer #wrapper #content.companies
 
-form.new_company, form.edit_company
-
-
-
+form
   fieldset
+
     &#service_categories
       div.category
         margin: 15px 0
@@ -42,40 +40,13 @@ form.new_company, form.edit_company
           float: right
           margin: 0
 
-    &#licenses
-      ul
-        li
-          a.remove
-            display: inline-block
-            margin: 0
-
-          & > dl
-            margin: 15px 100px
-
-            dl
-              clear:both
-
-            dt
-              float: left
-              clear: both
-              width: 150px
-              font-weight: bold
-
-            dd
-              padding-left: 160px
-
-            dt,dd
-              border-top: 1px solid #ccc
-
-              &:nth-of-type(even)
-                background-color: #D8D8D8
-
     &#service_areas
-      ul#markets-selection
+      ul#markets_selection
         li
 
       div.market
         border-top: 1px solid #ddd
+        margin-bottom: 20px
 
         .actions
           float: right
@@ -87,19 +58,154 @@ form.new_company, form.edit_company
           a.remove
             margin: 0
 
+          // hide the expand links by default
+          a.expand
+            display: none
+
         h4
 
-        ul
+        ul.service_areas
+          margin-left: 80px
           li.service_area
+            .partial_only
+              margin-left: 20px
 
         .collapsed_summary
           display: none
           padding-left: 50px
           font-style: oblique
 
-    &#affiliations, &#associations, &#certifications
-      ul
-        border-bottom: 1px solid #ddd
+          .hint
+            font-style: normal
+            font-size: 75%
 
+    &#business_filing
+      // float the legend so the .popup "What is this?" link shares its line
+      legend
+        float: left
+        margin: 0 20px 20px 0
+
+      .business_filing
+        clear: both
+
+    &#licenses
+      #business_licenses, #personal_licenses
+        margin: 20px 0
+
+        // float the header so the .popup "What is this?" link shares its line
+        h4
+          float: left
+          margin: 0 20px 20px 0
+
+      #personal_licenses
+        border-top: 1px solid $grey
+        padding-top: 20px
+        margin-bottom: 0
+
+    &#licenses, &#business_filing
+
+      .personal_license, .business_license, .business_filing
+        padding: 20px
+        margin: 20px 0
+        border: 1px solid $grey
+        background-color: #f4f4f4
+
+        // for the title of a license or filing
+        h5
+          font-size: 110%
+
+        .actions
+          float: right
+
+          a.remove
+            display: inline-block
+            margin: 0
+
+        .data
+          margin: 15px auto 0
+          width: 100%
+          border: none
+          padding: 0
+
+          table
+            margin: 0
+            width: 100%
+            border: 1px solid $grey
+
+            tbody
+              width: 100%
+
+            tbody.parsed
+
+            tbody.raw
+              display: none
+
+              tr:nth-of-type(odd)
+                background-color: #FFDDDF
+
+            tr
+              clear: both
+              &:nth-of-type(odd)
+                background-color: #e3e3e3
+
+              th
+                width: 175px
+                font-weight: bold
+                text-align: left
+                border-right: 1px solid #ccc
+
+              td, th
+                padding: 1px 4px
+
+              td
+                p
+                  margin: 0
+
+                ul,ol
+                  list-style: inside
+
+                  li
+                    margin: 0 0 0 4px
+
+                table
+                  margin: 4px 0
+                  border: 1px solid $grey
+                  width: 100%
+
+                  tbody
+                    display: inherit
+
+                  th
+                    font-weight: bold
+                    width: auto
+
+                  tr
+                    background-color: $white
+
+                    &:nth-of-type(odd)
+                      background-color: lighten($blue, 45%) !important
+
+          .meta
+            margin-top: 5px
+            font-size: 80%
+            .last_updated
+            .raw_data_message
+
+    &#affiliations > ul.affiliation,
+    &#associations > ul.association,
+    &#certifications > ul.certification
+      border: 1px solid $grey
+      margin: 20px 0
+      padding: 10px
+      background-color: #f4f4f4
+      /*
         &:last-of-type
           border-bottom: none
+
+      .actions
+        float: right
+        margin: 10px 10px 0 0
+
+        a
+          display: block
+          margin: 0

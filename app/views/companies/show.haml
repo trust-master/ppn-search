@@ -1,30 +1,11 @@
-%ul.company_show_tabs
-  %li
-    %a{:href => "#", :target_tab => "provider_info"} Provider Info
-  %li
-    %a{:href => "#", :target_tab => "service_info"} Service Info
-  %li
-    %a{:href => "#", :target_tab => "credential_info"} Credential Info
-  %li
-    %a{:href => "#", :target_tab => "discounts"} Discounts
+- title t('.title', company_name: @company.name)
+
 .provider_info.target_tab
-  %h1
-    = @company.name
+
   - if @company.in_business_since
-    In business since #{@company.in_business_since.year}
-  %ul
-    %li
-      = @company.phone_main
-    - if @company.website_url
-      %li
-        = @company.website_url
-.service_info.target_tab.hidden
-  %h1 Service Info
-.credential_info.target_tab.hidden
-  %h1 Credential Info
-.discounts.target_tab.hidden
-  %h1 Discounts
-:javascript
-  $(document).ready(function() {
-    companyShow.init();
-  });
+    %p In business since #{@company.in_business_since.year}
+
+  %p= @company.phone_main
+
+  - if @company.website_url
+    %p= @company.website_url

@@ -1,11 +1,11 @@
-<a id="comments_link" href='#disqus_thread' data-disqus-identifier="<%= identifier %>">Comments</a>
+<a id="comments_link" href='#disqus_thread' data-disqus-identifier="<%= disqus_identifier %>">Comments</a>
 <div id="comments">
-  <h3>Comments &mdash; <code><%= identifier %></code></h3>
+  <h3>Comments &mdash; <code><%= disqus_identifier %></code></h3>
   <div id="disqus_thread"></div>
   <script type="text/javascript">
     var disqus_shortname = 'tm-ppn';
     var disqus_developer = 1; // developer mode on, so we can use Disqus on localhost
-    var disqus_identifier = "<%= identifier %>";
+    var disqus_identifier = "<%= disqus_identifier %>";
 
     (function() {
       $.getScript('http://' + disqus_shortname + '.disqus.com/count.js');

@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title= ['Trust Master', yield(:title)].flatten.compact.join(': ')
+    %title= ['Trust Master', page_title].compact.join(': ')
 
     = stylesheet_link_tag :application
     /[if IE 8]
@@ -10,83 +10,85 @@
       = stylesheet_link_tag :ie7
     = javascript_include_tag :application
 
+    = content_for :head
+
   %body
+    #wrapper
+      %header#header
+        %h1
+          = link_to root_url do
+            = image_tag asset_path('logo.png'), alt: "Trust Master: #{t(:tagline)}"
+        - if current_user
+          %nav.header-nav
+            %span.welcome= t(:welcome, name: current_user.first_name)
+            = nav_for :account_links, menu_class: 'account-links', item_wrapper: nil do
+              %li.nav-profile
+                .divider
+                = nav_link :profile, edit_user_path
+                = nav_for :profile do
+                  = nav_link :show, user_path
+                  = nav_link :edit, edit_user_path
+              %li.nav-account
+                .divider
+                = nav_link :account, '/account'
+                = nav_for :account do
+                  = nav_link :basic_info, '/account/basic_info'
+                  = nav_link :privacy_settings, '/account/privacy'
+                  = nav_link :notifications_alerts, '/account/notifications_alerts'
+              %li.nav-logout
+                = nav_link :logout, logout_path
+            .clear
+          .search
+            = form_tag({controller: :companies, action: :index}, method: :get)  do
+              %fieldset
+                %input{type: :search, name: :search}
+                %input{type: :submit}
 
-    .wrapper-outer
-      #wrapper
-        #header
-          %h1
-            = link_to root_url do
-              = image_tag asset_path('logo.png'), alt: "Trust Master: #{t('tagline')}"
-          - if current_user
-            .header-nav
-              %span.welcome Welcome #{current_user.display_name}
-              %ul.account-links
-                %li.nav-profile
-                  .divider
-                  = link_to 'Profile', edit_user_path
-                  %ul.dropdown
-                    %li= link_to 'View Profile', user_path
-                    %li= link_to 'Edit Profile', edit_user_path
-                %li.nav-account
-                  .divider
-                  = link_to 'Account', ''
-                  %ul.dropdown
-                    %li= link_to 'Basic Info'
-                    %li= link_to 'Privacy Settings'
-                    %li= link_to 'Notifications & Alerts'
-                %li.nav-logout
-                  = link_to t('session.destroy.action'), logout_path
-              .clear
-            .search
-              = form_tag companies_path do
-                %fieldset
-                  %input{type: :text}
-                  %input{type: :submit}
+        %nav.main-nav
+          = nav_for :main do
+            - if current_user
+              = nav_link :search_ppn, companies_path, proc { request.path.include? '/companies' }
+              = nav_link :admin, '/admin'
+            - else
+              = nav_link :login, login_path
 
-          .main-nav
-            %ul
-              - if current_user
-                %li.active= link_to_unless_current "Search PPN", companies_path
-                %li= link_to_unless_current "ADMIN", '/admin'
-              - else
-                %li.active= link_to_unless_current 'Login', login_path
+      #content{class: [content_for(:content_div_class).presence || 'col-2', page_class] }
 
-        #content{class: [yield(:content_div_class).presence || 'col-2', page_class] }
+        - if show_title?
+          %h2= page_title
 
-          %h2= yield(:title).presence || view_identifier
+        - flash.each do |bucket, messages|
+          - Array.wrap(messages).each do |msg|
+            .flash{ class: bucket }= msg
 
-          - flash.each do |bucket, messages|
-            - Array.wrap(messages).each do |msg|
-              .flash{ class: bucket }= msg
+        = content_for?(:content) ? yield(:content) : yield
 
-          = yield
-
-          .clear
-
-      #footer
-        .footer-links
-          %ul
-            = list_of [:terms, :privacy_policy, :about, :contact] do |page_id|
-              = link_to t(page_id, scope: :page_names), page_id.to_s.prepend('/')
-
-        .trust-logos= image_tag asset_path('trust-logos.png'), alt: 'Verisign'
-
-        .social-media
-          %h5 Follow Us On
-          %ul
-            %li
-              = link_to '/follow/twitter' do
-                = image_tag asset_path('twitter.png'), alt: 'Twitter'
-            %li
-              = link_to '/follow/facebook' do
-                = image_tag asset_path('facebook.png'), alt: 'Facebook'
         .clear
 
-      .copyright &copy; 2012 Trust Master, LLC. All Rights Reserved.
+      %footer#footer
+        .footer-links
+          = nav_for :footer do
+            - [:terms, :privacy_policy, :about, :contact].each do |page_id|
+              = nav_link page_id, page_id.to_s.prepend('/')
 
-  #development
-    %h2 Development Stuff
-    = render 'disqus', identifier: view_identifier
-    - unless Rails.env.production?
-      = whereuat # the helper to load the Whereuat plugin to aid PivotalTracker story management
+        .social-media
+          %h5= t(:follow_us_on)
+          %ul
+            %li
+              = link_to '' do
+                = image_tag asset_path('twitter.png'), alt: 'Twitter'
+            %li
+              = link_to '' do
+                = image_tag asset_path('facebook.png'), alt: 'Facebook'
+
+        .trust-logos
+          = image_tag asset_path('trust-logos.png'), alt: 'Verisign'
+
+    #copyright &copy; #{Time.now.year} #{t('copyright')}
+
+  -#
+    #development
+      %h2 Development Stuff
+      = render 'disqus'
+      - unless Rails.env.production?
+        = whereuat # the helper to load the Whereuat plugin to aid PivotalTracker story management

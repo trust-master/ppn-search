@@ -1,0 +1,12 @@
+%li[company]
+
+  %h3
+    = link_to company.name, company
+
+  .address
+    In business since
+    = company.in_business_since
+  .phone= company.phone_main
+
+  - if company.website_url
+    .website= company.website_url

@@ -32,7 +32,7 @@ module ServiceProviderPortal
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
     # Activate observers that should always be running.
-    # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
+    config.active_record.observers = [:scrape_observer, :scraped_model_defaults_observer] #:cacher, :garbage_collector, :forum_observer
 
     # generate RSpec tests for views and helpers
     config.generators do |g|
@@ -66,6 +66,15 @@ module ServiceProviderPortal
     # in your app. As such, your models will need to explicitly whitelist or blacklist accessible
     # parameters by using an attr_accessible or attr_protected declaration.
     # config.active_record.whitelist_attributes = true
+
+    config.redis_urls = Hash.new do |hash, key|
+      key = key.downcase.to_sym
+      keys = ENV.keys.grep(/REDISTOGO_URL|#{['Redis_URL',key].compact.join('_')}/i).sort
+      fallback = "redis://localhost:6379/0/#{key unless key == :default}"
+      hash[key] = [*ENV.values_at(*keys), fallback].compact.first
+    end
+
+    config.cache_store = :redis_store, config.redis_urls[:cache]
 
     # Enable the asset pipeline
     config.assets.enabled = true

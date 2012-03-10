@@ -1,94 +1,63 @@
 // Styles here should be only those which set-up the structure of the page. Put styles for
 // constituent sections into their own files, as was done with #header and #content
 
-.wrapper-outer
-  width: 1035px
+// .wrapper-outer
+//   width: 1035px
+//   margin: 0 auto
+//   min-height: 705px
+//   background: url(/assets/bg-shadow.png) no-repeat
+
+#wrapper, #copyright
+  width: 960px
   margin: 0 auto
-  min-height: 705px
-  background: url(/assets/bg-shadow.png) no-repeat
 
-  #wrapper
-    width: 964px
-    margin: 0 auto
-    background-color: $white
+#wrapper
+  background-color: $white
+  @include box-shadow(0 0 30px #999)
 
-    #header
-      position: relative
-      overflow: hidden
-      margin-bottom: 17px
-      padding: 10px 15px
-      height: 122px
+  #header
+    position: relative
+    overflow: hidden
+    padding: 10px 10px 0
 
-      @import header
+    @import header
 
-    #content
-      background-color: $white
-      overflow: hidden
-      min-height: 600px
-      padding-bottom: 20px
+  #content
+    overflow: hidden
+    min-height: 400px
+    padding: 20px 10px 10px 10px
 
-      // default 2-column layout for pages with sidebar-nav
-      &.col-2
+    // default 2-column layout for pages with sidebar-nav
+    &.col-2
+      @import col_2
 
-        h2, .flash
-          margin-left: 256px
-          margin-right: 10px
+    // wider 2-column layout (for search pages, for example)
+    &.col-2-wide
+      @import col_2_wide
 
-        #col-a
-          width: 255px
+    // one-column layout for the login page
+    &.col-1
+      @import col-1
 
-        #col-b
-          width: 699px
+    #col-a, #col-b
+      float: left
 
-        @import col_2
+    // #col-a
+    #col-b
+      padding: 20px
+      margin-left: 10px
+      min-height: 100px
 
-      // wider 2-column layout (for search pages, for example)
-      &.col-2-wide
-        padding-left: 10px
-
-        h2, .flash
-          margin:
-            left: 0 !important
-            right: 10px !important
-
-        #col-a
-          width: 410px
-          margin: 0 17px 0 0
-
-        #col-b
-          width: 513px
-
-        @import col_2_wide
-
-      // one-column layout for the login page
-      &.login
-        @import login
-
-      #col-a, #col-b
-        float: left
-
-      #col-a
-        //
-
-      #col-b
-        background-color: white
-        border: 1px solid $light-grey
-        min-height: 100px
-
-      @import content
+    @import content
 
   #footer
-    width: 944px
-    margin: 0 auto 20px
-    font-size: 12px
-    padding: 20px 10px 30px 10px
-    color: $blue
     position: relative
-    background: #fafafa url('/assets/footer-top.gif') 0 0 repeat-x
+    padding: 20px
 
     @import footer
 
-  .copyright
-    margin: 0 0 30px 50px
+#copyright
+  margin: 30px auto 50px
+
 
 

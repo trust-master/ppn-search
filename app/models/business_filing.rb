@@ -1,4 +1,6 @@
 class BusinessFiling < ActiveRecord::Base
+  include Fetchable
+
   belongs_to :type,          class_name: 'FilingType'
   belongs_to :status,        class_name: 'FilingStatus'
   belongs_to :issuing_state, class_name: 'State'
@@ -6,11 +8,11 @@ class BusinessFiling < ActiveRecord::Base
 
   serialize :raw_data, Hash
 
-  # attr_accessible :company_id, :type_id, :status_id, :number, :name, :registered_office_address,
-  #   :originally_filed_on, :in_good_standing_as_of, :chapter, :duration, :agent_name, :created_at,
-  #   :updated_at
+  validates :number, presence: true
+  validates :issuing_state, :company, associated: true, presence: true
 
 end
+
 
 
 
@@ -35,5 +37,6 @@ end
 #  raw_data                  :text
 #  created_at                :datetime        not null
 #  updated_at                :datetime        not null
+#  fetched_at                :datetime
 #
 

@@ -1,0 +1,9 @@
+- title t('.title', company_name: @company.name)
+
+= simple_form_for @company do |form|
+
+  = render 'service_fieldsets', form: form
+
+  %fieldset.last#buttons
+    = link_to t('helpers.cancel'), @company, class: :cancel
+    = form.button :submit, class: :save

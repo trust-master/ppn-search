@@ -1,0 +1,14 @@
+= form.simple_fields_for :locations do |location|
+  %ul[location.object]
+    = include_remove_link
+    = render 'locations/fields', builder: location
+%ul
+  %li
+    = include_add_link
+
+    %script.template{type: 'text/html'}
+      - cache 'company_location_fields_template' do
+        = form.simple_fields_for :locations, Location.new, child_index: '_ID_' do |new_location|
+          %ul[new_location.object]
+            = include_remove_link
+            = render 'locations/fields', builder: new_location

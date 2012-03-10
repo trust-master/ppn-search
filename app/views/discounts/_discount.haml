@@ -1,14 +1,14 @@
-%tr.object_container
+%tr[discount]
   %td
-    = show.title
+    = discount.title
   %td
-    = show.type_name
+    = discount.type_name
   %td
-    = show.start_date
+    = discount.start_date
   %td
-    = show.end_date
+    = discount.end_date
   %td
     %span
-      %a.edit{:href => "/discounts/#{show.id}/edit"} Edit
+      %a.edit{:href => "/discounts/#{discount.id}/edit"} Edit
     %span
-      %a.delete{:href => "/discounts/#{show.id}/delete"} Delete
+      %a.delete{:href => "/discounts/#{discount.id}/delete"} Delete

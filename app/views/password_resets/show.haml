@@ -1,10 +1,13 @@
-- content_for :title, 'Reset Password'
+- title t('.title')
+- content_for :content_div_class, 'col-1'
 
-%p= t('password_reset.show.instructions')
+%p= t('.instructions')
 
-= simple_form_for @token, url: password_reset_path(@token) do |f|
-  = f.simple_fields_for :user, @user do |u|
-    %ul
-      = u.input :password
-      = u.input :password_confirmation
-    = u.submit 'Reset My Password', id: 'submit'
+= simple_form_for @token, url: password_reset_path(@token) do |form|
+  %fieldset
+    = form.simple_fields_for :user, @user do |user|
+      %ul
+        = user.input :password
+        = user.input :password_confirmation
+  %fieldset.actions.last
+    = form.button :submit, id: 'submit'

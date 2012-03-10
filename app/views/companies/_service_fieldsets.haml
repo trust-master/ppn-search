@@ -1,0 +1,17 @@
+= fieldset :description do
+
+  %ul
+    = form.input :about
+    = form.input :description
+    = form.input :general_info
+
+= fieldset :service_areas do
+  = render 'service_areas', form: form
+
+= fieldset :service_categories do
+  = render 'service_categories', form: form
+
+= fieldset :operations do
+  %ul
+    = form.input :offers_24_hour_service,   as: :radio_buttons
+    = form.input :offers_emergency_service, as: :radio_buttons

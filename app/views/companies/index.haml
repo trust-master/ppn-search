@@ -1,18 +1,32 @@
-- content_for :title, 'Companies'
+- title t('.title')
+- content_for :content_div_class, 'col-2-wide'
 
-= link_to 'Add a Company', new_company_path
-%hr
-%table.companies_index
-  %thead
-    %tr
-      %th Name
-      %th Actions
-  %tbody
-    - @companies.each do |company|
-      %tr
-        %td
-          = link_to company.name, company
+#col-a
+  .search
+    .search_wrap
+      .search_input_wrap
+        %input{type: 'search'}
+      %input{type: 'submit'}
+  .results
+    %h4 Search Results
 
-        %td
-          = link_to "Edit", edit_company_path(company)
-          = link_to "Delete", company, method: :delete, class: :delete
+    %ul.pagination
+      = list_of %w[Prev 1 2 3 4 5 Next] do |pager|
+        = link_to pager, '', class: pager.downcase
+
+    %ul.companies
+      = render @companies
+
+    %ul.pagination.bottom
+      = list_of %w[Prev 1 2 3 4 5 Next] do |pager|
+        = link_to pager, '', class: pager.downcase
+
+
+#col-b
+  %ul.nav
+    = list_of %w[Identity Service Credentials Discounts] do |label|
+      = link_to label, ''
+
+  .company
+    - if c = @companies.presence.try(:first)
+      = render c

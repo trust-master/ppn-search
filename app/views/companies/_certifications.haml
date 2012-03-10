@@ -1,0 +1,17 @@
+= form.simple_fields_for :certifications do |certification|
+  %ul[certification.object]
+    %li.actions
+      = include_remove_link
+
+    = render 'certifications/fields', builder: certification
+
+.actions
+  = include_add_link
+
+  %script.template{type: 'text/html'}
+    - cache 'company_certification_fields_template' do
+      = form.simple_fields_for :certifications, Certification.new, child_index: '_ID_' do |new_certification|
+        %ul[new_certification.object]
+          %li.actions
+            = include_remove_link
+          = render 'certifications/fields', builder:  new_certification

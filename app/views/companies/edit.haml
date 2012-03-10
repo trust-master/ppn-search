@@ -1,19 +1,10 @@
-- content_for :title, "Company: #{@company.name}"
+- title t('.title', company_name: @company.name)
 
-#col-a
-  .sidebar-nav
-    %ul
-      %li.active
-        %a{href: '#basic'} Basic Info
-      %li
-        %a{href: '#service'} Service Info
-      %li
-        %a{href: '#credentials'} Credentials
-      %li
-        %a{href: '#alerts'} Alerts
-      %li
-        %a{href: '#discounts'} Discounts
-      %li
-        %a{href: '#users'} Company Users
+= simple_form_for @company, multipart: true do |form|
 
-#col-b= render 'form'
+  - %w[identity service credentials].each do |section|
+    = render "#{section}_fieldsets", form: form
+
+  %fieldset.last#buttons
+    = link_to t('helpers.cancel'), @company, class: :cancel
+    = form.button :submit, class: :save

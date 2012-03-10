@@ -1,11 +1,17 @@
 class PersonalLicense < ActiveRecord::Base
+  include Fetchable
+
   belongs_to :type, :class_name => 'LicenseType'
   belongs_to :status, :class_name => 'LicenseStatus'
   belongs_to :issuing_state, class_name: 'State'
   belongs_to :company
 
   serialize :raw_data, Hash
+
+  validates :number, presence: true
+  validates :issuing_state, :company, associated: true, presence: true
 end
+
 
 
 
@@ -33,5 +39,6 @@ end
 #  raw_data             :text
 #  created_at           :datetime        not null
 #  updated_at           :datetime        not null
+#  fetched_at           :datetime
 #
 

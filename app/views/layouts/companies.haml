@@ -1,0 +1,18 @@
+- content_for :content_div_class, 'col-2'
+
+- content_for :content do
+  #col-a
+
+    .sidebar-nav
+      = nav_for :companies do
+        = nav_link :identity, edit_company_path(@company, section: :identity)
+        = nav_link :service, edit_company_path(@company, section: :service)
+        = nav_link :credentials, edit_company_path(@company, section: :credentials)
+        = nav_link :alerts, 'alerts'
+        = nav_link :discounts, 'discounts'
+        = nav_link :company_users, 'users'
+
+  #col-b
+    = yield
+
+= render template: 'layouts/application'

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def create
-    respond_to do |wants|
+    respond_with @user do |wants|
       if @user.save
         flash[:notice] = 'User was successfully created.'
         wants.html { redirect_to(@user) }
@@ -14,31 +14,32 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
+    respond_with @user
   end
 
   def edit
   end
 
   def index
-    respond_to do |wants|
+    respond_with @user do |wants|
       wants.html
     end
   end
 
   def new
-    respond_to do |wants|
+    respond_with @user do |wants|
       wants.html
     end
   end
 
   def show
-    respond_to do |wants|
+    respond_with @user do |wants|
       wants.html
     end
   end
 
   def update
-    respond_to do |wants|
+    respond_with @user do |wants|
       @user.updated_by = request.remote_addr
       if @user.update_attributes(params[:user])
         flash[:notice] = 'User was successfully updated.'

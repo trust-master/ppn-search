@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120130231436) do
+ActiveRecord::Schema.define(:version => 20120309231232) do
 
   create_table "affiliations", :force => true do |t|
     t.integer  "company_id"
@@ -43,51 +43,46 @@ ActiveRecord::Schema.define(:version => 20120130231436) do
 
   create_table "business_filings", :force => true do |t|
     t.integer  "company_id"
+    t.integer  "issuing_state_id"
     t.integer  "type_id"
     t.integer  "status_id"
     t.string   "number"
     t.string   "name"
     t.text     "registered_office_address"
+    t.text     "chief_executive_officer"
+    t.string   "home_jurisdiction"
     t.date     "originally_filed_on"
-    t.date     "in_good_standing_as_of"
-    t.string   "chapter"
-    t.string   "duration"
-    t.string   "agent_name"
+    t.date     "last_annually_filed_on"
+    t.date     "renewal_due_on"
+    t.string   "registered_agents"
+    t.text     "raw_data"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
+    t.datetime "fetched_at"
   end
-
-  add_index "business_filings", ["company_id"], :name => "index_business_filings_on_company_id"
-  add_index "business_filings", ["status_id"], :name => "index_business_filings_on_status_id"
-  add_index "business_filings", ["type_id"], :name => "index_business_filings_on_type_id"
 
   create_table "business_licenses", :force => true do |t|
     t.integer  "company_id"
+    t.integer  "issuing_state_id"
     t.integer  "type_id"
     t.integer  "status_id"
     t.string   "number"
-    t.string   "name"
-    t.string   "doing_business_as"
-    t.string   "address"
-    t.string   "address2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.string   "company_structure"
-    t.date     "issued_on"
+    t.string   "application_number"
     t.date     "expires_on"
+    t.date     "effective_on"
+    t.date     "issued_on"
     t.date     "printed_on"
     t.boolean  "enforcement_action",                :default => false
-    t.string   "responsible_person_name"
+    t.string   "name"
+    t.string   "doing_business_as"
+    t.text     "address"
+    t.string   "phone_number"
     t.string   "responsible_person_license_number"
-    t.string   "contractors_phone_number"
+    t.text     "raw_data"
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
+    t.datetime "fetched_at"
   end
-
-  add_index "business_licenses", ["company_id"], :name => "index_business_licenses_on_company_id"
-  add_index "business_licenses", ["status_id"], :name => "index_business_licenses_on_status_id"
-  add_index "business_licenses", ["type_id"], :name => "index_business_licenses_on_type_id"
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -235,26 +230,25 @@ ActiveRecord::Schema.define(:version => 20120130231436) do
 
   create_table "personal_licenses", :force => true do |t|
     t.integer  "company_id"
+    t.integer  "issuing_state_id"
     t.integer  "type_id"
     t.integer  "status_id"
     t.string   "number"
+    t.string   "application_number"
+    t.string   "continuing_education"
+    t.boolean  "enforcement_action",   :default => false
     t.string   "name"
-    t.string   "address"
-    t.string   "address2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
+    t.text     "address"
+    t.string   "phone_number"
     t.date     "issued_on"
     t.date     "expires_on"
     t.date     "printed_on"
-    t.string   "continuing_education"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.date     "effective_on"
+    t.text     "raw_data"
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+    t.datetime "fetched_at"
   end
-
-  add_index "personal_licenses", ["company_id"], :name => "index_personal_licenses_on_company_id"
-  add_index "personal_licenses", ["status_id"], :name => "index_personal_licenses_on_status_id"
-  add_index "personal_licenses", ["type_id"], :name => "index_personal_licenses_on_type_id"
 
   create_table "service_areas", :force => true do |t|
     t.integer  "market_id"

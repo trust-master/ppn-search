@@ -1,0 +1,21 @@
+= fieldset :identity do
+  %ul
+    = form.input :name
+    = form.input :in_business_since, as: :string
+
+= fieldset :contact do
+  %ul
+    = form.input :email
+    = form.input :phone_main
+    = form.input :phone_mobile
+    = form.input :phone_fax
+
+= fieldset :website do
+  %ul
+    = form.input :website_url
+
+= fieldset :locations do
+  = render 'locations', form: form
+
+= fieldset :admin do
+  = render 'admin', form: form

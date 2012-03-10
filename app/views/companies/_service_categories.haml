@@ -1,0 +1,19 @@
+%ul.add_new_category
+  = simple_fields_for :category_selection do |c|
+    = c.input :add_category, as: :grouped_select,
+        collection: Category.includes(:sub_categories), group_method: :sub_categories,
+        group_label_method: :name, label_method: :name, value_method: :id
+
+- @categories.each_pair do |category, company_categories|
+  %div[category]{hidden_if(company_categories.all?(&:new_record?))}
+    %h4= category.name
+    %ul
+      = form.simple_fields_for :company_categories, company_categories do |c|
+        %li[c.object.sub_category]{hidden_if(c.object.new_record?)}
+          = c.hidden_field :_destroy, class: :destroy # this class is for the JS to find it
+          = c.hidden_field :sub_category_id, class: :sub_category_id
+
+          %span= c.object.sub_category.name
+
+          = include_remove_link :sub_category
+          .clear

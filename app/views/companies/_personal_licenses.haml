@@ -1,0 +1,25 @@
+%h4= t('.header')
+.popup
+  %a.hint= t(:what_is_this?)
+  .content= t('.what_is_this?')
+
+= form.simple_fields_for :personal_licenses do |personal_license|
+  %div[personal_license.object]
+    = personal_license.hidden_field :_destroy, class: :destroy
+    .actions
+      = include_remove_link
+    = render personal_license.object
+
+.actions
+  = include_add_link
+
+  %script.template{type: 'text/html'}
+    -# cache 'company_personal_license_fields_template' do
+    = form.simple_fields_for :personal_licenses, PersonalLicense.new, child_index: '_ID_' do |new_personal_license|
+      %ul[new_personal_license.object]
+        .actions
+          = include_remove_link
+        %h5 New License
+        = new_personal_license.association :issuing_state, disabled: true
+        = new_personal_license.input :number
+        = new_personal_license.hidden_field :_destroy, class: :destroy

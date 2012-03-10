@@ -3,59 +3,332 @@
 
 en:
   tagline: Expert Home Management
-  session:
+  copyright: Trust Master, LLC. All Rights Reserved # This follows the "&copy; 2012 "
+  follow_us_on: Follow Us On
+  welcome: Welcome, %{name}
+  what_is_this?: What is this?
+  # Top-nav for logged in users. If you need to nest items in the menu and title that menu, use the
+  # _label key for the title, nested within it.
+  nav:
+    main:
+      search_ppn: Search PPN
+      admin:      Admin
+      login:      Login
+    account_links:
+      profile:
+        _label:               Profile
+        show:                 View Profile
+        edit:                 Edit Profile
+      account:
+        _label:               Account
+        basic_info:           Basic Info
+        privacy_settings:     Privacy Settings
+        notifications_alerts: Notifications & Alerts
+      logout:                 Logout
+    footer:
+      terms:          Terms
+      privacy_policy: Privacy Policy
+      about:          About
+      contact:        Contact
+    companies:
+      identity:      Basic Info
+      service:       Service Info
+      credentials:   Credentials
+      alerts:        Alerts
+      discounts:     Discounts
+      company_users: Company Users
+
+  companies:
+    show:
+      title: '%{company_name}'
+    index:
+      title: Companies
+
+    # the header titles for all fieldsets related to company forms
+    fieldsets:
+      identity:           Company Name
+      contact:            Contact Info
+      website:            Website
+      locations:          Address
+      admin:              Admin
+      description:        Business Description
+      service_areas:      Service Area
+      service_categories: Service Categories
+      operations:         Operations
+      insurance:          Insurance
+      licenses:
+        header:           License & Bonding Info
+        instructions: >
+          Here, you can provide your State license numbers.
+      business_filing:
+        header:           Business Status
+        instructions: >
+          Here, you may add your State business filing number. This will help us
+          verify that your company is legitimate.
+      affiliations:       Affiliations
+      associations:       Associations
+      certifications:     Certifications
+
+    identity:
+      title: 'Editing %{company_name}: Identity'
+    service:
+      title: 'Editing %{company_name}: Service Info'
+    credentials:
+      title: 'Editing %{company_name}: Credentials'
+
+    locations:
+      actions:
+        add: Add a Location
+    admin:
+      actions:
+        add: Add an Admin
+    personal_licenses:
+      header: Personal Licenses/Certificates
+      what_is_this?: >
+        Trust Master requires all Service Providers to provide
+        their License & Bonding info information to validate
+        with the MN Dept of Labor. This helps us to ensure
+        your information is up to date, encourages authenticity
+        and provide customers with the most accurate
+        information about your license status.
+      actions:
+        add: Add another License
+    business_licenses:
+      header: Business/Contractor Licenses/Certificates
+      what_is_this?: >
+        Trust Master requires all Service Providers to provide
+        their License & Bonding info information to validate
+        with the MN Dept of Labor. This helps us to ensure
+        your information is up to date, encourages authenticity
+        and provide customers with the most accurate
+        information about your license status.
+      actions:
+        add: Add another License
+    business_filing:
+      what_is_this?: >
+        Trust Master requires all Service Providers to provide
+        their State License info information to validate with the
+        Secretary of State. This helps us to ensure your
+        information is up to date, encourages authenticity and
+        provide customers with the most accurate information
+        about your business status.
+      actions:
+        add: Add a filing number
+    associations:
+      actions:
+        add: Add an Association
+    affiliations:
+      actions:
+        add: Add an Affiliation
+    certifications:
+      actions:
+        add: Add a Certification
+    service_areas:
+      markets:
+        collapsed_explanation: '* indicates that only partial coverage was selected'
+
+  service_areas:
+    partial_only:
+      "true":   Partial
+      "false":  All
+
+  business_licenses:
+    business_license: &license
+      last_updated: Last updated %{time} ago
+      raw_data: &license_raw_data
+        message: Missing something?
+        switch_to_raw: Switch to the raw data pulled from the source.
+        switch_to_parsed: Show me the parsed data again.
+        no_data: Details have not yet been obtained for this license
+  personal_licenses:
+    personal_license: *license
+  business_filings:
+    business_filing:
+      <<: *license
+      raw_data:
+        <<: *license_raw_data
+        no_data: Details have not yet been obtained for this business filing
+
+  sessions:
     new:
+      title: Log In to Trust Master
       action: Log In
       success: You've been logged in!
       failure: That email and/or password is incorrect.
+      cant_log_in: Can't log in?
+      did_you_forget: Did you forget your password?
+      recover: Recover it here.
+      why: Why are we making you log in again? More text that is warm and friendly.
     destroy:
-      action: Log Out
       success: You've been logged out!
-    cant_log_in: Can't log in?
-    did_you_forget: Did you forget your password?
-    recover: Recover it here.
-    why: Why are we making you log in again?
-    more: More text that is warm and friendly.
 
-  password_reset:
+  password_resets:
     new:
+      title:
       instructions:
         Please enter the email address with which you log in and then your first name, for
         verification. We will email to you a link that will let you set a new password.
-      success:
-        title: Check Your Email!
-        body: Please check your email for the link to reset your password.
       failure:
         Either that email address or the name you entered did not match any user in the system. If
         you feel this is incorrect, please try again.
     show:
       instructions: Please set a new login password.
-    update:
-      success: Your password was changed successfully! You have been logged in.
-      failure:
-        Something was wrong with your passwords. Please choose a password that conforms to the complexity requirements outlined below.
     inactive:
       title: Password Reset has Expired!
       message: 'Sorry! That password-reset URL has either expired or been fullfilled, already.'
       try_again: Click here to request a new one.
+    update:
+      success: Your password was changed successfully! You have been logged in.
+      failure:
+        Something was wrong with your passwords. Please choose a password that conforms to the
+        complexity requirements outlined below.
+    success:
+      title: Check Your Email!
+      body: Please check your email for the link to reset your password.
 
-  user:
+  users:
     password_complexity:
-      summary: "Your password must meet the following restrictions: at least 6 characters in length, include at least one number and at least one non-alphanumeric character, use no elements from your email address or your name or that of your company."
+      summary: >
+        Your password must meet the following restrictions: at least 6 characters in length, include
+        at least one number and at least one non-alphanumeric character, use no elements from your
+        email address or your name or that of your company.
       error: 'Invalid password!'
 
+  # Built-in Rails helpers will look at these
   helpers:
+    # select:
+    #   # Default value for :prompt => true in FormOptionsHelper
+    #   prompt: "Please select"
+    cancel: Cancel
     submit:
+      create: Save
+      update: Save
+      submit: Save
+
       session:
         create: Login
 
+  actions:
+    remove:   Remove
+    delete:   Delete
+    add:      Add
+    collapse: Collapse
+    expand:   Expand
+
+  activerecord:
+    models:
+      user:                   User
+      admin:                  Administrator
+      company_admin:          Service Provider Administrator
+      company:                Service Provider
+      location:               Location
+      market:                 Market
+      service_area:           Region
+      category:               Category
+      sub_category:           Sub-Category
+      personal_license:       Personal License
+      business_license:       Business License
+      business_filing:        Business Filing
+      certification:          Certification
+      affiliation:            Affiliation
+      association:            Association
+      discount:               Discount
+      password_reset:         Password Reset
+      password_reset_request: Password Reset Request
+      session:                Session
+      state:                  State
+      city:                   City
+    attributes:
+      # human names of attributes, scoped to the model
+      user:
+        first_name: First Name
+        last_name:  Last Name
+        # etc: ...
+      admin:
+      company_admin:
+      company:
+        offers_emergency_service: Emergency Service
+        offers_24_hour_service:   24-hour Service
+        insurance_certificate:    Certificate of Insurance
+        insurance_state:          State Insured
+      location:
+      market:
+      service_area:
+      category:
+      sub_category:
+      personal_license: &personal_license_attributes
+        type: License Type
+        number: License Number
+        status: License Status
+        name: Individual Name
+        address: Registered Address
+      business_license:
+        <<: *personal_license_attributes
+        name: Business Name
+      business_filing:
+        type: Business Type
+      certification:
+      affiliation:
+      association:
+      discount:
+      password_reset:
+      password_reset_request:
+      session:
+      state:
+      city:
+
+  # we can also include attributes without scoping them to a particular model, as a fallback:
+  attributes:
+    address: Address
+    application_number: Application Number
+    continuing_education: C. E. Requirements
+    created_at: Created At
+    description: Description
+    doing_business_as: Doing Business As
+    effective_on: Effective On
+    ended_on:   End Date
+    enforcement_action: Enforcement Action
+    expires_on: Expires On
+    fetched_at: Fetched At
+    issued_on: Issued On
+    issuing_state: Issuing State
+    name: Name
+    number: Number
+    phone_number: Phone Number
+    printed_on: Printed On
+    raw_data: Raw Data
+    responsible_person_license_number: 'License # of Resp. Person'
+    started_on: Start Date
+    status: Status
+    title: Title
+    type: Type
+    updated_at: Updated At
+    url: URL
+
+  # ActiveModel::Errors#full_messages prepends the attribute name to the error message with this:
+  # errors:
+  #   format: "%{attribute} %{message}"
+
+  # SimpleForm will check these first, before defaulting to ActiveModel.human
   simple_form:
     labels:
       defaults:
-        user:
-          email: Email Address
-          password: Password
-          password_confirmation: Password Confirmation
+      user:
+        email: Email Address
+        password: Password
+        password_confirmation: Password Confirmation
+      company:
+        insurance_certificate: Certificate
+        insurance_valid_from: Valid from
+        insurance_valid_until: Expires
+        personal_licenses:
+          number: License Number
+        business_licenses:
+          number: License Number
+        business_filing:
+          number: Filing Number
+
+
     hints:
       defaults:
         email: Your Email Address
@@ -65,11 +338,33 @@ en:
         email: 'name@example.com'
         password: '***'
 
+  # Stuff for CanCan errors
   unauthorized:
     default: 'You are not authorized to %{action} %{subject}.'
     not_authenticated: You must log in before you can do that.
-  #   manage:
-  #     all: Not authorized to %{action} %{subject}.
-  #   update:
-  #     all:
+    # manage:
+    #   all: Not authorized to %{action} %{subject}.
+    # update:
+    #   all:
 
+  date:
+    formats:
+      # Use the strftime parameters for formats.
+      # When no format has been given, it uses default.
+      # You can provide other formats here if you like!
+      default: "%Y-%m-%d"
+      short: "%b %d"
+      long: "%B %d, %Y"
+    # Used in date_select and datetime_select.
+    order:
+      - :year
+      - :month
+      - :day
+
+  time:
+    formats:
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      short: "%d %b %H:%M"
+      long: "%B %d, %Y %H:%M"
+    am: "am"
+    pm: "pm"

@@ -1,20 +1,29 @@
 class CompaniesController < ApplicationController
+  respond_to :html, :json, :yaml
   load_and_authorize_resource
 
   before_filter :build_associated_if_neccesary, only: %w[new edit]
 
   def index
-    @companies = Company.limit(30)
+    @companies = @companies.limit(5)
+    @companies = @companies.where("name ILIKE ?", "%#{params[:search]}%") if params[:search] # FIXME: Implement real search
+
+    respond_with @companies do |wants|
+      wants.html { render :index, layout: 'application'}
+      wants.json
+    end
   end
 
   def show
+    respond_with @company
   end
 
   def new
+    respond_with @company
   end
 
   def create
-    respond_to do |wants|
+    respond_with @company do |wants|
       if @company.save
         wants.html { redirect_to @company }
         wants.json { render json: { success: true, company_id: @company.id } }
@@ -26,10 +35,15 @@ class CompaniesController < ApplicationController
   end
 
   def edit
+    respond_with @company do |wants|
+      wants.html {
+        render(params[:section] || :edit)
+      }
+    end
   end
 
   def update
-    respond_to do |wants|
+    respond_with @company do |wants|
       if @company.update_attributes(params[:company])
         wants.html { redirect_to @company }
         wants.json { render json: { success: true } }
@@ -49,15 +63,15 @@ class CompaniesController < ApplicationController
   private
 
   def build_associated_if_neccesary
-    @company.personal_licenses.build if @company.personal_licenses.empty?
-    @company.business_licenses.build if @company.business_licenses.empty?
-    @company.build_business_filing   if @company.business_filing.nil?
-    @company.affiliations.build      if @company.affiliations.empty?
-    @company.associations.build      if @company.associations.empty?
-    @company.certifications.build    if @company.certifications.empty?
-    @company.locations.build         if @company.locations.empty?
+    # @company.personal_licenses.build if @company.personal_licenses.empty?
+    # @company.business_licenses.build if @company.business_licenses.empty?
+    # @company.build_business_filing   if @company.business_filing.nil?
+    # @company.affiliations.build      if @company.affiliations.empty?
+    # @company.associations.build      if @company.associations.empty?
+    # @company.certifications.build    if @company.certifications.empty?
+    # @company.locations.build         if @company.locations.empty?
 
-
+    # REFACTOR: !!
     @markets = @company.company_service_areas.includes(service_area: :market).group_by(&:market)
     service_areas = ServiceArea.includes(:market)
     if ids = @markets.values.flatten.map(&:service_area_id).presence

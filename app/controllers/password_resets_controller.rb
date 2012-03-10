@@ -21,7 +21,7 @@ class PasswordResetsController < ApplicationController
       render :success
 
     else
-      redirect_to new_password_reset_path, flash: { error: t('password_reset.new.failure') }
+      redirect_to new_password_reset_path, flash: { error: t('failure', scope: ['password_resets.new']) }
     end
   end
 
@@ -48,10 +48,10 @@ class PasswordResetsController < ApplicationController
 
         @token.fullfill!(request.ip)
 
-        flash[:notice] = t('password_reset.update.success')
+        flash[:notice] = t('success', scope: ['password_resets.update'])
         redirect_to root_url
       else
-        flash.now[:error] = t('password_reset.update.failure')
+        flash.now[:error] = t('failure', scope: ['password_resets.update'])
         render :show
       end
     else

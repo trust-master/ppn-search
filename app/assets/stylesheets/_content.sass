@@ -1,17 +1,31 @@
 // this file is interpreted in the context of
 // .wrapper-outer #wrapper #content
 
+&
+  background-color: $white
+  border-bottom: 1px solid $grey
+  @include box-shadow(0 6px 12px -7px #999)
 
 @import ui_datepicker
 @import tooltip
-@import companies
-@import search
-@import profile
-@import discounts
 @import forms
+
+&.users
+  @import profile
+&.companies
+  @import companies
+  @import discounts
+  &.index
+    @import search
+&.sessions
+  @import sessions
 
 #col-a
   @import sidebar_nav
+
+#col-b
+  background-color: white
+  border: 1px solid $light-grey
 
 .flash
   border: 1px solid black

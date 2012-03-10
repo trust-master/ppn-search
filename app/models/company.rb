@@ -1,48 +1,56 @@
 class Company < ActiveRecord::Base
-  has_many :company_categories, include: {sub_category: :category}
-  has_many :sub_categories, through: :company_categories, uniq: true, readonly: true
-  has_many :categories,     through: :sub_categories,     uniq: true, readonly: true
+  attr_accessor :current_sections
 
-  has_many :affiliations
-  has_many :associations
-  has_many :certifications
+  has_many :company_categories, dependent: :destroy,          include: {:sub_category => :category}
+  has_many :sub_categories,     through: :company_categories, uniq: true, readonly: true
+  has_many :categories,         through: :sub_categories,     uniq: true, readonly: true
 
-  has_many :discounts
+  has_many :affiliations,   dependent: :destroy
+  has_many :associations,   dependent: :destroy
+  has_many :certifications, dependent: :destroy
 
-  has_many :company_service_areas, include: {service_area: :market}
-  has_many :service_areas, through: :company_service_areas, uniq: true, readonly: true
-  has_many :markets,       through: :service_areas,         uniq: true, readonly: true
+  has_many :discounts, dependent: :destroy
 
-  has_many :locations
+  has_many :company_service_areas, dependent: :destroy,             include: {:service_area => :market}
+  has_many :service_areas,         through: :company_service_areas, uniq: true, readonly: true
+  has_many :markets,               through: :service_areas,         uniq: true, readonly: true
 
-  has_many :business_licenses
-  has_many :personal_licenses
-  has_one  :business_filing
+  has_many :locations, dependent: :destroy
+
+  has_many :business_licenses, dependent: :destroy
+  has_many :personal_licenses, dependent: :destroy
+  has_one  :business_filing,   dependent: :destroy
 
   has_many :users
-  has_many :admins
 
   belongs_to :insurance_state, class_name: 'State'
 
-  accepts_nested_attributes_for :affiliations, :associations, :certifications,
-      reject_if: proc { |attributes| attributes.values_at(:name, :title).all?(&:blank?) }, allow_destroy: true
-  accepts_nested_attributes_for :locations,
-      reject_if: proc { |attributes| attributes.values_at(:city, :zip).all?(&:blank?) }, allow_destroy: true
-  accepts_nested_attributes_for :business_licenses, :personal_licenses, :business_filing,
-      reject_if: proc { |attributes| attributes[:number].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :affiliations, :associations, :certifications, allow_destroy: true,
+      reject_if: proc { |attributes| attributes.values_at(:name, :title).all?(&:blank?) }
+
+  accepts_nested_attributes_for :locations, allow_destroy: true,
+      reject_if: proc { |attributes| attributes.values_at(:city, :zip).all?(&:blank?) }
+
+  accepts_nested_attributes_for :business_licenses, :personal_licenses, :business_filing, allow_destroy: true,
+      reject_if: proc { |attributes| attributes.values_at(:number, :issuing_state_id).all?(&:blank?) }
+
   accepts_nested_attributes_for :company_service_areas, :company_categories, allow_destroy: true
 
   attr_accessible :admin_email, :name, :email, :phone_main, :phone_mobile, :phone_fax, :website_url,
     :in_business_since, :about, :description, :general_info, :offers_24_hour_service,
     :offers_emergency_service, :insured, :insurance_state_id, :insurance_certificate,
     :insurance_valid_from, :insurance_valid_until
+
   # also make sure all the nested attributes are accessible
   attr_accessible :affiliations_attributes, :associations_attributes, :certifications_attributes,
     :locations_attributes, :business_licenses_attributes, :personal_licenses_attributes,
     :business_filing_attributes, :company_service_areas_attributes, :company_categories_attributes
 
+  mount_uploader :insurance_certificate, CertificateUploader
+
+  # Show the company name in the URL
   def to_param
-    [id, name.parameterize].join('-')
+    [id, read_attribute(:name).parameterize].join('-')
   end
 
 end

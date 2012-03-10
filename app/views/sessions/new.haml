@@ -1,19 +1,18 @@
-- content_for :title, 'Log In to Trust Master'
-- content_for :content_div_class, 'login'
+- title t('.title')
+- content_for :content_div_class, 'col-1'
 
-= simple_form_for @session, url: session_path do |f|
-  %fieldset
-    %ul
-      = f.input :email
-      = f.input :password
-    .login-btns
-      = f.submit id: 'login'
-      = link_to t('session.cant_log_in')
-    .login-messages
-      %p
-        %strong= t('session.did_you_forget')
-      = link_to t('session.recover'), new_password_reset_path
-      %p
-        = t('session.why')
-        %br
-        = t('session.more')
+#col
+  = simple_form_for @session, url: session_path, wrapper: :login do |f|
+    %fieldset
+      %ul
+        = f.input :email
+        = f.input :password
+      .login-btns
+        = f.button :submit, id: 'submit'
+        = link_to t('.cant_log_in'), new_password_reset_path
+      .login-messages
+        %p
+          %strong= t('.did_you_forget')
+        = link_to t('.recover'), new_password_reset_path
+        %p
+          = t('.why')

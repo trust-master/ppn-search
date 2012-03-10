@@ -4,6 +4,8 @@ class Discount < ActiveRecord::Base
   belongs_to :market
 
   validates_presence_of :type_id, :title, :start_date, :end_date
+
+  # mount_uploader :image, DiscountUploader
 end
 
 
