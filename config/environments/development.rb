@@ -50,4 +50,7 @@ ServiceProviderPortal::Application.configure do
 
   # Don't bother with actually queueing tasks in development
   #Resque.inline = true
+
+  config.sass.debug_info = true
+  config.sass.style = :nested
 end
