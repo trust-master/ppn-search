@@ -28,21 +28,17 @@
   border: 1px solid $light-grey
 
 .flash
-  border: 1px solid black
+  border: 1px solid $light-grey
   padding: 5px
+  margin-bottom: 20px
+  font-size: 14px
 
   &.error, &.alert
-    background-color: #FFBCBC
-    border-color: #540000
-
+    background-color: rgba(#FFBCBC, 0.4)
   &.notice
-    background-color: #d5ffcc
-    border-color: #8da887
-
+    background-color: rgba(#d5ffcc, 0.4)
   &.warning
-    background-color: #bfbfff
-    border-color: #3f3f54
-
+    background-color: rgba(#d5ffcc, 0.4)
 
 a.remove, a.collapse, a.expand
   display: inline-block
@@ -71,11 +67,3 @@ a.collapse .icon
 
 a.expand .icon
   @include sort-arrow-down
-
-// NOTE: No clue where this is meant to be used...
-.error
-  color: $red
-  margin: 10px 0
-  font-size: 11px
-  clear: left
-  margin-left: 80px

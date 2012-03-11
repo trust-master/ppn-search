@@ -1,7 +1,6 @@
 = builder.input :name
 = builder.input :title
-= builder.input :started_on, as: :string
-= builder.input :ended_on, as: :string
-= dev_note "TODO: Add a field here to allow user to mark that last one as 'nil'"
+= builder.input :started_on, start_year: 1950, end_year: 2012, discard_day: true, prompt: true
+= builder.input :ended_on,   start_year: 2000, end_year: 2012, discard_day: true, prompt: true
 = builder.input :url
 = builder.input :description

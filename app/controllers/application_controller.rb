@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_filter :set_current_user_in_user_model
+  # before_filter :set_random_flash
   check_authorization
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -19,6 +20,11 @@ class ApplicationController < ActionController::Base
 
   def set_current_user_in_user_model
     User.current_user = current_user # set this to the User.current_user class variable to make sure user updates have
-  end                                # access to the who who initated the update
+                                     # access to the who who initated the update
+  end
 
+  def set_random_flash
+    bucket = [:notice, :warning, :error, :alert].sample
+    flash[bucket] = "Sample of #{bucket} flash"
+  end
 end

@@ -1,24 +1,26 @@
 module ActionLinksHelper
 
-  def include_remove_link(lookup_for_text = nil)
-    build_action_link(:remove, lookup_for_text)
+  def include_remove_link(*args)
+    build_action_link(:remove, *args)
   end
 
-  def include_add_link(lookup_for_text = nil)
-    build_action_link(:add, lookup_for_text)
+  def include_add_link(*args)
+    build_action_link(:add, *args)
   end
 
-  def include_expand_link(lookup_for_text = nil)
-    build_action_link(:expand, lookup_for_text)
+  def include_expand_link(*args)
+    build_action_link(:expand, *args)
   end
 
-  def include_collapse_link(lookup_for_text = nil)
-    build_action_link(:collapse, lookup_for_text)
+  def include_collapse_link(*args)
+    build_action_link(:collapse, *args)
   end
 
   private
 
-  def build_action_link(type, lookup_for_text)
+  def build_action_link(type, *args)
+    options = args.extract_options! || {}
+    lookup_for_text = args.first
     lookups = []
     if lookup_for_text
       lookups << :".actions.#{lookup_for_text}.#{type}"
@@ -40,7 +42,7 @@ module ActionLinksHelper
     end
     text = results.last.is_a?(I18n::MissingTranslation) ? results.first.html_message : results.last
 
-    content_tag :a, class: type do
+    content_tag :a, {class: type}.merge(options) do
       content_tag(:div, '', class: :icon) + text.html_safe
     end
   end

@@ -1,7 +1,7 @@
 = fieldset :identity do
   %ul
     = form.input :name
-    = form.input :in_business_since, as: :string
+    = form.input :in_business_since, start_year: 1950, end_year: 2012, discard_day: true, discard_month: true, prompt: true
 
 = fieldset :contact do
   %ul

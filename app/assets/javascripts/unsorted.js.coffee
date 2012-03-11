@@ -10,22 +10,6 @@
 #   usersLogin.init()
 #   usersNew.init()
 
-# deleteLinks = init: ->
-#   $("a.delete").live "click", (event) ->
-#     rootObject = $(this)
-#     if confirm("Are you sure you want to delete this?")
-#       $.ajax
-#         url: @href.replace("/delete", "")
-#         type: "post"
-#         data:
-#           _method: "delete"
-
-#         success: ->
-#           rootObject.closest("tr, .object_container").fadeOut 1000
-
-#         error: (data) ->
-#           alert data.responseText
-#     false
 
 # affiliationForm =
 #   submissionCallback: null

@@ -134,7 +134,7 @@ en:
 
   business_licenses:
     business_license: &license
-      last_updated: Last updated %{time} ago
+      last_updated: Last updated
       raw_data: &license_raw_data
         message: Missing something?
         switch_to_raw: Switch to the raw data pulled from the source.
@@ -198,7 +198,7 @@ en:
   helpers:
     # select:
     #   # Default value for :prompt => true in FormOptionsHelper
-    #   prompt: "Please select"
+    prompt: "Please select"
     cancel: Cancel
     submit:
       create: Save
@@ -251,6 +251,8 @@ en:
         offers_24_hour_service:   24-hour Service
         insurance_certificate:    Certificate of Insurance
         insurance_state:          State Insured
+        insurance_valid_from:     Valid from
+        insurance_valid_until:    Expires
       location:
       market:
       service_area:
@@ -276,67 +278,82 @@ en:
       session:
       state:
       city:
+    # errors:
+    #   messages:
+    #     blank: can not be blank
 
   # we can also include attributes without scoping them to a particular model, as a fallback:
   attributes:
+    about: About
     address: Address
     application_number: Application Number
+    city: City
     continuing_education: C. E. Requirements
     created_at: Created At
     description: Description
     doing_business_as: Doing Business As
     effective_on: Effective On
-    ended_on:   End Date
+    email: Email Address
+    ended_on: End Date
     enforcement_action: Enforcement Action
     expires_on: Expires On
     fetched_at: Fetched At
+    general_info: General Information
     issued_on: Issued On
     issuing_state: Issuing State
     name: Name
     number: Number
+    password: Password
+    password_confirmation: Password Confirmation
+    phone_fax: Fax Number
+    phone_main: Primary Phone Number
+    phone_mobile: Mobile Phone Number
     phone_number: Phone Number
     printed_on: Printed On
     raw_data: Raw Data
     responsible_person_license_number: 'License # of Resp. Person'
     started_on: Start Date
+    state: State
     status: Status
     title: Title
     type: Type
     updated_at: Updated At
     url: URL
+    website_url: Website URL
+    zip: ZIP Code
 
   # ActiveModel::Errors#full_messages prepends the attribute name to the error message with this:
   # errors:
   #   format: "%{attribute} %{message}"
 
-  # SimpleForm will check these first, before defaulting to ActiveModel.human
   simple_form:
-    labels:
-      defaults:
-      user:
-        email: Email Address
-        password: Password
-        password_confirmation: Password Confirmation
-      company:
-        insurance_certificate: Certificate
-        insurance_valid_from: Valid from
-        insurance_valid_until: Expires
-        personal_licenses:
-          number: License Number
-        business_licenses:
-          number: License Number
-        business_filing:
-          number: Filing Number
-
+    # SimpleForm will check these first, before defaulting to ActiveModel.human
+    # labels:
+    #   defaults:
 
     hints:
       defaults:
         email: Your Email Address
         password: Your Trust Master Password
+      company:
+        email: A public address for your Company
+        about: Short summary
+        description: Use this area to define ...
+        general_info: Hours, availability, etc.
+        affiliations:
+          ended_on: If still active, leave these fields blank
+        associations:
+          ended_on: If still active, leave these fields blank
+        certifications:
+          certificate: "Upload a scan of the actual certificate, if you'd like"
     placeholders:
       defaults:
         email: 'name@example.com'
-        password: '***'
+        password: password
+        url: http://example.com
+      company:
+        email: info@company.com
+        website_url: http://company.com
 
   # Stuff for CanCan errors
   unauthorized:
@@ -357,9 +374,9 @@ en:
       long: "%B %d, %Y"
     # Used in date_select and datetime_select.
     order:
-      - :year
-      - :month
       - :day
+      - :month
+      - :year
 
   time:
     formats:

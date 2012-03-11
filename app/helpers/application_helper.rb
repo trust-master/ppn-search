@@ -28,4 +28,8 @@ module ApplicationHelper
   # def link_to_google_maps_search(title, q = title, opts = {})
   #   link_to title, ['http://maps.google.com/', {q: q}.to_param].join('?'), opts
   # end
+
+  def time_ago_in_words(time)
+    content_tag(:time, time.to_s, datetime: time.getutc.iso8601, class: 'timeago')
+  end
 end

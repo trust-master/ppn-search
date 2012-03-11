@@ -1,9 +1,14 @@
 // This file is interpreted in the context of
 // .wrapper-outer #wrapper #content.companies
 
+&.edit, &.new
+  #col-b
+    padding: 0
+    width: 696px
+
+
 form
   fieldset
-
     &#service_categories
       div.category
         margin: 15px 0
@@ -79,14 +84,6 @@ form
             font-style: normal
             font-size: 75%
 
-    &#business_filing
-      // float the legend so the .popup "What is this?" link shares its line
-      legend
-        float: left
-        margin: 0 20px 20px 0
-
-      .business_filing
-        clear: both
 
     &#licenses
       #business_licenses, #personal_licenses

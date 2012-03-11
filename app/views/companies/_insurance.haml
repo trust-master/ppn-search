@@ -1,9 +1,13 @@
 %ul
   = form.input :insured, as: :radio_buttons
-  - if @company.insurance_certificate?
-    %li.input
-      = image_tag @company.insurance_certificate.url, width: 200
-  = form.input :insurance_certificate, as: :file
-  = form.input :insurance_valid_from
-  = form.input :insurance_valid_until
-  = form.association :insurance_state
+  .insurance_fields{hidden_if(!@company.insured)}
+    %li.input.file
+      = form.input :insurance_certificate, as: :file, wrapper: false, hint: (@company.insurance_certificate? ? "Certificate file is present in the system. To change it, upload another one" : 'Upload a PDF scan of your insurance document')
+    - if @company.insurance_certificate?
+      %li.current
+        %label Current Certificate
+        = link_to @company.insurance_certificate.file.filename, @company.insurance_certificate.url
+
+    = form.input :insurance_valid_from,  start_year: 2000, end_year: 2012, discard_day: true, prompt: true
+    = form.input :insurance_valid_until, start_year: 2012,                 discard_day: true, prompt: true
+    = form.association :insurance_state

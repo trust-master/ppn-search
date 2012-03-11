@@ -8,7 +8,8 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery.formalize
-//= require jQuery.scrollTo
+//= require jquery.timeago
+//= require jquery.simple_scroll_to
 //
 //= require_tree ../../../vendor/assets
 //= require unsorted

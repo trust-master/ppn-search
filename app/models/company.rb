@@ -17,9 +17,9 @@ class Company < ActiveRecord::Base
 
   has_many :locations, dependent: :destroy
 
-  has_many :business_licenses, dependent: :destroy
-  has_many :personal_licenses, dependent: :destroy
-  has_one  :business_filing,   dependent: :destroy
+  has_many :business_licenses, dependent: :nullify
+  has_many :personal_licenses, dependent: :nullify
+  has_many :business_filings,  dependent: :nullify, limit: 1, order: 'updated_at' # this should be has_one, but, due to quirks, I'll just emulate the has_one getter and let the form treat it as a collection.
 
   has_many :users
 
@@ -31,8 +31,10 @@ class Company < ActiveRecord::Base
   accepts_nested_attributes_for :locations, allow_destroy: true,
       reject_if: proc { |attributes| attributes.values_at(:city, :zip).all?(&:blank?) }
 
-  accepts_nested_attributes_for :business_licenses, :personal_licenses, :business_filing, allow_destroy: true,
-      reject_if: proc { |attributes| attributes.values_at(:number, :issuing_state_id).all?(&:blank?) }
+  accepts_nested_attributes_for :business_licenses, :personal_licenses, :business_filings, allow_destroy: true,
+    reject_if: proc { |attributes|
+      attributes.has_key?(:id) or attributes.values_at(:number, :issuing_state_id).all?(&:blank?)
+    }
 
   accepts_nested_attributes_for :company_service_areas, :company_categories, allow_destroy: true
 
@@ -44,13 +46,18 @@ class Company < ActiveRecord::Base
   # also make sure all the nested attributes are accessible
   attr_accessible :affiliations_attributes, :associations_attributes, :certifications_attributes,
     :locations_attributes, :business_licenses_attributes, :personal_licenses_attributes,
-    :business_filing_attributes, :company_service_areas_attributes, :company_categories_attributes
+    :business_filings_attributes, :company_service_areas_attributes, :company_categories_attributes
 
   mount_uploader :insurance_certificate, CertificateUploader
 
   # Show the company name in the URL
   def to_param
     [id, read_attribute(:name).parameterize].join('-')
+  end
+
+  # since I was having trouble bending the has_one to my will (specifically, allowing for only delete/create/replace operations on it), I opted to use (has_many, limit: 1), so this will return that one record (or nil), using the singular name.
+  def business_filing
+    business_filings.first
   end
 
 end

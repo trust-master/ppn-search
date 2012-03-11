@@ -15,7 +15,9 @@
             %td= value.is_a?(String) ? simple_format(value) : (value || '-').to_s
 
     .meta
-      .last_updated= t('.last_updated', time: time_ago_in_words(business_license.fetched_at))
+      .last_updated
+        = t('.last_updated')
+        = time_ago_in_words(business_license.fetched_at)
       .raw_data_message
         %span.message= t('.raw_data.message')
         %a{data: {alternate_text: t('.raw_data.switch_to_parsed')}}= t('.raw_data.switch_to_raw')

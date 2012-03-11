@@ -1,9 +1,8 @@
 // this file is interpreted in the context of
 // .wrapper-outer #wrapper #content
 
-
 fieldset
-  margin: 15px
+  margin: 20px 10px
   padding: 15px 10px 10px
   border-bottom: 1px solid $light-grey
   font-size: 13px
@@ -17,20 +16,22 @@ fieldset
     clear: both
     padding-left: 10px
 
+
+  // NOTE: No clue where this is meant to be used...
+  .error
+    color: $red
+    margin: 10px 0
+    font-size: 11px
+    clear: left
+    margin-left: 80px
+
   li
     margin: 15px 0
 
+    #{$all-text-inputs}
+      width: 274px
+      padding-left: 5px
     input
-      &[type="text"],
-      &[type="password"],
-      &[type="tel"],
-      &[type="email"],
-      &[type="number"],
-      &[type="url"],
-      &[type="search"]
-        width: 274px
-        padding-left: 5px
-
       &[type="checkbox"]
         width: auto
 
@@ -40,6 +41,7 @@ fieldset
       font-style: italic
       display: inline-block
       margin-left: 10px
+      width: 185px
 
     label
       width: 140px

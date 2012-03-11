@@ -20,6 +20,9 @@
         .actions
           = include_remove_link
         %h5 New License
-        = new_personal_license.association :issuing_state, disabled: true
-        = new_personal_license.input :number
         = new_personal_license.hidden_field :_destroy, class: :destroy
+
+        = new_personal_license.input       :issuing_state_id, as: :hidden # temporary, until the issuing state input is enabled
+        = new_personal_license.association :issuing_state,    disabled: true # disabled means it wont be sent
+
+        = new_personal_license.input :number
