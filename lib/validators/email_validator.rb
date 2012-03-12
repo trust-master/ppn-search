@@ -2,7 +2,7 @@
 class EmailValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     unless ValidationPatterns::EmailAddress.match(value)
-      record.errors[attribute] << (options[:message] || "is not a valid email address")
+      record.errors.add(attribute, (options[:message] || :email))
     end
   end
 end

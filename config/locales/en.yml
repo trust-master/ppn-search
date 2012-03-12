@@ -196,9 +196,9 @@ en:
 
   # Built-in Rails helpers will look at these
   helpers:
-    # select:
-    #   # Default value for :prompt => true in FormOptionsHelper
-    prompt: "Please select"
+    select:
+      # Default value for :prompt => true in FormOptionsHelper
+      prompt: "Please Select"
     cancel: Cancel
     submit:
       create: Save
@@ -278,9 +278,47 @@ en:
       session:
       state:
       city:
-    # errors:
-    #   messages:
-    #     blank: can not be blank
+
+  errors: &errors
+    # format: '%{attribute} %{message}'
+    messages:
+      email: is not a valid email address
+      url: is not a valid URL
+      date: should be a date
+      in_past: should be a past date
+      in_future: should be a future date
+    #   accepted: must be accepted
+    #   blank: can't be blank
+    #   confirmation: doesn't match confirmation
+    #   empty: can't be empty
+    #   equal_to: must be equal to %{count}
+    #   even: must be even
+    #   exclusion: is reserved
+    #   greater_than: must be greater than %{count}
+    #   greater_than_or_equal_to: must be greater than or equal to %{count}
+    #   inclusion: is not included in the list
+    #   invalid: is invalid
+    #   less_than: must be less than %{count}
+    #   less_than_or_equal_to: must be less than or equal to %{count}
+    #   not_a_number: is not a number
+    #   not_an_integer: must be an integer
+    #   odd: must be odd
+    #   record_invalid: 'Validation failed: %{errors}'
+    #   taken: has already been taken
+    #   too_long:
+    #     one: is too long (maximum is 1 character)
+    #     other: is too long (maximum is %{count} characters)
+    #   too_short:
+    #     one: is too short (minimum is 1 character)
+    #     other: is too short (minimum is %{count} characters)
+    #   wrong_length:
+    #     one: is the wrong length (should be 1 character)
+    #     other: is the wrong length (should be %{count} characters)
+    # template:
+    #   body: 'There were problems with the following fields:'
+    #   header:
+    #     one: 1 error prohibited this %{model} from being saved
+    #     other: '%{count} errors prohibited this %{model} from being saved'
 
   # we can also include attributes without scoping them to a particular model, as a fallback:
   attributes:
@@ -321,10 +359,6 @@ en:
     url: URL
     website_url: Website URL
     zip: ZIP Code
-
-  # ActiveModel::Errors#full_messages prepends the attribute name to the error message with this:
-  # errors:
-  #   format: "%{attribute} %{message}"
 
   simple_form:
     # SimpleForm will check these first, before defaulting to ActiveModel.human

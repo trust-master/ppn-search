@@ -11,6 +11,9 @@ class BusinessFiling < ActiveRecord::Base
   validates :number, presence: true
   validates :issuing_state, :company, associated: true, presence: true
 
+  attr_accessible :issuing_state_id, :number
+  attr_readonly :company_id
+
 end
 
 

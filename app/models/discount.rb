@@ -6,6 +6,9 @@ class Discount < ActiveRecord::Base
   validates_presence_of :type_id, :title, :start_date, :end_date
 
   # mount_uploader :image, DiscountUploader
+
+  attr_accessible :type_id, :title, :description, :image, :market_id, :start_date, :end_date
+  attr_readonly :company_id
 end
 
 

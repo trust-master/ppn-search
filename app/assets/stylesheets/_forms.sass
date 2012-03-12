@@ -16,17 +16,14 @@ fieldset
     clear: both
     padding-left: 10px
 
-
-  // NOTE: No clue where this is meant to be used...
-  .error
-    color: $red
-    margin: 10px 0
-    font-size: 11px
-    clear: left
-    margin-left: 80px
-
   li
     margin: 15px 0
+
+    &.error
+      color: black
+      border: 1px solid $red
+      background: rgba($red, 0.15)
+      padding: 10px 0
 
     #{$all-text-inputs}
       width: 274px
@@ -34,6 +31,9 @@ fieldset
     input
       &[type="checkbox"]
         width: auto
+
+    span.error
+      margin-left: 10px
 
     // hints
     .more-info, .hint

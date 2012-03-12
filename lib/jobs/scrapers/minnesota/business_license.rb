@@ -29,7 +29,7 @@ module Jobs::Scrapers
           number:           output[:lic_no],
           issuing_state_id: Minnesota.id
 
-        ).order('updated_at desc').first_or_initialize.update_attributes!(
+        ).order('updated_at desc').first_or_initialize.update_attributes!({
 
           type_id:   output[:type_id],
           status_id: output[:status_id],
@@ -54,7 +54,7 @@ module Jobs::Scrapers
           raw_data: output.stringify_keys,
 
           fetched_at: Time.now
-        )
+        }, without_protection: true)
       end
 
     end

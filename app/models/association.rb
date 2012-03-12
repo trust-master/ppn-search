@@ -1,5 +1,11 @@
 class Association < ActiveRecord::Base
   belongs_to :company
+
+  validates :url, url: true
+  validates :name, presence: true
+
+  attr_accessible :name, :title, :description, :started_on, :ended_on, :url
+  attr_readonly :company_id
 end
 
 

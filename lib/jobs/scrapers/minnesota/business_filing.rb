@@ -67,7 +67,7 @@ module Jobs::Scrapers
           number:           props[:file_number],
           issuing_state_id: Minnesota.id
 
-        ).order('updated_at desc').first_or_initialize.update_attributes!(
+        ).order('updated_at desc').first_or_initialize.update_attributes!({
 
           type_id:                   FilingType.find_or_create_by_name(props[:business_type]).id,
           status_id:                 FilingStatus.find_or_create_by_name(props[:status]).id,
@@ -87,7 +87,8 @@ module Jobs::Scrapers
           raw_data:                  props.stringify_keys,
 
           fetched_at: Time.now
-        )
+
+        }, without_protection: true)
       end
 
       private

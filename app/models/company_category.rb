@@ -3,7 +3,11 @@ class CompanyCategory < ActiveRecord::Base
   belongs_to :company
   belongs_to :sub_category
 
-  delegate :category, to: :sub_category
+  attr_accessible :sub_category_id
+  attr_readonly :company_id
+
+  delegate :category, :category_name,  to: :sub_category
+  delegate :name, to: :sub_category, prefix: true
 end
 
 

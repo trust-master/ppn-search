@@ -65,7 +65,7 @@ module ServiceProviderPortal
     # This will create an empty whitelist of attributes available for mass-assignment for all models
     # in your app. As such, your models will need to explicitly whitelist or blacklist accessible
     # parameters by using an attr_accessible or attr_protected declaration.
-    # config.active_record.whitelist_attributes = true
+    config.active_record.whitelist_attributes = true
 
     config.redis_urls = Hash.new do |hash, key|
       key = key.downcase.to_sym
