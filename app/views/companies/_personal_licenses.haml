@@ -14,15 +14,15 @@
   = include_add_link
 
   %script.template{type: 'text/html'}
-    -# cache 'company_personal_license_fields_template' do
-    = form.simple_fields_for :personal_licenses, PersonalLicense.new, child_index: '_ID_' do |new_personal_license|
-      %ul[new_personal_license.object]
-        .actions
-          = include_remove_link
-        %h5 New License
-        = new_personal_license.hidden_field :_destroy, class: :destroy
+    - cache 'company_personal_license_fields_template' do
+      = form.simple_fields_for :personal_licenses, PersonalLicense.new, child_index: '_ID_' do |new_personal_license|
+        %ul[new_personal_license.object]
+          .actions
+            = include_remove_link
+          %h5 New License
+          = new_personal_license.hidden_field :_destroy, class: :destroy
 
-        = new_personal_license.input       :issuing_state_id, as: :hidden # temporary, until the issuing state input is enabled
-        = new_personal_license.association :issuing_state,    disabled: true # disabled means it wont be sent
+          = new_personal_license.input       :issuing_state_id, as: :hidden # temporary, until the issuing state input is enabled
+          = new_personal_license.association :issuing_state,    disabled: true # disabled means it wont be sent
 
-        = new_personal_license.input :number
+          = new_personal_license.input :number
