@@ -31,6 +31,10 @@ gem 'mechanize'
 
 gem 'redis'
 
+gem 'rails_admin', git: 'https://github.com/sferik/rails_admin.git'
+
+
+
 # Use Redis to do caching, i18n, and sessions
 git 'https://github.com/jodosha/redis-store.git' do
   gem 'redis-store'

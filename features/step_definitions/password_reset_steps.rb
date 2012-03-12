@@ -65,6 +65,7 @@ Then(/^the Password Reset should (\w+)$/i) do |expected_result|
 end
 
 When(/^I fill in (Password(?: Confirmation)?) with '(.+?)'$/i) do |field_name, password|
-  label = I18n.translate("simple_form.labels.user.#{field_name.downcase.gsub(/\s+/,'_')}")
+  # label = I18n.translate("simple_form.labels.user.#{field_name.downcase.gsub(/\s+/,'_')}")
+  label = form_label_for([:user], field_name.downcase.gsub(/\s+/,'_'))
   fill_in label, with: password
 end

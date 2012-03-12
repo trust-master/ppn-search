@@ -84,11 +84,11 @@ class Company < ActiveRecord::Base
       # validates :phone_main
       # validates :phone_mobile
       # validates :visible
-    validates :about, length: { maximum: 255 }
-    validates :email, email: true
-    validates :in_business_since, date: { in_past: true }
+    validates :about, length: { maximum: 255 }, allow_blank: true
+    validates :email, email: true, allow_blank: true
+    validates :in_business_since, date: { in_past: true }, allow_blank: true
     validates :name, presence: true
-    validates :website_url, url: true
+    validates :website_url, url: true, allow_blank: true
 
   ### Uploaders
     # mount the certificate carrierwave uploader on the insurance_certificate column

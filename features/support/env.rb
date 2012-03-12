@@ -18,6 +18,8 @@ Spork.prefork do
 
   require_relative 'mailer_macros'
   include MailerMacros
+  require_relative 'form_macros'
+  include FormMacros
 
   # to force Resque to run jobs synchronously
   Resque.inline = true

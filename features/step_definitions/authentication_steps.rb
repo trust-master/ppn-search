@@ -7,7 +7,7 @@ Given(/^a valid user exists in the database$/) do
   u = User.new({ first_name: 'Test', last_name: 'User', company_id: c.id,
           password: 'test123!', password_confirmation: 'test123!', email: 'test@test.com' }, without_protection: true)
   u.company = c
-  u.save
+  u.save!
 end
 
 When(/^I go to the log[- ]?in page$/) do

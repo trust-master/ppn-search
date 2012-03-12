@@ -46,7 +46,7 @@ Feature: Request Password Reset
       | password   | password_confirmation | expected_result |
       | aoeuidhtns | aoeuidhtns            | fail            |
       | 123456     | 123456                | fail            |
-      | aoe123     | aoe123                | fail            |
+      | aoe123     | aoe123                | succeed         |
       | aoe123#    | aoe123                | fail            |
       | ae2#       | ae2#                  | fail            |
       | aoe123#    | aoe123#               | succeed         |
