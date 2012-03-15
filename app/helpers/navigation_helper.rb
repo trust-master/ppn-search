@@ -3,7 +3,7 @@ module NavigationHelper
   # Create sidebar navigation menu. Give it a name and a block where you call <tt>nav_link</tt>
   def nav_for(menu_name, opts = {}, &block)
     menu = NavigationMenu.new(menu_name, self, opts)
-    content_tag :ul, :class => [:navigation, menu_name, opts[:menu_class]] do
+    content_tag :ul, class: [:navigation, menu_name, opts[:menu_class]] do
       menu.instance_eval(&block)
     end
   end
@@ -32,7 +32,7 @@ module NavigationHelper
         h.link_to(text_for_link, url, options[:link_attrs])
       else
         wrapper_tag = options[:item_wrapper] || :li
-        h.content_tag wrapper_tag, :class => options[:item_class] do
+        h.content_tag wrapper_tag, class: options[:item_class] do
           h.link_to(text_for_link, url, options[:link_attrs])
         end
       end

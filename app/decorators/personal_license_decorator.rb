@@ -14,12 +14,4 @@ module PersonalLicenseDecorator #< ApplicationDecorator
 
     Hash[a.map{ |key, value| [PersonalLicense.human_attribute_name(key), value] }]
   end
-
-  def display_identifier
-    [
-      issuing_state.name,
-      self.fetched? ? type.name : nil,
-      number
-    ].compact.join(' - ')
-  end
 end

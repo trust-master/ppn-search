@@ -4,7 +4,7 @@ class Affiliation < ActiveRecord::Base
   validates :url, url: true
   validates :name, presence: true
 
-  attr_accessible :name, :title, :description, :started_on, :ended_on, :url
+  attr_accessible :name, :title, :description, :started_on, :ended_on, :url, as: [:default, :admin]
   attr_readonly :company_id
 end
 

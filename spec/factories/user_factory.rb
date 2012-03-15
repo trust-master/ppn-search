@@ -11,16 +11,4 @@ FactoryGirl.define do
     password_confirmation { password }
     company
   end
-
-  # # This will use the User class (Admin would have been guessed)
-  # factory :admin do
-  #   first_name 'Admin'
-  #   last_name  'User'
-  # end
-
-  # # The same, but using a string instead of class constant
-  # factory :company_admin do
-  #   first_name 'Admin'
-  #   last_name  'User'
-  # end
 end

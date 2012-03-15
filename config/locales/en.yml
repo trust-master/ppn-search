@@ -217,33 +217,101 @@ en:
 
   activerecord:
     models:
-      user:                   User
-      admin:                  Administrator
-      company_admin:          Service Provider Administrator
-      company:                Service Provider
-      location:               Location
-      market:                 Market
-      service_area:           Region
-      category:               Category
-      sub_category:           Sub-Category
-      personal_license:       Personal License
-      business_license:       Business License
-      business_filing:        Business Filing
-      certification:          Certification
-      affiliation:            Affiliation
-      association:            Association
-      discount:               Discount
-      password_reset:         Password Reset
-      password_reset_request: Password Reset Request
-      session:                Session
-      state:                  State
-      city:                   City
+      user:
+        one: User
+        other: Users
+      admin:
+        one: Administrator
+        other: Administrators
+      company_admin:
+        one: Service Provider Administrator
+        other: Service Provider Administrators
+      company:
+        one: Service Provider
+        other: Service Providers
+      location:
+        one: Location
+        other: Locations
+      market:
+        one: Market
+        other: Markets
+      service_area:
+        one: Region
+        other: Regions
+      category:
+        one: Category
+        other: Categories
+      sub_category:
+        one: Sub-Category
+        other: Sub-Categories
+      personal_license:
+        one: Personal License
+        other: Personal Licenses
+      business_license:
+        one: Business License
+        other: Business Licenses
+      business_filing:
+        one: Business Filing
+        other: Business Filings
+      certification:
+        one: Certification
+        other: Certifications
+      affiliation:
+        one: Affiliation
+        other: Affiliations
+      association:
+        one: Association
+        other: Associations
+      discount:
+        one: Discount
+        other: Discounts
+      password_reset:
+        one: Password Reset
+        other: Password Resets
+      password_reset_request:
+        one: Password Reset Request
+        other: Password Reset Requests
+      session:
+        one: Session
+        other: Sessions
+      state:
+        one: State
+        other: States
+      city:
+        one: City
+        other: Cities
+      country:
+        one: Country
+        other: Countries
+      discount_type:
+        one: Discount Type
+        other: Discount Types
+      filing_status:
+        one: Filing Status
+        other: Filing Status
+      filing_type:
+        one: Filing Type
+        other: Filing Types
+      license_type:
+        one: License Type
+        other: License Types
+      business_license_type:
+        one: Business License Type
+        other: Business License Types
+      personal_license_type:
+        one: Personal License Type
+        other: Personal License Types
+      user_auth_token:
+        one: User Auth Token
+        other: User Auth Tokens
+
     attributes:
       # human names of attributes, scoped to the model
       user:
         first_name: First Name
         last_name:  Last Name
-        # etc: ...
+        logged_in_at: Last Login
+        display_name: Name
       admin:
       company_admin:
       company:
@@ -253,6 +321,7 @@ en:
         insurance_state:          State Insured
         insurance_valid_from:     Valid from
         insurance_valid_until:    Expires
+        deleted_by_user:          Deleted By
       location:
       market:
       service_area:
@@ -359,6 +428,10 @@ en:
     url: URL
     website_url: Website URL
     zip: ZIP Code
+    visible: Visible?
+    active: Active?
+    service_areas: Regions
+    sub_categories: Sub-Categories
 
   simple_form:
     # SimpleForm will check these first, before defaulting to ActiveModel.human

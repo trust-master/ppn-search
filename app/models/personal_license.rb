@@ -1,8 +1,8 @@
 class PersonalLicense < ActiveRecord::Base
   include Fetchable
 
-  belongs_to :type, :class_name => 'LicenseType'
-  belongs_to :status, :class_name => 'LicenseStatus'
+  belongs_to :type, class_name: 'LicenseType'
+  belongs_to :status, class_name: 'LicenseStatus'
   belongs_to :issuing_state, class_name: 'State'
   belongs_to :company
 
@@ -11,8 +11,16 @@ class PersonalLicense < ActiveRecord::Base
   validates :number, presence: true
   validates :issuing_state, :company, associated: true, presence: true
 
-  attr_accessible :issuing_state_id, :number
-  attr_readonly :company_id
+  attr_accessible :issuing_state_id, :number, as: [:default, :admin]
+  attr_readonly :company_id, :number, :issuing_state_id
+
+  def display_identifier
+    [
+      issuing_state.name,
+      self.fetched? ? type.name : nil,
+      number
+    ].compact.join(' - ')
+  end
 end
 
 

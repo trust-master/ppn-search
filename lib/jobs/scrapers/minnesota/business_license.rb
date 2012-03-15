@@ -16,7 +16,7 @@ module Jobs::Scrapers
           raise ArgumentError, 'company_id is invalid!'
         end
 
-        output = parse_page(:business, license_number, IDS)
+        output = parse_page(:business, license_number.dup, IDS)
         output[:real_name], output[:doing_business_as] = output[:name].split(/\s+DBA\s+/i)
 
         # Queue up the personal license that was referenced in this one
@@ -24,6 +24,7 @@ module Jobs::Scrapers
           Resque.enqueue(Minnesota::PersonalLicense, company_id, output[:resp_lic_no])
         end
 
+        # Save the new license
         ::BusinessLicense.where(
           company_id:       company_id,
           number:           output[:lic_no],
@@ -55,6 +56,16 @@ module Jobs::Scrapers
 
           fetched_at: Time.now
         }, without_protection: true)
+
+        if output[:lic_no] != license_number
+          # the format of the license number that was supplied was wrong, but it's been corrected in
+          # the new record, so we'll need to delete the old one
+          ::BusinessLicense.where(
+            company_id:       company_id,
+            number:           license_number,
+            issuing_state_id: Minnesota.id
+          ).destroy_all
+        end
       end
 
     end

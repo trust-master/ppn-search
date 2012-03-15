@@ -4,24 +4,24 @@ class Company < ActiveRecord::Base
   ### Associations
 
     with_options dependent: :destroy do |company|
-      has_many :affiliations
-      has_many :associations
-      has_many :certifications
+      company.has_many :affiliations
+      company.has_many :associations
+      company.has_many :certifications
 
-      has_many :discounts
+      company.has_many :discounts
 
-      has_many :locations, dependent: :destroy
+      company.has_many :locations, dependent: :destroy
 
-      has_many :company_categories,    include: {:sub_category => :category}
-      has_many :company_service_areas, include: {:service_area => :market}
+      company.has_many :company_categories,    include: {sub_category: :category}
+      company.has_many :company_service_areas, include: {service_area: :market}
     end
 
     with_options uniq: true, readonly: true do |company|
-      has_many :sub_categories, through: :company_cateories
-      has_many :categories,     through: :sub_categories
+      company.has_many :sub_categories, through: :company_categories
+      company.has_many :categories,     through: :sub_categories
 
-      has_many :service_areas,  through: :company_service_areas
-      has_many :markets,        through: :service_areas
+      company.has_many :service_areas,  through: :company_service_areas
+      company.has_many :markets,        through: :service_areas
     end
 
     with_options dependent: :nullify do |company|
@@ -52,38 +52,38 @@ class Company < ActiveRecord::Base
 
     accepts_nested_attributes_for :company_service_areas, :company_categories, allow_destroy: true
 
+    accepts_nested_attributes_for :discounts, allow_destroy: true
+
   ### Attribute Protection
-    attr_accessible :admin_email, :name, :email, :phone_main, :phone_mobile, :phone_fax, :website_url,
-      :in_business_since, :about, :description, :general_info, :offers_24_hour_service,
-      :offers_emergency_service, :insured, :insurance_state_id, :insurance_certificate,
-      :insurance_valid_from, :insurance_valid_until
+
+    attr_accessible :admin_email, :name, :email, :phone_main, :phone_mobile, :phone_fax,
+      :website_url, :in_business_since, :about, :description, :general_info,
+      :offers_24_hour_service, :offers_emergency_service, :insured, :insurance_state_id,
+      :insurance_certificate, :insurance_certificate_cache, :remove_insurance_certificate,
+      :insurance_valid_from, :insurance_valid_until, as: [:default, :admin]
 
     # also make sure all the nested attributes are accessible
     attr_accessible :affiliations_attributes, :associations_attributes, :certifications_attributes,
       :locations_attributes, :business_licenses_attributes, :personal_licenses_attributes,
-      :business_filings_attributes, :company_service_areas_attributes, :company_categories_attributes
+      :business_filings_attributes, :company_service_areas_attributes,
+      :company_categories_attributes, :discounts_attributes, as: [:default, :admin]
+
+    attr_accessible :active, :visible, as: :admin
 
   ### Callbacks
     before_validation :nullify_insurance_fields_if_necessary
 
   ### Validations
-      # validates :active
-      # validates :admin_email, email: true
-      # validates :deleted_at
-      # validates :deleted_by_user_id
-      # validates :description
-      # validates :general_info
-      # validates :insurance_certificate
-      # validates :insurance_state_id
-      # validates :insurance_valid_from
-      # validates :insurance_valid_until
-      # validates :insured
-      # validates :offers_24_hour_service
-      # validates :offers_emergency_service
-      # validates :phone_fax
-      # validates :phone_main
-      # validates :phone_mobile
-      # validates :visible
+    validates :admin_email, email: true, presence: true
+    # validates :description
+    # validates :general_info
+    with_options if: :insured do |user|
+      user.validates :insurance_certificate, presence: true
+      user.validates :insurance_state, presence: true, associated: true
+      user.validates :insurance_valid_from, presence: true, date: { in_past: true }
+      user.validates :insurance_valid_until, presence: true, date: { in_future: true }
+    end
+    # validates :phone_fax, :phone_main, :phone_mobile, phone: true
     validates :about, length: { maximum: 255 }, allow_blank: true
     validates :email, email: true, allow_blank: true
     validates :in_business_since, date: { in_past: true }, allow_blank: true
@@ -105,6 +105,10 @@ class Company < ActiveRecord::Base
     # return that one record (or nil), using the singular name.
     def business_filing
       business_filings.first
+    end
+
+    def primary_location_name
+      locations.first.try(:name)
     end
 
   ### Class Methods

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
         flash[:notice] = 'User was successfully created.'
         wants.html { redirect_to(@user) }
       else
-        wants.html { render :action => "new" }
+        wants.html { render action: "new" }
       end
     end
   end
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
         flash[:notice] = 'User was successfully updated.'
         wants.html { redirect_to(@user) }
       else
-        wants.html { render :action => "edit" }
+        wants.html { render action: "edit" }
       end
     end
   end

@@ -1,7 +1,12 @@
 class ServiceArea < ActiveRecord::Base
   belongs_to :market
-  has_many :company_service_areas
-  has_many :companies, :through => :company_service_areas
+  has_many :company_service_areas, dependent: :destroy
+  has_many :companies, through: :company_service_areas
+
+  attr_accessible :name, :market_id, as: :admin
+
+  validates :name, :market, presence: true
+  validates_associated :market
 end
 
 

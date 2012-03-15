@@ -4,9 +4,9 @@ class AffiliationsController < ApplicationController
 
   def create
     if @affiliation.save
-      render :json => { :success => true, :affiliation => @affiliation }
+      render json: { success: true, affiliation: @affiliation }
     else
-      render :json => { :success => false, :message => @affiliation.errors }
+      render json: { success: false, message: @affiliation.errors }
     end
   end
 
@@ -18,15 +18,15 @@ class AffiliationsController < ApplicationController
 
   def update
     if @affiliation.update_attributes(params[:affiliation])
-      render :json => { :success => true, :affiliation => @affiliation }
+      render json: { success: true, affiliation: @affiliation }
     else
-      render :json => { :success => false, :message => @affiliation.errors }
+      render json: { success: false, message: @affiliation.errors }
     end
   end
 
   def destroy
     @affiliation.destroy
-    render :json => { :success => true }
+    render json: { success: true }
   end
 
 end

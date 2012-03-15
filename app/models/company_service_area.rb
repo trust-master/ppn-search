@@ -2,7 +2,7 @@ class CompanyServiceArea < ActiveRecord::Base
   belongs_to :company
   belongs_to :service_area, include: :market
 
-  attr_accessible :service_area_id, :partial_only
+  attr_accessible :service_area_id, :partial_only, as: [:default, :admin]
   attr_readonly :company_id
 
   delegate :market, :market_id, to: :service_area

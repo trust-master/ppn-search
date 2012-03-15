@@ -1,6 +1,6 @@
 - title t('.title')
 
-%a{:href => "/users/new"} Add a User
+%a{href: "/users/new"} Add a User
 %table.users_index
   %thead
     %tr
@@ -17,6 +17,6 @@
         %td= user.logged_in_at
         %td= user.active ? 'Y' : 'N'
         %td
-          = link_to 'Edit', user, :action => :edit
+          = link_to 'Edit', user, action: :edit
           |
-          = link_to 'Delete', user, :action => :delete
+          = link_to 'Delete', user, action: :delete

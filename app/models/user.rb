@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :first_name, :middle_name, :last_name, :email, :password, :password_confirmation,
     as: [:default, :admin]
-  attr_accessible :role, :company_id, as: :admin
+  attr_accessible :role, :company_id, :active, as: :admin
 
 
   # wrapper for StringInquirer

@@ -1,20 +1,21 @@
 class ApplicationController < ActionController::Base
   before_filter :set_current_user_in_user_model
   # before_filter :set_random_flash
-  check_authorization
+  check_authorization unless: :rails_admin_controller?
 
   rescue_from CanCan::AccessDenied do |exception|
     if current_user # not authorized
-      redirect_to root_url, :alert => exception.message
+      redirect_to root_url, alert: exception.message
     else # not logged in
-      redirect_to login_path #, :alert => I18n.t('unauthorized.not_authenticated')
+      binding.pry # FIXME: How to use login_path when called by RailsAdmin??
+      redirect_to login_path #, alert: I18n.t('unauthorized.not_authenticated')
     end
   end
 
   private
 
   def current_user
-    @current_user ||= session[:user_id] ? User.find(session[:user_id]) : nil
+    @current_user ||= session[:user_id] ? User.where(id: session[:user_id]).first : nil
   end
   helper_method :current_user
 

@@ -4,9 +4,9 @@ class AssociationsController < ApplicationController
 
   def create
     if @association.save
-      render :json => { :success => true, :association => @association }
+      render json: { success: true, association: @association }
     else
-      render :json => { :success => false, :message => @association.errors }
+      render json: { success: false, message: @association.errors }
     end
   end
 
@@ -18,14 +18,14 @@ class AssociationsController < ApplicationController
 
   def update
     if @association.update_attributes(params[:association])
-      render :json => {:success => true, :association => @association }
+      render json: {success: true, association: @association }
     else
-      render :json => {:success => false, :message => @association.errors }
+      render json: {success: false, message: @association.errors }
     end
   end
 
   def destroy
     @association.destroy
-    render :json => { :success => true }
+    render json: { success: true }
   end
 end

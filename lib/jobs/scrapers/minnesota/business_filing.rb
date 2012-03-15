@@ -89,6 +89,15 @@ module Jobs::Scrapers
           fetched_at: Time.now
 
         }, without_protection: true)
+
+
+        if filing_number != props[:file_number]
+          ::BusinessFiling.where(
+            company_id:       company_id,
+            number:           filing_number,
+            issuing_state_id: Minnesota.id
+          ).destroy_all
+        end
       end
 
       private

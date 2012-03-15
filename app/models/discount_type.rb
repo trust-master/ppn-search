@@ -1,5 +1,7 @@
 class DiscountType < ActiveRecord::Base
   has_many :discounts
+
+  attr_accessible :name, as: [:default, :admin]
 end
 
 

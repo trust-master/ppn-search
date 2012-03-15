@@ -10,7 +10,7 @@ module Jobs::Scrapers
 
       def self.parse_page(license_type, license_number, ids)
         # Make sure the license_number is in the normalized format
-        license_number.gsub!(LICENSE_NUMBER_PATTERN){ |m| [$1, '%06d' % $2.to_i].join }
+        license_number.gsub!(LICENSE_NUMBER_PATTERN){ |m| [$1, '%06d' % $2.to_i].join.upcase }
 
         url = [ DOLI_BASE_URL,
                 { Advanced: 'yes', LicNo: license_number,
@@ -19,7 +19,6 @@ module Jobs::Scrapers
               ].join('?')
 
         page = agent.get(url)
-
         if page.search(%{//td//*[contains(text(), "#{license_number}")]}).empty?
           raise NoResultsError, "No results were found for license_number: #{license_number}"
         end

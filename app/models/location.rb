@@ -7,8 +7,11 @@ class Location < ActiveRecord::Base
 
   validates :state, :country, associated: true
 
-  attr_accessible :city, :state_id, :zip, :country_id
+  attr_accessible :city, :state_id, :zip, :country_id, as: [:default, :admin]
   attr_readonly :company_id
+
+  delegate :name, to: :state, prefix: true
+  delegate :name, to: :country, prefix: true
 
   private
 
@@ -17,6 +20,10 @@ class Location < ActiveRecord::Base
       if self.state_id
         self.country_id = State.where(id: self.state_id).pluck(:country_id).first
       end
+    end
+
+    def name
+      [state_name, country_name].compact.join(', ')
     end
 end
 

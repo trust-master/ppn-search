@@ -3,7 +3,8 @@ class Certification < ActiveRecord::Base
 
   validates_presence_of :name
 
-  attr_accessible :name, :title, :description, :certificate
+  attr_accessible :name, :title, :description, :certificate, :certificate_cache, :remove_certificate,
+    as: [:default, :admin]
   attr_readonly :company_id
 
   mount_uploader :certificate, CertificateUploader

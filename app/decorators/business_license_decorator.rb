@@ -13,12 +13,4 @@ module BusinessLicenseDecorator
 
     Hash[a.map{ |key, value| [BusinessLicense.human_attribute_name(key), value] }]
   end
-
-  def display_identifier
-    [
-      issuing_state.name,
-      self.fetched? ? type.name : nil,
-      number
-    ].compact.join(' - ')
-  end
 end

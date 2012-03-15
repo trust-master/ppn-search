@@ -8,17 +8,18 @@ class Ability
     if user.persisted? # authenticated user
       if user.role.admin?
         can :manage, :all
+        can :access, :rails_admin
       else
         can :read, :all
         can :destroy, Session
-        can :manage, User, :id => user.id
+        can :manage, User, id: user.id
       end
     else # guest
       # no permissions
     end
 
 
-    can :create, Session
+    can [:create, :destroy], Session
     can [:create, :read, :update], PasswordReset
 
     # The first argument to `can` is the action you are giving the user permission to do.
@@ -31,7 +32,7 @@ class Ability
     # The third argument is an optional hash of conditions to further filter the objects.
     # For example, here the user can only update published articles.
     #
-    #   can :update, Article, :published => true
+    #   can :update, Article, published: true
     #
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
   end
