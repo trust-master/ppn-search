@@ -9,11 +9,12 @@
           %tr
             %th= key
             %td= value.is_a?(String) ? simple_format(value) : (value || '-').to_s
-      %tbody.raw
-        - personal_license.raw_data.each do |key, value|
-          %tr
-            %th= key
-            %td= value.is_a?(String) ? simple_format(value) : (value || '-').to_s
+      - if personal_license.raw_data.present?
+        %tbody.raw
+          - personal_license.raw_data.each do |key, value|
+            %tr
+              %th= key
+              %td= value.is_a?(String) ? simple_format(value) : (value || '-').to_s
 
     .meta
       .last_updated

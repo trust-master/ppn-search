@@ -6,7 +6,7 @@ class PersonalLicense < ActiveRecord::Base
   belongs_to :issuing_state, class_name: 'State'
   belongs_to :company
 
-  serialize :raw_data, Hash
+  # serialize :raw_data, Hash
 
   validates :number, presence: true
   validates :issuing_state, :company, associated: true, presence: true

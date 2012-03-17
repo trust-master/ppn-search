@@ -9,28 +9,29 @@
           %tr
             %th= key
             %td= value.is_a?(String) ? simple_format(value) : (value || '-').to_s
-      %tbody.raw
-        - business_filing.raw_data.each do |key, value|
-          %tr
-            %th= key
-            %td
-              - if value.present?
-                - case value
-                - when Hash
-                  %table
-                    %tbody
-                      - value.each do |key, val|
-                        %tr
-                          %th= key
-                          %td= (val || '-').to_s
-                - when Array
-                  %ul
-                    = list_of value.compact.flatten do |v|
-                      = v.to_s
+      - if business_filing.raw_data.present?
+        %tbody.raw
+          - business_filing.raw_data.each do |key, value|
+            %tr
+              %th= key
+              %td
+                - if value.present?
+                  - case value
+                  - when Hash
+                    %table
+                      %tbody
+                        - value.each do |key, val|
+                          %tr
+                            %th= key
+                            %td= (val || '-').to_s
+                  - when Array
+                    %ul
+                      = list_of value.compact.flatten do |v|
+                        = v.to_s
+                  - else
+                    = value.to_s
                 - else
-                  = value.to_s
-              - else
-                \-
+                  \-
 
     .meta
       .last_updated

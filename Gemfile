@@ -11,7 +11,6 @@ gem 'haml'
 # Use liquid templates for User-editable templates, i.e. mailers
 gem 'liquid'
 
-
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby'
 
@@ -29,11 +28,12 @@ gem 'thin', require: false
 gem 'nokogiri'
 gem 'mechanize'
 
-gem 'redis'
-
 gem 'rails_admin', git: 'https://github.com/sferik/rails_admin.git'
 
+# Take advantage of HSTORE in Postgresql instead of the YAML-serialized columns
+gem 'activerecord-postgres-hstore'
 
+gem 'redis'
 
 # Use Redis to do caching, i18n, and sessions
 git 'https://github.com/jodosha/redis-store.git' do
