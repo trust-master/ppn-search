@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
       redirect_to(root_url, alert: exception.message)
 
     else # not logged in
-      redirect_to(rails_admin_controller? ? main_app.login_path : login_path)
+      url = (respond_to?(:main_app) ? main_app : self).login_path
+      redirect_to(url)
     end
   end
 
