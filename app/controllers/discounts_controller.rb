@@ -13,6 +13,9 @@ class DiscountsController < ApplicationController
     end
   end
 
+  def show
+    redirect_to edit_company_discount_path(@company, @discount)
+  end
 
   def new
   end

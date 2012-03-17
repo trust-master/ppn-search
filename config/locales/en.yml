@@ -43,6 +43,8 @@ en:
       title: '%{company_name}'
     index:
       title: Companies
+    edit:
+      title: 'Editing %{company_name}:'
 
     # the header titles for all fieldsets related to company forms
     fieldsets:
@@ -129,7 +131,12 @@ en:
 
   discounts:
     new:
-      title: "New Discount for '%{company_name}'"
+      title: "%{company_name}: New Discount"
+    edit:
+      title: "%{company_name}: '%{discount_title}' Discount"
+    index:
+      title: "%{company_name}: Discounts"
+
     fieldsets:
       design: Design Your Discount
       location: Location

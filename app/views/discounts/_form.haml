@@ -3,7 +3,7 @@
     - if @discount.image?
       .image
         %h4 Discount Image
-        = image_tag @discount.image.url
+        = image_tag @discount.image.thumb.url
         = link_to @discount.image.url, class: :download do
           .icon
           Download Image
@@ -13,6 +13,7 @@
       = f.input :title
       = f.input :description, as: :text
       = f.input :image
+      = f.hidden_field :image_cache
 
   = fieldset :location do
     %ul
