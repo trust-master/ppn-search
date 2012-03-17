@@ -4,7 +4,7 @@ class DiscountUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
   # include Sprockets::Helpers::RailsHelper
@@ -34,9 +34,9 @@ class DiscountUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process resize_to_fit: [180, 250]
-  # end
+  version :thumb do
+    process resize_to_fit: [180, 250]
+  end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:

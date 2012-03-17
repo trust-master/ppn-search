@@ -16,6 +16,7 @@ gem 'bcrypt-ruby'
 
 # CarrierWave allows you to attach files to ActiveRecord Objects
 gem 'carrierwave', git: 'git://github.com/jnicklas/carrierwave.git'
+gem 'mini_magick'
 
 gem 'cancan' # for authorization
 
