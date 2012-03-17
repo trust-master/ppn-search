@@ -13,11 +13,11 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  validates             :role, inclusion: { in: ROLES }
   validates             :email, presence: true, uniqueness: true, email: true
   validates_presence_of :first_name, :last_name, :role, :company_id
   validates_presence_of :password, :password_confirmation, on: :create
-  validates             :role, inclusion: { in: ROLES }
-  validates             :password, password: true
+  validates             :password, password: true, on: :create
 
   attr_accessible :first_name, :middle_name, :last_name, :email, :password, :password_confirmation, as: [:default, :admin]
   attr_accessible :role, :company_id, :active, as: [:admin]
