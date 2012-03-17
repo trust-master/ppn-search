@@ -5,10 +5,10 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     if current_user # not authorized
-      redirect_to root_url, alert: exception.message
+      redirect_to(root_url, alert: exception.message)
+
     else # not logged in
-      binding.pry # FIXME: How to use login_path when called by RailsAdmin??
-      redirect_to login_path #, alert: I18n.t('unauthorized.not_authenticated')
+      redirect_to(rails_admin_controller? ? main_app.login_path : login_path)
     end
   end
 
@@ -20,8 +20,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def set_current_user_in_user_model
-    User.current_user = current_user # set this to the User.current_user class variable to make sure user updates have
-                                     # access to the who who initated the update
+    # set this to the User.current_user class variable to make sure user updates have
+    # access to the who who initated the update
+    User.current_user = current_user
   end
 
   def set_random_flash

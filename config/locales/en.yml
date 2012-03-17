@@ -127,6 +127,14 @@ en:
       markets:
         collapsed_explanation: '* indicates that only partial coverage was selected'
 
+  discounts:
+    new:
+      title: "New Discount for '%{company_name}'"
+    fieldsets:
+      design: Design Your Discount
+      location: Location
+      scheduling: Scheduling
+
   service_areas:
     partial_only:
       "true":   Partial
@@ -342,6 +350,7 @@ en:
       affiliation:
       association:
       discount:
+        type: Discount Content
       password_reset:
       password_reset_request:
       session:
@@ -402,6 +411,7 @@ en:
     effective_on: Effective On
     email: Email Address
     ended_on: End Date
+    end_date: End Date
     enforcement_action: Enforcement Action
     expires_on: Expires On
     fetched_at: Fetched At
@@ -420,6 +430,7 @@ en:
     raw_data: Raw Data
     responsible_person_license_number: 'License # of Resp. Person'
     started_on: Start Date
+    start_date: Start Date
     state: State
     status: Status
     title: Title

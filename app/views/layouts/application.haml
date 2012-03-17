@@ -21,22 +21,22 @@
         - if current_user
           %nav.header-nav
             %span.welcome= t(:welcome, name: current_user.first_name)
-            = nav_for :account_links, menu_class: 'account-links', item_wrapper: nil do
+            = nav_for :account_links, menu_class: 'account-links', item_wrapper: nil do |menu|
               %li.nav-profile
                 .divider
-                = nav_link :profile, edit_user_path
-                = nav_for :profile do
-                  = nav_link :show, user_path
-                  = nav_link :edit, edit_user_path
+                = menu.nav_link :profile, edit_user_path
+                = menu.nav_for :profile do |profile|
+                  = profile.nav_link :show, user_path
+                  = profile.nav_link :edit, edit_user_path
               %li.nav-account
                 .divider
-                = nav_link :account, '/account'
-                = nav_for :account do
-                  = nav_link :basic_info, '/account/basic_info'
-                  = nav_link :privacy_settings, '/account/privacy'
-                  = nav_link :notifications_alerts, '/account/notifications_alerts'
+                = menu.nav_link :account, '/account'
+                = menu.nav_for :account do |account|
+                  = account.nav_link :basic_info, '/account/basic_info'
+                  = account.nav_link :privacy_settings, '/account/privacy'
+                  = account.nav_link :notifications_alerts, '/account/notifications_alerts'
               %li.nav-logout
-                = nav_link :logout, logout_path
+                = menu.nav_link :logout, logout_path
             .clear
           .search
             = form_tag({controller: :companies, action: :index}, method: :get)  do
@@ -45,12 +45,12 @@
                 %input{type: :submit}
 
         %nav.main-nav
-          = nav_for :main do
+          = nav_for :main do |main|
             - if current_user
-              = nav_link :search_ppn, companies_path, proc { request.path.include? '/companies' }
-              = nav_link :admin, '/admin'
+              = main.nav_link :search_ppn, companies_path, proc { request.path.include? '/companies' }
+              = main.nav_link :admin, '/admin'
             - else
-              = nav_link :login, login_path
+              = main.nav_link :login, login_path
 
       #content{class: [content_for(:content_div_class).presence || 'col-2', page_class] }
 
@@ -67,9 +67,9 @@
 
       %footer#footer
         .footer-links
-          = nav_for :footer do
+          = nav_for :footer do |footer|
             - [:terms, :privacy_policy, :about, :contact].each do |page_id|
-              = nav_link page_id, page_id.to_s.prepend('/')
+              = footer.nav_link page_id, page_id.to_s.prepend('/')
 
         .social-media
           %h5= t(:follow_us_on)

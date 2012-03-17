@@ -1,13 +1,28 @@
-- title t('.title')
+- title t('.title', company_name: @company.name)
+.actions
+  = link_to new_company_discount_path(@company), class: :add do
+    .icon
+    Add Discount
 
 %table.discounts_index
   %thead
     %tr
-      %th Discount Name
-      %th Discount Type
-      %th Start Date
-      %th End Date
+      %th.sortable Discount Name
+      %th.sortable Discount Type
+      %th.sortable Start Date
+      %th.sortable End Date
       %th Actions
   %tbody
-    - @company.discounts.each do |discount|
-      = render discount
+    - @discounts.each do |discount|
+      %tr[discount]
+        %td
+          = discount.title
+        %td
+          = discount.type_name
+        %td
+          = discount.start_date
+        %td
+          = discount.end_date
+        %td
+          = link_to 'Edit', edit_company_discount_path(discount.company, discount), class: :edit
+          = link_to 'Delete', company_discount_path(discount.company, discount), method: :delete, confirm: 'Are You Sure?', class: :delete

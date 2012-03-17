@@ -4,13 +4,14 @@
   #col-a
 
     .sidebar-nav
-      = nav_for :companies do
-        = nav_link :identity, edit_company_path(@company, section: :identity)
-        = nav_link :service, edit_company_path(@company, section: :service)
-        = nav_link :credentials, edit_company_path(@company, section: :credentials)
-        = nav_link :alerts, 'alerts'
-        = nav_link :discounts, 'discounts'
-        = nav_link :company_users, 'users'
+      = nav_for :companies do |menu|
+        = menu.nav_link :identity,      edit_company_path(@company, section: :identity)
+        = menu.nav_link :service,       edit_company_path(@company, section: :service)
+        = menu.nav_link :credentials,   edit_company_path(@company, section: :credentials)
+        / - binding.pry
+        = menu.nav_link :alerts,        company_alerts_path(@company)
+        = menu.nav_link :discounts,     company_discounts_path(@company)
+        = menu.nav_link :company_users, company_users_path(@company)
 
   #col-b
     = yield

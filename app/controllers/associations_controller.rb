@@ -2,6 +2,8 @@ class AssociationsController < ApplicationController
   load_and_authorize_resource :company
   load_and_authorize_resource :association, through: :company
 
+  layout 'companies'
+
   def create
     if @association.save
       render json: { success: true, association: @association }

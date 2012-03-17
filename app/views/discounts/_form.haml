@@ -1,3 +1,27 @@
-= simple_form_for @discount do |f|
-  = f.input :name
-  = f.submit
+= simple_form_for [@company, @discount] do |f|
+  = fieldset :design do
+    - if @discount.image?
+      .image
+        %h4 Discount Image
+        = image_tag @discount.image.url
+        = link_to @discount.image.url, class: :download do
+          .icon
+          Download Image
+
+    %ul
+      = f.association :type
+      = f.input :title
+      = f.input :description, as: :text
+      = f.input :image
+
+  = fieldset :location do
+    %ul
+      = f.association :market
+  = fieldset :scheduling do
+    %ul
+      = f.input :start_date
+      = f.input :end_date
+
+  %fieldset.last#buttons
+    = link_to t('helpers.cancel'), [@company, :discounts], class: :cancel
+    = f.button :submit, class: :save

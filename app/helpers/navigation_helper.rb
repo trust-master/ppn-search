@@ -4,7 +4,8 @@ module NavigationHelper
   def nav_for(menu_name, opts = {}, &block)
     menu = NavigationMenu.new(menu_name, self, opts)
     content_tag :ul, class: [:navigation, menu_name, opts[:menu_class]] do
-      menu.instance_eval(&block)
+      # menu.instance_eval(&block)
+      block.call(menu)
     end
   end
 

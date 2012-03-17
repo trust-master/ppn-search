@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
 
+  layout 'companies'
+
   def create
     respond_with @user do |wants|
       if @user.save

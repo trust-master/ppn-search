@@ -19,10 +19,8 @@ class User < ActiveRecord::Base
   validates             :role, inclusion: { in: ROLES }
   validates             :password, password: true
 
-  attr_accessible :first_name, :middle_name, :last_name, :email, :password, :password_confirmation,
-    as: [:default, :admin]
-  attr_accessible :role, :company_id, :active, as: :admin
-
+  attr_accessible :first_name, :middle_name, :last_name, :email, :password, :password_confirmation, as: [:default, :admin]
+  attr_accessible :role, :company_id, :active, as: [:admin]
 
   # wrapper for StringInquirer
   def role

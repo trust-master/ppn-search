@@ -5,8 +5,10 @@ class CompaniesController < ApplicationController
   before_filter :build_associated_if_neccesary, only: %w[new edit]
   before_filter :set_up_service_associations_if_neccesary, only: %w[new edit]
 
+  layout 'companies'
+
   def index
-    @companies = @companies.limit(5).order(:name)
+    @companies = @companies.limit(5).order(:name).where(active: true, visible: true)
     @companies = @companies.where("name ILIKE ?", "%#{params[:search]}%") if params[:search] # FIXME: Implement real search
 
     respond_with @companies do |wants|
