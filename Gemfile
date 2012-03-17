@@ -28,7 +28,7 @@ gem 'thin', require: false
 gem 'nokogiri'
 gem 'mechanize'
 
-gem 'rails_admin', git: 'https://github.com/sferik/rails_admin.git'
+gem 'rails_admin', git: 'https://github.com/rtlong/rails_admin.git'
 
 # Take advantage of HSTORE in Postgresql instead of the YAML-serialized columns
 gem 'activerecord-postgres-hstore'

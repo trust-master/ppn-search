@@ -27,6 +27,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: business_filings
@@ -45,9 +46,9 @@ end
 #  last_annually_filed_on    :date
 #  renewal_due_on            :date
 #  registered_agents         :string(255)
-#  raw_data                  :text
 #  created_at                :datetime        not null
 #  updated_at                :datetime        not null
 #  fetched_at                :datetime
+#  raw_data                  :hstore
 #
 

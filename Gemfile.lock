@@ -34,6 +34,24 @@ GIT
       redis (~> 2.2.0)
 
 GIT
+  remote: https://github.com/rtlong/rails_admin.git
+  revision: 4726293db3c920f74de74f12aec5c47398d1edd9
+  specs:
+    rails_admin (0.0.1)
+      bbenezech-nested_form (~> 0.0.5)
+      bootstrap-sass (~> 2.0)
+      builder (~> 3.0)
+      coffee-rails (~> 3.1)
+      haml (~> 3.1)
+      jquery-rails (>= 1.0)
+      jquery-ui-rails (~> 0.2.2)
+      kaminari (~> 0.12)
+      rack-pjax (~> 0.5)
+      rails (~> 3.1)
+      remotipart (~> 1.0)
+      sass-rails (~> 3.1)
+
+GIT
   remote: https://github.com/rtlong/resque.git
   revision: 7ea22a97f646c5db7d2d1163e743e46b72ea2325
   specs:
@@ -51,24 +69,6 @@ GIT
       haml (>= 2.2.0)
       pivotal-tracker (>= 0.1.3)
       rack (>= 1.0.0)
-
-GIT
-  remote: https://github.com/sferik/rails_admin.git
-  revision: ddd89344038290e5edb57e99ffe1e448a1f7e6f8
-  specs:
-    rails_admin (0.0.1)
-      bbenezech-nested_form (~> 0.0.5)
-      bootstrap-sass (~> 2.0)
-      builder (~> 3.0)
-      coffee-rails (~> 3.1)
-      haml (~> 3.1)
-      jquery-rails (>= 1.0)
-      jquery-ui-rails (~> 0.2.2)
-      kaminari (~> 0.12)
-      rack-pjax (~> 0.5)
-      rails (~> 3.1)
-      remotipart (~> 1.0)
-      sass-rails (~> 3.1)
 
 GEM
   remote: http://rubygems.org/

@@ -27,6 +27,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: personal_licenses
@@ -47,9 +48,9 @@ end
 #  expires_on           :date
 #  printed_on           :date
 #  effective_on         :date
-#  raw_data             :text
 #  created_at           :datetime        not null
 #  updated_at           :datetime        not null
 #  fetched_at           :datetime
+#  raw_data             :hstore
 #
 
