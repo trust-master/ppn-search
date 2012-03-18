@@ -2,11 +2,13 @@
 - content_for :content_div_class, 'col-2-wide'
 
 #col-a
-  .search
+  = form_tag(companies_path, method: :get, class: :search) do
     .search_wrap
-      .search_input_wrap
-        %input{type: 'search'}
-      %input{type: 'submit'}
+      = search_field_tag :name, params[:name], placeholder: 'Provider Name'
+      = submit_tag
+    .filter
+      = select_tag :sub_category, option_groups_from_collection_for_select(Category.includes(:sub_categories).all, :sub_categories, :name, :id, :name, params[:sub_category]), prompt: 'Select Category'
+
   .results
     %h4 Search Results
 
@@ -25,8 +27,6 @@
 #col-b
   %ul.nav
     = list_of %w[Identity Service Credentials Discounts] do |label|
-      = link_to label, ''
+      = link_to label, '#', class: label.downcase
 
-  .company
-    - if c = @companies.presence.try(:first)
-      = render c
+  #company_details

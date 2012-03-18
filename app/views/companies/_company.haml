@@ -9,4 +9,25 @@
   .phone= company.phone_main
 
   - if company.website_url
-    .website= company.website_url
+    .website= company.website
+
+  .details
+    .identity
+      %h3= company.name
+      .in_business_since= "In Business Since x"
+      - if company.locations.any?
+        .address
+          - l = company.locations.first
+          = l.city
+          = l.state_name
+      - if company.phone_main
+        .phone= company.phone_main
+      - if company.website_url
+        .website= company.website
+
+    .service
+      %pre= company.to_yaml
+    .credentials
+      Credentials
+    .discounts
+      Discounts

@@ -42,7 +42,7 @@ en:
     show:
       title: '%{company_name}'
     index:
-      title: Companies
+      title: Provider Search
     edit:
       title: 'Editing %{company_name}:'
 

@@ -1,5 +1,7 @@
 module CompanyDecorator # < ApplicationDecorator
-  def website_url
-    link_to 'Website', self.read_attribute(:website_url) if self.read_attribute(:website_url)
+  def website
+    if url = URI(self.read_attribute(:website_url))
+      link_to url.host, url.to_s
+    end
   end
 end

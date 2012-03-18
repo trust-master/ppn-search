@@ -12,31 +12,30 @@
       margin-bottom: 20px
       overflow: hidden
 
-      .search_input_wrap
-        @include search-provider-input
-        float: left
+      input
+        &[type="search"]
+          @include border-radius(26px)
+          float: left
+          background: none
+          width: 253px
+          height: 16px
+          padding: 6px 6px 6px 26px
+          color: #b4b3b4
+          font-size: 14px
+          vertical-align: middle
 
-    input
-      &[type="text"], &[type="search"]
-        border: 0
-        background: none
-        width: 261px
-        height: 26px
-        margin-left: 29px
-        padding-right: 8px
-        color: #b4b3b4
-        font-size: 14px
-        vertical-align: middle
-        padding-top: 6px
+        &[type="submit"]
+          @include btn-provider-search
+          float: right
+          text-indent: -9999px
+          display: inline-block
+          border: none
+          margin-left: 2px
+          line-height: 75px
 
-      &[type="submit"]
-        @include btn-provider-search
-        text-indent: -9999px
-        display: inline-block
-        float: left
-        border: none
-        margin-left: 2px
-        line-height: 75px
+    .filter
+      select
+        width: 100%
 
   .results
     background-color: white
@@ -92,15 +91,20 @@
           background: $grey url(/assets/arrow-sb-active.gif) 95% center no-repeat
           color: $darker-blue
 
-        &.active
+        &.selected
           background: $blue url(/assets/arrow-sb-hover.gif) 95% center no-repeat
           color: white
+          a
+            color: white
 
         h3
           text-transform: uppercase
 
         a
           color: $darker-blue
+
+        .details
+          display: none
 
 #col-b
   ul.nav
@@ -114,11 +118,22 @@
 
       a
 
-  .company
+  #company_details
     h3
-      span
+
+    .identity
+      .in_business_since
         font-size: 11px
         font-weight: normal
         text-transform: capitalize
         display: inline-block
         margin-left: 5px
+
+    .service, .credentials, .discounts
+      display: none
+
+    .service
+
+    .credentials
+
+    .discounts

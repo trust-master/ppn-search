@@ -93,6 +93,19 @@ $(document).ready =>
       $(this).data('alternate_text', $(this).text())
       $(this).text(new_text)
 
+    $('#col-a ul.companies .company').click ->
+      _this = $(this)
+      $('#company_details').html(_this.find('.details').html())
+      _this.siblings('.company').removeClass('selected')
+      _this.addClass('selected')
+      return false
+
+    $('#col-b ul.nav li a').click ->
+      $("#company_details > div").hide()
+      console.log("#company_details .#{$(this).attr('class')}")
+      $("#company_details .#{$(this).attr('class')}").show()
+      return false
+
 @removeLinks =
   init: ->
     this.bind() if $('a.remove').length isnt 0
