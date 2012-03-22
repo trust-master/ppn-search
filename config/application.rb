@@ -67,9 +67,10 @@ module ServiceProviderPortal
     # parameters by using an attr_accessible or attr_protected declaration.
     config.active_record.whitelist_attributes = true
 
+    # Configure the Redis URLs here, so I can set up the Redis cache store below...
     config.redis_urls = Hash.new do |hash, key|
+      keys = ENV.keys.grep(/REDISTOGO_URL|Redis_URL_#{key}/i).sort
       key = key.downcase.to_sym
-      keys = ENV.keys.grep(/REDISTOGO_URL|#{['Redis_URL',key].compact.join('_')}/i).sort
       fallback = "redis://localhost:6379/0/#{key unless key == :default}"
       hash[key] = [*ENV.values_at(*keys), fallback].compact.first
     end

@@ -21,6 +21,9 @@ gem 'bcrypt-ruby'
 gem 'carrierwave', git: 'git://github.com/jnicklas/carrierwave.git'
 gem 'mini_magick'
 
+# Use AWS for Attachment Storage
+gem 'fog'
+
 gem 'cancan' # for authorization
 
 gem 'simple_form'

@@ -41,3 +41,6 @@ ServiceProviderPortal::Application.configure do
   config.action_mailer.default_url_options = { :host => "localhost:3000" }
 
 end
+
+# Don't try to connect to a real S3 bucket
+Fog.mock!

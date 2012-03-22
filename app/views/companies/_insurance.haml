@@ -6,7 +6,7 @@
     - if @company.insurance_certificate?
       %li.current
         %label Current Certificate
-        = link_to @company.insurance_certificate.file.filename, @company.insurance_certificate.url
+        = link_to 'Download', @company.insurance_certificate.url
 
     = form.input :insurance_valid_from,  start_year: 2000, end_year: 2012, discard_day: true, prompt: true
     = form.input :insurance_valid_until, start_year: 2012,                 discard_day: true, prompt: true
