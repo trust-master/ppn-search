@@ -5,6 +5,9 @@ gem 'rails', '~> 3.2.1'
 # Use PostgreSQL
 gem 'pg'
 
+# Take advantage of HSTORE in Postgresql instead of the YAML-serialized columns
+gem 'activerecord-postgres-hstore'
+
 # Write views in HAML
 gem 'haml'
 
@@ -31,9 +34,6 @@ gem 'mechanize'
 
 gem 'rails_admin', git: 'https://github.com/rtlong/rails_admin.git'
 
-# Take advantage of HSTORE in Postgresql instead of the YAML-serialized columns
-gem 'activerecord-postgres-hstore'
-
 gem 'redis'
 
 # Use Redis to do caching, i18n, and sessions
@@ -49,8 +49,9 @@ gem 'resque', git: 'https://github.com/rtlong/resque.git'
 gem 'resque-retry'
 
 # Clean up view logic
-# gem 'garnish'
 gem 'active_decorator'
+
+gem 'pry-rails'
 
 # Gems used only for assets and not required in production environments by default.
 group :assets do
@@ -73,7 +74,6 @@ group :development do
   gem 'tailor', require: false
 
   # Prints db schema tidbits in all the models, tests, and fixtures, also shows `rake routes` output in routes.rb.
-
   gem 'annotate', require: false
 
   # https://github.com/guard/guard # http://intridea.com/2011/8/25/hire-a-guard-for-your-project
@@ -90,14 +90,11 @@ group :development do
 
   gem 'guard-bundler', require: false
 
-  # gem 'guard-rails_best_practices', git: 'http://github.com/MatthewHager/guard-rails_best_practices.git', require: false
-  # gem 'rails_best_practices', git: 'https://github.com/railsbp/rails_best_practices.git', require: false
-
   gem 'guard-cucumber', require: false
   gem 'guard-spork', require: false
   gem 'guard-resque', require: false
 
-  gem 'sass' # Add sass just for generators, asset compilation
+  gem 'sass'
 
   # For seeding my dev DB with fake data
   gem 'populator'
@@ -110,7 +107,6 @@ group :development do
   # To enumerate all TODO's and FIXME's in the code
   gem 'dnote'
 
-  gem 'pry-rails'
   gem 'pry-doc'
 end
 

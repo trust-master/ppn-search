@@ -10,6 +10,7 @@ class CompaniesController < ApplicationController
   def index
     @companies = @companies.limit(5).order(:name).where(active: true, visible: true)
     @companies = @companies.where("name ILIKE ?", "%#{params[:name]}%") if params[:name] # FIXME: Implement real search
+    # @companies = @companies.where("name ILIKE ?", "%#{params[:name]}%") if params[:name] # FIXME: Implement real search
 
     respond_with @companies do |wants|
       wants.html { render :index, layout: 'application'}
