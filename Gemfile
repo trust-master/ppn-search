@@ -5,9 +5,6 @@ gem 'rails', '~> 3.2.1'
 # Use PostgreSQL
 gem 'pg'
 
-# Take advantage of HSTORE in Postgresql instead of the YAML-serialized columns
-gem 'activerecord-postgres-hstore'
-
 # Write views in HAML
 gem 'haml'
 
