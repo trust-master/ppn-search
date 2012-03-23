@@ -25,6 +25,8 @@
       - if company.website_url
         .website= company.website
 
+      %p
+        = link_to "[Edit this Service Provider as the SP Admin sees it]", edit_company_path(company, section: :identity)
     .service
       %pre= company.to_yaml
     .credentials

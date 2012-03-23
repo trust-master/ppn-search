@@ -28,6 +28,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: business_filings
@@ -49,6 +50,6 @@ end
 #  created_at                :datetime        not null
 #  updated_at                :datetime        not null
 #  fetched_at                :datetime
-#  raw_data                  :hstore
+#  raw_data                  :text
 #
 
