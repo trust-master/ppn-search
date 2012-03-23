@@ -201,7 +201,21 @@ en:
       title: Check Your Email!
       body: Please check your email for the link to reset your password.
 
+  alerts:
+    index:
+      title: "%{company_name}: Alerts"
+    new:
+      title: "%{company_name}: Create Alert"
+    edit:
+      title: "%{company_name}: Edit Alert"
+
   users:
+    index:
+      title: "%{company_name}: Users"
+    new:
+      title: "%{company_name}: Create User"
+    edit:
+      title: "%{company_name}: Edit User"
     password_complexity:
       summary: >
         Your password must meet the following restrictions: at least 6 characters in length, include

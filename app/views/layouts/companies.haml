@@ -8,9 +8,9 @@
         = menu.nav_link :identity,      edit_company_path(@company, section: :identity)
         = menu.nav_link :service,       edit_company_path(@company, section: :service)
         = menu.nav_link :credentials,   edit_company_path(@company, section: :credentials)
-        = menu.nav_link :alerts,        company_alerts_path(@company)
-        = menu.nav_link :discounts,     company_discounts_path(@company)
-        = menu.nav_link :company_users, company_users_path(@company)
+        = menu.nav_link :alerts,        company_alerts_path(@company), proc { controller.controller_name == 'alerts' }
+        = menu.nav_link :discounts,     company_discounts_path(@company), proc { controller.controller_name == 'discounts' }
+        = menu.nav_link :company_users, company_users_path(@company), proc { controller.controller_name == 'users' }
 
   #col-b
     = yield

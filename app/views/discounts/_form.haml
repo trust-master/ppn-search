@@ -17,7 +17,7 @@
 
   = fieldset :location do
     %ul
-      = f.association :market
+      = f.association :market, collection: @company.markets
   = fieldset :scheduling do
     %ul
       = f.input :start_date

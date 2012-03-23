@@ -23,6 +23,18 @@ SEED_DATA = YAML.load_file(Rails.root.join('db','seeds.yml')).with_indifferent_a
 
 puts "Seeding Database...\n\n"
 
+
+
+########################
+puts "Populating DiscountTypes..."
+
+SEED_DATA[:discount_types].each do |t|
+  country = DiscountType.where(name: t).first_or_create!
+end
+
+DISCOUNT_TYPE_ids = DiscountType.pluck(:id)
+success_msg "There are now #{DISCOUNT_TYPE_ids.count} Countries."
+
 ########################
 puts "Populating Countries / States..."
 

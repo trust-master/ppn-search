@@ -16,6 +16,11 @@ companies:
   - "Roto-Rooter Service Company"
   - "Sass Construction"
   - "Vogt Heating, Air Conditoning & Plumbing"
+discount_types:
+  - Discount
+  - Promotion
+  - Sale
+  - Coupon
 service_areas:
   - market: Minneapolis / St. Paul, MN
     service_areas:

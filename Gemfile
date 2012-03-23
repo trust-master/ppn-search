@@ -115,6 +115,7 @@ group :development, :test do
   gem 'factory_girl_rails', :require => false
   gem 'capybara'
   gem 'launchy'
+  gem 'quiet_assets'
 end
 
 gem 'faker', groups: [:development, :test, :staging] # Used in some of the Factories to generate fake data; used in seeds.rb

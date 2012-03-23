@@ -260,6 +260,8 @@ GEM
       yard (~> 0.7.4)
     pry-rails (0.1.6)
       pry
+    quiet_assets (1.0.0)
+      rails (~> 3.1)
     rack (1.4.1)
     rack-cache (1.1)
       rack (>= 0.4)
@@ -417,6 +419,7 @@ DEPENDENCIES
   populator
   pry-doc
   pry-rails
+  quiet_assets
   rack-webconsole
   rails (~> 3.2.1)
   rails_admin!

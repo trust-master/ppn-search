@@ -317,7 +317,12 @@ RailsAdmin.config do |config|
   end
 
   config.model DiscountType do
-    visible false
+    list do
+      field :name
+    end
+    edit do
+      field :name
+    end
   end
 
   config.model FilingStatus do

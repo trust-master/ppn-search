@@ -1,0 +1,61 @@
+// This file is interpreted in the context of
+// .wrapper-outer #wrapper #content.index
+
+table
+  border: 1px solid #ccc
+  border-top: 0
+  width: 100%
+
+  thead
+    tr
+      border-top: 1px solid #ccc
+      border-bottom: 1px solid #ccc
+      background: #eee
+
+      th
+        padding: 6px 10px
+        vertical-align: middle
+        border-right: 1px solid $grey
+        text-align: left
+        white-space: nowrap
+        color: #4e4e4e
+        font-size: 12px
+
+        &.sortable
+          padding-right: 26px
+          &:hover
+            background: url(/assets/sort-arrow-down.gif) 96% 50% no-repeat
+
+        &:last-of-type
+          border-right: none
+          text-align: center
+          width: 130px
+          padding: 6px 10px
+
+  tbody
+    tr
+      td
+        font-size: 12px
+        padding: 10px 10px 10px 10px
+        border-bottom: 1px solid #ececec
+
+        &:last-of-type
+          border-right: none
+          text-align: center
+          width: 130px
+
+          a
+            margin: 0
+            font-size: 11px
+            font-weight: bold
+            line-height: 22px
+            padding-left: 25px
+            display: inline-block
+            &.delete
+              margin-left: 10px
+              background: url(/assets/icon-remove-sm.gif) 0 center no-repeat
+              color: $red
+            &.edit
+              padding-left: 28px
+              background: url(/assets/icon-edit.png) 0 0 no-repeat
+              color: #333

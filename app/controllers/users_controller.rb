@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :company
+  load_and_authorize_resource through: :company
+
 
   layout 'companies'
+
+  respond_to :html, :json
 
   def create
     respond_with @user do |wants|

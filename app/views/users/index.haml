@@ -1,22 +1,23 @@
-- title t('.title')
+- title t('.title', company_name: @company.name)
 
-%a{href: "/users/new"} Add a User
+.actions
+  = link_to new_company_user_path(@company), class: :add do
+    .icon
+    Add User
+
 %table.users_index
   %thead
     %tr
-      %th User Name
-      %th Company
-      %th Last Login Date
-      %th Active?
+      %th.sortable User Name
+      %th.sortable Last Login
+      %th.sortable Active?
       %th Actions
   %tbody
     - @users.each do |user|
-      %tr
-        %td= user.display_name
-        %td= user.company.name
-        %td= user.logged_in_at
+      %tr[user]
+        %td= link_to user.display_name, company_user_path(@company, user)
+        %td= user.logged_in_at || 'never'
         %td= user.active ? 'Y' : 'N'
         %td
-          = link_to 'Edit', user, action: :edit
-          |
-          = link_to 'Delete', user, action: :delete
+          = link_to 'Edit',   edit_company_user_path(@company, user), class: :edit
+          = link_to 'Delete', company_user_path(@company, user), method: :delete, confirm: 'Are You Sure?', class: :delete

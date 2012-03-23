@@ -12,15 +12,21 @@
 
 &.users
   @import profile
+  @import users
 &.companies
   @import companies
   &.index
     @import search
 &.discounts
   @import discounts
+&.alerts
+  @import alerts
 
 &.sessions
   @import sessions
+
+&.index
+  @import tables
 
 #col-a
   @import sidebar_nav
