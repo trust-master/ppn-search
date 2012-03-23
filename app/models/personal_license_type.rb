@@ -1,6 +1,8 @@
 
 class PersonalLicenseType < LicenseType
   has_many :personal_licenses
+
+  attr_accessible :name, :state_id, as: :admin
 end
 # == Schema Information
 #

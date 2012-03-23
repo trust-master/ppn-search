@@ -510,3 +510,7 @@ en:
       long: "%B %d, %Y %H:%M"
     am: "am"
     pm: "pm"
+
+  faker:
+    lorem:
+      supplemental: ["andouille", "bacon", "ball", "beef", "belly", "biltong", "boudin", "bresaola", "brisket", "capicola", "chicken", "chop", "chuck", "corned", "cow", "drumstick", "fatback", "filet", "flank", "frankfurter", "ground", "ham", "hamburger", "hock", "jerky", "jowl", "kielbasa", "leberkas", "loin", "meatball", "meatloaf", "mignon", "pancetta", "pastrami", "pig", "pork", "prosciutto", "ribeye", "ribs", "round", "rump", "salami", "sausage", "shank", "shankle", "short", "shoulder", "sirloin", "spare", "speck", "steak", "strip", "swine", "t-bone", "tail", "tenderloin", "tip", "tongue", "tri-tip", "turducken", "turkey", "venison"]

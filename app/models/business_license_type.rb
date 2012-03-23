@@ -1,5 +1,7 @@
 class BusinessLicenseType < LicenseType
   has_many :business_licenses
+
+  attr_accessible :name, :state_id, as: :admin
 end
 # == Schema Information
 #
