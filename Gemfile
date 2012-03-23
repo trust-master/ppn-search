@@ -51,7 +51,6 @@ gem 'resque-retry'
 # Clean up view logic
 gem 'active_decorator'
 
-gem 'pry-rails'
 
 # Gems used only for assets and not required in production environments by default.
 group :assets do
@@ -96,8 +95,6 @@ group :development do
 
   gem 'sass'
 
-  # For seeding my dev DB with fake data
-  gem 'populator'
 
   # access the rails console right within the web browser
   gem 'rack-webconsole'
@@ -119,11 +116,17 @@ group :development, :test do
   gem 'factory_girl_rails', :require => false
   gem 'capybara'
   gem 'launchy'
-  gem 'faker' # Used in some of the Factories to generate fake data; used in seeds.rb
 end
+
+gem 'faker', groups: [:development, :test, :staging] # Used in some of the Factories to generate fake data; used in seeds.rb
 
 group :development, :staging do
   gem 'whereuat', git: 'https://github.com/rtlong/whereuat.git'
+
+  # For seeding my dev DB with fake data
+  gem 'populator'
+
+  gem 'pry-rails'
 end
 
 # Gems only for certain operating system environments.
