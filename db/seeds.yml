@@ -1,21 +1,21 @@
 ---
 companies:
-  - "Air Mechanical, Inc"
-  - "Boys Electic, Inc"
-  - "Christianson Electric Inc. "
+  - "Air Mechanical"
+  - "Boys Electic"
+  - "Christianson Electric"
   - "Craftsmen Home Improvements"
-  - "David A Smith Plumbing, LLC"
-  - "Felder Electric, Inc."
+  - "David A Smith Plumbing"
+  - "Felder Electric"
   - "Jay of All Trades"
   - "Kenwood Plumbing"
   - "Larson Plumbing & Heating"
-  - "Marsh Heating & AC CO Inc"
+  - "Marsh Heating & AC CO"
   - "Mineapolis St Paul Plumbing Heating & Air"
-  - "Modeen Window & Door Co."
+  - "Modeen Window & Door"
   - "New Spaces"
   - "Roto-Rooter Service Company"
-  - "Sass Construction, Inc"
-  - "Vogt Heating, Air Conditoning & Plumbing, LLC"
+  - "Sass Construction"
+  - "Vogt Heating, Air Conditoning & Plumbing"
 service_areas:
   - market: Minneapolis / St. Paul, MN
     service_areas:
