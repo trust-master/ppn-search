@@ -449,4 +449,8 @@ RailsAdmin.config do |config|
   config.model State do
     visible false
   end
+
+  config.model CompanySearch do
+    visible false
+  end
 end

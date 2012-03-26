@@ -333,6 +333,77 @@ ALTER SEQUENCE company_categories_id_seq OWNED BY company_categories.id;
 
 
 --
+-- Name: discounts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE discounts (
+    id integer NOT NULL,
+    company_id integer,
+    type_id integer,
+    title character varying(255),
+    description character varying(255),
+    image character varying(255),
+    market_id integer,
+    start_date date,
+    end_date date,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: locations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE locations (
+    id integer NOT NULL,
+    company_id integer,
+    city character varying(255),
+    state_id integer,
+    zip character varying(255),
+    country_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: personal_licenses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE personal_licenses (
+    id integer NOT NULL,
+    company_id integer,
+    issuing_state_id integer,
+    type_id integer,
+    status_id integer,
+    number character varying(255),
+    application_number character varying(255),
+    continuing_education character varying(255),
+    enforcement_action boolean DEFAULT false,
+    name character varying(255),
+    address text,
+    phone_number character varying(255),
+    issued_on date,
+    expires_on date,
+    printed_on date,
+    effective_on date,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    fetched_at timestamp without time zone,
+    raw_data text
+);
+
+
+--
+-- Name: company_searches; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW company_searches AS
+    (((((((SELECT (companies.id)::text AS company_id, (companies.about)::text AS about, NULL::unknown AS address, (companies.admin_email)::text AS admin_email, NULL::unknown AS application_number, NULL::unknown AS chief_executive_officer, NULL::unknown AS city, companies.description, NULL::unknown AS doing_business_as, companies.general_info, NULL::unknown AS home_jurisdiction, (companies.name)::text AS name, NULL::unknown AS number, (companies.phone_fax)::text AS phone_fax, (companies.phone_main)::text AS phone_main, (companies.phone_mobile)::text AS phone_mobile, NULL::unknown AS phone_number, NULL::unknown AS raw_data, NULL::unknown AS registered_agents, NULL::unknown AS registered_office_address, NULL::unknown AS responsible_person_license_number, NULL::unknown AS title, NULL::unknown AS url, (companies.website_url)::text AS website_url, 'Company'::character varying AS searchable_type, companies.id AS searchable_id FROM companies UNION SELECT (personal_licenses.company_id)::text AS company_id, NULL::unknown AS about, personal_licenses.address, NULL::unknown AS admin_email, (personal_licenses.application_number)::text AS application_number, NULL::unknown AS chief_executive_officer, NULL::unknown AS city, NULL::unknown AS description, NULL::unknown AS doing_business_as, NULL::unknown AS general_info, NULL::unknown AS home_jurisdiction, (personal_licenses.name)::text AS name, (personal_licenses.number)::text AS number, NULL::unknown AS phone_fax, NULL::unknown AS phone_main, NULL::unknown AS phone_mobile, (personal_licenses.phone_number)::text AS phone_number, personal_licenses.raw_data, NULL::unknown AS registered_agents, NULL::unknown AS registered_office_address, NULL::unknown AS responsible_person_license_number, NULL::unknown AS title, NULL::unknown AS url, NULL::unknown AS website_url, 'PersonalLicense'::character varying AS searchable_type, personal_licenses.id AS searchable_id FROM personal_licenses) UNION SELECT (business_licenses.company_id)::text AS company_id, NULL::unknown AS about, business_licenses.address, NULL::unknown AS admin_email, (business_licenses.application_number)::text AS application_number, NULL::unknown AS chief_executive_officer, NULL::unknown AS city, NULL::unknown AS description, (business_licenses.doing_business_as)::text AS doing_business_as, NULL::unknown AS general_info, NULL::unknown AS home_jurisdiction, (business_licenses.name)::text AS name, (business_licenses.number)::text AS number, NULL::unknown AS phone_fax, NULL::unknown AS phone_main, NULL::unknown AS phone_mobile, (business_licenses.phone_number)::text AS phone_number, business_licenses.raw_data, NULL::unknown AS registered_agents, NULL::unknown AS registered_office_address, (business_licenses.responsible_person_license_number)::text AS responsible_person_license_number, NULL::unknown AS title, NULL::unknown AS url, NULL::unknown AS website_url, 'BusinessLicense'::character varying AS searchable_type, business_licenses.id AS searchable_id FROM business_licenses) UNION SELECT (business_filings.company_id)::text AS company_id, NULL::unknown AS about, NULL::unknown AS address, NULL::unknown AS admin_email, NULL::unknown AS application_number, business_filings.chief_executive_officer, NULL::unknown AS city, NULL::unknown AS description, NULL::unknown AS doing_business_as, NULL::unknown AS general_info, (business_filings.home_jurisdiction)::text AS home_jurisdiction, (business_filings.name)::text AS name, (business_filings.number)::text AS number, NULL::unknown AS phone_fax, NULL::unknown AS phone_main, NULL::unknown AS phone_mobile, NULL::unknown AS phone_number, business_filings.raw_data, (business_filings.registered_agents)::text AS registered_agents, business_filings.registered_office_address, NULL::unknown AS responsible_person_license_number, NULL::unknown AS title, NULL::unknown AS url, NULL::unknown AS website_url, 'BusinessFiling'::character varying AS searchable_type, business_filings.id AS searchable_id FROM business_filings) UNION SELECT (affiliations.company_id)::text AS company_id, NULL::unknown AS about, NULL::unknown AS address, NULL::unknown AS admin_email, NULL::unknown AS application_number, NULL::unknown AS chief_executive_officer, NULL::unknown AS city, affiliations.description, NULL::unknown AS doing_business_as, NULL::unknown AS general_info, NULL::unknown AS home_jurisdiction, (affiliations.name)::text AS name, NULL::unknown AS number, NULL::unknown AS phone_fax, NULL::unknown AS phone_main, NULL::unknown AS phone_mobile, NULL::unknown AS phone_number, NULL::unknown AS raw_data, NULL::unknown AS registered_agents, NULL::unknown AS registered_office_address, NULL::unknown AS responsible_person_license_number, (affiliations.title)::text AS title, (affiliations.url)::text AS url, NULL::unknown AS website_url, 'Affiliation'::character varying AS searchable_type, affiliations.id AS searchable_id FROM affiliations) UNION SELECT (associations.company_id)::text AS company_id, NULL::unknown AS about, NULL::unknown AS address, NULL::unknown AS admin_email, NULL::unknown AS application_number, NULL::unknown AS chief_executive_officer, NULL::unknown AS city, associations.description, NULL::unknown AS doing_business_as, NULL::unknown AS general_info, NULL::unknown AS home_jurisdiction, (associations.name)::text AS name, NULL::unknown AS number, NULL::unknown AS phone_fax, NULL::unknown AS phone_main, NULL::unknown AS phone_mobile, NULL::unknown AS phone_number, NULL::unknown AS raw_data, NULL::unknown AS registered_agents, NULL::unknown AS registered_office_address, NULL::unknown AS responsible_person_license_number, (associations.title)::text AS title, (associations.url)::text AS url, NULL::unknown AS website_url, 'Association'::character varying AS searchable_type, associations.id AS searchable_id FROM associations) UNION SELECT (certifications.company_id)::text AS company_id, NULL::unknown AS about, NULL::unknown AS address, NULL::unknown AS admin_email, NULL::unknown AS application_number, NULL::unknown AS chief_executive_officer, NULL::unknown AS city, certifications.description, NULL::unknown AS doing_business_as, NULL::unknown AS general_info, NULL::unknown AS home_jurisdiction, (certifications.name)::text AS name, NULL::unknown AS number, NULL::unknown AS phone_fax, NULL::unknown AS phone_main, NULL::unknown AS phone_mobile, NULL::unknown AS phone_number, NULL::unknown AS raw_data, NULL::unknown AS registered_agents, NULL::unknown AS registered_office_address, NULL::unknown AS responsible_person_license_number, (certifications.title)::text AS title, NULL::unknown AS url, NULL::unknown AS website_url, 'Certification'::character varying AS searchable_type, certifications.id AS searchable_id FROM certifications) UNION SELECT (locations.company_id)::text AS company_id, NULL::unknown AS about, NULL::unknown AS address, NULL::unknown AS admin_email, NULL::unknown AS application_number, NULL::unknown AS chief_executive_officer, (locations.city)::text AS city, NULL::unknown AS description, NULL::unknown AS doing_business_as, NULL::unknown AS general_info, NULL::unknown AS home_jurisdiction, NULL::unknown AS name, NULL::unknown AS number, NULL::unknown AS phone_fax, NULL::unknown AS phone_main, NULL::unknown AS phone_mobile, NULL::unknown AS phone_number, NULL::unknown AS raw_data, NULL::unknown AS registered_agents, NULL::unknown AS registered_office_address, NULL::unknown AS responsible_person_license_number, NULL::unknown AS title, NULL::unknown AS url, NULL::unknown AS website_url, 'Location'::character varying AS searchable_type, locations.id AS searchable_id FROM locations) UNION SELECT (discounts.company_id)::text AS company_id, NULL::unknown AS about, NULL::unknown AS address, NULL::unknown AS admin_email, NULL::unknown AS application_number, NULL::unknown AS chief_executive_officer, NULL::unknown AS city, (discounts.description)::text AS description, NULL::unknown AS doing_business_as, NULL::unknown AS general_info, NULL::unknown AS home_jurisdiction, NULL::unknown AS name, NULL::unknown AS number, NULL::unknown AS phone_fax, NULL::unknown AS phone_main, NULL::unknown AS phone_mobile, NULL::unknown AS phone_number, NULL::unknown AS raw_data, NULL::unknown AS registered_agents, NULL::unknown AS registered_office_address, NULL::unknown AS responsible_person_license_number, (discounts.title)::text AS title, NULL::unknown AS url, NULL::unknown AS website_url, 'Discount'::character varying AS searchable_type, discounts.id AS searchable_id FROM discounts;
+
+
+--
 -- Name: company_service_areas; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -425,25 +496,6 @@ CREATE SEQUENCE discount_types_id_seq
 --
 
 ALTER SEQUENCE discount_types_id_seq OWNED BY discount_types.id;
-
-
---
--- Name: discounts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE discounts (
-    id integer NOT NULL,
-    company_id integer,
-    type_id integer,
-    title character varying(255),
-    description character varying(255),
-    image character varying(255),
-    market_id integer,
-    start_date date,
-    end_date date,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
 
 
 --
@@ -592,22 +644,6 @@ ALTER SEQUENCE license_types_id_seq OWNED BY license_types.id;
 
 
 --
--- Name: locations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE locations (
-    id integer NOT NULL,
-    company_id integer,
-    city character varying(255),
-    state_id integer,
-    zip character varying(255),
-    country_id integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
 -- Name: locations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -655,34 +691,6 @@ CREATE SEQUENCE markets_id_seq
 --
 
 ALTER SEQUENCE markets_id_seq OWNED BY markets.id;
-
-
---
--- Name: personal_licenses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE personal_licenses (
-    id integer NOT NULL,
-    company_id integer,
-    issuing_state_id integer,
-    type_id integer,
-    status_id integer,
-    number character varying(255),
-    application_number character varying(255),
-    continuing_education character varying(255),
-    enforcement_action boolean DEFAULT false,
-    name character varying(255),
-    address text,
-    phone_number character varying(255),
-    issued_on date,
-    expires_on date,
-    printed_on date,
-    effective_on date,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    fetched_at timestamp without time zone,
-    raw_data text
-);
 
 
 --
@@ -1475,3 +1483,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120214022929');
 INSERT INTO schema_migrations (version) VALUES ('20120309231232');
 
 INSERT INTO schema_migrations (version) VALUES ('20120314030748');
+
+INSERT INTO schema_migrations (version) VALUES ('20120325061841');

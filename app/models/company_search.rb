@@ -4,7 +4,7 @@ class CompanySearch < ActiveRecord::Base
   belongs_to :company
   belongs_to :searchable, polymorphic: true
 
-  def self.new(query, sub_category_id = nil)
+  def self.new(query = nil, sub_category_id = nil)
     return Company.order(:updated_at) if query.blank? and sub_category_id.blank?
     ids = []
     ids << self.search(query).pluck(:company_id) unless query.blank?
