@@ -8,9 +8,9 @@ class CompaniesController < ApplicationController
   layout 'companies'
 
   def index
-    @companies = @companies.limit(5).order(:name).where(active: true, visible: true)
-    @companies = @companies.where("name ILIKE ?", "%#{params[:name]}%") if params[:name] # FIXME: Implement real search
-    # @companies = @companies.where("name ILIKE ?", "%#{params[:name]}%") if params[:name] # FIXME: Implement real search
+    @companies = CompanySearch.new(params[:name], params[:sub_category])
+    @companies = @companies.limit(params[:per_page] || 5)
+    @companies = @companies.where(active: true, visible: true) unless current_user.is_a?(Admin)
 
     respond_with @companies do |wants|
       wants.html { render :index, layout: 'application'}

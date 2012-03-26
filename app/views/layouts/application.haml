@@ -47,8 +47,11 @@
         %nav.main-nav
           = nav_for :main do |main|
             - if current_user
-              = main.nav_link :search_ppn, companies_path, proc { request.path.include? '/companies' }
-              = main.nav_link :admin, '/admin'
+              - if current_user.is_a? Admin
+                = main.nav_link :admin, '/admin'
+              = main.nav_link :code_of_conduct, '/code_of_conduct'
+              = main.nav_link :core_values, '/core_values'
+              = main.nav_link :search_ppn, companies_path, proc { controller.controller_name == 'companies' }
             - else
               = main.nav_link :login, login_path
 

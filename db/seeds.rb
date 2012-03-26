@@ -33,7 +33,7 @@ SEED_DATA[:discount_types].each do |t|
 end
 
 DISCOUNT_TYPE_ids = DiscountType.pluck(:id)
-success_msg "There are now #{DISCOUNT_TYPE_ids.count} Countries."
+success_msg "There are now #{DISCOUNT_TYPE_ids.count} Discount Types."
 
 ########################
 puts "Populating Countries / States..."

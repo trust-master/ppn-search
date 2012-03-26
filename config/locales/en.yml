@@ -14,6 +14,8 @@ en:
       search_ppn: Search PPN
       admin:      Admin
       login:      Login
+      code_of_conduct: Code of Conduct
+      core_values: Core Values
     account_links:
       profile:
         _label:               Profile

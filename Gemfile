@@ -28,6 +28,9 @@ gem 'simple_form'
 # Use thin instead of Webrick
 gem 'thin', require: false
 
+# Texticle enables easy access to native PGSQL full-text searching, also see https://github.com/Casecommons/pg_search if this one sucks
+gem 'texticle', :require => 'texticle/rails'
+
 # For the screen-scraping component
 gem 'nokogiri'
 gem 'mechanize'
