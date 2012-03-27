@@ -3,12 +3,18 @@ $(document).ready =>
   # currentDateValue.init()
   @popup.init()
   # deactivateModal.init()
-  cf = new CustomFormElements()
+  # cf = new CustomFormElements()
   @removeLinks.init()
   @companyForm.init() if $('#content').hasClass('companies')
 
   $("input[type='checkbox']").button()
   $('time.timeago').timeago()
+
+  # $('#sub_category').attr('multiple', true).chosen({allow_single_deselect: true})
+  $('#sub_category').chosen({allow_single_deselect: true})
+  # .each ->
+  #   default = $(this).find('option:first').text()
+  #   $(this).chosen()
 
 @companyForm =
   init: ->

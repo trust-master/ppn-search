@@ -161,9 +161,6 @@ RailsAdmin.config do |config|
       group :address do
         field :locations
       end
-      group :admin do
-        field :admin_email
-      end
       group :description do
         field :about
         field :description

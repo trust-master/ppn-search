@@ -3,9 +3,9 @@
   %h3
     = link_to company.name, company
 
-  .address
-    In business since
-    = company.in_business_since
+  - if company.locations.any?
+    .address= company.primary_address
+  .in_business_since= t('.in_business_since', year: company.in_business_since)
   .phone= company.phone_main
 
   - if company.website_url
@@ -14,19 +14,15 @@
   .details
     .identity
       %h3= company.name
-      .in_business_since= "In Business Since x"
+      .in_business_since= t('.in_business_since', year: company.in_business_since)
       - if company.locations.any?
-        .address
-          - l = company.locations.first
-          = l.city
-          = l.state_name
+        .address= company.primary_address
       - if company.phone_main
         .phone= company.phone_main
       - if company.website_url
         .website= company.website
 
-      %p
-        = link_to "[Edit this Service Provider as the SP Admin sees it]", edit_company_path(company, section: :identity)
+      %p= link_to "[Edit this Service Provider as the SP Admin sees it]", edit_company_path(company, section: :identity)
     .service
       %pre= company.to_yaml
     .credentials

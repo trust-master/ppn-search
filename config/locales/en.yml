@@ -80,6 +80,8 @@ en:
     credentials:
       title: 'Editing %{company_name}: Credentials'
 
+    company:
+      in_business_since: 'In business since %{year}'
     locations:
       actions:
         add: Add a Location

@@ -15,6 +15,7 @@ class CreateCompanySearches < ActiveRecord::Migration
       @columns.delete('continuing_education')
       @columns.delete('zip')
       @columns.delete('email')
+      @columns.delete('admin_email')
 
       sql = tables.map { |model|
 

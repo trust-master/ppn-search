@@ -64,6 +64,7 @@ group :assets do
   # Inject jQuery into the asset pipeline
   gem 'jquery-rails'
   gem 'formalize-rails'
+  gem 'chosen-rails'
 
   gem 'bourbon'
 end

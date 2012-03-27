@@ -6,6 +6,7 @@ class Location < ActiveRecord::Base
   before_validation :infer_country_from_state
 
   validates :state, :country, associated: true
+  validates :city, :state,    presence: true
 
   attr_accessible :city, :state_id, :zip, :country_id, as: [:default, :admin]
   attr_readonly :company_id

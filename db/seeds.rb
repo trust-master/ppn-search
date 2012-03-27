@@ -39,10 +39,10 @@ success_msg "There are now #{DISCOUNT_TYPE_ids.count} Discount Types."
 puts "Populating Countries / States..."
 
 SEED_DATA[:countries].each do |c|
-  country = Country.find_or_create_by_name(c['name'])
+  country = Country.where(name: c['name'], abbreviation: c['code']).first_or_create!
 
-  c['states'].each do |s|
-    state = State.find_or_create_by_name_and_country_id(s, country.id)
+  c['states'].each do |abbr, name|
+    state = State.where(name: name, abbreviation: abbr, country_id: country.id).first_or_create!
   end
 end
 
@@ -60,23 +60,22 @@ print 'Populating Companies... '
 SEED_DATA[:companies].each do |name|
   company = Company.find_or_create_by_name(name) do |c|
     domain              = Faker::Internet.domain_name(c.name)
-    c.admin_email       = Faker::Internet.email(Faker::Name.first_name, domain)
     c.website_url       = 'http://' + domain
     c.email             = Faker::Internet.email(%w[inquire contact info sales].sample, domain)
-    c.phone_main        = Faker::PhoneNumber.phone_number if (rand > 0.5)
-    c.phone_mobile      = Faker::PhoneNumber.cell_phone if (rand > 0.5)
+    c.phone_main        = Faker::PhoneNumber.phone_number if (rand > 0.9)
+    c.phone_mobile      = Faker::PhoneNumber.phone_number if (rand > 0.5)
     year = (Date.today.year - rand(5) - 1/(rand + 0.0125)).floor
     c.in_business_since = Date.civil(year)
     c.about             = Faker::Lorem.sentences(1, true).join if (rand > 0.5)
-    c.description       = Faker::Lorem.paragraphs(rand(4), true).join("\n\n") if (rand > 0.5)
-    c.general_info      = Faker::Lorem.paragraphs(rand(4), true).join("\n\n") if (rand > 0.5)
+    c.description       = Faker::Lorem.paragraphs(rand(4), true).join("\n\n") if (rand > 0.8)
+    c.general_info      = Faker::Lorem.paragraphs(rand(4), true).join("\n\n") if (rand > 0.8)
   end
   if company.locations.empty? then
     Location.populate(rand(5)) do |l|
-      l.city = Faker::Address.city
-      l.zip  = 55000 + rand(999) # random MN-like zip-code
+      l.city       = Faker::Address.city
+      l.zip        = 55000 + rand(999) # random MN-like zip-code
       l.country_id = US_id
-      l.state_id = MN_id
+      l.state_id   = MN_id
       l.company_id = company.id
     end
   end
@@ -86,7 +85,6 @@ end
 tm = Company.where(name: 'Trust Master').first_or_create! do |c|
   c.website_url       = 'http://trust-master.com'
   c.email             = 'info@trust-master.com'
-  c.admin_email       = 'dmodeen@trust-master.com'
   c.phone_main        = '763.213.0700'
   c.phone_fax         = '763.576.1585'
   c.in_business_since = Date.civil(2000)
@@ -195,8 +193,6 @@ Company.all.each do |c|
       u.save validate: false, as: :admin
     end
     print 'C'
-
-    c.update_attributes :admin_email => u.email
   end
 
   if c.users.count < 2

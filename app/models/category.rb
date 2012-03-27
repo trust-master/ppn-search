@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  has_many :sub_categories
+  has_many :sub_categories,     dependent: :destroy
   has_many :company_categories, through: :sub_categories
   has_many :companies,          through: :company_categories
 
@@ -7,7 +7,7 @@ class Category < ActiveRecord::Base
 
   attr_accessible :name, :sub_categories_attributes, as: :admin
 
-  validates :name, presence: true
+  validates            :name, presence: true
   validates_associated :sub_categories
 end
 

@@ -1,13 +1,13 @@
 class SubCategory < ActiveRecord::Base
   belongs_to :category
-  has_many :company_categories
-  has_many :companies, through: :company_categories
+  has_many :company_categories, dependent: :destroy
+  has_many :companies,          through: :company_categories
 
   attr_accessible :name, :category_id, as: :admin
 
   delegate :name, to: :category, prefix: true # will produce category_name method
 
-  validates :name, :category, presence: true
+  validates            :name, :category, presence: true
   validates_associated :category
 end
 
