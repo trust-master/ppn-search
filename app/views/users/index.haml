@@ -1,23 +1,25 @@
 - title t('.title', company_name: @company.name)
 
 .actions
-  = link_to new_company_user_path(@company), class: :add do
-    .icon
-    Add User
+  = include_add_link(new_company_user_path(@company))
 
 %table.users_index
   %thead
     %tr
-      %th.sortable User Name
-      %th.sortable Last Login
-      %th.sortable Active?
-      %th Actions
+      %th.sortable= t('.table.headers.name')
+      %th.sortable= t('.table.headers.logged_in_at')
+      %th.sortable= t('.table.headers.active')
+      %th= t('.table.headers.actions')
   %tbody
-    - @users.each do |user|
-      %tr[user]
-        %td= link_to user.display_name, company_user_path(@company, user)
-        %td= user.logged_in_at || 'never'
-        %td= user.active ? 'Y' : 'N'
-        %td
-          = link_to 'Edit',   edit_company_user_path(@company, user), class: :edit
-          = link_to 'Delete', company_user_path(@company, user), method: :delete, confirm: 'Are You Sure?', class: :delete
+    - if @users.any?
+      - @users.each do |user|
+        %tr[user]
+          %td= user.display_name
+          %td= user.logged_in_at || 'never'
+          %td= user.active ? 'Y' : 'N'
+          %td
+            = include_edit_link edit_company_user_path(@company, user)
+            = include_remove_link company_user_path(@company, user)
+    - else
+      %tr.no_items
+        %td{colspan: 5}= t('.table.no_items_message')

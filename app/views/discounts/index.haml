@@ -1,28 +1,26 @@
 - title t('.title', company_name: @company.name)
 .actions
-  = link_to new_company_discount_path(@company), class: :add do
-    .icon
-    Add Discount
+  = include_add_link(new_company_discount_path(@company))
 
 %table.discounts_index
   %thead
     %tr
-      %th.sortable Discount Name
-      %th.sortable Discount Type
-      %th.sortable Start Date
-      %th.sortable End Date
-      %th Actions
+      %th.sortable= t('.table.headers.name')
+      %th.sortable= t('.table.headers.type')
+      %th.sortable= t('.table.headers.start_date')
+      %th.sortable= t('.table.headers.end_date')
+      %th= t('.table.headers.actions')
   %tbody
-    - @discounts.each do |discount|
-      %tr[discount]
-        %td
-          = discount.title
-        %td
-          = discount.type_name
-        %td
-          = discount.start_date
-        %td
-          = discount.end_date
-        %td
-          = link_to 'Edit', edit_company_discount_path(discount.company, discount), class: :edit
-          = link_to 'Delete', company_discount_path(discount.company, discount), method: :delete, confirm: 'Are You Sure?', class: :delete
+    - if @discounts.any?
+      - @discounts.each do |discount|
+        %tr[discount]
+          %td= discount.title
+          %td= discount.type_name
+          %td= discount.start_date
+          %td= discount.end_date
+          %td
+            = include_edit_link edit_company_discount_path(discount.company, discount)
+            = include_remove_link company_discount_path(discount.company, discount)
+    - else
+      %tr.no_items
+        %td{colspan: 5}= t('.table.no_items_message')

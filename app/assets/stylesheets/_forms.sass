@@ -7,6 +7,34 @@ fieldset
   border-bottom: 1px solid $light-grey
   font-size: 13px
 
+  &.last
+    text-align: center
+    border-bottom: 0
+    padding-bottom: 25px
+
+    a.cancel, .login input[type="submit"], input.save, input.update
+      @include inline-block
+      font-weight: bold
+      border: 0
+      font-size: 14px
+      cursor: pointer
+      margin-left: 10px
+      text-align: center
+
+    a.cancel
+      @include btn-cancel
+      line-height: 31px
+      vertical-align: top
+      color: #4e4e4e
+
+    .login input[type="submit"], input.save, input.update
+      @include btn-save
+      color: white
+
+    button, input[type="reset"], input[type="submit"], input[type="button"]
+      border-radius: 0
+      text-shadow: none
+
   legend
     margin-top: 0
 
@@ -16,7 +44,7 @@ fieldset
     clear: both
     padding-left: 10px
 
-  li
+  li.input
     margin: 15px 0
 
     &.error
@@ -25,9 +53,25 @@ fieldset
       background: rgba($red, 0.15)
       padding: 10px 0
 
+    &.date
+      select
+        width: auto
+
     #{$all-text-inputs}
       width: 274px
-      padding-left: 5px
+      border: 1px solid $light-grey
+      padding: 4px 5px
+      vertical-align: top
+
+    select
+      width: 283px
+      margin-left: -1px
+
+    textarea
+      border: 1px solid $light-grey
+      width: 280px
+      height: 70px
+
     input
       &[type="checkbox"]
         width: auto
@@ -39,36 +83,18 @@ fieldset
     .more-info, .hint
       font-size: 11px
       font-style: italic
-      display: inline-block
+      @include inline-block
       margin-left: 10px
       width: 185px
 
-    label
+    & > label
       width: 140px
       text-align: right
       font-size: 13px
-      display: inline-block
+      @include inline-block
       margin-right: 8px
       vertical-align: top
-
-    select
-      height: 31px
-
-    .checkbox-wrap
-      float: left
-      margin-right: 20px
-      width: 105px
-      font-size: 11px
-
-      label
-        width: 80px
-        font-size: 11px
-
-        &.select-all
-          width: auto
-
-        .ui-button span
-          color: #edeeee
+      padding-top: 4px
 
   .actions
     clear: both
@@ -80,108 +106,23 @@ fieldset
   margin-left: 330px
   color: #666
 
-a.add
-  display: inline-block
-  font-weight: bold
-  margin: 10px 0 10px 0px
-  line-height: 20px
-
-  .icon
-    @include btn-add
-    display: inline-block
-    vertical-align: top
-    margin-right: 4px
-
-fieldset.last
-  text-align: center
-  border-bottom: 0
-  padding-bottom: 25px
-
-a.cancel, .login input[type="submit"], input.save, input.update
-  display: inline-block
-  font-weight: bold
-  border: 0
-  font-size: 14px
-  cursor: pointer
-  margin-left: 10px
-  text-align: center
-
-a.cancel
-  @include btn-cancel
-  line-height: 31px
-  vertical-align: top
-  color: #4e4e4e
-
-.login input[type="submit"], input.save, input.update
-  @include btn-save
-  color: white
-
-button, input[type="reset"], input[type="submit"], input[type="button"]
-  border-radius: 0
-  text-shadow: none
-
 .radio, .checkbox
-  display: inline-block
+  @include inline-block
   cursor: pointer
-  background-position: 0 0
-  background-color: transparent
-  background-repeat: no-repeat
-  background-attachment: scroll
+  background:
+    position:   0 0
+    color:      transparent
+    repeat:     no-repeat
+    attachment: scroll
 
-.cf_element.select
-  @include select-category
-  width: 155px
-  height: 23px
-  display: inline-block
-  cursor: pointer
-  color: #666
-  font: 13px / 23px arial, sans-serif
-  overflow: hidden
-  position: absolute
-  padding: 5px 24px 0 11px
+.input
+  &.radio_buttons
+    span.radio
+      label
+        width: auto
+        text-align: left
+        padding: 0 6px
 
-.date-span
-  .cf_element.select
-    @include select-sm
-    font: 11px / 21px arial, sans-serif
-    font-weight: normal
-
-  label
-    margin-right: 0
-
-  select
-    width: 132px !important
-
-.input.select, .input.grouped_select
-  label
-    float: left
-
-  select
-    // float: left
-    top: -4px
-    position: relative
-
-.input.radio_buttons
-  span.radio
-    label
-      width: auto
-      text-align: left
-      padding: 0 6px
-
-.search-filter
-  .select-wrap
-    float: left
-
-.current-data
-  display: inline-block
-  font-size: 12px
-
-.radio-options
-  overflow: hidden
-  margin-left: 126px
-
-.radio-1
-  margin-left: 0
 
 .ui-button
   background: url(/assets/ui-btn.gif) 0 bottom repeat-x !important
@@ -206,32 +147,3 @@ button, input[type="reset"], input[type="submit"], input[type="button"]
 .btn-label
   float: left
 
-.date-span
-  .select-wrap
-    top: -4px
-  label
-    vertical-align: middle
-    float: left
-  .select-wrap
-    float: left
-  select
-    margin-right: 10px
-    margin-top: 5px
-    display: inline-block
-    vertical-align: top
-  input[type="text"]
-    width: 60px
-    float: left
-    vertical-align: middle
-    *margin-top: 3px
-  span
-    float: left
-    font-size: 13px
-    display: inline-block
-    margin: 4px 10px 0
-    font-weight: bold
-
-.alt-section li
-  margin-left: 96px
-  .add
-    margin-left: 0

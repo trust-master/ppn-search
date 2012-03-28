@@ -16,19 +16,48 @@ module ActionLinksHelper
     build_action_link(:collapse, *args)
   end
 
+  def include_edit_link(*args)
+    build_action_link(:edit, *args)
+  end
+
+  def include_download_link(*args)
+    build_action_link(:download, *args)
+  end
+
   private
 
   def build_action_link(type, *args)
     options = args.extract_options! || {}
-    lookup_for_text = args.first
+
+    scope = args.first.is_a?(Symbol) ? args.delete_at(0) : nil
+    text = lookup(type, scope)
+
+
+    if url_options = options.delete(:url) || args.first
+      if type == :remove
+        options[:method] ||= :delete
+        options[:confirm] = lookup([type, :confirmation].join('_'), scope) unless options.has_key?(:confirm)
+      end
+      link_to(url_options, {class: type}.merge(options)) do
+        content_tag(:div, '', class: :icon) + text.html_safe
+      end
+    else
+      content_tag(:a, {class: type}.merge(options)) do
+        content_tag(:div, '', class: :icon) + text.html_safe
+      end
+    end
+
+  end
+
+  def lookup(type, scope)
     lookups = []
-    if lookup_for_text
-      lookups << :".actions.#{lookup_for_text}.#{type}"
-      lookups << :".actions.#{lookup_for_text}_#{type}"
-      lookups << :".actions.#{lookup_for_text}"
-      lookups << :"actions.#{lookup_for_text}.#{type}"
-      lookups << :"actions.#{lookup_for_text}_#{type}"
-      lookups << :"actions.#{lookup_for_text}"
+    if scope
+      lookups << :".actions.#{scope}.#{type}"
+      lookups << :".actions.#{scope}_#{type}"
+      # lookups << :".actions.#{scope}"
+      lookups << :"actions.#{scope}.#{type}"
+      lookups << :"actions.#{scope}_#{type}"
+      # lookups << :"actions.#{scope}"
     end
     lookups << :".actions.#{type}"
     lookups << :"actions.#{type}"
@@ -40,11 +69,7 @@ module ActionLinksHelper
       end
       break if not results.last.is_a?(I18n::MissingTranslation)
     end
-    text = results.last.is_a?(I18n::MissingTranslation) ? results.first.html_message : results.last
-
-    content_tag :a, {class: type}.merge(options) do
-      content_tag(:div, '', class: :icon) + text.html_safe
-    end
+    return results.last.is_a?(I18n::MissingTranslation) ? results.first.html_message : results.last
   end
 
 end

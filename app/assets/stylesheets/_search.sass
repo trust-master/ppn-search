@@ -4,36 +4,45 @@
 #col-a
   .search
     margin-bottom: 20px
-    padding: 15px 11px
+    padding: 15px 15px 12px
     background-color: white
     border: 1px solid $light-grey
 
     .search_wrap
-      margin-bottom: 20px
+      margin-bottom: 15px
       overflow: hidden
 
       input
         &[type="search"]
-          @include border-radius(26px)
+          @include border-radius(16px)
+          border: 1px solid $light-grey
           float: left
           background: none
-          width: 253px
+          width: 241px
           height: 16px
-          padding: 6px 6px 6px 26px
-          color: #b4b3b4
-          font-size: 14px
+          padding: 6px 16px
+          color: #999
+          font-size: 13px
           vertical-align: middle
 
         &[type="submit"]
-          @include btn-provider-search
+          @include button(shiny, $blue)
+          padding: 6px 17px 5px
           float: right
-          text-indent: -9999px
-          display: inline-block
-          border: none
-          margin-left: 2px
-          line-height: 75px
+          // text-indent: -9999px
+          // @include inline-block
+          // border: none
+          // margin-left: 2px
+          // line-height: 75px
 
     .filter
+      #sub_category_chzn
+        ul.chzn-choices
+          border: 1px solid $light-grey
+
+          .search-field
+            input
+              padding-left: 16px
       select
         width: 100%
 
@@ -42,22 +51,26 @@
     border: 1px solid $light-grey
     margin-bottom: 10px
 
+    h4, ul.pagination
+      margin: 13px 0 12px
+
     h4
       float: left
       color: $blue
-      margin: 20px 20px 20px 10px
+      margin-left: 10px
 
     ul.pagination
-      overflow: hidden
-      padding: 15px 11px
       float: right
+      overflow: hidden
+      margin-right: 10px
+      padding-top: 2px
 
       &.bottom
-        margin: 0
+        margin-right: 0
 
       li
         float: left
-        margin: 7px
+        margin: 0 7px
         line-height: 12px
 
         a
@@ -75,11 +88,11 @@
 
     ul.companies
       border-top: 1px solid $light-grey
-      margin-top: 10px
+      margin-top: 15px
       clear: both
 
       li
-        padding: 15px 11px
+        padding: 11px
         font-size: 12px
         border-bottom: 1px solid $light-grey
         cursor: pointer
@@ -88,20 +101,22 @@
           border-bottom: none
 
         &:hover
-          background: $grey url(/assets/arrow-sb-active.gif) 95% center no-repeat
+          background: $light-grey url(/assets/arrow-sb-active.gif) 95% center no-repeat
           color: $darker-blue
+          a
+            color: $darker-blue
 
         &.selected
           background: $blue url(/assets/arrow-sb-hover.gif) 95% center no-repeat
-          color: white
+          color: $white
           a
-            color: white
+            color: $white
 
         h3
           text-transform: uppercase
 
         a
-          color: $darker-blue
+          color: $blue
 
         .details
           display: none
@@ -120,20 +135,24 @@
 
   #company_details
     h3
+    .identity, .service, .credentials, .discounts
+      display: none
 
     .identity
+      display: block
+
       .in_business_since
         font-size: 11px
         font-weight: normal
         text-transform: capitalize
-        display: inline-block
+        @include inline-block
         margin-left: 5px
-
-    .service, .credentials, .discounts
-      display: none
 
     .service
 
     .credentials
 
     .discounts
+
+    .actions
+      margin-top: 20px

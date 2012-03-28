@@ -1,6 +1,6 @@
 module CompanyDecorator # < ApplicationDecorator
-  def in_business_since
-    read_attribute(:in_business_since).year
+  def since
+    read_attribute(:in_business_since).try(:year)
   end
 
   def website

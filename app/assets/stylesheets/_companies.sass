@@ -18,11 +18,11 @@ form
             margin-left: 30px
 
             span
-              display: inline-block
+              @include inline-block
               width: 175px
 
             a.remove
-              display: inline-block
+              @include inline-block
               margin: 0
 
       ul.add_new_category
@@ -65,7 +65,13 @@ form
 
         ul.service_areas
           margin-left: 80px
+
           li.service_area
+            margin: 5px 0
+            label.name
+              width: 140px
+              font-size: 13px
+
             .partial_only
               margin-left: 20px
 
@@ -94,7 +100,6 @@ form
         margin-bottom: 0
 
     &#licenses, &#business_filing
-
       .personal_license, .business_license, .business_filing
         padding: 20px
         margin: 20px 0
@@ -109,7 +114,7 @@ form
           float: right
 
           a.remove
-            display: inline-block
+            @include inline-block
             margin: 0
 
         .data

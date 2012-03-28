@@ -24,17 +24,6 @@ SEED_DATA = YAML.load_file(Rails.root.join('db','seeds.yml')).with_indifferent_a
 puts "Seeding Database...\n\n"
 
 
-
-########################
-puts "Populating DiscountTypes..."
-
-SEED_DATA[:discount_types].each do |t|
-  country = DiscountType.where(name: t).first_or_create!
-end
-
-DISCOUNT_TYPE_ids = DiscountType.pluck(:id)
-success_msg "There are now #{DISCOUNT_TYPE_ids.count} Discount Types."
-
 ########################
 puts "Populating Countries / States..."
 
@@ -53,6 +42,44 @@ success_msg "There are now #{STATE_ids.count} States."
 
 US_id = Country.where(name: 'United States').pluck(:id).first
 MN_id = State.where(name: 'Minnesota').pluck(:id).first
+
+########################
+print 'Admin Users... '
+
+admin = User.find_or_initialize_by_email('ryan@rtlong.com').tap do |u|
+  u.first_name, u.middle_name, u.last_name = %w'Ryan Taylor Long'
+  u.password_digest = BCrypt::Password.create('aoe123#')
+  u.role = 'Admin'
+  u.save validate: false, as: :admin
+end
+print 'A'
+
+admins = {
+  'Dan Modeen'  => 'dmodeen@trust-master.com',
+  'Mike Pennaz' => 'mpennaz@trust-master.com',
+  'Gary Bursey' => 'gbursey@trust-master.com',
+  'Matt Pennaz' => 'mpennaz@gmail.com'
+}
+admins.each do |name, email|
+  u = Admin.where(email: email).first_or_initialize
+  u.first_name, u.last_name = name
+  u.password_digest = BCrypt::Password.create('test123!')
+  u.save validate: false, as: :admin
+  print 'A'
+end
+ADMIN_ids = Admin.pluck(:id)
+
+exit unless Rails.env == 'development'
+
+########################
+puts "Populating DiscountTypes..."
+
+SEED_DATA[:discount_types].each do |t|
+  country = DiscountType.where(name: t).first_or_create!
+end
+
+DISCOUNT_TYPE_ids = DiscountType.pluck(:id)
+success_msg "There are now #{DISCOUNT_TYPE_ids.count} Discount Types."
 
 ########################
 print 'Populating Companies... '
@@ -154,29 +181,6 @@ success_msg "There are now #{SUB_CATEGORIES_ids.count} SubCategories."
 #######################
 print 'Populating Users... '
 
-admin = User.find_or_initialize_by_email('ryan@rtlong.com').tap do |u|
-  u.first_name, u.middle_name, u.last_name = %w'Ryan Taylor Long'
-  u.password_digest = BCrypt::Password.create('aoe123#')
-  u.role = 'Admin'
-  u.company_id = TM_id
-  u.save validate: false, as: :admin
-end
-print 'A'
-
-admins = {
-  'Dan Modeen'  => 'dmodeen@trust-master.com',
-  'Mike Pennaz' => 'mpennaz@trust-master.com',
-  'Gary Bursey' => 'gbursey@trust-master.com'
-}
-admins.each do |name, email|
-  u = Admin.where(email: email).first_or_initialize
-  u.first_name, u.last_name = name
-  u.password_digest = BCrypt::Password.create('test123!')
-  u.company_id = TM_id
-  u.save validate: false, as: :admin
-  print 'A'
-end
-ADMIN_ids = Admin.pluck(:id)
 
 Company.all.each do |c|
   company_admin = User.find_or_initialize_by_role_and_company_id('CompanyAdmin', c.id).tap do |u|

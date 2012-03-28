@@ -1,14 +1,14 @@
 class Category < ActiveRecord::Base
   has_many :sub_categories,     dependent: :destroy
-  has_many :company_categories, through: :sub_categories
-  has_many :companies,          through: :company_categories
+  # has_many :company_categories, through: :sub_categories
+  # has_many :companies,          through: :company_categories
 
   accepts_nested_attributes_for :sub_categories, allow_destroy: true
 
   attr_accessible :name, :sub_categories_attributes, as: :admin
 
-  validates            :name, presence: true
-  validates_associated :sub_categories
+  validates_presence_of :name
+  # validates_associated  :sub_categories
 end
 
 

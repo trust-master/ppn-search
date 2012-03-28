@@ -2,11 +2,11 @@
   = fieldset :design do
     - if @discount.image?
       .image
-        %h4 Discount Image
-        = image_tag @discount.image.thumb.url
-        = link_to @discount.image.url, class: :download do
-          .icon
-          Download Image
+        %h4= Discount.human_attribute_name :image
+        = link_to @discount.image.preview.url do
+          = image_tag @discount.image.thumb.url
+        = include_download_link :image, @discount.image.url
+
 
     %ul
       = f.association :type

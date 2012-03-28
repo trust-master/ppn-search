@@ -9,16 +9,22 @@
 @import ui_datepicker
 @import tooltip
 @import forms
+@import attached_file
+@import flash
+@import action_links
 
 &.users
   @import profile
   @import users
+
 &.companies
   @import companies
   &.index
     @import search
+
 &.discounts
   @import discounts
+
 &.alerts
   @import alerts
 
@@ -34,44 +40,3 @@
 #col-b
   background-color: white
   border: 1px solid $light-grey
-
-.flash
-  border: 1px solid $light-grey
-  padding: 5px
-  margin-bottom: 20px
-  font-size: 14px
-
-  &.error, &.alert
-    background-color: rgba(#FFBCBC, 0.4)
-  &.notice
-    background-color: rgba(#d5ffcc, 0.4)
-  &.warning
-    background-color: rgba(#d5ffcc, 0.4)
-
-a.remove, a.collapse, a.expand
-  display: inline-block
-  font-weight: bold
-  padding-left: 20px
-  font-size: 12px
-  cursor: pointer
-
-  .icon
-    display: inline-block
-    vertical-align: text-top
-    margin-right: 3px
-
-a.remove
-  color: $red
-  .icon
-    @include icon-remove-sm
-
-a.collapse, a.expand
-  color: $blue
-  .icon
-    vertical-align: sub
-
-a.collapse .icon
-  @include sort-arrow-up
-
-a.expand .icon
-  @include sort-arrow-down

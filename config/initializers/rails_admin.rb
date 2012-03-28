@@ -279,7 +279,6 @@ RailsAdmin.config do |config|
 
 
   config.model Category do
-    configure(:company_categories) { visible false }
 
     list do
       field :name
@@ -295,7 +294,6 @@ RailsAdmin.config do |config|
     parent Category
 
     configure(:company_categories) { visible false }
-    configure(:companies) { visible false }
 
     list do
       field :name
@@ -306,6 +304,7 @@ RailsAdmin.config do |config|
       field :name
     end
   end
+
   config.model CompanyCategory do
     visible false
   end

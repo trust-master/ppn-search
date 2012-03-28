@@ -108,6 +108,8 @@ group :development do
   # To enumerate all TODO's and FIXME's in the code
   gem 'dnote'
 
+  gem 'pry-rails'
+  gem 'pry-doc'
 end
 
 group :development, :test do
@@ -130,8 +132,6 @@ group :development, :staging do
   # For seeding my dev DB with fake data
   gem 'populator'
 
-  gem 'pry-rails'
-  gem 'pry-doc'
 end
 
 # Gems only for certain operating system environments.

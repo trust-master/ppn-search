@@ -18,12 +18,8 @@
         %li[csa.service_area]
           = s.hidden_field :service_area_id
 
-          = s.input :_destroy, as: :inverse_boolean, label: csa.service_area.name,
-              input_html: {checked: !csa.new_record?, class: :destroy}, wrapper_tag: :span,
-              label_html: {class: :name}
-          = s.input :partial_only, collection: service_areas_partial_only_collection,
-              as: :radio_buttons, label: false, label_method: :last, value_method: :first,
-              wrapper_tag: :span, wrapper_html: {class: :partial_only}, input_html: {disabled: csa.new_record?}
+          = s.input :_destroy, as: :inverse_boolean, label: csa.service_area.name, input_html: {checked: !csa.new_record?, class: :destroy}, wrapper_tag: :span, label_html: {class: :name}
+          = s.input :partial_only, collection: service_areas_partial_only_collection, as: :radio_buttons, label: false, label_method: :last, value_method: :first, wrapper_tag: :span, wrapper_html: {class: :partial_only}, input_html: {disabled: csa.new_record?}
 
     .collapsed_summary
       %span This will contain the summary

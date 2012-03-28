@@ -10,11 +10,8 @@ $(document).ready =>
   $("input[type='checkbox']").button()
   $('time.timeago').timeago()
 
-  # $('#sub_category').attr('multiple', true).chosen({allow_single_deselect: true})
-  $('#sub_category').chosen({allow_single_deselect: true})
-  # .each ->
-  #   default = $(this).find('option:first').text()
-  #   $(this).chosen()
+  $('#sub_category').attr('multiple', true).chosen()
+  $('.input.select select, .input.grouped_select select').chosen()
 
 @companyForm =
   init: ->
@@ -127,7 +124,11 @@ $(document).ready =>
     $('#locations ul.location a.remove').click ->
       _this = $(this).parents('ul.location')
       _this.hide()
-      _this.find("input[type='hidden'].destroy").val('true')
+      if _this.attr('id') == 'location_new'
+        _this.remove()
+      else
+        _this.find("input[type='hidden'].destroy").val('true')
+        _this.find("input[required]").removeAttr('required')
 
     $('#licenses a.remove, #business_filing a.remove').click ->
       _this = $(this).parents('.personal_license, .business_license, .business_filing').first()
@@ -150,8 +151,12 @@ $(document).ready =>
     $('#certifications a.remove, #affiliations a.remove, #associations a.remove').click ->
       _this = $(this).parents('.certification, .affiliation, .association').first()
       _this.slideUp()
-      _this.find('input[type="hidden"].destroy').val('true')
-      _this.find("input[required]").removeAttr('required')
+      # are we removing a dynamically created record?
+      if _this.attr('id').search(/_new$/) > -1 # yes? delete it from the DOM so it's ignored
+        _this.remove()
+      else # no? mark the _destroy field so the old record is deleted
+        _this.find("input[type='hidden'].destroy").val('true')
+        _this.find("input[required]").removeAttr('required')
 
 @popup =
   init: ->

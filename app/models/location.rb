@@ -29,6 +29,7 @@ class Location < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: locations
@@ -41,5 +42,7 @@ end
 #  country_id :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  street     :string(255)
+#  street2    :string(255)
 #
 

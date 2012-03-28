@@ -5,27 +5,34 @@
 
   - if company.locations.any?
     .address= company.primary_address
-  .in_business_since= t('.in_business_since', year: company.in_business_since)
-  .phone= company.phone_main
-
-  - if company.website_url
+  - if company.in_business_since?
+    .in_business_since= t('.in_business_since', year: company.since)
+  - if company.phone_main?
+    .phone= company.phone_main
+  - if company.website_url?
     .website= company.website
 
   .details
+    %h3= company.name
+
     .identity
-      %h3= company.name
-      .in_business_since= t('.in_business_since', year: company.in_business_since)
+      - if company.in_business_since?
+        .in_business_since= t('.in_business_since', year: company.since)
       - if company.locations.any?
         .address= company.primary_address
-      - if company.phone_main
+      - if company.phone_main?
         .phone= company.phone_main
-      - if company.website_url
+      - if company.website_url?
         .website= company.website
 
-      %p= link_to "[Edit this Service Provider as the SP Admin sees it]", edit_company_path(company, section: :identity)
+
     .service
       %pre= company.to_yaml
     .credentials
       Credentials
     .discounts
       Discounts
+
+    .actions
+      - if can? :edit, company
+        = include_edit_link edit_company_path(company, section: :identity)

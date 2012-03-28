@@ -31,3 +31,34 @@ class CompanySearch < ActiveRecord::Base
     searchable_id == result.searchable_id and searchable_type == result.searchable_type
   end
 end
+# == Schema Information
+#
+# Table name: company_searches
+#
+#  company_id                        :text
+#  about                             :text
+#  address                           :text
+#  application_number                :text
+#  chief_executive_officer           :text
+#  city                              :text
+#  description                       :text
+#  doing_business_as                 :text
+#  general_info                      :text
+#  home_jurisdiction                 :text
+#  name                              :text
+#  number                            :text
+#  phone_fax                         :text
+#  phone_main                        :text
+#  phone_mobile                      :text
+#  phone_number                      :text
+#  raw_data                          :text
+#  registered_agents                 :text
+#  registered_office_address         :text
+#  responsible_person_license_number :text
+#  title                             :text
+#  url                               :text
+#  website_url                       :text
+#  searchable_type                   :string
+#  searchable_id                     :integer
+#
+

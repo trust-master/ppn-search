@@ -4,14 +4,16 @@ class State < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: states
 #
-#  id         :integer         not null, primary key
-#  country_id :integer
-#  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id           :integer         not null, primary key
+#  country_id   :integer
+#  name         :string(255)
+#  created_at   :datetime
+#  updated_at   :datetime
+#  abbreviation :string(255)     not null
 #
 

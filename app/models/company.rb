@@ -56,7 +56,7 @@ class Company < ActiveRecord::Base
 
   ### Attribute Protection
 
-    attr_accessible :admin_email, :name, :email, :phone_main, :phone_mobile, :phone_fax,
+    attr_accessible :name, :email, :phone_main, :phone_mobile, :phone_fax,
       :website_url, :in_business_since, :about, :description, :general_info,
       :offers_24_hour_service, :offers_emergency_service, :insured, :insurance_state_id,
       :insurance_certificate, :insurance_certificate_cache, :remove_insurance_certificate,
@@ -74,7 +74,6 @@ class Company < ActiveRecord::Base
     before_validation :nullify_insurance_fields_if_necessary
 
   ### Validations
-    validates :admin_email, email: true, presence: true
     # validates :description
     # validates :general_info
     with_options if: :insured do |user|
@@ -111,6 +110,11 @@ class Company < ActiveRecord::Base
       locations.first.try(:name)
     end
 
+    def in_business_since=(string)
+      date = Date.new(string.to_i)
+      write_attribute(:in_business_since, date)
+    end
+
   ### Class Methods
   class << self; end
 
@@ -128,6 +132,7 @@ class Company < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: companies
@@ -137,7 +142,6 @@ end
 #  visible                  :boolean         default(FALSE)
 #  deleted_at               :datetime
 #  deleted_by_user_id       :integer
-#  admin_email              :string(255)
 #  name                     :string(255)
 #  email                    :string(255)
 #  phone_main               :string(255)

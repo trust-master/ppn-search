@@ -1,6 +1,6 @@
 = builder.hidden_field :_destroy, {class: :destroy}
+= builder.input :street
+= builder.input :street2
 = builder.input :city
 = builder.input :zip
--#= builder.association :country, priority: ['United States']
-= builder.input :state do
-  = builder.grouped_collection_select :state_id, Country.includes(:states), :states, :name, :id, :name
+= builder.association :state, as: :grouped_select, collection: Country.includes(:states), group_method: :states

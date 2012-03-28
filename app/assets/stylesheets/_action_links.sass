@@ -1,0 +1,43 @@
+// this file is interpreted in the context of
+// .wrapper-outer #wrapper #content
+
+a.add, a.remove, a.collapse, a.expand, a.edit, a.download
+  @include inline-block
+  font-weight: bold
+  padding-right: 20px
+  font-size: 12px
+  cursor: pointer
+
+  .icon
+    @include inline-block
+    vertical-align: text-top
+    margin-right: 3px
+
+a.add
+  .icon
+    @include btn-add
+    vertical-align: top
+
+a.remove
+  color: $red
+  .icon
+    @include icon-remove-sm
+
+a.collapse, a.expand
+  color: $blue
+  .icon
+    vertical-align: sub
+
+a.collapse .icon
+  @include sort-arrow-up
+
+a.expand .icon
+  @include sort-arrow-down
+
+a.edit .icon
+  @include icon-edit
+  vertical-align: middle
+
+a.download .icon
+  @include icon-download
+  vertical-align: middle
