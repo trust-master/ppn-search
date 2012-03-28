@@ -1,5 +1,5 @@
 class DiscountType < ActiveRecord::Base
-  default_scope order(:sort_order, :id)
+  default_scope order('sort_order DESC', :id)
 
   has_many :discounts
 
