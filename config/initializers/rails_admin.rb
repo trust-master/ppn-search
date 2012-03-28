@@ -70,8 +70,9 @@ RailsAdmin.config do |config|
     configure(:updated_at) { visible false }
     configure(:company_id) { visible false }
     configure(:company) { visible false }
-
-
+    configure(:sort_order) do
+      help 'Use this to influence the sorting. Higher numbers will be on top of the list. All default to 0, so use negative numbers to demote an item to the end of the list. (To ensure something stays at the top/bottom, use very large numbers.)'
+    end
 
     list do
       fields_of_type :boolean do
@@ -287,6 +288,7 @@ RailsAdmin.config do |config|
     edit do
       field :name
       field :sub_categories
+      field :sort_order
     end
   end
   config.model SubCategory do
@@ -302,6 +304,7 @@ RailsAdmin.config do |config|
 
     edit do
       field :name
+      field :sort_order
     end
   end
 
@@ -318,6 +321,7 @@ RailsAdmin.config do |config|
     end
     edit do
       field :name
+      field :sort_order
     end
   end
 
@@ -357,6 +361,7 @@ RailsAdmin.config do |config|
     edit do
       field :name
       field :service_areas
+      field :sort_order
     end
   end
   config.model ServiceArea do
@@ -371,6 +376,7 @@ RailsAdmin.config do |config|
     end
     edit do
       field :name
+      field :sort_order
     end
   end
 

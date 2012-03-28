@@ -110,6 +110,9 @@ group :development do
 
   gem 'pry-rails'
   gem 'pry-doc'
+
+  # For seeding my dev DB with fake data
+  gem 'populator'
 end
 
 group :development, :test do
@@ -122,15 +125,13 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'quiet_assets'
+
+  gem 'faker' # Used in some of the Factories to generate fake data; used in seeds.rb
 end
 
-gem 'faker', groups: [:development, :test, :staging] # Used in some of the Factories to generate fake data; used in seeds.rb
 
 group :development, :staging do
   gem 'whereuat', git: 'https://github.com/rtlong/whereuat.git'
-
-  # For seeding my dev DB with fake data
-  gem 'populator'
 
 end
 

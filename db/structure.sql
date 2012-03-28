@@ -190,7 +190,8 @@ CREATE TABLE categories (
     id integer NOT NULL,
     name character varying(255),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    sort_order integer DEFAULT 0 NOT NULL
 );
 
 
@@ -477,7 +478,8 @@ CREATE TABLE discount_types (
     id integer NOT NULL,
     name character varying(255),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    sort_order integer DEFAULT 0 NOT NULL
 );
 
 
@@ -672,7 +674,8 @@ CREATE TABLE markets (
     id integer NOT NULL,
     name character varying(255),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    sort_order integer DEFAULT 0 NOT NULL
 );
 
 
@@ -768,7 +771,8 @@ CREATE TABLE service_areas (
     market_id integer,
     name character varying(255),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    sort_order integer DEFAULT 0 NOT NULL
 );
 
 
@@ -833,7 +837,8 @@ CREATE TABLE sub_categories (
     category_id integer,
     name character varying(255),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    sort_order integer DEFAULT 0 NOT NULL
 );
 
 
@@ -1494,3 +1499,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120326230132');
 INSERT INTO schema_migrations (version) VALUES ('20120326230213');
 
 INSERT INTO schema_migrations (version) VALUES ('20120327093418');
+
+INSERT INTO schema_migrations (version) VALUES ('20120328194211');

@@ -1,4 +1,6 @@
 class Market < ActiveRecord::Base
+  default_scope order(:sort_order, :id)
+
   has_many :service_areas,         dependent: :destroy
 
   has_many :discounts,             dependent: :nullify
@@ -7,7 +9,7 @@ class Market < ActiveRecord::Base
 
   accepts_nested_attributes_for :service_areas, allow_destroy: true
 
-  attr_accessible :name, :service_areas_attributes, as: :admin
+  attr_accessible :name, :service_areas_attributes, :sort_order, as: :admin
 
   validates :name, presence: true
   validates_associated :service_areas

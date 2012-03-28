@@ -1,7 +1,9 @@
 class DiscountType < ActiveRecord::Base
+  default_scope order(:sort_order, :id)
+
   has_many :discounts
 
-  attr_accessible :name, as: [:default, :admin]
+  attr_accessible :name, :sort_order, as: :admin
 end
 
 
