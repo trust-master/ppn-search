@@ -11,11 +11,11 @@ en:
   # _label key for the title, nested within it.
   nav:
     main:
-      search_ppn: Search PPN
-      admin:      Admin
-      login:      Login
+      admin:           Admin
       code_of_conduct: Code of Conduct
-      core_values: Core Values
+      core_values:     Core Values
+      login:           Log In
+      search_ppn:      Search Providers
     account_links:
       profile:
         _label:               Profile
@@ -26,7 +26,7 @@ en:
         basic_info:           Basic Info
         privacy_settings:     Privacy Settings
         notifications_alerts: Notifications & Alerts
-      logout:                 Logout
+      logout:                 Log Out
     footer:
       terms:          Terms
       privacy_policy: Privacy Policy
