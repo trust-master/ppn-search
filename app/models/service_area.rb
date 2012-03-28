@@ -1,14 +1,13 @@
 class ServiceArea < ActiveRecord::Base
   default_scope order(:sort_order, :id)
 
-  belongs_to :market
+  belongs_to :market, inverse_of: :service_areas
   has_many :company_service_areas, dependent: :destroy
   has_many :companies, through: :company_service_areas
 
   attr_accessible :name, :market_id, :sort_order, as: :admin
 
-  validates :name, :market, presence: true
-  validates_associated :market
+  validates_presence_of :name, :market
 end
 
 

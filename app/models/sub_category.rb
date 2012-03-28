@@ -1,7 +1,7 @@
 class SubCategory < ActiveRecord::Base
   default_scope order(:sort_order, :id)
 
-  belongs_to :category
+  belongs_to :category, inverse_of: :sub_categories
   has_many :company_categories, dependent: :destroy
   has_many :companies,          through: :company_categories
 
@@ -9,8 +9,7 @@ class SubCategory < ActiveRecord::Base
 
   delegate :name, to: :category, prefix: true # will produce category_name method
 
-  validates_presence_of :name, :category_id
-  validates_associated  :category
+  validates_presence_of :name, :category
 end
 
 

@@ -1,8 +1,7 @@
 class Market < ActiveRecord::Base
   default_scope order(:sort_order, :id)
 
-  has_many :service_areas,         dependent: :destroy
-
+  has_many :service_areas, inverse_of: :market,         dependent: :destroy
   has_many :discounts,             dependent: :nullify
   has_many :company_service_areas, through: :service_areas
   has_many :companies,             through: :company_service_areas
@@ -11,8 +10,7 @@ class Market < ActiveRecord::Base
 
   attr_accessible :name, :service_areas_attributes, :sort_order, as: :admin
 
-  validates :name, presence: true
-  validates_associated :service_areas
+  validates_presence_of :name
 end
 
 
