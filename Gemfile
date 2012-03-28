@@ -15,7 +15,7 @@ gem 'liquid'
 gem 'bcrypt-ruby'
 
 # CarrierWave allows you to attach files to ActiveRecord Objects
-gem 'carrierwave', git: 'git://github.com/jnicklas/carrierwave.git'
+gem 'carrierwave'
 gem 'mini_magick'
 
 # Use AWS for Attachment Storage
