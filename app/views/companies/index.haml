@@ -7,7 +7,7 @@
       = search_field_tag :name, params[:name], placeholder: 'Provider Name'
       = submit_tag 'Search'
     .filter
-      = select_tag :sub_category, option_groups_from_collection_for_select(Category.includes(:sub_categories).all, :sub_categories, :name, :id, :name, params[:sub_category]), prompt: '', data: {placeholder: 'Select Category'}
+      = select_tag :sub_category, option_groups_from_collection_for_select(Category.includes(:sub_categories).all, :sub_categories, :name, :id, :name, params[:sub_category]), multiple: true, prompt: '', data: {placeholder: 'Select Category'}
 
   .results
     %h4 Search Results

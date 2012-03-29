@@ -6,12 +6,12 @@
     border-top: 1px solid $light-grey
     line-height: 36px
 
-    &:hover
-      background: $grey url(/assets/arrow-sb-active.gif) 95% center no-repeat
+    &:first-child
+      border-top: none
 
+    &.disabled
       a
-        color: $blue
-        text-decoration: none
+        color: $grey
 
     &.active
       background: $blue url(/assets/arrow-sb-hover.gif) 95% center no-repeat
@@ -20,8 +20,13 @@
         color: white
         text-decoration: none
 
-    &:first-child
-      border-top: none
+    &:hover
+      background: $grey url(/assets/arrow-sb-active.gif) 95% center no-repeat
+
+      a
+        color: $blue
+        text-decoration: none
+
 
     a
       text-transform: uppercase

@@ -21,19 +21,21 @@ module NavigationHelper
 
     # Create a navigation menu item, the @name@ argument should be the I18n key under
     # <tt>nav.#{menu_name}</tt> for the title of the nav link being created.
-    def nav_link(name, url_for_opts = nil, active_proc = nil)
+    def nav_link(name, url_for_opts = nil, active_proc = nil, html_options = {})
       path = [menu_name, name].flatten.join('.')
       text_for_link = h.t("#{path}._label", scope: :nav, default: path.to_sym)
       url = h.url_for(url_for_opts)
       options = @options.dup
-      options[:item_class] ||= []
-      options[:item_class] << 'active' if active_proc.is_a?(Proc) ? active_proc.call : current_page?(url)
+
+      html_options[:class] = [*html_options[:class]] # wrap in array if not array
+      html_options[:class] << options[:item_class] # add the menu-level class
+      html_options[:class] << 'active' if active_proc.is_a?(Proc) ? active_proc.call : current_page?(url)
 
       if options.has_key?(:item_wrapper) and options[:item_wrapper].nil?
         h.link_to(text_for_link, url, options[:link_attrs])
       else
         wrapper_tag = options[:item_wrapper] || :li
-        h.content_tag wrapper_tag, class: options[:item_class] do
+        h.content_tag(wrapper_tag, html_options) do
           h.link_to(text_for_link, url, options[:link_attrs])
         end
       end

@@ -11,6 +11,7 @@ class ServiceArea < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: service_areas
@@ -20,5 +21,6 @@ end
 #  name       :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  sort_order :integer         default(0), not null
 #
 
