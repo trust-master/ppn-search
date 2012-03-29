@@ -89,9 +89,6 @@
 
     #copyright &copy; #{Time.now.year} #{t('copyright')}
 
-  -#
     #development
       %h2 Development Stuff
       = render 'disqus'
-      - unless Rails.env.production?
-        = whereuat # the helper to load the Whereuat plugin to aid PivotalTracker story management

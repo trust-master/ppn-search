@@ -25,6 +25,10 @@ gem 'cancan' # for authorization
 
 gem 'simple_form'
 
+gem 'kaminari'
+
+gem 'copycopter_client'
+
 # Use thin instead of Webrick
 gem 'thin', require: false
 
@@ -130,10 +134,10 @@ group :development, :test do
 end
 
 
-group :development, :staging do
-  gem 'whereuat', git: 'https://github.com/rtlong/whereuat.git'
+# group :development, :staging do
+#   gem 'whereuat', git: 'https://github.com/rtlong/whereuat.git'
 
-end
+# end
 
 # Gems only for certain operating system environments.
 #
