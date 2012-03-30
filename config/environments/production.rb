@@ -57,8 +57,9 @@ ServiceProviderPortal::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( ie8.css ie7.css whereuat.js whereuat.css )
-  config.assets.precompile += ['rails_admin/rails_admin.css', 'rails_admin/rails_admin.js']
+  config.assets.precompile += %w( ie8.css ie7.css )
+  # config.assets.precompile += ['rails_admin/rails_admin.css', 'rails_admin/rails_admin.js']
+  config.assets.precompile += ['active_admin.css', 'active_admin/print.css', 'active_admin.js']
 
   ### ActionMailer ###
 
