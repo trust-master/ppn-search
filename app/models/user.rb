@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
 
   delegate :name, to: :company, prefix: true
 
+  default_scope includes(:company)
+
   # wrapper for StringInquirer
   def role
     @role ||= UserRole.new(read_attribute(:role))
