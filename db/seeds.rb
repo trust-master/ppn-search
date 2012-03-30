@@ -50,20 +50,22 @@ admin = User.find_or_initialize_by_email('ryan@rtlong.com').tap do |u|
   u.first_name, u.middle_name, u.last_name = %w'Ryan Taylor Long'
   u.password_digest = BCrypt::Password.create('aoe123#')
   u.role = 'Admin'
+  u.active = true
   u.save validate: false, as: :admin
 end
 print 'A'
 
 admins = {
-  'Dan Modeen'  => 'dmodeen@trust-master.com',
-  'Mike Pennaz' => 'mpennaz@trust-master.com',
-  'Gary Bursey' => 'gbursey@trust-master.com',
-  'Matt Pennaz' => 'mpennaz@gmail.com'
+  %w'Dan Modeen'  => 'dmodeen@trust-master.com',
+  %w'Mike Pennaz' => 'mpennaz@trust-master.com',
+  %w'Gary Bursey' => 'gbursey@trust-master.com',
+  %w'Matt Pennaz' => 'mpennaz@gmail.com'
 }
 admins.each do |name, email|
   u = Admin.where(email: email).first_or_initialize
   u.first_name, u.last_name = name
   u.password_digest = BCrypt::Password.create('test123!')
+  u.active = true
   u.save validate: false, as: :admin
   print 'A'
 end
@@ -96,6 +98,7 @@ SEED_DATA[:companies].each do |name|
     c.about             = Faker::Lorem.sentences(1, true).join if (rand > 0.5)
     c.description       = Faker::Lorem.paragraphs(rand(4), true).join("\n\n") if (rand > 0.8)
     c.general_info      = Faker::Lorem.paragraphs(rand(4), true).join("\n\n") if (rand > 0.8)
+    c.active = c.visible = true
   end
   if company.locations.empty? then
     Location.populate(rand(5)) do |l|
@@ -132,6 +135,8 @@ tm = Company.where(name: 'Trust Master').first_or_create! do |c|
     contractor (#20506673) that protects your investment by carrying general liability insurance and a
     fidelity bond.
   GENERAL_INFO
+
+  c.active = c.visible = true
 end
 tm.locations.where(city: 'Champlin').first_or_create!(state_id: MN_id, zip: '55316')
 TM_id = tm.id
@@ -191,7 +196,7 @@ Company.all.each do |c|
         Faker::Name.last_name
       ]
       u.email = Faker::Internet.email(name.compact.join(' '), c.email.split('@').last)
-      u.password_digest = BCrypt::Password.create('test')
+      u.password_digest = BCrypt::Password.create('test123!')
       u.created_by_user_id = u.updated_by_user_id = ADMIN_ids.sample
       u.role = 'CompanyAdmin'
       u.save validate: false, as: :admin
@@ -208,7 +213,7 @@ Company.all.each do |c|
         Faker::Name.last_name
       ]
       u.email = Faker::Internet.email(name.compact.join(' '), c.email.split('@').last)
-      u.password_digest = BCrypt::Password.create('test')
+      u.password_digest = BCrypt::Password.create('test123!')
       u.company_id = c.id
       u.created_by_user_id = u.updated_by_user_id = company_admin.id
       print '.'

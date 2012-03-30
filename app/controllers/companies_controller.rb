@@ -10,7 +10,7 @@ class CompaniesController < ApplicationController
   def index
     @companies = CompanySearch.new(params[:name], params[:sub_category])
     @companies = @companies.limit(params[:per_page] || 5)
-    @companies = @companies.where(active: true, visible: true) unless current_user.is_a?(Admin)
+    @companies = @companies.where(active: true, visible: true) unless current_user.is_a?(Administrator)
 
     respond_with @companies do |wants|
       wants.html { render :index, layout: 'application'}

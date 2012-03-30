@@ -47,7 +47,7 @@
         %nav.main-nav
           = nav_for :main do |main|
             - if current_user
-              - if current_user.is_a? Admin
+              - if current_user.is_a? Administrator
                 = main.nav_link :admin, '/admin'
               = main.nav_link :code_of_conduct, '/code_of_conduct'
               = main.nav_link :core_values, '/core_values'

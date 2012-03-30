@@ -39,7 +39,8 @@ gem 'texticle', :require => 'texticle/rails'
 gem 'nokogiri'
 gem 'mechanize'
 
-gem 'rails_admin', git: 'https://github.com/rtlong/rails_admin.git'
+gem 'activeadmin', git: 'https://github.com/rtlong/active_admin.git'
+gem 'meta_search'
 
 gem 'redis'
 

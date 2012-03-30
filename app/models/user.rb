@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  ROLES = %w[Admin CompanyAdmin User].freeze
+  ROLES = %w[Administrator CompanyAdmin User].freeze
   self.inheritance_column = :role
 
   belongs_to :company
@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :first_name, :middle_name, :last_name, :email, :password, :password_confirmation, as: [:default, :admin]
   attr_accessible :role, :company_id, :active, as: [:admin]
+
+  delegate :name, to: :company, prefix: true
 
   # wrapper for StringInquirer
   def role

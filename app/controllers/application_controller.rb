@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   before_filter :set_current_user_in_user_model
-  # before_filter :set_random_flash
-  check_authorization unless: :rails_admin_controller?
+  check_authorization
 
   rescue_from CanCan::AccessDenied do |exception|
     if current_user # not authorized
@@ -19,6 +18,10 @@ class ApplicationController < ActionController::Base
     @current_user ||= session[:user_id] ? User.where(id: session[:user_id]).first : nil
   end
   helper_method :current_user
+
+  def current_user_admin?
+    current_user.is_a?(Administrator) or raise CanCan::AccessDenied, t('unauthorized.not_an_admin', default: 'You are not an Admin!')
+  end
 
   def set_current_user_in_user_model
     # set this to the User.current_user class variable to make sure user updates have

@@ -6,9 +6,9 @@ class Ability
     #
     user ||= User.new
     if user.persisted? # authenticated user
-      if user.role.admin?
+      if user.role.administrator?
         can :manage, :all
-        can :access, :rails_admin
+        # can :access, :rails_admin
       else
         can :read, :all
         can :destroy, Session

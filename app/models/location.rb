@@ -8,11 +8,11 @@ class Location < ActiveRecord::Base
   validates :state, :country, associated: true
   validates :city, :state,    presence: true
 
-  attr_accessible :city, :state_id, :zip, :country_id, as: [:default, :admin]
+  attr_accessible :street, :street2, :city, :state_id, :zip, :country_id, as: [:default, :admin]
   attr_readonly :company_id
 
-  delegate :name, to: :state, prefix: true
-  delegate :name, to: :country, prefix: true
+  delegate :name, :abbreviation, to: :state, prefix: true
+  delegate :name, :abbreviation, to: :country, prefix: true
 
   private
 
@@ -24,7 +24,7 @@ class Location < ActiveRecord::Base
     end
 
     def name
-      [state_name, country_name].compact.join(', ')
+      [city, state_abbreviation].compact.join(', ')
     end
 end
 

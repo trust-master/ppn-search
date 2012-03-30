@@ -16,6 +16,42 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: active_admin_comments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE active_admin_comments (
+    id integer NOT NULL,
+    resource_id character varying(255) NOT NULL,
+    resource_type character varying(255) NOT NULL,
+    author_id integer,
+    author_type character varying(255),
+    body text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    namespace character varying(255)
+);
+
+
+--
+-- Name: admin_notes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE admin_notes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- Name: admin_notes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE admin_notes_id_seq OWNED BY active_admin_comments.id;
+
+
+--
 -- Name: affiliations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -944,6 +980,13 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE active_admin_comments ALTER COLUMN id SET DEFAULT nextval('admin_notes_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE affiliations ALTER COLUMN id SET DEFAULT nextval('affiliations_id_seq'::regclass);
 
 
@@ -1113,6 +1156,14 @@ ALTER TABLE user_auth_tokens ALTER COLUMN id SET DEFAULT nextval('user_auth_toke
 --
 
 ALTER TABLE users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: admin_notes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY active_admin_comments
+    ADD CONSTRAINT admin_notes_pkey PRIMARY KEY (id);
 
 
 --
@@ -1316,6 +1367,27 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: index_active_admin_comments_on_author_type_and_author_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_active_admin_comments_on_author_type_and_author_id ON active_admin_comments USING btree (author_type, author_id);
+
+
+--
+-- Name: index_active_admin_comments_on_namespace; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_active_admin_comments_on_namespace ON active_admin_comments USING btree (namespace);
+
+
+--
+-- Name: index_admin_notes_on_resource_type_and_resource_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_admin_notes_on_resource_type_and_resource_id ON active_admin_comments USING btree (resource_type, resource_id);
+
+
+--
 -- Name: index_affiliations_on_company_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1501,3 +1573,9 @@ INSERT INTO schema_migrations (version) VALUES ('20120326230213');
 INSERT INTO schema_migrations (version) VALUES ('20120327093418');
 
 INSERT INTO schema_migrations (version) VALUES ('20120328194211');
+
+INSERT INTO schema_migrations (version) VALUES ('20120329030853');
+
+INSERT INTO schema_migrations (version) VALUES ('20120329030854');
+
+INSERT INTO schema_migrations (version) VALUES ('20120329085638');
