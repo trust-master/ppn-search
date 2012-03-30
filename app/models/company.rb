@@ -10,7 +10,7 @@ class Company < ActiveRecord::Base
 
       company.has_many :discounts
 
-      company.has_many :locations, dependent: :destroy
+      company.has_many :locations, dependent: :destroy, include: [:state, :country]
 
       company.has_many :company_categories,    include: {sub_category: :category}
       company.has_many :company_service_areas, include: {service_area: :market}
@@ -36,6 +36,8 @@ class Company < ActiveRecord::Base
     belongs_to :insurance_state, class_name: 'State'
 
     belongs_to :deleted_by_user, class_name: 'User'
+
+    default_scope includes(:locations)
 
   ### Nested Attributes
 
@@ -74,8 +76,6 @@ class Company < ActiveRecord::Base
     before_validation :nullify_insurance_fields_if_necessary
 
   ### Validations
-    # validates :description
-    # validates :general_info
     with_options if: :insured do |user|
       user.validates :insurance_certificate, presence: true
       user.validates :insurance_state, presence: true, associated: true

@@ -9,7 +9,7 @@ class BusinessLicense < ActiveRecord::Base
   serialize :raw_data, Hash
 
   validates :number, presence: true
-  validates :issuing_state, :company, associated: true, presence: true
+  validates :issuing_state, :company, presence: true
 
   attr_accessible :issuing_state_id, :number, as: [:default, :admin]
   attr_readonly :company_id, :number, :issuing_state_id

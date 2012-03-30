@@ -28,9 +28,4 @@ class ApplicationController < ActionController::Base
     # access to the who who initated the update
     User.current_user = current_user
   end
-
-  def set_random_flash
-    bucket = [:notice, :warning, :error, :alert].sample
-    flash[bucket] = "Sample of #{bucket} flash"
-  end
 end

@@ -65,7 +65,7 @@ end
 #                 login GET    /login(.:format)                                    sessions#new
 #                logout GET    /logout(.:format)                                   sessions#destroy
 #                  root        /                                                   companies#index
-# 
+#
 # Routes for RailsAdmin::Engine:
 #     dashboard GET         /                                      rails_admin/main#dashboard
 #         index GET|POST    /:model_name(.:format)                 rails_admin/main#index
