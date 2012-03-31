@@ -13,11 +13,12 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  validates             :role, inclusion: { in: ROLES }
+  validates             :role, inclusion: { in: ROLES }, allow_blank: false
   validates             :email, presence: true, uniqueness: true, email: true
-  validates_presence_of :first_name, :last_name, :role, :company_id
+  validates_presence_of :first_name, :last_name
   validates_presence_of :password, :password_confirmation, on: :create
   validates             :password, password: true, allow_nil: true
+  validates_presence_of :company, unless: proc { |user| user.is_a?(Administrator) }
 
   attr_accessible :first_name, :middle_name, :last_name, :email, :password, :password_confirmation, as: [:default, :admin]
   attr_accessible :role, :company_id, :active, as: [:admin]
@@ -25,6 +26,8 @@ class User < ActiveRecord::Base
   delegate :name, to: :company, prefix: true
 
   default_scope includes(:company)
+  scope :sort_by_name_asc, order('last_name ASC, first_name ASC')
+  scope :sort_by_name_desc, order('last_name DESC, first_name DESC')
 
   # wrapper for StringInquirer
   def role

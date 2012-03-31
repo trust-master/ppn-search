@@ -7,8 +7,28 @@ ActiveAdmin::Dashboards.build do
   # == Simple Dashboard Section
   # Here is an example of a simple dashboard section
   #
-  section "Welcome" do
+  section "Welcome", priority: 1 do
     div "Look at the menu at the top for the good stuff"
+  end
+
+  section "The Dashboard", priority: 2 do
+    div 'What should we do with this space??'
+  end
+
+  section "This is a Section", priority: 3, icon: :pin do
+    div 'These are sections.<br> They can have icons'.html_safe
+  end
+
+  section "Columns", priority: 4 do
+    div "As you can see, they float into nice little columns. This is column A."
+  end
+
+  section "Column B", priority: 5 do
+    div "They auto adjust to fit their contents"
+  end
+
+  section "Column C", priority: 6 do
+    div "This column is small<br> because it's contents<br> are not that wide".html_safe
   end
 
   # section "Recent Service Providers"

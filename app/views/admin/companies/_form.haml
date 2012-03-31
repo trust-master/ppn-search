@@ -1,4 +1,4 @@
-= simple_form_for @company, multipart: true do |form|
+= simple_form_for [:admin, @company], multipart: true do |form|
 
   - %w[identity service credentials].each do |section|
     = render "#{section}_fieldsets", form: form

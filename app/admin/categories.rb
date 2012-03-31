@@ -2,6 +2,7 @@ ActiveAdmin.register Category do
   menu parent: 'Enumerables'
 
   filter :name
+  filter :sub_categories_name, as: :string
 
   index do
     selectable_column

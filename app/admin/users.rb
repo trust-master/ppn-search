@@ -1,22 +1,36 @@
 ActiveAdmin.register User do
   menu priority: 2
 
-  filter :company
-  filter :first_name
-  filter :last_name
+  filter :company, collection: proc { Company.order(:name).all }
+  filter :first_name_or_last_name, as: :string, label: 'Name'
   filter :email
+  filter :logged_in_at
+
+  scope :all, default: true
+  scope :active do |scope|
+    scope.where(active: true)
+  end
+  User::ROLES.each do |role|
+    self.send(:scope, role) do |scope|
+      scope.where(role: role)
+    end
+  end
 
   index do
     selectable_column
-    column :name, sortable: :last_name do |u|
+    column :name, sortable: :name do |u|
       link_to u.display_name, admin_user_path(u)
     end
-    column :company do |u|
-      link_to u.company.name, [:admin, u.company]
+    column :company, sortable: :companies_name do |u|
+      link_to u.company_name, [:admin, u.company] if u.company.present?
     end
     column :logged_in_at
     column :active, sortable: :active do |u|
-      u.active ? 'Y' : 'N'
+      if u.active
+        status_tag('active', :ok)
+      else
+        status_tag('inactive')
+      end
     end
     default_actions
   end

@@ -5,7 +5,7 @@ class CompanySearch < ActiveRecord::Base
   belongs_to :searchable, polymorphic: true
 
   def self.new(query = nil, sub_category_id = nil, scope = Company.scoped)
-    return scope.order(:updated_at) if query.blank? and sub_category_id.blank?
+    return scope if query.blank? and sub_category_id.blank?
     ids = []
     ids << self.search(query).pluck(:company_id) unless query.blank?
     ids << CompanyCategory.where(sub_category_id: sub_category_id).pluck(:company_id) unless sub_category_id.blank?

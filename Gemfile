@@ -27,7 +27,7 @@ gem 'simple_form'
 
 gem 'kaminari'
 
-gem 'copycopter_client'
+# gem 'copycopter_client' # disabled for the time-being... screwing things up
 
 # Use thin instead of Webrick
 gem 'thin', require: false
@@ -40,7 +40,11 @@ gem 'nokogiri'
 gem 'mechanize'
 
 gem 'activeadmin', git: 'https://github.com/rtlong/active_admin.git'
+# gem 'activeadmin', path: '../active_admin' # use my local copy as I change stuff
+
 gem 'meta_search'
+
+gem 'attribute_normalizer'
 
 gem 'redis'
 
