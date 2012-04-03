@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_filter :set_current_user_in_user_model
+
   check_authorization
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -28,4 +29,11 @@ class ApplicationController < ActionController::Base
     # access to the who who initated the update
     User.current_user = current_user
   end
+
+  # PaperTrail will use these
+  def info_for_paper_trail
+    { ip_address: request.remote_ip, controller_name: self.class.name }
+  end
+  alias :user_for_paper_trail :current_user
+
 end

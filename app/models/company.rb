@@ -62,13 +62,13 @@ class Company < ActiveRecord::Base
       :website_url, :in_business_since, :about, :description, :general_info,
       :offers_24_hour_service, :offers_emergency_service, :insured, :insurance_state_id,
       :insurance_certificate, :insurance_certificate_cache, :remove_insurance_certificate,
-      :insurance_valid_from, :insurance_valid_until, as: [:default, :admin]
+      :insurance_valid_from, :insurance_valid_until, as: [:user, :company_admin, :administrator]
 
     # also make sure all the nested attributes are accessible
     attr_accessible :affiliations_attributes, :associations_attributes, :certifications_attributes,
       :locations_attributes, :business_licenses_attributes, :personal_licenses_attributes,
       :business_filings_attributes, :company_service_areas_attributes,
-      :company_categories_attributes, :discounts_attributes, as: [:default, :admin]
+      :company_categories_attributes, :discounts_attributes, as: [:user, :company_admin, :administrator]
 
     attr_accessible :active, :visible, as: :admin
 
@@ -133,13 +133,14 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: companies
 #
 #  id                       :integer         not null, primary key
-#  active                   :boolean         default(FALSE)
-#  visible                  :boolean         default(FALSE)
+#  active                   :boolean         default(FALSE), not null
+#  visible                  :boolean         default(FALSE), not null
 #  deleted_at               :datetime
 #  deleted_by_user_id       :integer
 #  name                     :string(255)
@@ -152,14 +153,14 @@ end
 #  about                    :string(255)
 #  description              :text
 #  general_info             :text
-#  offers_24_hour_service   :boolean         default(FALSE)
-#  offers_emergency_service :boolean         default(FALSE)
-#  insured                  :boolean         default(FALSE)
+#  offers_24_hour_service   :boolean         default(FALSE), not null
+#  offers_emergency_service :boolean         default(FALSE), not null
+#  insured                  :boolean         default(FALSE), not null
 #  insurance_state_id       :integer
 #  insurance_certificate    :string(255)
 #  insurance_valid_from     :date
 #  insurance_valid_until    :date
-#  created_at               :datetime
-#  updated_at               :datetime
+#  created_at               :datetime        not null
+#  updated_at               :datetime        not null
 #
 

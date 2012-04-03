@@ -3,7 +3,7 @@ Given(/^I am not logged in$/) do
 end
 
 Given(/^a valid user exists in the database$/) do
-  c = Company.create!(name: 'Company')
+  c = Company.create!({ name: 'Company' }, without_protection: true)
   u = User.new({ first_name: 'Test', last_name: 'User', company_id: c.id,
           password: 'test123!', password_confirmation: 'test123!', email: 'test@test.com' }, without_protection: true)
   u.company = c

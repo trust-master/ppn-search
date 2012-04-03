@@ -76,7 +76,12 @@ ServiceProviderPortal::Application.configure do
     :address        => ENV['MAILGUN_SMTP_SERVER'],
     :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
     :password       => ENV['MAILGUN_SMTP_PASSWORD'],
-    :domain         => 'trust-master.heroku.com',
+    :domain         => 'trust-master.herokuapp.com',
     :authentication => :plain,
   }
+
+  config.middleware.use ExceptionNotifier,
+    sender_address: 'errors@trust-master.herokuapp.com',
+    exception_recipients: 'ryan@rtlong.com',
+    email_prefix: '[PPN] ERROR: '
 end

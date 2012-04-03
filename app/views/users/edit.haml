@@ -1,5 +1,4 @@
-- title t('.title')
+- title t('.title', company_name: @company.name)
 
-= simple_form_for @user do |f|
-  = f.input  :name
-  = f.button :submit
+= simple_form_for [@company, @user] do |f|
+  = render 'form', form: f

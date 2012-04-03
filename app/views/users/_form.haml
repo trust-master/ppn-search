@@ -1,0 +1,19 @@
+= fieldset :status do
+  %ul
+    = form.input :role,   as: :select, collection: values_for_role_input
+    = form.input :active, as: :radio_buttons, collection: values_for_active_input, required: true
+
+= fieldset :name do
+  %ul
+    = form.input :first_name
+    = form.input :middle_name
+    = form.input :last_name
+
+= fieldset :contact do
+  %ul
+    = form.input :email
+    = form.input :phone
+
+= fieldset :buttons, false do
+  = link_to t('helpers.cancel'), [@company, :users], class: :cancel
+  = form.button :submit, class: :save

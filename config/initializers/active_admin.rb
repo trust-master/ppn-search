@@ -134,5 +134,5 @@ ActiveAdmin::ResourceController.class_eval do
 
   append_view_path AdminViewResolver.new
 
-  with_role :admin   # InheritedResources
+  with_role :administrator   # InheritedResources
 end

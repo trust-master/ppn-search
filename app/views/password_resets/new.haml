@@ -1,12 +1,13 @@
 - title t('.title')
 - content_for :content_div_class, 'col-1'
 
-%p= t('.instructions')
+#col
+  %p= t('.instructions')
 
-= simple_form_for @password_reset, url: password_resets_path do |form|
-  %fieldset
-    %ul
-      = form.input :email
-      = form.input :name
-  %fieldset.actions.last
-    = form.button :submit, id: 'submit'
+  = simple_form_for @password_reset, url: password_resets_path do |form|
+    %fieldset
+      %ul
+        = form.input :email
+        = form.input :name
+    %fieldset#buttons
+      = form.button :submit, class: :save, id: 'submit'

@@ -9,14 +9,15 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: discount_types
 #
 #  id         :integer         not null, primary key
 #  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
 #  sort_order :integer         default(0), not null
 #
 

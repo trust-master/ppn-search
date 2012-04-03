@@ -11,6 +11,443 @@ SET escape_string_warning = off;
 
 SET search_path = public, pg_catalog;
 
+--
+-- Name: ghstore; Type: SHELL TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE ghstore;
+
+
+--
+-- Name: ghstore_in(cstring); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION ghstore_in(cstring) RETURNS ghstore
+    LANGUAGE c STRICT
+    AS '$libdir/hstore', 'ghstore_in';
+
+
+--
+-- Name: ghstore_out(ghstore); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION ghstore_out(ghstore) RETURNS cstring
+    LANGUAGE c STRICT
+    AS '$libdir/hstore', 'ghstore_out';
+
+
+--
+-- Name: ghstore; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE ghstore (
+    INTERNALLENGTH = variable,
+    INPUT = ghstore_in,
+    OUTPUT = ghstore_out,
+    ALIGNMENT = int4,
+    STORAGE = plain
+);
+
+
+--
+-- Name: hstore; Type: SHELL TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE hstore;
+
+
+--
+-- Name: hstore_in(cstring); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION hstore_in(cstring) RETURNS hstore
+    LANGUAGE c STRICT
+    AS '$libdir/hstore', 'hstore_in';
+
+
+--
+-- Name: hstore_out(hstore); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION hstore_out(hstore) RETURNS cstring
+    LANGUAGE c STRICT
+    AS '$libdir/hstore', 'hstore_out';
+
+
+--
+-- Name: hstore; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE hstore (
+    INTERNALLENGTH = variable,
+    INPUT = hstore_in,
+    OUTPUT = hstore_out,
+    ALIGNMENT = int4,
+    STORAGE = extended
+);
+
+
+--
+-- Name: akeys(hstore); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION akeys(hstore) RETURNS text[]
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'akeys';
+
+
+--
+-- Name: avals(hstore); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION avals(hstore) RETURNS text[]
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'avals';
+
+
+--
+-- Name: defined(hstore, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION defined(hstore, text) RETURNS boolean
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'defined';
+
+
+--
+-- Name: delete(hstore, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION delete(hstore, text) RETURNS hstore
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'delete';
+
+
+--
+-- Name: each(hstore); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION each(hs hstore, OUT key text, OUT value text) RETURNS SETOF record
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'each';
+
+
+--
+-- Name: exist(hstore, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION exist(hstore, text) RETURNS boolean
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'exists';
+
+
+--
+-- Name: fetchval(hstore, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION fetchval(hstore, text) RETURNS text
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'fetchval';
+
+
+--
+-- Name: ghstore_compress(internal); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION ghstore_compress(internal) RETURNS internal
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'ghstore_compress';
+
+
+--
+-- Name: ghstore_consistent(internal, internal, integer, oid, internal); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION ghstore_consistent(internal, internal, integer, oid, internal) RETURNS boolean
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'ghstore_consistent';
+
+
+--
+-- Name: ghstore_decompress(internal); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION ghstore_decompress(internal) RETURNS internal
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'ghstore_decompress';
+
+
+--
+-- Name: ghstore_penalty(internal, internal, internal); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION ghstore_penalty(internal, internal, internal) RETURNS internal
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'ghstore_penalty';
+
+
+--
+-- Name: ghstore_picksplit(internal, internal); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION ghstore_picksplit(internal, internal) RETURNS internal
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'ghstore_picksplit';
+
+
+--
+-- Name: ghstore_same(internal, internal, internal); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION ghstore_same(internal, internal, internal) RETURNS internal
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'ghstore_same';
+
+
+--
+-- Name: ghstore_union(internal, internal); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION ghstore_union(internal, internal) RETURNS internal
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'ghstore_union';
+
+
+--
+-- Name: gin_consistent_hstore(internal, smallint, internal, integer, internal, internal); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION gin_consistent_hstore(internal, smallint, internal, integer, internal, internal) RETURNS boolean
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'gin_consistent_hstore';
+
+
+--
+-- Name: gin_extract_hstore(internal, internal); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION gin_extract_hstore(internal, internal) RETURNS internal
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'gin_extract_hstore';
+
+
+--
+-- Name: gin_extract_hstore_query(internal, internal, smallint, internal, internal); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION gin_extract_hstore_query(internal, internal, smallint, internal, internal) RETURNS internal
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'gin_extract_hstore_query';
+
+
+--
+-- Name: hs_concat(hstore, hstore); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION hs_concat(hstore, hstore) RETURNS hstore
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'hs_concat';
+
+
+--
+-- Name: hs_contained(hstore, hstore); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION hs_contained(hstore, hstore) RETURNS boolean
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'hs_contained';
+
+
+--
+-- Name: hs_contains(hstore, hstore); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION hs_contains(hstore, hstore) RETURNS boolean
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'hs_contains';
+
+
+--
+-- Name: isdefined(hstore, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION isdefined(hstore, text) RETURNS boolean
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'defined';
+
+
+--
+-- Name: isexists(hstore, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION isexists(hstore, text) RETURNS boolean
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'exists';
+
+
+--
+-- Name: skeys(hstore); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION skeys(hstore) RETURNS SETOF text
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'skeys';
+
+
+--
+-- Name: svals(hstore); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION svals(hstore) RETURNS SETOF text
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/hstore', 'svals';
+
+
+--
+-- Name: tconvert(text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION tconvert(text, text) RETURNS hstore
+    LANGUAGE c IMMUTABLE
+    AS '$libdir/hstore', 'tconvert';
+
+
+--
+-- Name: ->; Type: OPERATOR; Schema: public; Owner: -
+--
+
+CREATE OPERATOR -> (
+    PROCEDURE = fetchval,
+    LEFTARG = hstore,
+    RIGHTARG = text
+);
+
+
+--
+-- Name: <@; Type: OPERATOR; Schema: public; Owner: -
+--
+
+CREATE OPERATOR <@ (
+    PROCEDURE = hs_contained,
+    LEFTARG = hstore,
+    RIGHTARG = hstore,
+    COMMUTATOR = @>,
+    RESTRICT = contsel,
+    JOIN = contjoinsel
+);
+
+
+--
+-- Name: =>; Type: OPERATOR; Schema: public; Owner: -
+--
+
+CREATE OPERATOR => (
+    PROCEDURE = tconvert,
+    LEFTARG = text,
+    RIGHTARG = text
+);
+
+
+--
+-- Name: ?; Type: OPERATOR; Schema: public; Owner: -
+--
+
+CREATE OPERATOR ? (
+    PROCEDURE = exist,
+    LEFTARG = hstore,
+    RIGHTARG = text,
+    RESTRICT = contsel,
+    JOIN = contjoinsel
+);
+
+
+--
+-- Name: @; Type: OPERATOR; Schema: public; Owner: -
+--
+
+CREATE OPERATOR @ (
+    PROCEDURE = hs_contains,
+    LEFTARG = hstore,
+    RIGHTARG = hstore,
+    COMMUTATOR = ~,
+    RESTRICT = contsel,
+    JOIN = contjoinsel
+);
+
+
+--
+-- Name: @>; Type: OPERATOR; Schema: public; Owner: -
+--
+
+CREATE OPERATOR @> (
+    PROCEDURE = hs_contains,
+    LEFTARG = hstore,
+    RIGHTARG = hstore,
+    COMMUTATOR = <@,
+    RESTRICT = contsel,
+    JOIN = contjoinsel
+);
+
+
+--
+-- Name: ||; Type: OPERATOR; Schema: public; Owner: -
+--
+
+CREATE OPERATOR || (
+    PROCEDURE = hs_concat,
+    LEFTARG = hstore,
+    RIGHTARG = hstore
+);
+
+
+--
+-- Name: ~; Type: OPERATOR; Schema: public; Owner: -
+--
+
+CREATE OPERATOR ~ (
+    PROCEDURE = hs_contained,
+    LEFTARG = hstore,
+    RIGHTARG = hstore,
+    COMMUTATOR = @,
+    RESTRICT = contsel,
+    JOIN = contjoinsel
+);
+
+
+--
+-- Name: gin_hstore_ops; Type: OPERATOR CLASS; Schema: public; Owner: -
+--
+
+CREATE OPERATOR CLASS gin_hstore_ops
+    DEFAULT FOR TYPE hstore USING gin AS
+    STORAGE text ,
+    OPERATOR 7 @>(hstore,hstore) ,
+    OPERATOR 9 ?(hstore,text) ,
+    FUNCTION 1 bttextcmp(text,text) ,
+    FUNCTION 2 gin_extract_hstore(internal,internal) ,
+    FUNCTION 3 gin_extract_hstore_query(internal,internal,smallint,internal,internal) ,
+    FUNCTION 4 gin_consistent_hstore(internal,smallint,internal,integer,internal,internal);
+
+
+--
+-- Name: gist_hstore_ops; Type: OPERATOR CLASS; Schema: public; Owner: -
+--
+
+CREATE OPERATOR CLASS gist_hstore_ops
+    DEFAULT FOR TYPE hstore USING gist AS
+    STORAGE ghstore ,
+    OPERATOR 7 @>(hstore,hstore) ,
+    OPERATOR 9 ?(hstore,text) ,
+    OPERATOR 13 @(hstore,hstore) ,
+    FUNCTION 1 ghstore_consistent(internal,internal,integer,oid,internal) ,
+    FUNCTION 2 ghstore_union(internal,internal) ,
+    FUNCTION 3 ghstore_compress(internal) ,
+    FUNCTION 4 ghstore_decompress(internal) ,
+    FUNCTION 5 ghstore_penalty(internal,internal,internal) ,
+    FUNCTION 6 ghstore_picksplit(internal,internal) ,
+    FUNCTION 7 ghstore_same(internal,internal,internal);
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -64,8 +501,8 @@ CREATE TABLE affiliations (
     started_on date,
     ended_on date,
     url character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -101,8 +538,8 @@ CREATE TABLE associations (
     started_on date,
     ended_on date,
     url character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -186,7 +623,7 @@ CREATE TABLE business_licenses (
     effective_on date,
     issued_on date,
     printed_on date,
-    enforcement_action boolean DEFAULT false,
+    enforcement_action boolean DEFAULT false NOT NULL,
     name character varying(255),
     doing_business_as character varying(255),
     address text,
@@ -225,8 +662,8 @@ ALTER SEQUENCE business_licenses_id_seq OWNED BY business_licenses.id;
 CREATE TABLE categories (
     id integer NOT NULL,
     name character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     sort_order integer DEFAULT 0 NOT NULL
 );
 
@@ -261,8 +698,8 @@ CREATE TABLE certifications (
     title character varying(255),
     description text,
     certificate character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -291,8 +728,8 @@ ALTER SEQUENCE certifications_id_seq OWNED BY certifications.id;
 
 CREATE TABLE companies (
     id integer NOT NULL,
-    active boolean DEFAULT false,
-    visible boolean DEFAULT false,
+    active boolean DEFAULT false NOT NULL,
+    visible boolean DEFAULT false NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_user_id integer,
     name character varying(255),
@@ -305,15 +742,15 @@ CREATE TABLE companies (
     about character varying(255),
     description text,
     general_info text,
-    offers_24_hour_service boolean DEFAULT false,
-    offers_emergency_service boolean DEFAULT false,
-    insured boolean DEFAULT false,
+    offers_24_hour_service boolean DEFAULT false NOT NULL,
+    offers_emergency_service boolean DEFAULT false NOT NULL,
+    insured boolean DEFAULT false NOT NULL,
     insurance_state_id integer,
     insurance_certificate character varying(255),
     insurance_valid_from date,
     insurance_valid_until date,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -344,8 +781,8 @@ CREATE TABLE company_categories (
     id integer NOT NULL,
     company_id integer,
     sub_category_id integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -382,8 +819,8 @@ CREATE TABLE discounts (
     market_id integer,
     start_date date,
     end_date date,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -398,8 +835,8 @@ CREATE TABLE locations (
     state_id integer,
     zip character varying(255),
     country_id integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     street character varying(255),
     street2 character varying(255)
 );
@@ -418,7 +855,7 @@ CREATE TABLE personal_licenses (
     number character varying(255),
     application_number character varying(255),
     continuing_education character varying(255),
-    enforcement_action boolean DEFAULT false,
+    enforcement_action boolean DEFAULT false NOT NULL,
     name character varying(255),
     address text,
     phone_number character varying(255),
@@ -449,9 +886,9 @@ CREATE TABLE company_service_areas (
     id integer NOT NULL,
     company_id integer,
     service_area_id integer,
-    partial_only boolean DEFAULT false,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    partial_only boolean DEFAULT false NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -481,8 +918,8 @@ ALTER SEQUENCE company_service_areas_id_seq OWNED BY company_service_areas.id;
 CREATE TABLE countries (
     id integer NOT NULL,
     name character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     abbreviation character varying(255) NOT NULL
 );
 
@@ -513,8 +950,8 @@ ALTER SEQUENCE countries_id_seq OWNED BY countries.id;
 CREATE TABLE discount_types (
     id integer NOT NULL,
     name character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     sort_order integer DEFAULT 0 NOT NULL
 );
 
@@ -564,8 +1001,8 @@ ALTER SEQUENCE discounts_id_seq OWNED BY discounts.id;
 CREATE TABLE filing_status (
     id integer NOT NULL,
     name character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -595,8 +1032,8 @@ ALTER SEQUENCE filing_status_id_seq OWNED BY filing_status.id;
 CREATE TABLE filing_types (
     id integer NOT NULL,
     name character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -626,8 +1063,8 @@ ALTER SEQUENCE filing_types_id_seq OWNED BY filing_types.id;
 CREATE TABLE license_status (
     id integer NOT NULL,
     name character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -657,8 +1094,8 @@ ALTER SEQUENCE license_status_id_seq OWNED BY license_status.id;
 CREATE TABLE license_types (
     id integer NOT NULL,
     name character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     type character varying(255),
     state_id integer
 );
@@ -709,8 +1146,8 @@ ALTER SEQUENCE locations_id_seq OWNED BY locations.id;
 CREATE TABLE markets (
     id integer NOT NULL,
     name character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     sort_order integer DEFAULT 0 NOT NULL
 );
 
@@ -732,6 +1169,39 @@ CREATE SEQUENCE markets_id_seq
 --
 
 ALTER SEQUENCE markets_id_seq OWNED BY markets.id;
+
+
+--
+-- Name: pages; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE pages (
+    id integer NOT NULL,
+    name character varying(255),
+    slug character varying(255),
+    title character varying(255),
+    content text,
+    published boolean DEFAULT false NOT NULL
+);
+
+
+--
+-- Name: pages_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE pages_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- Name: pages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE pages_id_seq OWNED BY pages.id;
 
 
 --
@@ -806,8 +1276,8 @@ CREATE TABLE service_areas (
     id integer NOT NULL,
     market_id integer,
     name character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     sort_order integer DEFAULT 0 NOT NULL
 );
 
@@ -839,8 +1309,8 @@ CREATE TABLE states (
     id integer NOT NULL,
     country_id integer,
     name character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     abbreviation character varying(255) NOT NULL
 );
 
@@ -872,8 +1342,8 @@ CREATE TABLE sub_categories (
     id integer NOT NULL,
     category_id integer,
     name character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     sort_order integer DEFAULT 0 NOT NULL
 );
 
@@ -909,10 +1379,10 @@ CREATE TABLE user_auth_tokens (
     fullfilled_by_ip character varying(255),
     fullfilled_at timestamp without time zone,
     email_sent_at timestamp without time zone,
-    expires_at timestamp without time zone,
-    created_at timestamp without time zone,
+    expires_at timestamp without time zone NOT NULL,
+    created_at timestamp without time zone NOT NULL,
     created_by_ip character varying(255),
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -941,7 +1411,7 @@ ALTER SEQUENCE user_auth_tokens_id_seq OWNED BY user_auth_tokens.id;
 
 CREATE TABLE users (
     id integer NOT NULL,
-    active boolean DEFAULT false,
+    active boolean DEFAULT false NOT NULL,
     company_id integer,
     email character varying(255),
     password_digest character varying(255),
@@ -952,8 +1422,9 @@ CREATE TABLE users (
     updated_by_user_id integer,
     role character varying(255) DEFAULT 'User'::character varying,
     logged_in_at timestamp without time zone,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    phone character varying(255)
 );
 
 
@@ -974,6 +1445,44 @@ CREATE SEQUENCE users_id_seq
 --
 
 ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- Name: versions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE versions (
+    id integer NOT NULL,
+    item_type character varying(255) NOT NULL,
+    item_id integer NOT NULL,
+    event character varying(255) NOT NULL,
+    whodunnit integer,
+    object text,
+    object_changes text,
+    created_at timestamp without time zone NOT NULL,
+    published boolean NOT NULL,
+    ip_address character varying(255),
+    controller_name character varying(255)
+);
+
+
+--
+-- Name: versions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE versions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+--
+-- Name: versions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE versions_id_seq OWNED BY versions.id;
 
 
 --
@@ -1113,6 +1622,13 @@ ALTER TABLE markets ALTER COLUMN id SET DEFAULT nextval('markets_id_seq'::regcla
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE pages ALTER COLUMN id SET DEFAULT nextval('pages_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE personal_licenses ALTER COLUMN id SET DEFAULT nextval('personal_licenses_id_seq'::regclass);
 
 
@@ -1156,6 +1672,13 @@ ALTER TABLE user_auth_tokens ALTER COLUMN id SET DEFAULT nextval('user_auth_toke
 --
 
 ALTER TABLE users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE versions ALTER COLUMN id SET DEFAULT nextval('versions_id_seq'::regclass);
 
 
 --
@@ -1311,6 +1834,14 @@ ALTER TABLE ONLY markets
 
 
 --
+-- Name: pages_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY pages
+    ADD CONSTRAINT pages_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: personal_licenses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1364,6 +1895,14 @@ ALTER TABLE ONLY user_auth_tokens
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY versions
+    ADD CONSTRAINT versions_pkey PRIMARY KEY (id);
 
 
 --
@@ -1493,6 +2032,20 @@ CREATE INDEX index_locations_on_state_id ON locations USING btree (state_id);
 
 
 --
+-- Name: index_pages_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_pages_on_name ON pages USING btree (name);
+
+
+--
+-- Name: index_pages_on_slug; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_pages_on_slug ON pages USING btree (slug);
+
+
+--
 -- Name: index_rails_admin_histories; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1542,6 +2095,13 @@ CREATE INDEX index_users_on_updated_by_user_id ON users USING btree (updated_by_
 
 
 --
+-- Name: index_versions_on_item_type_and_item_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_versions_on_item_type_and_item_id ON versions USING btree (item_type, item_id);
+
+
+--
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1579,3 +2139,13 @@ INSERT INTO schema_migrations (version) VALUES ('20120329030853');
 INSERT INTO schema_migrations (version) VALUES ('20120329030854');
 
 INSERT INTO schema_migrations (version) VALUES ('20120329085638');
+
+INSERT INTO schema_migrations (version) VALUES ('20120331203101');
+
+INSERT INTO schema_migrations (version) VALUES ('20120331204925');
+
+INSERT INTO schema_migrations (version) VALUES ('20120401224059');
+
+INSERT INTO schema_migrations (version) VALUES ('20120402084108');
+
+INSERT INTO schema_migrations (version) VALUES ('20120402113423');

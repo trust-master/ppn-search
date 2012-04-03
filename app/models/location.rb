@@ -8,7 +8,7 @@ class Location < ActiveRecord::Base
   validates :state, :country, associated: true
   validates :city, :state,    presence: true
 
-  attr_accessible :street, :street2, :city, :state_id, :zip, :country_id, as: [:default, :admin]
+  attr_accessible :street, :street2, :city, :state_id, :zip, :country_id, as: [:user, :company_admin, :administrator]
   attr_readonly :company_id
 
   delegate :name, :abbreviation, to: :state, prefix: true
@@ -30,6 +30,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: locations
@@ -40,8 +41,8 @@ end
 #  state_id   :integer
 #  zip        :string(255)
 #  country_id :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
 #  street     :string(255)
 #  street2    :string(255)
 #

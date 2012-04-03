@@ -51,7 +51,7 @@
     border: 1px solid $light-grey
     margin-bottom: 10px
 
-    h4, ul.pagination
+    h4, .pagination
       margin: 13px 0 12px
 
     h4
@@ -59,32 +59,32 @@
       color: $blue
       margin-left: 10px
 
-    ul.pagination
+    .pagination
       float: right
       overflow: hidden
       margin-right: 10px
       padding-top: 2px
 
-      &.bottom
-        margin-right: 0
+      // .bottom
+      //   margin-right: 0
 
-      li
-        float: left
+      span
+        // float: left
         margin: 0 7px
         line-height: 12px
 
-        a
-          &.next, &.prev
+        &.next, &.prev
+          a
             width: 10px
             height: 16px
             text-indent: -9999px
-            display: block
+            @include inline-block
 
-          &.next
-            @include pagination-next
+        &.next a
+          @include pagination-next
 
-          &.prev
-            @include pagination-prev
+        &.prev a
+          @include pagination-prev
 
     ul.companies
       border-top: 1px solid $light-grey
@@ -128,25 +128,38 @@
 
     li
       float: left
-      margin-right: 20px
+      margin: 0 37px
       font-weight: bold
+      text-align: center
+
+      &:first-of-type
+        margin-left: 0
+
+      &:last-of-type
+        margin-right: 0
 
       a
 
   #company_details
     h3
+      float: left
+
+    span.in_business_since
+      font-size: 11px
+      font-weight: normal
+      text-transform: capitalize
+      @include inline-block
+      margin-left: 15px
+
     .identity, .service, .credentials, .discounts
       display: none
+      clear: left
+      margin-top: 5px
+      padding-top: 5px
+      border-top: 1px solid $grey
 
     .identity
       display: block
-
-      .in_business_since
-        font-size: 11px
-        font-weight: normal
-        text-transform: capitalize
-        @include inline-block
-        margin-left: 5px
 
     .service
 

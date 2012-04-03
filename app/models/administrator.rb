@@ -4,12 +4,14 @@ class Administrator < CompanyAdmin
 end
 
 
+
+
 # == Schema Information
 #
 # Table name: users
 #
 #  id                 :integer         not null, primary key
-#  active             :boolean         default(FALSE)
+#  active             :boolean         default(FALSE), not null
 #  company_id         :integer
 #  email              :string(255)
 #  password_digest    :string(255)
@@ -20,7 +22,8 @@ end
 #  updated_by_user_id :integer
 #  role               :string(255)     default("User")
 #  logged_in_at       :datetime
-#  created_at         :datetime
-#  updated_at         :datetime
+#  created_at         :datetime        not null
+#  updated_at         :datetime        not null
+#  phone              :string(255)
 #
 

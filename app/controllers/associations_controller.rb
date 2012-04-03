@@ -19,7 +19,7 @@ class AssociationsController < ApplicationController
   end
 
   def update
-    if @association.update_attributes(params[:association])
+    if @association.update_attributes(params[:association], as: current_user.role.underscore.to_sym)
       render json: {success: true, association: @association }
     else
       render json: {success: false, message: @association.errors }

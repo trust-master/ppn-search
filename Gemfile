@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.2.1'
+gem 'rails', '~> 3.2.3'
 
 # Use PostgreSQL
 gem 'pg'
@@ -8,7 +8,7 @@ gem 'pg'
 # Write views in HAML
 gem 'haml'
 
-# Use liquid templates for User-editable templates, i.e. mailers
+# Use liquid templates for User-editable templates, i.e. mailers, pages
 gem 'liquid'
 
 # To use ActiveModel has_secure_password
@@ -21,18 +21,28 @@ gem 'mini_magick'
 # Use AWS for Attachment Storage
 gem 'fog'
 
-gem 'cancan' # for authorization
+# for authorization
+gem 'cancan'
 
+# making controllers stupidly clean
+gem 'inherited_resources'
+gem 'has_scope'
+gem 'responders'
+
+# Form builder
 gem 'simple_form'
 
+# Pagination
 gem 'kaminari'
 
+# Connect to CopyCopter for I18n data
 # gem 'copycopter_client' # disabled for the time-being... screwing things up
 
 # Use thin instead of Webrick
 gem 'thin', require: false
 
-# Texticle enables easy access to native PGSQL full-text searching, also see https://github.com/Casecommons/pg_search if this one sucks
+# Texticle enables easy access to native PGSQL full-text searching, also see
+# https://github.com/Casecommons/pg_search if this one sucks
 gem 'texticle', :require => 'texticle/rails'
 
 # For the screen-scraping component
@@ -42,22 +52,38 @@ gem 'mechanize'
 gem 'activeadmin', git: 'https://github.com/rtlong/active_admin.git'
 # gem 'activeadmin', path: '../active_admin' # use my local copy as I change stuff
 
+# Nifty search scoping tool. Dependency of ActiveAdmin
 gem 'meta_search'
 
+# Normalize attributes before saving (strip, nullify blanks, custom formatting, etc.)
 gem 'attribute_normalizer'
+gem 'enumerize'
+gem 'paper_trail'
 
+# Use PostgreSQL's native Array and HStore data types in AR
+gem 'surus'
+
+# These do the same as Surus, but a little differently
+# gem 'activerecord-postgres-hstore'
+# gem 'activerecord-postgres-array' # leave this below hstore
+
+# Connect to Redis in-memory key/value store
 gem 'redis'
+
+gem 'exception_notifier'
 
 # Use Redis to do caching, i18n, and sessions
 git 'https://github.com/jodosha/redis-store.git' do
   gem 'redis-store'
   gem 'redis-rails'
   gem 'redis-i18n'
-  gem 'redis-rack-cache'
+  # gem 'redis-rack-cache'
 end
 
 # For background tasks (like scraping the MN DoLI website, or sending emails)
 gem 'resque', git: 'https://github.com/rtlong/resque.git'
+
+# for retrying failed resquejobs automatically
 gem 'resque-retry'
 
 # Clean up view logic
@@ -122,6 +148,9 @@ group :development do
 
   # For seeding my dev DB with fake data
   gem 'populator'
+
+  # Open sent emails in the browser
+  gem 'letter_opener'
 end
 
 group :development, :test do

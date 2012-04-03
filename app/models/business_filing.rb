@@ -11,7 +11,7 @@ class BusinessFiling < ActiveRecord::Base
   validates :number, presence: true
   validates :issuing_state, :company, presence: true
 
-  attr_accessible :issuing_state_id, :number, as: [:default, :admin]
+  attr_accessible :issuing_state_id, :number, as: [:user, :company_admin, :administrator]
   attr_readonly :company_id, :number, :issuing_state_id
 
   def display_identifier

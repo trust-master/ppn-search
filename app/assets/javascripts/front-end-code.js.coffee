@@ -1,4 +1,6 @@
 $(document).ready =>
+  $('#sub_category').attr('multiple', true).chosen()
+  $('.input.select select, .input.grouped_select select').chosen()
   # @dropdownMenu.init() # don't do this, for now... CSS should be plenty
   # currentDateValue.init()
   @popup.init()
@@ -10,8 +12,6 @@ $(document).ready =>
   $("input[type='checkbox']").button()
   $('time.timeago').timeago()
 
-  $('#sub_category').attr('multiple', true).chosen()
-  $('.input.select select, .input.grouped_select select').chosen()
 
 @companyForm =
   init: ->
@@ -104,8 +104,8 @@ $(document).ready =>
       return false
 
     $('#col-b ul.nav li a').click ->
-      $("#company_details > div").hide()
-      console.log("#company_details .#{$(this).attr('class')}")
+      $("#company_details").find(".identity, .service, .credentials, .discounts").hide()
+      # console.log("#company_details .#{$(this).attr('class')}")
       $("#company_details .#{$(this).attr('class')}").show()
       return false
 

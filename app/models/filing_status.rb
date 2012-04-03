@@ -4,13 +4,14 @@ class FilingStatus < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: filing_status
 #
 #  id         :integer         not null, primary key
 #  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
 #
 
