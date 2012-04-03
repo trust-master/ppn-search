@@ -4,11 +4,12 @@ class Certification < ActiveRecord::Base
   validates_presence_of :name
 
   attr_accessible :name, :title, :description, :certificate, :certificate_cache, :remove_certificate,
-    as: [:default, :admin]
+    as: [:user, :company_admin, :administrator]
   attr_readonly :company_id
 
   mount_uploader :certificate, CertificateUploader
 end
+
 
 
 # == Schema Information
@@ -21,7 +22,7 @@ end
 #  title       :string(255)
 #  description :text
 #  certificate :string(255)
-#  created_at  :datetime
-#  updated_at  :datetime
+#  created_at  :datetime        not null
+#  updated_at  :datetime        not null
 #
 

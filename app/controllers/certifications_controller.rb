@@ -19,7 +19,7 @@ class CertificationsController < ApplicationController
   end
 
   def update
-    if @certification.update_attributes(params[:certification])
+    if @certification.update_attributes(params[:certification], as: current_user.role.underscore.to_sym)
       render json: {success: true, certification: @certification }
     else
       render json: {success: false, message: @certification.errors }

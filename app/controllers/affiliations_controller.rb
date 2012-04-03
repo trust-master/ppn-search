@@ -19,7 +19,7 @@ class AffiliationsController < ApplicationController
   end
 
   def update
-    if @affiliation.update_attributes(params[:affiliation])
+    if @affiliation.update_attributes(params[:affiliation], as: current_user.role.underscore.to_sym)
       render json: { success: true, affiliation: @affiliation }
     else
       render json: { success: false, message: @affiliation.errors }

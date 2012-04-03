@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120325061841) do
+ActiveRecord::Schema.define(:version => 20120402084108) do
+
+  create_table "active_admin_comments", :force => true do |t|
+    t.string   "resource_id",   :null => false
+    t.string   "resource_type", :null => false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.text     "body"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "namespace"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
+  add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
+  add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "affiliations", :force => true do |t|
     t.integer  "company_id"
@@ -88,6 +103,7 @@ ActiveRecord::Schema.define(:version => 20120325061841) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sort_order", :default => 0, :null => false
   end
 
   create_table "certifications", :force => true do |t|
@@ -107,7 +123,6 @@ ActiveRecord::Schema.define(:version => 20120325061841) do
     t.boolean  "visible",                  :default => false
     t.datetime "deleted_at"
     t.integer  "deleted_by_user_id"
-    t.string   "admin_email"
     t.string   "name"
     t.string   "email"
     t.string   "phone_main"
@@ -157,12 +172,14 @@ ActiveRecord::Schema.define(:version => 20120325061841) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "abbreviation", :null => false
   end
 
   create_table "discount_types", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sort_order", :default => 0, :null => false
   end
 
   create_table "discounts", :force => true do |t|
@@ -216,6 +233,8 @@ ActiveRecord::Schema.define(:version => 20120325061841) do
     t.integer  "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "street"
+    t.string   "street2"
   end
 
   add_index "locations", ["company_id"], :name => "index_locations_on_company_id"
@@ -226,7 +245,19 @@ ActiveRecord::Schema.define(:version => 20120325061841) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sort_order", :default => 0, :null => false
   end
+
+  create_table "pages", :force => true do |t|
+    t.string  "name"
+    t.string  "slug"
+    t.string  "title"
+    t.text    "content"
+    t.boolean "published", :default => false
+  end
+
+  add_index "pages", ["name"], :name => "index_pages_on_name", :unique => true
+  add_index "pages", ["slug"], :name => "index_pages_on_slug", :unique => true
 
   create_table "personal_licenses", :force => true do |t|
     t.integer  "company_id"
@@ -268,6 +299,7 @@ ActiveRecord::Schema.define(:version => 20120325061841) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sort_order", :default => 0, :null => false
   end
 
   add_index "service_areas", ["market_id"], :name => "index_service_areas_on_market_id"
@@ -277,6 +309,7 @@ ActiveRecord::Schema.define(:version => 20120325061841) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "abbreviation", :null => false
   end
 
   add_index "states", ["country_id"], :name => "index_states_on_country_id"
@@ -286,6 +319,7 @@ ActiveRecord::Schema.define(:version => 20120325061841) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sort_order",  :default => 0, :null => false
   end
 
   add_index "sub_categories", ["category_id"], :name => "index_sub_categories_on_category_id"
@@ -317,10 +351,26 @@ ActiveRecord::Schema.define(:version => 20120325061841) do
     t.datetime "logged_in_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "phone"
   end
 
   add_index "users", ["company_id"], :name => "index_users_on_company_id"
   add_index "users", ["created_by_user_id"], :name => "index_users_on_created_by_user_id"
   add_index "users", ["updated_by_user_id"], :name => "index_users_on_updated_by_user_id"
+
+  create_table "versions", :force => true do |t|
+    t.string   "item_type",       :null => false
+    t.integer  "item_id",         :null => false
+    t.string   "event",           :null => false
+    t.integer  "whodunnit"
+    t.text     "object"
+    t.text     "object_changes"
+    t.datetime "created_at",      :null => false
+    t.boolean  "published"
+    t.string   "ip_address"
+    t.string   "controller_name"
+  end
+
+  add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
 
 end

@@ -158,6 +158,7 @@ en:
         no_items_message: No discounts. Add one!
       actions:
         add: Create new Discount
+        remove_confirmation: Are you sure you want to remove this discount? This action can not be undone.
     form:
       actions:
         image:
@@ -201,7 +202,7 @@ en:
 
   password_resets:
     new:
-      title:
+      title: Reset your Password
       instructions:
         Please enter the email address with which you log in and then your first name, for
         verification. We will email to you a link that will let you set a new password.
@@ -209,6 +210,7 @@ en:
         Either that email address or the name you entered did not match any user in the system. If
         you feel this is incorrect, please try again.
     show:
+      title: Reset your Password
       instructions: Please set a new login password.
     inactive:
       title: Password Reset has Expired!
@@ -232,6 +234,10 @@ en:
       title: "%{company_name}: Edit Alert"
 
   users:
+    fieldsets:
+      status:  Status
+      name:    Name
+      contact: Contact Information
     index:
       title: "%{company_name}: Users"
       table:
@@ -239,10 +245,12 @@ en:
           name: Name
           logged_in_at: Last Login
           active: Active?
+          role: User Type
           actions: Actions
         no_items_message: No users. Add one!
       actions:
         add: Create new User
+        remove_confirmation: Are you sure you want to remove this user? This action can not be undone.
     new:
       title: "%{company_name}: Create User"
     edit:
@@ -267,6 +275,8 @@ en:
 
       session:
         create: Login
+      password_reset_request:
+        create: Submit
 
   actions:
     remove:   Remove
@@ -282,12 +292,12 @@ en:
       user:
         one: User
         other: Users
-      admin:
-        one: Administrator
-        other: Administrators
+      administrator:
+        one: Trust Master Admin
+        other: Trust Master Admins
       company_admin:
-        one: Service Provider Administrator
-        other: Service Provider Administrators
+        one: Admin
+        other: Admins
       company:
         one: Service Provider
         other: Service Providers
@@ -478,7 +488,7 @@ en:
     name: Name
     number: Number
     password: Password
-    password_confirmation: Password Confirmation
+    password_confirmation: Confirm
     phone_fax: Fax Number
     phone_main: Primary Phone Number
     phone_mobile: Mobile Phone Number
@@ -500,6 +510,12 @@ en:
     active: Active?
     service_areas: Regions
     sub_categories: Sub-Categories
+
+  enumerize:
+    user:
+      active:
+        "true": Active
+        "false": Inactive
 
   simple_form:
     # SimpleForm will check these first, before defaulting to ActiveModel.human
@@ -528,15 +544,23 @@ en:
           ended_on: If still active, leave these fields blank
         certifications:
           certificate: "Upload a scan of the actual certificate, if you'd like"
+      user:
+        password: Choose a new Password
+        password_confirmation: Retype your password
+      password_reset_request:
+        name: Your first name
     placeholders:
       defaults:
         email: 'name@example.com'
-        password: password
+        # password: password
         url: http://example.com
       company:
         email: info@company.com
         website_url: http://company.com
         in_business_since: 2012
+      # password_reset:
+      #   password:
+      #   password_confirmation:
 
   # Stuff for CanCan errors
   unauthorized:
@@ -546,6 +570,14 @@ en:
     #   all: Not authorized to %{action} %{subject}.
     # update:
     #   all:
+
+  views:
+    pagination:
+      first: First
+      last: Last
+      previous: Prev
+      next: Next
+      truncate: '...'
 
   date:
     formats:

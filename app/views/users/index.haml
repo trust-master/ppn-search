@@ -9,7 +9,8 @@
       %th.sortable= t('.table.headers.name')
       %th.sortable= t('.table.headers.logged_in_at')
       %th.sortable= t('.table.headers.active')
-      %th= t('.table.headers.actions')
+      %th.sortable= t('.table.headers.role')
+      %th=          t('.table.headers.actions')
   %tbody
     - if @users.any?
       - @users.each do |user|
@@ -17,9 +18,12 @@
           %td= user.display_name
           %td= user.logged_in_at || 'never'
           %td= user.active ? 'Y' : 'N'
+          %td= user.role.constantize.model_name.human
           %td
-            = include_edit_link edit_company_user_path(@company, user)
-            = include_remove_link company_user_path(@company, user)
+            - if can? :edit, user
+              = include_edit_link edit_company_user_path(@company, user)
+            - if can? :destroy, user
+              = include_remove_link company_user_path(@company, user)
     - else
       %tr.no_items
         %td{colspan: 5}= t('.table.no_items_message')

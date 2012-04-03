@@ -5,11 +5,11 @@ module Fetchable
   end
 
   def fetch
-    klass = [Jobs::Scrapers, self.issuing_state.name, self.class].join('::').constantize
-    return Resque.enqueue(klass, self.company_id, self.number)
-  # rescue NameError => e
-  #   logger.error "#{self.class.name}#fetch was called when issuing_state=#{self.issuing_state.name.inspect}, which led to an error: #{e.message} (in #{__FILE__})"
-  #   return false
+    if klass = [Jobs::Scrapers, self.issuing_state.try(:name), self.class].join('::').safe_constantize
+      return Resque.enqueue(klass, self.company_id, self.number)
+    else
+      return false
+    end
   end
 
   def self.included(model)

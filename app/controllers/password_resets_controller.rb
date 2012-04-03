@@ -9,8 +9,8 @@ class PasswordResetsController < ApplicationController
   # check the email exists and that the corresponding user's first name matches the one given. Then,
   # create a new PasswordReset for that user.
   def create
-    email, name = params['password_reset_request'].values_at('email', 'name')
-    user = User.where('lower("email") = ?', email.downcase.strip).first
+    email, name = params[:password_reset_request].values_at(:email, :name)
+    user = User.where('lower("users"."email") = ?', email.downcase.strip).first
 
     if user and user.first_name.downcase.strip == name.downcase.strip
 
@@ -21,7 +21,7 @@ class PasswordResetsController < ApplicationController
       render :success
 
     else
-      redirect_to new_password_reset_path, flash: { error: t('failure', scope: ['password_resets.new']) }
+      redirect_to new_password_reset_path, flash: { error: t(:failure, scope: 'password_resets.new') }
     end
   end
 
@@ -51,6 +51,7 @@ class PasswordResetsController < ApplicationController
         flash[:notice] = t('success', scope: ['password_resets.update'])
         redirect_to root_url
       else
+        logger.debug @user.errors.inspect
         flash.now[:error] = t('failure', scope: ['password_resets.update'])
         render :show
       end

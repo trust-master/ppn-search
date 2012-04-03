@@ -9,9 +9,9 @@ class PersonalLicense < ActiveRecord::Base
   serialize :raw_data, Hash
 
   validates :number, presence: true
-  validates :issuing_state, :company, associated: true, presence: true
+  validates :issuing_state, :company, presence: true
 
-  attr_accessible :issuing_state_id, :number, as: [:default, :admin]
+  attr_accessible :issuing_state_id, :number, as: [:user, :company_admin, :administrator]
   attr_readonly :company_id, :number, :issuing_state_id
 
   def display_identifier
@@ -22,6 +22,7 @@ class PersonalLicense < ActiveRecord::Base
     ].compact.join(' - ')
   end
 end
+
 
 
 
@@ -41,7 +42,7 @@ end
 #  number               :string(255)
 #  application_number   :string(255)
 #  continuing_education :string(255)
-#  enforcement_action   :boolean         default(FALSE)
+#  enforcement_action   :boolean         default(FALSE), not null
 #  name                 :string(255)
 #  address              :text
 #  phone_number         :string(255)

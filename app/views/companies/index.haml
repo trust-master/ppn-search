@@ -11,17 +11,14 @@
 
   .results
     %h4 Search Results
+    -# FIXME: Implement the changing header that Dan asked for
 
-    %ul.pagination
-      = list_of %w[Prev 1 2 3 4 5 Next] do |pager|
-        = link_to pager, '', class: pager.downcase
+    = paginate @companies
 
     %ul.companies
       = render @companies
 
-    %ul.pagination.bottom
-      = list_of %w[Prev 1 2 3 4 5 Next] do |pager|
-        = link_to pager, '', class: pager.downcase
+    = paginate @companies
 
 
 #col-b

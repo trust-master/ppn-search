@@ -9,9 +9,9 @@ class BusinessLicense < ActiveRecord::Base
   serialize :raw_data, Hash
 
   validates :number, presence: true
-  validates :issuing_state, :company, associated: true, presence: true
+  validates :issuing_state, :company, presence: true
 
-  attr_accessible :issuing_state_id, :number, as: [:default, :admin]
+  attr_accessible :issuing_state_id, :number, as: [:user, :company_admin, :administrator]
   attr_readonly :company_id, :number, :issuing_state_id
 
   def display_identifier
@@ -23,6 +23,7 @@ class BusinessLicense < ActiveRecord::Base
   end
 
 end
+
 
 
 
@@ -42,7 +43,7 @@ end
 #  effective_on                      :date
 #  issued_on                         :date
 #  printed_on                        :date
-#  enforcement_action                :boolean         default(FALSE)
+#  enforcement_action                :boolean         default(FALSE), not null
 #  name                              :string(255)
 #  doing_business_as                 :string(255)
 #  address                           :text

@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_filter :set_current_user_in_user_model
-  # before_filter :set_random_flash
-  check_authorization unless: :rails_admin_controller?
+
+  check_authorization
 
   rescue_from CanCan::AccessDenied do |exception|
     if current_user # not authorized
@@ -20,14 +20,20 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def current_user_admin?
+    current_user.is_a?(Administrator) or raise CanCan::AccessDenied, t('unauthorized.not_an_admin', default: 'You are not an Admin!')
+  end
+
   def set_current_user_in_user_model
     # set this to the User.current_user class variable to make sure user updates have
     # access to the who who initated the update
     User.current_user = current_user
   end
 
-  def set_random_flash
-    bucket = [:notice, :warning, :error, :alert].sample
-    flash[bucket] = "Sample of #{bucket} flash"
+  # PaperTrail will use these
+  def info_for_paper_trail
+    { ip_address: request.remote_ip, controller_name: self.class.name }
   end
+  alias :user_for_paper_trail :current_user
+
 end

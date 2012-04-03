@@ -1,0 +1,3 @@
+module AdministratorDecorator
+  include CompanyAdminDecorator
+end

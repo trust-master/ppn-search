@@ -94,6 +94,7 @@ describe 'PasswordReset' do
   it_should_behave_like 'UserAuthToken', :password_resets
 end
 
+
 # == Schema Information
 #
 # Table name: user_auth_tokens
@@ -105,9 +106,9 @@ end
 #  fullfilled_by_ip :string(255)
 #  fullfilled_at    :datetime
 #  email_sent_at    :datetime
-#  expires_at       :datetime
-#  created_at       :datetime
+#  expires_at       :datetime        not null
+#  created_at       :datetime        not null
 #  created_by_ip    :string(255)
-#  updated_at       :datetime
+#  updated_at       :datetime        not null
 #
 

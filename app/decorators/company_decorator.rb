@@ -1,4 +1,5 @@
 module CompanyDecorator # < ApplicationDecorator
+
   def since
     read_attribute(:in_business_since).try(:year)
   end

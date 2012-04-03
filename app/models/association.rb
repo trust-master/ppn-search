@@ -4,9 +4,10 @@ class Association < ActiveRecord::Base
   validates :url, url: true
   validates :name, presence: true
 
-  attr_accessible :name, :title, :description, :started_on, :ended_on, :url, as: [:default, :admin]
+  attr_accessible :name, :title, :description, :started_on, :ended_on, :url, as: [:user, :company_admin, :administrator]
   attr_readonly :company_id
 end
+
 
 
 # == Schema Information
@@ -21,7 +22,7 @@ end
 #  started_on  :date
 #  ended_on    :date
 #  url         :string(255)
-#  created_at  :datetime
-#  updated_at  :datetime
+#  created_at  :datetime        not null
+#  updated_at  :datetime        not null
 #
 
