@@ -48,7 +48,7 @@
           = nav_for :main do |main|
             - if current_user
               - if current_user.is_a? Administrator
-                = main.nav_link :admin, '/admin'
+                = main.nav_link :admin, admin_dashboard_path
               = main.nav_link :code_of_conduct, '/code_of_conduct'
               = main.nav_link :core_values, '/core_values'
               = main.nav_link :search_ppn, companies_path, proc { controller.controller_name == 'companies' }
@@ -78,10 +78,10 @@
           %h5= t(:follow_us_on)
           %ul
             %li
-              = link_to '' do
+              = link_to follow_us_on_twitter_path do
                 = image_tag asset_path('twitter.png'), alt: 'Twitter'
             %li
-              = link_to '' do
+              = link_to follow_us_on_facebook_path do
                 = image_tag asset_path('facebook.png'), alt: 'Facebook'
 
         .trust-logos
