@@ -5,7 +5,7 @@ class SubCategory < ActiveRecord::Base
   has_many :company_categories, dependent: :destroy
   has_many :companies,          through: :company_categories
 
-  attr_accessible :name, :category_id, :sort_order, as: :admin
+  attr_accessible :name, :category_id, :sort_order, as: :administrator
 
   delegate :name, to: :category, prefix: true # will produce category_name method
 

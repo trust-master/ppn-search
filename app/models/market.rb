@@ -8,7 +8,7 @@ class Market < ActiveRecord::Base
 
   accepts_nested_attributes_for :service_areas, allow_destroy: true
 
-  attr_accessible :name, :service_areas_attributes, :sort_order, as: :admin
+  attr_accessible :name, :service_areas_attributes, :sort_order, as: :administrator
 
   validates_presence_of :name
 end

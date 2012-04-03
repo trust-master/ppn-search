@@ -70,7 +70,7 @@ class Company < ActiveRecord::Base
       :business_filings_attributes, :company_service_areas_attributes,
       :company_categories_attributes, :discounts_attributes, as: [:user, :company_admin, :administrator]
 
-    attr_accessible :active, :visible, as: :admin
+    attr_accessible :active, :visible, as: :administrator
 
   ### Callbacks
     before_validation :nullify_insurance_fields_if_necessary

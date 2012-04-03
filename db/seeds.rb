@@ -51,7 +51,7 @@ admin = User.find_or_initialize_by_email('ryan@rtlong.com').tap do |u|
   u.password_digest = BCrypt::Password.create('aoe123#')
   u.role = 'Admin'
   u.active = true
-  u.save validate: false, as: :admin
+  u.save validate: false, as: :administrator
 end
 print 'A'
 
@@ -66,7 +66,7 @@ admins.each do |name, email|
   u.first_name, u.last_name = name
   u.password_digest = BCrypt::Password.create('test123!')
   u.active = true
-  u.save validate: false, as: :admin
+  u.save validate: false, as: :administrator
   print 'A'
 end
 ADMIN_ids = Admin.pluck(:id)
@@ -199,7 +199,7 @@ Company.all.each do |c|
       u.password_digest = BCrypt::Password.create('test123!')
       u.created_by_user_id = u.updated_by_user_id = ADMIN_ids.sample
       u.role = 'CompanyAdmin'
-      u.save validate: false, as: :admin
+      u.save validate: false, as: :administrator
     end
     print 'C'
   end
@@ -247,7 +247,7 @@ options = begin
   end
 
 options.each do |license_type|
-  PersonalLicenseType.where(name: license_type, state_id: MN_id).first_or_create!(nil, as: :admin)
+  PersonalLicenseType.where(name: license_type, state_id: MN_id).first_or_create!(nil, as: :administrator)
   print '.'
 end
 
@@ -270,7 +270,7 @@ options = begin
   end
 
 options.each do |license_type|
-  BusinessLicenseType.where(name: license_type, state_id: MN_id).first_or_create!(nil, as: :admin)
+  BusinessLicenseType.where(name: license_type, state_id: MN_id).first_or_create!(nil, as: :administrator)
   print '.'
 end
 print "\n"

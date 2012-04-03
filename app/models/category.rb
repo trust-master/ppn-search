@@ -7,7 +7,7 @@ class Category < ActiveRecord::Base
 
   accepts_nested_attributes_for :sub_categories, allow_destroy: true
 
-  attr_accessible :name, :sub_categories_attributes, :sort_order, as: :admin
+  attr_accessible :name, :sub_categories_attributes, :sort_order, as: :administrator
 
   validates_presence_of :name
 end

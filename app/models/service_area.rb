@@ -5,7 +5,7 @@ class ServiceArea < ActiveRecord::Base
   has_many :company_service_areas, dependent: :destroy
   has_many :companies, through: :company_service_areas
 
-  attr_accessible :name, :market_id, :sort_order, as: :admin
+  attr_accessible :name, :market_id, :sort_order, as: :administrator
 
   validates_presence_of :name, :market
 end

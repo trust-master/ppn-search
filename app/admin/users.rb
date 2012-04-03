@@ -40,6 +40,7 @@ ActiveAdmin.register User do
       row :role
       row :display_name
       row :email
+      row :phone
       row :company
       row :active
       row :logged_in_at
@@ -56,6 +57,7 @@ ActiveAdmin.register User do
       f.input :middle_name
       f.input :last_name
       f.input :email
+      f.input :phone
       f.input :company
       f.input :active
     end
@@ -70,7 +72,11 @@ ActiveAdmin.register User do
     redirect_to admin_user_path(user), notice: 'Password reset email sent to User!'
   end
 
+  action_item only: [:edit, :show] do
+    link_to t('.view_in_app'), edit_company_user_path(user.company, user) #if company.active && company.visible
+  end
+
   action_item only: [:show, :edit] do
-    link_to(t('.reset_password'), reset_password_admin_user_path(user))
+    link_to t('.reset_password'), reset_password_admin_user_path(user)
   end
 end
