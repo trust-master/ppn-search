@@ -35,8 +35,8 @@
                 = menu.nav_link :account, edit_account_path(section: :basic)
                 = menu.nav_for :account do |account|
                   = account.nav_link :basic,         edit_account_path(section: :basic)
-                  = account.nav_link :privacy,       edit_account_path(section: :privacy)
-                  = account.nav_link :notifications, edit_account_path(section: :notifications)
+                  = account.nav_link :privacy,       edit_account_path(section: :privacy), nil, class: :disabled
+                  = account.nav_link :notifications, edit_account_path(section: :notifications), nil, class: :disabled
               %li.nav-logout
                 = menu.nav_link :logout, logout_path
             .clear

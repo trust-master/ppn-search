@@ -317,8 +317,8 @@ en:
         one: Admin
         other: Admins
       company:
-        one: Service Provider
-        other: Service Providers
+        one: Provider
+        other: Providers
       location:
         one: Location
         other: Locations

@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   validates             :email, presence: true, uniqueness: true, email: true
   validates_presence_of :first_name, :last_name, :role
   validates_inclusion_of :active, in: [true, false]
-  validates_presence_of :password, :password_confirmation, on: :create
+  # validates_presence_of :password, :password_confirmation, on: :create
   validates             :password, password: true, allow_nil: true
   validates_presence_of :company, unless: proc { |user| user.is_a?(Administrator) }
 

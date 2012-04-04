@@ -5,9 +5,9 @@
 
     .sidebar-nav
       = nav_for :account do |menu|
-        = menu.nav_link :basic,           edit_account_path(section: :basic)
-        = menu.nav_link :privacy,     edit_account_path(section: :privacy), class: :disabled
-        = menu.nav_link :notifications, edit_account_path(section: :notifications), class: :disabled
+        = menu.nav_link :basic,         edit_account_path(section: :basic)
+        = menu.nav_link :privacy,       edit_account_path(section: :privacy),       nil, class: :disabled
+        = menu.nav_link :notifications, edit_account_path(section: :notifications), nil, class: :disabled
 
   #col-b
     = yield
