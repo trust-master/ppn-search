@@ -72,16 +72,13 @@ ServiceProviderPortal::Application.configure do
     host: 'trust-master.herokuapp.com'
   }
   config.action_mailer.smtp_settings = {
-    :port           => ENV['MAILGUN_SMTP_PORT'],
-    :address        => ENV['MAILGUN_SMTP_SERVER'],
-    :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
-    :password       => ENV['MAILGUN_SMTP_PASSWORD'],
-    :domain         => 'trust-master.herokuapp.com',
-    :authentication => :plain,
+    port:                 587,
+    address:              'smtp.gmail.com',
+    user_name:            ENV['SMTP_LOGIN'],
+    password:             ENV['SMTP_PASSWORD'],
+    domain:               'trust-master.com',
+    authentication:       :plain,
+    enable_starttls_auto: true
   }
 
-  config.middleware.use ExceptionNotifier,
-    sender_address: 'errors@trust-master.herokuapp.com',
-    exception_recipients: 'ryan@rtlong.com',
-    email_prefix: '[PPN] ERROR: '
 end

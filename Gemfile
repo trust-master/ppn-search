@@ -70,7 +70,7 @@ gem 'surus'
 # Connect to Redis in-memory key/value store
 gem 'redis'
 
-gem 'exception_notification', git: 'https://github.com/smartinez87/exception_notification.git'
+gem 'exceptional'
 
 # Use Redis to do caching, i18n, and sessions
 git 'https://github.com/jodosha/redis-store.git' do
