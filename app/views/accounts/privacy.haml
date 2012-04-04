@@ -1,0 +1,20 @@
+- title t('.title')
+
+%p= t('.coming_soon')
+
+-#
+  = simple_form_for resource, url: account_path(resource) do |f|
+    = fieldset :other do
+      %ul
+        = f.input :about_me
+        = f.input :avatar
+
+    = fieldset :contact do
+      %ul
+        = f.input :email
+        = f.input :location
+
+    = fieldset :buttons, false do
+      = link_to t('helpers.cancel'), :back, class: :cancel
+      = f.button :submit, class: :save
+

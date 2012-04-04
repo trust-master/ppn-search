@@ -4,12 +4,14 @@ ActiveAdmin.register Company do
   filter :name
 
   scope :all, :default => true
+
   # scope :visible do |scope|
   #   scope.where(visible: true)
   # end
   # scope :active do |scope|
   #   scope.where(active: true)
   # end
+
   Category.includes(:company_categories).all.each do |category|
     ids = category.company_categories.map(&:company_id).uniq
     self.send(:scope, category.name) do |items|

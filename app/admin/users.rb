@@ -10,7 +10,7 @@ ActiveAdmin.register User do
   scope :active do |scope|
     scope.where(active: true)
   end
-  User::ROLES.each do |role|
+  User::PROTECTED_ROLES.each do |role|
     self.send(:scope, role) do |scope|
       scope.where(role: role)
     end
@@ -52,7 +52,7 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs do
-      f.input :role, as: :select, collection: User::ROLES
+      f.input :role, as: :select, collection: User::PROTECTED_ROLES
       f.input :first_name
       f.input :middle_name
       f.input :last_name
@@ -73,7 +73,7 @@ ActiveAdmin.register User do
   end
 
   action_item only: [:edit, :show] do
-    link_to t('.view_in_app'), edit_company_user_path(user.company, user) #if company.active && company.visible
+    link_to t('.view_in_app'), edit_company_user_path(user.company, user) if user.company
   end
 
   action_item only: [:show, :edit] do

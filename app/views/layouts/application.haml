@@ -22,24 +22,26 @@
           %nav.header-nav
             %span.welcome= t(:welcome, name: current_user.first_name)
             = nav_for :account_links, menu_class: 'account-links', item_wrapper: nil do |menu|
-              %li.nav-profile
-                .divider
-                = menu.nav_link :profile, edit_user_path
-                = menu.nav_for :profile do |profile|
-                  = profile.nav_link :show, user_path
-                  = profile.nav_link :edit, edit_user_path
+              - if current_user.company_id?
+                %li.nav-profile
+                  .divider
+                  = menu.nav_link :profile
+                  = menu.nav_for :profile do |profile|
+                    = profile.nav_link :show, company_path(current_user.company)
+                    - if can?(:edit, current_user.company)
+                      = profile.nav_link :edit, edit_company_path(current_user.company, section: :identity)
               %li.nav-account
                 .divider
-                = menu.nav_link :account, '/account'
+                = menu.nav_link :account, edit_account_path(section: :basic)
                 = menu.nav_for :account do |account|
-                  = account.nav_link :basic_info, '/account/basic_info'
-                  = account.nav_link :privacy_settings, '/account/privacy'
-                  = account.nav_link :notifications_alerts, '/account/notifications_alerts'
+                  = account.nav_link :basic,         edit_account_path(section: :basic)
+                  = account.nav_link :privacy,       edit_account_path(section: :privacy)
+                  = account.nav_link :notifications, edit_account_path(section: :notifications)
               %li.nav-logout
                 = menu.nav_link :logout, logout_path
             .clear
           .search
-            = form_tag({controller: :companies, action: :index}, method: :get)  do
+            = form_tag(companies_path, method: :get)  do
               %fieldset
                 %input{type: :search, name: :name}
                 %input{type: :submit}

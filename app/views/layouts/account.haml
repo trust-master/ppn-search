@@ -1,0 +1,15 @@
+- content_for :content_div_class, 'col-2'
+
+- content_for :content do
+  #col-a
+
+    .sidebar-nav
+      = nav_for :account do |menu|
+        = menu.nav_link :basic,           edit_account_path(section: :basic)
+        = menu.nav_link :privacy,     edit_account_path(section: :privacy), class: :disabled
+        = menu.nav_link :notifications, edit_account_path(section: :notifications), class: :disabled
+
+  #col-b
+    = yield
+
+= render template: 'layouts/application'

@@ -16,16 +16,18 @@ en:
       core_values:     Core Values
       login:           Log In
       search_ppn:      Search Providers
+    account: &account_nav
+      basic: Basic Info
+      privacy: Privacy Settings
+      notifications: "Notifications & Alerts"
     account_links:
       profile:
         _label:               Profile
         show:                 View Profile
         edit:                 Edit Profile
       account:
+        <<: *account_nav
         _label:               Account
-        basic_info:           Basic Info
-        privacy_settings:     Privacy Settings
-        notifications_alerts: Notifications & Alerts
       logout:                 Log Out
     footer:
       terms:          Terms
@@ -261,6 +263,22 @@ en:
         at least one number and at least one non-alphanumeric character, use no elements from your
         email address or your name or that of your company.
       error: 'Invalid password!'
+
+  accounts:
+    basic:
+      title: Basic Info
+    notifications:
+      title: Notifications and Alerts
+    privacy:
+      title: Privacy Settings
+    fieldsets:
+      name: Name
+      contact: Contact
+      password:
+        header: Password
+        instructions: This section is not yet operational
+
+
 
   # Built-in Rails helpers will look at these
   helpers:
@@ -544,11 +562,17 @@ en:
           ended_on: If still active, leave these fields blank
         certifications:
           certificate: "Upload a scan of the actual certificate, if you'd like"
-      user:
+      user: &user
         password: Choose a new Password
-        password_confirmation: Retype your password
+        password_confirmation: Retype your new password
+        old_password: Verify your current password
+      company_admin:
+        <<: *user
+      administrator:
+        <<: *user
       password_reset_request:
         name: Your first name
+
     placeholders:
       defaults:
         email: 'name@example.com'

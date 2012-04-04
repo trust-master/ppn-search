@@ -1,0 +1,25 @@
+- title t('.title')
+
+= simple_form_for resource, url: account_path(resource) do |f|
+  = fieldset :name do
+    %ul
+      = f.input :first_name
+      = f.input :middle_name
+      = f.input :last_name
+
+  = fieldset :contact do
+    %ul
+      = f.input :email
+      = f.input :phone
+
+  -#
+    = fieldset :password do
+      %ul
+        = f.input :old_password
+        = f.input :password
+        = f.input :password_confirmation
+
+  = fieldset :buttons, false do
+    = link_to t('helpers.cancel'), :back, class: :cancel
+    = f.button :submit, class: :save
+

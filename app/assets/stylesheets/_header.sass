@@ -19,9 +19,9 @@ h1
 
   .welcome
     float: left
-    font-size: 16px
-    line-height: 24px
-    margin-right: 13px
+    font-size: 15px
+    line-height: 22px
+    margin-right: 20px
     @include inline-block
 
   a:hover
@@ -126,7 +126,11 @@ h1
     padding: 0 27px
 
     &:hover
-      background-color: $grey
+      background-color: $very-light-grey
+
+      a
+        text-decoration: none
+        color: $blue
 
     &.active
       background-color: $blue
@@ -134,12 +138,8 @@ h1
       &:hover
         background-color: $blue
 
-    &:hover a
-      text-decoration: none
-      color: $blue
-
-    &.active
       &, a, &:hover a
         color: $white
+        font-weight: bold
 
 

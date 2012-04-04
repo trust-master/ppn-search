@@ -1,6 +1,8 @@
 ServiceProviderPortal::Application.routes.draw do
 
-  ActiveAdmin.routes(self) unless defined?(::Rake)
+  ActiveAdmin.routes(self) unless defined?(::Rake) # the unless is to avoid initializing ActiveAdmin
+                                                   # when migrating (so there aren't `relation
+                                                   # "categories" does not exist` errors)
 
   resources :companies do
     resources :alerts
@@ -10,8 +12,9 @@ ServiceProviderPortal::Application.routes.draw do
     resources :company_admins, path: 'users', controller: :users
     resources :administrators, path: 'users', controller: :users
   end
-  resource  :company, path: 'profile', only: [:show, :edit, :update]
-  resource  :user,    path: 'account', only: [:show, :edit, :update]
+
+  # resource  :profile, only: [:show, :edit, :update]
+  resource  :account, only: [:show, :edit, :update]
 
   resources :password_resets, only: [:new, :create, :show, :update],
     constraints: { id: /[a-zA-Z0-9\-_]{12}/ }

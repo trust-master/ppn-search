@@ -12,6 +12,6 @@ module CompanyDecorator # < ApplicationDecorator
 
   def primary_address
     l = locations.first
-    [l.city, l.state_name].join(', ')
+    [l.city, l.state_abbreviation].join(', ')
   end
 end
