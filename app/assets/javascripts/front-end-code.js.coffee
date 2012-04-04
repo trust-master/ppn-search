@@ -114,6 +114,8 @@ $(document).ready =>
     this.bind() if $('a.remove').length isnt 0
 
   bind: ->
+    $('.input.select select, .input.grouped_select select').chosen()
+
     $('#service_categories .category .sub_category a.remove').click ->
       _this = $(this).parents('li.sub_category')
       _this.hide()
