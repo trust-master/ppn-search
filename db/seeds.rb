@@ -28,10 +28,12 @@ puts "Seeding Database...\n\n"
 puts "Populating Countries / States..."
 
 SEED_DATA[:countries].each do |c|
-  country = Country.where(name: c['name'], abbreviation: c['code']).first_or_create!
+  country = Country.where(name: c['name'], abbreviation: c['code']).first_or_create!({}, without_protection: true)
 
   c['states'].each do |abbr, name|
-    state = State.where(name: name, abbreviation: abbr, country_id: country.id).first_or_create!
+    state = State
+      .where(name: name, abbreviation: abbr, country_id: country.id)
+      .first_or_create!({}, without_protection: true)
   end
 end
 
@@ -44,16 +46,18 @@ US_id = Country.where(name: 'United States').pluck(:id).first
 MN_id = State.where(name: 'Minnesota').pluck(:id).first
 
 ########################
-print 'Admin Users... '
+print 'Administrator Users... '
 
 admin = User.find_or_initialize_by_email('ryan@rtlong.com').tap do |u|
   u.first_name, u.middle_name, u.last_name = %w'Ryan Taylor Long'
   u.password_digest = BCrypt::Password.create('aoe123#')
-  u.role = 'Admin'
+  u.role = 'Administrator'
   u.active = true
-  u.save validate: false, as: :administrator
+  u.save!(validate: false, without_protection: true)
 end
 print 'A'
+
+User.current_user = admin
 
 admins = {
   %w'Dan Modeen'  => 'dmodeen@trust-master.com',
@@ -62,14 +66,14 @@ admins = {
   %w'Matt Pennaz' => 'mpennaz@gmail.com'
 }
 admins.each do |name, email|
-  u = Admin.where(email: email).first_or_initialize
+  u = Administrator.where(email: email).first_or_initialize
   u.first_name, u.last_name = name
   u.password_digest = BCrypt::Password.create('test123!')
   u.active = true
-  u.save validate: false, as: :administrator
+  u.save!(validate: false, without_protection: true)
   print 'A'
 end
-ADMIN_ids = Admin.pluck(:id)
+ADMIN_ids = Administrator.pluck(:id)
 
 exit unless Rails.env == 'development'
 
@@ -77,7 +81,7 @@ exit unless Rails.env == 'development'
 puts "Populating DiscountTypes..."
 
 SEED_DATA[:discount_types].each do |t|
-  country = DiscountType.where(name: t).first_or_create!
+  country = DiscountType.where(name: t).first_or_create!({}, without_protection: true)
 end
 
 DISCOUNT_TYPE_ids = DiscountType.pluck(:id)
@@ -87,18 +91,19 @@ success_msg "There are now #{DISCOUNT_TYPE_ids.count} Discount Types."
 print 'Populating Companies... '
 
 SEED_DATA[:companies].each do |name|
-  company = Company.find_or_create_by_name(name) do |c|
+  company = Company.where(name: name).first_or_create!({}, without_protection: true) do |c|
     domain              = Faker::Internet.domain_name(c.name)
     c.website_url       = 'http://' + domain
     c.email             = Faker::Internet.email(%w[inquire contact info sales].sample, domain)
     c.phone_main        = Faker::PhoneNumber.phone_number if (rand > 0.9)
     c.phone_mobile      = Faker::PhoneNumber.phone_number if (rand > 0.5)
     year = (Date.today.year - rand(5) - 1/(rand + 0.0125)).floor
-    c.in_business_since = Date.civil(year)
+    c.in_business_since = year
     c.about             = Faker::Lorem.sentences(1, true).join if (rand > 0.5)
     c.description       = Faker::Lorem.paragraphs(rand(4), true).join("\n\n") if (rand > 0.8)
     c.general_info      = Faker::Lorem.paragraphs(rand(4), true).join("\n\n") if (rand > 0.8)
-    c.active = c.visible = true
+    c.active =  rand > 0.5 ? true : false
+    c.visible = rand > 0.5 ? true : false
   end
   if company.locations.empty? then
     Location.populate(rand(5)) do |l|
@@ -112,12 +117,12 @@ SEED_DATA[:companies].each do |name|
   print '.'
 end
 
-tm = Company.where(name: 'Trust Master').first_or_create! do |c|
+tm = Company.where(name: 'Trust Master').first_or_create!({}, without_protection: true) do |c|
   c.website_url       = 'http://trust-master.com'
   c.email             = 'info@trust-master.com'
   c.phone_main        = '763.213.0700'
   c.phone_fax         = '763.576.1585'
-  c.in_business_since = Date.civil(2000)
+  c.in_business_since = 2000
   c.about             = 'Expert Home Management'
   c.description       = <<-DESC.strip_heredoc
     Homeowners rely on Trust Master to deliver a personalized home management solution that's handled
@@ -136,9 +141,10 @@ tm = Company.where(name: 'Trust Master').first_or_create! do |c|
     fidelity bond.
   GENERAL_INFO
 
-  c.active = c.visible = true
+  c.active =  rand > 0.5 ? true : false
+  c.visible = rand > 0.5 ? true : false
 end
-tm.locations.where(city: 'Champlin').first_or_create!(state_id: MN_id, zip: '55316')
+tm.locations.where(city: 'Champlin').first_or_create!({state_id: MN_id, zip: '55316'}, without_protection: true)
 TM_id = tm.id
 
 print "\n"
@@ -151,10 +157,10 @@ success_msg "There are now #{LOCATION_ids.count} Locations."
 print 'Populating Markets and Service Areas...'
 
 SEED_DATA[:service_areas].each do |s|
-  market = Market.find_or_create_by_name s['market']
+  market = Market.where(name: s['market']).first_or_create!({}, without_protection: true)
   print ' +'
   s['service_areas'].each do |a|
-    market.service_areas.where(name: a).first_or_create!
+    market.service_areas.where(name: a).first_or_create!({}, without_protection: true)
     print '.'
   end
 end
@@ -169,10 +175,10 @@ success_msg "There are now #{SERVICE_AREA_ids.count} ServiceAreas."
 print 'Populating Categories...'
 
 SEED_DATA[:categories].each do |s|
-  c = Category.find_or_create_by_name s['name']
+  c = Category.where(name: s['name']).first_or_create!({}, without_protection: true)
   print ' +'
   s['sub_categories'].each do |a|
-    c.sub_categories.where(name: a).first_or_create!
+    c.sub_categories.where(name: a).first_or_create!({}, without_protection: true)
     print '.'
   end
 end
@@ -186,23 +192,24 @@ success_msg "There are now #{SUB_CATEGORIES_ids.count} SubCategories."
 #######################
 print 'Populating Users... '
 
-
 Company.all.each do |c|
-  company_admin = User.find_or_initialize_by_role_and_company_id('CompanyAdmin', c.id).tap do |u|
-    unless u.persisted?
-      u.first_name, u.middle_name, u.last_name = name = [
-        Faker::Name.first_name,
-        (rand > 0.9) ? Faker::Name.first_name : nil,
-        Faker::Name.last_name
-      ]
-      u.email = Faker::Internet.email(name.compact.join(' '), c.email.split('@').last)
-      u.password_digest = BCrypt::Password.create('test123!')
-      u.created_by_user_id = u.updated_by_user_id = ADMIN_ids.sample
-      u.role = 'CompanyAdmin'
-      u.save validate: false, as: :administrator
-    end
-    print 'C'
+  a = User.where(role: 'CompanyAdmin', company_id: c.id).first_or_initialize
+
+  if a.new_record?
+    name = [
+      Faker::Name.first_name,
+      (rand > 0.9) ? Faker::Name.first_name : nil,
+      Faker::Name.last_name
+    ]
+    a.first_name, a.middle_name, a.last_name = name
+    a.email = Faker::Internet.email(name.compact.join(' '), c.email.split('@').last)
+    a.password_digest = BCrypt::Password.create('test123!')
+    a.created_by_user_id = a.updated_by_user_id = ADMIN_ids.sample
+    a.role = 'CompanyAdmin'
+    a.active = rand > 0.5 ? true : false
+    a.save!(validate: false, without_protection: true)
   end
+  print 'C'
 
   if c.users.count < 2
     quant = rand(10)
@@ -215,7 +222,8 @@ Company.all.each do |c|
       u.email = Faker::Internet.email(name.compact.join(' '), c.email.split('@').last)
       u.password_digest = BCrypt::Password.create('test123!')
       u.company_id = c.id
-      u.created_by_user_id = u.updated_by_user_id = company_admin.id
+      u.created_by_user_id = u.updated_by_user_id = User.current_user.id
+      u.active = rand > 0.5 ? true : false
       print '.'
     end
   end
@@ -224,8 +232,8 @@ print "\n"
 
 USER_ids = User.pluck(:id)
 
-success_msg "There are now #{Admin.count} Admin users, #{User.where(role: 'CompanyAdmin').count} " <<
-  "Company Admins, and #{User.count} total users."
+success_msg "There are now #{Administrator.count} Administrator users, #{User.where(role: 'CompanyAdmin').count} " <<
+  "Company Administrators, and #{User.count} total users."
 
 #######################
 puts "\nPopulating License types from the MN DLI License Lookup Page...\n"
@@ -247,7 +255,7 @@ options = begin
   end
 
 options.each do |license_type|
-  PersonalLicenseType.where(name: license_type, state_id: MN_id).first_or_create!(nil, as: :administrator)
+  PersonalLicenseType.where(name: license_type, state_id: MN_id).first_or_create!({}, without_protection: true)
   print '.'
 end
 
@@ -270,7 +278,7 @@ options = begin
   end
 
 options.each do |license_type|
-  BusinessLicenseType.where(name: license_type, state_id: MN_id).first_or_create!(nil, as: :administrator)
+  BusinessLicenseType.where(name: license_type, state_id: MN_id).first_or_create!({}, without_protection: true)
   print '.'
 end
 print "\n"

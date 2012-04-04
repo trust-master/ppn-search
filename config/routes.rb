@@ -1,6 +1,6 @@
 ServiceProviderPortal::Application.routes.draw do
 
-  ActiveAdmin.routes(self)
+  ActiveAdmin.routes(self) unless defined?(::Rake)
 
   resources :companies do
     resources :alerts
