@@ -1,0 +1,23 @@
+- content_for :content_div_class, 'col-2-wide'
+- title t('.title')
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Verb
+      %th Path
+      %th Reqs
+  %tbody
+    - @routes.each do |route|
+      %tr
+        %td.name= route[:name].presence
+        %td.verb= route[:verb].presence
+        %td.path= route[:path].presence
+        %td.reqs= route[:reqs].presence
+  %tfoot
+    %tr
+      %th Name
+      %th Verb
+      %th Path
+      %th Reqs
