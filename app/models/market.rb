@@ -1,5 +1,5 @@
 class Market < ActiveRecord::Base
-  default_scope order('sort_order DESC', :id)
+  default_scope order('markets.sort_order DESC', :id)
 
   has_many :service_areas, inverse_of: :market,         dependent: :destroy
   has_many :discounts,             dependent: :nullify

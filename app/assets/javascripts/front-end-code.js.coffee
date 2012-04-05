@@ -12,7 +12,6 @@ $(document).ready =>
   $("input[type='checkbox']").button()
   $('time.timeago').timeago()
 
-
 @companyForm =
   init: ->
     $('input[id^="company_insured_"]').click ->
@@ -98,16 +97,16 @@ $(document).ready =>
 
     $('#col-a ul.companies .company').click ->
       _this = $(this)
-      $('#company_details').html(_this.find('.details').html())
+      $('#company_details').html(_this.find('.details').html()).find('.tabs').tabs()
       _this.siblings('.company').removeClass('selected')
       _this.addClass('selected')
       return false
 
-    $('#col-b ul.nav li a').click ->
-      $("#company_details").find(".identity, .service, .credentials, .discounts").hide()
-      # console.log("#company_details .#{$(this).attr('class')}")
-      $("#company_details .#{$(this).attr('class')}").show()
-      return false
+    # $('#col-b ul.nav li a').click ->
+    #   $("#company_details").find(".profile, .specialty, .credentials, .discounts").hide()
+    #   # console.log("#company_details .#{$(this).attr('class')}")
+    #   $("#company_details .#{$(this).attr('class')}").show()
+    #   return false
 
 @removeLinks =
   init: ->

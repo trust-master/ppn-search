@@ -2,7 +2,7 @@
 - content_for :content_div_class, 'col-2-wide'
 
 #col-a
-  = form_tag(companies_path, method: :get, class: :search) do
+  = form_tag(collection_path, method: :get, class: :search) do
     .search_wrap
       = search_field_tag :name, params[:name], placeholder: 'Provider Name'
       = submit_tag 'Search'
@@ -13,17 +13,14 @@
     %h4 Search Results
     -# FIXME: Implement the changing header that Dan asked for
 
-    = paginate @companies
+    = paginate collection
 
     %ul.companies
-      = render @companies
+      = render collection
 
-    = paginate @companies
+    = paginate collection
 
 
 #col-b
-  %ul.nav
-    = list_of %w[Identity Service Credentials Discounts] do |label|
-      = link_to label, '#', class: label.downcase
-
   #company_details
+    This will be replaced with a search result

@@ -90,12 +90,14 @@
       border-top: 1px solid $light-grey
       margin-top: 15px
       clear: both
+      @include clearfix
 
       li
         padding: 11px
         font-size: 12px
         border-bottom: 1px solid $light-grey
         cursor: pointer
+        overflow: hidden
 
         &:last-of-type
           border-bottom: none
@@ -115,9 +117,19 @@
           a
             color: $white
 
+        div, h3
+          float: left
+          clear: left
 
         h3
           text-transform: uppercase
+          clear: both
+
+        .in_business_since
+          font-size: 11px
+          font-weight: normal
+          text-transform: capitalize
+          margin-left: 15px
 
         a
           color: $blue
@@ -126,23 +138,24 @@
           display: none
 
 #col-b
-  ul.nav
-    overflow: hidden
-    margin-bottom: 20px
+  /*
+    ul.nav
+      overflow: hidden
+      margin-bottom: 20px
 
-    li
-      float: left
-      margin: 0 37px
-      font-weight: bold
-      text-align: center
+      li
+        float: left
+        margin: 0 37px
+        font-weight: bold
+        text-align: center
 
-      &:first-of-type
-        margin-left: 0
+        &:first-of-type
+          margin-left: 0
 
-      &:last-of-type
-        margin-right: 0
+        &:last-of-type
+          margin-right: 0
 
-      a
+        a
 
   #company_details
     h3
@@ -155,17 +168,17 @@
       @include inline-block
       margin-left: 15px
 
-    .identity, .service, .credentials, .discounts
-      display: none
-      clear: left
-      margin-top: 5px
-      padding-top: 5px
-      border-top: 1px solid $grey
+    .profile, .specialty, .credentials, .discounts
+      // display: none
+      // clear: left
+      // margin-top: 5px
+      padding: 20px
+      // border-top: 1px solid $grey
 
-    .identity
-      display: block
+    .profile
+      // display: block
 
-    .service
+    .specialty
 
     .credentials
 

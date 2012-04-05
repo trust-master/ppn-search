@@ -13,7 +13,7 @@ module Jobs::Scrapers
         license_number.gsub!(LICENSE_NUMBER_PATTERN){ |m| [$1, '%06d' % $2.to_i].join.upcase }
 
         url = [ DOLI_BASE_URL,
-                { Advanced: 'yes', LicNo: license_number,
+                { Advanced: 'yes', LicNo: license_number, DiscType: 'ALL', DiscVal: nil,
                   LicClass: license_type.to_s.titlecase[0..2], Type: 'ALL',
                   Name: nil, City: nil, Zip: nil, Status: 'NONE', PageSize: 10 }.to_query
               ].join('?')
@@ -25,8 +25,8 @@ module Jobs::Scrapers
 
         form = page.forms[0]
 
-        # click 'Details' for the first result (should be the _only_ result)
-        form['__EVENTARGUMENT'] = 'Select$0'
+        # these fields are set normally by the __doPostBack function at the bottom of the rendered page
+        form['__EVENTARGUMENT'] = 'Select$0' # click 'Details' for the first result (should be the _only_ result)
         form['__EVENTTARGET'] = 'gvLicensing'
 
         form.radiobutton_with(name: 'licenseType', id: 'rbPersonal').checked = (license_type == :personal)

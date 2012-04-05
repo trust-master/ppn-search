@@ -78,6 +78,42 @@ ADMIN_ids = Administrator.pluck(:id)
 exit unless Rails.env == 'development'
 
 ########################
+print 'Populating Markets and Service Areas...'
+
+SEED_DATA[:service_areas].each do |s|
+  market = Market.where(name: s['market']).first_or_create!({}, without_protection: true)
+  print ' +'
+  s['service_areas'].each do |a|
+    market.service_areas.where(name: a).first_or_create!({}, without_protection: true)
+    print '.'
+  end
+end
+print "\n"
+
+MARKET_ids = Market.pluck(:id)
+success_msg "There are now #{MARKET_ids.count} Markets."
+SERVICE_AREA_ids = ServiceArea.pluck(:id)
+success_msg "There are now #{SERVICE_AREA_ids.count} ServiceAreas."
+
+########################
+print 'Populating Categories...'
+
+SEED_DATA[:categories].each do |s|
+  c = Category.where(name: s['name']).first_or_create!({}, without_protection: true)
+  print ' +'
+  s['sub_categories'].each do |a|
+    c.sub_categories.where(name: a).first_or_create!({}, without_protection: true)
+    print '.'
+  end
+end
+print "\n"
+
+CATEGORIES_ids = Category.pluck(:id)
+success_msg "There are now #{CATEGORIES_ids.count} Categories."
+SUB_CATEGORIES_ids = SubCategory.pluck(:id)
+success_msg "There are now #{SUB_CATEGORIES_ids.count} SubCategories."
+
+########################
 puts "Populating DiscountTypes..."
 
 SEED_DATA[:discount_types].each do |t|
@@ -102,8 +138,8 @@ SEED_DATA[:companies].each do |name|
     c.about             = Faker::Lorem.sentences(1, true).join if (rand > 0.5)
     c.description       = Faker::Lorem.paragraphs(rand(4), true).join("\n\n") if (rand > 0.8)
     c.general_info      = Faker::Lorem.paragraphs(rand(4), true).join("\n\n") if (rand > 0.8)
-    c.active =  rand > 0.5 ? true : false
-    c.visible = rand > 0.5 ? true : false
+    c.active =  rand > 0.5
+    c.visible = rand > 0.5
   end
   if company.locations.empty? then
     Location.populate(rand(5)) do |l|
@@ -112,6 +148,21 @@ SEED_DATA[:companies].each do |name|
       l.country_id = US_id
       l.state_id   = MN_id
       l.company_id = company.id
+    end
+  end
+  if company.categories.empty? then
+    sub_category_ids = SUB_CATEGORIES_ids.dup.shuffle
+    CompanyCategory.populate(rand(10)) do |c|
+      c.company_id = company.id
+      c.sub_category_id = sub_category_ids.shift
+    end
+  end
+  if company.service_areas.empty? then
+    service_area_ids = SERVICE_AREA_ids.dup.shuffle
+    CompanyServiceArea.populate(rand(15)) do |c|
+      c.company_id = company.id
+      c.service_area_id = service_area_ids.shift
+      c.partial_only = rand > 0.5
     end
   end
   print '.'
@@ -152,42 +203,6 @@ COMPANY_ids = Company.pluck(:id)
 success_msg "There are now #{COMPANY_ids.count} Companies"
 LOCATION_ids = Location.pluck(:id)
 success_msg "There are now #{LOCATION_ids.count} Locations."
-
-########################
-print 'Populating Markets and Service Areas...'
-
-SEED_DATA[:service_areas].each do |s|
-  market = Market.where(name: s['market']).first_or_create!({}, without_protection: true)
-  print ' +'
-  s['service_areas'].each do |a|
-    market.service_areas.where(name: a).first_or_create!({}, without_protection: true)
-    print '.'
-  end
-end
-print "\n"
-
-MARKET_ids = Market.pluck(:id)
-success_msg "There are now #{MARKET_ids.count} Markets."
-SERVICE_AREA_ids = ServiceArea.pluck(:id)
-success_msg "There are now #{SERVICE_AREA_ids.count} ServiceAreas."
-
-########################
-print 'Populating Categories...'
-
-SEED_DATA[:categories].each do |s|
-  c = Category.where(name: s['name']).first_or_create!({}, without_protection: true)
-  print ' +'
-  s['sub_categories'].each do |a|
-    c.sub_categories.where(name: a).first_or_create!({}, without_protection: true)
-    print '.'
-  end
-end
-print "\n"
-
-CATEGORIES_ids = Category.pluck(:id)
-success_msg "There are now #{CATEGORIES_ids.count} Categories."
-SUB_CATEGORIES_ids = SubCategory.pluck(:id)
-success_msg "There are now #{SUB_CATEGORIES_ids.count} SubCategories."
 
 #######################
 print 'Populating Users... '
