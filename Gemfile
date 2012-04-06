@@ -54,6 +54,7 @@ gem 'activeadmin', git: 'https://github.com/rtlong/active_admin.git'
 
 # Nifty search scoping tool. Dependency of ActiveAdmin
 gem 'meta_search'
+gem 'squeel'
 
 # Normalize attributes before saving (strip, nullify blanks, custom formatting, etc.)
 gem 'attribute_normalizer'

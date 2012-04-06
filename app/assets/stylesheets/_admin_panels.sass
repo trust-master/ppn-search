@@ -1,0 +1,38 @@
+// This is for the administrative panels shown *in the front-end* only to Trust Master Administrators
+.admin_panel
+  padding: 10px
+  border: 1px solid $grey
+  background-color: $white
+  margin-top: 20px
+  font-size: 10px
+
+  //&:before
+    background: none repeat scroll 0 0 #999999
+    color: white
+    content: "Administrative"
+    display: block
+    font-size: 12px
+    font-variant: small-caps
+    left: -10px
+    padding: 0 15px 0 5px
+    position: relative
+    top: -10px
+    width: 100%
+
+  .tag, .link
+    @include inline-block
+
+  .tag
+    background-color: #B4B4B4
+    color: white
+    font-size: 9px
+    line-height: 14px
+    padding: 0px 5px
+    margin: 1px
+    text-transform: uppercase
+
+    &.tag.ok
+      background: #56ACCD
+
+  .link
+    margin: 1px 4px

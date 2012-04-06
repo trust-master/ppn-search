@@ -1,28 +1,29 @@
-%h5= personal_license.display_identifier
+%h5= link_to personal_license.display_identifier, "##{tab_id_for(personal_license, :data)}"
 
-- if personal_license.persisted? and personal_license.fetched?
-  .data
+= tab_for(personal_license, :data) do
+  - if personal_license.persisted? and personal_license.fetched?
+    .data
 
-    %table
-      %tbody.parsed
-        - personal_license.attributes_for_detailed_display.each do |key, value|
-          %tr
-            %th= key
-            %td= value.is_a?(String) ? simple_format(value) : (value || '-').to_s
-      - if personal_license.raw_data.present?
-        %tbody.raw
-          - personal_license.raw_data.each do |key, value|
+      %table
+        %tbody.parsed
+          - personal_license.attributes_for_detailed_display.each do |key, value|
             %tr
               %th= key
               %td= value.is_a?(String) ? simple_format(value) : (value || '-').to_s
+        - if personal_license.raw_data.present?
+          %tbody.raw
+            - personal_license.raw_data.each do |key, value|
+              %tr
+                %th= key
+                %td= value.is_a?(String) ? simple_format(value) : (value || '-').to_s
 
-    .meta
-      .last_updated
-        = t('.last_updated')
-        = time_ago_in_words(personal_license.fetched_at)
-      .raw_data_message
-        %span.message= t('.raw_data.message')
-        %a{data: {alternate_text: t('.raw_data.switch_to_parsed')}}= t('.raw_data.switch_to_raw')
+      .meta
+        .last_updated
+          = t('.last_updated')
+          = time_ago_in_words(personal_license.fetched_at)
+        .raw_data_message
+          %span.message= t('.raw_data.message')
+          %a{data: {alternate_text: t('.raw_data.switch_to_parsed')}}= t('.raw_data.switch_to_raw')
 
-- else
-  .no_data= t('.raw_data.no_data')
+  - else
+    .no_data= t('.raw_data.no_data')

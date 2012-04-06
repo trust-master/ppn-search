@@ -1,27 +1,28 @@
-%h5= business_license.display_identifier
+%h5= link_to business_license.display_identifier, "##{tab_id_for(business_license, :data)}"
 
-- if business_license.persisted? and business_license.fetched?
-  .data
-    %table
-      %tbody.parsed
-        - business_license.attributes_for_detailed_display.each do |key, value|
-          %tr
-            %th= key
-            %td= value.is_a?(String) ? simple_format(value) : (value || '-').to_s
-      - if business_license.raw_data.present?
-        %tbody.raw
-          - business_license.raw_data.each do |key, value|
+= tab_for(business_license, :data) do
+  - if business_license.persisted? and business_license.fetched?
+    .data
+      %table
+        %tbody.parsed
+          - business_license.attributes_for_detailed_display.each do |key, value|
             %tr
               %th= key
               %td= value.is_a?(String) ? simple_format(value) : (value || '-').to_s
+        - if business_license.raw_data.present?
+          %tbody.raw
+            - business_license.raw_data.each do |key, value|
+              %tr
+                %th= key
+                %td= value.is_a?(String) ? simple_format(value) : (value || '-').to_s
 
-    .meta
-      .last_updated
-        = t('.last_updated')
-        = time_ago_in_words(business_license.fetched_at)
-      .raw_data_message
-        %span.message= t('.raw_data.message')
-        %a{data: {alternate_text: t('.raw_data.switch_to_parsed')}}= t('.raw_data.switch_to_raw')
+      .meta
+        .last_updated
+          = t('.last_updated')
+          = time_ago_in_words(business_license.fetched_at)
+        .raw_data_message
+          %span.message= t('.raw_data.message')
+          %a{data: {alternate_text: t('.raw_data.switch_to_parsed')}}= t('.raw_data.switch_to_raw')
 
-- else
-  .no_data= t('.raw_data.no_data')
+  - else
+    .no_data= t('.raw_data.no_data')

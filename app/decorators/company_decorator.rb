@@ -12,7 +12,7 @@ module CompanyDecorator # < ApplicationDecorator
 
   def primary_address
     l = locations.first
-    address = [l.street, l.street2, l.city, l.state_abbreviation].compact.join(', ')
-    address << ' ' << l.zip if l.zip?
+    address = [l.street, l.street2, l.city, l.state_abbreviation].map(&:presence).compact.join(', ')
+    address << ' ' << l.zip if l.zip.present?
   end
 end

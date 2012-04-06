@@ -1,9 +1,29 @@
-%p
-  - if affiliation.ended_on.nil?
-    Currently affiliated with #{affiliation.name}
-  - else
-    Affiliated with #{affiliation.name} from #{affiliation.started_on.to_s}
-    until #{affiliation.ended_on.to_s}.
+%h5= link_to affiliation.display_identifier, "##{tab_id_for(affiliation)}"
 
-%p
-  = link_to 'Delete', [affiliation.company, affiliation], method: :delete
+= tab_for(affiliation) do
+
+  - if affiliation.started_on?
+    .dates
+      - if affiliation.ended_on?
+        = t('.dates.past', name: affiliation.name, started: affiliation.started_on, ended: affiliation.ended_on)
+      - else
+        = t('.dates.present', name: affiliation.name, started: affiliation.started_on)
+  - else
+    .name
+      %label= t('.name')
+      = affiliation.name
+
+  - if affiliation.title?
+    .title
+      %label= t('.title')
+      = affiliation.title
+
+  - if affiliation.description?
+    .description
+      %label= t('.description')
+      = affiliation.description
+
+  - if affiliation.url?
+    .url
+      %label= t('.url')
+      = affiliation.url

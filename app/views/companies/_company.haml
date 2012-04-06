@@ -5,41 +5,153 @@
   - if company.in_business_since?
     .in_business_since= t('.in_business_since', year: company.since)
 
+  - if company.about?
+    .summary= company.about
+
   - if company.locations.any?
     .address= company.primary_address
 
-  - if company.phone_main?
-    .phone= company.phone_main
+  -#
+    - if company.phone_main?
+      .phone= company.phone_main
 
   - if company.sub_categories.any?
     .categories= company.sub_categories.map(&:name).to_sentence
 
   .details
+    %header
+      %h2= company.name
+      - if company.in_business_since?
+        .in_business_since= t('.in_business_since', year: company.since)
+
+      - if can? :edit, company
+        .actions
+          = include_edit_link edit_company_path(company, section: :identity)
     .tabs
-      %ul
-        = list_of %w[Profile Specialty Credentials Discounts] do |label|
-          = link_to label, "##{[dom_id(company), label.downcase].join(?_)}"
+      %ul.nav.tab_bar
+        = list_of [:profile, :specialty, :credentials, :discounts] do |label|
+          = link_to t(".details.tab_names.#{label}"), "##{tab_id_for(company, label)}"
 
-      .profile{id: [dom_id(company), 'profile'].join(?_)}
-        %h3= company.name
-        - if company.in_business_since?
-          %span.in_business_since= t('.in_business_since', year: company.since)
+      = tab_for company, :profile do
+
+        - if company.about?
+          %section.about
+            %h3= t('.details.sections.about')
+            = company.about
+
         - if company.locations.any?
-          .address= company.primary_address
-        - if company.phone_main?
-          .phone= company.phone_main
-        - if company.website_url?
-          .website= company.website
+          %section.locations
+            %h3= t('.details.sections.locations')
+            - company.locations.each do |location|
+              %address
+                - if location.street?
+                  = location.street
+                  %br/
+                  - if location.street2?
+                    = location.street2
+                    %br/
+                = [location.name, location.zip].compact.join(' ')
 
-      .specialty{id: [dom_id(company), 'specialty'].join(?_)}
-        Service/Product specialty will be here
+        - if company.phone_numbers.any?
+          %section.phone_numbers
+            %h3= t('.details.sections.phone_numbers')
+            %ul
+              - company.phone_numbers.each do |type, number|
+                %li.phone_number{class: type}
+                  %label= Company.human_attribute_name(type) << ?:
+                  %span= number
 
-      .credentials{id: [dom_id(company), 'credentials'].join(?_)}
-        Licenses/Credentials info will be here
+        - if company.website_url? or company.email_address?
+          %section.online
+            %h3= t('.details.sections.online')
+            - if company.website_url?
+              .website
+                %label= Company.human_attribute_name(:website_url) << ?:
+                = company.website
+            - if company.email?
+              .email
+                %label= Company.human_attribute_name(:email) << ?:
+                = mail_to company.email
 
-      .discounts{id: [dom_id(company), 'discounts'].join(?_)}
+
+      = tab_for company, :specialty do
+
+        - if company.description?
+          %section.description
+            %h3= t('.details.sections.description')
+            = simple_format company.description
+
+        - if company.general_info?
+          %section.general_info
+            %h3= t('.details.sections.general_info')
+            = simple_format company.general_info
+
+        - if company.sub_categories.any?
+          %section.categories
+            %h3= t('.details.sections.categories')
+            %ul.categories
+              - company.sub_categories.group_by(&:category).each do |category, sub_categories|
+                %li[category]
+                  %h4= category.name
+                  %ul.sub_categories
+                    - sub_categories.each do |sub_cat|
+                      %li[sub_cat]= sub_cat.name
+
+        - if company.service_areas.any?
+          %section.service_area
+            %h3= t('.details.sections.service_area')
+            %ul.markets
+              - company.service_areas.group_by(&:market).each do |market, service_areas|
+                %li[market]
+                  %h4= market.name
+                  %ul.service_areas
+                    - market.service_areas.each do |service_area|
+                      %li[service_area]= service_area.name
+
+        %section.operations
+          %h3= t('.details.sections.operations')
+          .offers_24_hour_service
+            %label= Company.human_attribute_name(:offers_24_hour_service) << ':'
+            = company.offers_24_hour_service ? 'Yes' : 'No'
+          .offers_emergency_service
+            %label= Company.human_attribute_name(:offers_emergency_service) << ':'
+            = company.offers_emergency_service ? 'Yes' : 'No'
+
+      = tab_for company, :credentials do
+
+        - if company.insured?
+          %section.insurance
+            %h3= t('.details.sections.insurance')
+            .state= t('.details.insurance.insured_in', state_name: company.insurance_state_name)
+            .valid= t('.details.insurance.valid', from: company.insurance_valid_from, to: company.insurance_valid_until)
+            .certificate= link_to t('.details.insurance.download'), company.insurance_certificate.url
+
+        - if company.all_licenses.any?
+          %section.licensure
+            %h3= t('.details.sections.licensure')
+            .licenses.accordion= render company.all_licenses
+
+        - [:affiliations, :associations, :certifications].each do |section|
+          - if (associated = company.send(section)).any?
+            %section{class: section}
+              %h3= t(".details.sections.#{section}")
+              .accordion{class: section}= render associated
+
+
+      = tab_for company, :discounts do
         Discounts will be listed here
 
-    .actions
-      - if can? :edit, company
-        = include_edit_link edit_company_path(company, section: :identity)
+
+    - if current_user.is_a? Administrator
+      .admin_panel
+        - if company.active
+          .tag.ok active
+        - else
+          .tag inactive
+
+        - if company.visible
+          .tag.ok visible
+        - else
+          .tag invisible
+
+        .link= link_to '[Edit in Admin]', admin_company_path(company)

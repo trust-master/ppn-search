@@ -89,6 +89,32 @@ en:
 
     company:
       in_business_since: 'In business since %{year}'
+      details:
+        tab_names:
+          profile:     Profile
+          specialty:   Specialty
+          credentials: Credentials
+          discounts:   Discounts
+        sections:
+          about:           About
+          locations:       Locations
+          phone_numbers:   Phone Numbers
+          online:          Online
+          description:     Description
+          general_info:    General Info
+          categories:      Categories
+          service_area:    Service Area
+          operations:      Operations
+          insurance:       Liability Insurance
+          licensure:       Licensure
+          business_status: Business Status
+          affiliations:    Affiliations
+          associations:    Associations
+          certifications:  Certifications
+        insurance:
+          insured_in: Insured in the state of %{state_name}
+          valid: Valid from %{from} to %{to}
+          download: Download the Certificate of Liability Insurance
     locations:
       actions:
         add: Add a Location
@@ -188,6 +214,31 @@ en:
       raw_data:
         <<: *license_raw_data
         no_data: Details have not yet been obtained for this business filing
+
+  affiliations:
+    affiliation:
+      title: "Title:"
+      description: "Description:"
+      url: "Link:"
+      dates:
+        present: "Have been affiliated with %{name} since %{started}."
+        past: "Was affiliated with %{name} from %{started} until %{ended}."
+
+  associations:
+    association:
+      title: "Title:"
+      description: "Description:"
+      url: "Link:"
+      dates:
+        present: "Have been associated with %{name} since %{started}."
+        past: "Was associated with %{name} from %{started} until %{ended}."
+
+  certifications:
+    certification:
+      name: "Name:"
+      title: "Title:"
+      description: "Description:"
+      certificate: "Certificate:"
 
   sessions:
     new:

@@ -1,12 +1,24 @@
-%ul
-  %li
-    %label Name
-    %span= certification.name
-  %li
-    %label Title
-    %span= certification.title
-  %li
-    %label Description
-    %p= certification.description
-  %li
-    = link_to 'Delete', [@company, certification], method: :delete, class: :delete
+%h5= link_to certification.display_identifier, "##{tab_id_for(certification)}"
+
+= tab_for(certification) do
+
+  - if certification.name?
+    .name
+      %label= t('.name')
+      = certification.name
+
+  - if certification.title?
+    .title
+      %label= t('.title')
+      = certification.title
+
+  - if certification.description?
+    .description
+      %label= t('.description')
+      = certification.description
+
+  - if certification.certificate?
+    .attached_file
+      %label= t('.certificate')
+      = link_to certification.certificate.url do
+        = image_tag certification.certificate.thumb.url

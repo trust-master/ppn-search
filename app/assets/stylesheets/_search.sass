@@ -158,31 +158,122 @@
         a
 
   #company_details
-    h3
-      float: left
+    header
+      overflow: hidden
+      @include clearfix
 
-    span.in_business_since
-      font-size: 11px
-      font-weight: normal
-      text-transform: capitalize
-      @include inline-block
-      margin-left: 15px
+      h2, .in_business_since
+        float: left
+        margin-bottom: 10px
+
+
+      .in_business_since
+        font-size: 11px
+        font-weight: normal
+        text-transform: capitalize
+        margin: 6px 0 0 15px
+
+      .actions
+        float: right
+
+    .ui-tabs
+      border: none
+      padding: 0
 
     .profile, .specialty, .credentials, .discounts
       // display: none
       // clear: left
       // margin-top: 5px
-      padding: 20px
+      padding: 20px 0
       // border-top: 1px solid $grey
+
+      //
+        a
+          color: $blue
+
+      h2
+        font-size: 17px
+
+      h3
+        font-size: 14px
+        margin-bottom: 10px
+
+      h4
+        font-size: 14px
+        margin: 0 0 10px 0
+
+      label
+        font-weight: bold
+
+
+      ul
+        clear: both
+
+        & > li
+          h4
+            margin: 10px 0 5px 0
+
+          ul
+            list-style: disc
+            padding-left: 30px
+
+            li
+
+      section
+        border-bottom: 1px solid $grey
+        padding-bottom: 10px
+        margin: 20px 0
+        clear: both
+
+        &:first-child
+          margin-top: 0
+
+        &:last-child
+          border-bottom: none
+          padding-bottom: 0
+          margin-bottom: 0
+
 
     .profile
       // display: block
+
+      .locations
+        @include clearfix
+        address
+          font-style: normal
+          float: left
+          width: 220px
+          margin: 0 10px 10px 0
 
     .specialty
 
     .credentials
 
-    .discounts
+      .insurance
+        .certificate
+          margin-top: 5px
+          a
+            color: $blue
 
-    .actions
-      margin-top: 20px
+      .affiliations, .associations, .certifications
+        .tab
+          padding: 0 10px
+
+          div
+            margin: 10px 0
+
+        .dates, .name
+          font-size: 110%
+
+        .url
+          a
+            color: $blue
+
+        label
+          display: block
+
+        .attached_file
+          label
+
+
+    .discounts

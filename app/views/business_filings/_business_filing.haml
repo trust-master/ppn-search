@@ -1,45 +1,45 @@
-%h5= business_filing.display_identifier
+%h5= link_to business_filing.display_identifier, "##{tab_id_for(business_filing, :data)}"
 
-- if business_filing.persisted? and business_filing.fetched?
-
-  .data
-    %table
-      %tbody.parsed
-        - business_filing.attributes_for_detailed_display.each do |key, value|
-          %tr
-            %th= key
-            %td= value.is_a?(String) ? simple_format(value) : (value || '-').to_s
-      - if business_filing.raw_data.present?
-        %tbody.raw
-          - business_filing.raw_data.each do |key, value|
+= tab_for(business_filing, :data) do
+  - if business_filing.persisted? and business_filing.fetched?
+    .data
+      %table
+        %tbody.parsed
+          - business_filing.attributes_for_detailed_display.each do |key, value|
             %tr
               %th= key
-              %td
-                - if value.present?
-                  - case value
-                  - when Hash
-                    %table
-                      %tbody
-                        - value.each do |key, val|
-                          %tr
-                            %th= key
-                            %td= (val || '-').to_s
-                  - when Array
-                    %ul
-                      = list_of value.compact.flatten do |v|
-                        = v.to_s
+              %td= value.is_a?(String) ? simple_format(value) : (value || '-').to_s
+        - if business_filing.raw_data.present?
+          %tbody.raw
+            - business_filing.raw_data.each do |key, value|
+              %tr
+                %th= key
+                %td
+                  - if value.present?
+                    - case value
+                    - when Hash
+                      %table
+                        %tbody
+                          - value.each do |key, val|
+                            %tr
+                              %th= key
+                              %td= (val || '-').to_s
+                    - when Array
+                      %ul
+                        = list_of value.compact.flatten do |v|
+                          = v.to_s
+                    - else
+                      = value.to_s
                   - else
-                    = value.to_s
-                - else
-                  \-
+                    \-
 
-    .meta
-      .last_updated
-        = t('.last_updated')
-        = time_ago_in_words(business_filing.fetched_at)
-      .raw_data_message
-        %span.message= t('.raw_data.message')
-        %a{data: {alternate_text: t('.raw_data.switch_to_parsed')}}= t('.raw_data.switch_to_raw')
+      .meta
+        .last_updated
+          = t('.last_updated')
+          = time_ago_in_words(business_filing.fetched_at)
+        .raw_data_message
+          %span.message= t('.raw_data.message')
+          %a{data: {alternate_text: t('.raw_data.switch_to_parsed')}}= t('.raw_data.switch_to_raw')
 
-- else
-  .no_data= t('.raw_data.no_data')
+  - else
+    .no_data= t('.raw_data.no_data')

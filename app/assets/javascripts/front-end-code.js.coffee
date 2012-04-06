@@ -97,14 +97,19 @@ $(document).ready =>
 
     $('#col-a ul.companies .company').click ->
       _this = $(this)
-      $('#company_details').html(_this.find('.details').html()).find('.tabs').tabs()
+      new_element = $('#company_details').html(_this.find('.details').html())
       _this.siblings('.company').removeClass('selected')
       _this.addClass('selected')
+      new_element.find('.tabs').tabs()
+      new_element.find('.accordion').accordion({
+        active: false,
+        collapsible: true,
+        autoHeight: false
+      })
       return false
 
     # $('#col-b ul.nav li a').click ->
     #   $("#company_details").find(".profile, .specialty, .credentials, .discounts").hide()
-    #   # console.log("#company_details .#{$(this).attr('class')}")
     #   $("#company_details .#{$(this).attr('class')}").show()
     #   return false
 

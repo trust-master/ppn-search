@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "support@localhost"
+  default from: "Trust Master <info@trust-master.com>"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:

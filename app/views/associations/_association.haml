@@ -1,9 +1,29 @@
-%p
-  - if association.ended_on.nil?
-    Currently associated with #{association.name}
-  - else
-    Affiliated with #{association.name} from #{association.started_on.to_s}
-    until #{association.ended_on.to_s}.
+%h5= link_to association.display_identifier, "##{tab_id_for(association)}"
 
-%span
-  = link_to 'Delete', [@company, association], method: :delete
+= tab_for(association) do
+
+  - if association.started_on?
+    .dates
+      - if association.ended_on?
+        = t('.dates.past', name: association.name, started: association.started_on, ended: association.ended_on)
+      - else
+        = t('.dates.present', name: association.name, started: association.started_on)
+  - else
+    .name
+      %label= t('.name')
+      = association.name
+
+  - if association.title?
+    .title
+      %label= t('.title')
+      = association.title
+
+  - if association.description?
+    .description
+      %label= t('.description')
+      = association.description
+
+  - if association.url?
+    .url
+      %label= t('.url')
+      = association.url

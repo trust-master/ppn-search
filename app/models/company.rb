@@ -37,7 +37,7 @@ class Company < ActiveRecord::Base
 
     belongs_to :deleted_by_user, class_name: 'User'
 
-    default_scope includes(:locations)
+    # default_scope includes(:locations, :company_categories, :company_service_areas)
 
   ### Nested Attributes
 
@@ -94,6 +94,8 @@ class Company < ActiveRecord::Base
     mount_uploader :insurance_certificate, CertificateUploader
 
   ### Instance Methods
+    delegate :name, to: :insurance_state, prefix: true
+
     # Show the company name in the URL
     def to_param
       [id, read_attribute(:name).parameterize].join('-')
@@ -113,6 +115,20 @@ class Company < ActiveRecord::Base
     def in_business_since=(string)
       date = Date.new(string.to_i)
       write_attribute(:in_business_since, date)
+    end
+
+    def phone_numbers
+      @phone_numbers or begin
+        numbers = {}
+        numbers[:phone_main]   = phone_main   if phone_main?
+        numbers[:phone_mobile] = phone_mobile if phone_mobile?
+        numbers[:phone_fax]    = phone_fax    if phone_fax
+        @phone_numbers = numbers
+      end
+    end
+
+    def all_licenses
+      self.business_licenses + self.personal_licenses + self.business_filings
     end
 
   ### Class Methods

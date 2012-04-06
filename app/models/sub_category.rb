@@ -1,5 +1,5 @@
 class SubCategory < ActiveRecord::Base
-  default_scope order('sort_order DESC', :id)
+  # default_scope order('sub_categories.sort_order DESC', :id)
 
   belongs_to :category, inverse_of: :sub_categories
   has_many :company_categories, dependent: :destroy

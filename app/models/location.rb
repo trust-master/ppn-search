@@ -14,6 +14,10 @@ class Location < ActiveRecord::Base
   delegate :name, :abbreviation, to: :state, prefix: true
   delegate :name, :abbreviation, to: :country, prefix: true
 
+  def name
+    [city, state_abbreviation].compact.join(', ')
+  end
+
   private
 
     # to ensure that we retain integrity for this association (at least, when it's messed with the normal way)
@@ -23,9 +27,6 @@ class Location < ActiveRecord::Base
       end
     end
 
-    def name
-      [city, state_abbreviation].compact.join(', ')
-    end
 end
 
 
