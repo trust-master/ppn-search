@@ -558,10 +558,10 @@ ALTER SEQUENCE discounts_id_seq OWNED BY discounts.id;
 
 
 --
--- Name: filing_status; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: filing_statuses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE filing_status (
+CREATE TABLE filing_statuses (
     id integer NOT NULL,
     name character varying(255),
     created_at timestamp without time zone NOT NULL,
@@ -585,7 +585,7 @@ CREATE SEQUENCE filing_status_id_seq
 -- Name: filing_status_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE filing_status_id_seq OWNED BY filing_status.id;
+ALTER SEQUENCE filing_status_id_seq OWNED BY filing_statuses.id;
 
 
 --
@@ -620,10 +620,10 @@ ALTER SEQUENCE filing_types_id_seq OWNED BY filing_types.id;
 
 
 --
--- Name: license_status; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: license_statuses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE license_status (
+CREATE TABLE license_statuses (
     id integer NOT NULL,
     name character varying(255),
     created_at timestamp without time zone NOT NULL,
@@ -647,7 +647,7 @@ CREATE SEQUENCE license_status_id_seq
 -- Name: license_status_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE license_status_id_seq OWNED BY license_status.id;
+ALTER SEQUENCE license_status_id_seq OWNED BY license_statuses.id;
 
 
 --
@@ -1107,7 +1107,7 @@ ALTER TABLE discounts ALTER COLUMN id SET DEFAULT nextval('discounts_id_seq'::re
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE filing_status ALTER COLUMN id SET DEFAULT nextval('filing_status_id_seq'::regclass);
+ALTER TABLE filing_statuses ALTER COLUMN id SET DEFAULT nextval('filing_status_id_seq'::regclass);
 
 
 --
@@ -1121,7 +1121,7 @@ ALTER TABLE filing_types ALTER COLUMN id SET DEFAULT nextval('filing_types_id_se
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE license_status ALTER COLUMN id SET DEFAULT nextval('license_status_id_seq'::regclass);
+ALTER TABLE license_statuses ALTER COLUMN id SET DEFAULT nextval('license_status_id_seq'::regclass);
 
 
 --
@@ -1309,7 +1309,7 @@ ALTER TABLE ONLY discounts
 -- Name: filing_status_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY filing_status
+ALTER TABLE ONLY filing_statuses
     ADD CONSTRAINT filing_status_pkey PRIMARY KEY (id);
 
 
@@ -1325,7 +1325,7 @@ ALTER TABLE ONLY filing_types
 -- Name: license_status_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY license_status
+ALTER TABLE ONLY license_statuses
     ADD CONSTRAINT license_status_pkey PRIMARY KEY (id);
 
 
@@ -1654,3 +1654,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120402084108');
 INSERT INTO schema_migrations (version) VALUES ('20120402113423');
 
 INSERT INTO schema_migrations (version) VALUES ('20120403213400');
+
+INSERT INTO schema_migrations (version) VALUES ('20120407163104');
