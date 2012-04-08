@@ -21,7 +21,8 @@ class SearchController < InheritedResources::Base
     if params[:search]
       @companies ||= end_of_association_chain
                       .accessible_by(current_ability)
-                      .metasearch(params[:search])
+                      .metasearch(params[:search]).relation
+                      .uniq(true)
                       .page(params[:page])
     else
       nil

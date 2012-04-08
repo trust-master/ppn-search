@@ -43,7 +43,7 @@
           .search
             = form_tag(search_index_path, method: :get)  do
               %fieldset
-                %input{type: :search, name: :name}
+                %input{type: :search, name: 'search[any_text_field_contains]', value: params['search'].try(:[], 'any_text_field_contains')}
                 %input{type: :submit}
 
         %nav.main-nav
@@ -53,7 +53,7 @@
                 = main.nav_link :admin, admin_dashboard_path
               = main.nav_link :code_of_conduct, '/code_of_conduct'
               = main.nav_link :core_values, '/core_values'
-              = main.nav_link :search_ppn, search_index_path, proc { controller.controller_name == 'companies' }
+              = main.nav_link :search_ppn, search_index_path, proc { controller.controller_name == 'search' }
             - else
               = main.nav_link :login, login_path
 

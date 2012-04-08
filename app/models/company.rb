@@ -99,6 +99,7 @@ class Company < ActiveRecord::Base
       where(id: ids.uniq)
     }
     search_methods :any_text_field_contains
+
   ### Instance Methods
     delegate :name, to: :insurance_state, prefix: true
 
