@@ -9,9 +9,9 @@ class Company < ActiveRecord::Base
       company.has_many :associations
       company.has_many :certifications
 
-      company.has_many :discounts
+      company.has_many :discounts,             include: :type
 
-      company.has_many :locations, dependent: :destroy, include: [:state, :country]
+      company.has_many :locations,             include: [:state, :country]
 
       company.has_many :company_categories,    include: {sub_category: :category}
       company.has_many :company_service_areas, include: {service_area: :market}
@@ -21,8 +21,8 @@ class Company < ActiveRecord::Base
       company.has_many :sub_categories, through: :company_categories
       company.has_many :categories,     through: :sub_categories
 
-      company.has_many :service_areas,  through: :company_service_areas
-      company.has_many :markets,        through: :service_areas
+      company.has_many :service_areas,  through: :company_service_areas, include: :market
+      company.has_many :markets,        through: :service_areas, include: :service_areas
     end
 
     with_options dependent: :nullify do |company|

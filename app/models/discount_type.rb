@@ -1,5 +1,5 @@
 class DiscountType < ActiveRecord::Base
-  default_scope order('sort_order DESC', :id)
+  # default_scope order('sort_order DESC', :id)
 
   has_many :discounts, foreign_key: :type_id, dependent: :destroy
   has_many :companies, :through => :discounts

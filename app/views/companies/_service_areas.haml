@@ -1,6 +1,6 @@
 %ul#markets_selection
   = simple_fields_for :market_selection do |m|
-    = m.input :add_market, collection: @markets.keys, value_method: :id, label_method: :name
+    = m.input :add_market, collection: @markets.keys
 
 - @markets.each_pair do |market, company_service_areas|
   %div[market]{hidden_if(company_service_areas.all?(&:new_record?))}

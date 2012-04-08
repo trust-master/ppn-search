@@ -2,7 +2,7 @@ module CompaniesFilters
   class SetUpMarkets
     def self.filter(controller)
       # REFACTOR: !!
-      return unless controller.params[:section] == 'service' or controller.params[:section].nil?
+      # return unless controller.params[:section] == 'service' or controller.params[:section].nil?
 
       controller.markets = controller.company.company_service_areas.includes(service_area: :market).group_by(&:market)
       service_areas = ServiceArea.includes(:market)
@@ -21,7 +21,7 @@ module CompaniesFilters
 
   class SetUpCategories
     def self.filter(controller)
-      return unless controller.params[:section] == 'service' or controller.params[:section].nil?
+      # return unless controller.params[:section] == 'service' or controller.params[:section].nil?
 
       controller.categories = controller.company.company_categories.includes(sub_category: :category).group_by(&:category)
       sub_categories = SubCategory.includes(:category)

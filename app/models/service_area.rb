@@ -1,5 +1,5 @@
 class ServiceArea < ActiveRecord::Base
-  default_scope order('service_areas.sort_order DESC', :id)
+  # default_scope order('service_areas.sort_order DESC', :id)
 
   belongs_to :market, inverse_of: :service_areas
   has_many :company_service_areas, dependent: :destroy

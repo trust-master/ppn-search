@@ -1,7 +1,8 @@
 ActiveAdmin.register Company do
   menu priority: 1
 
-  filter :name
+  # filter :any_text_field_contains
+  # filter :company_categories_sub_category_id, as: :select, collection: proc { SubCategory.includes(:category).all }, member_label: proc { |c| [c.category_name, c.name].join(' / ') }
 
   scope :all, :default => true
 
@@ -92,13 +93,16 @@ ActiveAdmin.register Company do
     attr_accessor :company, :markets, :categories
     before_filter ::CompaniesFilters::SetUpMarkets, ::CompaniesFilters::SetUpCategories, only: %w[new edit]
 
-    def scoped_collection
-      scope = end_of_association_chain.accessible_by(current_ability)
-      scope = CompanySearch.new(params[:name], params[:sub_category], scope)
-      # scope = scope.includes(locations: [{state: :country}, :country]) if scope.any?
-
-      return scope
-    end
+    # def scoped_collection
+    #   if params[:search]
+    #     @companies ||= end_of_association_chain
+    #                     .metasearch(params[:search]).relation
+    #                     .uniq(true)
+    #                     .page(params[:page])
+    #   else
+    #     nil
+    #   end
+    # end
   end
 end
 
