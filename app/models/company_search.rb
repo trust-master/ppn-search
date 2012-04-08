@@ -4,21 +4,6 @@ class CompanySearch < ActiveRecord::Base
   belongs_to :company
   belongs_to :searchable, polymorphic: true
 
-  def self.new(query = nil, sub_category_id = nil, scope = Company.scoped)
-    return scope if query.blank? and sub_category_id.blank?
-    ids = []
-    ids << self.search(query).pluck(:company_id) unless query.blank?
-    ids << CompanyCategory.where(sub_category_id: sub_category_id).pluck(:company_id) unless sub_category_id.blank?
-
-    if ids.many?
-      ids = ids.first & ids.last # replace this with an iterator if you add more facets
-    else
-      ids = ids.first
-    end
-
-    return scope.where(id: ids.uniq)
-  end
-
   # Search records are never modified
   def readonly?; true; end
 

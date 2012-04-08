@@ -10,7 +10,7 @@
 //= require jquery.formalize
 //= require jquery.timeago
 //= require jquery.simple_scroll_to
-//= require chosen-jquery
+//= require chosen.jquery.min
 //= require unsorted
 //= require front-end-code
 // require_tree ../../../vendor/assets

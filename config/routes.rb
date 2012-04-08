@@ -4,7 +4,9 @@ ServiceProviderPortal::Application.routes.draw do
                                                    # when migrating (so there aren't `relation
                                                    # "categories" does not exist` errors)
 
-  resources :companies do
+  resources :search, only: :index
+
+  resources :companies, only: [:show, :edit, :update] do
     resources :alerts
     resources :discounts
 
@@ -13,7 +15,6 @@ ServiceProviderPortal::Application.routes.draw do
     resources :administrators, path: 'users', controller: :users
   end
 
-  # resource  :profile, only: [:show, :edit, :update]
   resource  :account, only: [:show, :edit, :update]
 
   resources :password_resets, only: [:new, :create, :show, :update],
@@ -32,7 +33,7 @@ ServiceProviderPortal::Application.routes.draw do
     get 'twitter',  to: redirect('http://twitter.com/#!/TrustMaster1')
     get 'facebook', to: redirect('http://www.facebook.com/pages/Trust-Master/324176494311640')
   end
-  root :to => 'companies#index'
+  root :to => 'search#index'
 end
 #== Route Map
 # Generated on 02 Apr 2012 17:07

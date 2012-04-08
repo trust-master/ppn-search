@@ -1,13 +1,10 @@
 $(document).ready =>
-  $('#sub_category').attr('multiple', true).chosen()
-  $('.input.select select, .input.grouped_select select').chosen()
-  # @dropdownMenu.init() # don't do this, for now... CSS should be plenty
-  # currentDateValue.init()
+  $('.input.select select, .input.grouped_select select').chosen({include_group_label_in_selected: true})
+
   @popup.init()
-  # deactivateModal.init()
-  # cf = new CustomFormElements()
-  @removeLinks.init()
   @companyForm.init() if $('#content').hasClass('companies')
+  @searchPage.init()  if $('#content').hasClass('search')
+  @removeLinks.init()
 
   $("input[type='checkbox']").button()
   $('time.timeago').timeago()
@@ -94,6 +91,9 @@ $(document).ready =>
       new_text = $(this).data('alternate_text')
       $(this).data('alternate_text', $(this).text())
       $(this).text(new_text)
+
+@searchPage =
+  init: ->
 
     $('#col-a ul.companies .company').click ->
       _this = $(this)

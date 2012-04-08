@@ -1,5 +1,6 @@
 class Company < ActiveRecord::Base
   attr_accessor :current_sections
+  paginates_per 5
 
   ### Associations
 
@@ -36,8 +37,6 @@ class Company < ActiveRecord::Base
     belongs_to :insurance_state, class_name: 'State'
 
     belongs_to :deleted_by_user, class_name: 'User'
-
-    # default_scope includes(:locations, :company_categories, :company_service_areas)
 
   ### Nested Attributes
 
@@ -93,6 +92,13 @@ class Company < ActiveRecord::Base
     # mount the certificate carrierwave uploader on the insurance_certificate column
     mount_uploader :insurance_certificate, CertificateUploader
 
+  ### Scopes
+    # default_scope includes(:locations, :company_categories, :company_service_areas)
+    scope :any_text_field_contains, lambda { |query|
+      ids = CompanySearch.search(query).pluck(:company_id)
+      where(id: ids.uniq)
+    }
+    search_methods :any_text_field_contains
   ### Instance Methods
     delegate :name, to: :insurance_state, prefix: true
 

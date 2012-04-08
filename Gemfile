@@ -33,7 +33,7 @@ gem 'responders'
 gem 'simple_form'
 
 # Pagination
-gem 'kaminari'
+gem 'kaminari', git: 'https://github.com/rtlong/kaminari.git'
 
 # Connect to CopyCopter for I18n data
 # gem 'copycopter_client' # disabled for the time-being... screwing things up
@@ -100,7 +100,7 @@ group :assets do
   # Inject jQuery into the asset pipeline
   gem 'jquery-rails'
   gem 'formalize-rails'
-  gem 'chosen-rails'
+  # gem 'chosen-rails'
 
   gem 'bourbon'
 end

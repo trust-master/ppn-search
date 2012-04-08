@@ -4,9 +4,10 @@ end
 
 
 
+
 # == Schema Information
 #
-# Table name: filing_status
+# Table name: filing_statuses
 #
 #  id         :integer         not null, primary key
 #  name       :string(255)

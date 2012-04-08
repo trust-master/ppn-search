@@ -35,6 +35,15 @@ GIT
       sass (>= 3.1.0)
 
 GIT
+  remote: https://github.com/rtlong/kaminari.git
+  revision: 8fedb4f77d76d047833dce82c0f6919f0f9a7a79
+  specs:
+    kaminari (0.13.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      railties (>= 3.0.0)
+
+GIT
   remote: https://github.com/rtlong/resque.git
   revision: c545550cdf414fe7565eb2585ff7e121bf2ea35d
   specs:
@@ -96,9 +105,6 @@ GEM
       activesupport (>= 3.2.0)
     childprocess (0.3.1)
       ffi (~> 1.0.6)
-    chosen-rails (0.9.8)
-      railties (~> 3.0)
-      thor (~> 0.14)
     coderay (1.0.5)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -192,10 +198,6 @@ GEM
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
     json (1.6.6)
-    kaminari (0.13.0)
-      actionpack (>= 3.0.0)
-      activesupport (>= 3.0.0)
-      railties (>= 3.0.0)
     launchy (2.1.0)
       addressable (~> 2.2.6)
     letter_opener (0.0.2)
@@ -387,7 +389,6 @@ DEPENDENCIES
   cancan
   capybara
   carrierwave
-  chosen-rails
   coffee-rails
   cucumber
   cucumber-rails
@@ -411,7 +412,7 @@ DEPENDENCIES
   has_scope
   inherited_resources
   jquery-rails
-  kaminari
+  kaminari!
   launchy
   letter_opener
   libnotify

@@ -20,6 +20,13 @@ SimpleForm.setup do |config|
     w.use :input
   end
 
+  config.wrappers :search, default_options.merge(tag: :div) do |w|
+    w.use :html5
+    w.use :placeholder
+
+    w.use :input
+  end
+
   # Method used to tidy up errors.
   # config.error_method = :first
 

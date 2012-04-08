@@ -41,7 +41,7 @@
                 = menu.nav_link :logout, logout_path
             .clear
           .search
-            = form_tag(companies_path, method: :get)  do
+            = form_tag(search_index_path, method: :get)  do
               %fieldset
                 %input{type: :search, name: :name}
                 %input{type: :submit}
@@ -53,7 +53,7 @@
                 = main.nav_link :admin, admin_dashboard_path
               = main.nav_link :code_of_conduct, '/code_of_conduct'
               = main.nav_link :core_values, '/core_values'
-              = main.nav_link :search_ppn, companies_path, proc { controller.controller_name == 'companies' }
+              = main.nav_link :search_ppn, search_index_path, proc { controller.controller_name == 'companies' }
             - else
               = main.nav_link :login, login_path
 

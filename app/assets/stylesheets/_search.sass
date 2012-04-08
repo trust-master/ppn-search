@@ -2,7 +2,7 @@
 // .wrapper-outer #wrapper #content
 
 #col-a
-  .search
+  #company_search
     margin-bottom: 20px
     padding: 15px 15px 12px
     background-color: white
@@ -14,7 +14,7 @@
 
       input
         &[type="search"]
-          @include border-radius(16px)
+          // @include border-radius(16px)
           border: 1px solid $light-grey
           float: left
           background: none
@@ -29,16 +29,12 @@
           @include button(shiny, $blue)
           padding: 6px 17px 5px
           float: right
-          // text-indent: -9999px
-          // @include inline-block
-          // border: none
-          // margin-left: 2px
-          // line-height: 75px
 
     .filter
-      #sub_category_chzn
+      .chzn-container-multi
         ul.chzn-choices
           border: 1px solid $light-grey
+          background: inherit
 
           .search-field
             input
@@ -46,45 +42,40 @@
       select
         width: 100%
 
+  .pagination
+    float: right
+    overflow: hidden
+
+    span
+      margin: 0 3px
+      line-height: 11px
+
+      &.next, &.prev
+        a
+          text-indent: -9999px
+          @include inline-block
+
+      &.next a
+        @include pagination-next
+
+      &.prev a
+        @include pagination-prev
+
   .results
     background-color: white
     border: 1px solid $light-grey
     margin-bottom: 10px
 
-    h4, .pagination
-      margin: 13px 0 12px
+    .pagination
+      margin: 15px 10px 12px 0
 
     h4
       float: left
       color: $blue
+      margin: 13px 0 12px 10px
       margin-left: 10px
 
-    .pagination
-      float: right
-      overflow: hidden
-      margin-right: 10px
-      padding-top: 2px
 
-      // .bottom
-      //   margin-right: 0
-
-      span
-        // float: left
-        margin: 0 7px
-        line-height: 12px
-
-        &.next, &.prev
-          a
-            width: 10px
-            height: 16px
-            text-indent: -9999px
-            @include inline-block
-
-        &.next a
-          @include pagination-next
-
-        &.prev a
-          @include pagination-prev
 
     ul.companies
       border-top: 1px solid $light-grey
@@ -136,6 +127,14 @@
 
         .details
           display: none
+
+  .footer
+    padding: 0
+
+    .pagination
+      margin: 0
+    .search_summary
+
 
 #col-b
   /*

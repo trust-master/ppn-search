@@ -1,5 +1,5 @@
 ActiveAdmin.register DiscountType do
-  menu parent: 'Enumerables'
+  menu label: 'Discounts'
 
   before_filter { @skip_sidebar = true }
 

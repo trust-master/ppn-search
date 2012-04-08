@@ -1,0 +1,22 @@
+- title t('.title')
+- content_for :content_div_class, 'col-2-wide'
+
+#col-a
+  = render 'form'
+
+  .results
+    %h4= t('.title')
+
+    = paginate collection
+
+    %ul.companies
+      = render collection
+
+  .footer
+    = paginate collection
+    .search_summary= page_entries_info(collection, entry_name: Company.model_name.human)
+
+
+#col-b
+  #company_details
+    This will be replaced with a search result

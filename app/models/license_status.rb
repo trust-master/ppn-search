@@ -5,9 +5,10 @@ end
 
 
 
+
 # == Schema Information
 #
-# Table name: license_status
+# Table name: license_statuses
 #
 #  id         :integer         not null, primary key
 #  name       :string(255)

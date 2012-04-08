@@ -47,11 +47,14 @@ en:
       "true":   Partial
       "false":  All
 
+  search:
+    index:
+      title: Provider Search
+    search:
+      title: Search Results
   companies:
     show:
       title: '%{company_name}'
-    index:
-      title: Provider Search
     edit:
       title: 'Editing %{company_name}:'
 
@@ -196,8 +199,6 @@ en:
       design: Design Your Discount
       location: Location
       scheduling: Scheduling
-
-
   business_licenses:
     business_license: &license
       last_updated: Last updated
@@ -214,32 +215,30 @@ en:
       raw_data:
         <<: *license_raw_data
         no_data: Details have not yet been obtained for this business filing
-
   affiliations:
     affiliation:
+      name: "Name:"
       title: "Title:"
       description: "Description:"
       url: "Link:"
       dates:
         present: "Have been affiliated with %{name} since %{started}."
         past: "Was affiliated with %{name} from %{started} until %{ended}."
-
   associations:
     association:
+      name: "Name:"
       title: "Title:"
       description: "Description:"
       url: "Link:"
       dates:
         present: "Have been associated with %{name} since %{started}."
         past: "Was associated with %{name} from %{started} until %{ended}."
-
   certifications:
     certification:
       name: "Name:"
       title: "Title:"
       description: "Description:"
       certificate: "Certificate:"
-
   sessions:
     new:
       title: Log In to Trust Master
@@ -252,7 +251,6 @@ en:
       why: Why are we making you log in again? More text that is warm and friendly.
     destroy:
       success: You've been logged out!
-
   password_resets:
     new:
       title: Reset your Password
@@ -277,7 +275,6 @@ en:
     success:
       title: Check Your Email!
       body: Please check your email for the link to reset your password.
-
   alerts:
     index:
       title: "%{company_name}: Alerts"
@@ -285,7 +282,6 @@ en:
       title: "%{company_name}: Create Alert"
     edit:
       title: "%{company_name}: Edit Alert"
-
   users:
     fieldsets:
       status:  Status
@@ -314,7 +310,6 @@ en:
         at least one number and at least one non-alphanumeric character, use no elements from your
         email address or your name or that of your company.
       error: 'Invalid password!'
-
   accounts:
     basic:
       title: Basic Info
@@ -328,8 +323,6 @@ en:
       password:
         header: Password
         instructions: This section is not yet operational
-
-
 
   # Built-in Rails helpers will look at these
   helpers:
@@ -346,7 +339,8 @@ en:
         create: Login
       password_reset_request:
         create: Submit
-
+      search:
+        create: Search
   actions:
     remove:   Remove
     delete:   Delete
@@ -355,7 +349,6 @@ en:
     expand:   Expand
     edit:     Edit
     download: Download
-
   activerecord:
     models:
       user:
@@ -464,17 +457,17 @@ en:
         insurance_valid_until:    Expires
         deleted_by_user:          Deleted By
       location:
-        street: Street Address
+        street:  Street Address
         street2: Apt, etc.
       market:
       service_area:
       category:
       sub_category:
       personal_license: &personal_license_attributes
-        type: License Type
-        number: License Number
-        status: License Status
-        name: Individual Name
+        type:    License Type
+        number:  License Number
+        status:  License Status
+        name:    Individual Name
         address: Registered Address
       business_license:
         <<: *personal_license_attributes
@@ -485,14 +478,13 @@ en:
       affiliation:
       association:
       discount:
-        type: Discount Content
+        type:  Discount Content
         image: Attached File
       password_reset:
       password_reset_request:
       session:
       state:
       city:
-
   errors: &errors
     # format: '%{attribute} %{message}'
     messages:
@@ -533,59 +525,56 @@ en:
     #   header:
     #     one: 1 error prohibited this %{model} from being saved
     #     other: '%{count} errors prohibited this %{model} from being saved'
-
   # we can also include attributes without scoping them to a particular model, as a fallback:
   attributes:
-    about: About
-    address: Address
-    application_number: Application Number
-    city: City
-    continuing_education: C. E. Requirements
-    created_at: Created At
-    description: Description
-    doing_business_as: Doing Business As
-    effective_on: Effective On
-    email: Email Address
-    ended_on: End Date
-    end_date: End Date
-    enforcement_action: Enforcement Action
-    expires_on: Expires On
-    fetched_at: Fetched At
-    general_info: General Information
-    issued_on: Issued On
-    issuing_state: Issuing State
-    name: Name
-    number: Number
-    password: Password
-    password_confirmation: Confirm
-    phone_fax: Fax Number
-    phone_main: Primary Phone Number
-    phone_mobile: Mobile Phone Number
-    phone_number: Phone Number
-    printed_on: Printed On
-    raw_data: Raw Data
+    about:                             About
+    address:                           Address
+    application_number:                Application Number
+    city:                              City
+    continuing_education:              C. E. Requirements
+    created_at:                        Created At
+    description:                       Description
+    doing_business_as:                 Doing Business As
+    effective_on:                      Effective On
+    email:                             Email Address
+    ended_on:                          End Date
+    end_date:                          End Date
+    enforcement_action:                Enforcement Action
+    expires_on:                        Expires On
+    fetched_at:                        Fetched At
+    general_info:                      General Information
+    issued_on:                         Issued On
+    issuing_state:                     Issuing State
+    name:                              Name
+    number:                            Number
+    password:                          Password
+    password_confirmation:             Confirm
+    phone_fax:                         Fax Number
+    phone_main:                        Primary Phone Number
+    phone_mobile:                      Mobile Phone Number
+    phone_number:                      Phone Number
+    printed_on:                        Printed On
+    raw_data:                          Raw Data
     responsible_person_license_number: 'License # of Resp. Person'
-    started_on: Start Date
-    start_date: Start Date
-    state: State
-    status: Status
-    title: Title
-    type: Type
-    updated_at: Updated At
-    url: URL
-    website_url: Website URL
-    zip: ZIP Code
-    visible: Visible?
-    active: Active?
-    service_areas: Regions
-    sub_categories: Sub-Categories
-
+    started_on:                        Start Date
+    start_date:                        Start Date
+    state:                             State
+    status:                            Status
+    title:                             Title
+    type:                              Type
+    updated_at:                        Updated At
+    url:                               URL
+    website_url:                       Website URL
+    zip:                               ZIP Code
+    visible:                           Visible?
+    active:                            Active?
+    service_areas:                     Regions
+    sub_categories:                    Sub-Categories
   enumerize:
     user:
       active:
         "true": Active
         "false": Inactive
-
   simple_form:
     # SimpleForm will check these first, before defaulting to ActiveModel.human
     # labels:
@@ -636,7 +625,9 @@ en:
       # password_reset:
       #   password:
       #   password_confirmation:
-
+      search:
+        any_text_field_contains: Full-text Search
+        company_categories_sub_category_id_in: Categories
   # Stuff for CanCan errors
   unauthorized:
     default: 'You are not authorized to %{action} %{subject}.'
@@ -645,7 +636,6 @@ en:
     #   all: Not authorized to %{action} %{subject}.
     # update:
     #   all:
-
   views:
     pagination:
       first: First
@@ -653,7 +643,6 @@ en:
       previous: Prev
       next: Next
       truncate: '...'
-
   date:
     formats:
       # Use the strftime parameters for formats.
@@ -667,7 +656,6 @@ en:
       - :day
       - :month
       - :year
-
   time:
     formats:
       default: "%a, %d %b %Y %H:%M:%S %z"
@@ -675,11 +663,9 @@ en:
       long: "%B %d, %Y %H:%M"
     am: "am"
     pm: "pm"
-
   faker:
     lorem:
       supplemental: ["andouille", "bacon", "ball", "beef", "belly", "biltong", "boudin", "bresaola", "brisket", "capicola", "chicken", "chop", "chuck", "corned", "cow", "drumstick", "fatback", "filet", "flank", "frankfurter", "ground", "ham", "hamburger", "hock", "jerky", "jowl", "kielbasa", "leberkas", "loin", "meatball", "meatloaf", "mignon", "pancetta", "pastrami", "pig", "pork", "prosciutto", "ribeye", "ribs", "round", "rump", "salami", "sausage", "shank", "shankle", "short", "shoulder", "sirloin", "spare", "speck", "steak", "strip", "swine", "t-bone", "tail", "tenderloin", "tip", "tongue", "tri-tip", "turducken", "turkey", "venison"]
-
   debug:
     routes:
       title: Application Routes Map

@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def new
     # redirect to a usable page, when already logged in.
     if current_user
-      redirect_to companies_path
+      redirect_to search_index_path
     else
       respond_with @session do |format|
         format.html
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
     session[:user_id] = user.id if user
     respond_with @session do |format|
       if user
-        format.html { redirect_to companies_path, notice: t('success', scope: ['sessions.new']) }
+        format.html { redirect_to search_index_path, notice: t('success', scope: ['sessions.new']) }
       else
         format.html { flash.now[:error] = t('failure', scope: ['sessions.new']); render action: "new" }
       end

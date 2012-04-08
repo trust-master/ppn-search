@@ -1,0 +1,6 @@
+= simple_form_for(@search, url: collection_path, method: :get, wrapper: :search) do |form|
+  .search_wrap
+    = form.input :any_text_field_contains, as: :search
+    = form.button :submit
+  .filter
+    = form.input :company_categories_sub_category_id_in, as: :grouped_select, collection: Category.includes(:sub_categories).all, group_method: :sub_categories, skip_hidden_field: true, input_html: { multiple: true }

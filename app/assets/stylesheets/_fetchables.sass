@@ -1,0 +1,79 @@
+.personal_license_data, .business_license_data, .business_filing_data
+  .data
+    margin: 15px auto 0
+    width: 100%
+    border: none
+    padding: 0
+
+    table
+      margin: 0
+      width: 100%
+      border: 1px solid $grey
+
+      tbody
+        width: 100%
+
+      tbody.parsed
+
+      tbody.raw
+        display: none
+
+        tr:nth-of-type(odd)
+          background-color: #FFDDDF
+
+      tr
+        clear: both
+        &:nth-of-type(odd)
+          background-color: #e3e3e3
+
+        th
+          width: 175px
+          font-weight: bold
+          text-align: left
+          border-right: 1px solid #ccc
+
+        td, th
+          padding: 1px 4px
+
+        td
+          text-align: left
+
+          p
+            margin: 0
+
+          ul,ol
+            list-style: inside
+
+            li
+              margin: 0 0 0 4px
+
+          table
+            margin: 4px 0
+            border: 1px solid $grey
+            width: 100%
+
+            tbody
+              display: inherit
+
+            th
+              font-weight: bold
+              width: auto
+
+            tr
+              background-color: $white
+
+              &:nth-of-type(odd)
+                background-color: lighten($blue, 45%) !important
+
+    .meta
+      margin-top: 5px
+      font-size: 80%
+      .last_updated
+      .raw_data_message
+
+      a
+        text-decoration: underline
+
+  &.ui-accordion-content
+    padding: 10px
+    width: auto

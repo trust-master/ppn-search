@@ -12,9 +12,11 @@
 @import attached_file
 @import flash
 @import action_links
+@import fetchables
 
 &.index
   @import indices
+  @import tables
 
 &.users
   @import profile
@@ -22,8 +24,8 @@
 
 &.companies
   @import companies
-  &.index
-    @import search
+&.search
+  @import search
 
 &.discounts
   @import discounts
@@ -33,9 +35,6 @@
 
 &.sessions
   @import sessions
-
-&.index
-  @import tables
 
 &.debug
   @import debug
