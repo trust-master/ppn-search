@@ -15,7 +15,7 @@ class UserAuthToken < ActiveRecord::Base
 
   # Do not allow a record to change these columns after creation
   attr_readonly :token, :user_id, :created_by_ip
-  attr_accessible :created_by_ip
+  attr_accessible :created_by_ip, as: [:administrator, :company_admin, :user, :default]
 
   validates :token, presence: true, uniqueness: true
   validates :user, presence: true #, associated: true
