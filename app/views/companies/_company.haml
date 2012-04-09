@@ -61,7 +61,7 @@
                   %label= Company.human_attribute_name(type) << ?:
                   %span= number
 
-        - if company.website_url? or company.email_address?
+        - if company.website_url? or company.email?
           %section.online
             %h3= t('.details.sections.online')
             - if company.website_url?
