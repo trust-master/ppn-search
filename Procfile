@@ -1,4 +1,6 @@
 web:                bundle exec rails server thin -p $PORT
+web:                bundle exec unicorn -p $PORT -c ./config/unicorn.rb
+
 worker:             bundle exec rake resque:work QUEUE=* VERBOSE=1 INTERVAL=1
 resque_scheduler:   bundle exec rake resque:scheduler VERBOSE=1
 

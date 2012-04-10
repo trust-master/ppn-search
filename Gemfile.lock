@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: https://github.com/rtlong/kaminari.git
-  revision: 8fedb4f77d76d047833dce82c0f6919f0f9a7a79
+  revision: e8bdf8384a55de3389f7279068cd7fcedbd5526d
   specs:
     kaminari (0.13.0)
       actionpack (>= 3.0.0)
@@ -201,6 +201,7 @@ GEM
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
     json (1.6.6)
+    kgio (2.7.4)
     launchy (2.1.0)
       addressable (~> 2.2.6)
     letter_opener (0.0.2)
@@ -283,6 +284,7 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (~> 0.14.6)
+    raindrops (0.8.0)
     rake (0.9.2.2)
     rb-inotify (0.8.8)
       ffi (>= 0.5.0)
@@ -369,6 +371,10 @@ GEM
     unf (0.0.5)
       unf_ext
     unf_ext (0.0.4)
+    unicorn (4.2.1)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
     vegas (0.1.11)
       rack (>= 1.0.0)
     webrobots (0.0.13)
@@ -450,3 +456,4 @@ DEPENDENCIES
   texticle
   thin
   uglifier
+  unicorn

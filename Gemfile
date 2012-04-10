@@ -40,7 +40,7 @@ gem 'kaminari', git: 'https://github.com/rtlong/kaminari.git'
 # gem 'copycopter_client' # disabled for the time-being... screwing things up
 
 # Use thin instead of Webrick
-# gem 'unicorn'
+gem 'unicorn', require: false
 gem 'thin', require: false
 
 # Texticle enables easy access to native PGSQL full-text searching, also see
