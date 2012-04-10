@@ -22,4 +22,17 @@
 
 #col-b
   #company_details
-    This will be replaced with a search result
+    - with_options scope: 'search.index' do |idx|
+      .tabs
+        %ul.nav.tab_bar
+          = list_of [:profile, :capabilities, :credentials, :discounts] do |label|
+            = link_to idx.t("tabs.#{label}.name"), "##{label}"
+          %li= link_to idx.t("tabs.reviews.name"), "#reviews", class: 'disabled'
+
+        .tab#profile= idx.t('tabs.profile.content')
+        .tab#capabilities= idx.t('tabs.capabilities.content')
+        .tab#credentials= idx.t('tabs.credentials.content')
+        .tab#discounts= idx.t('tabs.discounts.content')
+        .tab#reviews= idx.t('tabs.reviews.content')
+
+        .tab#initial= idx.t('tabs.initial.content')
