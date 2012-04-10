@@ -667,8 +667,8 @@ en:
       #   password:
       #   password_confirmation:
       search:
-        any_text_field_contains: Full-text Search
-        company_categories_sub_category_id_in: Categories
+        any_text_field_contains: Enter a company name
+        company_categories_sub_category_id_in: Enter a type of product or service
   # Stuff for CanCan errors
   unauthorized:
     default: 'You are not authorized to %{action} %{subject}.'
