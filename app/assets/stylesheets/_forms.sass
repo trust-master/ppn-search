@@ -1,11 +1,42 @@
 // this file is interpreted in the context of
 // .wrapper-outer #wrapper #content
 
+
+
+#{$all-text-inputs}
+  width: 274px
+  border: 1px solid $light-grey
+  padding: 4px 5px
+  vertical-align: top
+
+select
+  width: 283px
+  margin-left: -1px
+
+textarea
+  border: 1px solid $light-grey
+  width: 280px
+  height: 70px
+
+input
+  &[type="checkbox"]
+    width: auto
+
 fieldset
   margin: 20px 10px
-  padding: 15px 10px 10px
+  padding: 15px 10px
   border-bottom: 1px solid $light-grey
   font-size: 13px
+
+  fieldset
+    legend
+      h3
+        text-transform: none
+      .popup
+        .hint
+          margin-right: -10px
+    &:last-child
+      border-bottom: none
 
   &#buttons
     text-align: center
@@ -37,12 +68,30 @@ fieldset
 
   legend
     margin-top: 0
+    @include clearfix
+    width: 100%
 
-    h3
+    h3.floated
+      float: left
+
+    .popup
+      text-align: right
+      display: inherit
+      position: inherit
+
+      .content
+        text-align: left
+        width: auto
+        position: inherit
+        margin: 10px 0 0
+        float: none
+
+
 
   .instructions
     clear: both
     padding-left: 10px
+    margin: 0 0 20px
 
   li.input
     margin: 15px 0
@@ -57,25 +106,6 @@ fieldset
       select
         width: auto
 
-    #{$all-text-inputs}
-      width: 274px
-      border: 1px solid $light-grey
-      padding: 4px 5px
-      vertical-align: top
-
-    select
-      width: 283px
-      margin-left: -1px
-
-    textarea
-      border: 1px solid $light-grey
-      width: 280px
-      height: 70px
-
-    input
-      &[type="checkbox"]
-        width: auto
-
     span.error
       margin-left: 10px
 
@@ -83,9 +113,13 @@ fieldset
     .more-info, .hint
       font-size: 11px
       font-style: italic
-      @include inline-block
-      margin-left: 10px
-      width: 185px
+      // @include inline-block
+      // margin-left: 10px
+      // width: 185px
+      display: block
+      margin-left: 155px
+      width: 290px
+      color: #555
 
     & > label
       width: 140px

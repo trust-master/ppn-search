@@ -160,33 +160,49 @@
     header
       overflow: hidden
       @include clearfix
+      margin: 20px 0
 
       h2, .in_business_since
         float: left
-        margin-bottom: 10px
-
+      h2
+        margin-bottom: 0
 
       .in_business_since
         font-size: 11px
         font-weight: normal
         text-transform: capitalize
-        margin: 6px 0 0 15px
+        margin: 6px 0 10px 15px
 
       .actions
         float: right
 
-    .ui-tabs
+    & > .tabs.ui-tabs
       border: none
       padding: 0
+      background: none
 
-    .profile, .specialty, .credentials, .discounts
-      // display: none
-      // clear: left
-      // margin-top: 5px
-      padding: 20px 0
-      // border-top: 1px solid $grey
+      .ui-tabs-nav
+        border: none
+        background: none
 
-      //
+        li
+          padding: 0
+          margin: 0 5px 5px 0
+          @include border-radius(0)
+
+          &:last-of-type
+            margin-right: 0
+
+      .ui-tabs-panel
+        padding: 0
+        margin: 20px 0
+
+    // .profile, .capabilities, .credentials, .discounts, .reviews
+    .tab
+      padding: 0
+      margin: 20px 0
+
+      .online, .website, .url, .email
         a
           color: $blue
 
@@ -244,7 +260,7 @@
           width: 220px
           margin: 0 10px 10px 0
 
-    .specialty
+    .capabilities
 
     .credentials
 
@@ -276,3 +292,8 @@
 
 
     .discounts
+
+      label
+        display: block
+
+    .reviews

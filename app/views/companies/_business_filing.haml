@@ -1,7 +1,3 @@
-.popup
-  %a.hint= t(:what_is_this?)
-  .content= t('.what_is_this?')
-
 = form.simple_fields_for :business_filings do |business_filing|
   %div[business_filing.object]
     = business_filing.hidden_field :_destroy, class: :destroy

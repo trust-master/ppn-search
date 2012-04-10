@@ -43,7 +43,7 @@
           .search
             = form_tag(search_index_path, method: :get)  do
               %fieldset
-                %input{type: :search, name: 'search[any_text_field_contains]', value: params['search'].try(:[], 'any_text_field_contains')}
+                %input{type: :search, name: 'search[any_text_field_contains]', placeholder: 'Search', value: params['search'].try(:[], 'any_text_field_contains')}
                 %input{type: :submit}
 
         %nav.main-nav
@@ -51,30 +51,29 @@
             - if current_user
               - if current_user.is_a? Administrator
                 = main.nav_link :admin, admin_dashboard_path
-              = main.nav_link :code_of_conduct, '/code_of_conduct'
-              = main.nav_link :core_values, '/core_values'
+              = main.nav_link :code_of_conduct, '/' # '/code_of_conduct'
+              = main.nav_link :core_values, '/' # '/core_values'
               = main.nav_link :search_ppn, search_index_path, proc { controller.controller_name == 'search' }
             - else
               = main.nav_link :login, login_path
 
       #content{class: [content_for(:content_div_class).presence || 'col-2', page_class] }
 
-        - if show_title?
-          %h2= page_title
-
         - flash.each do |bucket, messages|
           - Array.wrap(messages).each do |msg|
             .flash{ class: bucket }= msg
 
+        - if show_title?
+          %h2= page_title
+
         = content_for?(:content) ? yield(:content) : yield
 
         .clear
-
       %footer#footer
         .footer-links
           = nav_for :footer do |footer|
             - [:terms, :privacy_policy, :about, :contact].each do |page_id|
-              = footer.nav_link page_id, page_id.to_s.prepend('/')
+              = footer.nav_link page_id, '/' #page_id.to_s.prepend('/')
 
         .social-media
           %h5= t(:follow_us_on)
@@ -90,7 +89,3 @@
           = image_tag asset_path('trust-logos.png'), alt: 'Verisign'
 
     #copyright &copy; #{Time.now.year} #{t('copyright')}
-
-    #development
-      %h2 Development Stuff
-      = render 'disqus'

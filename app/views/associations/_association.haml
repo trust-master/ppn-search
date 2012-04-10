@@ -8,19 +8,9 @@
         = t('.dates.past', name: association.name, started: association.started_on, ended: association.ended_on)
       - else
         = t('.dates.present', name: association.name, started: association.started_on)
-  - else
-    .name
-      %label= t('.name')
-      = association.name
-
-  - if association.title?
-    .title
-      %label= t('.title')
-      = association.title
 
   - if association.description?
     .description
-      %label= t('.description')
       = association.description
 
   - if association.url?

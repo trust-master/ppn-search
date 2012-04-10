@@ -15,6 +15,11 @@
 
 form
   fieldset
+    clear: both
+
+    .actions
+      margin-top: 0
+
     &#service_categories
       div.category
         margin: 15px 0
@@ -42,14 +47,15 @@ form
         padding-top: 20px
         border-bottom: 1px solid #ddd
 
-    &#locations
-      ul.location
-        border-bottom: 1px solid #ddd
-        margin: 15px 0 0 0
+    //
+      &#locations
+        ul.location
+          border-bottom: 1px solid #ddd
+          margin: 15px 0 0 0
 
-        a.remove
-          float: right
-          margin: 0
+          a.remove
+            float: right
+            margin: 0
 
     &#service_areas
       ul#markets_selection
@@ -98,49 +104,36 @@ form
 
 
     &#licenses
-      #business_licenses, #personal_licenses
-        margin: 20px 0
+      padding-bottom: 0
 
-        // float the header so the .popup "What is this?" link shares its line
-        h4
-          float: left
-          margin: 0 20px 20px 0
+      #business_licenses, #personal_licenses
+        margin: 0 0 20px
 
       #personal_licenses
-        border-top: 1px solid $grey
-        padding-top: 20px
-        margin-bottom: 0
+        margin: 0
 
-    &#licenses, &#business_filing
-      .actions
-        float: right
-
-        a.remove
-          @include inline-block
-          margin: 0
-
-      .personal_license, .business_license, .business_filing
-        padding: 20px
-        margin: 20px 0
-        border: 1px solid $grey
-        background-color: #f4f4f4
-
-
+    &#locations ul.location,
+    &#personal_licenses > ul.personal_license,
+    &#business_licenses > ul.business_license,
+    &#business_filing > ul.business_filing,
     &#affiliations > ul.affiliation,
     &#associations > ul.association,
     &#certifications > ul.certification
+      clear: both
       border: 1px solid $grey
-      margin: 20px 0
+      margin: 0 0 20px 0
       padding: 10px
       background-color: #f4f4f4
-      /*
-        &:last-of-type
-          border-bottom: none
+
+      h5
+        display: none
 
       .actions
         float: right
         margin: 10px 10px 0 0
 
         a
-          display: block
-          margin: 0
+          @include inline-block
+          margin-left: 10px
+          padding: 0
+

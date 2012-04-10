@@ -17,30 +17,30 @@ en:
       login:           Log In
       search_ppn:      Search Providers
     account: &account_nav
-      basic: Basic Info
-      privacy: Privacy Settings
-      notifications: "Notifications & Alerts"
+      basic:           Basic Info
+      privacy:         Privacy Settings
+      notifications:   "Notifications & Alerts"
     account_links:
       profile:
-        _label:               Profile
-        show:                 View Profile
-        edit:                 Edit Profile
+        _label:        Profile
+        show:          View Profile
+        edit:          Edit Profile
       account:
         <<: *account_nav
-        _label:               Account
-      logout:                 Log Out
+        _label:        Account
+      logout:          Log Out
     footer:
-      terms:          Terms
-      privacy_policy: Privacy Policy
-      about:          About
-      contact:        Contact
+      terms:           Terms
+      privacy_policy:  Privacy Policy
+      about:           About
+      contact:         Contact
     companies:
-      identity:      Company Bio
-      service:       Service Specialty
-      credentials:   Credentials
-      alerts:        Alerts
-      discounts:     Discounts
-      company_users: Company Users
+      identity:        Company Bio
+      service:         Service Specialty
+      credentials:     Credentials
+      alerts:          Alerts
+      discounts:       Discounts
+      company_users:   Company Users
 
   service_areas:
     partial_only:
@@ -48,15 +48,58 @@ en:
       "false":  All
 
   search:
-    index:
+    index:   # Landing page
       title: Provider Search
-    search:
-      title: Search Results
+      secondary_title: "Buyer's Guide"
+      tabs:
+        initial:
+          content: >
+            Only exceptional performance and value earns preferred provider status and acceptance into
+            the Preferred Provider Network. With this competitive spirit comes a true motivation to
+            provide exceptional value and superior service.
+        profile:
+          name: Profile
+          content: >
+            Our network of preferred providers are credentialed, preapproved and carefully vetted by
+            Trust Master Home Managers to share our customer service philosophy and core values.
+        capabilities:
+          name: Capabilities
+          content: >
+            A provider who has been accepted into the Preferred Provider Network has met our
+            stringent qualification standards and is committed to being the best in every aspect of
+            his or her business capabilities.
+        credentials:
+          name: Credentials
+          content: >
+            To assure that your dream team is at your service, our thorough screening process
+            includes confirming and validating important business and trade credentials.
+        discounts:
+          name: Discounts
+          content: >
+            The strength in numbers of our Preferred Provider Network not only fosters a reputation
+            of safety and value, but also gives us the bargaining power to offer real discounts.
+        reviews:
+          name: Reviews
+          content: >
+            Home manager reviews coming soon!
+    search:  # Search results page
+      title: Provider Search
+      secondary_title: "Buyer's Guide"
+      results_count:
+        zero: ""
+        one: "1 result"
+        other: "%{count} results"
   companies:
     show:
       title: '%{company_name}'
     edit:
       title: 'Editing %{company_name}:'
+    identity:
+      title: 'Editing %{company_name}: Identity'
+    service:
+      title: 'Editing %{company_name}: Service Info'
+    credentials:
+      title: 'Editing %{company_name}: Credentials'
 
     # the header titles for all fieldsets related to company forms
     fieldsets:
@@ -74,8 +117,33 @@ en:
         header:           License & Bonding Info
         instructions: >
           Here, you can provide your State license numbers.
+      business_licenses:
+        header:           Business Licenses
+        what_is_this?: >
+          Trust Master requires all Service Providers to provide
+          their License & Bonding info information to validate
+          with the MN Dept of Labor. This helps us to ensure
+          your information is up to date, encourages authenticity
+          and provide customers with the most accurate
+          information about your license status.
+      personal_licenses:
+        header:           Personal Licenses/Certificates
+        what_is_this?: >
+          Trust Master requires all Service Providers to provide
+          their License & Bonding info information to validate
+          with the MN Dept of Labor. This helps us to ensure
+          your information is up to date, encourages authenticity
+          and provide customers with the most accurate
+          information about your license status.
       business_filing:
         header:           Business Status
+        what_is_this?: >
+          Trust Master requires all Service Providers to provide
+          their State License info information to validate with the
+          Secretary of State. This helps us to ensure your
+          information is up to date, encourages authenticity and
+          provide customers with the most accurate information
+          about your business status.
         instructions: >
           Here, you may add your State business filing number. This will help us
           verify that your company is legitimate.
@@ -83,77 +151,20 @@ en:
       associations:       Associations
       certifications:     Certifications
 
-    identity:
-      title: 'Editing %{company_name}: Identity'
-    service:
-      title: 'Editing %{company_name}: Service Info'
-    credentials:
-      title: 'Editing %{company_name}: Credentials'
 
-    company:
-      in_business_since: 'In business since %{year}'
-      details:
-        tab_names:
-          profile:     Profile
-          specialty:   Specialty
-          credentials: Credentials
-          discounts:   Discounts
-        sections:
-          about:           About
-          locations:       Locations
-          phone_numbers:   Phone Numbers
-          online:          Online
-          description:     Description
-          general_info:    General Info
-          categories:      Categories
-          service_area:    Service Area
-          operations:      Operations
-          insurance:       Liability Insurance
-          licensure:       Licensure
-          business_status: Business Status
-          affiliations:    Affiliations
-          associations:    Associations
-          certifications:  Certifications
-        insurance:
-          insured_in: Insured in the state of %{state_name}
-          valid: Valid from %{from} to %{to}
-          download: Download the Certificate of Liability Insurance
+    personal_licenses:
+      actions:
+        add: Add another License
+    business_licenses:
+      actions:
+        add: Add another License
     locations:
       actions:
         add: Add a Location
     admin:
       actions:
         add: Add an Admin
-    personal_licenses:
-      header: Personal Licenses/Certificates
-      what_is_this?: >
-        Trust Master requires all Service Providers to provide
-        their License & Bonding info information to validate
-        with the MN Dept of Labor. This helps us to ensure
-        your information is up to date, encourages authenticity
-        and provide customers with the most accurate
-        information about your license status.
-      actions:
-        add: Add another License
-    business_licenses:
-      header: Business/Contractor Licenses/Certificates
-      what_is_this?: >
-        Trust Master requires all Service Providers to provide
-        their License & Bonding info information to validate
-        with the MN Dept of Labor. This helps us to ensure
-        your information is up to date, encourages authenticity
-        and provide customers with the most accurate
-        information about your license status.
-      actions:
-        add: Add another License
     business_filing:
-      what_is_this?: >
-        Trust Master requires all Service Providers to provide
-        their State License info information to validate with the
-        Secretary of State. This helps us to ensure your
-        information is up to date, encourages authenticity and
-        provide customers with the most accurate information
-        about your business status.
       actions:
         add: Add a filing number
     associations:
@@ -172,6 +183,36 @@ en:
       actions:
         insurance_certificate:
           download: Download
+    company:
+      in_business_since: 'In business since %{year}'
+      details:
+        tab_names: ################################
+          profile:         Profile
+          capabilities:    Capabilities
+          credentials:     Credentials
+          discounts:       Discounts
+          reviews:         Reviews
+        sections: ##############################
+          about:           About
+          locations:       Locations
+          phone_numbers:   Phone Numbers
+          online:          Online
+          description:     Description
+          general_info:    General Info
+          categories:      Categories
+          service_area:    Service Area
+          operations:      Operations
+          insurance:       Liability Insurance
+          licensure:       Licensure
+          business_status: Business Status
+          affiliations:    Affiliations
+          associations:    Associations
+          certifications:  Certifications
+        insurance: #####################################
+          insured_in: Insured in the state of %{state_name}
+          valid:      Valid from %{from} to %{to}
+          download:   Download the Certificate of Liability Insurance
+
   discounts:
     new:
       title: "%{company_name}: New Discount"
@@ -218,7 +259,6 @@ en:
   affiliations:
     affiliation:
       name: "Name:"
-      title: "Title:"
       description: "Description:"
       url: "Link:"
       dates:
@@ -227,7 +267,6 @@ en:
   associations:
     association:
       name: "Name:"
-      title: "Title:"
       description: "Description:"
       url: "Link:"
       dates:
@@ -236,7 +275,6 @@ en:
   certifications:
     certification:
       name: "Name:"
-      title: "Title:"
       description: "Description:"
       certificate: "Certificate:"
   sessions:
@@ -341,6 +379,14 @@ en:
         create: Submit
       search:
         create: Search
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "No %{entry_name} found"
+          one: "Displaying <b>1</b> %{entry_name}"
+          other: "Displaying <b>all %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"
   actions:
     remove:   Remove
     delete:   Delete
@@ -576,14 +622,10 @@ en:
         "true": Active
         "false": Inactive
   simple_form:
-    # SimpleForm will check these first, before defaulting to ActiveModel.human
-    # labels:
-    #   defaults:
-
     hints:
       defaults:
-        email: Your Email Address
-        password: Your Trust Master Password
+        # email: Your Email Address
+        # password: Your Trust Master Password
         url: Include the 'http://' part
       company:
         name: "The display name for your company within the PPN. This need not include such things as 'LLC', 'Inc.', etc. unless you'd prefer it to"
@@ -597,9 +639,9 @@ en:
         description: Use this area to define ...
         general_info: Hours, availability, etc.
         affiliations:
-          ended_on: If still active, leave these fields blank
+          ended_on: If membership is still active, leave these fields blank
         associations:
-          ended_on: If still active, leave these fields blank
+          ended_on: If membership is still active, leave these fields blank
         certifications:
           certificate: "Upload a scan of the actual certificate, if you'd like"
       user: &user
@@ -612,7 +654,6 @@ en:
         <<: *user
       password_reset_request:
         name: Your first name
-
     placeholders:
       defaults:
         email: 'name@example.com'

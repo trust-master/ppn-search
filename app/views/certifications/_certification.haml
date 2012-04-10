@@ -2,23 +2,12 @@
 
 = tab_for(certification) do
 
-  - if certification.name?
-    .name
-      %label= t('.name')
-      = certification.name
-
-  - if certification.title?
-    .title
-      %label= t('.title')
-      = certification.title
-
-  - if certification.description?
-    .description
-      %label= t('.description')
-      = certification.description
-
   - if certification.certificate?
     .attached_file
       %label= t('.certificate')
       = link_to certification.certificate.url do
         = image_tag certification.certificate.thumb.url
+
+  - if certification.description?
+    .description
+      = certification.description

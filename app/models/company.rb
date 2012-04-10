@@ -22,7 +22,7 @@ class Company < ActiveRecord::Base
       company.has_many :categories,     through: :sub_categories
 
       company.has_many :service_areas,  through: :company_service_areas, include: :market
-      company.has_many :markets,        through: :service_areas, include: :service_areas
+      company.has_many :markets,        through: :service_areas,         include: :service_areas
     end
 
     with_options dependent: :nullify do |company|
@@ -32,7 +32,7 @@ class Company < ActiveRecord::Base
       company.has_many :business_filings, limit: 1, order: 'updated_at'
     end
 
-    has_many :users
+    has_many :users, dependent: :destroy
 
     belongs_to :insurance_state, class_name: 'State'
 

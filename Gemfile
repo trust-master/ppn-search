@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '~> 3.2.3'
+gem 'rack', '>= 1.4.1'
 
 # Use PostgreSQL
 gem 'pg'
@@ -39,6 +40,7 @@ gem 'kaminari', git: 'https://github.com/rtlong/kaminari.git'
 # gem 'copycopter_client' # disabled for the time-being... screwing things up
 
 # Use thin instead of Webrick
+# gem 'unicorn'
 gem 'thin', require: false
 
 # Texticle enables easy access to native PGSQL full-text searching, also see
@@ -68,10 +70,10 @@ gem 'surus'
 # gem 'activerecord-postgres-hstore'
 # gem 'activerecord-postgres-array' # leave this below hstore
 
+gem 'exceptional'
+
 # Connect to Redis in-memory key/value store
 gem 'redis'
-
-gem 'exceptional'
 
 # Use Redis to do caching, i18n, and sessions
 git 'https://github.com/jodosha/redis-store.git' do

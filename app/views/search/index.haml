@@ -6,5 +6,20 @@
 
 
 
+%h2.secondary-title= t('.secondary_title')
+
 #col-b
-  This is where we'll put some copy about how to use the search function
+  #company_details
+    .tabs
+      %ul.nav.tab_bar
+        = list_of [:profile, :capabilities, :credentials, :discounts] do |label|
+          = link_to t(".tabs.#{label}.name"), "##{label}"
+        %li= link_to t(".tabs.reviews.name"), "#reviews", class: 'disabled'
+
+      .tab#profile= t('.tabs.profile.content')
+      .tab#capabilities= t('.tabs.capabilities.content')
+      .tab#credentials= t('.tabs.credentials.content')
+      .tab#discounts= t('.tabs.discounts.content')
+      .tab#reviews= t('.tabs.reviews.content')
+
+      .tab#initial= t('.tabs.initial.content')

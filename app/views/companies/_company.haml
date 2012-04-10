@@ -2,35 +2,21 @@
 
   %h3= company.name
 
-  - if company.in_business_since?
-    .in_business_since= t('.in_business_since', year: company.since)
-
-  - if company.about?
-    .summary= company.about
-
-  - if company.locations.any?
-    .address= company.primary_address
-
-  -#
-    - if company.phone_main?
-      .phone= company.phone_main
-
-  - if company.sub_categories.any?
-    .categories= company.sub_categories.map(&:name).to_sentence
-
   .details
-    %header
-      %h2= company.name
-      - if company.in_business_since?
-        .in_business_since= t('.in_business_since', year: company.since)
-
-      - if can? :edit, company
-        .actions
-          = include_edit_link edit_company_path(company, section: :identity)
     .tabs
       %ul.nav.tab_bar
-        = list_of [:profile, :specialty, :credentials, :discounts] do |label|
+        = list_of [:profile, :capabilities, :credentials, :discounts] do |label|
           = link_to t(".details.tab_names.#{label}"), "##{tab_id_for(company, label)}"
+        %li= link_to t(".details.tab_names.reviews"), "##{tab_id_for(company, :reviews)}", class: 'disabled'
+
+      %header
+        %h2= company.name
+        - if company.in_business_since?
+          .in_business_since= t('.in_business_since', year: company.since)
+
+        - if can? :edit, company
+          .actions
+            = include_edit_link edit_company_path(company, section: :identity)
 
       = tab_for company, :profile do
 
@@ -74,7 +60,7 @@
                 = mail_to company.email
 
 
-      = tab_for company, :specialty do
+      = tab_for company, :capabilities do
 
         - if company.description?
           %section.description
@@ -139,7 +125,14 @@
 
 
       = tab_for company, :discounts do
-        Discounts will be listed here
+        - if company.discounts.any?
+
+          %section.discounts
+            .accordion.discounts= render company.discounts.all
+
+
+        - else
+          = t '.discounts.none_available', default: "There are no discounts available at this time."
 
 
     - if current_user.is_a? Administrator

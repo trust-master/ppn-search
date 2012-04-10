@@ -4,18 +4,21 @@
 #col-a
   = render 'form'
 
-  .results
-    %h4= t('.title')
+  - if collection.total_count > 0
+    .results
+      %h4= t('.results_count', count: collection.total_count)
 
-    = paginate collection
+      = paginate collection
 
-    %ul.companies
-      = render collection
+      %ul.companies
+        = render collection
 
   .footer
     = paginate collection
     .search_summary= page_entries_info(collection, entry_name: Company.model_name.human)
 
+
+%h2.secondary-title= t('.secondary_title')
 
 #col-b
   #company_details

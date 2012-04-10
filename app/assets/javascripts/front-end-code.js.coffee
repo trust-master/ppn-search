@@ -94,22 +94,28 @@ $(document).ready =>
 
 @searchPage =
   init: ->
+    $('#company_details .tabs').tabs
+        selected: -1,
+        select: ->
+          $(this).find('#initial.tab').hide()
+
+
 
     $('#col-a ul.companies .company').click ->
       _this = $(this)
       new_element = $('#company_details').html(_this.find('.details').html())
       _this.siblings('.company').removeClass('selected')
       _this.addClass('selected')
-      new_element.find('.tabs').tabs()
-      new_element.find('.accordion').accordion({
+      new_element.find('.tabs').tabs({'disabled': [4]})
+      new_element.find('.accordion').accordion
         active: false,
         collapsible: true,
         autoHeight: false
-      })
+
       return false
 
     # $('#col-b ul.nav li a').click ->
-    #   $("#company_details").find(".profile, .specialty, .credentials, .discounts").hide()
+    #   $("#company_details").find(".profile, .capabilities, .credentials, .discounts").hide()
     #   $("#company_details .#{$(this).attr('class')}").show()
     #   return false
 
@@ -171,34 +177,4 @@ $(document).ready =>
 
   bind: ->
     $(".popup a").click ->
-      $(this).siblings(".content").slideToggle()
-
-
-# @dropdownMenu =
-#   init: ->
-#     $("ul.account-links li").hover (->
-#       $(this).addClass('hover')
-#     ), ->
-#       $(this).removeClass('hover')
-
-# @deactivateModal =
-#   init: ->
-#     self = this
-#     self.bind()  if $(".deactivate").length isnt 0
-
-#   bind: ->
-#     $(".deactivate").click ->
-#       $("#deactivate-account").dialog title: "Deactivate Account"
-#       false
-
-# currentDateValue =
-#   init: ->
-#     self = this
-#     self.bind()  if $(".date").length isnt 0
-
-#   bind: ->
-#     $(".date").datepicker showOn: "both"
-#     date = new Date()
-#     month = date.getMonth() + 1
-#     currentDate = month + "/" + date.getDate() + "/" + date.getFullYear()
-#     $(".date").val currentDate  if $(".date").val("")
+      $(this).css({'visibility': 'hidden'}).siblings(".content").slideDown()

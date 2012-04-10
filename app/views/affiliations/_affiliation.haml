@@ -8,19 +8,9 @@
         = t('.dates.past', name: affiliation.name, started: affiliation.started_on, ended: affiliation.ended_on)
       - else
         = t('.dates.present', name: affiliation.name, started: affiliation.started_on)
-  - else
-    .name
-      %label= t('.name')
-      = affiliation.name
-
-  - if affiliation.title?
-    .title
-      %label= t('.title')
-      = affiliation.title
 
   - if affiliation.description?
     .description
-      %label= t('.description')
       = affiliation.description
 
   - if affiliation.url?

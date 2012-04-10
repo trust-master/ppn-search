@@ -103,16 +103,22 @@ h1
   right: 10px
   top: 46px
 
+  fieldset
+    margin: 0
+    padding: 0
+    border: none
+
   input
-    &[type="text"], &[type="search"]
+    &[type="search"]
       width: 187px
+      height: 16px
+      padding: 4px 5px
 
     &[type="submit"]
       @include btn-search
       text-indent: -9999px
       border: 0
       margin-left: -4px
-      line-height: 75px
 
 // Main Nav (search/admin)
 .main-nav
