@@ -51,8 +51,8 @@
             - if current_user
               - if current_user.is_a? Administrator
                 = main.nav_link :admin, admin_dashboard_path
-              = main.nav_link :code_of_conduct, '/login' # '/code_of_conduct'
-              = main.nav_link :core_values, '/login' # '/core_values'
+              = main.nav_page_link :code_of_conduct
+              = main.nav_page_link :core_values
               = main.nav_link :search_ppn, search_index_path, proc { controller.controller_name == 'search' }
             - else
               = main.nav_link :login, login_path
@@ -63,7 +63,7 @@
           - Array.wrap(messages).each do |msg|
             .flash{ class: bucket }= msg
 
-        - if show_title?
+        - if content_for?(:page_title)
           %h2= page_title
 
         = content_for?(:content) ? yield(:content) : yield
@@ -73,7 +73,7 @@
         .footer-links
           = nav_for :footer do |footer|
             - [:terms, :privacy_policy, :about, :contact].each do |page_id|
-              = footer.nav_link page_id, '/login' #page_id.to_s.prepend('/')
+              = footer.nav_page_link page_id
 
         .social-media
           %h5= t(:follow_us_on)

@@ -1,5 +1,9 @@
 module ActiveModel::SecurePassword
   module ClassMethods
+    # This is being overridden, here, to avoid the validates_presence_of(:password_digest) that is
+    # commented below. We need to be able to create users without having passwords, which can then
+    # be 'activated' via email, at which time the user will set a password. This poses no security
+    # threat, as the User#authenticate method will not work if the password_digest is nil.
     def has_secure_password
       # Load bcrypt-ruby only when has_secure_password is used.
       # This is to avoid ActiveModel (and by extension the entire framework) being dependent on a binary library.
@@ -9,7 +13,7 @@ module ActiveModel::SecurePassword
       attr_reader :password
 
       validates_confirmation_of :password
-      # validates_presence_of     :password_digest, allow_blank: true
+      # validates_presence_of   :password_digest
 
       include InstanceMethodsOnActivation
 

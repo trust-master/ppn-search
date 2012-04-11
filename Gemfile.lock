@@ -116,6 +116,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.2.0)
+    content_for_in_controllers (0.0.2)
     cucumber (1.1.9)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.2)
@@ -290,9 +291,11 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12)
       json (~> 1.4)
+    redcarpet (2.1.0)
     redis (2.2.2)
     redis-namespace (1.0.3)
       redis (< 3.0.0)
+    replicate (1.4)
     responders (0.6.5)
     resque-retry (0.2.2)
       rake
@@ -396,6 +399,7 @@ DEPENDENCIES
   capybara
   carrierwave
   coffee-rails
+  content_for_in_controllers
   cucumber
   cucumber-rails
   database_cleaner
@@ -438,10 +442,12 @@ DEPENDENCIES
   rack-webconsole
   rails (~> 3.2.3)
   rb-inotify
+  redcarpet
   redis
   redis-i18n!
   redis-rails!
   redis-store!
+  replicate
   responders
   resque!
   resque-retry

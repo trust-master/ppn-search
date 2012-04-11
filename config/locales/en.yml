@@ -485,6 +485,9 @@ en:
       user_auth_token:
         one: User Auth Token
         other: User Auth Tokens
+      page:
+        one: Page
+        other: Pages
 
     attributes:
       # human names of attributes, scoped to the model
@@ -572,6 +575,7 @@ en:
     #   header:
     #     one: 1 error prohibited this %{model} from being saved
     #     other: '%{count} errors prohibited this %{model} from being saved'
+
   # we can also include attributes without scoping them to a particular model, as a fallback:
   attributes:
     about:                             About
@@ -670,6 +674,7 @@ en:
       search:
         any_text_field_contains: Enter a company name
         company_categories_sub_category_id_in: Enter a type of product or service
+
   # Stuff for CanCan errors
   unauthorized:
     default: 'You are not authorized to %{action} %{subject}.'

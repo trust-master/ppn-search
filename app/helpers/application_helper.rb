@@ -4,17 +4,12 @@ module ApplicationHelper
   # argument can be used to hide the visible header
   def title(title, show_title = true)
     content_for(:title, title)
-    @show_title = show_title
-  end
-
-  # Whether the header should be shown
-  def show_title?
-    !! @show_title
+    content_for(:page_title, title) if show_title
   end
 
   # Content for the title, defaults to I18n.t "#{controller}.#{action}.title"
   def page_title
-    content_for(:title).presence || t([view_identifier, :title].join('.'))
+    content_for(:page_title).presence || t([view_identifier, :title].join('.'))
   end
 
   def view_identifier
@@ -41,5 +36,10 @@ module ApplicationHelper
 
   def tab_id_for(record, section_name = nil)
     [dom_id(record), section_name].compact.join(?_)
+  end
+
+  def page_path(name)
+    page_path_map = Rails.cache.fetch(:page_paths) { Hash[Page.select([:name, :slug]).all.map{|p| [p.name.to_sym, p.path] }] }
+    return page_path_map[name.to_sym]
   end
 end

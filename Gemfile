@@ -12,6 +12,9 @@ gem 'haml'
 # Use liquid templates for User-editable templates, i.e. mailers, pages
 gem 'liquid'
 
+# Use Markdown for Pages
+gem 'redcarpet'
+
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby'
 
@@ -92,6 +95,9 @@ gem 'resque-retry'
 # Clean up view logic
 gem 'active_decorator'
 
+# bring content_for into the controller
+gem 'content_for_in_controllers'
+
 
 # Gems used only for assets and not required in production environments by default.
 group :assets do
@@ -171,10 +177,10 @@ group :development, :test do
 end
 
 
-# group :development, :staging do
-#   gem 'whereuat', git: 'https://github.com/rtlong/whereuat.git'
+group :development, :staging do
+  gem 'replicate'
 
-# end
+end
 
 # Gems only for certain operating system environments.
 #

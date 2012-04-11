@@ -21,7 +21,6 @@ class User < ActiveRecord::Base
   # validates_presence_of :password, :password_confirmation, on: :create
   validates             :password, password: true, allow_nil: true
   validates_presence_of :company, unless: proc { |user| user.is_a?(Administrator) }
-  # validates_presence_of :password_digest, allow_blank: true, allow_nil: true
 
   attr_accessible :first_name, :middle_name, :last_name, :email, :phone, :password, :password_confirmation,
     as: [:user, :administrator, :company_admin]

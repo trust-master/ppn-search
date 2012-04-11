@@ -27,13 +27,15 @@ ServiceProviderPortal::Application.routes.draw do
     get :logout, action: :destroy, as: :logout
   end
 
-  match '/debug/:action', controller: :debug
+  get '/debug/:action', controller: :debug
 
   scope '/follow_us_on', as: :follow_us_on do
     get 'twitter',  to: redirect('http://twitter.com/#!/TrustMaster1')
     get 'facebook', to: redirect('http://www.facebook.com/pages/Trust-Master/324176494311640')
   end
   root :to => 'search#index'
+
+  get ':slug', controller: :pages, action: :show, as: :page
 end
 #== Route Map
 # Generated on 02 Apr 2012 17:07

@@ -31,6 +31,8 @@ module NavigationHelper
       html_options[:class] << options[:item_class] # add the menu-level class
       html_options[:class] << 'active' if active_proc.is_a?(Proc) ? active_proc.call : current_page?(url)
 
+      options[:link_attrs] = {id: path}.merge(options[:link_attrs] || {})
+
       if options.has_key?(:item_wrapper) and options[:item_wrapper].nil?
         h.link_to(text_for_link, url, options[:link_attrs])
       else
@@ -39,6 +41,10 @@ module NavigationHelper
           h.link_to(text_for_link, url, options[:link_attrs])
         end
       end
+    end
+
+    def nav_page_link(name, html_options = {})
+      nav_link(name, page_path(name), html_options)
     end
 
     def nav_for(menu_name, opts = {}, &block)
