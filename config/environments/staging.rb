@@ -19,6 +19,7 @@ ServiceProviderPortal::Application.configure do
 
   # Allow passing debug_assets=true as a query parameter to load pages with unpackaged assets
   config.assets.allow_debugging = true
+  config.action_controller.asset_host = "do4pzk3e3dtn3.cloudfront.net"
 
   ### ActionMailer ###
 
