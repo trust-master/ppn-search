@@ -3,113 +3,101 @@ source 'http://rubygems.org'
 gem 'rails', '~> 3.2.3'
 gem 'rack', '>= 1.4.1'
 
-# Use PostgreSQL
-gem 'pg'
+gem 'pg' # Use PostgreSQL
 
-# Write views in HAML
-gem 'haml'
+gem 'unicorn', require: false # Use Unicorn to serve the app
 
-# Use liquid templates for User-editable templates, i.e. mailers, pages
-gem 'liquid'
+gem 'haml' # Write views in HAML
 
-# Use Markdown for Pages
-gem 'redcarpet'
+gem 'liquid' # Use liquid templates for User-editable templates, i.e. mailers, pages
 
-# To use ActiveModel has_secure_password
-gem 'bcrypt-ruby'
+gem 'mail' # send mails with ease
+gem 'premailer' # make inline the CSS, create text-only versions, more fun stuff
 
-# CarrierWave allows you to attach files to ActiveRecord Objects
-gem 'carrierwave'
-gem 'mini_magick'
+gem 'redcarpet' # Use Markdown to parse Pages / Email templates
 
-# Use AWS for Attachment Storage
-gem 'fog'
+gem 'bcrypt-ruby' # To use ActiveModel has_secure_password
 
-# for authorization
-gem 'cancan'
+gem 'carrierwave' # CarrierWave allows you to attach files to ActiveRecord Objects
+gem 'mini_magick' # process uploaded image files with ImageMagick's `mogrify` command
+gem 'fog' # Use AWS for Attachment Storage
+
+gem 'cancan' # very nice API for authorization
 
 # making controllers stupidly clean
 gem 'inherited_resources'
 gem 'has_scope'
 gem 'responders'
 
-# Form builder
-gem 'simple_form'
+gem 'simple_form' # Form builder
 
-# Pagination
-gem 'kaminari', git: 'https://github.com/rtlong/kaminari.git'
+gem 'kaminari', # Pagination helpers / scopes
+  git: 'https://github.com/rtlong/kaminari.git' # use my fork for I18n action in the helpers
 
 # Connect to CopyCopter for I18n data
 # gem 'copycopter_client' # disabled for the time-being... screwing things up
-
-# Use thin instead of Webrick
-gem 'unicorn', require: false
-gem 'thin', require: false
 
 # Texticle enables easy access to native PGSQL full-text searching, also see
 # https://github.com/Casecommons/pg_search if this one sucks
 gem 'texticle', :require => 'texticle/rails'
 
-# For the screen-scraping component
-gem 'nokogiri'
-gem 'mechanize'
+gem 'meta_search' # Nifty search scoping tool. Dependency of ActiveAdmin
 
-gem 'activeadmin', git: 'https://github.com/rtlong/active_admin.git'
-# gem 'activeadmin', path: '../active_admin' # use my local copy as I change stuff
+gem 'squeel' # convience API for AR-scoping
 
-# Nifty search scoping tool. Dependency of ActiveAdmin
-gem 'meta_search'
-gem 'squeel'
+gem 'activeadmin', # Pretty admin interface made easy
+  git: 'https://github.com/rtlong/active_admin.git' # my fork, for various fixes / mods
+  # path: '../active_admin' # use my local copy as I change stuff
 
-# Normalize attributes before saving (strip, nullify blanks, custom formatting, etc.)
-gem 'attribute_normalizer'
-gem 'enumerize'
-gem 'paper_trail'
+gem 'attribute_normalizer' # Normalize attributes before saving (strip, nullify blanks, custom formatting, etc.)
 
-# Use PostgreSQL's native Array and HStore data types in AR
-gem 'surus'
+gem 'surus' # Use PostgreSQL's native Array and HStore data types in AR
 
-# These do the same as Surus, but a little differently
-# gem 'activerecord-postgres-hstore'
-# gem 'activerecord-postgres-array' # leave this below hstore
+gem 'enumerize' # Enumerated attributes made easy
 
-gem 'exceptional'
+gem 'paper_trail' # Keep a log of previous versions of AR models
 
-# Connect to Redis in-memory key/value store
-gem 'redis'
+gem 'redis' # Connect to Redis in-memory key/value store
 
-# Use Redis to do caching, i18n, and sessions
-git 'https://github.com/jodosha/redis-store.git' do
-  gem 'redis-store'
-  gem 'redis-rails'
-  gem 'redis-i18n'
-  # gem 'redis-rack-cache'
+# redis-store provides a full set of stores (Cache, I18n, Session, HTTP Cache). It natively supports
+# object marshalling, timeouts, single or multiple nodes and namespaces.
+git 'https://github.com/jodosha/redis-store.git' do # using the source,
+  gem 'redis-store' # wrapper gem
+  gem 'redis-rails' # provides a Rails interface to the above
+  gem 'redis-i18n' # provides a backend for I18n.
+  # gem 'redis-rack-cache' # provides a Redis-backed store for Rack::Cache
 end
 
-# For background tasks (like scraping the MN DoLI website, or sending emails)
-gem 'resque', git: 'https://github.com/rtlong/resque.git'
+gem 'resque', # For background tasks (like scraping the MN DoLI website, or sending emails)
+  git: 'https://github.com/rtlong/resque.git' # my fork; fixes a bug with the next gem (resque's dev is very slow)
+gem 'resque-retry' # for retrying failed resque jobs automatically
+# gem 'resque-mailer' # perform ActionMailer deliveries with Resque
 
-# for retrying failed resquejobs automatically
-gem 'resque-retry'
+# For the screen-scraping component
+gem 'nokogiri' # HTML/XML parser
+gem 'mechanize' # API wrapper to work with nokogiri more easily
 
-# Clean up view logic
-gem 'active_decorator'
+gem 'active_decorator' # Clean up view logic
 
-# bring content_for into the controller
-gem 'content_for_in_controllers'
+gem 'content_for_in_controllers' # bring content_for into the controller
 
+gem 'exceptional' # send Exceptions to Exceptional.io
 
 # Gems used only for assets and not required in production environments by default.
 group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
+  gem 'sass-rails' # use SASS to write CSS
+  gem 'coffee-rails' # use CoffeeScript to write JS
+  gem 'uglifier' # compress JS
 
-  # Inject jQuery into the asset pipeline
-  gem 'jquery-rails'
+  gem 'jquery-rails' # Inject jQuery into the asset pipeline
+
+  # Formalize has some sane defaults for form fields to help them look consistent across multiple platforms
   gem 'formalize-rails'
-  # gem 'chosen-rails'
 
+  # Chosen is still being used, but it's my modified version, so we can't use chosen-rails till my change is merged in
+  # gem 'chosen-rails' # chosen provides a nifty jQuery plugin to do empowered <select>s
+
+  # SASS goodies
   gem 'bourbon'
 end
 
@@ -118,81 +106,64 @@ group :production, :staging do
 end
 
 group :development do
-  gem 'tailor', require: false
+  gem 'thin', require: false # Use thin instead of Unicorn, in development only
+
+  gem 'tailor', require: false # check syntax and code-style against a set of rules
 
   # Prints db schema tidbits in all the models, tests, and fixtures, also shows `rake routes` output in routes.rb.
   gem 'annotate', require: false
 
   # https://github.com/guard/guard # http://intridea.com/2011/8/25/hire-a-guard-for-your-project
   gem 'guard', require: false
-
-  # Restart the Rails development server automatically
   gem 'guard-rails', require: false
-
-  # Run the appropriate RSpec test(s) automatically
   gem 'guard-rspec', require: false
-
-  # Annotate models/tests/fixtures/etc when db is modified and routes when routes.rb is changed
   gem 'guard-annotate', require: false
-
   gem 'guard-bundler', require: false
-
   gem 'guard-cucumber', require: false
   gem 'guard-spork', require: false
   gem 'guard-resque', require: false
 
-  gem 'sass'
+  gem 'sass' # This is here so generators can use it
 
+  # gem 'rack-webconsole' # access the rails console right within the web browser
 
-  # access the rails console right within the web browser
-  gem 'rack-webconsole'
+  # generate graphs to represent Models/Classes in the app
+  # Use with `bx railroad -a -i -o full_models.dot -M`
+  # gem 'railroad', git: 'https://github.com/kirillrdy/railroad3.git'
 
-  # gem 'railroad', git: 'https://github.com/kirillrdy/railroad3.git' # bx railroad -a -i -o full_models.dot -M
+  gem 'dnote', require: false # To enumerate all TODO's and FIXME's in the code
 
-  # To enumerate all TODO's and FIXME's in the code
-  gem 'dnote'
+  # Pry replaces IRB
+  gem 'pry-rails' # replace IRB for the rails console, automatically
+  gem 'pry-doc' # the libraries needed to view ruby source method-info in Pry
 
-  gem 'pry-rails'
-  gem 'pry-doc'
+  gem 'populator' # For seeding my dev DB with fake data
 
-  # For seeding my dev DB with fake data
-  gem 'populator'
-
-  # Open sent emails in the browser
-  gem 'letter_opener'
+  gem 'letter_opener' # Open sent emails in the browser
 end
 
 group :development, :test do
   gem 'cucumber-rails', require: false
-  gem 'cucumber'
-  gem 'spork'
+  gem 'cucumber', require: false
+  gem 'spork', require: false
   gem 'database_cleaner'
   gem 'rspec-rails'
-  gem 'factory_girl_rails', :require => false
+  gem 'factory_girl_rails', require: false
   gem 'capybara'
   gem 'launchy'
   gem 'quiet_assets'
-
   gem 'faker' # Used in some of the Factories to generate fake data; used in seeds.rb
 end
 
 
 group :development, :staging do
-  gem 'replicate'
-
+  gem 'replicate', require: false
 end
 
 # Gems only for certain operating system environments.
 #
 # Avoid installing those which you don't need by adding, for example, `--without windows:linux`
 # to your `bundle install` command. You should only need do this once, as it will be remembered.
-
-# Mac OS X; commented out until we need them, since Heroku does not like these
-# group :darwin do
-#   # The filesystem event and system notifications that Guard wants, for OS X
-#   gem 'growl_notify', require: false # Growl notifications
-#   gem 'rb-fsevent', git: 'git://github.com/ttilley/rb-fsevent.git', branch: 'pre-compiled-gem-one-off', require: false # FSEvent support
-# end
 
 # Linux
 group :linux do
@@ -201,8 +172,19 @@ group :linux do
   gem 'rb-inotify',   require: false # inotify support
 end
 
-# Windows; commented out until we need them
-=begin
+# Mac OS X
+=begin commented out until we need them, since Heroku does not like these
+group :darwin do
+  # The filesystem event and system notifications that Guard wants, for OS X
+  gem 'growl_notify', require: false # Growl notifications
+  gem 'rb-fsevent', require: false, # FSEvent support
+    git: 'git://github.com/ttilley/rb-fsevent.git',
+    branch: 'pre-compiled-gem-one-off'
+end
+=end
+
+# Windows
+=begin commented out until we need them
 group :windows do
   # The filesystem event and system notifications that Guard wants, for Windows
   gem 'rb-notifu',    require: false # Visual notifications
