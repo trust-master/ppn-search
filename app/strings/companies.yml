@@ -1,0 +1,146 @@
+en:
+  companies:
+    show:
+      title: '%{company_name}'
+    edit:
+      title: 'Editing %{company_name}:'
+    identity:
+      title: 'Editing %{company_name}: Identity'
+    service:
+      title: 'Editing %{company_name}: Service Info'
+    credentials:
+      title: 'Editing %{company_name}: Credentials'
+
+    # the header titles for all fieldsets related to company forms
+    fieldsets:
+      identity:           Company Name
+      contact:            Contact Info
+      website:            Website
+      locations:          Address
+      admin:              Admin
+      description:        Business Description
+      service_areas:      Service Area
+      service_categories: Service Categories
+      operations:         Operations
+      insurance:          Insurance
+      licenses:
+        header:           License & Bonding Info
+        instructions: >
+          Here, you can provide your State license numbers.
+      business_licenses:
+        header:           Business Licenses
+        what_is_this?: >
+          Trust Master requires all Service Providers to provide
+          their License & Bonding info information to validate
+          with the MN Dept of Labor. This helps us to ensure
+          your information is up to date, encourages authenticity
+          and provide customers with the most accurate
+          information about your license status.
+      personal_licenses:
+        header:           Personal Licenses/Certificates
+        what_is_this?: >
+          Trust Master requires all Service Providers to provide
+          their License & Bonding info information to validate
+          with the MN Dept of Labor. This helps us to ensure
+          your information is up to date, encourages authenticity
+          and provide customers with the most accurate
+          information about your license status.
+      business_filing:
+        header:           Business Status
+        what_is_this?: >
+          Trust Master requires all Service Providers to provide
+          their State License info information to validate with the
+          Secretary of State. This helps us to ensure your
+          information is up to date, encourages authenticity and
+          provide customers with the most accurate information
+          about your business status.
+        instructions: >
+          Here, you may add your State business filing number. This will help us
+          verify that your company is legitimate.
+      affiliations:       Affiliations
+      associations:       Associations
+      certifications:     Certifications
+
+
+    personal_licenses:
+      actions:
+        add: Add another License
+    business_licenses:
+      actions:
+        add: Add another License
+    locations:
+      actions:
+        add: Add a Location
+    admin:
+      actions:
+        add: Add an Admin
+    business_filing:
+      actions:
+        add: Add a filing number
+    associations:
+      actions:
+        add: Add an Association
+    affiliations:
+      actions:
+        add: Add an Affiliation
+    certifications:
+      actions:
+        add: Add a Certification
+    service_areas:
+      markets:
+        collapsed_explanation: '* indicates that only partial coverage was selected'
+    insurance:
+      actions:
+        insurance_certificate:
+          download: Download
+    company:
+      in_business_since: 'In business since %{year}'
+      details:
+        tab_names: ################################
+          profile:         Profile
+          capabilities:    Capabilities
+          credentials:     Credentials
+          discounts:       Discounts
+          reviews:         Reviews
+        sections: ##############################
+          about:           About
+          locations:       Locations
+          phone_numbers:   Phone Numbers
+          online:          Online
+          description:     Description
+          general_info:    General Info
+          categories:      Categories
+          service_area:    Service Area
+          operations:      Operations
+          insurance:       Liability Insurance
+          licensure:       Licensure
+          business_status: Business Status
+          affiliations:    Affiliations
+          associations:    Associations
+          certifications:  Certifications
+        insurance: #####################################
+          insured_in: Insured in the state of %{state_name}
+          valid:      Valid from %{from} to %{to}
+          download:   Download the Certificate of Liability Insurance
+
+  affiliations:
+    affiliation:
+      name: "Name:"
+      description: "Description:"
+      url: "Link:"
+      dates:
+        present: "Have been affiliated with %{name} since %{started}."
+        past: "Was affiliated with %{name} from %{started} until %{ended}."
+  associations:
+    association:
+      name: "Name:"
+      description: "Description:"
+      url: "Link:"
+      dates:
+        present: "Have been associated with %{name} since %{started}."
+        past: "Was associated with %{name} from %{started} until %{ended}."
+  certifications:
+    certification:
+      name: "Name:"
+      description: "Description:"
+      certificate: "Certificate:"

@@ -1,0 +1,44 @@
+en:
+  search:
+    index:   # Landing page
+      title: Provider Search
+      secondary_title: "Buyer's Guide"
+      tabs:
+        initial:
+          content: >
+            Only exceptional performance and value earns preferred provider status and acceptance
+            into the Trust Master Preferred Provider Network. With this competitive spirit comes a
+            true motivation to provide exceptional value and superior service. Click on individual
+            tabs to learn more.
+        profile:
+          name: Profile
+          content: >
+            Our network of preferred providers are credentialed, preapproved and carefully vetted by
+            Trust Master Home Managers to share our customer service philosophy and core values.
+        capabilities:
+          name: Capabilities
+          content: >
+            A provider who has been accepted into the Preferred Provider Network has met our
+            stringent qualification standards and is committed to being the best in every aspect of
+            his or her business capabilities.
+        credentials:
+          name: Credentials
+          content: >
+            To assure that your dream team is at your service, our thorough screening process
+            includes confirming and validating important business and trade credentials.
+        discounts:
+          name: Discounts
+          content: >
+            The strength in numbers of our Preferred Provider Network not only fosters a reputation
+            of safety and value, but also gives us the bargaining power to offer real discounts.
+        reviews:
+          name: Reviews
+          content: >
+            Home manager reviews coming soon!
+    search:  # Search results page
+      title: Provider Search
+      secondary_title: "Buyer's Guide"
+      results_count:
+        zero: ""
+        one: "1 result"
+        other: "%{count} results"

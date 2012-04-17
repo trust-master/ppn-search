@@ -1,0 +1,192 @@
+en:
+  activerecord:
+    models:
+      user:
+        one: User
+        other: Users
+      administrator:
+        one: Trust Master Admin
+        other: Trust Master Admins
+      company_admin:
+        one: Admin
+        other: Admins
+      company:
+        one: Provider
+        other: Providers
+      location:
+        one: Location
+        other: Locations
+      market:
+        one: Market
+        other: Markets
+      service_area:
+        one: Region
+        other: Regions
+      category:
+        one: Category
+        other: Categories
+      sub_category:
+        one: Sub-Category
+        other: Sub-Categories
+      personal_license:
+        one: Personal License
+        other: Personal Licenses
+      business_license:
+        one: Business License
+        other: Business Licenses
+      business_filing:
+        one: Business Filing
+        other: Business Filings
+      certification:
+        one: Certification
+        other: Certifications
+      affiliation:
+        one: Affiliation
+        other: Affiliations
+      association:
+        one: Association
+        other: Associations
+      discount:
+        one: Discount
+        other: Discounts
+      password_reset_request:
+        one: Password Reset Request
+        other: Password Reset Requests
+      session:
+        one: Session
+        other: Sessions
+      state:
+        one: State
+        other: States
+      city:
+        one: City
+        other: Cities
+      country:
+        one: Country
+        other: Countries
+      discount_type:
+        one: Discount Type
+        other: Discount Types
+      filing_status:
+        one: Filing Status
+        other: Filing Status
+      filing_type:
+        one: Filing Type
+        other: Filing Types
+      license_type:
+        one: License Type
+        other: License Types
+      business_license_type:
+        one: Business License Type
+        other: Business License Types
+      personal_license_type:
+        one: Personal License Type
+        other: Personal License Types
+      user_auth_token:
+        one: User Auth Token
+        other: User Auth Tokens
+      password_reset:
+        one: Password Reset
+        other: Password Resets
+      user_activation_token:
+        one: New User Activation
+        other: New User Activations
+      user_reactivation_token:
+        one: Reactivation Token
+        other: Reactivation Tokens
+      page:
+        one: Page
+        other: Pages
+
+    attributes:
+      # human names of attributes, scoped to the model
+      user:
+        first_name: First Name
+        last_name:  Last Name
+        logged_in_at: Last Login
+        display_name: Name
+      admin:
+      company_admin:
+      company:
+        offers_emergency_service: Emergency Service
+        offers_24_hour_service:   24-hour Service
+        insurance_certificate:    Certificate of Insurance
+        insurance_state:          State Insured
+        insurance_valid_from:     Valid from
+        insurance_valid_until:    Expires
+        deleted_by_user:          Deleted By
+      location:
+        street:  Street Address
+        street2: Apt, etc.
+      market:
+      service_area:
+      category:
+      sub_category:
+      personal_license: &personal_license_attributes
+        type:    License Type
+        number:  License Number
+        status:  License Status
+        name:    Individual Name
+        address: Registered Address
+      business_license:
+        <<: *personal_license_attributes
+        name: Business Name
+      business_filing:
+        type: Business Type
+      certification:
+      affiliation:
+      association:
+      discount:
+        type:  Discount Content
+        image: Attached File
+      password_reset:
+      password_reset_request:
+      session:
+      state:
+      city:
+
+  # we can also include attributes without scoping them to a particular model, as a fallback:
+  attributes:
+    about:                             About
+    address:                           Address
+    application_number:                Application Number
+    city:                              City
+    continuing_education:              C. E. Requirements
+    created_at:                        Created At
+    description:                       Description
+    doing_business_as:                 Doing Business As
+    effective_on:                      Effective On
+    email:                             Email Address
+    ended_on:                          End Date
+    end_date:                          End Date
+    enforcement_action:                Enforcement Action
+    expires_on:                        Expires On
+    fetched_at:                        Fetched At
+    general_info:                      General Information
+    issued_on:                         Issued On
+    issuing_state:                     Issuing State
+    name:                              Name
+    number:                            Number
+    password:                          Password
+    password_confirmation:             Confirm
+    phone_fax:                         Fax Number
+    phone_main:                        Primary Phone Number
+    phone_mobile:                      Mobile Phone Number
+    phone_number:                      Phone Number
+    printed_on:                        Printed On
+    raw_data:                          Raw Data
+    responsible_person_license_number: 'License # of Resp. Person'
+    started_on:                        Start Date
+    start_date:                        Start Date
+    state:                             State
+    status:                            Status
+    title:                             Title
+    type:                              Type
+    updated_at:                        Updated At
+    url:                               URL
+    website_url:                       Website URL
+    zip:                               ZIP Code
+    visible:                           Visible?
+    active:                            Active?
+    service_areas:                     Regions
+    sub_categories:                    Sub-Categories

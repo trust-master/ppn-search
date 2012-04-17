@@ -1,0 +1,35 @@
+en:
+  # Top-nav for logged in users. If you need to nest items in the menu and title that menu, use the
+  # _label key for the title, nested within it.
+  nav:
+    main:
+      admin:           Admin
+      code_of_conduct: Code of Conduct
+      core_values:     Core Values
+      login:           Log In
+      search_ppn:      Search Providers
+    account: &account_nav
+      basic:           Basic Info
+      privacy:         Privacy Settings
+      notifications:   "Notifications & Alerts"
+    account_links:
+      profile:
+        _label:        Profile
+        show:          View Profile
+        edit:          Edit Profile
+      account:
+        <<: *account_nav
+        _label:        Account
+      logout:          Log Out
+    footer:
+      terms:           Terms
+      privacy_policy:  Privacy Policy
+      about:           About
+      contact:         Contact
+    companies:
+      identity:        Company Bio
+      service:         Service Specialty
+      credentials:     Credentials
+      alerts:          Alerts
+      discounts:       Discounts
+      company_users:   Company Users

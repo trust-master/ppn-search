@@ -1,0 +1,5 @@
+en:
+  service_areas:
+    partial_only:
+      "true":   Partial
+      "false":  All

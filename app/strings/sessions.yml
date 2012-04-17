@@ -1,0 +1,13 @@
+en:
+  sessions:
+    new:
+      title: Log In to Trust Master
+      action: Log In
+      success: You've been logged in!
+      failure: That email and/or password is incorrect.
+      cant_log_in: Can't log in?
+      did_you_forget: Did you forget your password?
+      recover: Recover it here.
+      why: Why are we making you log in again? More text that is warm and friendly.
+    destroy:
+      success: You've been logged out!

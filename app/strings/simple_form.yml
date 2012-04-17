@@ -1,0 +1,49 @@
+en:
+  simple_form:
+    hints:
+      defaults:
+        # email: Your Email Address
+        # password: Your Trust Master Password
+        url: Include the 'http://' part
+      company:
+        name: "The display name for your company within the PPN. This need not include such things as 'LLC', 'Inc.', etc. unless you'd prefer it to"
+        in_business_since: The year in which your company started
+        email: The email address for service/sales inquiries
+        phone_main:
+        phone_mobile:
+        phone_fax:
+        website_url: Full URL to your website. Include the 'http://' part
+        about: Short summary
+        description: Use this area to define ...
+        general_info: Hours, availability, etc.
+        affiliations:
+          ended_on: If membership is still active, leave these fields blank
+        associations:
+          ended_on: If membership is still active, leave these fields blank
+        certifications:
+          certificate: "Upload a scan of the actual certificate, if you'd like"
+      user: &user
+        password: Choose a new Password
+        password_confirmation: Retype your new password
+        old_password: Verify your current password
+      company_admin:
+        <<: *user
+      administrator:
+        <<: *user
+      password_reset_request:
+        name: Your first name
+    placeholders:
+      defaults:
+        email: 'name@example.com'
+        # password: password
+        url: http://example.com
+      company:
+        email: info@company.com
+        website_url: http://company.com
+        in_business_since: 2012
+      # password_reset:
+      #   password:
+      #   password_confirmation:
+      search:
+        any_text_field_contains: Enter a company name
+        company_categories_sub_category_id_in: Enter a type of product or service

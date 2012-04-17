@@ -1,0 +1,17 @@
+en:
+  business_licenses:
+    business_license: &license
+      last_updated: Last updated
+      raw_data: &license_raw_data
+        message: Missing something?
+        switch_to_raw: Switch to the raw data pulled from the source.
+        switch_to_parsed: Show me the parsed data again.
+        no_data: Details have not yet been obtained for this license
+  personal_licenses:
+    personal_license: *license
+  business_filings:
+    business_filing:
+      <<: *license
+      raw_data:
+        <<: *license_raw_data
+        no_data: Details have not yet been obtained for this business filing

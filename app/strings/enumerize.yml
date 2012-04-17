@@ -1,0 +1,6 @@
+en:
+  enumerize:
+    user:
+      active:
+        "true": Active
+        "false": Inactive

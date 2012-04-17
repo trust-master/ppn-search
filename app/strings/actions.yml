@@ -1,0 +1,9 @@
+en:
+  actions:
+    remove:   Remove
+    delete:   Delete
+    add:      Add
+    collapse: Collapse
+    expand:   Expand
+    edit:     Edit
+    download: Download

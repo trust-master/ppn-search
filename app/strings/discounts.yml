@@ -1,0 +1,28 @@
+en:
+  discounts:
+    new:
+      title: "%{company_name}: New Discount"
+    edit:
+      title: "%{company_name}: '%{discount_title}' Discount"
+    index:
+      title: "%{company_name}: Discounts"
+      table:
+        headers:
+          name: Name
+          type: Discount Type
+          start_date: Start Date
+          end_date: End Date
+          actions: Actions
+        no_items_message: No discounts. Add one!
+      actions:
+        add: Create new Discount
+        remove_confirmation: Are you sure you want to remove this discount? This action can not be undone.
+    form:
+      actions:
+        image:
+          download: Download File
+
+    fieldsets:
+      design: Design Your Discount
+      location: Location
+      scheduling: Scheduling
