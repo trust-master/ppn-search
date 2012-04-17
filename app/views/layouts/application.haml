@@ -4,10 +4,14 @@
     %title= ['Trust Master', page_title].compact.join(': ')
 
     = stylesheet_link_tag :application
+    /[if IE]
+      = stylesheet_link_tag :pie
     /[if IE 8]
       = stylesheet_link_tag :ie8
     /[if lte IE 7]
       = stylesheet_link_tag :ie7
+    /[if lt IE 9]
+      = javascript_include_tag 'http://html5shim.googlecode.com/svn/trunk/html5.js'
     = javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'
     = javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js'
 
