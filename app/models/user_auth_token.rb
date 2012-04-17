@@ -9,19 +9,19 @@
 # User. Thus, even if the table of tokens is lost, there well never be a possibility of an old token
 # being generated for a different User.
 class UserAuthToken < ActiveRecord::Base
+  has_paper_trail
+
   belongs_to :user
 
   before_validation :token, :set_expiration
 
   # Do not allow a record to change these columns after creation
-  attr_readonly :token, :user_id, :created_by_ip
-  attr_accessible :created_by_ip, as: [:administrator, :company_admin, :user, :default]
+  attr_readonly :token, :user_id, :created_by_ip, :type
+  # attr_accessible :type, as: [:administrator, :company_admin, :user, :default]
 
   validates :token, presence: true, uniqueness: true
   validates :user, presence: true #, associated: true
-  validates_presence_of :created_by_ip
   validates :fullfilled_by_ip, :created_by_ip, ip_address: true, allow_nil: true
-  validates :expires_at, presence: true
 
   # This method generates the token. It packs the user ID (as an unsigned 32-bit integer) and a
   # random 32-bit integer into a string then, since this is only an 8-byte string, and we want a
@@ -37,22 +37,29 @@ class UserAuthToken < ActiveRecord::Base
     end while UserAuthToken.exists?(token: self[:token])
   end
 
+  def set_expiration
+    self[:expires_at] ||= 1.week.from_now
+  end
+
   def fullfill!(ip_address)
+    return false if fullfilled?
     self[:fullfilled_by_ip] = ip_address
     self[:fullfilled_at] = Time.zone.now
     save!
   end
 
-  def set_expiration
-    self[:expires_at] = 3.hours.from_now
-  end
-
-  def expired?
-    self[:expires_at] < Time.zone.now
+  def expire!
+    return false if expired?
+    self[:expires_at] = Time.zone.now
+    save!
   end
 
   def fullfilled?
     !! self[:fullfilled_at]
+  end
+
+  def expired?
+    self[:expires_at] < Time.zone.now
   end
 
   def inactive?
@@ -65,6 +72,10 @@ class UserAuthToken < ActiveRecord::Base
 
   def to_param
     token
+  end
+
+  def mailer
+    UserAuthTokenMailer.new(self)
   end
 end
 

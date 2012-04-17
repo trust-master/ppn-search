@@ -19,6 +19,8 @@ ServiceProviderPortal::Application.routes.draw do
 
   resources :password_resets, only: [:new, :create, :show, :update],
     constraints: { id: /[a-zA-Z0-9\-_]{12}/ }
+  resources :activate, only: [:new, :create, :show, :update], controller: :user_activation,
+    constraints: { id: /[a-zA-Z0-9\-_]{12}/ }
 
   resource :session, only: [:create]
 

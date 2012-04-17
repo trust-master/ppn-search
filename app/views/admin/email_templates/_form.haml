@@ -1,0 +1,13 @@
+= simple_form_for [:admin, resource], wrapper: :active_admin do |f|
+
+  = fieldset :inputs, false do
+
+    %ol
+      = f.input :body, hint: 'The content of the email. This will be formatted with <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>, and interpretted with <a href="https://github.com/Shopify/liquid/wiki/Liquid-for-Designers">Liquid</a>, for the variables shown below.'.html_safe, input_html: {class: :monospace}
+
+      = f.input :display_name, hint: 'This is an optional name you can specify that will be shown instead of the ID. Since you can\'t modify the id, it may be useful to give this template a different name in the Admin interface.'
+
+      - [:subject, :cc, :bcc, :from].each do |name|
+        = f.input name
+
+  = f.button :submit

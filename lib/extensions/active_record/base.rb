@@ -1,6 +1,12 @@
 module ActiveRecord
   class Base
 
+    def self.mailer
+      lookup_ancestors.each do |klass|
+        mailer = klass.model_name.mailer_name.safe_constantize and return mailer
+      end
+      return nil
+    end
 
     protected
 

@@ -558,6 +558,21 @@ ALTER SEQUENCE discounts_id_seq OWNED BY discounts.id;
 
 
 --
+-- Name: email_templates; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE email_templates (
+    id character varying(255) NOT NULL,
+    display_name character varying(255),
+    headers text,
+    body text,
+    template bytea,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
 -- Name: filing_statuses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1309,6 +1324,14 @@ ALTER TABLE ONLY discounts
 
 
 --
+-- Name: email_templates_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY email_templates
+    ADD CONSTRAINT email_templates_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: filing_status_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1673,3 +1696,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120411043830');
 INSERT INTO schema_migrations (version) VALUES ('20120411044101');
 
 INSERT INTO schema_migrations (version) VALUES ('20120411063311');
+
+INSERT INTO schema_migrations (version) VALUES ('20120412075209');
