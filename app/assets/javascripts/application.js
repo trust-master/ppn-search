@@ -4,15 +4,14 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-//= require jquery
+// require jquery     // this is loaded via the Google AJAX libraries API, for speed.
+// require jquery-ui  // this is loaded via the Google AJAX libraries API, for speed.
+//
 //= require jquery_ujs
-//= require jquery-ui
 //= require jquery.formalize
 //= require jquery.timeago
 //= require jquery.simple_scroll_to
-//= require chosen.jquery.min
-//= require unsorted
+//= require jquery.chosen
+//= require jquery.idTabs
 //= require front-end-code
-// require_tree ../../../vendor/assets
-// require_self
 
