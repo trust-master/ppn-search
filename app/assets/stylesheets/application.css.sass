@@ -1,26 +1,34 @@
 @charset 'UTF-8'
 
 @import bourbon
+@import compass
+@import compass/reset
+// @import normalize
+
+$icons-spacing: 5px
+@import "icons/*.png"
+
 @import colors
 
-@import normalize
-@import reset
 
 @import chosen
-
-@import sprites
 
 @import forms
 
 body
   font-size: 14px
   line-height: 18px
-  font-family: Arial,Verdana, Helvetica, sans-serif
+  // font-family: Arial,Verdana, Helvetica, sans-serif
+  font-family: "DejaVu Sans", Futura, "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", Arial, sans-serif
   background-color: #e9e9e9
-  color: #4e4e4e
+  color: $text
 
 a
   color: $blue
+  text-decoration: none
+
+  &:hover
+    text-decoration: underline
 
 h2
   font-size: 22px
@@ -62,6 +70,6 @@ hr
 @import development
 @import admin_panels
 
-@import jquery-ui-custom
+@import jquery-ui.custom
 // This is meant to override any styles above, strictly for jQuery UI stuff that I need to change
 @import ui

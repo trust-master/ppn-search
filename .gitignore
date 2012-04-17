@@ -18,6 +18,9 @@
 # Pre-Compiled Assets
 /public/assets
 
+# Compass image sprites
+/app/assets/images/icons-*.png
+
 # KDE dingleberries
 .directory
 

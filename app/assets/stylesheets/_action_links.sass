@@ -7,37 +7,44 @@ a.add, a.remove, a.collapse, a.expand, a.edit, a.download
   padding-right: 20px
   font-size: 12px
   cursor: pointer
+  line-height: 20px
 
   .icon
     @include inline-block
-    vertical-align: text-top
-    margin-right: 3px
+    vertical-align: top
+    margin-right: 5px
+    width: 20px
+    height: 20px
 
 a.add
   .icon
-    @include btn-add
-    vertical-align: top
+    @include icons-sprite('plus_blue_20')
+    // vertical-align: top
 
 a.remove
   color: $red
   .icon
-    @include icon-remove-sm
+    @include icons-sprite('minus_red_20')
 
 a.collapse, a.expand
   color: $blue
   .icon
-    vertical-align: sub
+    // vertical-align: sub
 
 a.collapse .icon
-  @include sort-arrow-up
+  @include icons-sprite('collapse_trans-black_20')
+  padding: 8px 0
+  height: 5px
+  @include background-origin(content-box)
+  @include background-clip(content-box)
 
 a.expand .icon
-  @include sort-arrow-down
+  @include icons-sprite('expand_trans-black_20')
 
 a.edit .icon
-  @include icon-edit
-  vertical-align: middle
+  @include icons-sprite('pen_orange_20')
+  // vertical-align: middle
 
 a.download .icon
-  @include icon-download
-  vertical-align: middle
+  @include icons-sprite('download_blue_20')
+  // vertical-align: middle

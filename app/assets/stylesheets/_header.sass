@@ -58,10 +58,10 @@ h1
         ul
           visibility: visible
 
-      .divider
-        @include account-links-divider
-        float: right
-        margin: 3px 0 0 0
+      // .divider
+      //   @include account-links-divider
+      //   float: right
+      //   margin: 3px 0 0 0
 
       a
         // This is the top level menu label
@@ -111,14 +111,15 @@ h1
   input
     &[type="search"]
       width: 187px
-      height: 16px
-      padding: 4px 5px
+      height: 20px
+      @include icons-sprite('search_trans-black_20')
+      @include icons-sprite-position('search_trans-black_20', 4px, 4px)
+      padding: 4px 5px 4px 30px
 
-    &[type="submit"]
-      @include btn-search
-      text-indent: -9999px
-      border: 0
-      margin-left: -4px
+    // &[type="submit"]
+    //   @include button(shiny, $blue)
+    //   border: 0
+    //   margin-left: -4px
 
 // Main Nav (search/admin)
 .main-nav

@@ -14,20 +14,21 @@
 
       input
         &[type="search"]
-          // @include border-radius(16px)
           border: 1px solid $light-grey
           float: left
           background: none
           width: 241px
           height: 16px
           padding: 6px 16px
-          color: #999
+          // color: #999
           font-size: 13px
           vertical-align: middle
 
         &[type="submit"]
-          @include button(shiny, $blue)
-          padding: 6px 17px 5px
+          @include button(simple, $blue)
+          background-image: none
+          font-size: 15px
+          padding: 5px 16px
           float: right
 
     .filter
@@ -39,6 +40,7 @@
           .search-field
             input
               padding-left: 16px
+              // color: inherit
       select
         width: 100%
 
@@ -52,14 +54,25 @@
 
       &.next, &.prev
         a
-          text-indent: -9999px
+          @include hide-text
           @include inline-block
 
       &.next a
-        @include pagination-next
+        @include icons-sprite('arrow-right-small_blue_10')
+        @include icons-sprite-dimensions('arrow-right-small_blue_10')
+
+        &:hover
+          @include icons-sprite('arrow-right-small_black_10')
+          @include icons-sprite-dimensions('arrow-right-small_black_10')
+
 
       &.prev a
-        @include pagination-prev
+        @include icons-sprite('arrow-left-small_blue_10')
+        @include icons-sprite-dimensions('arrow-left-small_blue_10')
+
+        &:hover
+          @include icons-sprite('arrow-left-small_black_10')
+          @include icons-sprite-dimensions('arrow-left-small_black_10')
 
   .results
     background-color: white
@@ -97,33 +110,32 @@
           background-color: tint($blue, 90%)
 
         &:hover
-          background: $light-grey url(/assets/arrow-sb-active.gif) 95% center no-repeat
           color: $darker-blue
+          background: $light-grey
           a
             color: $darker-blue
+          .arrow
+            @include icons-sprite('arrow-right_orange_20')
+            @include icons-sprite-dimensions('arrow-right_orange_20')
 
         &.selected
-          background: $blue url(/assets/arrow-sb-hover.gif) 95% center no-repeat
           color: $white
+          background-color: $blue
           a
             color: $white
-
-        div, h3
-          float: left
-          clear: left
+          .arrow
+            @include icons-sprite('arrow-right_white_20')
+            @include icons-sprite-dimensions('arrow-right_white_20')
 
         h3
+          float: left
           text-transform: uppercase
           clear: both
+          line-height: 20px
 
-        .in_business_since
-          font-size: 11px
-          font-weight: normal
-          text-transform: capitalize
-          margin-left: 15px
-
-        a
-          color: $blue
+        .arrow
+          float: right
+          // margin: 10px
 
         .details
           display: none
@@ -137,25 +149,6 @@
 
 
 #col-b
-  /*
-    ul.nav
-      overflow: hidden
-      margin-bottom: 20px
-
-      li
-        float: left
-        margin: 0 37px
-        font-weight: bold
-        text-align: center
-
-        &:first-of-type
-          margin-left: 0
-
-        &:last-of-type
-          margin-right: 0
-
-        a
-
   #company_details
     header
       overflow: hidden
@@ -187,7 +180,7 @@
 
         li
           padding: 0
-          margin: 0 5px 5px 0
+          margin: 0 2px 5px
           @include border-radius(0)
 
           &:last-of-type

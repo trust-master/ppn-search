@@ -45,26 +45,35 @@ fieldset
 
     a.cancel, .login input[type="submit"], input.save, input.update
       @include inline-block
-      font-weight: bold
-      border: 0
-      font-size: 14px
-      cursor: pointer
-      margin-left: 10px
-      text-align: center
+      // font-weight: bold
+      // border: 0
+      // font-size: 14px
+      // cursor: pointer
+      // margin-left: 10px
+      // text-align: center
 
     a.cancel
-      @include btn-cancel
-      line-height: 31px
-      vertical-align: top
-      color: #4e4e4e
+      @include button(simple, $red)
+      font-size: 15px
+      padding: 5px 16px
+      background-image: none
+      // line-height: 31px
+      // vertical-align: top
+      // color: #4e4e4e
+
+      &:hover
+        text-decoration: none
 
     .login input[type="submit"], input.save, input.update
-      @include btn-save
-      color: white
+      @include button(simple, $blue)
+      font-size: 15px
+      padding: 5px 16px
+      background-image: none
+      // color: white
 
     button, input[type="reset"], input[type="submit"], input[type="button"]
-      border-radius: 0
-      text-shadow: none
+      // border-radius: 0
+      // text-shadow: none
 
   legend
     margin-top: 0
@@ -159,17 +168,17 @@ fieldset
 
 
 .ui-button
-  background: url(/assets/ui-btn.gif) 0 bottom repeat-x !important
+  // background: url(/assets/ui-btn.gif) 0 bottom repeat-x !important
   border: #c4c4c4
   text-align: center
   span
     color: #666
 
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active
-  background: url(/assets/bg-active2.gif) 0 0 repeat-x !important
+  // background: url(/assets/bg-active2.gif) 0 0 repeat-x !important
 
 .radio-public .ui-state-active
-  background: url(/assets/bg-public-active.gif) 0 0 repeat-x !important
+  // background: url(/assets/bg-public-active.gif) 0 0 repeat-x !important
 
 .ui-state-active span
   color: white

@@ -9,6 +9,7 @@
 .footer-links
   overflow: hidden
   float: left
+  width: 22em
 
   ul
     li
@@ -31,6 +32,7 @@
 .social-media
   float: right
   overflow: hidden
+  width: 100px
 
   h5
     text-align: center
@@ -38,6 +40,19 @@
     font-size: 14px
 
   ul
+    text-align: center
+    margin-top: 10px
     li
       margin: 5px
-      float: right
+      @include inline-block
+      a
+        @include inline-block
+        @include hide-text
+      &.facebook
+        a
+          @include icons-sprite('facebook')
+          @include icons-sprite-dimensions('facebook')
+      &.twitter
+        a
+          @include icons-sprite('twitter')
+          @include icons-sprite-dimensions('twitter')

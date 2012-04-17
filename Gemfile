@@ -99,6 +99,9 @@ group :assets do
 
   # SASS goodies
   gem 'bourbon'
+  gem 'compass-rails'
+
+  gem 'oily_png' # C extensions for generating PNGs - used by Compass for the CSS sprites
 end
 
 group :production, :staging do
