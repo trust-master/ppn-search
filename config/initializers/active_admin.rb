@@ -126,6 +126,17 @@ ActiveAdmin.setup do |config|
   #
   # To load a javascript file:
   #   config.register_javascript 'my_javascript.js'
+
+
+  config.display_name_methods = [ :display_name,
+                                  :full_name,
+                                  :name,
+                                  :username,
+                                  :login,
+                                  :title,
+                                  :email,
+                                  :to_html,
+                                  :to_s ]
 end
 
 # Do this to every resource controller

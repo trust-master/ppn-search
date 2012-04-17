@@ -16,6 +16,7 @@ class CompanySearch < ActiveRecord::Base
     searchable_id == result.searchable_id and searchable_type == result.searchable_type
   end
 end
+
 # == Schema Information
 #
 # Table name: company_searches
@@ -40,6 +41,8 @@ end
 #  registered_agents                 :text
 #  registered_office_address         :text
 #  responsible_person_license_number :text
+#  street                            :text
+#  street2                           :text
 #  title                             :text
 #  url                               :text
 #  website_url                       :text

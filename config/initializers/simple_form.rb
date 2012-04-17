@@ -27,6 +27,16 @@ SimpleForm.setup do |config|
     w.use :input
   end
 
+  config.wrappers :active_admin, default_options do |w|
+    w.use :html5
+    w.use :placeholder
+
+    w.use :label
+    w.use :input
+    w.use :error, wrap_with: {tag: :p, class: 'inline-errors'}
+    w.use :hint, wrap_with: {tag: :p, class: 'inline-hints'}
+  end
+
   # Method used to tidy up errors.
   # config.error_method = :first
 

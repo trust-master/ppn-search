@@ -1,5 +1,5 @@
 ActiveAdmin.register Category do
-  # menu parent: 'Enumerables'
+  menu priority: 3
 
   filter :name
   filter :sub_categories_name, as: :string

@@ -1,5 +1,5 @@
 ActiveAdmin.register Page do
-
+  menu priority: 5
   filter :content
 
   index do

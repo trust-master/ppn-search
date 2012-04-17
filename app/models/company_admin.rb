@@ -2,6 +2,7 @@
 # profile info, etc., in addition to entering company details.
 #
 class CompanyAdmin < User
+  validates_presence_of :company, if: proc { |user| user.role.company_admin? } # this 'if' may seem unnecessary, but don't forget Administrator inherits from CompanyAdmin, and we don't want that validation to apply to that model.
 end
 
 

@@ -3,7 +3,7 @@ module FormHelper
   def fieldset(name, show_header = true, &block)
     i18n_scope = [controller.controller_name, :fieldsets]
 
-    content_tag :fieldset, id: name do
+    content_tag :fieldset, id: name, class: 'inputs' do
       html = ''.html_safe
 
       header       = t("#{name}.header", scope: i18n_scope, default: name.to_sym)
@@ -14,7 +14,9 @@ module FormHelper
         legend = ''.html_safe
 
         if show_header
-          legend << content_tag(:h3, header, class: (what_is_this ? 'floated' : nil))
+          legend << content_tag(:h3, class: (what_is_this ? 'floated' : nil)) do
+            content_tag(:span, header)
+          end
         end
         if what_is_this
           legend << content_tag(:div, class: 'popup') do

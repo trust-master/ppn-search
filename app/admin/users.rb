@@ -47,6 +47,43 @@ ActiveAdmin.register User do
       row :created_at
       row :updated_at
     end
+    panel "Activation Tokens (password resets & email changes)" do
+      table_for c.auth_tokens do
+        column :type do |t|
+          t.class.model_name.human
+        end
+        column :expires_at
+        column :fullfilled_at
+        column :created_at
+        column :active? do |t|
+          if t.active?
+            status_tag('yes', :ok)
+          else
+            status_tag('no')
+          end
+        end
+        column '' do |token|
+          links = ''.html_safe
+          links += link_to 'Details', admin_user_auth_token_path(id: token.id), class: "member_link"
+          if token.active?
+            links += link_to 'Expire Now', expire_admin_user_auth_token_path(id: token.id), method: 'put', class: "member_link"
+            links += link_to 'Resend Email', resend_admin_user_auth_token_path(id: token.id), method: 'put', class: "member_link"
+          end
+          links
+        end
+      end
+    end
+
+    panel 'History' do
+      table_for resource.versions do
+        column :created_at
+        column :event
+        column :whodunnit
+        column :controller_name
+        column :ip_address
+        column :changeset
+      end
+    end
     active_admin_comments
   end
 
@@ -58,16 +95,14 @@ ActiveAdmin.register User do
       f.input :last_name
       f.input :email
       f.input :phone
-      f.input :company
-      f.input :active
+      f.input :company, hint: 'This is required only when user is a Company Admin'
+      # f.input :active
     end
     f.buttons
   end
 
   member_action :reset_password do
-    user = User.find(params[:id])
-    token = user.password_resets.create(created_by_ip: request.ip)
-    UserMailer.password_reset(token).deliver # FIXME: Set this up in an observer
+    user = User.find(params[:id]).reset_password!
 
     redirect_to admin_user_path(user), notice: 'Password reset email sent to User!'
   end

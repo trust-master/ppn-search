@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     if current_user # not authorized
       redirect_to(root_url, alert: exception.message)
-
+      logger.info 'Unauthorized'
     else # not logged in
       url = (respond_to?(:main_app) ? main_app : self).login_path
       redirect_to(url)
@@ -34,6 +34,6 @@ class ApplicationController < ActionController::Base
   def info_for_paper_trail
     { ip_address: request.remote_ip, controller_name: self.class.name }
   end
-  alias :user_for_paper_trail :current_user
+  # alias :user_for_paper_trail :current_user
 
 end

@@ -1,5 +1,5 @@
 ActiveAdmin.register DiscountType do
-  menu label: 'Discounts'
+  menu label: 'Discounts', priority: 4
 
   before_filter { @skip_sidebar = true }
 

@@ -1,5 +1,5 @@
 ActiveAdmin.register Market do
-  # menu parent: 'Enumerables'
+  menu priority: 4
 
   before_filter { @skip_sidebar = true }
 

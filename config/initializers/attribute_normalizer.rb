@@ -16,9 +16,13 @@ AttributeNormalizer.configure do |config|
   #   end
   # end
 
+  config.normalizers[:squish_by_line] = proc { |v, options={}|
+    v.is_a?(String) ? v.strip.gsub(/[ \t\r]*\n[ \t\r]*/,"\n") : v
+  }
+
   # The default normalizers if no :with option or block is given is to apply the :strip and :blank
   # normalizers (in that order). You can change this if you would like as follows:
-  config.default_normalizers = :squish, :blank
+  config.default_normalizers = :squish_by_line, :blank
 
   # You can enable the attribute normalizers automatically if the specified attributes exist in your
   # column_names. It will use the default normalizers for each attribute (e.g. config.default_normalizers)

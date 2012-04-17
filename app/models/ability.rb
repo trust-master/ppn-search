@@ -20,6 +20,7 @@ class Ability
 
     can [:create, :destroy],       Session
     can [:create, :read, :update], PasswordReset
+    can [:create, :read, :update], UserAuthToken
     can :read, Page
 
     if user.persisted? # authenticated user
