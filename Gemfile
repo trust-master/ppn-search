@@ -65,7 +65,7 @@ git 'https://github.com/jodosha/redis-store.git' do # using the source,
   gem 'redis-store' # wrapper gem
   gem 'redis-rails' # provides a Rails interface to the above
   gem 'redis-i18n' # provides a backend for I18n.
-  # gem 'redis-rack-cache' # provides a Redis-backed store for Rack::Cache
+  gem 'redis-rack-cache' # provides a Redis-backed store for Rack::Cache
 end
 
 gem 'resque', # For background tasks (like scraping the MN DoLI website, or sending emails)

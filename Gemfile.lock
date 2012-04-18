@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/jodosha/redis-store.git
-  revision: 7369110bffae191bf150b6b4e3a820f5f504e1be
+  revision: ffcd8e755254f276e0d671fb4961975baee8ebd9
   specs:
     redis-actionpack (3.2.3)
       actionpack (~> 3.2.3)
@@ -14,6 +14,9 @@ GIT
       redis-store (= 1.1.0)
     redis-rack (1.4.1)
       rack (= 1.4.1)
+      redis-store (~> 1.1.0)
+    redis-rack-cache (1.2)
+      rack-cache (~> 1.2)
       redis-store (~> 1.1.0)
     redis-rails (3.2.3)
       redis-actionpack (~> 3.2.3)
@@ -462,6 +465,7 @@ DEPENDENCIES
   redcarpet
   redis
   redis-i18n!
+  redis-rack-cache!
   redis-rails!
   redis-store!
   replicate
