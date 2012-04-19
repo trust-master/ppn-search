@@ -47,6 +47,8 @@
               %fieldset
                 -# REFACTOR: This should utilize simpleform and a model-backed set-up. How to set that up without creating a new search model instance with every request? Caching the instance?
                 %input{type: :search, name: 'search[any_text_field_contains]', placeholder: 'Search', value: params['search'].try(:[], 'any_text_field_contains')}
+        - else
+          #user-nav-spacer
 
         %nav#main-nav
           = nav_for :main do |main|
