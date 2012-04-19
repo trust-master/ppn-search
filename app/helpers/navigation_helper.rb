@@ -34,11 +34,19 @@ module NavigationHelper
       options[:link_attrs] = {id: path}.merge(options[:link_attrs] || {})
 
       if options.has_key?(:item_wrapper) and options[:item_wrapper].nil?
-        h.link_to(text_for_link, url, options[:link_attrs])
+        h.link_to(url, options[:link_attrs].merge(html_options)) do
+          out = text_for_link
+          out << content_tag(:abbr, '', class: 'arrow') if options[:include_arrow]
+          out.html_safe
+        end
       else
         wrapper_tag = options[:item_wrapper] || :li
         h.content_tag(wrapper_tag, html_options) do
-          h.link_to(text_for_link, url, options[:link_attrs])
+          h.link_to(url, options[:link_attrs]) do
+            out = text_for_link
+            out << content_tag(:abbr, '', class: 'arrow') if options[:include_arrow]
+            out.html_safe
+          end
         end
       end
     end

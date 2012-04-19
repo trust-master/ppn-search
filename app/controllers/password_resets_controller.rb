@@ -13,13 +13,8 @@ class PasswordResetsController < ApplicationController
     user = User.where('lower("users"."email") = ?', email.downcase.strip).first
 
     if user and user.first_name.downcase.strip == name.downcase.strip
-
-      token = user.password_resets.create(created_by_ip: request.ip)
-
-      UserMailer.password_reset(token).deliver
-
+      user.password_resets.create!
       render :success
-
     else
       redirect_to new_password_reset_path, flash: { error: t(:failure, scope: 'password_resets.new') }
     end
@@ -27,7 +22,7 @@ class PasswordResetsController < ApplicationController
 
   # The show action will be used when fullfilling the reset (the reset URL will point to this)
   def show
-    @token = PasswordReset.find_by_token(params[:id])
+    @token = PasswordReset.where(token: params[:id]).first!
     if @token and @token.active?
       @user = @token.user
     else
@@ -36,7 +31,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
-    @token = PasswordReset.find_by_token(params[:id])
+    @token = PasswordReset.where(token: params[:id]).first!
     if @token and @token.active?
       @user = @token.user
 
@@ -46,7 +41,7 @@ class PasswordResetsController < ApplicationController
       if @user.save
         session[:user_id] = @user.id # Leave the user logged in
 
-        @token.fullfill!(request.ip)
+        @token.fullfill!
 
         flash[:notice] = t('success', scope: ['password_resets.update'])
         redirect_to root_url

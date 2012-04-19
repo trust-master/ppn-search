@@ -20,21 +20,5 @@ describe PasswordResetsController do
       )
     end
 
-    it 'does not route to #index' do
-      get('/password_resets').should_not be_routable
-    end
-
-    it 'does not route to #update' do
-      put('/password_resets/1').should_not be_routable
-    end
-
-    it 'does not route to #edit' do
-      get('/password_resets/1/edit').should_not be_routable
-    end
-
-    it 'does not route to #destroy' do
-      delete('/password_resets/1').should_not be_routable
-    end
-
   end
 end

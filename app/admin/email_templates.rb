@@ -1,6 +1,7 @@
 ActiveAdmin.register EmailTemplate do
   menu label: 'Emails', priority: 6
   filter :body
+  actions :edit, :update, :show, :index
 
   index do
     selectable_column

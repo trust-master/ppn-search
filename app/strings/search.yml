@@ -3,6 +3,14 @@ en:
     index:   # Landing page
       title: Provider Search
       secondary_title: "Buyer's Guide"
+    search:  # Search results page
+      title: Provider Search
+      secondary_title: "Buyer's Guide"
+      results_count:
+        zero: ""
+        one: "1 result"
+        other: "%{count} results"
+    buyers_guide_welcome:
       tabs:
         initial:
           content: >
@@ -35,10 +43,3 @@ en:
           name: Reviews
           content: >
             Home manager reviews coming soon!
-    search:  # Search results page
-      title: Provider Search
-      secondary_title: "Buyer's Guide"
-      results_count:
-        zero: ""
-        one: "1 result"
-        other: "%{count} results"

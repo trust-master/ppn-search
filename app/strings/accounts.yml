@@ -12,3 +12,4 @@ en:
       password:
         header: Password
         instructions: This section is not yet operational
+    saved: Account was updated successfully
