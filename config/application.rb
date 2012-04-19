@@ -41,7 +41,7 @@ module ServiceProviderPortal
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     config.i18n.load_path += Dir[Rails.root.join('app', 'strings', '**', '*.{rb,yml}').to_s]
-    config.i18n.default_locale = 'en-US'
+    config.i18n.default_locale = 'en'
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
@@ -78,5 +78,6 @@ module ServiceProviderPortal
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
   end
 end
