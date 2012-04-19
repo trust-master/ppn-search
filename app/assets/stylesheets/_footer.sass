@@ -1,58 +1,50 @@
-// This file is interpreted in the context of
-// .wrapper-outer > #footer
+// This file is interpreted in the global context
 
-&
-  color: $blue
-  font-size: 12px
-  overflow: hidden
-
-.footer-links
+#footer-links
   overflow: hidden
   float: left
   width: 22em
 
-  ul
-    li
+  & > ul
+    & > li
       float: left
-      border-right: 1px solid
-      line-height: 100%
+      border-right: 1px solid $blue
+      line-height: 16px
 
       &:last-of-type
         border-right: none
 
-      a
+      & > a
         margin: 0 7px
+        color: $blue
+        +hover-link
 
-.trust-logos
+#trust-logos
   width: 128px
   margin: 0 auto
 
-  img
-
-.social-media
+#social-media
   float: right
   overflow: hidden
   width: 100px
 
-  h5
+  & > h5
     text-align: center
     color: #4e4e4e
     font-size: 14px
 
-  ul
+  & > ul
     text-align: center
     margin-top: 10px
-    li
+    & > li
       margin: 5px
-      @include inline-block
-      a
-        @include inline-block
-        @include hide-text
-      &.facebook
-        a
-          @include icons-sprite('facebook')
-          @include icons-sprite-dimensions('facebook')
-      &.twitter
-        a
-          @include icons-sprite('twitter')
-          @include icons-sprite-dimensions('twitter')
+      +inline-block
+      & > a
+        +inline-block
+        +hide-text
+      &.facebook > a
+        +icons-sprite('facebook')
+        +icons-sprite-dimensions('facebook')
+      &.twitter > a
+        +icons-sprite('twitter')
+        +icons-sprite-dimensions('twitter')

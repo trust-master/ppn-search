@@ -1,75 +1,38 @@
 @charset 'UTF-8'
 
+// Compass configs
+$use-mozilla-ellipsis-binding: true
+
+// compass and bourbon have some conflicts, so I chose to let Compass take priority. Keep bourbon above Compass
 @import bourbon
 @import compass
-@import compass/reset
-// @import normalize
-
-$icons-spacing: 5px
+// tell compass to create an image sprite from the icons folder
+$icons-spacing: 15px
 @import "icons/*.png"
 
+// I want some of the Compass color helpers to be available to the next file
 @import colors
 
+// these mixins need access to bourbon, compass, and the colors, so leave this line after those three
+@import mixins/*
+
+@import fonts
+
+@import normalize
+@import compass/reset
 
 @import chosen
 
 @import forms
 
-body
-  font-size: 14px
-  line-height: 18px
-  // font-family: Arial,Verdana, Helvetica, sans-serif
-  font-family: "DejaVu Sans", Futura, "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", Arial, sans-serif
-  background-color: #e9e9e9
-  color: $text
+@import jquery-ui.custom
 
-a
-  color: $blue
-  text-decoration: none
-
-  &:hover
-    text-decoration: underline
-
-h2
-  font-size: 22px
-  margin-bottom: 15px
-  line-height: 26px
-
-h3
-  font-size: 15px
-  text-transform: uppercase
-
-h4
-  font-size: 14px
-  margin: 20px 15px
-
-h6
-  margin: 10px 0
-
-p
-  margin-bottom: 15px
-
-\:focus
-  outline: 5px auto $blue
-
-hr
-  border: none
-  border-bottom: 1px solid $light-grey
-  margin: 20px
-
-
-.clear
-  height: 0
-  clear: both
-
-.hidden
-  display: none
+@import base
 
 @import wrappers
 
 @import development
 @import admin_panels
 
-@import jquery-ui.custom
 // This is meant to override any styles above, strictly for jQuery UI stuff that I need to change
 @import ui

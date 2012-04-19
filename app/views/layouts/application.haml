@@ -5,66 +5,60 @@
 
     = stylesheet_link_tag :application
     /[if IE]
-      = stylesheet_link_tag :pie
+      = stylesheet_link_tag :ie
     /[if IE 8]
       = stylesheet_link_tag :ie8
     /[if lte IE 7]
       = stylesheet_link_tag :ie7
-    /[if lt IE 9]
-      = javascript_include_tag 'http://html5shim.googlecode.com/svn/trunk/html5.js'
-    = javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'
-    = javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js'
 
-    = javascript_include_tag :application
+    - unless controller.controller_name == 'pages'
+      = javascript_include_tag :loader
 
     = content_for :head
 
   %body
     #wrapper
       %header#header
-        %h1
+        %h1#site-logo
           = link_to root_url do
-            = image_tag asset_path('logo.png'), alt: "Trust Master: #{t(:tagline)}"
+            = image_tag 'logo.png', title: "Trust Master: #{t(:tagline)}", alt: "Trust Master"
         - if current_user
-          %nav.header-nav
-            %span.welcome= t(:welcome, name: current_user.first_name)
+          %nav#user-nav
             = nav_for :account_links, menu_class: 'account-links', item_wrapper: nil do |menu|
               - if current_user.company_id?
-                %li.nav-profile
-                  .icon
-                  = menu.nav_link :profile
+                %li#user-nav-profile.dropdown
+                  = menu.nav_link :profile, company_path(current_user.company), proc { current_user.company_id == @company.try(:id) }
                   = menu.nav_for :profile do |profile|
                     = profile.nav_link :show, company_path(current_user.company)
                     - if can?(:edit, current_user.company)
                       = profile.nav_link :edit, edit_company_path(current_user.company, section: :identity)
-              %li.nav-account
-                .icon
-                = menu.nav_link :account, edit_account_path(section: :basic)
+              %li#user-nav-account.dropdown
+                = menu.nav_link :account, edit_account_path(section: :basic), proc { controller.controller_name == 'accounts' }
                 = menu.nav_for :account do |account|
                   = account.nav_link :basic,         edit_account_path(section: :basic)
                   = account.nav_link :privacy,       edit_account_path(section: :privacy), nil, class: :disabled
                   = account.nav_link :notifications, edit_account_path(section: :notifications), nil, class: :disabled
-              %li.nav-logout
-                .icon
+              %li#user-nav-logout
                 = menu.nav_link :logout, logout_path
-            .clear
 
-          .search
+            #welcome= t(:welcome, name: current_user.first_name)
+          #header-search
             = form_tag(search_index_path, method: :get)  do
               %fieldset
+                -# REFACTOR: This should utilize simpleform and a model-backed set-up. How to set that up without creating a new search model instance with every request? Caching the instance?
                 %input{type: :search, name: 'search[any_text_field_contains]', placeholder: 'Search', value: params['search'].try(:[], 'any_text_field_contains')}
-                // %input{type: :submit}
 
-        %nav.main-nav
+        %nav#main-nav
           = nav_for :main do |main|
+            - if current_user.is_a? Administrator
+              = main.nav_link :admin, admin_dashboard_path
+            = main.nav_page_link :code_of_conduct
+            = main.nav_page_link :core_values
             - if current_user
-              - if current_user.is_a? Administrator
-                = main.nav_link :admin, admin_dashboard_path
-              = main.nav_page_link :code_of_conduct
-              = main.nav_page_link :core_values
               = main.nav_link :search_ppn, search_index_path, proc { controller.controller_name == 'search' }
             - else
               = main.nav_link :login, login_path
+        .clear
 
       #content{class: [content_for(:content_div_class).presence || 'col-2', page_class] }
 
@@ -73,24 +67,28 @@
             .flash{ class: bucket }= msg
 
         - if content_for?(:page_title)
-          %h2= page_title
+          %h2#page-title= page_title
 
         = content_for?(:content) ? yield(:content) : yield
 
         .clear
       %footer#footer
-        .footer-links
+        #footer-links
           = nav_for :footer do |footer|
             - [:terms, :privacy_policy, :about, :contact].each do |page_id|
               = footer.nav_page_link page_id
 
-        .social-media
+        #social-media
           %h5= t(:follow_us_on)
           %ul
             %li.twitter=  link_to 'Twitter',  follow_us_on_twitter_path
             %li.facebook= link_to 'Facebook', follow_us_on_facebook_path
 
-        .trust-logos
-          = image_tag asset_path('trust-logos.png'), alt: 'Verisign'
+        #trust-logos
+          = image_tag 'trust-logos.png', alt: 'Verisign', width: 128, height: 47
 
     #copyright &copy; #{Time.now.year} #{t('copyright')}
+
+
+
+    / = javascript_include_tag :application

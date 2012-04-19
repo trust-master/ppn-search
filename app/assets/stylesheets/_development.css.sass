@@ -1,5 +1,8 @@
 @charset 'UTF-8'
 
+// *:focus
+//   outline: 3px solid $blue !important
+
 .translation_missing
   margin: 0               !important
   padding: 0              !important
@@ -12,7 +15,7 @@
 dfn, .tk, .translation_key
   background-color: white
   color: #8700C5
-  @include inline-block
+  +inline-block
   font-size: 11px
   font-weight: bold
   height: 11px
@@ -142,3 +145,19 @@ dfn, .tk, .translation_key
             -moz-border-radius: 0 0 10px 10px
             border-radius: 0 0 10px 10px
 
+
+#user-nav
+  width: auto
+
+#header-search
+  margin: 0 4px 0 0
+  clear: none
+  & > form > fieldset > input[type="search"]
+    height: 16px
+    +icons-sprite-position('search_trans-black_20', 4px, 2px)
+
+#welcome
+  display: none
+
+#main-nav
+  margin: 20px 0 0 0

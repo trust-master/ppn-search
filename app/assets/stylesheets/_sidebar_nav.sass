@@ -3,34 +3,49 @@
 
 .sidebar-nav
   li
-    border-top: 1px solid $light-grey
-    line-height: 36px
-
-    &:first-child
-      border-top: none
+    +clearfix
+    line-height: 20px
+    margin: 0 0 10px
 
     &.disabled
       a
         color: $grey
 
     &.active
-      background: $blue url(/assets/arrow-sb-hover.gif) 95% center no-repeat
-
-      a, &:hover a
+      a, a:hover, a:focus
+        background: $blue
+        border-color: $blue
         color: white
-        text-decoration: none
 
-    &:hover
-      background: $grey url(/assets/arrow-sb-active.gif) 95% center no-repeat
+        .arrow
+          +icons-sprite('arrow-right_white_20')
+          +icons-sprite-dimensions('arrow-right_white_20')
 
-      a
+      a:focus
+        color: rgba(white, 0.5)
+
+        .arrow
+          +icons-sprite('arrow-right_trans-white_20')
+          +icons-sprite-dimensions('arrow-right_trans-white_20')
+
+    a
+      border: 1px solid $grey
+      background-color: white
+      text-transform: uppercase
+      color: $text
+      // font-weight: bold
+      display: block
+      padding: 10px 10px 10px 10px
+      // float: left
+
+      &:hover, &:focus
+        background: $very-light-grey
         color: $blue
         text-decoration: none
 
+        .arrow
+          +icons-sprite('arrow-right_blue_20')
+          +icons-sprite-dimensions('arrow-right_blue_20')
 
-    a
-      text-transform: uppercase
-      color: #aaaaaa
-      font-weight: bold
-      display: block
-      padding-left: 13px
+    .arrow
+      float: right

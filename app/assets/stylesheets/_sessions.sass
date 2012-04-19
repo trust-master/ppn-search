@@ -6,12 +6,15 @@ fieldset
 
 .login-messages,
 .login-btns
-  margin-left: 148px
-  margin-bottom: 20px
+  margin:
+    top:    0
+    right:  144px
+    bottom: 20px
+    left:   148px
 
 .login-btns
   input
-    @include inline-block
+    +inline-block
     margin-right: 10px
 
 .login-messages

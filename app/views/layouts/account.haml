@@ -4,7 +4,7 @@
   #col-a
 
     .sidebar-nav
-      = nav_for :account do |menu|
+      = nav_for :account, include_arrow: true do |menu|
         = menu.nav_link :basic,         edit_account_path(section: :basic)
         = menu.nav_link :privacy,       edit_account_path(section: :privacy),       nil, class: :disabled
         = menu.nav_link :notifications, edit_account_path(section: :notifications), nil, class: :disabled

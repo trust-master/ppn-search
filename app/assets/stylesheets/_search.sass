@@ -3,7 +3,7 @@
 
 #col-a
   #company_search
-    margin-bottom: 20px
+    margin-bottom: 10px
     padding: 15px 15px 12px
     background-color: white
     border: 1px solid $light-grey
@@ -25,11 +25,19 @@
           vertical-align: middle
 
         &[type="submit"]
-          @include button(simple, $blue)
-          background-image: none
+          @extend .ui-button
+          @extend .ui-wigdet
+          @extend .ui-state-default
+          // +button(simple, $blue)
+          // background-image: none
           font-size: 15px
           padding: 5px 16px
           float: right
+          margin: 0
+          &:hover
+            @extend .ui-state-hover
+          &:focus
+            @extend .ui-state-focus
 
     .filter
       .chzn-container-multi
@@ -41,8 +49,17 @@
             input
               padding-left: 16px
               // color: inherit
+
+      // style the naked select to avoid such a dramatic update when Chosen kicks in
       select
         width: 100%
+        height: 29px
+        margin-left: 0
+        padding: 6px 0 0 16px
+        border: 1px solid $grey
+        color: $grey
+        background-color: transparent
+        +opacity(0.5)
 
   .pagination
     float: right
@@ -54,25 +71,18 @@
 
       &.next, &.prev
         a
-          @include hide-text
-          @include inline-block
+          +hide-text
+          +inline-block
+          +icons-sprite-dimensions('arrow-right-small_blue_10')
 
       &.next a
-        @include icons-sprite('arrow-right-small_blue_10')
-        @include icons-sprite-dimensions('arrow-right-small_blue_10')
-
+        +icons-sprite('arrow-right-small_blue_10')
         &:hover
-          @include icons-sprite('arrow-right-small_black_10')
-          @include icons-sprite-dimensions('arrow-right-small_black_10')
-
-
+          +icons-sprite('arrow-right-small_black_10')
       &.prev a
-        @include icons-sprite('arrow-left-small_blue_10')
-        @include icons-sprite-dimensions('arrow-left-small_blue_10')
-
+        +icons-sprite('arrow-left-small_blue_10')
         &:hover
-          @include icons-sprite('arrow-left-small_black_10')
-          @include icons-sprite-dimensions('arrow-left-small_black_10')
+          +icons-sprite('arrow-left-small_black_10')
 
   .results
     background-color: white
@@ -94,7 +104,7 @@
       border-top: 1px solid $light-grey
       margin-top: 15px
       clear: both
-      @include clearfix
+      +clearfix
 
       li
         padding: 11px
@@ -107,16 +117,16 @@
           border-bottom: none
 
         &.inactive
-          background-color: tint($blue, 90%)
+          color: $grey
 
         &:hover
-          color: $darker-blue
-          background: $light-grey
+          color: $blue
+          background: $faint-blue
           a
-            color: $darker-blue
+            color: $blue
           .arrow
-            @include icons-sprite('arrow-right_orange_20')
-            @include icons-sprite-dimensions('arrow-right_orange_20')
+            +icons-sprite('arrow-right_blue_20')
+            +icons-sprite-dimensions('arrow-right_blue_20')
 
         &.selected
           color: $white
@@ -124,8 +134,8 @@
           a
             color: $white
           .arrow
-            @include icons-sprite('arrow-right_white_20')
-            @include icons-sprite-dimensions('arrow-right_white_20')
+            +icons-sprite('arrow-right_white_20')
+            +icons-sprite-dimensions('arrow-right_white_20')
 
         h3
           float: left
@@ -135,10 +145,6 @@
 
         .arrow
           float: right
-          // margin: 10px
-
-        .details
-          display: none
 
   .footer
     padding: 0
@@ -152,13 +158,14 @@
   #company_details
     header
       overflow: hidden
-      @include clearfix
+      +clearfix
       margin: 20px 0
 
       h2, .in_business_since
         float: left
       h2
         margin-bottom: 0
+        font-weight: bold
 
       .in_business_since
         font-size: 11px
@@ -169,31 +176,22 @@
       .actions
         float: right
 
-    & > .tabs.ui-tabs
-      border: none
-      padding: 0
-      background: none
-
-      .ui-tabs-nav
-        border: none
-        background: none
-
+    & > .tabs
+      ul.nav.tab_bar
         li
-          padding: 0
-          margin: 0 2px 5px
-          @include border-radius(0)
+          a
 
-          &:last-of-type
-            margin-right: 0
-
-      .ui-tabs-panel
-        padding: 0
-        margin: 20px 0
 
     // .profile, .capabilities, .credentials, .discounts, .reviews
     .tab
-      padding: 0
-      margin: 20px 0
+      // hide all the tabs by default, so, before jQuery kicks in, we don't see them all
+      display: none
+      &#initial
+        // don't hide the initial tab
+        display: block
+      &.ui-tabs-panel
+        // as soon as the ui-tabs-panel is attached, it's safe to set that back, since they'll also have ui-tabs-hidden
+        display: block
 
       .online, .website, .url, .email
         a
@@ -203,8 +201,9 @@
         font-size: 17px
 
       h3
-        font-size: 14px
+        font-size: 15px
         margin-bottom: 10px
+        font-weight: bold
 
       h4
         font-size: 14px
@@ -212,7 +211,6 @@
 
       label
         font-weight: bold
-
 
       ul
         clear: both
@@ -224,8 +222,6 @@
           ul
             list-style: disc
             padding-left: 30px
-
-            li
 
       section
         border-bottom: 1px solid $grey
@@ -243,10 +239,8 @@
 
 
     .profile
-      // display: block
-
       .locations
-        @include clearfix
+        +clearfix
         address
           font-style: normal
           float: left
@@ -256,7 +250,6 @@
     .capabilities
 
     .credentials
-
       .insurance
         .certificate
           margin-top: 5px
@@ -280,12 +273,7 @@
         label
           display: block
 
-        .attached_file
-          label
-
-
     .discounts
-
       label
         display: block
 

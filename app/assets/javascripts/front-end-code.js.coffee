@@ -1,13 +1,3 @@
-$(document).ready =>
-  $('.input.select select, .input.grouped_select select').chosen({include_group_label_in_selected: true})
-
-  @popup.init()
-  @companyForm.init() if $('#content').hasClass('companies')
-  @searchPage.init()  if $('#content').hasClass('search')
-  @removeLinks.init()
-
-  $("input[type='checkbox']").button()
-  $('time.timeago').timeago()
 
 @companyForm =
   init: ->
@@ -178,3 +168,14 @@ $(document).ready =>
   bind: ->
     $(".popup a").click ->
       $(this).css({'visibility': 'hidden'}).siblings(".content").slideDown()
+
+$(document).ready =>
+  $('.input.select select, .input.grouped_select select').chosen({include_group_label_in_selected: true})
+
+  @popup.init()
+  @companyForm.init() if $('#content').hasClass('companies')
+  @searchPage.init()  if $('#content').hasClass('search')
+  @removeLinks.init()
+
+  $("input[type='checkbox']").button()
+  $('time.timeago').timeago()

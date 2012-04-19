@@ -1,15 +1,20 @@
 // This file is to be used as the definitive place for colors to be used anywhere in the
-// application. It will be imported into every other file.
+// application. These variables will be available to every other file.
 
 $blue: #00adef
-$red: #f0001c
-$orange: #f0a400
-
+$faint-blue: change_color($blue, $lightness: 96%)
 $darker-blue: darken($blue, 15%)
 
+// this red is one of the split complements of $blue
+$red: #f0001c
+$faint-red: change_color($red, $lightness: 96%)
+
+// this orange is the other split complement of $blue
+$orange: #f0a400
+$faint-orange:  change_color($orange, $lightness: 96%)
+
+$text: #4e4e4e
 $grey: #ccc
 $light-grey: #d5d5d5
 $very-light-grey: #e7e7e7
 $white: #f7f7f7
-
-$text: #4e4e4e

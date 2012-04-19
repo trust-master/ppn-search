@@ -1,152 +1,164 @@
-// This file is interpreted in the context of
-// .wrapper-outer > #wrapper > #header
-
-&
-  border-bottom: 1px solid $grey
-  @include box-shadow(0 6px 12px -7px #999)
+// This file is interpreted in the top-level context, and should apply only to element within the header
 
 // Logo
-h1
+h1#site-logo
   float: left
-  a
-    img
+  +image-dimensions('logo.png')
+  & > a
+    display: block
+    // this is for the alt-text if the image doesn't load
+    margin: 15px 0 0 5px
+    font-size: 47px
+    color: $blue
+    & > img
+      // the negative margin here is just to avoid the margin from the previous rule
+      margin: -15px 0 0 -5px
+      +image-dimensions('logo.png')
+
+
+#user-nav, #header-search, #main-nav
+  float: right
+#header-search, #main-nav
+  margin: 11px 0 0 0
+  clear: right
 
 // User Nav
-.header-nav
-  position: absolute
-  top: 10px
-  right: 10px
-
-  .welcome
-    float: left
-    font-size: 15px
-    line-height: 22px
-    margin-right: 20px
-    @include inline-block
-
-  a:hover
-    text-decoration: none
+#user-nav
+  width: 550px
 
   // Account Links
   ul.account-links
     height: 24px
-    margin-right: -18px
-    float: left
+    float: right
+    z-index: 1
+
 
     & > li
       float: left
       zoom: 1
       position: relative
-      z-index: 100
-      background: url(/assets/bg-account-links.gif) no-repeat 0 0
-      width: 115px
+      z-index: 1
+      margin: 0 0 0 4px
 
-      &.nav-profile
-        background-position: 0 0
-        &:hover, &.hover
-          background-position: 0 -24px
-      &.nav-account
-        background-position: -114px 0
-        &:hover, &.hover
-          background-position: -114px -24px
-      &.nav-logout
-        background-position: -235px 0
-        &:hover, &.hover
-          background-position: -235px -24px
-
-      &:hover, &.hover
-        ul
-          visibility: visible
-
-      // .divider
-      //   @include account-links-divider
-      //   float: right
-      //   margin: 3px 0 0 0
-
-      a
+      & > a
         // This is the top level menu label
         display: block
         height: 24px
-        padding-left: 40px
+        padding: 0 16px 0 32px
         line-height: 24px
+        text-align: left
+        // margin-left: -1px
+        background-color: $very-light-grey
+        border: 1px solid $grey
 
-      ul
-        // submenu
-        visibility: hidden
-        position: absolute
-        top: 100%
-        left: 1px
-        background-color: #efefef
-        padding: 0
-        z-index: 1
-        width: 150px
-        border: 1px solid #d5d5d5
-        border-top: 0
+        &.active
+          background-color: $blue
+          color: white
+          border-color: $blue
 
-        // This is second/deeper menu item.
-        li
-          float: none
-          margin: 0
-          padding: 0 10px
+      &:hover > a, & > a:focus
+        background-color: $white
+        color: $blue
+        border-color: $grey
 
-          &:hover
-            background: #d9d9d9
-          &.active
-            font-weight: bolder
-          a
-            background: none
-            padding-left: 0
-            width: auto
+      &.dropdown
+        & > ul.navigation
+          // submenu
+          display: none
+          position: absolute
+          margin: -1px 0 0 0
+          background-color: $white
+          padding: 4px
+          z-index: -1
+          // width: 150px // turn this back on if you have trouble with this not respecting the nowrap below
+          border: 1px solid $grey
 
-.search
-  position: absolute
-  right: 10px
-  top: 46px
+          // This is second/deeper menu item.
+          & > li
+            & > a
+              display: block
+              padding: 0 30px
+              font-size: 90%
+              line-height: 30px
+              background: none
+              width: auto
+              border: 1px solid transparent
+              +nowrap
 
-  fieldset
-    margin: 0
-    padding: 0
-    border: none
+            &:hover > a
+              background: $very-light-grey
+              color: $text
+              border-color: $grey
+            &.active > a
+              background-color: $blue
+              color: white
+              border-color: $blue
 
-  input
-    &[type="search"]
-      width: 187px
-      height: 20px
-      @include icons-sprite('search_trans-black_20')
-      @include icons-sprite-position('search_trans-black_20', 4px, 4px)
-      padding: 4px 5px 4px 30px
+        &:hover
+          & > ul.navigation
+            // show the dropdown upon hover
+            display: block
+          & > a
+            // drop the menu a bit below the others and hide the bottom border
+            border-bottom: none
+            padding-bottom: 6px
 
-    // &[type="submit"]
-    //   @include button(shiny, $blue)
-    //   border: 0
-    //   margin-left: -4px
+#user-nav-profile > a
+  +icons-sprite('trust-master-shield_trans-black_16')
+  +icons-sprite-position('trust-master-shield_trans-black_16', 8px, 4px)
+#user-nav-account > a
+  +icons-sprite('user_trans-black_16')
+  +icons-sprite-position('user_trans-black_16', 8px, 4px)
+#user-nav-logout > a
+  +icons-sprite('x-alt_trans-black_16')
+  +icons-sprite-position('x-alt_trans-black_16', 8px, 4px)
+
+#welcome
+  float: right
+  font-size: 14px
+  line-height: 22px
+  margin-right: 20px
+
+
+#header-search
+  & > form
+    & > fieldset
+      margin: 0
+      padding: 0
+      border: none
+
+      & > input
+        &[type="search"]
+          width: 187px
+          height: 20px
+          +icons-sprite('search_trans-black_20')
+          +icons-sprite-position('search_trans-black_20', 4px, 4px)
+          padding: 4px 5px 4px 30px
 
 // Main Nav (search/admin)
-.main-nav
-  float: right
-  clear: right
-  margin-top: 75px
+#main-nav
+  ul.navigation
+    & > li
+      float: left
+      zoom: 1
+      position: relative
+      // z-index: -1
+      margin: 0 0 0 4px
+      & > a
+        display: block
+        line-height: 34px
+        padding: 0 20px
+        border: 1px solid transparent
+        border-bottom: none
 
-  li
-    float: left
-    line-height: 34px
-    padding: 0 27px
+        &:hover
+          background-color: $very-light-grey
+          border-color: $grey
+          color: $blue
 
-    &:hover
-      background-color: $very-light-grey
-
-      a
-        text-decoration: none
-        color: $blue
-
-    &.active
-      background-color: $blue
-
-      &:hover
+      &.active > a
         background-color: $blue
-
-      &, a, &:hover a
-        color: $white
-        font-weight: bold
+        border-color: $blue
+        color: white
 
 

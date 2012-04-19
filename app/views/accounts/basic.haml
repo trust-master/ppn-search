@@ -1,6 +1,6 @@
 - title t('.title')
 
-= simple_form_for resource, url: account_path(resource) do |f|
+= simple_form_for resource, url: account_path do |f|
   = fieldset :name do
     %ul
       = f.input :first_name
@@ -12,7 +12,7 @@
       = f.input :email
       = f.input :phone
 
-  -#
+  -# Fixme!
     = fieldset :password do
       %ul
         = f.input :old_password

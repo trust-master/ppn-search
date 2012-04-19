@@ -1,6 +1,6 @@
 .popup
   position: relative
-  @include inline-block
+  +inline-block
 
   a
     font-style: italic
@@ -15,23 +15,3 @@
     z-index: 999
     margin-top: 2px
 
-.tooltip-wrap
-  position: relative
-  z-index: 1
-
-.tooltip
-  position: absolute
-  z-index: 500
-  right: 116px
-  top: 20px
-  font-size: 12px
-  display: none
-
-.ui-dialog .ui-dialog-titlebar
-  background: #efefef
-  color: #333
-  border: 1px solid #ccc
-  a.ui-state-hover
-    .ui-icon-closethick
-      background-position: -96px -128px
-    background: none

@@ -4,7 +4,7 @@
   #col-a
 
     .sidebar-nav
-      = nav_for :companies do |menu|
+      = nav_for :companies, include_arrow: true do |menu|
         = menu.nav_link :identity,      edit_company_path(@company, section: :identity)
         = menu.nav_link :service,       edit_company_path(@company, section: :service)
         = menu.nav_link :credentials,   edit_company_path(@company, section: :credentials)

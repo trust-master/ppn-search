@@ -3,7 +3,8 @@
   %h3= company.name
   .arrow
 
-  .details
+  -# This is in a <script> to defer loading it into the DOM until it's selected. This makes for faster page-load times, but slightly less responsiveness when selecting a result (that assumes a move operation; before I made this change, I was creating new nodes, anyway, so this switch is 100% an improvement)
+  %script.details{type: 'text/html'}
     .tabs
       %ul.nav.tab_bar
         = list_of [:profile, :capabilities, :credentials, :discounts] do |label|

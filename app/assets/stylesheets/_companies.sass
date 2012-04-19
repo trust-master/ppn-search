@@ -35,27 +35,17 @@ form
             margin-left: 30px
 
             span
-              @include inline-block
+              +inline-block
               width: 175px
 
             a.remove
-              @include inline-block
+              +inline-block
               margin: 0
 
       ul.add_new_category
         margin-bottom: 25px
         padding-top: 20px
         border-bottom: 1px solid #ddd
-
-    //
-      &#locations
-        ul.location
-          border-bottom: 1px solid #ddd
-          margin: 15px 0 0 0
-
-          a.remove
-            float: right
-            margin: 0
 
     &#service_areas
       ul#markets_selection
@@ -133,7 +123,7 @@ form
         margin: 10px 10px 0 0
 
         a
-          @include inline-block
+          +inline-block
           margin-left: 10px
           padding: 0
 

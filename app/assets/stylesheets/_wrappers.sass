@@ -1,61 +1,60 @@
 // Styles here should be only those which set-up the structure of the page. Put styles for
 // constituent sections into their own files, as was done with #header and #content
 
-// .wrapper-outer
-//   width: 1035px
-//   margin: 0 auto
-//   min-height: 705px
-//   background: url(/assets/bg-shadow.png) no-repeat
-
 #wrapper, #copyright
   width: 960px
   margin: 0 auto
 
 #wrapper
   background-color: $white
-  @include box-shadow(0 0 30px #999)
+  +box-shadow(0 0 30px #999)
 
-  #header
-    position: relative
-    overflow: hidden
-    padding: 10px 10px 0
+#header
+  position: relative
+  z-index: 10
+  padding: 10px 10px 0
+  border-bottom: 1px solid $grey
+  +box-shadow(0 6px 12px -7px #999)
 
-    @import header
+@import header
 
-  #content
-    overflow: hidden
-    min-height: 400px
-    padding: 20px 10px 10px 10px
+#content
+  overflow: hidden
+  min-height: 400px
+  padding: 20px 10px 10px 10px
 
-    // default 2-column layout for pages with sidebar-nav
-    &.col-2
-      @import col_2
+  // default 2-column layout for pages with sidebar-nav
+  &.col-2
+    @import col_2
 
-    // wider 2-column layout (for search pages, for example)
-    &.col-2-wide
-      @import col_2_wide
+  // wider 2-column layout (for search pages, for example)
+  &.col-2-wide
+    @import col_2_wide
 
-    // one-column layout for the login page
-    &.col-1
-      @import col_1
+  // one-column layout for the login page
+  &.col-1
+    @import col_1
 
-    #col-a, #col-b
-      float: left
+  @import content
 
-    // #col-a
-    #col-b
-      padding: 20px
-      margin-left: 10px
-      min-height: 100px
-      // @include box-shadow(0 0 6px #ccc)
+#col-a, #col-b
+  float: left
 
-    @import content
+// #col-a
+#col-b
+  padding: 20px
+  margin-left: 10px
+  min-height: 100px
 
-  #footer
-    position: relative
-    padding: 20px
 
-    @import footer
+#footer
+  position: relative
+  padding: 20px
+  color: $blue
+  font-size: 12px
+  overflow: hidden
+
+@import footer
 
 #copyright
   margin: 30px auto 50px

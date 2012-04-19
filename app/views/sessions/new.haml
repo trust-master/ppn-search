@@ -5,7 +5,7 @@
   = simple_form_for @session, url: session_path, wrapper: :login do |f|
     %fieldset
       %ul
-        = f.input :email
+        = f.input :email, input_html: { autofocus: true }, placeholder: false
         = f.input :password
       .login-btns
         = f.button :submit, id: 'submit'

@@ -3,13 +3,20 @@
 
 .flash
   border: 1px solid $light-grey
-  padding: 5px
+  padding: 5px 10px
+  text-align: center
   margin-bottom: 20px
-  font-size: 14px
+  font-size: 16px
 
   &.error, &.alert
-    background-color: rgba(#FFBCBC, 0.4)
+    color: $red
+    border-color: $red
+    background-color: $faint-red
   &.notice
-    background-color: rgba(#d5ffcc, 0.4)
+    color: $blue
+    border-color: $blue
+    background-color: $faint-blue
   &.warning
-    background-color: rgba(#d5ffcc, 0.4)
+    color: $orange
+    border-color: $orange
+    background-color: $faint-orange

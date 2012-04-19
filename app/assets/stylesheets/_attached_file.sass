@@ -8,8 +8,8 @@
 .image
   float: right
   width: 180px
-  background: #ececec
-  border: 1px solid #ddd
+  background: $very-light-grey
+  border: 1px solid $grey
   padding: 10px 15px
   text-align: center
 
@@ -17,9 +17,9 @@
     margin: 0 0 10px 0
 
   img
-    background-color: #ccc
+    background-color: $grey
     border: 1px solid $grey
-    @include box-shadow(0 0 10px $grey)
+    +box-shadow(0 0 10px $grey)
     width: 100%
     display: block
     overflow: hidden

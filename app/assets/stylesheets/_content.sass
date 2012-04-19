@@ -4,14 +4,16 @@
 &
   background-color: $white
   border-bottom: 1px solid $grey
-  @include box-shadow(0 6px 12px -7px #999)
+  +box-shadow(0 6px 12px -7px #999)
 
-@import ui_datepicker
 @import tooltip
 @import attached_file
 @import flash
 @import action_links
 @import fetchables
+
+a:hover
+  text-decoration: underline
 
 &.index
   @import indices

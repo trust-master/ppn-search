@@ -2,7 +2,7 @@
 // .wrapper-outer #wrapper #content
 
 a.add, a.remove, a.collapse, a.expand, a.edit, a.download
-  @include inline-block
+  +inline-block
   font-weight: bold
   padding-right: 20px
   font-size: 12px
@@ -10,7 +10,7 @@ a.add, a.remove, a.collapse, a.expand, a.edit, a.download
   line-height: 20px
 
   .icon
-    @include inline-block
+    +inline-block
     vertical-align: top
     margin-right: 5px
     width: 20px
@@ -18,13 +18,13 @@ a.add, a.remove, a.collapse, a.expand, a.edit, a.download
 
 a.add
   .icon
-    @include icons-sprite('plus_blue_20')
+    +icons-sprite('plus_blue_20')
     // vertical-align: top
 
 a.remove
   color: $red
   .icon
-    @include icons-sprite('minus_red_20')
+    +icons-sprite('minus_red_20')
 
 a.collapse, a.expand
   color: $blue
@@ -32,19 +32,19 @@ a.collapse, a.expand
     // vertical-align: sub
 
 a.collapse .icon
-  @include icons-sprite('collapse_trans-black_20')
+  +icons-sprite('collapse_trans-black_20')
   padding: 8px 0
   height: 5px
-  @include background-origin(content-box)
-  @include background-clip(content-box)
+  +background-origin(content-box)
+  +background-clip(content-box)
 
 a.expand .icon
-  @include icons-sprite('expand_trans-black_20')
+  +icons-sprite('expand_trans-black_20')
 
 a.edit .icon
-  @include icons-sprite('pen_orange_20')
+  +icons-sprite('pen_orange_20')
   // vertical-align: middle
 
 a.download .icon
-  @include icons-sprite('download_blue_20')
+  +icons-sprite('download_blue_20')
   // vertical-align: middle
