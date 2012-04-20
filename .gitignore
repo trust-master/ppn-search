@@ -47,3 +47,5 @@ _yardoc
 /wiki
 
 /public/uploads/
+
+*.sublime-workspace
