@@ -15,9 +15,9 @@ h1#site-logo
       margin: -15px 0 0 -5px
       +image-dimensions('logo.png')
 
-
 #user-nav, #header-search, #main-nav
   float: right
+
 #header-search, #main-nav
   margin: 11px 0 0 0
   clear: right
@@ -31,7 +31,6 @@ h1#site-logo
     height: 24px
     float: right
     z-index: 1
-
 
     & > li
       float: left
@@ -51,15 +50,19 @@ h1#site-logo
         background-color: $very-light-grey
         border: 1px solid $grey
 
-        &.active
-          background-color: $blue
-          color: white
-          border-color: $blue
 
       &:hover > a, & > a:focus
         background-color: $white
         color: $blue
         border-color: $grey
+
+      & > a.active
+        background-color: $blue
+        color: white
+        border-color: $blue
+
+        &:focus
+          color: rgba(white, 0.5)
 
       &.dropdown
         & > ul.navigation
@@ -89,6 +92,7 @@ h1#site-logo
               background: $very-light-grey
               color: $text
               border-color: $grey
+
             &.active > a
               background-color: $blue
               color: white
@@ -106,9 +110,11 @@ h1#site-logo
 #user-nav-profile > a
   +icons-sprite('trust-master-shield_trans-black_16')
   +icons-sprite-position('trust-master-shield_trans-black_16', 8px, 4px)
+
 #user-nav-account > a
   +icons-sprite('user_trans-black_16')
   +icons-sprite-position('user_trans-black_16', 8px, 4px)
+
 #user-nav-logout > a
   +icons-sprite('x-alt_trans-black_16')
   +icons-sprite-position('x-alt_trans-black_16', 8px, 4px)
@@ -118,8 +124,6 @@ h1#site-logo
   font-size: 14px
   line-height: 22px
   margin-right: 20px
-
-
 
 #header-search
   & > form
@@ -152,14 +156,17 @@ h1#site-logo
         border: 1px solid transparent
         border-bottom: none
 
-        &:hover
-          background-color: $very-light-grey
-          border-color: $grey
-          color: $blue
+      &:hover > a, & > a:focus
+        background-color: $very-light-grey
+        border-color: $grey
+        color: $blue
 
       &.active > a
         background-color: $blue
         border-color: $blue
         color: white
+
+        &:focus
+          color: rgba(white, 0.5)
 
 

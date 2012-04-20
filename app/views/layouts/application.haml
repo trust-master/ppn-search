@@ -20,33 +20,33 @@
     #wrapper
       %header#header
         %h1#site-logo
-          = link_to root_url do
+          = link_to root_url, tabindex: -1 do
             = image_tag 'logo.png', title: "Trust Master: #{t(:tagline)}", alt: "Trust Master"
         - if current_user
           %nav#user-nav
             = nav_for :account_links, menu_class: 'account-links', item_wrapper: nil do |menu|
               - if current_user.company_id?
                 %li#user-nav-profile.dropdown
-                  = menu.nav_link :profile, company_path(current_user.company), proc { current_user.company_id == @company.try(:id) }
+                  = menu.nav_link :profile, company_path(current_user.company), proc { current_user.company_id == @company.try(:id) }, tabindex: 2
                   = menu.nav_for :profile do |profile|
                     = profile.nav_link :show, company_path(current_user.company)
                     - if can?(:edit, current_user.company)
                       = profile.nav_link :edit, edit_company_path(current_user.company, section: :identity)
               %li#user-nav-account.dropdown
-                = menu.nav_link :account, edit_account_path(section: :basic), proc { controller.controller_name == 'accounts' }
+                = menu.nav_link :account, edit_account_path(section: :basic), proc { controller.controller_name == 'accounts' }, tabindex: 2
                 = menu.nav_for :account do |account|
                   = account.nav_link :basic,         edit_account_path(section: :basic)
                   = account.nav_link :privacy,       edit_account_path(section: :privacy), nil, class: :disabled
                   = account.nav_link :notifications, edit_account_path(section: :notifications), nil, class: :disabled
               %li#user-nav-logout
-                = menu.nav_link :logout, logout_path
+                = menu.nav_link :logout, logout_path, nil, tabindex: 2
 
             #welcome= t(:welcome, name: current_user.first_name)
           #header-search
             = form_tag(search_index_path, method: :get)  do
               %fieldset
                 -# REFACTOR: This should utilize simpleform and a model-backed set-up. How to set that up without creating a new search model instance with every request? Caching the instance?
-                %input{type: :search, name: 'search[any_text_field_contains]', placeholder: 'Search', value: params['search'].try(:[], 'any_text_field_contains')}
+                %input{type: :search, name: 'search[any_text_field_contains]', placeholder: 'Search', value: params['search'].try(:[], 'any_text_field_contains'), tabindex: 1}
         - else
           #user-nav-spacer
 
