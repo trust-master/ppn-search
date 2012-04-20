@@ -1,8 +1,10 @@
 ActiveAdmin.register Company do
   menu priority: 1
 
-  # filter :any_text_field_contains
-  # filter :company_categories_sub_category_id, as: :select, collection: proc { SubCategory.includes(:category).all }, member_label: proc { |c| [c.category_name, c.name].join(' / ') }
+  filter :any_text_field, as: :string
+  filter :company_categories_sub_category_id, as: :multiple_select,
+    collection:   proc { SubCategory.includes(:category).all },
+    member_label: proc { |c| [c.category_name, c.name].join(' / ') }
 
   scope :all, :default => true
 
@@ -70,14 +72,14 @@ ActiveAdmin.register Company do
   end
 
   action_item only: [:edit, :show] do
-    link_to(t('.view_in_app'), company_path(company)) #if company.active && company.visible
+    link_to(t('.view_in_app'), company_path(company))
   end
 
   # form partial: 'form'
   form do |f|
     f.inputs do
       f.input :name
-      f.input :active
+      # f.input :active
       f.input :visible
     end
     f.buttons

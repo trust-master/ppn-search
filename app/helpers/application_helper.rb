@@ -17,7 +17,7 @@ module ApplicationHelper
   end
 
   def hidden_if(boolean)
-    { style: boolean ? 'display: none;' : nil }
+    { class: boolean ? 'hidden' : nil }
   end
 
   # def link_to_google_maps_search(title, q = title, opts = {})

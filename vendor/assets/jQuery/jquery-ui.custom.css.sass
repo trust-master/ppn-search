@@ -1,3 +1,7 @@
+$small-padding: 3px
+$medium-padding: 10px
+$wide-padding: 20px
+
 /*
  * jQuery UI CSS Framework 1.8.18
  *
@@ -86,10 +90,10 @@
   font-family: $primary-fonts
   font-size: 100%
   .ui-widget
-    font-size: 1em
+    font-size: $medium-padding
   input, select, textarea, button
     font-family: $primary-fonts
-    font-size: 1em
+    font-size: $medium-padding
 
 .ui-widget-content
   border: none
@@ -174,11 +178,11 @@
   font-weight: bold
 
 .ui-priority-secondary, .ui-widget-content .ui-priority-secondary, .ui-widget-header .ui-priority-secondary
-  +opacity(0.7)
+  // +opacity(0.7)
   font-weight: normal
 
 .ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled
-  +opacity(0.35)
+  // +opacity(0.35)
   background-image: none
 
 /* Icons
@@ -866,7 +870,7 @@
     border-bottom: 0 !important
   .ui-accordion-header a
     display: block
-    font-size: 1em
+    font-size: $medium-padding
     padding: .5em .5em .5em .7em
 
 .ui-accordion-icons .ui-accordion-header a
@@ -879,7 +883,7 @@
     top: 50%
     margin-top: -8px
   .ui-accordion-content
-    padding: 1em 2.2em
+    padding: $medium-padding 2.2em
     border-top: 0
     margin-top: -2px
     position: relative
@@ -938,7 +942,7 @@
     a
       text-decoration: none
       display: block
-      padding: .2em .4em
+      padding: .2em $small-padding
       line-height: 1.5
       zoom: 1
       &.ui-state-hover, &.ui-state-active
@@ -991,27 +995,27 @@ button.ui-button-icons-only
   line-height: 1.4
 
 .ui-button-text-only .ui-button-text
-  padding: .4em 1em
+  padding: $small-padding $medium-padding
 
 .ui-button-icon-only .ui-button-text, .ui-button-icons-only .ui-button-text
-  padding: .4em
-  text-indent: -9999999px
+  padding: $small-padding
+  +hide-text
 
 .ui-button-text-icon-primary .ui-button-text, .ui-button-text-icons .ui-button-text
-  padding: .4em 1em .4em 2.1em
+  padding: $small-padding $medium-padding $small-padding $wide-padding
 
 .ui-button-text-icon-secondary .ui-button-text
-  padding: .4em 2.1em .4em 1em
+  padding: $small-padding $wide-padding $small-padding $medium-padding
 
 .ui-button-text-icons .ui-button-text
-  padding: .4em 2.1em .4em 1em
-  padding-left: 2.1em
-  padding-right: 2.1em
+  padding: $small-padding
+  padding-left: $wide-padding
+  padding-right: $wide-padding
 
 /* no icon support for input elements, provide padding by default
 
 input.ui-button
-  padding: .4em 1em
+  padding: $small-padding $medium-padding
 
 /*button icon element(s)
 
@@ -1036,7 +1040,7 @@ input.ui-button
   margin-right: 7px
   .ui-button
     margin-left: 0
-    margin-right: -0.3em
+    // margin-right: -0.3em
 
 /* workarounds
 
@@ -1060,7 +1064,7 @@ button.ui-button::-moz-focus-inner
   width: 300px
   overflow: hidden
   .ui-dialog-titlebar
-    padding: .4em 1em
+    padding: $small-padding $medium-padding
     position: relative
   .ui-dialog-title
     float: left
@@ -1081,7 +1085,7 @@ button.ui-button::-moz-focus-inner
   .ui-dialog-content
     position: relative
     border: 0
-    padding: .5em 1em
+    padding: .5em $medium-padding
     background: none
     overflow: auto
     zoom: 1
@@ -1090,11 +1094,11 @@ button.ui-button::-moz-focus-inner
     border-width: 1px 0 0 0
     background-image: none
     margin: .5em 0 0 0
-    padding: .3em 1em .5em .4em
+    padding: .3em $medium-padding .5em $small-padding
     .ui-dialog-buttonset
       float: right
     button
-      margin: .5em .4em .5em 0
+      margin: .5em $small-padding .5em 0
       cursor: pointer
   .ui-resizable-se
     width: 14px
@@ -1264,7 +1268,7 @@ button.ui-button::-moz-focus-inner
     line-height: 1.8em
     text-align: center
     select
-      font-size: 1em
+      font-size: $medium-padding
       margin: 1px 0
   select
     &.ui-datepicker-month-year
@@ -1275,7 +1279,7 @@ button.ui-button::-moz-focus-inner
     width: 100%
     font-size: .9em
     border-collapse: collapse
-    margin: 0 0 .4em
+    margin: 0 0 $small-padding
   th
     padding: .7em .3em
     text-align: center
@@ -1298,7 +1302,7 @@ button.ui-button::-moz-focus-inner
     border-bottom: 0
     button
       float: right
-      margin: .5em .2em .4em
+      margin: .5em .2em $small-padding
       cursor: pointer
       padding: .2em .6em .3em .6em
       width: auto
@@ -1314,7 +1318,7 @@ button.ui-button::-moz-focus-inner
   float: left
   table
     width: 95%
-    margin: 0 auto .4em
+    margin: 0 auto $small-padding
 
 .ui-datepicker-multi-2 .ui-datepicker-group
   width: 50%

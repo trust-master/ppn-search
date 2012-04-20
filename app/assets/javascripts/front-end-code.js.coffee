@@ -9,21 +9,20 @@
       else
         $(this).parents('ul').find('.insurance_fields').hide()
 
-
     $(".market .service_area input.destroy").change ->
-      inputs = $(this).parents('li.service_area').find('.radio_buttons input')
+      inputs = $(this).parents('li.service_area').find('.radio_buttons')
       if this.checked
-        inputs.removeAttr('disabled')
+        inputs.show() #removeAttr('disabled')
       else
-        inputs.attr('disabled', true)
+        inputs.hide() #attr('disabled', true)
 
     $("#market_selection_add_market").change ->
       if this.value != ''
         $("#market_#{this.value}").show().scrollTo()
       this.selectedIndex = 0 # reset it back to the blank entry
+      $(this).trigger("liszt:updated") # tell chosen to update from the selectedIndex
 
-    # $('.radio_buttons').buttonset()
-    # $('.service_area:not(:has(.destroy[checked])) .radio_buttons').buttonset('disable')
+    $('.input.radio_buttons').buttonset()
 
     $('#category_selection_add_category').change ->
       if this.value != ''
@@ -32,6 +31,7 @@
         sub_category.show().effect('highlight', {}, 2000)
         sub_category.find("input[type='hidden'].destroy").val('false')
       this.selectedIndex = 0 # reset it back to the blank entry
+      $(this).trigger("liszt:updated") # tell chosen to update from the selectedIndex
 
     $('#service_areas .market a.collapse').click ->
       $(this).siblings('.expand').show()
@@ -41,7 +41,7 @@
         if $(this).find('input.destroy').get()[0].checked
           [
             $(this).find('label.name').text(),
-            if $(this).find('.input.partial_only input[value="true"]').get()[0].checked then '*' else ''
+            if $(this).find('.partial_only > span.radio > input[value="true"]').get()[0].checked then '*' else ''
           ].join('')
       market.find('ul.service_areas').hide()
       market.find('.collapsed_summary > span').html(areas.get().join(', ') || 'nothing selected').parent().show()
@@ -171,11 +171,11 @@
 
 $(document).ready =>
   $('.input.select select, .input.grouped_select select').chosen({include_group_label_in_selected: true})
+  $("input[type='checkbox']").button()
+  $('time.timeago').timeago()
 
-  @popup.init()
   @companyForm.init() if $('#content').hasClass('companies')
   @searchPage.init()  if $('#content').hasClass('search')
   @removeLinks.init()
+  @popup.init()
 
-  $("input[type='checkbox']").button()
-  $('time.timeago').timeago()

@@ -11,119 +11,117 @@
   h5
     font-size: 110%
 
-
-
-form
-  fieldset
+& > form
+  & > fieldset
     clear: both
 
     .actions
       margin-top: 0
 
-    &#service_categories
-      div.category
-        margin: 15px 0
-        padding-left: 30px
+#service_categories
+  div.category
+    margin: 15px 0
+    padding-left: 30px
 
-        h4
+    & > h4
+      margin: 0
+
+    & > ul
+      li.sub_category
+        list-style: disc
+        margin: 5px 0
+        margin-left: 30px
+
+        & > span
+          +inline-block
+          width: 175px
+
+        a.remove
+          +inline-block
           margin: 0
 
-        ul
-          li.sub_category
-            list-style: disc
-            margin: 5px 0
-            margin-left: 30px
+  ul.add_new_category
+    margin-bottom: 25px
+    padding-top: 20px
+    border-bottom: 1px solid #ddd
 
-            span
-              +inline-block
-              width: 175px
+#service_areas
+  div.market
+    border-top: 1px solid #ddd
+    margin-bottom: 20px
 
-            a.remove
-              +inline-block
-              margin: 0
+    .actions
+      float: right
+      margin-top: 20px
 
-      ul.add_new_category
-        margin-bottom: 25px
-        padding-top: 20px
-        border-bottom: 1px solid #ddd
+      & > a
+        display: inline
 
-    &#service_areas
-      ul#markets_selection
-        li
+        &.remove
+          margin: 0
 
-      div.market
-        border-top: 1px solid #ddd
-        margin-bottom: 20px
-
-        .actions
-          float: right
-          margin-top: 20px
-
-          a
-            display: inline
-
-          a.remove
-            margin: 0
-
-          // hide the expand links by default
-          a.expand
-            display: none
-
-        h4
-
-        ul.service_areas
-          margin-left: 80px
-
-          li.service_area
-            margin: 5px 0
-            label.name
-              width: 140px
-              font-size: 13px
-
-            .partial_only
-              margin-left: 20px
-
-        .collapsed_summary
+        // hide the expand links by default
+        &.expand
           display: none
-          padding-left: 50px
-          font-style: oblique
 
-          .hint
-            font-style: normal
-            font-size: 75%
+    & > h4
 
+    ul.service_areas
+      margin-left: 80px
 
-    &#licenses
-      padding-bottom: 0
+      li.service_area
+        margin: 5px 0
+        label.name
+          width: 200px
+          font-size: 13px
+          &.ui-state-active
+            background-color: $faint-blue
+            border-color: $blue
+            color: $text
 
-      #business_licenses, #personal_licenses
-        margin: 0 0 20px
+        .partial_only
+          margin-left: 20px
 
-      #personal_licenses
-        margin: 0
+    .collapsed_summary
+      display: none
+      padding-left: 50px
+      font-style: oblique
 
-    &#locations ul.location,
-    &#personal_licenses > ul.personal_license,
-    &#business_licenses > ul.business_license,
-    &#business_filing > ul.business_filing,
-    &#affiliations > ul.affiliation,
-    &#associations > ul.association,
-    &#certifications > ul.certification
-      clear: both
-      border: 1px solid $grey
-      margin: 0 0 20px 0
-      padding: 10px
-      background-color: #f4f4f4
+      .hint
+        font-style: normal
+        font-size: 75%
 
-      h5
-        display: none
+#licenses
+  padding-bottom: 0
 
-      .actions
-        float: right
-        margin: 10px 10px 0 0
+#business_licenses, #personal_licenses
+  margin: 0 0 20px
 
-        a
-          +inline-block
-          margin-left: 10px
-          padding: 0
+#personal_licenses
+  margin: 0
+
+#locations ul.location,
+#personal_licenses > ul.personal_license,
+#business_licenses > ul.business_license,
+#business_filing > ul.business_filing,
+#affiliations > ul.affiliation,
+#associations > ul.association,
+#certifications > ul.certification
+  clear: both
+  border: 1px solid $grey
+  margin: 0 0 20px 0
+  padding: 10px
+  background-color: #f4f4f4
+
+  h5
+    display: none
+
+  .actions
+    float: right
+    margin: 10px 10px 0 0
+
+    & > a
+      +inline-block
+      margin-left: 10px
+      padding: 0
 
