@@ -27,7 +27,7 @@ GIT
 
 GIT
   remote: https://github.com/rtlong/active_admin.git
-  revision: 80bba5128c205986564fb957ae190667f20bab6e
+  revision: d2f2bcfbfc39b7ca1d05ab1b48642f8881a22809
   specs:
     activeadmin (0.4.3)
       bourbon (>= 1.0.0)
