@@ -10,8 +10,15 @@ ActiveAdmin.register User do
   scope :active do |scope|
     scope.where(active: true)
   end
-  User::PROTECTED_ROLES.each do |role|
-    self.send(:scope, role) do |scope|
+  scope :inactive do |scope|
+    scope.where(active: false)
+  end
+
+  USER_ROLES = User::PROTECTED_ROLES.map do |role|
+    [I18n.t(role.underscore, scope: 'active_admin.users.role'), role]
+  end
+  USER_ROLES.each do |name, role|
+    self.send(:scope, name) do |scope|
       scope.where(role: role)
     end
   end
@@ -37,7 +44,7 @@ ActiveAdmin.register User do
 
   show title: :display_name do |c|
     attributes_table do
-      row :role
+      row(:role) { I18n.t(c.role.underscore, scope: 'active_admin.users.role') }
       row :display_name
       row :email
       row :phone
@@ -89,7 +96,7 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs do
-      f.input :role, as: :select, collection: User::PROTECTED_ROLES
+      f.input :role, as: :select, collection: USER_ROLES
       f.input :first_name
       f.input :middle_name
       f.input :last_name
