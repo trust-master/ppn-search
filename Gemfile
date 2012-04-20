@@ -105,7 +105,7 @@ group :assets do
 end
 
 group :production, :staging do
-  gem 'newrelic_rpm'
+  gem 'newrelic_rpm', '3.3.3'
 end
 
 group :development do

@@ -254,7 +254,7 @@ GEM
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.3.0)
-    newrelic_rpm (3.3.4)
+    newrelic_rpm (3.3.3)
     nokogiri (1.5.2)
     ntlm-http (0.1.1)
     oily_png (1.0.2)
@@ -456,7 +456,7 @@ DEPENDENCIES
   mechanize
   meta_search
   mini_magick
-  newrelic_rpm
+  newrelic_rpm (= 3.3.3)
   nokogiri
   oily_png
   paper_trail
