@@ -27,7 +27,7 @@ GIT
 
 GIT
   remote: https://github.com/rtlong/active_admin.git
-  revision: b63e3f0a5ffa2683ca446994ae39e70916defc1d
+  revision: 80bba5128c205986564fb957ae190667f20bab6e
   specs:
     activeadmin (0.4.3)
       bourbon (>= 1.0.0)
@@ -51,7 +51,7 @@ GIT
 
 GIT
   remote: https://github.com/rtlong/resque.git
-  revision: cb49823431fcd625bc5b5067ea0a0e03bcc4e85e
+  revision: 755efb2fe3ec3d60d1755ea903077d0f68736f58
   specs:
     resque (1.20.0)
       multi_json (~> 1.0)
@@ -254,7 +254,7 @@ GEM
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.3.0)
-    newrelic_rpm (3.3.3)
+    newrelic_rpm (3.3.4)
     nokogiri (1.5.2)
     ntlm-http (0.1.1)
     oily_png (1.0.2)
@@ -270,7 +270,7 @@ GEM
     premailer (1.7.3)
       css_parser (>= 1.1.9)
       htmlentities (>= 4.0.0)
-    pry (0.9.9.2)
+    pry (0.9.9.3)
       coderay (~> 1.0.5)
       method_source (~> 0.7.1)
       slop (>= 2.4.4, < 3)

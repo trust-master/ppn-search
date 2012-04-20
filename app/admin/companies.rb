@@ -29,7 +29,7 @@ ActiveAdmin.register Company do
     redirect_to admin_companies_path
   end
 
-  index do |i|
+  index(title: 'Provider Management') do |i|
     selectable_column
     column :name, sortable: :name do |c|
       link_to c.name, [:admin, c]
@@ -89,7 +89,9 @@ ActiveAdmin.register Company do
   end
 
   controller do
-    load_resource except: :index
+    skip_authorize_resource
+    authorize_resource Company
+    load_resource Company, except: :index
     attr_accessor :company, :markets, :categories
     before_filter ::CompaniesFilters::SetUpMarkets, ::CompaniesFilters::SetUpCategories, only: %w[new edit]
 
