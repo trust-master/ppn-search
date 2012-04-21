@@ -1,0 +1,24 @@
+- title('Trust Master PPN Design Elements')
+
+%h3 Color Palette
+
+#colors
+  .blue            blue
+  .red             red
+  .orange          orange
+
+  .faint-blue      faint-blue
+  .faint-red       faint-red
+  .faint-orange    faint-orange
+
+  .text            text
+  .light-text      light-text
+  .grey            grey
+  .light-grey      light-grey
+  .very-light-grey very-light-grey
+  .white           white
+
+%h3 Fonts
+%ul#fonts
+  - @fonts.each do |f|
+    %li= f.join(': ')

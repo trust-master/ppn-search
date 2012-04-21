@@ -1,5 +1,5 @@
 // this file is interpreted in the context of
-// .wrapper-outer #wrapper #content.debug
+// #content.debug
 
 table
   width: 100%
@@ -17,3 +17,47 @@ table
 &.routes
   table td.reqs
     font-family: monospace
+
+
+&.design
+
+  #colors
+    +clearfix
+    & > div
+      width: 90px
+      height: 20px
+      float: left
+      margin: 10px
+      padding: 40px 10px 40px 0
+
+    .blue
+      color: white
+      background-color: $blue
+    .red
+      background-color: $red
+    .orange
+      background-color: $orange
+
+    .faint-blue
+      clear: left
+      background-color: $faint-blue
+    .faint-red
+      background-color: $faint-red
+    .faint-orange
+      background-color: $faint-orange
+
+    .text
+      clear: left
+      background-color: $text
+      color: white
+    .light-text
+      background-color: $light-text
+      color: white
+    .grey
+      background-color: $grey
+    .light-grey
+      background-color: $light-grey
+    .very-light-grey
+      background-color: $very-light-grey
+    .white
+      background-color: $white
