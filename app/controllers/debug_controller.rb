@@ -17,10 +17,12 @@ class DebugController < ApplicationController
 
   def design
     # @colors = Sass::Engine.for_file(Rails.root.join('app/assets/stylesheets/_colors.sass'))
-    @fonts = []
-    engine = Sass::Engine.for_file(Rails.root.join('app/assets/stylesheets/_fonts.sass').to_s, {})
-    engine.to_tree.children.each { |n| @fonts << [n.name, n.expr.to_s] if n.is_a?(Sass::Tree::VariableNode) }
-
+    @fonts = Rails.cache.fetch('fonts_array_for_design_page') do
+      fonts = []
+      engine = Sass::Engine.for_file(Rails.root.join('app/assets/stylesheets/_fonts.sass').to_s, {})
+      engine.to_tree.children.each { |n| fonts << [n.name, n.expr.to_s] if n.is_a?(Sass::Tree::VariableNode) }
+      fonts
+    end
   end
 
 end
