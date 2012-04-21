@@ -19,7 +19,7 @@ module FormHelper
           end
         end
         if what_is_this
-          legend << content_tag(:div, class: 'popup') do
+          legend << content_tag(:div, class: 'what_is_this popup') do
             content_tag(:a, t(:what_is_this?), class: 'hint') +
             content_tag(:div, what_is_this, class: 'content')
           end

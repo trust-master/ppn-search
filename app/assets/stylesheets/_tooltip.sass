@@ -1,17 +1,12 @@
-.popup
-  position: relative
-  +inline-block
+.popup, .what_is_this
 
-  a
+  & > .hint
     font-style: italic
 
-  .content
+  & > .content
     display: none
-    position: absolute
-    width: 300px
-    background-color: #d6e6ed
-    border: 1px solid $grey
+    text-align: left
+    background-color: $faint-blue
+    border: 1px solid $blue
     padding: 3px 8px
-    z-index: 999
-    margin-top: 2px
 

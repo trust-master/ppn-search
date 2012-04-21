@@ -12,10 +12,10 @@
     - cache 'company_business_filing_fields_template' do
       = form.simple_fields_for :business_filings, BusinessFiling.new, child_index: '_ID_' do |new_business_filing|
         %ul[new_business_filing.object]
-          .actions
+          %li.actions
             = include_remove_link
 
-          = new_business_filing.input       :issuing_state_id, as: :hidden # temporary, until the issuing_state input is enabled
+            -# temporary, until the issuing_state input is enabled
+          = new_business_filing.input       :issuing_state_id, as: :hidden
           = new_business_filing.association :issuing_state, disabled: true # disabled means it wont be sent
-
           = new_business_filing.input       :number

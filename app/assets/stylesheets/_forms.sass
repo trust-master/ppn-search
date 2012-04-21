@@ -1,25 +1,28 @@
-input, select, textarea
+input, select, textarea, button
   font-family: $primary-fonts
 
   &:focus
     outline: none
-    border: 1px solid $blue
     +single-box-shadow($blue, 0, 0, 10px, 0)
 
-#{$all-text-inputs}
-  width: 274px
+#{$all-text-inputs}, textarea
+  // width: 374px
   border: 1px solid $grey
   padding: 4px 5px
   vertical-align: top
+  width: auto
+
+  &:focus
+    border: 1px solid $blue
 
 select
-  width: 283px
-  margin-left: -1px
+  // width: 383px
+  margin: 0 5px 0 -4px
 
 textarea
-  border: 1px solid $grey
-  width: 280px
-  height: 70px
+  // width: 380px
+  padding: 4px 0 4px 5px
+  height: 170px
 
 input
   &[type="checkbox"]
@@ -32,12 +35,14 @@ fieldset
   font-size: 13px
 
   fieldset
-    legend
-      h3
+    & > legend
+      & > h3
         text-transform: none
-      .popup
-        .hint
-          margin-right: -10px
+
+      & > .what_is_this
+        & > .hint
+          // margin-right: -10px
+
     &:last-child
       border-bottom: none
 
@@ -56,95 +61,71 @@ fieldset
     input[type="submit"], input.save, input.update
       +button(simple, $blue)
 
-  legend
+  & > legend
     margin-top: 0
     +clearfix
     width: 100%
 
-    h3.floated
+    & > h3.floated
       float: left
 
-    .popup
+    & > .what_is_this
       text-align: right
-      display: inherit
-      position: inherit
 
-      .content
+      & > .content
         text-align: left
-        width: auto
-        position: inherit
-        margin: 10px 0 0
-        float: none
+        clear: both
+        margin: 23px 0 10px 0
 
   .instructions
     clear: both
     padding-left: 10px
     margin: 0 0 20px
 
-  li.input
-    margin: 15px 0
+  li
+    &.input
+      margin: 15px 0
 
-    &.error
-      color: black
-      border: 1px solid $red
-      background: $faint-red
-      padding: 10px 0
+      &.error
+        color: black
+        border: 1px solid $red
+        background: $faint-red
+        padding: 10px 0
 
-    &.date
-      select
+      &.date
+        select
+          width: auto
+
+      span.error
+        margin-left: 10px
+
+      // hints
+      .hint
+        display: block
+        font-size: 11px
+        font-style: italic
+        margin-left: 155px
         width: auto
+        color: $text
 
-    span.error
-      margin-left: 10px
+      & > label
+        width: 140px
+        text-align: right
+        font-size: 13px
+        +inline-block
+        margin-right: 8px
+        vertical-align: top
+        padding-top: 4px
 
-    // hints
-    .more-info, .hint
-      font-size: 11px
-      font-style: italic
-      // +inline-block
-      // margin-left: 10px
-      // width: 185px
-      display: block
-      margin-left: 155px
-      width: 290px
-      color: #555
-
-    & > label
-      width: 140px
+    &.actions
       text-align: right
-      font-size: 13px
-      +inline-block
-      margin-right: 8px
-      vertical-align: top
-      padding-top: 4px
 
   .actions
     clear: both
     margin-left: 10px
 
-.note
-  font-style: italic
-  font-size: 11px
-  margin-left: 330px
-  color: #666
-
-// .radio, .checkbox
-//   +inline-block
-//   cursor: pointer
-//   background:
-//     position:   0 0
-//     color:      transparent
-//     repeat:     no-repeat
-//     attachment: scroll
-
-// .input
-//   &.radio_buttons
-//     span.radio
-//       label
-//         width: auto
-//         text-align: left
-//         padding: 0 6px
-
-fieldset li input.date
-  width: 100px
+    & > a
+      +inline-block
+      margin-left: 10px
+      padding: 0
 

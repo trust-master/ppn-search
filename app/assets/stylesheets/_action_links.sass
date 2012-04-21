@@ -1,50 +1,50 @@
 // this file is interpreted in the context of
 // .wrapper-outer #wrapper #content
 
-a.add, a.remove, a.collapse, a.expand, a.edit, a.download
+.actions > a
   +inline-block
   font-weight: bold
-  padding-right: 20px
+  // padding-right: 20px
   font-size: 12px
   cursor: pointer
   line-height: 20px
+  color: $text !important
 
-  .icon
+  & > .icon
     +inline-block
     vertical-align: top
     margin-right: 5px
     width: 20px
     height: 20px
 
-a.add
-  .icon
-    +icons-sprite('plus_blue_20')
-    // vertical-align: top
+a.add > .icon
+  +icons-sprite('plus_blue_20')
+  // vertical-align: top
 
 a.remove
-  color: $red
-  .icon
+  color: $red !important
+  & > .icon
     +icons-sprite('minus_red_20')
 
 a.collapse, a.expand
-  color: $blue
-  .icon
+  color: $blue !important
+  & > .icon
     // vertical-align: sub
 
-a.collapse .icon
+a.collapse > .icon
   +icons-sprite('collapse_trans-black_20')
-  padding: 8px 0
-  height: 5px
-  +background-origin(content-box)
-  +background-clip(content-box)
+  +icons-sprite-position('collapse_trans-black_20', 0, 7px)
+  width: 20px
+  height: 20px
 
-a.expand .icon
+a.expand > .icon
   +icons-sprite('expand_trans-black_20')
 
-a.edit .icon
-  +icons-sprite('pen_orange_20')
-  // vertical-align: middle
+a.edit
+  .icon
+    +icons-sprite('pen_orange_20')
+    // vertical-align: middle
 
-a.download .icon
+a.download > .icon
   +icons-sprite('download_blue_20')
   // vertical-align: middle

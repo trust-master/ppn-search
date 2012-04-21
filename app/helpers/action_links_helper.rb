@@ -32,17 +32,18 @@ module ActionLinksHelper
     scope = args.first.is_a?(Symbol) ? args.delete_at(0) : nil
     text = lookup(type, scope)
 
+    options[:class] = [*options[:class], type]
 
     if url_options = options.delete(:url) || args.first
       if type == :remove
         options[:method] ||= :delete
         options[:confirm] = lookup([type, :confirmation].join('_'), scope) unless options.has_key?(:confirm)
       end
-      link_to(url_options, {class: type}.merge(options)) do
+      link_to(url_options, options) do
         content_tag(:div, '', class: :icon) + text.html_safe
       end
     else
-      content_tag(:a, {class: type}.merge(options)) do
+      content_tag(:a, options) do
         content_tag(:div, '', class: :icon) + text.html_safe
       end
     end

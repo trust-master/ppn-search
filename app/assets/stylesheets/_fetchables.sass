@@ -5,54 +5,54 @@
     border: none
     padding: 0
 
-    table
+    & > table
       margin: 0
       width: 100%
       border: 1px solid $grey
 
-      tbody
+      & > tbody
         width: 100%
 
-      tbody.parsed
+        &.parsed
 
-      tbody.raw
-        display: none
+        &.raw
+          display: none
 
-        tr:nth-of-type(odd)
-          background-color: #FFDDDF
+          tr:nth-of-type(odd)
+            background-color: $faint-red
 
       tr
+        background-color: white
         clear: both
         &:nth-of-type(odd)
-          background-color: #e3e3e3
+          background-color: $faint-blue
 
-        th
-          width: 175px
-          font-weight: bold
-          text-align: left
-          border-right: 1px solid #ccc
-
-        td, th
+        & > td, & > th
           padding: 1px 4px
-
-        td
           text-align: left
 
+        & > th
+          width: 200px
+          font-weight: bold
+          border-right: 1px solid $grey
+
+        & > td
           p
             margin: 0
 
-          ul,ol
+          ul, ol
             list-style: inside
 
-            li
+            & > li
               margin: 0 0 0 4px
 
+          // nested tables
           table
             margin: 4px 0
             border: 1px solid $grey
             width: 100%
 
-            tbody
+            & > tbody
               display: inherit
 
             th
@@ -68,11 +68,14 @@
     .meta
       margin-top: 5px
       font-size: 80%
-      .last_updated
-      .raw_data_message
 
-      a
-        text-decoration: underline
+      .last_updated, .raw_data_message
+        display: inline
+
+      .raw_data_message
+        border-left: 1px solid $text
+        padding-left: 8px
+        margin-left: 5px
 
   &.ui-accordion-content
     padding: 10px

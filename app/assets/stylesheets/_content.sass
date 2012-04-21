@@ -12,8 +12,11 @@
 @import action_links
 @import fetchables
 
-a:hover
-  text-decoration: underline
+a
+  color: $blue
+  &:hover, &:focus
+    color: $blue
+    text-decoration: underline
 
 &.index
   @import indices

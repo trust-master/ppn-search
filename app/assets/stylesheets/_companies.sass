@@ -7,15 +7,18 @@
   border-bottom: 1px solid $grey
   font-size: 12px
 
+  .actions
+    float: right
+
   // for the title of a license or filing
-  h5
+  & > h5
     font-size: 110%
 
 & > form
   & > fieldset
     clear: both
 
-    .actions
+    & > .actions
       margin-top: 0
 
 #service_categories
@@ -69,12 +72,14 @@
     ul.service_areas
       margin-left: 80px
 
-      li.service_area
+      & > li.service_area
         margin: 5px 0
         label.name
           width: 200px
           font-size: 13px
+
           &.ui-state-active
+            // the point here is for a little less blue-ness
             background-color: $faint-blue
             border-color: $blue
             color: $text
@@ -101,27 +106,20 @@
   margin: 0
 
 #locations ul.location,
-#personal_licenses > ul.personal_license,
-#business_licenses > ul.business_license,
-#business_filing > ul.business_filing,
-#affiliations > ul.affiliation,
-#associations > ul.association,
-#certifications > ul.certification
+#personal_licenses > .personal_license,
+#business_licenses > .business_license,
+#business_filing > .business_filing,
+#affiliations > .affiliation,
+#associations > .association,
+#certifications > .certification
   clear: both
   border: 1px solid $grey
   margin: 0 0 20px 0
   padding: 10px
   background-color: #f4f4f4
 
-  h5
-    display: none
-
-  .actions
-    float: right
-    margin: 10px 10px 0 0
-
+  & > h5
+    font-size: 16px
     & > a
-      +inline-block
-      margin-left: 10px
-      padding: 0
-
+      +unstyled-link
+      cursor: text1
