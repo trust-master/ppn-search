@@ -54,8 +54,8 @@ class User < ActiveRecord::Base
 
   class << self
     # method used for authentication
-    def find_by_email_and_password(email, password)
-      user = self.where(email: email).first
+    def find_by_email_and_password(email_address, password)
+      user = self.where{ (password_digest != nil) & (email == email_address) }.first
       if user and user.authenticate(password)
         return user
       end
