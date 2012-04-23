@@ -95,7 +95,7 @@ ActiveAdmin.register Company do
     authorize_resource Company
     load_resource Company, except: :index
     attr_accessor :company, :markets, :categories
-    before_filter ::CompaniesFilters::SetUpMarkets, ::CompaniesFilters::SetUpCategories, only: %w[new edit]
+    # before_filter ::CompaniesFilters::SetUpMarkets, ::CompaniesFilters::SetUpCategories, only: %w[new edit]
 
     # def scoped_collection
     #   if params[:search]
