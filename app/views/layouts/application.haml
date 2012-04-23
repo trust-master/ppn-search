@@ -62,7 +62,7 @@
               = main.nav_link :login, login_path
         .clear
 
-      #content{class: [content_for(:content_div_class).presence || 'col-2', page_class] }
+      #content.content{class: [content_for(:content_div_class).presence || 'col-2', page_class] }
 
         - flash.each do |bucket, messages|
           - Array.wrap(messages).each do |msg|

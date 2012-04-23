@@ -1,9 +1,9 @@
 // this file is interpreted in the context of
-// .wrapper-outer #wrapper #content
+// .content
 
 &
   background-color: $white
-  border-bottom: 1px solid $grey
+  border-bottom: 1px solid $light-grey
   +box-shadow(0 6px 12px -7px #999)
 
 @import tooltip
@@ -12,11 +12,11 @@
 @import action_links
 @import fetchables
 
-a
-  color: $blue
-  &:hover, &:focus
-    color: $blue
-    text-decoration: underline
+// a
+//   color: $blue
+//   &:hover, &:focus
+//     color: $blue
+//     text-decoration: underline
 
 &.index
   @import indices

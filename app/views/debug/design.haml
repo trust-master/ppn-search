@@ -1,24 +1,40 @@
 - title('Trust Master PPN Design Elements')
+- content_for(:content_div_class, 'col-1')
 
-%h3 Color Palette
+#col
+  %h3 Color Palette
 
-#colors
-  .blue            blue
-  .red             red
-  .orange          orange
+  #colors
+    .blue            blue
+    .purple          purple
+    .green          green
+    .red             red
+    .orange          orange
 
-  .faint-blue      faint-blue
-  .faint-red       faint-red
-  .faint-orange    faint-orange
+    .blue.tint      blue-tint
+    .purple.tint    purple-tint
+    .green.tint     green-tint
+    .red.tint       red-tint
+    .orange.tint    orange-tint
 
-  .text            text
-  .light-text      light-text
-  .grey            grey
-  .light-grey      light-grey
-  .very-light-grey very-light-grey
-  .white           white
+    .bordered.blue.tint      blue-tint
+    .bordered.purple.tint    purple-tint
+    .bordered.green.tint     green-tint
+    .bordered.red.tint       red-tint
+    .bordered.orange.tint    orange-tint
 
-%h3 Fonts
-%ul#fonts
-  - @fonts.each do |f|
-    %li= f.join(': ')
+    .text            text
+    .light-text      light-text
+    .grey            grey
+    .light-grey      light-grey
+    .very-light-grey very-light-grey
+    .white           white
+
+  %h3 Fonts
+  #fonts
+    - @fonts.each do |variable, fonts|
+      %h4= "'$#{variable}' font-family:"
+      %ul
+        - fonts.each_with_index do |f, i|
+          - family = fonts[i..-1].map{|name| "'#{name}'" }.join(',')
+          %li{style: "font-family: #{family}"}= f

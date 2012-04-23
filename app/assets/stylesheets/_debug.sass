@@ -19,45 +19,74 @@ table
     font-family: monospace
 
 
+
 &.design
 
   #colors
     +clearfix
     & > div
-      width: 90px
-      height: 20px
+      width: 85px
+      height: 15px
       float: left
       margin: 10px
       padding: 40px 0 40px 10px
+      border: 1px solid transparent
 
     .blue
-      color: white
-      background-color: $blue
+      +contrasted($blue)
+      &.tint
+        clear: left
+        +contrasted($blue-tint)
+      &.bordered
+        color: $blue
+        border-color: $blue
+    .purple
+      +contrasted($purple)
+      &.tint
+        +contrasted($purple-tint)
+      &.bordered
+        color: $purple
+        border-color: $purple
+    .green
+      +contrasted($green)
+      &.tint
+        +contrasted($green-tint)
+      &.bordered
+        color: $green
+        border-color: $green
     .red
-      background-color: $red
+      +contrasted($red)
+      &.tint
+        +contrasted($red-tint)
+      &.bordered
+        color: $red
+        border-color: $red
     .orange
-      background-color: $orange
+      +contrasted($orange)
+      &.tint
+        +contrasted($orange-tint)
+      &.bordered
+        color: $orange
+        border-color: $orange
 
-    .faint-blue
-      clear: left
-      background-color: $faint-blue
-    .faint-red
-      background-color: $faint-red
-    .faint-orange
-      background-color: $faint-orange
 
     .text
       clear: left
-      background-color: $text
-      color: white
+      +contrasted($text)
     .light-text
-      background-color: $light-text
-      color: white
+      +contrasted($light-text)
     .grey
-      background-color: $grey
+      +contrasted($grey)
     .light-grey
-      background-color: $light-grey
+      +contrasted($light-grey)
     .very-light-grey
-      background-color: $very-light-grey
+      +contrasted($very-light-grey)
     .white
-      background-color: $white
+      +contrasted($white)
+
+#fonts
+  h4
+    margin: 20px 0 15px 0
+  ul
+    list-style: circle
+    padding-left: 30px

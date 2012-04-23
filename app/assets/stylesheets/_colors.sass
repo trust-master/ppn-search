@@ -1,20 +1,36 @@
 // This file is to be used as the definitive place for colors to be used anywhere in the
 // application. These variables will be available to every other file.
 
+//----- These come from the Trust Master Brand Book:
+// Pantone Process Cyan
 $blue: #00adef
-$faint-blue: change_color($blue, $lightness: 96%)
+// Pantone 272
+$purple: #7581bf
+// Pantone 585
+$green: #d9e16e
 
-// this red is one of the split complements of $blue
-$red: #f0001c
-$faint-red: change_color($red, $lightness: 96%)
+// These are the split complements of $blue
+$red:    adjust_hue($blue, 160deg)
+$orange: adjust_hue($blue, -160deg)
 
-// this orange is the other split complement of $blue
-$orange: #f0a400
-$faint-orange: change_color($orange, $lightness: 92%)
+// These are used for colored boxes where we want black text still. Most often, they'll be used with
+// a 1px solid border of the original color, and possibly with that color text and/or icons, as
+// well.
+$blue-tint:   change_color($blue,   $lightness: 96%)
+$red-tint:    change_color($red,    $lightness: 96%)
+$orange-tint: change_color($orange, $lightness: 92%)
+$purple-tint: change_color($purple, $lightness: 92%)
+$green-tint:  change_color($green,  $lightness: 89%)
 
-$text: #4e4e4e
-$light-text: #555555
-$grey: #ccc
-$light-grey: #d5d5d5
-$very-light-grey: #e7e7e7
-$white: #f7f7f7
+// PMS Cool Grey 7
+$grey: #9b9993
+
+$text: change_color($grey, $lightness: 31%)
+$light-text: change_color($grey, $lightness: 47%)
+$light-grey: change_color($grey, $lightness: 80%)
+$very-light-grey: change_color($grey, $lightness: 91%)
+$white: change_color($grey, $lightness: 97%)
+
+$contrasted-dark-default: $text
+$contrasted-light-default: white
+$contrasted-lightness-threshold: 70%
