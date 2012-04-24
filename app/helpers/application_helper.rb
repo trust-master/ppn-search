@@ -39,7 +39,8 @@ module ApplicationHelper
   end
 
   def page_path(name)
-    page_path_map = Rails.cache.fetch(:page_paths) { Hash[Page.select([:name, :slug]).all.map{|p| [p.name.to_sym, p.path] }] }
-    return page_path_map[name.to_sym]
+    if slug = Page.slug_map[name]
+      '/' << slug
+    end
   end
 end

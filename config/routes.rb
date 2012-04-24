@@ -37,7 +37,8 @@ ServiceProviderPortal::Application.routes.draw do
   end
   root :to => 'search#index'
 
-  get ':slug', controller: :pages, action: :show, as: :page
+
+  get '*slug', controller: :pages, action: :show, as: :page, constraints: RoutingConstraints::Pages
 end
 #== Route Map
 # Generated on 02 Apr 2012 17:07

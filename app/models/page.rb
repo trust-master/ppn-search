@@ -15,7 +15,18 @@ class Page < ActiveRecord::Base
   end
 
   def path
-    '/' + self[:slug]
+    '/' << self[:slug]
+  end
+
+  class << self
+    def slug_map
+      Rails.cache.fetch(:page_paths) do
+        h = Page.select([:name, :slug]).all.map { |p|
+          [p.name.to_sym, p.slug]
+        }
+        HashWithIndifferentAccess.new(Hash[h])
+      end
+    end
   end
 end
 
