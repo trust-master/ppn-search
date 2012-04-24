@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 
   def show
     @page = Rails.cache.fetch([:page, params[:slug]]) do
-      Page.where(slug: params[:slug]).first or raise ActionController::RoutingError.new('Not Found')
+      Page.where(slug: params[:slug]).first or raise ActionController::RoutingError.new('Page Not Found')
     end
   end
 
