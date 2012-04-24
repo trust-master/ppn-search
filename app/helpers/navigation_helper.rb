@@ -29,7 +29,10 @@ module NavigationHelper
 
       html_options[:class] = [*html_options[:class]] # wrap in array if not array
       html_options[:class] << options[:item_class] # add the menu-level class
+      html_options[:class].collect!{|c| c.presence.try(:to_s) }
+      html_options[:class].compact!
       html_options[:class] << 'active' if active_proc.is_a?(Proc) ? active_proc.call : current_page?(url)
+      html_options.delete(:class) if html_options[:class].empty?
 
       options[:link_attrs] = {id: path}.merge(options[:link_attrs] || {})
 
@@ -52,7 +55,14 @@ module NavigationHelper
     end
 
     def nav_page_link(name, html_options = {})
-      nav_link(name, page_path(name), html_options)
+      if path = page_path(name) or Rails.env.production? # don't do the new_page link on production
+        nav_link(name, path, nil, html_options)
+      else
+        html_options[:class] = [*html_options[:class]]
+        html_options[:class] << :page_not_found
+        html_options[:title] = "A page with this name does not yet exist, click here to create it."
+        nav_link(name, new_admin_page_path(name: name), nil, html_options)
+      end
     end
 
     def nav_for(menu_name, opts = {}, &block)

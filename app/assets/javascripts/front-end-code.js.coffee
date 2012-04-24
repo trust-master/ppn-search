@@ -18,9 +18,10 @@
 
   init: ->
     $(".market .service_area").on 'change', 'input.destroy', (event)->
+      # alert this.checked
       inputs = $(this).parents('li.service_area').find('.radio_buttons')
       if this.checked
-        inputs.show()
+        inputs.show().removeClass('hidden')
       else
         inputs.hide()
 
@@ -55,8 +56,7 @@
       market = $(this).parents('.market')
       areas = market.find(".service_area").map ->
         if $(this).find('input.destroy').get()[0].checked
-          [
-            $(this).find('label.name').text(),
+          [ $(this).find('label.name').text(),
             if $(this).find('.partial_only > span.radio > input[value="true"]').get()[0].checked then '*' else ''
           ].join('')
       market.find('ul.service_areas').hide()
@@ -69,19 +69,21 @@
       market.find('.collapsed_summary').hide()
       market.find('ul.service_areas').show()
 
-    $('#licenses, #business_filing').on 'click', '.raw_data_message a', (event)->
+    $('#licenses, #business_filing').on 'click', '.raw_data_message > a', (event)->
       $(this).parents('.data')
         .find('tbody.raw, tbody.parsed').toggle()
         .find(':visible').scrollTo()
       alt_text = $(this).data('alternate_text')
-      $(this).data 'alternate_text', $(this).text()
-      $(this).text alt_text
+      $(this).data('alternate_text', $(this).text() )
+      $(this).text(alt_text)
 
     $('#service_categories').on 'click', 'a.remove', (event)->
-      $(this).parents('li.sub_category')
-        .hide()
-        .find("input[type='hidden'].destroy").val('true').end()
-        .parents('.category').toggle(category.find('li.sub_category:visible').length is 0)
+      _this = $(this).parents('li.sub_category')
+      _this.hide()
+      _this.find("input[type='hidden'].destroy").val('true')
+
+      any_left = _this.find('li.sub_category:visible').length > 0
+      _this.parents('.category').toggle(any_left)
 
     $('#locations, #certifications, #affiliations, #associations, #licenses').on 'click', 'a.add', this.find_and_inject_template
 
@@ -118,14 +120,18 @@
     $('#company_details .tabs').tabs
         selected: -1,
         select: ->
-          $(this).find('#initial.tab').hide()
+          $(this).find('#initial.tab:visible').hide()
 
-    $('#col-a ul.companies .company').click ->
+    $('#col-a ul.companies').on 'click', '.company', (event)->
       _this = $(this)
       new_element = $('#company_details').html(_this.find('.details').html())
-      _this.siblings('.company').removeClass('selected')
-      _this.addClass('selected')
-      new_element.find('.tabs').tabs({'disabled': [4]})
+      _this
+        .addClass('selected')
+        .siblings('.company').removeClass('selected')
+
+      new_element.find('.tabs').tabs
+        disabled: [4]  # disable the 5th tab (Reviews)
+
       new_element.find('.accordion').accordion
         active: false,
         collapsible: true,
