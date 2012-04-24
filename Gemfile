@@ -83,6 +83,9 @@ gem 'content_for_in_controllers' # bring content_for into the controller
 
 gem 'exceptional' # send Exceptions to Exceptional.io
 
+# Sweet GUI for editing translation data
+gem 'translator', git: 'https://github.com/rtlong/translator.git'
+
 # Gems used only for assets and not required in production environments by default.
 group :assets do
   gem 'sass-rails' # use SASS to write CSS

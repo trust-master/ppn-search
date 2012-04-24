@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_filter :set_current_user_in_user_model
 
-  check_authorization
+  check_authorization if: :translations_controller?
 
   rescue_from CanCan::AccessDenied do |exception|
     if current_user # not authorized
@@ -35,5 +35,10 @@ class ApplicationController < ActionController::Base
     { ip_address: request.remote_ip, controller_name: self.class.name }
   end
   # alias :user_for_paper_trail :current_user
+
+  def translations_controller?
+    puts self.class.name
+    self.class.name == 'TranslationsController'
+  end
 
 end

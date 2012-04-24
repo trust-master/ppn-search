@@ -59,6 +59,12 @@ GIT
       sinatra (>= 0.9.2)
       vegas (~> 0.1.2)
 
+GIT
+  remote: https://github.com/rtlong/translator.git
+  revision: 43ea38a93f5ab855750b382b1cf22c6b8cad509b
+  specs:
+    translator (0.0.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -489,5 +495,6 @@ DEPENDENCIES
   tailor
   texticle
   thin
+  translator!
   uglifier
   unicorn
