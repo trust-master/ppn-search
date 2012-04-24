@@ -60,7 +60,7 @@ ServiceProviderPortal::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   config.assets.precompile += %w( ie8.css ie7.css ie.css print.css )
-  config.assets.precompile += %w[ loader.js ]
+  config.assets.precompile += %w[ modernizr.min.js ]
   config.assets.precompile += ['active_admin.css', 'active_admin/print.css', 'active_admin.js']
 
   ### Caching ###
