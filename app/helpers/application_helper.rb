@@ -41,10 +41,6 @@ module ApplicationHelper
   def page_path(name)
     REDIS[:cache].sadd(:page_names_to_suggest_for_creation, name)
 
-    if slug = Page.slug_map[name]
-      '/' << slug
-    else
-      nil
-    end
+    Page.slug_map[name]
   end
 end
