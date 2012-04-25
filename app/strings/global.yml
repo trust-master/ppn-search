@@ -4,3 +4,12 @@ en:
   follow_us_on: Follow Us On
   welcome: Welcome, %{name}
   what_is_this?: What is this?
+
+  layouts:
+    application:
+      images:
+        logo:
+          title: 'Trust Master: Expert Home Management'
+          alt:   Trust Master
+        trust-logos:
+          alt: Verisign

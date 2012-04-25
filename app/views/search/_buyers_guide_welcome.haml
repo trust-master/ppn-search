@@ -1,15 +1,17 @@
-.tabs.ui-tabs.ui-helper-reset.ui-widget-content.ui-wigdet.ui-corner-all
-  %ul.nav.tab_bar.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-wigdet-header.ui-corner-all
+.tabs.welcome-messages{class: 'ui-tabs ui-helper-reset ui-widget-content ui-wigdet ui-corner-all'}
+  %ul.nav.tab_bar{class: 'ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-wigdet-header ui-corner-all'}
     - [:profile, :capabilities, :credentials, :discounts].each do |label|
       %li.ui-state-default.ui-corner-top
         = link_to t(".tabs.#{label}.name"), "##{label}"
     %li.ui-state-default.ui-corner-top
       = link_to t(".tabs.reviews.name"), "#reviews", class: 'disabled'
 
-  .tab#profile= t('.tabs.profile.content')
-  .tab#capabilities= t('.tabs.capabilities.content')
-  .tab#credentials= t('.tabs.credentials.content')
-  .tab#discounts= t('.tabs.discounts.content')
-  .tab#reviews= t('.tabs.reviews.content')
+  .tab#profile=      simple_format(t('.tabs.profile.content'))
+  .tab#capabilities= simple_format(t('.tabs.capabilities.content'))
+  .tab#credentials=  simple_format(t('.tabs.credentials.content'))
+  .tab#discounts=    simple_format(t('.tabs.discounts.content'))
+  .tab#reviews=      simple_format(t('.tabs.reviews.content'))
 
-  .tab#initial= t('.tabs.initial.content')
+  .tab#initial
+    = image(:preferred_provider_seal, class: 'float-left')
+    = simple_format(t('.tabs.initial.content'))

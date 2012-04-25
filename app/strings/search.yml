@@ -10,14 +10,18 @@ en:
         zero: ""
         one: "1 result"
         other: "%{count} results"
+
     buyers_guide_welcome:
       tabs:
         initial:
           content: >
             Only exceptional performance and value earns preferred provider status and acceptance
-            into the Trust Master Preferred Provider Network. With this competitive spirit comes a
-            true motivation to provide exceptional value and superior service. Click on individual
-            tabs to learn more.
+            into the Trust Master Preferred Provider Network.
+
+
+            With this competitive spirit comes a true motivation to provide exceptional value and
+            superior service. Click on individual tabs to learn more.
+
         profile:
           name: Profile
           content: >
@@ -43,3 +47,7 @@ en:
           name: Reviews
           content: >
             Home manager reviews coming soon!
+      images:
+        preferred_provider_seal:
+          alt:   Trust Master Preferred Provider
+          title: This is the seal earned by product and service providers in Trust Master's PPN

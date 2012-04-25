@@ -21,7 +21,7 @@
       %header#header
         %h1#site-logo
           = link_to root_url, tabindex: -1 do
-            = image_tag 'logo.png', title: "Trust Master: #{t(:tagline)}", alt: "Trust Master"
+            = image :logo
         - if current_user
           %nav#user-nav
             = nav_for :account_links, menu_class: 'account-links', item_wrapper: nil do |menu|
@@ -87,7 +87,7 @@
             %li.facebook= link_to 'Facebook', follow_us_on_facebook_path
 
         #trust-logos
-          = image_tag 'trust-logos.png', alt: 'Verisign', width: 128, height: 47
+          = image 'trust-logos', width: 128, height: 47
 
     #copyright &copy; #{Time.now.year} #{t('copyright')}
 

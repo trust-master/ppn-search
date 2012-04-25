@@ -160,30 +160,43 @@
 
 #col-b
   #company_details
-    header
-      overflow: hidden
-      +clearfix
-      margin: 20px 0
-
-      h2, .in_business_since
-        float: left
-      h2
-        margin-bottom: 0
-        font-weight: bold
-
-      .in_business_since
-        font-size: 11px
-        font-weight: normal
-        text-transform: capitalize
-        margin: 6px 0 10px 15px
-
-      .actions
-        float: right
-
     & > .tabs
-      ul.nav.tab_bar
-        li
-          a
+      & > ul.nav.tab_bar
+        & > li
+          & > a
+      & > header
+        overflow: hidden
+        +clearfix
+        margin: 20px 0
+
+        & > h2, & > .in_business_since
+          float: left
+        & > h2
+          margin-bottom: 0
+          font-weight: bold
+
+        & > .in_business_since
+          font-size: 11px
+          font-weight: normal
+          text-transform: capitalize
+          margin: 6px 0 10px 15px
+
+        & > .actions
+          float: right
+
+      // the buyers' guide before a company is selected
+      &.welcome-messages
+        font-size: 18px
+        line-height: 30px
+
+        & > #initial
+          $pp_seal_vert_margin: 15px
+          +line-height-based-on-image-float('preferred_provider_seal.png', 30px, $pp_seal_vert_margin)
+          #preferred_provider_seal
+            margin-bottom: $pp_seal_vert_margin
+          p:last-of-type
+            clear: both
+
 
 
     // .profile, .capabilities, .credentials, .discounts, .reviews
@@ -241,7 +254,6 @@
           padding-bottom: 0
           margin-bottom: 0
 
-
     .profile
       .locations
         +clearfix
@@ -282,3 +294,6 @@
         display: block
 
     .reviews
+
+#preferred_provider_seal
+  +image-dimensions('preferred_provider_seal.png')

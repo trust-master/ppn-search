@@ -1,3 +1,7 @@
 =image-dimensions($image)
-  height: image-height('logo.png')
-  width: image-width('logo.png')
+  height: image-height($image)
+  width: image-width($image)
+
+=line-height-based-on-image-float($image, $target-line-height, $additional-height-to-consider: 0)
+  $height: image-height($image) + $additional-height-to-consider
+  line-height: $height / floor($height / $target-line-height)
