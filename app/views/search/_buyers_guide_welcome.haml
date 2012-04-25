@@ -6,12 +6,11 @@
     %li.ui-state-default.ui-corner-top
       = link_to t(".tabs.reviews.name"), "#reviews", class: 'disabled'
 
-  .tab#profile=      simple_format(t('.tabs.profile.content'))
-  .tab#capabilities= simple_format(t('.tabs.capabilities.content'))
-  .tab#credentials=  simple_format(t('.tabs.credentials.content'))
-  .tab#discounts=    simple_format(t('.tabs.discounts.content'))
-  .tab#reviews=      simple_format(t('.tabs.reviews.content'))
-
+  .tab#profile=      format_as_markdown(t('.tabs.profile.content'))
+  .tab#capabilities= format_as_markdown(t('.tabs.capabilities.content'))
+  .tab#credentials=  format_as_markdown(t('.tabs.credentials.content'))
+  .tab#discounts=    format_as_markdown(t('.tabs.discounts.content'))
+  .tab#reviews=      format_as_markdown(t('.tabs.reviews.content'))
   .tab#initial
     = image(:preferred_provider_seal, class: 'float-left')
-    = simple_format(t('.tabs.initial.content'))
+    = format_as_markdown(t('.tabs.initial.content'))

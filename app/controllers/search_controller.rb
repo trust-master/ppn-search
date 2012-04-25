@@ -10,7 +10,23 @@ class SearchController < InheritedResources::Base
     @search = Company.metasearch(params[:search])
     index! do |format|
       format.html do
-        render(collection.nil? ? :index : :search)
+        if collection
+          render :search
+        else
+          @popular_categories = Rails.cache.fetch(:popular_categories){
+            CompanyCategory
+              .select(['count(*) as total', :sub_category_id])
+              .includes(:sub_category)
+              .group(:sub_category_id)
+              .order('total DESC')
+              .limit(5)
+              .uniq
+              .map { |cc|
+                [cc.total.to_i, cc.sub_category]
+              }
+          }
+          render :index
+        end
       end
     end
   end

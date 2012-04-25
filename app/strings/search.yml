@@ -20,33 +20,48 @@ en:
 
 
             With this competitive spirit comes a true motivation to provide exceptional value and
-            superior service. Click on individual tabs to learn more.
+            superior service.
+
+
+            Click on the individual tabs to learn more.
 
         profile:
           name: Profile
           content: >
-            Our network of preferred providers are credentialed, preapproved and carefully vetted by
-            Trust Master Home Managers to share our customer service philosophy and core values.
+            Our providers are carefully vetted by Trust Master Home Managers to share our customer
+            service philosophy and adhere to the Preferred Provider Network Code of Conduct and
+            Trust Master Core Values.
+
         capabilities:
           name: Capabilities
           content: >
-            A provider who has been accepted into the Preferred Provider Network has met our
+            A provider who has been accepted into the Preferred Provider Network has met our
             stringent qualification standards and is committed to being the best in every aspect of
             his or her business capabilities.
+
         credentials:
           name: Credentials
           content: >
-            To assure that your dream team is at your service, our thorough screening process
-            includes confirming and validating important business and trade credentials.
+            Our thorough screening process includes confirming and validating important business and
+            trade credentials to assure our network of handpicked preferred providers are at your
+            service.
+
         discounts:
           name: Discounts
           content: >
-            The strength in numbers of our Preferred Provider Network not only fosters a reputation
+            The strength in numbers of our Preferred Provider Network not only fosters a reputation
             of safety and value, but also gives us the bargaining power to offer real discounts.
+
         reviews:
           name: Reviews
           content: >
-            Home manager reviews coming soon!
+            Trust Master home managers use the network of preferred providers on a regular basis, so
+            their objective home manager reviews can help guide you when it comes time to select a
+            provider.
+
+
+            **NOTE:** Home manager review coming soon!
+
       images:
         preferred_provider_seal:
           alt:   Trust Master Preferred Provider
