@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_filter :set_current_user_in_user_model
 
+  protect_from_forgery
   check_authorization
 
   rescue_from CanCan::AccessDenied do |exception|

@@ -11,10 +11,7 @@ module ActiveRecord
     protected
 
     def mass_assignment_role
-      mass_assignment_options[:as] || begin
-        current_user_role = ::User.current_user.try(:role).try { |r| r.underscore.to_sym }
-        current_user_role || :default
-      end
+      mass_assignment_options[:as] || ::User.current_user.try(:role).try { |r| r.underscore.to_sym } || :default
     end
 
   end

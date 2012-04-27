@@ -14,7 +14,9 @@ class AccountsController < InheritedResources::Base
 
   def edit
     super do |format|
-      format.html { render(params[:section] || :edit) }
+      format.html {
+        render(%w[basic notifications privacy].grep(params['section']).first || 'edit')
+      }
     end
   end
 

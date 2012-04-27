@@ -24,7 +24,7 @@ class EmailTemplate < ActiveRecord::Base
   before_create :template
 
   ### Attributes
-  attr_protected :template
+  attr_accessible :display_name, :headers, :body, as: :admin
 
   # set up accessors for each of the header fields from Mail. (the union is to influence sort order)
   HEADER_ATTRIBUTES = [:subject, :cc, :bcc, :from] | Mail::Field::KNOWN_FIELDS.map{|f| f.underscore.to_sym }
