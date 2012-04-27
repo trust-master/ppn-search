@@ -1,6 +1,5 @@
 input, select, textarea, button
   font-family: $primary-fonts
-
   &:focus
     outline: none
     +single-box-shadow($blue, 0, 0, 10px, 0)
@@ -10,17 +9,17 @@ input, select, textarea, button
   border: 1px solid $light-grey
   padding: 4px 5px
   vertical-align: top
-  width: auto
+  width: 360px
 
   &:focus
     border: 1px solid $blue
 
 select
-  // width: 383px
+  padding: 2px 5px
   margin: 0 5px 0 -4px
+  width: 372px
 
 textarea
-  // width: 380px
   padding: 4px 0 4px 5px
   height: 170px
 
@@ -96,6 +95,11 @@ fieldset
         select
           width: auto
 
+      &.select, &.grouped_select
+        // this will be Chosen-enabled, so styling needs a little help to remain consistent
+        select
+          width: 371px
+
       span.error
         margin-left: 10px
 
@@ -105,7 +109,7 @@ fieldset
         font-size: 11px
         font-style: italic
         margin-left: 155px
-        width: auto
+        width: 360px
         color: $text
 
       & > label
@@ -116,6 +120,7 @@ fieldset
         margin-right: 8px
         vertical-align: top
         padding-top: 4px
+
 
     &.actions
       text-align: right
