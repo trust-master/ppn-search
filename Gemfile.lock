@@ -1,4 +1,14 @@
 GIT
+  remote: https://github.com/defunkt/resque.git
+  revision: f03ba9301998f55c713b1423865c3c00e367fd92
+  specs:
+    resque (1.20.0)
+      multi_json (~> 1.0)
+      redis-namespace (~> 1.0.2)
+      sinatra (>= 0.9.2)
+      vegas (~> 0.1.2)
+
+GIT
   remote: https://github.com/jodosha/redis-store.git
   revision: ffcd8e755254f276e0d671fb4961975baee8ebd9
   specs:
@@ -26,6 +36,14 @@ GIT
       redis (~> 2.2.0)
 
 GIT
+  remote: https://github.com/lantins/resque-retry.git
+  revision: cacf59e5f269493d7bc5aa6f41daa00d0c377e49
+  specs:
+    resque-retry (1.0.0.a)
+      resque (>= 1.10.0)
+      resque-scheduler (>= 1.9.9)
+
+GIT
   remote: https://github.com/rtlong/active_admin.git
   revision: be6092caf0ff92991ad328aeb3676b31b3bb4bd0
   specs:
@@ -48,16 +66,6 @@ GIT
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
       railties (>= 3.0.0)
-
-GIT
-  remote: https://github.com/rtlong/resque.git
-  revision: 59989a077b5a1b1f73886cbfcfdb6aa7eea8fb90
-  specs:
-    resque (1.20.0)
-      multi_json (~> 1.0)
-      redis-namespace (~> 1.0.2)
-      sinatra (>= 0.9.2)
-      vegas (~> 0.1.2)
 
 GEM
   remote: http://rubygems.org/
@@ -318,10 +326,6 @@ GEM
     replicate (1.4)
     responders (0.9.1)
       railties (~> 3.1)
-    resque-retry (0.2.2)
-      rake
-      resque (>= 1.8.0)
-      resque-scheduler (>= 1.8.0)
     resque-scheduler (1.9.9)
       redis (>= 2.0.1)
       resque (>= 1.8.0)
@@ -479,7 +483,7 @@ DEPENDENCIES
   replicate
   responders
   resque!
-  resque-retry
+  resque-retry!
   rspec-rails
   sass
   sass-rails

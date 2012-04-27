@@ -70,8 +70,9 @@ git 'https://github.com/jodosha/redis-store.git' do # using the source,
 end
 
 gem 'resque', # For background tasks (like scraping the MN DoLI website, or sending emails)
-  git: 'https://github.com/rtlong/resque.git' # my fork; fixes a bug with the next gem (resque's dev is very slow)
-gem 'resque-retry' # for retrying failed resque jobs automatically
+  git: 'https://github.com/defunkt/resque.git'
+gem 'resque-retry', # for retrying failed resque jobs automatically
+  git: 'https://github.com/lantins/resque-retry.git'
 # gem 'resque-mailer' # perform ActionMailer deliveries with Resque
 
 # For the screen-scraping component

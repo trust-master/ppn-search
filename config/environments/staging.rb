@@ -33,4 +33,4 @@ ServiceProviderPortal::Application.configure do
   config.action_mailer.delivery_method = :smtp
 end
 
-Resque.inline = true
+Resque.inline = true if ENV.grep(/RESQUE_INLINE/i).any?
