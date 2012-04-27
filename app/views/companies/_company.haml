@@ -31,14 +31,8 @@
           %section.locations
             %h3= t('.details.sections.locations')
             - company.locations.each do |location|
-              %address
-                - if location.street?
-                  = location.street
-                  %br/
-                  - if location.street2?
-                    = location.street2
-                    %br/
-                = [location.name, location.zip].compact.join(' ')
+              = link_to_blank_tab(url_for_google_maps_search(location.to_s)) do
+                = render location
 
         - if company.phone_numbers.any?
           %section.phone_numbers

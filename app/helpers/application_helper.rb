@@ -20,9 +20,16 @@ module ApplicationHelper
     { style: boolean ? 'display: none' : nil }
   end
 
-  # def link_to_google_maps_search(title, q = title, opts = {})
-  #   link_to title, ['http://maps.google.com/', {q: q}.to_param].join('?'), opts
-  # end
+  def url_for_google_maps_search(query)
+    ['http://maps.google.com/', {q: query}.to_param].join('?')
+  end
+
+  def link_to_blank_tab(*args, &block)
+    options = args.extract_options!
+    options[:target] ||= '_blank'
+    args << options
+    link_to(*args, &block)
+  end
 
   def time_ago_in_words(time)
     content_tag(:time, time.to_s, datetime: time.getutc.iso8601, class: 'timeago')

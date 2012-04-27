@@ -13,18 +13,6 @@ class SearchController < InheritedResources::Base
         if collection
           render :search
         else
-          @popular_categories = Rails.cache.fetch(:popular_categories){
-            CompanyCategory
-              .select(['count(*) as total', :sub_category_id])
-              .includes(:sub_category)
-              .group(:sub_category_id)
-              .order('total DESC')
-              .limit(5)
-              .uniq
-              .map { |cc|
-                [cc.total.to_i, cc.sub_category]
-              }
-          }
           render :index
         end
       end
@@ -33,17 +21,33 @@ class SearchController < InheritedResources::Base
 
   protected
 
-  def collection
-    if params[:search]
-      @companies ||= end_of_association_chain
-                      .accessible_by(current_ability)
-                      .metasearch(params[:search]).relation
-                      .uniq(true)
-                      .page(params[:page])
-    else
-      nil
+    def collection
+      if params[:search]
+        @companies ||= end_of_association_chain
+                        .accessible_by(current_ability)
+                        .metasearch(params[:search]).relation
+                        .uniq(true)
+                        .page(params[:page])
+      else
+        nil
+      end
     end
-  end
+
+    def popular_categories
+      @popular_categories ||= Rails.cache.fetch(:popular_categories) do
+        CompanyCategory
+          .select(['count(*) as total', :sub_category_id])
+          .includes(:sub_category)
+          .group(:sub_category_id)
+          .order('total DESC')
+          .limit(5)
+          .uniq
+          .map { |cc|
+            [cc.total.to_i, cc.sub_category]
+          }
+      end
+    end
+    helper_method :popular_categories
 
 
 end

@@ -10,7 +10,7 @@ module PersonalLicenseDecorator #< ApplicationDecorator
     a.symbolize_keys!
 
     a[:enforcement_action] = self.enforcement_action ? 'Yes' : 'No'
-    # a[:address] = link_to_google_maps_search(self.address)
+    a[:address] = link_to_blank_tab(self.address, url_for_google_maps_search(self.address))
 
     Hash[a.map{ |key, value| [PersonalLicense.human_attribute_name(key), value] }]
   end

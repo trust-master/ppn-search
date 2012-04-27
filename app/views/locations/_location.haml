@@ -1,0 +1,8 @@
+%address
+  - if location.street?
+    = location.street
+    %br/
+    - if location.street2?
+      = location.street2
+      %br/
+  = [location.name, location.zip].compact.join(' ')

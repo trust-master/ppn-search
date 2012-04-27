@@ -18,6 +18,12 @@ class Location < ActiveRecord::Base
     [city, state_abbreviation].compact.join(', ')
   end
 
+  def to_s
+    address = [street, street2, city, state_abbreviation].map(&:presence).compact.join(', ')
+    address << ' ' << zip if zip.present?
+    return address
+  end
+
   private
 
     # to ensure that we retain integrity for this association (at least, when it's messed with the normal way)
