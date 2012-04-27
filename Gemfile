@@ -32,6 +32,7 @@ gem 'responders'
 gem 'simple_form' # Form builder
 
 gem 'kaminari', # Pagination helpers / scopes
+  # path: '../kaminari'
   git: 'https://github.com/rtlong/kaminari.git' # use my fork for I18n action in the helpers
 
 # Connect to CopyCopter for I18n data
