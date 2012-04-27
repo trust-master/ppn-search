@@ -16,7 +16,13 @@ class ApplicationController < ActionController::Base
   private
 
   def current_user
-    @current_user ||= session[:user_id] ? User.where(id: session[:user_id]).first : nil
+    @current_user ||= if session[:user_id]
+      User.where(id: session[:user_id]).first
+    elsif user = authenticate_with_http_basic { |email, password| User.find_by_email_and_password(email, password) }
+      user
+    else
+      nil
+    end
   end
   helper_method :current_user
 

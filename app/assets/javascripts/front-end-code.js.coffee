@@ -129,8 +129,7 @@
         .addClass('selected')
         .siblings('.company').removeClass('selected')
 
-      new_element.find('.tabs').tabs
-        disabled: [4]  # disable the 5th tab (Reviews)
+      new_element.find('.tabs').tabs()
 
       new_element.find('.accordion').accordion
         active: false,

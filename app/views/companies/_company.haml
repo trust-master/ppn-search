@@ -9,7 +9,7 @@
       %ul.nav.tab_bar
         = list_of [:profile, :capabilities, :credentials, :discounts] do |label|
           = link_to t(".details.tab_names.#{label}"), "##{tab_id_for(company, label)}"
-        %li= link_to t(".details.tab_names.reviews"), "##{tab_id_for(company, :reviews)}", class: 'disabled'
+        %li= link_to t(".details.tab_names.reviews"), "##{tab_id_for(company, :reviews)}", class: 'disabled ui-state-disabled'
 
       %header
         %h2= company.name
@@ -136,6 +136,9 @@
         - else
           = t '.discounts.none_available', default: "There are no discounts available at this time."
 
+      = tab_for company, :reviews do
+        %strong NOTE:
+        Home manager reviews coming soon!
 
     - if current_user.is_a? Administrator
       .admin_panel

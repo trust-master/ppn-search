@@ -28,9 +28,9 @@ en:
         profile:
           name: Profile
           content: >
-            Our providers are carefully vetted by Trust Master Home Managers to share our customer
-            service philosophy and adhere to the Preferred Provider Network Code of Conduct and
-            Trust Master Core Values.
+            Our providers are carefully vetted by Trust Master Home Managers to share our service
+            philosophy and adhere to the Preferred Provider Network Code of Conduct and Trust Master
+            Core Values.
 
         capabilities:
           name: Capabilities
@@ -42,9 +42,8 @@ en:
         credentials:
           name: Credentials
           content: >
-            Our thorough screening process includes confirming and validating important business and
-            trade credentials to assure our network of handpicked preferred providers are at your
-            service.
+            Our thorough screening process includes validating important business and trade
+            credentials to assure our network of handpicked preferred providers are at your service.
 
         discounts:
           name: Discounts
@@ -59,8 +58,6 @@ en:
             their objective home manager reviews can help guide you when it comes time to select a
             provider.
 
-
-            **NOTE:** Home manager review coming soon!
 
       images:
         preferred_provider_seal:
