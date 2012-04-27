@@ -1,9 +1,4 @@
 module DevelopmentHelper
-  # Returns the familiar "Controller#action" string, to tie DISQUS threads to a given
-  # controller/action pair. DISQUS threads rely on this string... don't change it!
-  def disqus_identifier
-    [controller.controller_name, controller.action_name].join('#')
-  end
 
   # Inserts a development note to the page. See styling in development.sass. It's a great way to
   # communicate back to the Trust Master folks, with context. Kind of like a PostIt on the page...
@@ -18,4 +13,5 @@ module DevelopmentHelper
       end
     end
   end
+
 end

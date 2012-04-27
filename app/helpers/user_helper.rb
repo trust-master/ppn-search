@@ -18,4 +18,5 @@ module UserHelper
     lookups << [:enumerize, attr_name, value].join('.').to_sym
     I18n.t(lookups.shift, default: lookups)
   end
+
 end
