@@ -24,26 +24,30 @@ SEED_DATA = YAML.load_file(Rails.root.join('db','seeds.yml')).with_indifferent_a
 puts "Seeding Database...\n\n"
 
 
-########################
-puts "Populating Countries / States..."
+######################## This section is null due to ActiveHash taking over these models
+# puts "Populating Countries / States..."
 
-SEED_DATA[:countries].each do |c|
-  country = Country.where(name: c['name'], abbreviation: c['code']).first_or_create!({}, without_protection: true)
+# SEED_DATA[:countries].each do |c|
+#   country = Country.where(name: c['name'], abbreviation: c['code']).first_or_create!({}, without_protection: true)
 
-  c['states'].each do |abbr, name|
-    state = State
-      .where(name: name, abbreviation: abbr, country_id: country.id)
-      .first_or_create!({}, without_protection: true)
-  end
-end
+#   c['states'].each do |abbr, name|
+#     state = State
+#       .where(name: name, abbreviation: abbr, country_id: country.id)
+#       .first_or_create!({}, without_protection: true)
+#   end
+# end
 
-COUNTRY_ids = Country.pluck(:id)
-success_msg "There are now #{COUNTRY_ids.count} Countries."
-STATE_ids = State.pluck(:id)
-success_msg "There are now #{STATE_ids.count} States."
+# COUNTRY_ids = Country.pluck(:id)
+# success_msg "There are now #{COUNTRY_ids.count} Countries."
+# STATE_ids = State.pluck(:id)
+# success_msg "There are now #{STATE_ids.count} States."
 
-US_id = Country.where(name: 'United States').pluck(:id).first
-MN_id = State.where(name: 'Minnesota').pluck(:id).first
+# US_id = Country.where(name: 'United States').pluck(:id).first
+# MN_id = State.where(name: 'Minnesota').pluck(:id).first
+
+US_id = Country::US.id
+MN_id = State::MN.id
+
 
 ########################
 print 'Administrator Users... '

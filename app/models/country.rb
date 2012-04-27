@@ -1,6 +1,15 @@
-class Country < ActiveRecord::Base
+class Country < ActiveYaml::Base
+  set_root_path Rails.root.join('db')
+  set_filename 'countries'
+
+  include ActiveHash::Enum
+  include ActiveHash::Associations
+
+  enum_accessor :abbreviation
+
   has_many :states
   has_many :locations
+
 end
 
 

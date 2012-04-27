@@ -3,4 +3,4 @@
 = builder.input :street2
 = builder.input :city
 = builder.input :zip
-= builder.association :state, as: :grouped_select, collection: Country.includes(:states), group_method: :states
+= builder.association :state, as: :grouped_select, collection: Country.all, group_method: :states

@@ -1,7 +1,9 @@
 class Location < ActiveRecord::Base
+  extend ActiveHash::Associations::ActiveRecordExtensions
+
   belongs_to :company
-  belongs_to :state
-  belongs_to :country
+  belongs_to_active_hash :state
+  belongs_to_active_hash :country
 
   before_validation :infer_country_from_state
 
@@ -11,7 +13,7 @@ class Location < ActiveRecord::Base
   attr_accessible :street, :street2, :city, :state_id, :zip, :country_id, as: [:user, :company_admin, :administrator]
   attr_readonly :company_id
 
-  delegate :name, :abbreviation, to: :state, prefix: true
+  delegate :name, :abbreviation, to: :state,   prefix: true
   delegate :name, :abbreviation, to: :country, prefix: true
 
   def name
@@ -29,7 +31,7 @@ class Location < ActiveRecord::Base
     # to ensure that we retain integrity for this association (at least, when it's messed with the normal way)
     def infer_country_from_state
       if self.state_id
-        self.country_id = State.where(id: self.state_id).pluck(:country_id).first
+        self.country_id = self.state.country_id
       end
     end
 

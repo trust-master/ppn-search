@@ -1,10 +1,14 @@
-class State < ActiveRecord::Base
+class State  < ActiveYaml::Base
+  set_root_path Rails.root.join('db')
+  set_filename 'states'
+
+  include ActiveHash::Enum
+  include ActiveHash::Associations
+
   belongs_to :country
   has_many :locations
+
 end
-
-
-
 
 # == Schema Information
 #

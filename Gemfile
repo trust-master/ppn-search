@@ -81,6 +81,10 @@ gem 'mechanize' # API wrapper to work with nokogiri more easily
 
 gem 'active_decorator' # Clean up view logic
 
+# A readonly ActiveRecord-esque base class that lets you use a hash, a Yaml file or a custom file as
+# the datasource. Used here for Country / State
+gem 'active_hash'
+
 gem 'content_for_in_controllers' # bring content_for into the controller
 
 gem 'exceptional' # send Exceptions to Exceptional.io

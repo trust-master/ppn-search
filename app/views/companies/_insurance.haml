@@ -10,4 +10,4 @@
     = form.hidden_field :insurance_certificate_cache
     = form.input :insurance_valid_from,  start_year: 2000, end_year: 2012, discard_day: true, prompt: true
     = form.input :insurance_valid_until, start_year: 2012,                 discard_day: true, prompt: true
-    = form.association :insurance_state, as: :grouped_select, collection: Country.includes(:states), group_method: :states
+    = form.association :insurance_state, as: :grouped_select, collection: Country.all, group_method: :states

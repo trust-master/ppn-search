@@ -1,5 +1,6 @@
 class LicenseType < ActiveRecord::Base
-  belongs_to :state
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :state
 end
 
 
