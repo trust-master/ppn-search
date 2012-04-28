@@ -10,7 +10,7 @@ class Market < ActiveRecord::Base
 
   attr_accessible :name, :service_areas_attributes, :sort_order, as: :administrator
 
-  validates_presence_of :name
+  validates :name, :sort_order, presence: true
 end
 
 # == Schema Information

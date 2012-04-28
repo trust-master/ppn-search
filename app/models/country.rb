@@ -1,6 +1,8 @@
 class Country < ActiveRecord::Base
   has_many :states
   has_many :locations
+
+  validates :name, :abbreviation, presence: true
 end
 
 

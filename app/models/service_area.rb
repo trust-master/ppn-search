@@ -7,7 +7,7 @@ class ServiceArea < ActiveRecord::Base
 
   attr_accessible :name, :market_id, :sort_order, as: :administrator
 
-  validates_presence_of :name, :market
+  validates :name, :market, :sort_order, presence: true
 end
 
 

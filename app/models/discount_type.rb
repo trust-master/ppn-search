@@ -5,6 +5,8 @@ class DiscountType < ActiveRecord::Base
   has_many :companies, :through => :discounts
 
   attr_accessible :name, :sort_order, as: :administrator
+
+  validates :name, :sort_order, presence: true
 end
 
 

@@ -1,6 +1,8 @@
 class State < ActiveRecord::Base
   belongs_to :country
   has_many :locations
+
+  validates :name, :abbreviation, presence: true
 end
 
 
