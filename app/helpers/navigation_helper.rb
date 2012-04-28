@@ -22,8 +22,10 @@ module NavigationHelper
     # Create a navigation menu item, the @name@ argument should be the I18n key under
     # <tt>nav.#{menu_name}</tt> for the title of the nav link being created.
     def nav_link(name, url_for_opts = nil, active_proc = nil, html_options = {})
-      path = [menu_name, name].flatten.join('.')
-      text_for_link = h.t("#{path}._label", scope: :nav, default: path.to_sym)
+      name_for_path = name.is_a?(Symbol) ? name : name.parameterize(?_)
+      path = [menu_name, name_for_path].flatten.join(?.)
+      text_for_link = name.is_a?(Symbol) ? h.t("#{path}._label", scope: :nav, default: path.to_sym) : name
+
       url = h.url_for(url_for_opts)
       options = @options.dup
 
@@ -55,8 +57,10 @@ module NavigationHelper
     end
 
     def nav_page_link(name, html_options = {})
-      if path = page_path(name) or Rails.env.production? # don't do the new_page link on production
-        nav_link(name, path, nil, html_options)
+      page = page_info(name)
+
+      if page or Rails.env.production? # don't do the new_page link on production. We don't want folks getting access denied errors when they click on a link to "Terms of Use", ya know? Shouldn't ever be a problem, but just in case one page gets forgotten
+        nav_link(page[:title], page[:slug], nil, html_options)
       else
         html_options[:class] = [*html_options[:class]]
         html_options[:class] << :page_not_found
