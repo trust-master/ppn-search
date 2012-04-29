@@ -13,14 +13,14 @@ class CertificateUploader < CarrierWave::Uploader::Base
   # Create different versions of your uploaded files:
 
   # thumb is for a small thumbnail in the form and in the discount listing
-  version :thumb do
+  version :thumb, :if => :image? do
+    process :thumbnailify
     convert :png
-    resize_to_fill 180, 250
+
   end
 
   # preview is for a lightbox-style popup to view the image (only if it isn't a PDF)
   version :preview, :if => :image? do
-    convert :png
     resize_to_limit 800, 600
   end
 
@@ -35,4 +35,12 @@ class CertificateUploader < CarrierWave::Uploader::Base
     new_file.content_type.include? 'image'
   end
 
+  def thumbnailify(width=100)
+    manipulate! do |img|
+      img.collapse! # drop all but page 1
+      img.format('png') # save as PNG
+      img.resize(width.to_s) # resize, keeping ratio, to the width given
+      img
+    end
+  end
 end
