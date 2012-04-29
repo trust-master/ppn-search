@@ -85,6 +85,10 @@ gem 'content_for_in_controllers' # bring content_for into the controller
 
 gem 'exceptional' # send Exceptions to Exceptional.io
 
+# Compass provides SASS goodies, and some of it's helpers are used in the app code, so it can't be
+# in the assets group
+gem 'compass-rails'
+
 # Gems used only for assets and not required in production environments by default.
 group :assets do
   gem 'sass-rails' # use SASS to write CSS
@@ -101,7 +105,6 @@ group :assets do
 
   # SASS goodies
   gem 'bourbon'
-  gem 'compass-rails'
 
   gem 'oily_png' # C extensions for generating PNGs - used by Compass for the CSS sprites
 end
