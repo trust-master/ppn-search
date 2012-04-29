@@ -5,6 +5,6 @@
   - %w[identity service credentials].each do |section|
     = render "#{section}_fieldsets", form: form
 
-  = fieldset :button, false do
+  %fieldset.last#buttons
     = link_to t('helpers.cancel'), @company, class: :cancel
     = form.button :submit, class: :save

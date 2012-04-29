@@ -1,10 +1,10 @@
 en:
   search:
     index:   # Landing page
-      title: Provider Search
+      title: Search Providers
       secondary_title: "Buyer's Guide"
     search:  # Search results page
-      title: Provider Search
+      title: Search Providers
       secondary_title: "Buyer's Guide"
       results_count:
         zero: ""

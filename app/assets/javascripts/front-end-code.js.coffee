@@ -26,12 +26,7 @@
         inputs.hide()
 
     $('input[id^="company_insured_"]').click ->
-      val = this.value
-      console.log
-      if val == 'true'
-        $(this).parents('ul').find('.insurance_fields').show()
-      else
-        $(this).parents('ul').find('.insurance_fields').hide()
+      $(this).parents('ul').find('.insurance_fields').toggle(this.value == 'true')
 
     $("#market_selection_add_market").change ->
       if this.value != ''
@@ -107,8 +102,8 @@
       _this = $(this).parents('.market')
       _this.slideUp()
       _this.find('.service_area input.destroy').each ->
-          this.checked = false # uncheck the box
-          $(this).change() # this is so the ui-button notices the previous change
+        this.checked = false # uncheck the box
+        $(this).change() # this is so the ui-button notices the previous change
 
     $('#certifications, #affiliations, #associations').on 'click', 'a.remove', (event)->
       _this = $(this).parents('.certification, .affiliation, .association').first()
@@ -118,9 +113,9 @@
 @searchPage =
   init: ->
     $('#company_details .tabs').tabs
-        selected: -1,
-        select: ->
-          $(this).find('#initial.tab:visible').hide()
+      selected: -1,
+      select: ->
+        $(this).find('#initial.tab:visible').hide()
 
     $('#col-a ul.companies').on 'click', '.company', (event)->
       _this = $(this)
@@ -141,7 +136,7 @@
 @popup =
   init: ->
     self = this
-    self.bind()  if $(".popup a").length isnt 0
+    self.bind() if $(".popup a").length isnt 0
 
   bind: ->
     $(".popup, .what_is_this").on 'click', 'a.hint', (event)->

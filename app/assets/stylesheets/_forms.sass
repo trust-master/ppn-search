@@ -10,6 +10,7 @@ input, select, textarea, button
   padding: 4px 5px
   vertical-align: top
   width: 360px
+  text-align: left
 
   &:focus
     border: 1px solid $blue
@@ -100,17 +101,18 @@ fieldset
         select
           width: 371px
 
-      span.error
-        margin-left: 10px
-
-      // hints
-      .hint
+      .hint, .error
         display: block
-        font-size: 11px
-        font-style: italic
         margin-left: 155px
         width: 360px
+
+      .hint
         color: $text
+        font-size: 11px
+        font-style: italic
+      .error
+        color: $red
+        font-weight: bold
 
       & > label
         width: 140px
