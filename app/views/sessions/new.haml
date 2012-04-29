@@ -16,3 +16,14 @@
         = link_to t('.recover'), new_password_reset_path
         %p
           = t('.why')
+
+%ol#login-instructions
+  %li.box
+    = t('.instructions.test.title')
+    .body= t('.instructions.test.body')
+  %li.box
+    = t('.instructions.refine.title')
+    .body= t('.instructions.refine.body')
+  %li.box
+    = t('.instructions.impact.title')
+    .body= t('.instructions.impact.body')
