@@ -1,5 +1,7 @@
 ActiveAdmin.register EmailTemplate do
-  menu label: 'Emails', priority: 6
+  # menu label: 'Emails', priority: 6
+  menu false # hide from menu for now
+
   filter :body
   actions :edit, :update, :show, :index
 

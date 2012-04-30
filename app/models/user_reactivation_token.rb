@@ -1,7 +1,4 @@
 class UserReactivationToken < UserAuthToken
-  def mailer
-    UserMailer.reactivate(self)
-  end
 end
 # == Schema Information
 #

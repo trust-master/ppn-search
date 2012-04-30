@@ -15,9 +15,9 @@ ActiveAdmin.register User do
   end
 
   USER_ROLES = {
-    "Client" => :user,
-    "Company Admin" => :company_admin,
-    "TM Admin" => :administrator
+    "Client" => 'User',
+    "Company Admin" => 'CompanyAdmin',
+    "TM Admin" => 'Administrator'
   }
   USER_ROLES.each do |name, role|
     self.send(:scope, name) do |scope|
@@ -46,7 +46,7 @@ ActiveAdmin.register User do
 
   show title: :display_name do |c|
     attributes_table do
-      row(:role) { I18n.t(c.role.underscore, scope: 'admin.users.role') }
+      row(:role) { USER_ROLES.rassoc(c.role).first }
       row :display_name
       row :email
       row :phone
@@ -111,7 +111,8 @@ ActiveAdmin.register User do
   end
 
   member_action :reset_password do
-    user = User.find(params[:id]).reset_password!
+    user = User.find(params[:id])
+    user.reset_password!
 
     redirect_to admin_user_path(user), notice: 'Password reset email sent to User!'
   end

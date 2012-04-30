@@ -7,9 +7,11 @@ en:
       date: This should be a date
       in_past: This should be a date in the past
       in_future: This should be a date in the future
+      user_role: That is not a valid user role
+      password_complexity: That does not meet the complexity requirements
       accepted: You must accept this to continue
       blank: This field is required
-      confirmation: Doesn't match
+      confirmation: Confirmation didn't match
       empty: This field is required
       equal_to: This must be equal to %{count}
       even: This must be even

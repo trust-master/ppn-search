@@ -1,6 +1,7 @@
 # This is the abstract class to parent the mailers in the app. It functions as a wrapper around
 # Mail, like ActionMailer would, but runs as a Resque job, and utilizes the EmailTemplate model to
-# render it's templates
+# render it's templates. Not in use as this feature is incomplete.
+__END__
 class ApplicationMailer
   def queue; :mails; end
 

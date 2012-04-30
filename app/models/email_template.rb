@@ -1,3 +1,5 @@
+# This is the email version of the Page model. It's part of an interface to edit email templates through the Admin UI, which is incomplete
+
 class EmailTemplate < ActiveRecord::Base
   has_paper_trail
 

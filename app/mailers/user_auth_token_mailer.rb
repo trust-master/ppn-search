@@ -1,34 +1,35 @@
-class UserAuthTokenMailer < ApplicationMailer
+class UserAuthTokenMailer < ActionMailer::Base
 
-  # def initialize(token)
-  #   @token = token
-  # end
 
-  # def password_reset
-  #   @link = password_reset_url(@token)
-  #   mail(to: @to)
-  # end
+  def password_reset(token, opts = {})
+    setup(token)
+    @link = password_reset_url(token)
+    pack_token(mail(opts.merge(to: @to)))
+  end
 
-  # def user_activation_token
-  #   @link = activate_url(token)
-  #   mail(to: @to)
-  # end
+  def user_activation_token(token, opts = {})
+    setup(token)
+    @link = activate_url(token)
+    pack_token(mail(opts.merge(to: @to)))
+  end
 
-  # def user_reactivation_token
-  #   @link = activate_url(token)
-  #   mail(to: @to)
-  # end
+  def user_reactivation_token(token, opts = {})
+    setup(token)
+    @link = activate_url(token)
+    pack_token(mail(opts.merge(to: @to)))
+  end
 
   private
 
-  # returns the arguments needed to be sent to self.perform, so we can expose a uniform API for all
-  # mailers. These should be the types of arguments that Resque can handle (simple types)
-  def args_for_perform
-    [@token.id]
+  def setup(token)
+    @token = token
+    @user_name = token.user.first_name
+    @to = token.user.email
   end
 
-  class << self
-    def self.perform(token_id)
-    end
+  def pack_token(mailer)
+    mailer.instance_variable_set(:@token, @token)
+    return mailer
   end
+
 end

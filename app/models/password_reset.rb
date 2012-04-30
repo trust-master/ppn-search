@@ -5,10 +5,6 @@ class PasswordReset < UserAuthToken
     self[:expires_at] ||= 3.hours.from_now
   end
 
-  def mailer
-    UserMailer.password_reset(self)
-  end
-
 end
 
 

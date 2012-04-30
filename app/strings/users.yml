@@ -4,6 +4,7 @@ en:
       status:  Status
       name:    Name
       contact: Contact Information
+
     index:
       title: "%{company_name}: Users"
       table:
@@ -17,13 +18,9 @@ en:
       actions:
         add: Create new User
         remove_confirmation: Are you sure you want to remove this user? This action can not be undone.
+
     new:
       title: "%{company_name}: Create User"
+
     edit:
       title: "%{company_name}: Edit User"
-    password_complexity:
-      summary: >
-        Your password must meet the following restrictions: at least 6 characters in length, include
-        at least one number and at least one non-alphanumeric character, use no elements from your
-        email address or your name or that of your company.
-      error: 'Invalid password!'

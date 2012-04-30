@@ -8,7 +8,7 @@ class User::RoleValidator < ActiveModel::Validator
     record.errors.add(:role, :blank) if record.role.blank?
 
     if record.role_changed?
-      record.errors.add(:role) unless check_role(record.role)
+      record.errors.add(:role, :user_role) unless check_role(record.role)
     end
   end
 

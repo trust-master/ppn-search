@@ -1,7 +1,4 @@
 class UserActivationToken < UserAuthToken
-  def mailer
-    UserMailer.welcome(self)
-  end
 end
 # == Schema Information
 #

@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   validates_inclusion_of :active, in: [true, false]
 
   has_secure_password
-  validates              :password, password: true, allow_nil: true
+  validates              :password, password: true, allow_nil: true # allow_nil only for pre-activation circumstances
 
   # default_scope includes(:company)
   scope :sort_by_name_asc,  order('last_name ASC, first_name ASC')

@@ -2,14 +2,19 @@ en:
   accounts:
     basic:
       title: Basic Info
+
     notifications:
       title: Notifications and Alerts
+
     privacy:
       title: Privacy Settings
+      coming_soon: This feature is not available at this time
+
     fieldsets:
       name: Name
       contact: Contact
       password:
         header: Password
         instructions: This section is not yet operational
-    saved: Account was updated successfully
+
+    saved: Your account was updated successfully

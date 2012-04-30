@@ -74,8 +74,8 @@ class UserAuthToken < ActiveRecord::Base
     token
   end
 
-  def mailer
-    UserAuthTokenMailer.new(self)
+  def mailer(*args)
+    UserAuthTokenMailer.send(self.class.name.underscore, self, *args)
   end
 end
 
