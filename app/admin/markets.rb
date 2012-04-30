@@ -43,6 +43,7 @@ ActiveAdmin.register Market do
     f.has_many :service_areas do |s|
       s.input :name
       s.input :sort_order
+      s.input :_destroy, as: :boolean, label: "Delete this region"
     end
     f.buttons
   end

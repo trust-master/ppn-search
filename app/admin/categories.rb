@@ -37,6 +37,7 @@ ActiveAdmin.register Category do
     f.has_many :sub_categories do |s|
       s.input :name
       s.input :sort_order
+      s.input :_destroy, as: :boolean, label: "Delete this subcategory"
     end
     f.buttons
   end
