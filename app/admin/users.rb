@@ -15,7 +15,7 @@ ActiveAdmin.register User do
   end
 
   USER_ROLES = User::PROTECTED_ROLES.map do |role|
-    [I18n.t(role.underscore, scope: 'active_admin.users.role'), role]
+    [I18n.t(role.underscore, scope: 'admin.users.role'), role]
   end
   USER_ROLES.each do |name, role|
     self.send(:scope, name) do |scope|
@@ -44,7 +44,7 @@ ActiveAdmin.register User do
 
   show title: :display_name do |c|
     attributes_table do
-      row(:role) { I18n.t(c.role.underscore, scope: 'active_admin.users.role') }
+      row(:role) { I18n.t(c.role.underscore, scope: 'admin.users.role') }
       row :display_name
       row :email
       row :phone
