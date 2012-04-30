@@ -1,6 +1,7 @@
 - title t('.title', company_name: @company.name)
 
 = simple_form_for @company, multipart: true do |form|
+  = f.error_notfication
 
   - %w[identity service credentials].each do |section|
     = render "#{section}_fieldsets", form: form

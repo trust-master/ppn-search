@@ -13,8 +13,13 @@ class Company < ActiveRecord::Base
 
       company.has_many :locations,             include: [:state, :country]
 
-      company.has_many :company_categories,    include: {sub_category: :category}
-      company.has_many :company_service_areas, include: {service_area: :market}
+      company.has_many :company_categories,    include: { sub_category: :category }
+      company.has_many :company_service_areas, include: { service_area: :market }
+
+      company.has_many :business_licenses, include: :issuing_state
+      company.has_many :personal_licenses, include: :issuing_state
+      # this should be has_one, but, due to quirks, it's not (see below)
+      company.has_many :business_filings,  include: :issuing_state, limit: 1, order: 'updated_at'
     end
 
     with_options uniq: true, readonly: true do |company|
@@ -23,13 +28,6 @@ class Company < ActiveRecord::Base
 
       company.has_many :service_areas,  through: :company_service_areas, include: :market
       company.has_many :markets,        through: :service_areas,         include: :service_areas
-    end
-
-    with_options dependent: :nullify do |company|
-      company.has_many :business_licenses
-      company.has_many :personal_licenses
-      # this should be has_one, but, due to quirks, it's not (see below)
-      company.has_many :business_filings, limit: 1, order: 'updated_at'
     end
 
     has_many :users, dependent: :destroy

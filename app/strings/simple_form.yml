@@ -1,10 +1,24 @@
 en:
   simple_form:
+    yes: Yes
+    no:  No
+
+    required:
+      text: This field is required
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+
+    error_notification:
+      default_message: "There were errors with the following fields:"
+
     hints:
       defaults:
         # email: Your Email Address
         # password: Your Trust Master Password
         url: Include the 'http://' part
+
       company:
         name: "The display name for your company within the PPN. This need not include such things as 'LLC', 'Inc.', etc. unless you'd prefer it to"
         in_business_since: The year in which your company started

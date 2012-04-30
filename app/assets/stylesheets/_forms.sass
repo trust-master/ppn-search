@@ -62,6 +62,23 @@ fieldset
     input[type="submit"], input.save, input.update
       +button(simple, $blue)
 
+  &#errors
+    border:
+      width: 1px 0
+      style: solid
+      color: $red
+    background: $red-tint
+    margin: 20px
+    & > legend
+      display: none
+
+    .message
+      font-weight: bold
+    .fields_with_errors
+      margin-top: 10px
+      list-style: circle
+      padding-left: 30px
+
   & > legend
     margin-top: 0
     +clearfix
@@ -89,7 +106,10 @@ fieldset
 
       &.error
         color: black
-        border: 1px solid $red
+        border:
+          width: 1px 0
+          style: solid
+          color: $red
         background: $red-tint
         padding: 10px 0
 

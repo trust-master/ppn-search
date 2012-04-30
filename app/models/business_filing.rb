@@ -8,8 +8,9 @@ class BusinessFiling < ActiveRecord::Base
 
   serialize :raw_data, Hash
 
-  validates :number, presence: true
+  validates :number, presence: true, uniqueness: { scope: :issuing_state_id }
   validates :issuing_state, :company, presence: true
+  validates :company_id, uniqueness: true
 
   attr_accessible :issuing_state_id, :number, as: [:user, :company_admin, :administrator]
   attr_readonly :company_id, :number, :issuing_state_id
