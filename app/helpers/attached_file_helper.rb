@@ -8,7 +8,7 @@ module AttachedFileHelper
       link_title = t(".#{attribute_name}.preview_title", default: :'attached_file.preview_title')
 
       if preview_url = attachment.url(:preview).presence
-        link_to(preview_url, title: link_title, class: 'lightbox') do
+        link_to(preview_url, title: link_title, class: 'lightbox', target: :_blank) do
           # TODO: Add dimensions here (use the paperclip-meta gem)
           image_tag thumb_url
         end

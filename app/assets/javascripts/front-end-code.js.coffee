@@ -131,6 +131,8 @@
         collapsible: true,
         autoHeight: false
 
+      window.page.bind()
+
       return false
 
 @popup =
@@ -144,12 +146,18 @@
         .siblings(".content").slideDown().end()
         .remove()
 
+@page =
+  bind: ->
+    $('.input.select select, .input.grouped_select select').chosen({include_group_label_in_selected: true})
+    $("input[type='checkbox']").button()
+    $('time.timeago').timeago()
+    $('a.lightbox').each ->
+      $(this).lightBox()
+
 $(document).ready =>
-  $('.input.select select, .input.grouped_select select').chosen({include_group_label_in_selected: true})
-  $("input[type='checkbox']").button()
-  $('time.timeago').timeago()
 
   @companyForm.init() if $('#content').hasClass('companies')
   @searchPage.init()  if $('#content').hasClass('search')
   @popup.init()
+  @page.bind()
 
