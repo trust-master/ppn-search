@@ -1,11 +1,4 @@
 - title t('.title', company_name: @company.name)
 
-.provider_info.target_tab
 
-  - if @company.in_business_since
-    %p In business since #{@company.in_business_since.year}
-
-  %p= @company.phone_main
-
-  - if @company.website_url
-    %p= @company.website_url
+#company_details= render 'profile', company: @company

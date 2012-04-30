@@ -1,24 +1,128 @@
 // This file is interpreted in the global context
 // FIXME: Scope this file
 
+#company_details
+  & > .tabs
+    & > ul.nav.tab_bar
+      & > li
+        font-size: 17px
 
-#edit-profile-page
-  h3 a
-    font-size: 12px
-    text-transform: capitalize
+    & > header
+      overflow: hidden
+      +clearfix
+      margin: 20px 0
 
-  .required
-    font-size: 11px
-    color: #666
-    margin-left: 155px
+      & > h2, & > .in_business_since
+        float: left
+      & > h2
+        margin: 0
+        font-weight: bold
 
-  fieldset.deactivate-account
-    padding-bottom: 30px
+      & > .in_business_since
+        font-size: 11px
+        font-weight: normal
+        text-transform: capitalize
+        margin: 6px 0 10px 15px
 
-  .notify
-    width: auto
-    font-size: 12px
-    color: #666
+      & > .actions
+        float: right
 
-  .edit-mode
-    background: #ececec
+  // .profile, .capabilities, .credentials, .discounts, .reviews
+  .tab
+    // hide all the tabs by default, so, before jQuery kicks in, we don't see them all
+    display: none
+    &#initial
+      // don't hide the initial tab
+      display: block
+    &.ui-tabs-panel
+      // as soon as the ui-tabs-panel is attached, it's safe to set that back, since they'll also have ui-tabs-hidden
+      display: block
+
+    .online, .website, .url, .email
+      a
+        color: $blue
+
+    h2
+      font-size: 17px
+
+    h3
+      font-size: 15px
+      margin-bottom: 10px
+      font-weight: bold
+
+    h4
+      font-size: 14px
+      margin: 0 0 10px 0
+
+    label
+      font-weight: bold
+
+    ul
+      clear: both
+
+      & > li
+        h4
+          margin: 10px 0 5px 0
+
+        ul
+          list-style: disc
+          padding-left: 30px
+
+    section
+      border-bottom: 1px solid $light-grey
+      padding-bottom: 10px
+      margin: 20px 0
+      clear: both
+      +clearfix
+
+      &:first-child
+        margin-top: 0
+
+      &:last-child
+        border-bottom: none
+        padding-bottom: 0
+        margin-bottom: 0
+
+  .profile
+    .locations
+      +clearfix
+      address
+        font-style: normal
+        float: left
+        width: 220px
+        margin: 0 10px 10px 0
+
+  .capabilities
+
+  .credentials
+    .insurance
+      .certificate
+        margin-top: 5px
+        a
+          color: $blue
+
+    .affiliations, .associations, .certifications
+      .tab
+        padding: 0 10px
+
+        div
+          margin: 10px 0
+
+      .dates, .name
+        font-size: 110%
+
+      .url
+        a
+          color: $blue
+
+      label
+        display: block
+
+  .discounts
+    .description
+      margin-bottom: 20px
+    .market, .time-frame
+      margin: 10px 0
+      font-size: 10px
+
+  .reviews

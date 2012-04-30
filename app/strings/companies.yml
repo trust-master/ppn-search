@@ -1,15 +1,15 @@
 en:
   companies:
     show:
-      title: '%{company_name}'
+      title: '%{company_name}: Profile Preview'
     edit:
-      title: 'Editing %{company_name}:'
+      title: '%{company_name}: Edit Profile'
     identity:
-      title: 'Editing %{company_name}: Identity'
+      title: '%{company_name}: Tell us about your company.'
     service:
-      title: 'Editing %{company_name}: Service Info'
+      title: '%{company_name}: Tell what you do and where you do it.'
     credentials:
-      title: 'Editing %{company_name}: Credentials'
+      title: '%{company_name}: The more credentials you add, the better!'
 
     # the header titles for all fieldsets related to company forms
     fieldsets:
@@ -93,7 +93,8 @@ en:
       actions:
         insurance_certificate:
           download: Download
-    company:
+
+    profile:
       in_business_since: 'In business since %{year}'
       details:
         tab_names: ################################
@@ -141,8 +142,3 @@ en:
       dates:
         present: "Have been associated with %{name} since %{started}."
         past: "Was associated with %{name} from %{started} until %{ended}."
-  certifications:
-    certification:
-      name: "Name:"
-      description: "Description:"
-      certificate: "Certificate:"

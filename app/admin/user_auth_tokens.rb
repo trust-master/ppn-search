@@ -32,10 +32,10 @@ ActiveAdmin.register UserAuthToken do
   end
 
   action_item do
-    link_to 'Expire Now', {action: :expire}, method: 'put'
+    link_to 'Expire Now', {action: :expire}, method: 'put' if resource.active?
   end
   action_item do
-    link_to 'Resend Email', {action: :resend}, method: 'put'
+    link_to 'Resend Email', {action: :resend}, method: 'put' if resource.active?
   end
 
   member_action :expire, method: :put do

@@ -14,7 +14,7 @@
       _this.remove()
     else # no? mark the _destroy field so the old record is deleted
       _this.find("input[type='hidden'].destroy").val('true')
-      _this.find("input[required]").removeAttr('required')
+      _this.find("input[required], textarea[required], select[required]").removeAttr('required')
 
   init: ->
     $(".market .service_area").on 'change', 'input.destroy', (event)->
@@ -109,6 +109,14 @@
       _this = $(this).parents('.certification, .affiliation, .association').first()
       _this.slideUp()
       window.companyForm.remove_or_mark_for_destruction.call(_this)
+
+    # set up the profile preview
+    if company_details = $('#company_details')
+      company_details.find('.tabs').tabs()
+      company_details.find('.accordion').accordion
+        active: false,
+        collapsible: true,
+        autoHeight: false
 
 @searchPage =
   init: ->

@@ -73,11 +73,13 @@ class Company < ActiveRecord::Base
       user.validates :insurance_state,       presence: true
       user.validates :insurance_valid_from,  presence: true, date: { in_past: true }
       user.validates :insurance_valid_until, presence: true, date: { in_future: true }
-      user.validates_attachment :insurance_certificate, presence: true,
+      user.validates_attachment :insurance_certificate,
         size: {
-          less_than_or_equal_to: 1.megabytes },
+          less_than_or_equal_to: 1.megabytes,
+          allow_blank: true },
         content_type: {
-          content_type: ValidationPatterns::AcceptableUploadTypes }
+          content_type: ValidationPatterns::AcceptableUploadTypes,
+          allow_blank: true }
     end
     # validates :phone_fax, :phone_main, :phone_mobile, phone: true
     validates :about, length: { maximum: 255 }, allow_blank: true

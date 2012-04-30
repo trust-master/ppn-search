@@ -23,19 +23,17 @@ en:
         name: "The display name for your company within the PPN. This need not include such things as 'LLC', 'Inc.', etc. unless you'd prefer it to"
         in_business_since: The year in which your company started
         email: The email address for service/sales inquiries
-        phone_main:
-        phone_mobile:
-        phone_fax:
         website_url: Full URL to your website. Include the 'http://' part
         about: Short summary
         description: Use this area to define ...
         general_info: Hours, availability, etc.
+        insurance_certificate: Upload your Certificate of Liability Insurance in image or PDF format
         affiliations:
           ended_on: If membership is still active, leave these fields blank
         associations:
           ended_on: If membership is still active, leave these fields blank
         certifications:
-          attachment: "Upload a scan of the actual certificate, if you'd like"
+          attachment: "Optionally, you may upload a scan or digital copy of the actual certificate. File can be any of common image formats, or PDF."
 
       discount:
         attachment: You can upload a coupon or other image for this discount. Files should be image or PDF formats only.

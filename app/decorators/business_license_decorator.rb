@@ -10,7 +10,10 @@ module BusinessLicenseDecorator
     a.symbolize_keys!
 
     a[:enforcement_action] = self.enforcement_action ? 'Yes' : 'No'
-    a[:address] = link_to_blank_tab(self.address, url_for_google_maps_search(self.address))
+
+    if addr = self.address
+      a[:address] = link_to_blank_tab( addr, url_for_google_maps_search(addr) )
+    end
 
     Hash[a.map{ |key, value| [BusinessLicense.human_attribute_name(key), value] }]
   end

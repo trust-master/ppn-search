@@ -11,14 +11,17 @@
   - if discount.market_id?
     .market= t('.market', market_name: discount.market.name)
 
-  - if discount.end_date? or discount.start_date?
-    .dates
+  .time-frame
+    - if discount.end_date? or discount.start_date?
       - if discount.end_date? and discount.start_date?
-        = t('.dates.start_and_end', start_date: discount.start_date, ended: discount.end_date)
+        = t('.dates.start_and_end', start_date: discount.start_date, end_date: discount.end_date)
       - elsif discount.start_date?
         = t('.dates.start_only',    start_date: discount.start_date)
       - elsif discount.end_date?
         = t('.dates.end_only',      end_date: discount.end_date)
+    - else
+      = t('.dates.indefinite')
+
 
   - if discount.attachment?
     = attached_file_summary(discount, :attachment)

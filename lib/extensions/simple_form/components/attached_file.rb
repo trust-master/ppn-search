@@ -6,7 +6,7 @@ module SimpleForm
         return unless input_type == :attached_file
 
         ActiveSupport::SafeBuffer.new.tap do |output|
-          if attachment and !attachment.dirty? and attachment.styles.has_key?(:thumb)
+          if attachment.present? and !attachment.dirty? and attachment.styles.has_key?(:thumb)
             output << template.attached_file_thumbnail(object, attribute_name)
           end
         end
@@ -17,7 +17,7 @@ module SimpleForm
         return unless [:file, :attached_file].include?(input_type)
 
         ActiveSupport::SafeBuffer.new.tap do |output|
-          if attachment
+          if attachment.present?
             output << template.attached_file_summary(object, attribute_name)
           end
         end

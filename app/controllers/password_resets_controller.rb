@@ -1,6 +1,8 @@
 class PasswordResetsController < ApplicationController
   authorize_resource
 
+  before_filter :reset_session # just in case
+
   # show the form to get email and first name
   def new
     @password_reset = PasswordResetRequest.new

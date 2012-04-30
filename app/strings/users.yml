@@ -6,13 +6,13 @@ en:
       contact: Contact Information
 
     index:
-      title: "%{company_name}: Users"
+      title: "%{company_name}: Enter your Users here."
       table:
         headers:
           name: Name
           logged_in_at: Last Login
-          active: Active?
-          role: User Type
+          active: Status
+          role: Role
           actions: Actions
         no_items_message: No users. Add one!
       actions:

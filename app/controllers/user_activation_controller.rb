@@ -1,6 +1,8 @@
 class UserActivationController < ApplicationController
   authorize_resource UserAuthToken
 
+  before_filter :reset_session # just in case
+
   # The show action will be used when fullfilling the activation URL
   def show
     @token = UserAuthToken.where(token: params[:id]).first!

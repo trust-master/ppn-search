@@ -27,9 +27,9 @@ en:
       about:           About
       contact:         Contact
     companies:
-      identity:        Company Bio
-      service:         Service Specialty
+      identity:        Profile
+      service:         Capabilites
       credentials:     Credentials
       alerts:          Alerts
       discounts:       Discounts
-      company_users:   Company Users
+      company_users:   Users
