@@ -3,15 +3,21 @@ class Discount < ActiveRecord::Base
   belongs_to :type, class_name: 'DiscountType'
   belongs_to :market
 
+  has_attached_file :attachment
+
   validates_presence_of :type_id, :title, :start_date, :end_date
+  validates_attachment :attachment, size: { less_than_or_equal_to: 1.megabytes },
+    content_type: {
+      content_type: ValidationPatterns::AcceptableUploadTypes }
 
-  mount_uploader :image, CertificateUploader
-
-  attr_accessible :type_id, :title, :description, :image, :image_cache, :remove_image,
+  attr_accessible :type_id, :title, :description, :attachment,
     :market_id, :start_date, :end_date, as: [:user, :company_admin, :administrator]
   attr_readonly :company_id
 
   delegate :name, to: :type, prefix: true
+
+  before_post_process { !! ValidationPatterns::ImageContentTypes.match(attachment.content_type) }
+
 end
 
 

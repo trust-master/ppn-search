@@ -103,10 +103,13 @@
 
         - if company.insured?
           %section.insurance
+            - if company.insurance_certificate?
+              = attached_file_thumbnail(company, :insurance_certificate)
             %h3= t('.details.sections.insurance')
             .state= t('.details.insurance.insured_in', state_name: company.insurance_state_name)
             .valid= t('.details.insurance.valid', from: company.insurance_valid_from, to: company.insurance_valid_until)
-            .certificate= link_to t('.details.insurance.download'), company.insurance_certificate.url
+            - if company.insurance_certificate?
+              = attached_file_summary(company, :insurance_certificate)
 
         - if company.all_licenses.any?
           %section.licensure
@@ -122,13 +125,10 @@
 
       = tab_for company, :discounts do
         - if company.discounts.any?
-
           %section.discounts
             .accordion.discounts= render company.discounts.all
-
-
         - else
-          = t '.discounts.none_available', default: "There are no discounts available at this time."
+          = t('.discounts.none_available', default: "There are no discounts available at this time.")
 
       = tab_for company, :reviews do
         %strong NOTE:

@@ -1,13 +1,12 @@
 %h5= link_to certification.display_identifier, "##{tab_id_for(certification)}"
 
 = tab_for(certification) do
-
-  - if certification.certificate?
-    .attached_file
-      %label= t('.certificate')
-      = link_to certification.certificate.url do
-        = image_tag certification.certificate.thumb.url
+  - if certification.attachment?
+    = attached_file_thumbnail(certification, :attachment)
 
   - if certification.description?
     .description
       = certification.description
+
+  - if certification.attachment?
+    = attached_file_summary(certification, :attachment)

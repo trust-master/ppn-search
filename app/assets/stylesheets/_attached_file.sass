@@ -5,26 +5,26 @@
 
 &.edit, &.create, &.new, &.update
 
-.image
+.attachment_thumbnail
   float: right
-  width: 180px
+  width: 100px
   background: $very-light-grey
   border: 1px solid $light-grey
-  padding: 10px 15px
+  padding: 10px
   text-align: center
-
-  h4
-    margin: 0 0 10px 0
+  margin: 0 20px 20px 0
 
   img
     background-color: $grey
     border: 1px solid $light-grey
     +box-shadow(0 0 10px $grey)
-    width: 100%
     display: block
     overflow: hidden
 
-  a.download
-    font-size: 13px
-    padding: 5px
-    margin: 5px 0 0 0
+.attachment_summary
+  margin-top: 10px
+  font-style: italic
+
+  .summary
+    margin-right: 8px
+  & > a

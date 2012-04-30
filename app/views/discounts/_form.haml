@@ -1,19 +1,13 @@
 = simple_form_for [@company, @discount] do |f|
+  = f.error_notification
+
   = fieldset :design do
-    - if @discount.image?
-      .image
-        %h4= Discount.human_attribute_name :image
-        = link_to @discount.image.preview.url do
-          = image_tag @discount.image.thumb.url
-        = include_download_link :image, @discount.image.url
-
-
     %ul
       = f.association :type
       = f.input :title
       = f.input :description, as: :text
-      = f.input :image
-      = f.hidden_field :image_cache
+      = f.input :attachment, as: :attached_file
+
 
   = fieldset :location do
     %ul

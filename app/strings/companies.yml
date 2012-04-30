@@ -121,7 +121,9 @@ en:
         insurance: #####################################
           insured_in: Insured in the state of %{state_name}
           valid:      Valid from %{from} to %{to}
-          download:   Download the Certificate of Liability Insurance
+      insurance_certificate:
+        summary: '' # the whole thing is link
+        download:   Download the Certificate of Liability Insurance
 
   affiliations:
     affiliation:

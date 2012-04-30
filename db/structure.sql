@@ -262,7 +262,13 @@ CREATE TABLE certifications (
     description text,
     certificate character varying(255),
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    attachment_file_name character varying(255),
+    attachment_content_type character varying(255),
+    attachment_file_size integer,
+    attachment_updated_at timestamp without time zone,
+    attachment_fingerprint character varying(255),
+    attachment_meta text
 );
 
 
@@ -313,7 +319,13 @@ CREATE TABLE companies (
     insurance_valid_from date,
     insurance_valid_until date,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    insurance_certificate_file_name character varying(255),
+    insurance_certificate_content_type character varying(255),
+    insurance_certificate_file_size integer,
+    insurance_certificate_updated_at timestamp without time zone,
+    insurance_certificate_fingerprint character varying(255),
+    insurance_certificate_meta text
 );
 
 
@@ -383,7 +395,13 @@ CREATE TABLE discounts (
     start_date date,
     end_date date,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    attachment_file_name character varying(255),
+    attachment_content_type character varying(255),
+    attachment_file_size integer,
+    attachment_updated_at timestamp without time zone,
+    attachment_fingerprint character varying(255),
+    attachment_meta text
 );
 
 
@@ -1698,3 +1716,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120411044101');
 INSERT INTO schema_migrations (version) VALUES ('20120411063311');
 
 INSERT INTO schema_migrations (version) VALUES ('20120412075209');
+
+INSERT INTO schema_migrations (version) VALUES ('20120429110612');

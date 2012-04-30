@@ -40,57 +40,65 @@ class Company < ActiveRecord::Base
 
   ### Nested Attributes
 
-    accepts_nested_attributes_for :affiliations, :associations, :certifications, allow_destroy: true,
-      reject_if: proc { |attributes| attributes.values_at(:name, :title).all?(&:blank?) }
+    accepts_nested_attributes_for :affiliations, :associations, :certifications,
+      allow_destroy: true,
+      reject_if: proc { |attributes|
+        attributes.values_at(:name, :title).all?(&:blank?)
+      }
 
-    accepts_nested_attributes_for :locations, allow_destroy: true,
-      reject_if: proc { |attributes| attributes.values_at(:city, :zip).all?(&:blank?) }
+    accepts_nested_attributes_for :locations,
+      allow_destroy: true,
+      reject_if: proc { |attributes|
+        attributes.values_at(:city, :zip).all?(&:blank?)
+      }
 
-    accepts_nested_attributes_for :business_licenses, :personal_licenses, :business_filings, allow_destroy: true,
+    accepts_nested_attributes_for :business_licenses, :personal_licenses, :business_filings,
+      allow_destroy: true,
       reject_if: proc { |attributes|
         attributes.has_key?(:id) or attributes.values_at(:number, :issuing_state_id).all?(&:blank?)
       }
 
-    accepts_nested_attributes_for :company_service_areas, :company_categories, allow_destroy: true
+    accepts_nested_attributes_for :company_service_areas, :company_categories,
+      allow_destroy: true
 
-    accepts_nested_attributes_for :discounts, allow_destroy: true
-
-  ### Attribute Protection
-
-    attr_accessible :name, :email, :phone_main, :phone_mobile, :phone_fax,
-      :website_url, :in_business_since, :about, :description, :general_info,
-      :offers_24_hour_service, :offers_emergency_service, :insured, :insurance_state_id,
-      :insurance_certificate, :insurance_certificate_cache, :remove_insurance_certificate,
-      :insurance_valid_from, :insurance_valid_until, as: [:user, :company_admin, :administrator]
-
-    # also make sure all the nested attributes are accessible
-    attr_accessible :affiliations_attributes, :associations_attributes, :certifications_attributes,
-      :locations_attributes, :business_licenses_attributes, :personal_licenses_attributes,
-      :business_filings_attributes, :company_service_areas_attributes,
-      :company_categories_attributes, :discounts_attributes, as: [:user, :company_admin, :administrator]
-
-    attr_accessible :active, :visible, as: :administrator
+  ### Uploaders
+    has_attached_file :insurance_certificate
 
   ### Callbacks
     before_validation :nullify_insurance_fields_if_necessary
+    set_callback(:post_process, :before) do
+      !! ValidationPatterns::ImageContentTypes.match(insurance_certificate.content_type)
+    end
 
   ### Validations
     with_options if: :insured do |user|
-      user.validates :insurance_certificate, presence: true
-      user.validates :insurance_state, presence: true, associated: true
-      user.validates :insurance_valid_from, presence: true, date: { in_past: true }
+      user.validates :insurance_state,       presence: true
+      user.validates :insurance_valid_from,  presence: true, date: { in_past: true }
       user.validates :insurance_valid_until, presence: true, date: { in_future: true }
+      user.validates_attachment :insurance_certificate, presence: true,
+        size: {
+          less_than_or_equal_to: 1.megabytes },
+        content_type: {
+          content_type: ValidationPatterns::AcceptableUploadTypes }
     end
     # validates :phone_fax, :phone_main, :phone_mobile, phone: true
     validates :about, length: { maximum: 255 }, allow_blank: true
     validates :email, email: true, allow_blank: true
     validates :in_business_since, date: { in_past: true }, allow_blank: true
-    validates :name, presence: true
+    validates :name, presence: true, uniqueness: true
     validates :website_url, url: true, allow_blank: true
 
-  ### Uploaders
-    # mount the certificate carrierwave uploader on the insurance_certificate column
-    mount_uploader :insurance_certificate, CertificateUploader
+  ### Attribute Protection
+    attr_accessible :name, :email, :phone_main, :phone_mobile, :phone_fax, :website_url,
+      :in_business_since, :about, :description, :general_info, :offers_24_hour_service,
+      :offers_emergency_service, :insured, :insurance_state_id, :insurance_certificate,
+      :insurance_valid_from, :insurance_valid_until, as: [:user, :company_admin, :administrator]
+    attr_accessible :affiliations_attributes, :associations_attributes, :certifications_attributes,
+      :locations_attributes, :business_licenses_attributes, :personal_licenses_attributes,
+      :business_filings_attributes, :company_service_areas_attributes,
+      :company_categories_attributes, :discounts_attributes, as: [:user, :company_admin, :administrator]
+
+    attr_accessible :visible, as: :administrator
 
   ### Scopes
     # default_scope includes(:locations, :company_categories, :company_service_areas)
@@ -139,7 +147,7 @@ class Company < ActiveRecord::Base
     end
 
   ### Class Methods
-  class << self; end
+  # class << self; end
 
   private
 
@@ -147,9 +155,9 @@ class Company < ActiveRecord::Base
     # the respective collumns unless #insured is truthy
     def nullify_insurance_fields_if_necessary
       return if self[:insured]
-      self[:insurance_state_id] = nil
+      self[:insurance_state_id]    = nil
       self[:insurance_certificate] = nil
-      self[:insurance_valid_from] = nil
+      self[:insurance_valid_from]  = nil
       self[:insurance_valid_until] = nil
     end
 end

@@ -1,13 +1,21 @@
 class Certification < ActiveRecord::Base
   belongs_to :company
 
-  validates_presence_of :name
+  has_attached_file :attachment
+  set_callback(:post_process, :before) do
+    !! ValidationPatterns::ImageContentTypes.match(attachment.content_type)
+  end
 
-  attr_accessible :name, :title, :description, :certificate, :certificate_cache, :remove_certificate,
-    as: [:user, :company_admin, :administrator]
-  attr_readonly :company_id
+  validates_presence_of :name, :description
+  validates_attachment :attachment,
+    size: {
+      less_than_or_equal_to: 1.megabytes },
+    content_type: {
+      content_type: ValidationPatterns::AcceptableUploadTypes }
 
-  mount_uploader :certificate, CertificateUploader
+  attr_accessible :name, :title, :description, :attachment, as: [:user, :company_admin, :administrator]
+  attr_readonly :company_id # certifications shouldn't be moving around between companies
+
 end
 
 

@@ -21,7 +21,11 @@ en:
         associations:
           ended_on: If membership is still active, leave these fields blank
         certifications:
-          certificate: "Upload a scan of the actual certificate, if you'd like"
+          attachment: "Upload a scan of the actual certificate, if you'd like"
+
+      discount:
+        attachment: You can upload a coupon or other image for this discount. Files should be image or PDF formats only.
+
       user: &user
         password: Choose a new Password
         password_confirmation: Retype your new password
@@ -30,20 +34,21 @@ en:
         <<: *user
       administrator:
         <<: *user
+
       password_reset_request:
         name: Your first name
+
     placeholders:
+
       defaults:
         email: 'name@example.com'
-        # password: password
         url: http://example.com
+
       company:
         email: info@company.com
         website_url: http://company.com
         in_business_since: 2012
-      # password_reset:
-      #   password:
-      #   password_confirmation:
+
       search:
         any_text_field_contains: Enter a company name
         company_categories_sub_category_id_in: Enter a type of product or service

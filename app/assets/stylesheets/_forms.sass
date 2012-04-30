@@ -33,6 +33,7 @@ fieldset
   padding: 15px 10px
   border-bottom: 1px solid $light-grey
   font-size: 13px
+  +clearfix
 
   fieldset
     & > legend
@@ -100,6 +101,11 @@ fieldset
         // this will be Chosen-enabled, so styling needs a little help to remain consistent
         select
           width: 371px
+
+      &.attached_file
+        .attachment
+        .attachment_summary
+          margin-left: 155px
 
       .hint, .error
         display: block

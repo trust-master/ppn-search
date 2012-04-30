@@ -1,13 +1,9 @@
+= attached_file_thumbnail(form.object, :insurance_certificate) # just to raise this up the page a bit, put it here instead of on the input
+
 %ul
   = form.input :insured, as: :radio_buttons
   .insurance_fields{hidden_if(!@company.insured)}
-    - if @company.insurance_certificate?
-      .image
-        %h4= Company.human_attribute_name :insurance_certificate
-        = image_tag @company.insurance_certificate.thumb.url
-        = include_download_link :insurance_certificate, @company.insurance_certificate.url
-    = form.input :insurance_certificate
-    = form.hidden_field :insurance_certificate_cache
+    = form.input :insurance_certificate, as: :attached_file, attachment_thumbnail: false
     = form.input :insurance_valid_from,  start_year: 2000, end_year: 2012, discard_day: true, prompt: true
     = form.input :insurance_valid_until, start_year: 2012,                 discard_day: true, prompt: true
     = form.association :insurance_state, as: :grouped_select, collection: Country.includes(:states), group_method: :states

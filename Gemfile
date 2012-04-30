@@ -18,8 +18,7 @@ gem 'redcarpet' # Use Markdown to parse Pages / Email templates
 
 gem 'bcrypt-ruby' # To use ActiveModel has_secure_password
 
-gem 'carrierwave' # CarrierWave allows you to attach files to ActiveRecord Objects
-gem 'mini_magick' # process uploaded image files with ImageMagick's `mogrify` command
+gem 'paperclip', '~> 3.0.2' # CarrierWave allows you to attach files to ActiveRecord Objects
 gem 'fog' # Use AWS for Attachment Storage
 
 gem 'cancan' # very nice API for authorization

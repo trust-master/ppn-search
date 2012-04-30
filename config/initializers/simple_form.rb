@@ -1,3 +1,7 @@
+SimpleForm::Inputs::Base.class_eval do
+  include SimpleForm::Components::AttachedFile
+end
+
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
   default_options = {tag: :li, class: :input, error_class: :error}
@@ -7,8 +11,10 @@ SimpleForm.setup do |config|
     w.use :placeholder
 
     w.use :label
+    w.use :attachment_thumbnail
     w.use :input
     w.use :hint, wrap_with: {tag: :span, class: :hint}
+    w.use :attachment_summary
     w.use :error, wrap_with: {tag: :span, class: :error}
   end
 
