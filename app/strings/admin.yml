@@ -1,7 +1,2 @@
 en:
   admin:
-    users:
-      role:
-        user:          Client
-        company_admin: Company Admin
-        administrator: TM Admin

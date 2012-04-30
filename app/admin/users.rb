@@ -14,9 +14,11 @@ ActiveAdmin.register User do
     scope.where(active: false)
   end
 
-  USER_ROLES = User::PROTECTED_ROLES.map do |role|
-    [I18n.t(role.underscore, scope: 'admin.users.role'), role]
-  end
+  USER_ROLES = {
+    "Client" => :user,
+    "Company Admin" => :company_admin,
+    "TM Admin" => :administrator
+  }
   USER_ROLES.each do |name, role|
     self.send(:scope, name) do |scope|
       scope.where(role: role)
