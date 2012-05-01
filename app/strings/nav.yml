@@ -2,32 +2,41 @@ en:
   # Top-nav for logged in users. If you need to nest items in the menu and title that menu, use the
   # _label key for the title, nested within it.
   nav:
-    companies: &company_menu
-      identity:        Profile
-      service:         Capabilites
-      credentials:     Credentials
-      alerts:          Alerts
-      discounts:       Discounts
-      users:           Users
+    companies: &company_nav
+      identity:    Profile
+      service:     Capabilites
+      credentials: Credentials
+      alerts:      Alerts
+      discounts:   Discounts
+      users:       Users
+
+    account: &account_nav
+      basic:         Basic Info
+      privacy:       Privacy Settings
+      notifications: "Notifications & Alerts"
+
+    # primary tabs accross top right
     main:
       admin:           Admin
       code_of_conduct: Code of Conduct
       core_values:     Core Values
       login:           Log In
       search_ppn:      Search Providers
-    account: &account_nav
-      basic:           Basic Info
-      privacy:         Privacy Settings
-      notifications:   "Notifications & Alerts"
+
+    # Drop-down nav in header
     account_links:
       profile:
-        <<: *company_menu
-        _label:        Profile
-        show:          View Profile
+        <<: *company_nav
+        _label: Profile
+        show: Preview
+
       account:
         <<: *account_nav
-        _label:        Account
-      logout:          Log Out
+        _label: Account
+
+      logout: Log Out
+
+    # Pages nav in footer
     footer:
       terms:           Terms
       privacy_policy:  Privacy Policy

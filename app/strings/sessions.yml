@@ -6,8 +6,7 @@ en:
       title: "Preferred Provider Search (Beta)"
       success: "<strong>Welcome to Preferred Provider Search</strong> (Beta)!"
       failure: That email and/or password is incorrect.
-      cant_log_in: Can't log in?
-      did_you_forget: Forget your password?
+      cant_log_in: Can't log in or forgot your password?
 
       instructions:
         test:
