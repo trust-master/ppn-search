@@ -75,8 +75,10 @@
       _this.hide()
       _this.find("input[type='hidden'].destroy").val('true')
 
-      any_left = _this.find('li.sub_category:visible').length > 0
-      _this.parents('.category').toggle(any_left)
+      category = _this.parents('.category')
+      any_left = category.find('li.sub_category:visible').length > 0
+      category.toggle(any_left)
+
       window.pageHasChanged = true
 
     $('#locations, #certifications, #affiliations, #associations, #licenses').on 'click', 'a.add', this.find_and_inject_template
