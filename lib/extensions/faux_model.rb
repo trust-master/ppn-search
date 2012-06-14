@@ -49,5 +49,9 @@ class FauxModel
         self.limit = nil
       end
     end
+
+    def number?
+      [:integer, :float, :decimal].include? type
+    end
   end
 end

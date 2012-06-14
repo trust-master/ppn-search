@@ -32,8 +32,8 @@ ServiceProviderPortal::Application.routes.draw do
   get '/debug/:action', controller: :debug
 
   scope '/follow_us_on', as: :follow_us_on do
-    get 'twitter',  to: redirect('http://twitter.com/#!/TrustMaster1')
-    get 'facebook', to: redirect('http://www.facebook.com/pages/Trust-Master/324176494311640')
+    get 'twitter',  to: redirect('https://twitter.com/#!/trustmaster')
+    get 'facebook', to: redirect('https://www.facebook.com/pages/Trust-Master/165946716770592')
   end
   root :to => 'search#index'
 
