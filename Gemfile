@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.2.3'
+gem 'rails', '~> 3.2.5'
 gem 'rack', '>= 1.4.1'
 
 gem 'pg' # Use PostgreSQL
