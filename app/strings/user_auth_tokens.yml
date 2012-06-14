@@ -16,7 +16,6 @@ en:
         Please choose a login password to continue. It must contain at least 6 characters, including
         at least one letter and one digit. Feel free to use special characters; there is no upper
         limit on length.
-
     inactive:
       title: Password Reset has Expired!
       message: 'Sorry! That password-reset URL has either expired or been fullfilled, already.'

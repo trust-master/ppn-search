@@ -11,7 +11,7 @@ en:
         headers:
           name: Name
           logged_in_at: Last Login
-          active: Status
+          active: Active
           role: Role
           actions: Actions
         no_items_message: No users. Add one!

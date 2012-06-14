@@ -21,12 +21,13 @@ module AttachedFileHelper
   def attached_file_summary(object, attribute_name)
     return unless attachment = object.send(attribute_name)
 
-    content_tag(:div, class: :attachment_summary) do
+    content_tag(:div, class: [:attachment_summary, :actions]) do
       ActiveSupport::SafeBuffer.new.tap do |content|
         if summary = t(".#{attribute_name}.summary", default: :'attached_file.summary').presence
           content << content_tag(:span, summary, class: :summary)
         end
-        content << link_to(attachment.url) do
+        content << link_to(attachment.url, class: :download) do
+          content_tag(:div, '', class: :icon) +
           t(".#{attribute_name}.download", default: :'attached_file.download')
         end
       end

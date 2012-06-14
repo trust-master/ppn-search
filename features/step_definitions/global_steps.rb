@@ -15,10 +15,15 @@ Then(/^I should see the ([()\[\]{}\w\s\/\-:.]+) message$/) do |key|
   # rescue I18n::MissingTranslationData
   #   message = I18n.translate!(key, scope: @feature_name.downcase)
   # end
-  page.should have_content(message)
+  page.should have_content(message.strip)
 end
 
 Then(/^I should be (?:on|at|viewing) the ([\w ]+) path$/) do |identifier|
   identifier = identifier.split(/[^\w]+/).compact.join('_').downcase
   current_path.should == send("#{identifier}_path")
+end
+
+
+Then(/^I should be logged in$/) do
+  page.should have_xpath(".//a[@href=\"#{logout_path}\"]")
 end

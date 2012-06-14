@@ -16,10 +16,10 @@
       - @users.each do |user|
         %tr[user]
           %td= user.display_name
-          %td= user.logged_in_at || 'never'
-          %td= user.active ? 'Y' : 'N'
+          %td= user.logged_in_at
+          %td= user.active ? 'Yes' : 'No'
           %td= user.role.constantize.model_name.human
-          %td
+          %td.actions
             - if can? :edit, user
               = include_edit_link edit_company_user_path(@company, user)
             - if can? :destroy, user

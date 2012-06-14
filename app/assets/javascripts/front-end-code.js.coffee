@@ -6,6 +6,7 @@
     template = actions_div.find('.template').html().replace(/_ID_/g, timestamp)
     $(template).insertBefore(actions_div)
     $('.input.select select, .input.grouped_select select').chosen()
+    window.pageHasChanged = true
 
   remove_or_mark_for_destruction: ->
     _this = $(this)
@@ -15,6 +16,7 @@
     else # no? mark the _destroy field so the old record is deleted
       _this.find("input[type='hidden'].destroy").val('true')
       _this.find("input[required], textarea[required], select[required]").removeAttr('required')
+    window.pageHasChanged = true
 
   init: ->
     $(".market .service_area").on 'change', 'input.destroy', (event)->
@@ -24,15 +26,18 @@
         inputs.show().removeClass('hidden')
       else
         inputs.hide()
+      window.pageHasChanged = true
 
     $('input[id^="company_insured_"]').click ->
       $(this).parents('ul').find('.insurance_fields').toggle(this.value == 'true')
+      window.pageHasChanged = true
 
     $("#market_selection_add_market").change ->
       if this.value != ''
         $("#market_#{this.value}").show().scrollTo()
       this.selectedIndex = 0 # reset it back to the blank entry
       $(this).trigger("liszt:updated") # tell chosen to update from the selectedIndex
+      window.pageHasChanged = true
 
     $('.input.radio_buttons').buttonset()
 
@@ -44,6 +49,7 @@
         sub_category.find("input[type='hidden'].destroy").val('false')
       this.selectedIndex = 0 # reset it back to the blank entry
       $(this).trigger("liszt:updated") # tell chosen to update from the selectedIndex
+      window.pageHasChanged = true
 
     $('#service_areas .market').on 'click', 'a.collapse', (event)->
       $(this).siblings('.expand').show()
@@ -64,14 +70,6 @@
       market.find('.collapsed_summary').hide()
       market.find('ul.service_areas').show()
 
-    $('#licenses, #business_filing').on 'click', '.raw_data_message > a', (event)->
-      $(this).parents('.data')
-        .find('tbody.raw, tbody.parsed').toggle()
-        .find(':visible').scrollTo()
-      alt_text = $(this).data('alternate_text')
-      $(this).data('alternate_text', $(this).text() )
-      $(this).text(alt_text)
-
     $('#service_categories').on 'click', 'a.remove', (event)->
       _this = $(this).parents('li.sub_category')
       _this.hide()
@@ -79,6 +77,7 @@
 
       any_left = _this.find('li.sub_category:visible').length > 0
       _this.parents('.category').toggle(any_left)
+      window.pageHasChanged = true
 
     $('#locations, #certifications, #affiliations, #associations, #licenses').on 'click', 'a.add', this.find_and_inject_template
 
@@ -101,6 +100,7 @@
     $('.market').on 'click', 'a.remove', (event)->
       _this = $(this).parents('.market')
       _this.slideUp()
+      window.pageHasChanged = true
       _this.find('.service_area input.destroy').each ->
         this.checked = false # uncheck the box
         $(this).change() # this is so the ui-button notices the previous change
@@ -117,6 +117,15 @@
         active: false,
         collapsible: true,
         autoHeight: false
+
+    $('#content form').on 'change', 'input, select, textarea', (event)->
+      window.pageHasChanged = true
+
+    $('#content form').submit ->
+      window.pageHasChanged = false
+      return true
+
+
 
 @searchPage =
   init: ->
@@ -162,6 +171,14 @@
     $('a.lightbox').each ->
       $(this).lightBox()
 
+    $('#licenses, #business_filing, .licensure').on 'click', '.raw_data_message > a', (event)->
+      $(this).parents('.data')
+        .find('tbody.raw, tbody.parsed').toggle()
+        .find(':visible').scrollTo()
+      alt_text = $(this).data('alternate_text')
+      $(this).data('alternate_text', $(this).text() )
+      $(this).text(alt_text)
+
 $(document).ready =>
 
   @companyForm.init() if $('#content').hasClass('companies')
@@ -169,3 +186,14 @@ $(document).ready =>
   @popup.init()
   @page.bind()
 
+  @onbeforeunload = (e)->
+    return unless @pageHasChanged == true
+
+    e = e || @event
+
+    # For IE<8 and Firefox prior to version 4
+    if e
+      e.returnValue = 'Are you sure you want to leave the page?'
+
+    # For Chrome, Safari, IE8+ and Opera 12+
+    return 'You have made some changes, which will be lost if you continue.'

@@ -10,7 +10,7 @@ Feature: Authentication
 
   Scenario: User with correct credentials attempts log-in
     When I enter a valid email and password
-    Then I should see the sessions.new success message
+    Then I should be logged in
 
   Scenario: User with an incorrect email attempts log-in
     When I enter an invalid email and any password

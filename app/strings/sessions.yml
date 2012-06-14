@@ -2,6 +2,8 @@ en:
   sessions:
     fieldsets:
       login: Log In
+    create:
+      title: "Preferred Provider Search (Beta)"
     new:
       title: "Preferred Provider Search (Beta)"
       success: "<strong>Welcome to Preferred Provider Search</strong> (Beta)!"

@@ -1,25 +1,5 @@
 When(/^I click the reset password link$/) do
-  click_link I18n.t('sessions.new.recover')
-end
-
-When(/^I fill in email$/) do
-  fill_in 'Email', with: 'test@test.com'
-end
-
-When(/^I fill in email with '(.*?)'$/) do |value|
-  fill_in 'Email', with: value
-end
-
-When(/^I fill in first name$/) do
-  fill_in 'Name', with: 'Test'
-end
-
-When(/^I fill in first name with '(.*?)'$/) do |value|
-  fill_in 'Name', with: value
-end
-
-When(/^I submit the form$/) do
-  click_on 'submit'
+  click_link I18n.t('sessions.new.cant_log_in')
 end
 
 Then(/^I should receive an email with my password reset link$/) do
@@ -46,10 +26,6 @@ When(/^I go to the URL from the password reset email$/) do
   ).to_s
 
   visit(url)
-end
-
-Then(/^I should be logged in$/) do
-  page.should have_xpath(".//a[@href=\"#{logout_path}\"]")
 end
 
 Then(/^the Password Reset should (\w+)$/i) do |expected_result|

@@ -18,9 +18,9 @@
           %td= discount.type_name
           %td= discount.start_date
           %td= discount.end_date
-          %td
-            = include_edit_link edit_company_discount_path(discount.company, discount)
-            = include_remove_link company_discount_path(discount.company, discount)
+          %td.actions
+            = include_edit_link    edit_company_discount_path(discount.company, discount)
+            = include_remove_link  company_discount_path(discount.company, discount)
     - else
       %tr.no_items
         %td{colspan: 5}= t('.table.no_items_message')
