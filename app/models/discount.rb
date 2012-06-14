@@ -6,6 +6,7 @@ class Discount < ActiveRecord::Base
   has_attached_file :attachment
 
   validates_presence_of :type_id, :title, :start_date, :end_date
+  validates :title, length: { maximum: 255 }
   validates_attachment :attachment, size: { less_than_or_equal_to: 1.megabytes },
     content_type: {
       content_type: ValidationPatterns::AcceptableUploadTypes }

@@ -1,6 +1,7 @@
 class LicenseStatus < ActiveRecord::Base
   has_many :business_licenses, foreign_key: :status_id
   has_many :personal_licenses, foreign_key: :status_id
+  validates :name, length: { maximum: 255 }, presence: true
 end
 
 

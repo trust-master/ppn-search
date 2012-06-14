@@ -62,6 +62,10 @@ class Company < ActiveRecord::Base
   ### Uploaders
     has_attached_file :insurance_certificate
 
+  ### Attribute Normalizers
+    normalize_attributes :phone_main, :phone_mobile, :phone_fax, with: :phone_number
+    normalize_attributes :website_url, :about, :description, :general_info
+
   ### Callbacks
     before_validation :nullify_insurance_fields_if_necessary
     set_callback(:post_process, :before) do
@@ -81,11 +85,12 @@ class Company < ActiveRecord::Base
           content_type: ValidationPatterns::AcceptableUploadTypes,
           allow_blank: true }
     end
-    # validates :phone_fax, :phone_main, :phone_mobile, phone: true
-    validates :about, length: { maximum: 255 }, allow_blank: true
+    validates :name, :email, :phone_main, :phone_mobile, :phone_fax, :website_url, :about,
+      length: { maximum: 255 }, allow_blank: true
+    validates :name, uniqueness: true, presence: true
+    validates :phone_fax, :phone_main, :phone_mobile, phone: true, allow_blank: true
     validates :email, email: true, allow_blank: true
     validates :in_business_since, date: { in_past: true }, allow_blank: true
-    validates :name, presence: true, uniqueness: true
     validates :website_url, url: true, allow_blank: true
 
   ### Attribute Protection
@@ -165,6 +170,42 @@ end
 
 
 
+
+# == Schema Information
+#
+# Table name: companies
+#
+#  id                                 :integer         not null, primary key
+#  active                             :boolean         default(FALSE), not null
+#  visible                            :boolean         default(FALSE), not null
+#  deleted_at                         :datetime
+#  deleted_by_user_id                 :integer
+#  name                               :string(255)
+#  email                              :string(255)
+#  phone_main                         :string(255)
+#  phone_mobile                       :string(255)
+#  phone_fax                          :string(255)
+#  website_url                        :string(255)
+#  in_business_since                  :date
+#  about                              :string(255)
+#  description                        :text
+#  general_info                       :text
+#  offers_24_hour_service             :boolean         default(FALSE), not null
+#  offers_emergency_service           :boolean         default(FALSE), not null
+#  insured                            :boolean         default(FALSE), not null
+#  insurance_state_id                 :integer
+#  insurance_certificate              :string(255)
+#  insurance_valid_from               :date
+#  insurance_valid_until              :date
+#  created_at                         :datetime        not null
+#  updated_at                         :datetime        not null
+#  insurance_certificate_file_name    :string(255)
+#  insurance_certificate_content_type :string(255)
+#  insurance_certificate_file_size    :integer
+#  insurance_certificate_updated_at   :datetime
+#  insurance_certificate_fingerprint  :string(255)
+#  insurance_certificate_meta         :text
+#
 
 # == Schema Information
 #

@@ -1,9 +1,9 @@
 # config/initializers/attribute_normalizer.rb
 AttributeNormalizer.configure do |config|
 
-  # config.normalizers[:currency] = lambda do |value, options|
-  #   value.is_a?(String) ? value.gsub(/[^0-9\.]+/, '') : value
-  # end
+  config.normalizers[:phone_number] = lambda do |value, options|
+    value.is_a?(String) ? value.gsub(/[^\dx]+/, '') : value
+  end
 
   # config.normalizers[:truncate] = lambda do |text, options|
   #   if text.is_a?(String)
@@ -22,11 +22,11 @@ AttributeNormalizer.configure do |config|
 
   # The default normalizers if no :with option or block is given is to apply the :strip and :blank
   # normalizers (in that order). You can change this if you would like as follows:
-  config.default_normalizers = :squish_by_line, :blank
+  config.default_normalizers = :strip, :squish_by_line, :blank
 
   # You can enable the attribute normalizers automatically if the specified attributes exist in your
   # column_names. It will use the default normalizers for each attribute (e.g. config.default_normalizers)
-  # config.default_attributes = :name, :title
+  config.default_attributes = :name, :title, :display_name, :email
 
   # Also, You can add an specific attribute to default_attributes using one or more normalizers:
   # config.add_default_attribute :name, :with => :truncate

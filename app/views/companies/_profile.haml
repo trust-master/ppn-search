@@ -34,7 +34,7 @@
           - company.phone_numbers.each do |type, number|
             %li.phone_number{class: type}
               %label= Company.human_attribute_name(type) << ?:
-              %span= number
+              %span= format_as_phone_number(number)
 
     - if company.website_url? or company.email?
       %section.online

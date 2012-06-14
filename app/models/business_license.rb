@@ -8,6 +8,8 @@ class BusinessLicense < ActiveRecord::Base
 
   serialize :raw_data, Hash
 
+  validates :number, :name, :application_number, :doing_business_as, :phone_number,
+    :responsible_person_license_number, length: { maximum: 255 }, allow_blank: true
   validates :number, presence: true, uniqueness: { scope: :issuing_state_id }
   validates :issuing_state, :company, presence: true
 

@@ -9,7 +9,7 @@ class Category < ActiveRecord::Base
 
   attr_accessible :name, :sub_categories_attributes, :sort_order, as: :administrator
 
-  validates_presence_of :name
+  validates :name, length: { maximum: 255 }, presence: true
 end
 
 

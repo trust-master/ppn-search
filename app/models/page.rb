@@ -6,9 +6,10 @@ class Page < ActiveRecord::Base
   attr_readonly :name
   attr_accessible :name, :slug, :title, :content, :published, as: :administrator
 
-  validates :title, :content, presence: true
-  validates :name, uniqueness: true, presence: true, format: {with: /\A[a-z]\w+\Z/i}
-  validates :slug, uniqueness: true, presence: true, format: {with: %r[\A[a-z_$@.&+\-!*"'(),]+(/[a-z_$@.&+\-!*"'(),]+)*\Z]i}
+  validates :name, :slug, :title,  length: { maximum: 255 }, presence: true
+  validates :content, presence: true
+  validates :name, uniqueness: true, format: {with: /\A[a-z]\w+\Z/i}
+  validates :slug, uniqueness: true, format: {with: %r[\A[a-z_$@.&+\-!*"'(),]+(/[a-z_$@.&+\-!*"'(),]+)*\Z]i}
 
   def render_content
     PARSER.render(self[:content]).html_safe

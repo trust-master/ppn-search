@@ -21,7 +21,7 @@ class UserAuthToken < ActiveRecord::Base
 
   validates :token, presence: true, uniqueness: true
   validates :user, presence: true #, associated: true
-  # validates :fullfilled_by_ip, :created_by_ip, ip_address: true, allow_nil: true
+  # validates :fullfilled_by_ip, :created_by_ip, ip_address: true, allow_blank: true
 
   # This method generates the token. It packs the user ID (as an unsigned 32-bit integer) and a
   # random 32-bit integer into a string then, since this is only an 8-byte string, and we want a

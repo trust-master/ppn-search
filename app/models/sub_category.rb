@@ -9,7 +9,8 @@ class SubCategory < ActiveRecord::Base
 
   delegate :name, to: :category, prefix: true # will produce category_name method
 
-  validates_presence_of :name, :category, :sort_order
+  validates :name, length: { maximum: 255 }, presence: true
+  validates_presence_of :category, :sort_order
 end
 
 

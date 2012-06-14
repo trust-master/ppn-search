@@ -6,6 +6,7 @@ class Certification < ActiveRecord::Base
     !! ValidationPatterns::ImageContentTypes.match(attachment.content_type)
   end
 
+  validates :title, :name, length: { maximum: 255 }, allow_blank: true
   validates_presence_of :name, :description
   validates_attachment :attachment,
     size: {

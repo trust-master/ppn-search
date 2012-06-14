@@ -1,14 +1,14 @@
 = fieldset :identity do
   %ul
     = form.input :name
-    = form.input :in_business_since, as: :numeric, input_html: {value: @company.since}
+    = form.input :in_business_since, as: :numeric, input_html: { value: form.object.since }
 
 = fieldset :contact do
   %ul
     = form.input :email
-    = form.input :phone_main
-    = form.input :phone_mobile
-    = form.input :phone_fax
+    = form.input :phone_main, input_html: { value: format_as_phone_number(form.object.phone_main) }
+    = form.input :phone_mobile, input_html: { value: format_as_phone_number(form.object.phone_mobile) }
+    = form.input :phone_fax, input_html: { value: format_as_phone_number(form.object.phone_fax) }
 
 = fieldset :website do
   %ul

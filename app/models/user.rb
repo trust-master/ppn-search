@@ -16,12 +16,15 @@ class User < ActiveRecord::Base
 
   include ActiveModel::Validations
   validates_with         RoleValidator
-  validates              :email, presence: true, uniqueness: true, email: true
+  validates :email, :password_digest, :first_name, :middle_name, :last_name, :role, :phone,
+    length: { maximum: 255 }, allow_blank: true
+
+  validates :email, presence: true, uniqueness: true, email: true
   validates_presence_of  :first_name, :last_name, :role
   validates_inclusion_of :active, in: [true, false]
 
   has_secure_password
-  validates              :password, password: true, allow_nil: true # allow_nil only for pre-activation circumstances
+  validates              :password, password: true, allow_nil: true # allow_blank only for pre-activation circumstances
 
   # default_scope includes(:company)
   scope :sort_by_name_asc,  order('last_name ASC, first_name ASC')
@@ -94,4 +97,3 @@ end
 #  updated_at         :datetime        not null
 #  phone              :string(255)
 #
-

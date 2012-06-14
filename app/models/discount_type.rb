@@ -6,7 +6,8 @@ class DiscountType < ActiveRecord::Base
 
   attr_accessible :name, :sort_order, as: :administrator
 
-  validates :name, :sort_order, presence: true
+  validates :sort_order, presence: true
+  validates :name, length: { maximum: 255 }, presence: true
 end
 
 

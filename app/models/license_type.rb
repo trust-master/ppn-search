@@ -1,5 +1,7 @@
 class LicenseType < ActiveRecord::Base
   belongs_to :state
+
+  validates :name, length: { maximum: 255 }, presence: true
 end
 
 

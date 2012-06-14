@@ -8,7 +8,8 @@ class EmailTemplate < ActiveRecord::Base
 
   ### Validation
   validates_presence_of :body
-  validates :from, :cc, :bcc, email: true, allow_nil: true, allow_blank: true
+  validates :from, :cc, :bcc, email: true, allow_blank: true
+  validates :display_name, length: { maximum: 255 }, allow_blank: true
 
   ### Serialization
   serialize :headers, Hash

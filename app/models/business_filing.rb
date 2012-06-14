@@ -8,6 +8,7 @@ class BusinessFiling < ActiveRecord::Base
 
   serialize :raw_data, Hash
 
+  validates :number, :name, :home_jurisdiction, :registered_agents, length: { maximum: 255 }, allow_blank: true
   validates :number, presence: true, uniqueness: { scope: :issuing_state_id }
   validates :issuing_state, :company, presence: true
   validates :company_id, uniqueness: true

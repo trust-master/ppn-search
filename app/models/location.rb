@@ -5,8 +5,9 @@ class Location < ActiveRecord::Base
 
   before_validation :infer_country_from_state
 
-  validates :state, :country, associated: true
-  validates :city, :state,    presence: true
+  validates :city,  :zip,      length: { maximum: 255 }, allow_blank: true
+  validates :state, :country,  associated: true
+  validates :city,  :state,    presence: true
 
   attr_accessible :street, :street2, :city, :state_id, :zip, :country_id, as: [:user, :company_admin, :administrator]
   attr_readonly :company_id

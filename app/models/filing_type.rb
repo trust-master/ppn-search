@@ -1,5 +1,6 @@
 class FilingType < ActiveRecord::Base
   has_many :business_filings
+  validates :name, length: { maximum: 255 }, presence: true
 end
 
 

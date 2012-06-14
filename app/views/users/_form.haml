@@ -12,7 +12,7 @@
 = fieldset :contact do
   %ul
     = form.input :email
-    = form.input :phone
+    = form.input :phone, input_html: { value: format_as_phone_number(form.object.phone_main) }
 
 = fieldset :buttons, false do
   = link_to t('helpers.cancel'), [@company, :users], class: :cancel

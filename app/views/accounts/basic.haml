@@ -10,7 +10,7 @@
   = fieldset :contact do
     %ul
       = f.input :email
-      = f.input :phone
+      = f.input :phone, input_html: { value: format_as_phone_number(f.object.phone) }
 
   -# Fixme!
     = fieldset :password do
