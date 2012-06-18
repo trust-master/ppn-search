@@ -29,7 +29,7 @@ end
 #  city                              :text
 #  description                       :text
 #  doing_business_as                 :text
-#  general_info                      :text
+#  specialty                      :text
 #  home_jurisdiction                 :text
 #  name                              :text
 #  number                            :text

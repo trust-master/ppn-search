@@ -64,7 +64,7 @@ class Company < ActiveRecord::Base
 
   ### Attribute Normalizers
     normalize_attributes :phone_main, :phone_mobile, :phone_fax, with: :phone_number
-    normalize_attributes :website_url, :about, :description, :general_info
+    normalize_attributes :website_url, :about, :benefits, :description, :specialty
 
   ### Callbacks
     before_validation :nullify_insurance_fields_if_necessary
@@ -95,9 +95,9 @@ class Company < ActiveRecord::Base
 
   ### Attribute Protection
     attr_accessible :name, :email, :phone_main, :phone_mobile, :phone_fax, :website_url,
-      :in_business_since, :about, :description, :general_info, :offers_24_hour_service,
+      :in_business_since, :about, :description, :specialty, :offers_24_hour_service,
       :offers_emergency_service, :insured, :insurance_state_id, :insurance_certificate,
-      :insurance_valid_from, :insurance_valid_until, as: [:user, :company_admin, :administrator]
+      :insurance_valid_from, :insurance_valid_until, :benefits, as: [:user, :company_admin, :administrator]
     attr_accessible :affiliations_attributes, :associations_attributes, :certifications_attributes,
       :locations_attributes, :business_licenses_attributes, :personal_licenses_attributes,
       :business_filings_attributes, :company_service_areas_attributes,
@@ -151,6 +151,16 @@ class Company < ActiveRecord::Base
       self.business_licenses + self.personal_licenses + self.business_filings
     end
 
+    def about
+      raise "The About column is not being used, but #about was just called!"
+    end
+    def about?
+      raise "The About column is not being used, but #about? was just called!"
+    end
+    def about=(value)
+      raise "The About column is not being used, but #about= was just called!"
+    end
+
   ### Class Methods
   # class << self; end
 
@@ -169,77 +179,4 @@ end
 
 
 
-
-
-# == Schema Information
-#
-# Table name: companies
-#
-#  id                                 :integer         not null, primary key
-#  active                             :boolean         default(FALSE), not null
-#  visible                            :boolean         default(FALSE), not null
-#  deleted_at                         :datetime
-#  deleted_by_user_id                 :integer
-#  name                               :string(255)
-#  email                              :string(255)
-#  phone_main                         :string(255)
-#  phone_mobile                       :string(255)
-#  phone_fax                          :string(255)
-#  website_url                        :string(255)
-#  in_business_since                  :date
-#  about                              :string(255)
-#  description                        :text
-#  general_info                       :text
-#  offers_24_hour_service             :boolean         default(FALSE), not null
-#  offers_emergency_service           :boolean         default(FALSE), not null
-#  insured                            :boolean         default(FALSE), not null
-#  insurance_state_id                 :integer
-#  insurance_certificate              :string(255)
-#  insurance_valid_from               :date
-#  insurance_valid_until              :date
-#  created_at                         :datetime        not null
-#  updated_at                         :datetime        not null
-#  insurance_certificate_file_name    :string(255)
-#  insurance_certificate_content_type :string(255)
-#  insurance_certificate_file_size    :integer
-#  insurance_certificate_updated_at   :datetime
-#  insurance_certificate_fingerprint  :string(255)
-#  insurance_certificate_meta         :text
-#
-
-# == Schema Information
-#
-# Table name: companies
-#
-#  id                                 :integer         not null, primary key
-#  active                             :boolean         default(FALSE), not null
-#  visible                            :boolean         default(FALSE), not null
-#  deleted_at                         :datetime
-#  deleted_by_user_id                 :integer
-#  name                               :string(255)
-#  email                              :string(255)
-#  phone_main                         :string(255)
-#  phone_mobile                       :string(255)
-#  phone_fax                          :string(255)
-#  website_url                        :string(255)
-#  in_business_since                  :date
-#  about                              :string(255)
-#  description                        :text
-#  general_info                       :text
-#  offers_24_hour_service             :boolean         default(FALSE), not null
-#  offers_emergency_service           :boolean         default(FALSE), not null
-#  insured                            :boolean         default(FALSE), not null
-#  insurance_state_id                 :integer
-#  insurance_certificate              :string(255)
-#  insurance_valid_from               :date
-#  insurance_valid_until              :date
-#  created_at                         :datetime        not null
-#  updated_at                         :datetime        not null
-#  insurance_certificate_file_name    :string(255)
-#  insurance_certificate_content_type :string(255)
-#  insurance_certificate_file_size    :integer
-#  insurance_certificate_updated_at   :datetime
-#  insurance_certificate_fingerprint  :string(255)
-#  insurance_certificate_meta         :text
-#
 

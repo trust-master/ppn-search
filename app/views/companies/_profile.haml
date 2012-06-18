@@ -15,10 +15,10 @@
 
   = tab_for company, :profile do
 
-    - if company.about?
-      %section.about
-        -#%h3= t('.details.sections.about')
-        = company.about
+    - if company.description?
+      %section.description
+        -#%h3= t('.details.sections.description')
+        = company.description
 
     - if company.locations.any?
       %section.locations
@@ -51,15 +51,15 @@
 
   = tab_for company, :capabilities do
 
-    - if company.description?
-      %section.description
-        %h3= t('.details.sections.description')
-        = simple_format company.description
+    - if company.benefits?
+      %section.benefits
+        %h3= t('.details.sections.benefits')
+        = simple_format company.benefits
 
-    - if company.general_info?
-      %section.general_info
-        %h3= t('.details.sections.general_info')
-        = simple_format company.general_info
+    - if company.specialty?
+      %section.specialty
+        %h3= t('.details.sections.specialty')
+        = simple_format company.specialty
 
     - if company.sub_categories.any?
       %section.categories

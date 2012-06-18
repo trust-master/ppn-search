@@ -118,12 +118,13 @@ en:
           discounts:       Discounts
           reviews:         Reviews
         sections: ##############################
-          about:           About
+          # about:           About
+          description:     Description
           locations:       Locations
           phone_numbers:   Phone Numbers
           online:          Online
-          description:     Description
-          general_info:    General Info
+          benefits:        Benefits
+          specialty:       Specialty
           categories:      Categories
           service_area:    Service Area
           operations:      Operations

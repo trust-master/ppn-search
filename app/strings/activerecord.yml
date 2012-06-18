@@ -108,14 +108,14 @@ en:
       admin:
       company_admin:
       company:
-        offers_emergency_service: Emergency Service
-        offers_24_hour_service:   24-hour Service
+        deleted_by_user:          Deleted By
         insurance_certificate:    Certificate of Insurance
         insurance_state:          State Insured
         insurance_valid_from:     Valid from
         insurance_valid_until:    Expires
-        deleted_by_user:          Deleted By
         name:                     Searchable Name
+        offers_24_hour_service:   24-hour Service
+        offers_emergency_service: Emergency Service
       location:
         street:  Street Address
         street2: Apt, etc.
@@ -124,11 +124,11 @@ en:
       category:
       sub_category:
       personal_license: &personal_license_attributes
-        type:    License Type
+        address: Registered Address
+        name:    Individual Name
         number:  License Number
         status:  License Status
-        name:    Individual Name
-        address: Registered Address
+        type:    License Type
       business_license:
         <<: *personal_license_attributes
         name: Business Name
@@ -149,8 +149,10 @@ en:
   # we can also include attributes without scoping them to a particular model, as a fallback:
   attributes:
     about:                             About
+    active:                            Active?
     address:                           Address
     application_number:                Application Number
+    benefits:                          Benefits
     city:                              City
     continuing_education:              C. E. Requirements
     created_at:                        Created At
@@ -158,12 +160,11 @@ en:
     doing_business_as:                 Doing Business As
     effective_on:                      Effective On
     email:                             Email Address
-    ended_on:                          End Date
     end_date:                          End Date
+    ended_on:                          End Date
     enforcement_action:                Enforcement Action
     expires_on:                        Expires On
     fetched_at:                        Fetched At
-    general_info:                      General Information
     issued_on:                         Issued On
     issuing_state:                     Issuing State
     name:                              Name
@@ -177,17 +178,17 @@ en:
     printed_on:                        Printed On
     raw_data:                          Raw Data
     responsible_person_license_number: 'License # of Resp. Person'
-    started_on:                        Start Date
+    service_areas:                     Regions
+    specialty:                         Specialty
     start_date:                        Start Date
+    started_on:                        Start Date
     state:                             State
     status:                            Status
+    sub_categories:                    Sub-Categories
     title:                             Title
     type:                              Type
     updated_at:                        Updated At
     url:                               URL
+    visible:                           Visible?
     website_url:                       Website URL
     zip:                               ZIP Code
-    visible:                           Visible?
-    active:                            Active?
-    service_areas:                     Regions
-    sub_categories:                    Sub-Categories
