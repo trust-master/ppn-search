@@ -151,16 +151,6 @@ class Company < ActiveRecord::Base
       self.business_licenses + self.personal_licenses + self.business_filings
     end
 
-    def about
-      raise "The About column is not being used, but #about was just called!"
-    end
-    def about?
-      raise "The About column is not being used, but #about? was just called!"
-    end
-    def about=(value)
-      raise "The About column is not being used, but #about= was just called!"
-    end
-
   ### Class Methods
   # class << self; end
 
