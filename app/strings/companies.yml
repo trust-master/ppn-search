@@ -139,7 +139,7 @@ en:
           valid:      Valid from %{from} to %{to}
       insurance_certificate:
         summary: '' # the whole thing is link
-        download:   Download the Certificate of Liability Insurance
+        download:   Download Certificate of Liability Insurance
 
   affiliations:
     affiliation:

@@ -35,7 +35,8 @@ en:
         specialty: >
           Let readers know what your company specializes in and why. Describe your competitive
           advantages and how they differentiate you from your competition.
-        insurance_certificate: Certificate of Liability Insurance (Image or PDF file format / up to 1MB)
+        insurance_certificate: >
+          Certificate of Liability Insurance <br> (Image or PDF file format / up to 1MB)
         affiliations:
           ended_on: If membership is still active, leave these fields blank
         associations:

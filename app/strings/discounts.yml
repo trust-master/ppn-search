@@ -33,3 +33,5 @@ en:
         end_only: Ending %{end_date}
         indefinite: Happening Now!
       market: Valid in the %{market_name} Market only
+      attachment:
+        download: Download Discount
