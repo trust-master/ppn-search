@@ -115,6 +115,7 @@ en:
         insurance_valid_from:     Valid from
         insurance_valid_until:    Expires
         deleted_by_user:          Deleted By
+        name:                     Searchable Name
       location:
         street:  Street Address
         street2: Apt, etc.
@@ -137,7 +138,7 @@ en:
       affiliation:
       association:
       discount:
-        type:  Discount Content
+        type:  Discount Type
         image: Attached File
       password_reset:
       password_reset_request:

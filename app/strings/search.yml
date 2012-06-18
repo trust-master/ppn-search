@@ -2,10 +2,10 @@ en:
   search:
     index:   # Landing page
       title: Search Providers
-      secondary_title: "Buyer's Guide"
+      secondary_title: Provider Profile
     search:  # Search results page
       title: Search Providers
-      secondary_title: "Buyer's Guide"
+      secondary_title: Provider Profile
       results_count:
         zero: ""
         one: "1 result"
@@ -15,11 +15,12 @@ en:
       tabs:
         initial:
           content: >
+
             Only exceptional performance and value earns preferred provider status and acceptance
             into the Trust Master Preferred Provider Network.
 
 
-            With this competitive spirit comes a true motivation to provide exceptional value and
+            With this trusted exclusivity comes a true motivation to provide exceptional value and
             superior service.
 
 
@@ -28,33 +29,36 @@ en:
         profile:
           name: Profile
           content: >
-            Our providers are carefully vetted by Trust Master Home Managers to share our service
-            philosophy and adhere to the Preferred Provider Network Code of Conduct and Trust Master
-            Core Values.
+
+            Our Home Managers only select providers who share the same service philosophy based
+            on Trust Master Core Values and the Preferred Provider Code of Conduct.
 
         capabilities:
           name: Capabilities
           content: >
-            A provider who has been accepted into the Preferred Provider Network has met our
-            stringent qualification standards and is committed to being the best in every aspect of
-            his or her business capabilities.
+
+            Providers who have been accepted into our network have met our stringent qualification
+            standards and are capable of delivering the very best in what they do.
 
         credentials:
           name: Credentials
           content: >
+
             Our thorough screening process includes validating important business and trade
             credentials to assure our network of handpicked preferred providers are at your service.
 
         discounts:
           name: Discounts
           content: >
+
             The strength in numbers of our Preferred Provider Network not only fosters a reputation
             of safety and value, but also gives us the bargaining power to offer real discounts.
 
         reviews:
           name: Reviews
           content: >
-            Our objective Home Manager review process allows our network of preferred providers to
+
+            Our objective Home Manager review process allows our network of preferred providers to
             concentrate on their core businesses, and not on managing their reputation.
 
 

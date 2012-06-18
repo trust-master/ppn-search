@@ -13,21 +13,25 @@ en:
     error_notification:
       default_message: "There were errors with the following fields:"
 
+    labels:
+      company:
+        insurance_certificate: Upload
+
     hints:
       defaults:
         # email: Your Email Address
         # password: Your Trust Master Password
-        url: Include the 'http://' part
+        url: Please include the 'http://' portion.
 
       company:
-        name: "The display name for your company within the PPN. This need not include such things as 'LLC', 'Inc.', etc. unless you'd prefer it to"
+        name: Enter the company name you want people to search for.
         in_business_since: The year in which your company started
         email: The email address for service/sales inquiries
-        website_url: Full URL to your website. Include the 'http://' part
+        website_url: Full URL to your website. Please include the 'http://' portion.
         about: Short summary
         description: Use this area to define ...
         general_info: Hours, availability, etc.
-        insurance_certificate: Upload your Certificate of Liability Insurance in image or PDF format
+        insurance_certificate: Certificate of Liability Insurance (Image or PDF file format / up to 1MB)
         affiliations:
           ended_on: If membership is still active, leave these fields blank
         associations:
@@ -36,19 +40,19 @@ en:
           attachment: "Optionally, you may upload a scan or digital copy of the actual certificate. File can be any of common image formats, or PDF."
 
       discount:
-        attachment: You can upload a coupon or other image for this discount. Files should be image or PDF formats only.
+        attachment: Upload a coupon for this discount. (Image or PDF file format / up to 2MB)
 
       user: &user
-        password: Choose a new Password
-        password_confirmation: Retype your new password
-        old_password: Verify your current password
+        password: Choose a new password.
+        password_confirmation: Retype your new password.
+        old_password: Verify your current password.
       company_admin:
         <<: *user
       administrator:
         <<: *user
 
       password_reset_request:
-        name: Your first name
+        name: "Please enter your first name, to verify your identity."
 
     placeholders:
 

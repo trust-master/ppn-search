@@ -3,7 +3,7 @@ en:
   # _label key for the title, nested within it.
   nav:
     companies: &company_nav
-      identity:    Profile
+      identity:    Listing
       service:     Capabilites
       credentials: Credentials
       alerts:      Alerts
