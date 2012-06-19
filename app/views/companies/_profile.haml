@@ -76,7 +76,7 @@
             %li[market]
               %h4= market.name
               %ul.service_areas
-                - market.service_areas.each do |service_area|
+                - service_areas.each do |service_area|
                   %li[service_area]= service_area.name
 
     = profile_section :operations do
