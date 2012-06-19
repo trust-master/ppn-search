@@ -1,12 +1,12 @@
 .tabs.welcome-messages{class: 'ui-tabs ui-helper-reset ui-widget-content ui-wigdet ui-corner-all'}
   %ul.nav.tab_bar{class: 'ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-wigdet-header ui-corner-all'}
-    - [:profile, :capabilities, :credentials, :discounts].each do |label|
+    - [:listing, :capabilities, :credentials, :discounts].each do |label|
       %li.ui-state-default.ui-corner-top
         = link_to t(".tabs.#{label}.name"), "##{label}"
     %li.ui-state-default.ui-corner-top
       = link_to t(".tabs.reviews.name"), "#reviews", class: 'disabled'
 
-  .tab#profile=      format_as_markdown(t('.tabs.profile.content'))
+  .tab#listing=      format_as_markdown(t('.tabs.listing.content'))
   .tab#capabilities= format_as_markdown(t('.tabs.capabilities.content'))
   .tab#credentials=  format_as_markdown(t('.tabs.credentials.content'))
   .tab#discounts=    format_as_markdown(t('.tabs.discounts.content'))

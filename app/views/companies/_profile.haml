@@ -1,6 +1,6 @@
 .tabs
   %ul.nav.tab_bar
-    = list_of [:profile, :capabilities, :credentials, :discounts] do |label|
+    = list_of [:listing, :capabilities, :credentials, :discounts] do |label|
       = link_to t(".details.tab_names.#{label}"), "##{tab_id_for(company, label)}"
     %li= link_to t(".details.tab_names.reviews"), "##{tab_id_for(company, :reviews)}", class: 'disabled ui-state-disabled'
 
@@ -13,7 +13,7 @@
       .actions
         = include_edit_link edit_company_path(company, section: :identity)
 
-  = tab_for company, :profile do
+  = tab_for company, :listing do
 
     - if company.description?
       %section.description

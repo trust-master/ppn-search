@@ -112,7 +112,7 @@ en:
       in_business_since: 'In business since %{year}'
       details:
         tab_names: ################################
-          profile:         Profile
+          listing:         Listing
           capabilities:    Capabilities
           credentials:     Credentials
           discounts:       Discounts

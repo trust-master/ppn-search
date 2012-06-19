@@ -26,11 +26,11 @@ en:
 
             Click on the individual tabs to learn more.
 
-        profile:
-          name: Profile
+        listing:
+          name: Listing
           content: >
 
-            Our Home Managers only select providers who share the same service philosophy based
+            Our Home Managers select only providers who share the same service philosophy, based
             on Trust Master Core Values and the Preferred Provider Code of Conduct.
 
         capabilities:
@@ -65,4 +65,7 @@ en:
       images:
         preferred_provider_seal:
           alt:   Trust Master Preferred Provider
-          title: This is the seal earned by product and service providers in Trust Master's PPN
+          title: >
+
+            This is the seal earned by product and service providers in the Trust Master
+            Preferred Provider Network
