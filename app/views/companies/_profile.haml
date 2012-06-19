@@ -1,8 +1,8 @@
 .tabs
   %ul.nav.tab_bar
     = list_of [:listing, :capabilities, :credentials, :discounts] do |label|
-      = link_to t(".details.tab_names.#{label}"), "##{tab_id_for(company, label)}"
-    %li= link_to t(".details.tab_names.reviews"), "##{tab_id_for(company, :reviews)}", class: 'disabled ui-state-disabled'
+      = link_to t(".tab_names.#{label}"), "##{tab_id_for(company, label)}"
+    %li= link_to t(".tab_names.reviews"), "##{tab_id_for(company, :reviews)}", class: 'disabled ui-state-disabled'
 
   %header
     %h2= company.name
@@ -13,23 +13,22 @@
       .actions
         = include_edit_link edit_company_path(company, section: :identity)
 
+
+
   = tab_for company, :listing do
 
     - if company.description?
-      %section.description
-        -#%h3= t('.details.sections.description')
+      = profile_section :description do
         = company.description
 
     - if company.locations.any?
-      %section.locations
-        %h3= t('.details.sections.locations')
+      = profile_section :locations do
         - company.locations.each do |location|
           = link_to_blank_tab(url_for_google_maps_search(location.to_s)) do
             = render location
 
     - if company.phone_numbers.any?
-      %section.phone_numbers
-        %h3= t('.details.sections.phone_numbers')
+      = profile_section :phone_numbers do
         %ul
           - company.phone_numbers.each do |type, number|
             %li.phone_number{class: type}
@@ -37,8 +36,7 @@
               %span= format_as_phone_number(number)
 
     - if company.website_url? or company.email?
-      %section.online
-        %h3= t('.details.sections.online')
+      = profile_section :online do
         - if company.website_url?
           .website
             %label= Company.human_attribute_name(:website_url) << ?:
@@ -49,21 +47,20 @@
             = mail_to company.email
 
 
+
+
   = tab_for company, :capabilities do
 
     - if company.benefits?
-      %section.benefits
-        %h3= t('.details.sections.benefits')
+      = profile_section :benefits do
         = simple_format company.benefits
 
     - if company.specialty?
-      %section.specialty
-        %h3= t('.details.sections.specialty')
+      = profile_section :specialty do
         = simple_format company.specialty
 
     - if company.sub_categories.any?
-      %section.categories
-        %h3= t('.details.sections.categories')
+      = profile_section :categories do
         %ul.categories
           - company.sub_categories.group_by(&:category).each do |category, sub_categories|
             %li[category]
@@ -73,8 +70,7 @@
                   %li[sub_cat]= sub_cat.name
 
     - if company.service_areas.any?
-      %section.service_area
-        %h3= t('.details.sections.service_area')
+      = profile_section :service_area do
         %ul.markets
           - company.service_areas.group_by(&:market).each do |market, service_areas|
             %li[market]
@@ -83,8 +79,7 @@
                 - market.service_areas.each do |service_area|
                   %li[service_area]= service_area.name
 
-    %section.operations
-      %h3= t('.details.sections.operations')
+    = profile_section :operations do
       .offers_24_hour_service
         %label= Company.human_attribute_name(:offers_24_hour_service) << ':'
         = company.offers_24_hour_service ? 'Yes' : 'No'
@@ -92,36 +87,40 @@
         %label= Company.human_attribute_name(:offers_emergency_service) << ':'
         = company.offers_emergency_service ? 'Yes' : 'No'
 
+
+
   = tab_for company, :credentials do
 
     - if company.insured?
-      %section.insurance
+      = profile_section :insurance, skip_instructions: true do
         - if company.insurance_certificate?
           = attached_file_thumbnail(company, :insurance_certificate)
-        %h3= t('.details.sections.insurance')
-        .state= t('.details.insurance.insured_in', state_name: company.insurance_state_name)
-        .valid= t('.details.insurance.valid', from: company.insurance_valid_from, to: company.insurance_valid_until)
+        .instructions= t('.section.insurance.instructions')
+        .state= t('.section.insurance.insured_in', company_name: company.name, state_name: company.insurance_state_name)
+        .valid= t('.section.insurance.valid', from: company.insurance_valid_from, to: company.insurance_valid_until)
         - if company.insurance_certificate?
           = attached_file_summary(company, :insurance_certificate)
 
     - if company.all_licenses.any?
-      %section.licensure
-        %h3= t('.details.sections.licensure')
+      = profile_section :licensure do
         .licenses.accordion= render company.all_licenses
 
     - [:affiliations, :associations, :certifications].each do |section|
       - if (associated = company.send(section)).any?
-        %section{class: section}
-          %h3= t(".details.sections.#{section}")
+        = profile_section section do
           .accordion{class: section}= render associated
+
 
 
   = tab_for company, :discounts do
     - if company.discounts.any?
-      %section.discounts
+      = profile_section :discounts do
         .accordion.discounts= render company.discounts.all
     - else
       = t('.discounts.none_available', default: "There are no discounts available at this time.")
+
+
+
 
   = tab_for company, :reviews do
     %strong NOTE:

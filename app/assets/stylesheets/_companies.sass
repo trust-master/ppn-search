@@ -109,6 +109,14 @@
 #personal_licenses
   margin: 0
 
+#personal_licenses > .personal_license,
+#business_licenses > .business_license,
+#business_filing > .business_filing,
+#affiliations > .affiliation,
+#associations > .association,
+#certifications > .certification
+  +clearfix
+
 #locations ul.location,
 #personal_licenses > .personal_license,
 #business_licenses > .business_license,
@@ -121,7 +129,6 @@
   margin: 0 0 20px 0
   padding: 10px
   background-color: #f4f4f4
-  +clearfix
 
   & > h5
     font-size: 16px

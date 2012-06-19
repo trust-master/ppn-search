@@ -167,6 +167,7 @@
 
 @page =
   bind: ->
+    window.popup.bind()
     $('.input.select select, .input.grouped_select select').chosen({include_group_label_in_selected: true})
     $("input[type='checkbox']").button()
     $('time.timeago').timeago()

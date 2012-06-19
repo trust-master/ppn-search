@@ -110,36 +110,112 @@ en:
 
     profile:
       in_business_since: 'In business since %{year}'
-      details:
-        tab_names: ################################
-          listing:         Listing
-          capabilities:    Capabilities
-          credentials:     Credentials
-          discounts:       Discounts
-          reviews:         Reviews
-        sections: ##############################
-          # about:           About
-          description:     Description
-          locations:       Locations
-          phone_numbers:   Phone Numbers
-          online:          Online
-          benefits:        Benefits
-          specialty:       Specialty
-          categories:      Categories
-          service_area:    Service Area
-          operations:      Operations
-          insurance:       Liability Insurance
-          licensure:       "Licensing & Bonding"
-          business_status: Business Status
-          affiliations:    Affiliations
-          associations:    Associations
-          certifications:  Certifications
-        insurance: #####################################
-          insured_in: Insured in the state of %{state_name}
+
+      tab_names: ################################
+        listing:         Listing
+        capabilities:    Capabilities
+        credentials:     Credentials
+        discounts:       Discounts
+        reviews:         Reviews
+
+      section: ##############################
+        # about:           About
+        description:
+        locations:
+          header: Locations
+        phone_numbers:
+          header: Phone Numbers
+        online:
+          header: Online
+        benefits:
+          header: Benefits
+        specialty:
+          header: Specialty
+        categories:
+          header: Categories
+        service_area:
+          header: Service Area
+        operations:
+          header: Operations
+        insurance:
+          header: Liability Insurance
+          insured_in: '%{company_name} is insured in the state of %{state_name}'
           valid:      Valid from %{from} to %{to}
+          instructions: >
+
+            All Providers who are licensed through the Minnesota Department of Labor & Industry
+            (DLI) are required to carry general liability insurance.  This enables us to provide
+            "trusted exclusivity" by encouraging authenticity and ensuring the most accurate and up
+            to date general liability insurance.
+
+          what_is_this?: >
+
+            Minnesota law requires businesses and contractors who have been issued licenses by the
+            Minnesota Department of Labor & Industry (DLI) to "have and maintain" general liability
+            insurance coverage for their license to be valid. This means any licensed business or
+            contractor failing to keep their liability insurance coverage in effect is immediately
+            presumed to be unlicensed and, as such, prohibited from acting or holding themselves out
+            as a licensed business or contractor
+
+        licensure:
+          header: "Licensing & Bonding"
+          instructions: >
+
+            All Providers who require licensing or bonding to lawfully do business in Minnesota are
+            required to validate their licensing credentials through the Minnesota Department of
+            Labor & Industry (DLI). This enables us to provide "trusted exclusivity" by encouraging
+            authenticity and ensuring the most accurate and up to date Minnesota license status.
+
+          what_is_this?: >
+
+            The Minnesota Department of Labor & Industry (DLI) is the agency responsible for
+            licensing residential building contractors. DLI also licenses roofers and manufactured
+            home installers as well as plumbers and electrical contractors. In accordance with the
+            Minnesota DLI licensing guidelines, Trust Master requires all service providers who
+            perform a residential licensed trade or residential building or remodeling services to
+            maintain their state of Minnesota licensing requirements.
+
+
+            A contractor who fulfills their licensing obligation to operate in Minnesota ensures the
+            contractor has met certain requirements, including having a principal of the company
+            pass an appropriate examination and having liability and property damage insurance. A
+            licensed contractor must also take a number of continuing education classes each year.
+
+
+            Hiring a licensed contractor also provides access to the Contractor Recovery Fund which
+            reimburses consumers who suffer financial losses as a result of a licensed contractor’s
+            misconduct. The Fund compensates owners or lessees of residential property in Minnesota
+            who have suffered an actual and direct out-of-pocket loss due to a licensed contractor's
+            fraudulent, deceptive or dishonest practices, conversion of funds or failure of
+            performance.
+
+        business_status:
+          header: Business Status
+          instructions: >
+
+            All Providers are required to confirm that their state of Minnesota Business Status is
+            "active and in good standings" through the office on the Minnesota Secretary of State.
+            This enables us to provide "trusted exclusivity" by encouraging authenticity and
+            ensuring the most accurate and up to date Minnesota business status.
+
+          what_is_this?: >
+
+            The office of the Minnesota Secretary of State registers a variety of business
+            organizations including corporations, nonprofits, assumed business names, limited
+            liability companies, limited liability partnerships, and limited partnerships.
+
+        affiliations:
+          header: Affiliations
+        associations:
+          header: Associations
+        certifications:
+          header: Certifications
+
       insurance_certificate:
         summary: '' # the whole thing is link
         download:   Download Certificate of Liability Insurance
+
+
 
   affiliations:
     affiliation:
