@@ -17,10 +17,6 @@
 
   = tab_for company, :listing do
 
-    - if company.description?
-      = profile_section :description do
-        = company.description
-
     - if company.locations.any?
       = profile_section :locations do
         - company.locations.each do |location|
@@ -50,6 +46,10 @@
 
 
   = tab_for company, :capabilities do
+
+    - if company.description?
+      = profile_section :description do
+        = company.description
 
     - if company.benefits?
       = profile_section :benefits do

@@ -13,7 +13,7 @@ en:
 
     # the header titles for all fieldsets related to company forms
     fieldsets:
-      identity:           Company Name
+      identity:           Company Info
       contact:            Contact Info
       website:            Website
       locations:          Address
@@ -120,6 +120,7 @@ en:
 
       section: ##############################
         # about:           About
+
         description:
         locations:
           header: Locations
