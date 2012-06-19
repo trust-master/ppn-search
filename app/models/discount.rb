@@ -17,6 +17,8 @@ class Discount < ActiveRecord::Base
 
   delegate :name, to: :type, prefix: true
 
+  scope :not_expired, where('end_date >= ?', Date.today)
+
   before_post_process { !! ValidationPatterns::ImageContentTypes.match(attachment.content_type) }
 
 end
