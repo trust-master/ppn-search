@@ -14,11 +14,13 @@ ActiveAdmin.register User do
     scope.where(active: false)
   end
 
-  {
-    "Client" => 'User',
+  USER_ROLES = {
+    "Client"        => 'User',
     "Company Admin" => 'CompanyAdmin',
-    "TM Admin" => 'Administrator'
-  }.each do |name, role|
+    "TM Admin"      => 'Administrator'
+  }.freeze
+
+  USER_ROLES.each do |name, role|
     self.send(:scope, name) do |scope|
       scope.where(role: role)
     end
