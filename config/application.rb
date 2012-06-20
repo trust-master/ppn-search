@@ -23,10 +23,15 @@ module ServiceProviderPortal
     # config.autoload_paths += %W(#{config.root}/extras)
 
     # Activate observers that should always be running.
-    config.active_record.observers = [ :user_observer,
-                                       :user_auth_token_observer,
-                                       :scrape_observer,
-                                       :scraped_model_defaults_observer ]
+    config.active_record.observers = %w[
+      user_observer
+      user_auth_token_observer
+      scrape_observer
+      scraped_model_defaults_observer
+      company_category_sweeper
+      company_sweeper
+      company_profile_sweeper
+    ]
 
     # generate RSpec tests for views and helpers
     config.generators do |g|

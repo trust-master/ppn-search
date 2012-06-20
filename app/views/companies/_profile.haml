@@ -1,128 +1,129 @@
-.tabs
-  %ul.nav.tab_bar
-    = list_of [:listing, :capabilities, :credentials, :discounts] do |label|
-      = link_to t(".tab_names.#{label}"), "##{tab_id_for(company, label)}"
-    %li= link_to t(".tab_names.reviews"), "##{tab_id_for(company, :reviews)}", class: 'disabled ui-state-disabled'
+= cache [:companies, company.id, :profile] do
+  .tabs
+    %ul.nav.tab_bar
+      = list_of [:listing, :capabilities, :credentials, :discounts] do |label|
+        = link_to t(".tab_names.#{label}"), "##{tab_id_for(company, label)}"
+      %li= link_to t(".tab_names.reviews"), "##{tab_id_for(company, :reviews)}", class: 'disabled ui-state-disabled'
 
-  %header
-    %h2= company.name
-    - if company.in_business_since?
-      .in_business_since= t('.in_business_since', year: company.since)
+    %header
+      %h2= company.name
+      - if company.in_business_since?
+        .in_business_since= t('.in_business_since', year: company.since)
 
-    - if can? :edit, company
-      .actions
-        = include_edit_link edit_company_path(company, section: :identity)
-
-
-
-  = tab_for company, :listing do
-
-    - if company.locations.any?
-      = profile_section :locations do
-        - company.locations.each do |location|
-          = link_to_blank_tab(url_for_google_maps_search(location.to_s)) do
-            = render location
-
-    - if company.phone_numbers.any?
-      = profile_section :phone_numbers do
-        %ul
-          - company.phone_numbers.each do |type, number|
-            %li.phone_number{class: type}
-              %label= Company.human_attribute_name(type) << ?:
-              %span= format_as_phone_number(number)
-
-    - if company.website_url? or company.email?
-      = profile_section :online do
-        - if company.website_url?
-          .website
-            %label= Company.human_attribute_name(:website_url) << ?:
-            = company.website
-        - if company.email?
-          .email
-            %label= Company.human_attribute_name(:email) << ?:
-            = mail_to company.email
+      - if can? :edit, company
+        .actions
+          = include_edit_link edit_company_path(company, section: :identity)
 
 
 
+    = tab_for company, :listing do
 
-  = tab_for company, :capabilities do
+      - if company.locations.any?
+        = profile_section :locations do
+          - company.locations.each do |location|
+            = link_to_blank_tab(url_for_google_maps_search(location.to_s)) do
+              = render location
 
-    - if company.description?
-      = profile_section :description do
-        = company.description
+      - if company.phone_numbers.any?
+        = profile_section :phone_numbers do
+          %ul
+            - company.phone_numbers.each do |type, number|
+              %li.phone_number{class: type}
+                %label= Company.human_attribute_name(type) << ?:
+                %span= format_as_phone_number(number)
 
-    - if company.benefits?
-      = profile_section :benefits do
-        = simple_format company.benefits
-
-    - if company.specialty?
-      = profile_section :specialty do
-        = simple_format company.specialty
-
-    - if company.sub_categories.any?
-      = profile_section :categories do
-        %ul.categories
-          - company.sub_categories.group_by(&:category).each do |category, sub_categories|
-            %li[category]
-              %h4= category.name
-              %ul.sub_categories
-                - sub_categories.each do |sub_cat|
-                  %li[sub_cat]= sub_cat.name
-
-    - if company.service_areas.any?
-      = profile_section :service_area do
-        %ul.markets
-          - company.service_areas.group_by(&:market).each do |market, service_areas|
-            %li[market]
-              %h4= market.name
-              %ul.service_areas
-                - service_areas.each do |service_area|
-                  %li[service_area]= service_area.name
-
-    = profile_section :operations do
-      .offers_24_hour_service
-        %label= Company.human_attribute_name(:offers_24_hour_service) << ':'
-        = company.offers_24_hour_service ? 'Yes' : 'No'
-      .offers_emergency_service
-        %label= Company.human_attribute_name(:offers_emergency_service) << ':'
-        = company.offers_emergency_service ? 'Yes' : 'No'
-
-
-
-  = tab_for company, :credentials do
-
-    - if company.insured?
-      = profile_section :insurance, skip_instructions: true do
-        - if company.insurance_certificate?
-          = attached_file_thumbnail(company, :insurance_certificate)
-        .instructions= t('.section.insurance.instructions')
-        .state= t('.section.insurance.insured_in', company_name: company.name, state_name: company.insurance_state_name)
-        .valid= t('.section.insurance.valid', from: company.insurance_valid_from, to: company.insurance_valid_until)
-        - if company.insurance_certificate?
-          = attached_file_summary(company, :insurance_certificate)
-
-    - if company.all_licenses.any?
-      = profile_section :licensure do
-        .licenses.accordion= render company.all_licenses
-
-    - [:affiliations, :associations, :certifications].each do |section|
-      - if (associated = company.send(section)).any?
-        = profile_section section do
-          .accordion{class: section}= render associated
-
-
-
-  = tab_for company, :discounts do
-    - if company.discounts.not_expired.any?
-      = profile_section :discounts do
-        .accordion.discounts= render company.discounts.not_expired
-    - else
-      = t('.discounts.none_available', default: "There are no discounts available at this time.")
+      - if company.website_url? or company.email?
+        = profile_section :online do
+          - if company.website_url?
+            .website
+              %label= Company.human_attribute_name(:website_url) << ?:
+              = company.website
+          - if company.email?
+            .email
+              %label= Company.human_attribute_name(:email) << ?:
+              = mail_to company.email
 
 
 
 
-  = tab_for company, :reviews do
-    %strong NOTE:
-    Home manager reviews coming soon!
+    = tab_for company, :capabilities do
+
+      - if company.description?
+        = profile_section :description do
+          = company.description
+
+      - if company.benefits?
+        = profile_section :benefits do
+          = simple_format company.benefits
+
+      - if company.specialty?
+        = profile_section :specialty do
+          = simple_format company.specialty
+
+      - if company.sub_categories.any?
+        = profile_section :categories do
+          %ul.categories
+            - company.sub_categories.group_by(&:category).each do |category, sub_categories|
+              %li[category]
+                %h4= category.name
+                %ul.sub_categories
+                  - sub_categories.each do |sub_cat|
+                    %li[sub_cat]= sub_cat.name
+
+      - if company.service_areas.any?
+        = profile_section :service_area do
+          %ul.markets
+            - company.service_areas.group_by(&:market).each do |market, service_areas|
+              %li[market]
+                %h4= market.name
+                %ul.service_areas
+                  - service_areas.each do |service_area|
+                    %li[service_area]= service_area.name
+
+      = profile_section :operations do
+        .offers_24_hour_service
+          %label= Company.human_attribute_name(:offers_24_hour_service) << ':'
+          = company.offers_24_hour_service ? 'Yes' : 'No'
+        .offers_emergency_service
+          %label= Company.human_attribute_name(:offers_emergency_service) << ':'
+          = company.offers_emergency_service ? 'Yes' : 'No'
+
+
+
+    = tab_for company, :credentials do
+
+      - if company.insured?
+        = profile_section :insurance, skip_instructions: true do
+          - if company.insurance_certificate?
+            = attached_file_thumbnail(company, :insurance_certificate)
+          .instructions= t('.section.insurance.instructions')
+          .state= t('.section.insurance.insured_in', company_name: company.name, state_name: company.insurance_state_name)
+          .valid= t('.section.insurance.valid', from: company.insurance_valid_from, to: company.insurance_valid_until)
+          - if company.insurance_certificate?
+            = attached_file_summary(company, :insurance_certificate)
+
+      - if company.all_licenses.any?
+        = profile_section :licensure do
+          .licenses.accordion= render company.all_licenses
+
+      - [:affiliations, :associations, :certifications].each do |section|
+        - if (associated = company.send(section)).any?
+          = profile_section section do
+            .accordion{class: section}= render associated
+
+
+
+    = tab_for company, :discounts do
+      - if company.discounts.not_expired.any?
+        = profile_section :discounts do
+          .accordion.discounts= render company.discounts.not_expired
+      - else
+        = t('.discounts.none_available', default: "There are no discounts available at this time.")
+
+
+
+
+    = tab_for company, :reviews do
+      %strong NOTE:
+      Home manager reviews coming soon!
 
