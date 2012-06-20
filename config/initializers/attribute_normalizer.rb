@@ -2,7 +2,8 @@
 AttributeNormalizer.configure do |config|
 
   config.normalizers[:phone_number] = lambda do |value, options|
-    value.is_a?(String) ? value.gsub(/[^\dx]+/, '') : value
+    value = value.is_a?(String) ? value.gsub(/[^\dx]+/, '') : value.to_s
+    value.presence
   end
 
   # config.normalizers[:truncate] = lambda do |text, options|
