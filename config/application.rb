@@ -28,7 +28,7 @@ module ServiceProviderPortal
       user_auth_token_observer
       scrape_observer
       scraped_model_defaults_observer
-      company_category_sweeper
+      popular_categories_sweeper
       company_sweeper
       company_profile_sweeper
     ]

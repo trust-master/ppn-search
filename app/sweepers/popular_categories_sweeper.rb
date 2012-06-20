@@ -1,5 +1,5 @@
-class CompanyCategorySweeper < ActiveRecord::Observer
-  observe CompanyCategory
+class PopularCategoriesSweeper < ActiveRecord::Observer
+  observe CompanyCategory, Category, SubCategory
 
   def expire_cache_for(cc)
     expire_fragment(:popular_categories)
