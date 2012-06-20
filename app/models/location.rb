@@ -1,5 +1,5 @@
 class Location < ActiveRecord::Base
-  belongs_to :company
+  belongs_to :company, touch: true
   belongs_to :state
   belongs_to :country
 

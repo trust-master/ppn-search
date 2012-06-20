@@ -11,6 +11,7 @@ class SubCategory < ActiveRecord::Base
 
   validates :name, length: { maximum: 255 }, presence: true
   validates_presence_of :category, :sort_order
+
 end
 
 

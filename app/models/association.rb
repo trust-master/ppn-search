@@ -1,5 +1,5 @@
 class Association < ActiveRecord::Base
-  belongs_to :company
+  belongs_to :company, touch: true
 
   validates :url, :title, :name, length: { maximum: 255 }, allow_blank: true
   validates :url, url: true

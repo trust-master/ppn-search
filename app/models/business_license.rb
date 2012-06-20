@@ -4,7 +4,7 @@ class BusinessLicense < ActiveRecord::Base
   belongs_to :type,          class_name: 'LicenseType'
   belongs_to :status,        class_name: 'LicenseStatus'
   belongs_to :issuing_state, class_name: 'State'
-  belongs_to :company
+  belongs_to :company, touch: true
 
   serialize :raw_data, Hash
 

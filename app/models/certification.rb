@@ -1,5 +1,5 @@
 class Certification < ActiveRecord::Base
-  belongs_to :company
+  belongs_to :company, touch: true
 
   has_attached_file :attachment
   set_callback(:post_process, :before) do

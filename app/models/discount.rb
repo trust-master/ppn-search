@@ -1,5 +1,5 @@
 class Discount < ActiveRecord::Base
-  belongs_to :company
+  belongs_to :company, touch: true
   belongs_to :type, class_name: 'DiscountType'
   belongs_to :market
 

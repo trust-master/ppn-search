@@ -113,6 +113,8 @@ class Company < ActiveRecord::Base
     }
     search_methods :any_text_field_contains
 
+    default_scope order('companies.updated_at DESC') # this may need to be looked at later
+
   ### Instance Methods
     delegate :name, to: :insurance_state, prefix: true
 

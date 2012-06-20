@@ -4,7 +4,7 @@ class BusinessFiling < ActiveRecord::Base
   belongs_to :type,          class_name: 'FilingType'
   belongs_to :status,        class_name: 'FilingStatus'
   belongs_to :issuing_state, class_name: 'State'
-  belongs_to :company
+  belongs_to :company, touch: true
 
   serialize :raw_data, Hash
 

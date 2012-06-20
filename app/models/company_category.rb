@@ -1,6 +1,6 @@
 # This class is a join model between Company and SubCategory
 class CompanyCategory < ActiveRecord::Base
-  belongs_to :company
+  belongs_to :company, touch: true
   belongs_to :sub_category
 
   counter_culture :sub_category, column_name: 'companies_count'
