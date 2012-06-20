@@ -45,6 +45,8 @@ gem 'meta_search' # Nifty search scoping tool. Dependency of ActiveAdmin
 
 gem 'squeel' # convience API for AR-scoping
 
+gem 'counter_culture'
+
 gem 'activeadmin', # Pretty admin interface made easy
   git: 'https://github.com/rtlong/active_admin.git' # my fork, for various fixes / mods
   # path: '../active_admin' # use my local copy as I change stuff

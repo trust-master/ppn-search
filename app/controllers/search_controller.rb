@@ -7,7 +7,8 @@ class SearchController < InheritedResources::Base
   authorize_resource :company_search
 
   def index
-    @search = Company.metasearch(params[:search])
+    @search = Company.metasearch(params[:search]) # this is used by the search form builder
+
     index! do |format|
       format.html do
         if collection
@@ -34,18 +35,7 @@ class SearchController < InheritedResources::Base
     end
 
     def popular_categories
-      @popular_categories ||= Rails.cache.fetch(:popular_categories) do
-        CompanyCategory
-          .select(['count(*) as total', :sub_category_id])
-          .includes(:sub_category)
-          .group(:sub_category_id)
-          .order('total DESC')
-          .limit(5)
-          .uniq
-          .map { |cc|
-            [cc.total.to_i, cc.sub_category]
-          }
-      end
+      @popular_categories ||= SubCategory.order('companies_count DESC').limit(8).includes(:category)
     end
     helper_method :popular_categories
 

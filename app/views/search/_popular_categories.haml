@@ -1,0 +1,9 @@
+= cache(:popular_categories) do
+  #popular_categories
+    %h3= t('.header', count: popular_categories.count)
+
+    %ul.popular_categories
+      - popular_categories.each do |sub_category|
+        %li[sub_category]
+          = link_to search_index_path('search[company_categories_sub_category_id_in][]' => sub_category.id) do
+            #{sub_category.category_name} - #{sub_category.name} (#{sub_category.companies_count})

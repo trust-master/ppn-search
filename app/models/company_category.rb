@@ -3,6 +3,9 @@ class CompanyCategory < ActiveRecord::Base
   belongs_to :company
   belongs_to :sub_category
 
+  counter_culture :sub_category, column_name: 'companies_count'
+  counter_culture [:sub_category, :category], column_name: 'companies_count'
+
   attr_accessible :sub_category_id, as: [:user, :company_admin, :administrator]
   attr_readonly :company_id
 

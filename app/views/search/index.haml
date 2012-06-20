@@ -4,18 +4,10 @@
 #col-a
   = render 'form'
 
-  -# .results
-    %h4= t('.popular_categories', count: @popular_categories.count)
-
-    %ul.popular_categories
-      - @popular_categories.each do |count, sub_category|
-        %li[sub_category]
-          %h3
-            = link_to(sub_category.name, search_index_path('search[company_categories_sub_category_id_in[]]' => sub_category.id))
-            = " (#{count})"
-          .arrow
+  = render 'popular_categories', popular_categories: popular_categories
 
 %h2.secondary-title= t('.secondary_title')
 
 #col-b
   #company_details= render 'buyers_guide_welcome'
+

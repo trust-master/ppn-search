@@ -227,7 +227,8 @@ CREATE TABLE categories (
     name character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    sort_order integer DEFAULT 0 NOT NULL
+    sort_order integer DEFAULT 0 NOT NULL,
+    companies_count integer DEFAULT 0 NOT NULL
 );
 
 
@@ -905,7 +906,8 @@ CREATE TABLE sub_categories (
     name character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    sort_order integer DEFAULT 0 NOT NULL
+    sort_order integer DEFAULT 0 NOT NULL,
+    companies_count integer DEFAULT 0 NOT NULL
 );
 
 
@@ -1722,3 +1724,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120618025107');
 INSERT INTO schema_migrations (version) VALUES ('20120618231600');
 
 INSERT INTO schema_migrations (version) VALUES ('20120618231700');
+
+INSERT INTO schema_migrations (version) VALUES ('20120619204801');
