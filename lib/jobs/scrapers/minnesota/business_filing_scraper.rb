@@ -22,7 +22,7 @@ module Jobs::Scrapers
           { FileNumber: filing_number.to_s.strip, Type: 'BeginsWith' }.to_query
         ].join('?')
 
-        page = agent.get(url).tap{|p| p.pry }.link_with(href: %r[SearchDetails]).tap{ |link|
+        page = agent.get(url).link_with(href: %r[SearchDetails]).tap{ |link|
           raise NoResultsError, "No results were found for filing_number: #{filing_number}" if link.nil?
         }.click
 
