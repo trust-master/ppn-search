@@ -77,6 +77,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: users
@@ -97,3 +98,4 @@ end
 #  updated_at         :datetime        not null
 #  phone              :string(255)
 #
+

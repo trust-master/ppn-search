@@ -17,6 +17,7 @@ class CompanySearch < ActiveRecord::Base
   end
 end
 
+
 # == Schema Information
 #
 # Table name: company_searches
@@ -25,11 +26,11 @@ end
 #  about                             :text
 #  address                           :text
 #  application_number                :text
+#  benefits                          :text
 #  chief_executive_officer           :text
 #  city                              :text
 #  description                       :text
 #  doing_business_as                 :text
-#  specialty                      :text
 #  home_jurisdiction                 :text
 #  name                              :text
 #  number                            :text
@@ -41,6 +42,7 @@ end
 #  registered_agents                 :text
 #  registered_office_address         :text
 #  responsible_person_license_number :text
+#  specialty                         :text
 #  street                            :text
 #  street2                           :text
 #  title                             :text

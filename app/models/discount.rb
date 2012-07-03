@@ -27,6 +27,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: discounts
@@ -36,7 +37,6 @@ end
 #  type_id                 :integer
 #  title                   :string(255)
 #  description             :text
-#  image                   :string(255)
 #  market_id               :integer
 #  start_date              :date
 #  end_date                :date
