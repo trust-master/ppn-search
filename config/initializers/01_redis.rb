@@ -1,6 +1,6 @@
 # Lazily instantiates a Redis connection when needed
 REDIS = Hash.new do |hash, key|
-  if key == :resque
+  if key == :sidekiq
     # Resque does it's own namespacing, and marshaling breaks it.
     hash[key] = Redis.connect(url: Rails.application.config.redis_urls[key])
   elsif key == :cache

@@ -3,12 +3,14 @@ require 'json'
 
 module Jobs::Scrapers
   module Minnesota
-    class BusinessLicense < AbstractDOLIScraper
+    class BusinessLicenseScraper < AbstractDOLIScraper
+      include Sidekiq::Worker
+      sidekiq_options queue: :scrapers
 
       IDS = %w[ LicType LicNo AppNo LicStatus ExpDt EffDt OrigDt PrintDt EnforcementAction Name
                 Address1 Address2 Phone Fax Other RespLicNo ]
 
-      def self.perform(company_id, license_number)
+      def perform(company_id, license_number)
         if not AbstractDOLIScraper::LICENSE_NUMBER_PATTERN.match license_number
           raise ArgumentError, 'license_number is invalid!'
         end

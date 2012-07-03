@@ -3,11 +3,13 @@ require 'json'
 
 module Jobs::Scrapers
   module Minnesota
-    class BusinessFiling < AbstractScraper
+    class BusinessFilingScraper < AbstractScraper
+      include Sidekiq::Worker
+      sidekiq_options queue: :scrapers
 
       DATE_FORMAT = '%m/%d/%Y'
 
-      def self.perform(company_id, filing_number)
+      def perform(company_id, filing_number)
         if /\A\s*[a-z0-9\-]+\s*\Z/i.match(filing_number).nil?
           raise ArgumentError, 'filing_number is invalid!'
         end
@@ -20,8 +22,7 @@ module Jobs::Scrapers
           { FileNumber: filing_number.to_s.strip, Type: 'BeginsWith' }.to_query
         ].join('?')
 
-
-        page = agent.get(url).link_with(href: %r[Business/SearchDetails/]).tap{ |link|
+        page = agent.get(url).tap{|p| p.pry }.link_with(href: %r[SearchDetails]).tap{ |link|
           raise NoResultsError, "No results were found for filing_number: #{filing_number}" if link.nil?
         }.click
 
@@ -102,7 +103,7 @@ module Jobs::Scrapers
 
       private
 
-      def self.flatten_and_join_if_array(ary_or_str, joiner = "\n")
+      def flatten_and_join_if_array(ary_or_str, joiner = "\n")
         if ary_or_str.is_a?(Array)
           ary_or_str.flatten.compact.join(joiner).presence
         else
@@ -110,7 +111,7 @@ module Jobs::Scrapers
         end
       end
 
-      def self.parse_date(date_string)
+      def parse_date(date_string)
         if date_string.present?
           Date.strptime(date_string, DATE_FORMAT)
         end

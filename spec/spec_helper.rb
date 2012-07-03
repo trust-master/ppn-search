@@ -40,8 +40,6 @@ Spork.prefork do
   # rspec-factory-girl-and-datamapper
   ActiveSupport::Dependencies.clear
 
-  # to force Resque to run jobs synchronously
-  Resque.inline = true
 end
 
 Spork.each_run do

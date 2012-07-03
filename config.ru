@@ -10,14 +10,6 @@ use Rack::Deflater
 
 require ::File.expand_path('../config/environment',  __FILE__)
 
-require 'resque/server'
-require 'resque-retry/server'
-
-# mount resque-web on the server
-map '/resque' do
-  run Resque::Server
-end
-
 # blitz.io authorization check
 map '/mu-37f05861-eeb11cdb-7d50e0d0-b69d659d' do
   responder = proc { |env|

@@ -50,11 +50,6 @@ ServiceProviderPortal::Application.configure do
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = true
 
-  ### Resque ###
-
-  # Don't bother with actually queueing tasks in development
-  #Resque.inline = true
-
   config.sass.debug_info = true
   config.sass.style = :nested
 end

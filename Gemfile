@@ -45,7 +45,7 @@ gem 'meta_search' # Nifty search scoping tool. Dependency of ActiveAdmin
 
 gem 'squeel' # convience API for AR-scoping
 
-gem 'counter_culture'
+gem 'counter_culture' # easy counter cache columns
 
 gem 'activeadmin', # Pretty admin interface made easy
   git: 'https://github.com/rtlong/active_admin.git' # my fork, for various fixes / mods
@@ -70,11 +70,7 @@ git 'https://github.com/jodosha/redis-store.git' do # using the source,
   gem 'redis-rack-cache' # provides a Redis-backed store for Rack::Cache
 end
 
-gem 'resque', # For background tasks (like scraping the MN DoLI website, or sending emails)
-  git: 'https://github.com/defunkt/resque.git'
-gem 'resque-retry', # for retrying failed resque jobs automatically
-  git: 'https://github.com/lantins/resque-retry.git'
-# gem 'resque-mailer' # perform ActionMailer deliveries with Resque
+gem 'sidekiq'
 
 # For the screen-scraping component
 gem 'nokogiri' # HTML/XML parser
@@ -130,7 +126,6 @@ group :development do
   gem 'guard-bundler', require: false
   gem 'guard-cucumber', require: false
   gem 'guard-spork', require: false
-  gem 'guard-resque', require: false
 
   gem 'sass' # This is here so generators can use it
 

@@ -8,7 +8,7 @@ module Jobs::Scrapers
       DATE_FORMAT = '%m/%d/%Y'
       LICENSE_NUMBER_PATTERN = /\A\s*(\w[A-Z])\s*(\d{1,6})\s*\Z/i
 
-      def self.parse_page(license_type, license_number, ids)
+      def parse_page(license_type, license_number, ids)
         # Make sure the license_number is in the normalized format
         license_number.gsub!(LICENSE_NUMBER_PATTERN){ |m| [$1, '%06d' % $2.to_i].join.upcase }
 
@@ -72,7 +72,7 @@ module Jobs::Scrapers
 
       private
 
-      def self.parse_date(date_string)
+      def parse_date(date_string)
         if date_string.present?
           Date.strptime(date_string, DATE_FORMAT)
         end

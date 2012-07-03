@@ -14,6 +14,10 @@ after_fork do |server, worker|
 
   ActiveRecord::Base.establish_connection
 
+  Sidekiq.configure_client do |config|
+    config.redis = { :size => 1 }
+  end
+
 
   # Since I couldn't figure out how to establish the Rails cache as Redis-Store, without sticking it
   # in the app.rb config file and initializing it during boot, let's reconnect now
