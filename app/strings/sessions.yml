@@ -3,10 +3,10 @@ en:
     fieldsets:
       login: Log In
     create:
-      title: "Preferred Provider Search (Beta)"
+      title: "PPN Search (Beta)"
     new:
-      title: "Preferred Provider Search (Beta)"
-      success: "<strong>Welcome to Preferred Provider Search</strong> (Beta)!"
+      title: "PPN Search (Beta)"
+      success:
       failure: That email and/or password is incorrect.
       cant_log_in: Can't log in or forgot your password?
 
@@ -19,7 +19,7 @@ en:
           body: Let us know about any bugs to help us put the final tweaks on performance and functionality in a stable environment.
         impact:
           title: Do Your Part
-          body: Have an impact on the next version of Preferred Provider Search and all the other people using it.
+          body: Have an impact on the next version of PPN Search and all the other people using it.
 
     destroy:
       success: You've been logged out

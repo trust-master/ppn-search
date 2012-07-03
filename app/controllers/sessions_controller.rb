@@ -23,7 +23,9 @@ class SessionsController < ApplicationController
       if user
         session[:user_id] = user.id
         user.touch :logged_in_at
-        format.html { redirect_to search_index_path, notice: t('success', scope: ['sessions.new']) }
+        format.html {
+          redirect_to search_index_path #, notice: t('success', scope: ['sessions.new'])
+        }
       else
         format.html { flash.now[:error] = t('failure', scope: ['sessions.new']); render action: "new" }
       end
