@@ -1,5 +1,8 @@
 ActiveAdmin.setup do |config|
 
+end
+ActiveAdmin.setup do |config|
+
   # == Site Title
   #
   # Set the title that is displayed on the main layout
@@ -86,6 +89,13 @@ ActiveAdmin.setup do |config|
   # Default:
   # config.logout_link_method = :get
 
+  # == Root
+  #
+  # Set the action to call for the root path. You can set different
+  # roots for each namespace.
+  #
+  # Default:
+  config.root_to = 'companies#index'
 
   # == Admin Comments
   #
@@ -102,6 +112,13 @@ ActiveAdmin.setup do |config|
   #   config.namespace :without_comments do |without_comments|
   #     without_comments.allow_comments = false
   #   end
+
+
+  # == Batch Actions
+  #
+  # Enable and disable Batch Actions
+  #
+  config.batch_actions = true
 
 
   # == Controller Filters
@@ -128,6 +145,7 @@ ActiveAdmin.setup do |config|
   #   config.register_javascript 'my_javascript.js'
 
 
+
   config.display_name_methods = [ :display_name,
                                   :full_name,
                                   :name,
@@ -141,9 +159,10 @@ end
 
 # Do this to every resource controller
 ActiveAdmin::ResourceController.class_eval do
-  authorize_resource
+  skip_authorization_check
 
   append_view_path AdminViewResolver.new
 
   with_role :administrator   # InheritedResources
 end
+

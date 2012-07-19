@@ -128,6 +128,8 @@ group :development do
   gem 'guard-cucumber', require: false
   gem 'guard-spork', require: false
 
+  gem 'foreman'
+
   gem 'sass' # This is here so generators can use it
 
   # gem 'rack-webconsole' # access the rails console right within the web browser

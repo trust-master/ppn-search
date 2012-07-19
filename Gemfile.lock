@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/rtlong/active_admin.git
-  revision: 7db638c4d900944c3864fd8631b93d2f1040e00b
+  revision: d60c7de56b7cc5ece8ada0b2613900534d85f0d8
   specs:
     activeadmin (0.4.4)
       arbre (>= 1.0.0.rc4)
@@ -81,7 +81,7 @@ GEM
     after_commit_action (0.1.3)
       activerecord (>= 3.0.0)
     annotate (2.4.0)
-    arbre (1.0.0.rc4)
+    arbre (1.0.0)
       activesupport (>= 3.0.0)
     arel (3.0.2)
     attribute_normalizer (1.1.0)
@@ -166,6 +166,9 @@ GEM
       net-ssh (>= 2.1.3)
       nokogiri (~> 1.5.0)
       ruby-hmac
+    foreman (0.40.0)
+      term-ansicolor (~> 1.0.7)
+      thor (>= 0.13.6)
     formalize-rails (0.1.3)
       railties (~> 3.1)
     formatador (0.2.3)
@@ -318,7 +321,7 @@ GEM
       rack (= 1.4.1)
       redis-store (~> 1.1.0)
     replicate (1.4)
-    responders (0.9.1)
+    responders (0.9.2)
       railties (~> 3.1)
     rspec (2.10.0)
       rspec-core (~> 2.10.0)
@@ -425,6 +428,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   fog
+  foreman
   formalize-rails
   guard
   guard-annotate
