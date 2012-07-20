@@ -9,7 +9,7 @@ ServiceProviderPortal::Application.configure do
   config.action_controller.perform_caching = true
 
   # See everything in the log (default is :info)
-  # config.log_level = :debug
+  config.log_level = :debug
 
   # Prepend all log lines with the following tags
   # config.log_tags = [ :subdomain, :uuid ]
@@ -56,7 +56,7 @@ ServiceProviderPortal::Application.configure do
   config.static_cache_control = "public, max-age=#{86400*365}"
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
-  # config.action_controller.asset_host = "http://assets.example.com"
+  config.action_controller.asset_host = "do4pzk3e3dtn3.cloudfront.net"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   config.assets.precompile += %w( ie8.css ie7.css ie.css print.css )
