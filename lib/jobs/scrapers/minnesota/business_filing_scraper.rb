@@ -4,7 +4,7 @@ require 'json'
 module Jobs::Scrapers
   module Minnesota
     class BusinessFilingScraper < AbstractScraper
-      include Sidekiq::Worker
+      include ::Sidekiq::Worker
       sidekiq_options queue: :scrapers
 
       DATE_FORMAT = '%m/%d/%Y'
@@ -13,7 +13,7 @@ module Jobs::Scrapers
         if /\A\s*[a-z0-9\-]+\s*\Z/i.match(filing_number).nil?
           raise ArgumentError, 'filing_number is invalid!'
         end
-        if Company.where(id: company_id).none?
+        if ::Company.where(id: company_id).none?
           raise ArgumentError, 'company_id is invalid!'
         end
 
@@ -70,8 +70,8 @@ module Jobs::Scrapers
 
         ).order('updated_at desc').first_or_initialize.update_attributes!({
 
-          type_id:                   FilingType.find_or_create_by_name(props[:business_type]).id,
-          status_id:                 FilingStatus.find_or_create_by_name(props[:status]).id,
+          type_id:                   ::FilingType.find_or_create_by_name(props[:business_type]).id,
+          status_id:                 ::FilingStatus.find_or_create_by_name(props[:status]).id,
 
           name:                      props[:business_name],
 

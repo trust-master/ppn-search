@@ -4,7 +4,7 @@ require 'json'
 module Jobs::Scrapers
   module Minnesota
     class BusinessLicenseScraper < AbstractDOLIScraper
-      include Sidekiq::Worker
+      include ::Sidekiq::Worker
       sidekiq_options queue: :scrapers
 
       IDS = %w[ LicType LicNo AppNo LicStatus ExpDt EffDt OrigDt PrintDt EnforcementAction Name
@@ -14,7 +14,7 @@ module Jobs::Scrapers
         if not AbstractDOLIScraper::LICENSE_NUMBER_PATTERN.match license_number
           raise ArgumentError, 'license_number is invalid!'
         end
-        if not Company.where(id: company_id).any?
+        if not ::Company.where(id: company_id).any?
           raise ArgumentError, 'company_id is invalid!'
         end
 
@@ -23,7 +23,7 @@ module Jobs::Scrapers
 
         # Queue up the personal license that was referenced in this one
         if output[:resp_lic_no]
-          Resque.enqueue(Minnesota::PersonalLicense, company_id, output[:resp_lic_no])
+          ::Resque.enqueue(Minnesota::PersonalLicense, company_id, output[:resp_lic_no])
         end
 
         # Save the new license

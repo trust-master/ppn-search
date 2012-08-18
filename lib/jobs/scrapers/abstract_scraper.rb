@@ -3,7 +3,7 @@ module Jobs
     class AbstractScraper
 
       def agent
-        @agent ||= Mechanize.new
+        @agent ||= ::Mechanize.new
       end
 
     end
