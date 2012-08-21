@@ -23,7 +23,7 @@ module Jobs::Scrapers
 
         # Queue up the personal license that was referenced in this one
         if output[:resp_lic_no]
-          ::Resque.enqueue(Minnesota::PersonalLicense, company_id, output[:resp_lic_no])
+          Minnesota::PersonalLicense.perform_async(company_id, output[:resp_lic_no])
         end
 
         # Save the new license
