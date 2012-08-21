@@ -106,7 +106,7 @@ ActiveAdmin.register User do
       f.input :email
       f.input :phone
       f.input :company, hint: 'This is required only when user is a Company Admin'
-      # f.input :active
+      f.input :active
     end
     f.buttons
   end

@@ -184,7 +184,8 @@
 
 $(document).ready =>
 
-  @companyForm.init() if $('#content').hasClass('companies')
+  if $('#content').hasClass('companies') or $('#content').hasClass('users')
+    @companyForm.init()
   @searchPage.init()  if $('#content').hasClass('search')
   @popup.init()
   @page.bind()
