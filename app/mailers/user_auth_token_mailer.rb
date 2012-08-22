@@ -1,5 +1,5 @@
 class UserAuthTokenMailer < ActionMailer::Base
-
+  layout 'mailer'
 
   def password_reset(token, opts = {})
     setup(token)
