@@ -85,6 +85,7 @@ ServiceProviderPortal::Application.configure do
     address:              'smtp.gmail.com',
     user_name:            ENV['SMTP_LOGIN'],
     password:             ENV['SMTP_PASSWORD'],
+    from:                 ENV['SMTP_FROM'],
     domain:               'trust-master.com',
     authentication:       :plain,
     enable_starttls_auto: true

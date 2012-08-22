@@ -1,6 +1,8 @@
 class UserAuthTokenMailer < ActionMailer::Base
   layout 'mailer'
 
+  default from: "#{smtp_settings[:from] || 'Trust Master'} <#{smtp_settings[:user_name] || 'info@trust-master.com'}>"
+
   def password_reset(token, opts = {})
     setup(token)
     @link = password_reset_url(token)

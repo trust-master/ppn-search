@@ -46,6 +46,10 @@ ServiceProviderPortal::Application.configure do
   config.action_mailer.delivery_method = :letter_opener
   # config.action_mailer.delivery_method = :file
   # config.action_mailer.file_settings = { location: Rails.root.join('tmp','mails') }
+  config.action_mailer.smtp_settings = {
+    user_name:            ENV['SMTP_LOGIN'],
+    from:                 ENV['SMTP_FROM']
+  }
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = true
