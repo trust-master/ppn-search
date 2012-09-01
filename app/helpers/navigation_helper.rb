@@ -60,7 +60,7 @@ module NavigationHelper
       page = page_info(name)
 
       if page or Rails.env.production? # don't do the new_page link on production. We don't want folks getting access denied errors when they click on a link to "Terms of Use", ya know? Shouldn't ever be a problem, but just in case one page gets forgotten
-        nav_link(page[:title], page[:slug], nil, html_options)
+        nav_link(page[:title], "/#{page[:slug]}", nil, html_options)
       else
         html_options[:class] = [*html_options[:class]]
         html_options[:class] << :page_not_found

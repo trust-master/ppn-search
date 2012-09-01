@@ -18,28 +18,26 @@ class Ability
 
     user ||= User.new
 
-    can [:create, :destroy],       Session
+    can [:create, :destroy],       Session        # log-out
     can [:create, :read, :update], PasswordReset
     can [:create, :read, :update], UserAuthToken
     can :read, Page
 
     if user.persisted? # authenticated user
-      can :read,    :all
+      can :read, [CompanySearch]
 
-      cannot :read, Company, visible: false
-      cannot :read, Company, active: false
+      # hide hidden and inactive companies
+      can :read, Company, visible: true, active: true
 
-      can :destroy, Session
-      can :manage,  User, id: user.id
-
-      if user.is_a?(CompanyAdmin)
+      case user
+      when Administrator
+        can :manage, :all
+      when CompanyAdmin
         can :manage, Company, id: user.company_id
         can :manage, Discount, company_id: user.company_id
         can :manage, User, company_id: user.company_id, role: User::ROLES
-      end
-
-      if user.is_a?(Administrator)
-        can :manage, :all
+      else
+        can :manage,  User, id: user.id # self
       end
 
     end

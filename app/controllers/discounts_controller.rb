@@ -9,4 +9,5 @@ class DiscountsController < InheritedResources::Base
 
   respond_to :html, :json
 
+
 end

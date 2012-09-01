@@ -115,6 +115,7 @@ group :development do
   gem 'thin', require: false # Use thin instead of Unicorn, in development only
 
   gem 'tailor', require: false # check syntax and code-style against a set of rules
+  gem 'checker', require: false
 
   # Prints db schema tidbits in all the models, tests, and fixtures, also shows `rake routes` output in routes.rb.
   gem 'annotate', require: false
@@ -128,7 +129,7 @@ group :development do
   gem 'guard-cucumber', require: false
   gem 'guard-spork', require: false
 
-  gem 'foreman'
+  gem 'foreman', require: false
 
   gem 'sass' # This is here so generators can use it
 
@@ -143,10 +144,14 @@ group :development do
   # Pry replaces IRB
   gem 'pry-rails' # replace IRB for the rails console, automatically
   gem 'pry-doc' # the libraries needed to view ruby source method-info in Pry
+  gem 'pry-debugger'
+  gem 'pry-stack_explorer'
 
   gem 'populator' # For seeding my dev DB with fake data
 
   gem 'letter_opener' # Open sent emails in the browser
+
+  gem 'brakeman', require: false
 end
 
 group :development, :test do

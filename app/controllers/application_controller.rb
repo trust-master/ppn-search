@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     if current_user # not authorized
       redirect_to(root_url, alert: exception.message)
-      logger.info 'Unauthorized'
+      logger.info "Unauthorized: #{exception.subject.name}:#{exception.action}"
     else # not logged in
       url = (respond_to?(:main_app) ? main_app : self).login_path
       redirect_to(url)
@@ -28,7 +28,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def current_user_admin?
-    current_user.is_a?(Administrator) or raise CanCan::AccessDenied, t('unauthorized.not_an_admin', default: 'You are not an Admin!')
+    unless current_user.is_a?(Administrator)
+      raise CanCan::AccessDenied, t('unauthorized.not_an_admin', default: 'You are not an Admin!')
+    end
   end
 
   def set_current_user_in_user_model

@@ -3,6 +3,7 @@ en:
   unauthorized:
     default: 'You are not authorized to %{action} %{subject}.'
     not_authenticated: You must log in before you can do that.
+    not_an_admin: You must be a Trust Master Administrator to do that!
     # manage:
     #   all: Not authorized to %{action} %{subject}.
     # update:
