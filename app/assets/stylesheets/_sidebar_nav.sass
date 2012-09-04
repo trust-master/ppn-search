@@ -49,3 +49,31 @@
 
     .arrow
       float: right
+
+.activation_status
+  border:
+    width: 1px
+    style: solid
+  padding: 10px
+  font-size: smaller
+
+  &.active
+    border-color: $blue
+    background-color: $blue-tint
+  &.inactive
+    border-color: $red
+    background:  $red-tint
+
+  h4
+    font-weight: bold
+    margin: 0
+    padding: 0
+    font-size: 110%
+
+  ul
+    padding: 10px 0 0 16px
+    list-style: circle
+    li.satisfied
+      text-decoration: line-through
+      color: $grey
+    li.incomplete
