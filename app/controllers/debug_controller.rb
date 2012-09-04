@@ -42,4 +42,8 @@ class DebugController < ApplicationController
     SCRIPT
   end
 
+  def enable_test_features
+    session[:enable_test_features] = true
+  end
+
 end

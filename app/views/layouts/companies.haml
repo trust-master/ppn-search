@@ -15,16 +15,17 @@
           = menu.nav_link :discounts,     company_discounts_path(@company), proc { controller.controller_name == 'discounts' }
           = menu.nav_link :users,         company_users_path(@company), proc { controller.controller_name == 'users' }
 
-      .activation_status{class: @company.active? ? :active : :inactive}
-        - if @company.active
-          %h4= t('companies.activation.header.active')
+      - if session[:enable_test_features]
+        .activation_status{class: @company.active? ? :active : :inactive}
+          - if @company.active
+            %h4= t('companies.activation.header.active')
 
-        - else
-          %h4= t('companies.activation.header.not_active')
-          %ul
-            - @company.activation_status.each do |method, state|
-              %li.criteria{class: state ? 'satisfied' : 'incomplete'}
-                = t("companies.activation.criteria.#{method}")
+          - else
+            %h4= t('companies.activation.header.not_active')
+            %ul
+              - @company.activation_status.each do |method, state|
+                %li.criteria{class: state ? 'satisfied' : 'incomplete'}
+                  = t("companies.activation.criteria.#{method}")
 
     #col-b
       = yield

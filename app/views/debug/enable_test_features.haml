@@ -1,0 +1,10 @@
+- title "Success"
+- content_for :content_div_class, 'col-1'
+
+%h2
+  Test Features will now be shown for the remainder of your login session.
+
+:javascript
+  window.setTimeout(function(){
+    window.history.back();
+  }, 3000);
