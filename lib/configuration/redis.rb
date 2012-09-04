@@ -42,11 +42,16 @@ class Redis
 
         # look for ENV vars specifying a URL for Redis. For Resque, it will look for Redis_URL_Resque
         # and Redis_URL, in that order (case insensitive)
-        keys = ENV.keys.grep(/Redis_URL(_#{key})?/i).sort
+        keys = ENV.keys.grep(/Redis(togo)?_URL(_#{key})?/i).sort
 
         hash[key] = redis_defaults.dup.tap do |opts|
           # Try to get a url from the environment variables
-          opts[:url] = ENV.values_at(*keys).compact.last || opts[:url]
+          if opts[:url] = ENV.values_at(*keys).compact.last || opts[:url]
+            uri = URI.parse(opts[:url])
+            opts[:host] ||= uri.host
+            opts[:port] ||= uri.port
+            opts[:password] ||= uri.password
+          end
 
           # _Add_ the `key` to the namespace, separated by ':'
           key = nil if key == :default

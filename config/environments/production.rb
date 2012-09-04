@@ -65,8 +65,8 @@ ServiceProviderPortal::Application.configure do
 
   ### Caching ###
   config.action_dispatch.rack_cache = {
-    :metastore    => config.redis_urls[:rack_cache_metastore],
-    :entitystore  => config.redis_urls[:rack_cache_entitystore],
+    :metastore    => config.redis_settings[:rack_cache_metastore][:url],
+    :entitystore  => config.redis_settings[:rack_cache_entitystore][:url],
     :allow_reload => false
   }
 
