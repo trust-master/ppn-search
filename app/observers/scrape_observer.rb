@@ -1,10 +1,8 @@
 class ScrapeObserver < ActiveRecord::Observer
-  observe :company
+  observe :business_license, :personal_license, :business_filing
 
-  def after_save(company)
-    company.business_licenses.all.each(&:fetch)
-    company.personal_licenses.all.each(&:fetch)
-    company.business_filings.all.each(&:fetch)
+  def after_create(record)
+    record.fetch
   end
 
 end

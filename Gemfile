@@ -87,6 +87,13 @@ gem 'exceptional' # send Exceptions to Exceptional.io
 # in the assets group
 gem 'compass-rails'
 
+# These are dependencies of Sidekiq-web:
+gem 'slim'
+gem 'sinatra', require: false
+
+gem 'rack-mini-profiler'
+
+
 # Gems used only for assets and not required in production environments by default.
 group :assets do
   gem 'sass-rails' # use SASS to write CSS

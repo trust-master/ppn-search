@@ -216,6 +216,18 @@ en:
         summary: '' # the whole thing is link
         download:   Download Certificate of Liability Insurance
 
+    activation:
+      header:
+        active:     "Your profile is active!"
+        not_active: "Your profile is incomplete:"
+      criteria:
+        has_email?:                     Valid email address
+        has_in_business_since?:         In Business Since
+        has_name?:                      Searchable Name
+        has_insurance?:                 Certificate of Liability Insurance
+        has_at_least_one_phone_number?: At least one Phone Number
+        has_a_valid_business_filing?:   Business Status filing number
+
 
 
   affiliations:

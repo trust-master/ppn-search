@@ -30,4 +30,16 @@ class DebugController < ApplicationController
     end
   end
 
+  def reload
+    raise unless Rails.env.development?
+
+    Jobs::ReloadJob.new.perform
+    render text: <<-SCRIPT, type: 'text/javascript'
+      <script>
+        alert("Server has reloaded the app; going back where you came from now");
+        history.back();
+      </script>
+    SCRIPT
+  end
+
 end

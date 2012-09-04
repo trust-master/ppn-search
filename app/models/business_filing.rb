@@ -16,6 +16,12 @@ class BusinessFiling < ActiveRecord::Base
   attr_accessible :issuing_state_id, :number, as: [:user, :company_admin, :administrator]
   attr_readonly :company_id, :number, :issuing_state_id
 
+  normalize_attributes :number
+
+  after_save do
+    self.company.save # to set the active bit if necessary
+  end
+
   def display_identifier
     [
       issuing_state.name,

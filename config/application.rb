@@ -11,6 +11,9 @@ if defined?(Bundler)
   Bundler.require(*Rails.groups(:assets => %w(development test)))
 end
 
+# Load all the preinitializers
+Dir[File.expand_path('../preinitializers/*.rb', __FILE__)].each { |f| require f }
+
 module ServiceProviderPortal
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -66,15 +69,8 @@ module ServiceProviderPortal
     # parameters by using an attr_accessible or attr_protected declaration.
     config.active_record.whitelist_attributes = true
 
-    # Configure the Redis URLs here, so I can set up the Redis cache store below...
-    config.redis_urls = Hash.new do |hash, key|
-      keys = ENV.keys.grep(/REDISTOGO_URL|Redis_URL_#{key}/i).sort
-      key = key.downcase.to_sym
-      fallback = "redis://localhost:6379/0/#{key unless key == :default}"
-      hash[key] = [*ENV.values_at(*keys), fallback].compact.first
-    end
-
-    config.cache_store = :redis_store, config.redis_urls[:cache]
+    # config.redis_settings is set up in the preinitializers/redis.rb file
+    config.cache_store = :redis_store, config.redis_settings.cache
 
     # Enable the asset pipeline
     config.assets.enabled = true

@@ -7,6 +7,9 @@ module Jobs::Scrapers
       include ::Sidekiq::Worker
       sidekiq_options queue: :scrapers
 
+      include Jobs::Throttle
+      self.throttle_limit = 15.minutes
+
       IDS = %w[ LicType LicNo AppNo LicStatus ExpDt EffDt OrigDt PrintDt EnforcementAction
                 CEStatus Name Address1 Address2 Phone Fax Other ]
 

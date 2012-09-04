@@ -6,3 +6,4 @@
 :concurrency: 25
 :queues:
   - [scrapers, 1]
+  - [debug,    1]

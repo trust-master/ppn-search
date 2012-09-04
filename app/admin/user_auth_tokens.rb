@@ -40,12 +40,12 @@ ActiveAdmin.register UserAuthToken do
 
   member_action :expire, method: :put do
     resource.expire!
-    redirect_to [:admin, resource.user], notice: 'Password reset was successfully expired and is no longer active.'
+    redirect_to admin_user_path(user), notice: 'Password reset was successfully expired and is no longer active.'
   end
 
   member_action :resend, method: :put do
     resource.mailer.deliver
-    redirect_to [:admin, resource.user], notice: 'Mail was sent again.'
+    redirect_to admin_user_path(user), notice: 'Mail was sent again.'
   end
 
   controller do

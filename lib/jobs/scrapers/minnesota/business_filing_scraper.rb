@@ -4,12 +4,16 @@ require 'json'
 module Jobs::Scrapers
   module Minnesota
     class BusinessFilingScraper < AbstractScraper
-      include ::Sidekiq::Worker
+      include Sidekiq::Worker
       sidekiq_options queue: :scrapers
+
+      include Jobs::Throttle
+      self.throttle_limit = 15.minutes
 
       DATE_FORMAT = '%m/%d/%Y'
 
-      def perform(company_id, filing_number)
+      def perform(*args)
+        company_id, filing_number, args = *args
         if /\A\s*[a-z0-9\-]+\s*\Z/i.match(filing_number).nil?
           raise ArgumentError, 'filing_number is invalid!'
         end
@@ -68,7 +72,7 @@ module Jobs::Scrapers
           number:           props[:file_number],
           issuing_state_id: Minnesota.id
 
-        ).order('updated_at desc').first_or_initialize.update_attributes!({
+        ).order('updated_at desc').first_or_initialize.update_attributes({
 
           type_id:                   ::FilingType.find_or_create_by_name(props[:business_type]).id,
           status_id:                 ::FilingStatus.find_or_create_by_name(props[:status]).id,

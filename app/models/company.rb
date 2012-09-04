@@ -1,4 +1,6 @@
 class Company < ActiveRecord::Base
+  include CompanyActivationRequirements
+
   attr_accessor :current_sections
   paginates_per 5
 
@@ -71,13 +73,14 @@ class Company < ActiveRecord::Base
     set_callback(:post_process, :before) do
       !! ValidationPatterns::ImageContentTypes.match(insurance_certificate.content_type)
     end
+    before_save :set_active_flag
 
   ### Validations
     with_options if: :insured do |user|
       user.validates :insurance_state,       presence: true
       user.validates :insurance_valid_from,  presence: true, date: { in_past: true }
       user.validates :insurance_valid_until, presence: true, date: { in_future: true }
-      user.validates_attachment :insurance_certificate,
+      user.validates_attachment :insurance_certificate, presence: true,
         size: {
           less_than_or_equal_to: 1.megabytes,
           allow_blank: true },
@@ -140,21 +143,16 @@ class Company < ActiveRecord::Base
     end
 
     def phone_numbers
-      @phone_numbers or begin
-        numbers = {}
+      Hash.new.tap do |numbers|
         numbers[:phone_main]   = phone_main   if phone_main?
         numbers[:phone_mobile] = phone_mobile if phone_mobile?
         numbers[:phone_fax]    = phone_fax    if phone_fax
-        @phone_numbers = numbers
       end
     end
 
     def all_licenses
       self.business_licenses + self.personal_licenses + self.business_filings
     end
-
-  ### Class Methods
-  # class << self; end
 
   private
 
@@ -166,6 +164,11 @@ class Company < ActiveRecord::Base
       self[:insurance_certificate] = nil
       self[:insurance_valid_from]  = nil
       self[:insurance_valid_until] = nil
+    end
+
+    def set_active_flag
+      self[:active] = can_be_activated?
+      return true
     end
 end
 

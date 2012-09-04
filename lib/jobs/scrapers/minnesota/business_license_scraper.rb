@@ -7,6 +7,9 @@ module Jobs::Scrapers
       include ::Sidekiq::Worker
       sidekiq_options queue: :scrapers
 
+      include Jobs::Throttle
+      self.throttle_limit = 15.minutes
+
       IDS = %w[ LicType LicNo AppNo LicStatus ExpDt EffDt OrigDt PrintDt EnforcementAction Name
                 Address1 Address2 Phone Fax Other RespLicNo ]
 
@@ -23,7 +26,7 @@ module Jobs::Scrapers
 
         # Queue up the personal license that was referenced in this one
         if output[:resp_lic_no]
-          Minnesota::PersonalLicense.perform_async(company_id, output[:resp_lic_no])
+          Minnesota::PersonalLicenseScraper.perform_async(company_id, output[:resp_lic_no])
         end
 
         # Save the new license

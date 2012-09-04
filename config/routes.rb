@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 ServiceProviderPortal::Application.routes.draw do
 
   ActiveAdmin.routes(self) unless defined?(::Rake) # the unless is to avoid initializing ActiveAdmin
@@ -29,14 +31,18 @@ ServiceProviderPortal::Application.routes.draw do
     get :logout, action: :destroy, as: :logout
   end
 
-  get '/debug/:action', controller: :debug
+  constraints(proc { |req| uid = req.session[:user_id] and User.find(uid).is_a?(Administrator) }) do
+    get '/debug/:action', controller: :debug
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   scope '/follow_us_on', as: :follow_us_on do
     get 'twitter',  to: redirect('https://twitter.com/#!/trustmaster')
     get 'facebook', to: redirect('https://www.facebook.com/pages/Trust-Master/165946716770592')
   end
-  root :to => 'search#index'
 
+
+  root :to => 'search#index'
 
   get '*slug', controller: :pages, action: :show, as: :page, constraints: RoutingConstraints::Pages
 end

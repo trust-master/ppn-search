@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_filter :set_current_user_in_user_model
+  before_filter :authorize_mini_profiler
 
   protect_from_forgery
   check_authorization
@@ -18,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @current_user ||= if session[:user_id]
-      User.where(id: session[:user_id]).first
+      User.where(id: session[:user_id]).first or session[:user_id] = nil
     elsif user = authenticate_with_http_basic { |email, password| User.find_by_email_and_password(email, password) }
       user
     else
@@ -39,6 +40,10 @@ class ApplicationController < ActionController::Base
     User.current_user = current_user
   end
 
+  def authorize_mini_profiler
+    Rack::MiniProfiler.authorize_request if  current_user.is_a?(Administrator)
+  end
+
   # PaperTrail will use these
   def info_for_paper_trail
     { ip_address: request.remote_ip, controller_name: self.class.name }
@@ -46,3 +51,4 @@ class ApplicationController < ActionController::Base
   # alias :user_for_paper_trail :current_user
 
 end
+
