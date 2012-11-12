@@ -41,7 +41,9 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_mini_profiler
-    Rack::MiniProfiler.authorize_request if  current_user.is_a?(Administrator)
+    if defined?(Rack::MiniProfiler) and current_user.is_a?(Administrator)
+      Rack::MiniProfiler.authorize_request
+    end
   end
 
   # PaperTrail will use these
