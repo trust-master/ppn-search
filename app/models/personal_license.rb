@@ -1,5 +1,6 @@
 class PersonalLicense < ActiveRecord::Base
   include Fetchable
+  extend EasyArelAccess
 
   belongs_to :type, class_name: 'LicenseType'
   belongs_to :status, class_name: 'LicenseStatus'
@@ -16,6 +17,8 @@ class PersonalLicense < ActiveRecord::Base
   attr_accessible :issuing_state_id, :number, as: [:user, :company_admin, :administrator]
   attr_readonly :company_id, :number, :issuing_state_id
 
+  scope :outdated, proc { where(t[:fetched_at].lt(24.hours.ago)) }
+
   def display_identifier
     [
       issuing_state.name,
@@ -24,14 +27,6 @@ class PersonalLicense < ActiveRecord::Base
     ].compact.join(' - ')
   end
 end
-
-
-
-
-
-
-
-
 
 # == Schema Information
 #

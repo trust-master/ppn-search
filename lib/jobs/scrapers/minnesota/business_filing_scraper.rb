@@ -7,6 +7,7 @@ module Jobs::Scrapers
       include Sidekiq::Worker
       sidekiq_options queue: :scrapers
 
+      # include Jobs::Lock
       include Jobs::Throttle
       self.throttle_limit = 15.minutes
 

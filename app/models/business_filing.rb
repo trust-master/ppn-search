@@ -1,5 +1,6 @@
 class BusinessFiling < ActiveRecord::Base
   include Fetchable
+  extend EasyArelAccess
 
   belongs_to :type,          class_name: 'FilingType'
   belongs_to :status,        class_name: 'FilingStatus'
@@ -17,6 +18,8 @@ class BusinessFiling < ActiveRecord::Base
   attr_readonly :company_id, :number, :issuing_state_id
 
   normalize_attributes :number
+
+  scope :outdated, proc { where(t[:fetched_at].lt(24.hours.ago)) }
 
   after_save do
     self.company.save # to set the active bit if necessary

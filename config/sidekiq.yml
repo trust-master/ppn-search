@@ -5,5 +5,6 @@
 :verbose: true
 :concurrency: 25
 :queues:
+  - [scheduler, 1]
   - [scrapers, 1]
   - [debug,    1]
