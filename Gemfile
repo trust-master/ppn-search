@@ -91,7 +91,6 @@ gem 'compass-rails'
 gem 'slim'
 gem 'sinatra', require: false
 
-gem 'rack-mini-profiler'
 
 
 # Gems used only for assets and not required in production environments by default.
@@ -178,6 +177,7 @@ end
 
 group :development, :staging do
   gem 'replicate', require: false
+  gem 'rack-mini-profiler'
 end
 
 # Gems only for certain operating system environments.

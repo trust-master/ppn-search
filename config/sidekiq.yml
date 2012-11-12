@@ -3,7 +3,7 @@
 #   sidekiq -C config.yml
 ---
 :verbose: true
-:concurrency: 25
+:concurrency: 3
 :queues:
   - [scheduler, 1]
   - [scrapers, 1]
