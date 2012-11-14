@@ -138,7 +138,11 @@ class Company < ActiveRecord::Base
     end
 
     def in_business_since=(string)
-      date = Date.new(string.to_i)
+      if year = string.presence.try{|s| s = s.to_i; s > 1700 ? s : nil }
+        date = Date.new(year)
+      else
+        date = nil
+      end
       write_attribute(:in_business_since, date)
     end
 
