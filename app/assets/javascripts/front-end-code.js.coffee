@@ -154,7 +154,9 @@
         .addClass('selected')
         .siblings('.company').removeClass('selected')
 
-      new_element.find('.tabs').tabs()
+      new_element.find('.tabs').tabs
+        select: (event, ui)->
+          $('#company_details .actions a.edit').attr('href', $(ui.panel).data('edit-path'))
 
       new_element.find('.accordion').accordion
         active: false,

@@ -1,20 +1,19 @@
-= cache [:companies, company.id, :profile] do
-  .tabs
-    %ul.nav.tab_bar
-      = list_of [:listing, :capabilities, :credentials, :discounts] do |label|
-        = link_to t(".tab_names.#{label}"), "##{tab_id_for(company, label)}"
-      %li= link_to t(".tab_names.reviews"), "##{tab_id_for(company, :reviews)}", class: 'disabled ui-state-disabled'
+.tabs
+  %ul.nav.tab_bar
+    = list_of [:listing, :capabilities, :credentials, :discounts] do |label|
+      = link_to t(".tab_names.#{label}"), "##{tab_id_for(company, label)}"
+    %li= link_to t(".tab_names.reviews"), "##{tab_id_for(company, :reviews)}", class: 'disabled ui-state-disabled'
 
-    %header
-      %h2= company.name
-      - if company.in_business_since?
-        .in_business_since= t('.in_business_since', year: company.since)
+  %header
+    %h2= company.name
+    - if company.in_business_since?
+      .in_business_since= t('.in_business_since', year: company.since)
 
-      - if can? :edit, company
-        .actions
-          = include_edit_link edit_company_path(company, section: :identity)
+    - if can? :edit, company
+      .actions
+        = include_edit_link edit_company_path(company, section: :identity)
 
-
+  = cache [:companies, company.id, :profile] do
 
     = tab_for company, :listing do
 

@@ -11,7 +11,6 @@ ServiceProviderPortal::Application.routes.draw do
   resources :companies, only: [:show, :edit, :update] do
     resources :alerts
     resources :discounts
-
     resources :users
     resources :company_admins, path: 'users', controller: :users
     resources :administrators, path: 'users', controller: :users
