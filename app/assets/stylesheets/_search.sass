@@ -188,6 +188,7 @@
         & > h2
           margin-bottom: 0
           font-weight: bold
+          font-size: 14pt
 
         & > .in_business_since
           font-size: 11px
@@ -204,7 +205,7 @@
         line-height: 30px
 
         & > #initial
-          $pp_seal_vert_margin: 15px
+          $pp_seal_vert_margin: 5px
 
           #preferred_provider_seal
             // no need for full margin, since the line-height thing provides the correct space below
@@ -214,7 +215,8 @@
 
           p
             // this helps to avoid extra spacing under the seal image
-            +line-height-based-on-image-float('preferred_provider_seal.png', 30px, $pp_seal_vert_margin)
+            line-height: 35px
+            margin-bottom: 16px
             clear: none
 
           p:nth-of-type(n+2)

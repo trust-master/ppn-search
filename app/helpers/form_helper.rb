@@ -1,9 +1,15 @@
 module FormHelper
 
-  def fieldset(name, show_header = true, &block)
+  def fieldset(name, options = {}, &block)
+    if options == true or options == false
+      ActiveSupport::Deprecation.warn 'switch fieldset helper to use options-style hash instead of show_header boolean'
+      options = { show_header: options }
+    end
+    options = { show_header: true }.merge(options)
+
     i18n_scope = [controller.controller_name, :fieldsets]
 
-    content_tag :fieldset, id: name, class: 'inputs' do
+    content_tag :fieldset, id: name, class: ['inputs', *options[:fieldset_class]] do
       html = ''.html_safe
 
       header       = t("#{name}.header", scope: i18n_scope, default: name.to_sym)
@@ -13,7 +19,7 @@ module FormHelper
       html << content_tag(:legend) do
         legend = ''.html_safe
 
-        if show_header
+        if options[:show_header]
           legend << content_tag(:h3, class: (what_is_this ? 'floated' : nil)) do
             content_tag(:span, header)
           end

@@ -5,6 +5,7 @@ en:
 
     notifications:
       title: Notifications and Alerts
+      coming_soon: This feature is not available at this time
 
     privacy:
       title: Privacy Settings

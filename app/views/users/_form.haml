@@ -4,9 +4,9 @@
     = form.input :active, as: :radio_buttons, collection: values_for_active_input, required: true
 
 = fieldset :name do
-  %ul
+  %ul.horizontal
     = form.input :first_name
-    = form.input :middle_name
+    = form.input :middle_name, input_html: { maxlength: 3 }, wrapper_html: { class: :short }
     = form.input :last_name
 
 = fieldset :contact do

@@ -2,9 +2,9 @@
 
 = simple_form_for resource, url: account_path do |f|
   = fieldset :name do
-    %ul
+    %ul.horizontal
       = f.input :first_name
-      = f.input :middle_name
+      = f.input :middle_name, input_html: { maxlength: 3 }, wrapper_html: { class: :short }
       = f.input :last_name
 
   = fieldset :contact do
@@ -19,7 +19,7 @@
         = f.input :password
         = f.input :password_confirmation
 
-  = fieldset :buttons, false do
+  = fieldset :buttons, show_header: false do
     = link_to t('helpers.cancel'), :back, class: :cancel
     = f.button :submit, class: :save
 
