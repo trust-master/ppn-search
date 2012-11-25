@@ -4,8 +4,9 @@
     timestamp = new Date().valueOf()
     actions_div = $(this).parent()
     template = actions_div.find('.template').html().replace(/_ID_/g, timestamp)
-    $(template).insertBefore(actions_div)
+    new_block = $(template).insertBefore(actions_div)
     $('.input.select select, .input.grouped_select select').chosen()
+    $('input[type!="hidden"]:first', new_block).focus()
     window.pageHasChanged = true
 
   remove_or_mark_for_destruction: ->
@@ -62,6 +63,7 @@
           ].join('')
       market.find('ul.service_areas').hide()
       market.find('.collapsed_summary > span').html(areas.get().join(', ') || 'nothing selected').parent().show()
+      return false
 
     $('#service_areas .market').on 'click', 'a.expand', (event)->
       $(this).siblings('.collapse').show()
@@ -69,6 +71,7 @@
       market = $(this).parents('.market')
       market.find('.collapsed_summary').hide()
       market.find('ul.service_areas').show()
+      return false
 
     $('#service_categories').on 'click', 'a.remove', (event)->
       _this = $(this).parents('li.sub_category')
@@ -80,23 +83,29 @@
       category.toggle(any_left)
 
       window.pageHasChanged = true
+      return false
 
-    $('#locations, #certifications, #affiliations, #associations, #licenses').on 'click', 'a.add', this.find_and_inject_template
+    $('#locations, #certifications, #affiliations, #associations, #licenses').on 'click', 'a.add', (event)->
+      window.companyForm.find_and_inject_template.call(this)
+      return false
 
     $('#locations').on 'click', 'a.remove', (event)->
       _this = $(this).parents('ul.location')
       _this.hide()
       window.companyForm.remove_or_mark_for_destruction.call(_this)
+      return false
 
     $('#business_filing').on 'click', 'a.add', (event)->
       window.companyForm.find_and_inject_template.call(this)
       $(this).slideUp()
+      return false
 
     $('#licenses, #business_filing').on 'click', 'a.remove', (event)->
       _this = $(this).parents('.personal_license, .business_license, .business_filing').first()
       _this.slideUp()
       _this.siblings('.actions').find('a.add').slideDown()
       window.companyForm.remove_or_mark_for_destruction.call(_this)
+      return false
 
 
     $('.market').on 'click', 'a.remove', (event)->
@@ -106,11 +115,13 @@
       _this.find('.service_area input.destroy').each ->
         this.checked = false # uncheck the box
         $(this).change() # this is so the ui-button notices the previous change
+        return false
 
     $('#certifications, #affiliations, #associations').on 'click', 'a.remove', (event)->
       _this = $(this).parents('.certification, .affiliation, .association').first()
       _this.slideUp()
       window.companyForm.remove_or_mark_for_destruction.call(_this)
+      return false
 
     # set up the profile preview
     if company_details = $('#company_details')

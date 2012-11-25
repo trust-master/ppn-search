@@ -43,6 +43,7 @@ module ActionLinksHelper
         content_tag(:div, '', class: :icon) + text.html_safe
       end
     else
+      options[:href] ||= '#'
       content_tag(:a, options) do
         content_tag(:div, '', class: :icon) + text.html_safe
       end
