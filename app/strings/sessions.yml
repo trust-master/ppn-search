@@ -3,9 +3,9 @@ en:
     fieldsets:
       login: Log In
     create:
-      title: "PPN Search (Beta)"
+      title: "eHomeManage Search (Beta)"
     new:
-      title: "PPN Search (Beta)"
+      title: "eHomeManage Search (Beta)"
       success:
       failure: That email and/or password is incorrect.
       cant_log_in: Can't log in or forgot your password?
@@ -19,7 +19,7 @@ en:
           body: Let us know about any bugs to help us put the final tweaks on performance and functionality in a stable environment.
         impact:
           title: Do Your Part
-          body: Have an impact on the next version of PPN Search and all the other people using it.
+          body: Have an impact on the next version of eHomeManage Search and all the other people using it.
 
     destroy:
       success: You've been logged out
