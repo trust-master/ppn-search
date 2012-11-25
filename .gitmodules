@@ -1,0 +1,12 @@
+[submodule "vagrant/chef/cookbooks/postgresql"]
+	path = vagrant/chef/cookbooks/postgresql
+	url = https://github.com/cookbooks/postgresql.git
+[submodule "vagrant/chef/cookbooks/redis"]
+	path = vagrant/chef/cookbooks/redis
+	url = https://github.com/getaroom/chef-redis.git
+[submodule "vagrant/chef/cookbooks/sysctl"]
+	path = vagrant/chef/cookbooks/sysctl
+	url = https://github.com/Fewbytes/sysctl-cookbook.git
+[submodule "vagrant/chef/cookbooks/openssl"]
+	path = vagrant/chef/cookbooks/openssl
+	url = https://github.com/opscode-cookbooks/openssl.git
