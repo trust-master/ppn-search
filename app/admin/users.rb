@@ -14,13 +14,13 @@ ActiveAdmin.register User do
     scope.where(active: false)
   end
 
-  USER_ROLES = {
+  user_roles = {
     "Client"        => 'User',
     "Company Admin" => 'CompanyAdmin',
     "TM Admin"      => 'Administrator'
-  }.freeze
+  }
 
-  USER_ROLES.each do |name, role|
+  user_roles.each do |name, role|
     self.send(:scope, name) do |scope|
       scope.where(role: role)
     end
@@ -47,7 +47,7 @@ ActiveAdmin.register User do
 
   show title: :display_name do |c|
     attributes_table do
-      row(:role) { USER_ROLES.rassoc(c.role).first }
+      row(:role) { user_roles.rassoc(c.role).first }
       row :display_name
       row :email
       row :phone
@@ -99,7 +99,7 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs do
-      f.input :role, as: :select, collection: USER_ROLES
+      f.input :role, as: :select, collection: user_roles
       f.input :first_name
       f.input :middle_name
       f.input :last_name
