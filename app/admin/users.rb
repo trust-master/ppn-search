@@ -118,11 +118,22 @@ ActiveAdmin.register User do
     redirect_to admin_user_path(user), notice: 'Password reset email sent to User!'
   end
 
+  member_action :login_as do
+    user = User.find(params[:id])
+    session[:user_id] = user.id
+
+    redirect_to root_path, notice: "You're now logged in as #{user.display_name}!"
+  end
+
   action_item only: [:edit, :show] do
     link_to t('.view_in_app'), edit_company_user_path(user.company, user) if user.company
   end
 
   action_item only: [:show, :edit] do
     link_to t('.reset_password'), reset_password_admin_user_path(user)
+  end
+
+  action_item only: [:show] do
+    link_to t('.login_as_user'), login_as_admin_user_path(user)
   end
 end

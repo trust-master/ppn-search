@@ -42,6 +42,7 @@ class PasswordResetsController < ApplicationController
 
       if @user.save
         session[:user_id] = @user.id # Leave the user logged in
+        user.touch :logged_in_at
 
         @token.fullfill!
 
