@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: company_categories
+#
+#  id              :integer          not null, primary key
+#  company_id      :integer
+#  sub_category_id :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 # This class is a join model between Company and SubCategory
 class CompanyCategory < ActiveRecord::Base
   belongs_to :company, touch: true
@@ -15,14 +26,4 @@ end
 
 
 
-# == Schema Information
-#
-# Table name: company_categories
-#
-#  id              :integer         not null, primary key
-#  company_id      :integer
-#  sub_category_id :integer
-#  created_at      :datetime        not null
-#  updated_at      :datetime        not null
-#
 

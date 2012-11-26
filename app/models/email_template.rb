@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: email_templates
+#
+#  id           :string(255)      not null, primary key
+#  display_name :string(255)
+#  headers      :text
+#  body         :text
+#  template     :binary
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
 # This is the email version of the Page model. It's part of an interface to edit email templates through the Admin UI, which is incomplete
 
 class EmailTemplate < ActiveRecord::Base
@@ -100,16 +113,3 @@ class EmailTemplate < ActiveRecord::Base
   end
 
 end
-# == Schema Information
-#
-# Table name: email_templates
-#
-#  id           :string(255)     not null, primary key
-#  display_name :string(255)
-#  headers      :text
-#  body         :text
-#  template     :binary
-#  created_at   :datetime        not null
-#  updated_at   :datetime        not null
-#
-

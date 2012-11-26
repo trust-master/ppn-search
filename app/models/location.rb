@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: locations
+#
+#  id         :integer          not null, primary key
+#  company_id :integer
+#  city       :string(255)
+#  state_id   :integer
+#  zip        :string(255)
+#  country_id :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  street     :string(255)
+#  street2    :string(255)
+#
+
 class Location < ActiveRecord::Base
   belongs_to :company, touch: true
   belongs_to :state
@@ -37,21 +53,4 @@ class Location < ActiveRecord::Base
 end
 
 
-
-
-# == Schema Information
-#
-# Table name: locations
-#
-#  id         :integer         not null, primary key
-#  company_id :integer
-#  city       :string(255)
-#  state_id   :integer
-#  zip        :string(255)
-#  country_id :integer
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
-#  street     :string(255)
-#  street2    :string(255)
-#
 

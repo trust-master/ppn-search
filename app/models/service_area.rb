@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: service_areas
+#
+#  id         :integer          not null, primary key
+#  market_id  :integer
+#  name       :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  sort_order :integer          default(0), not null
+#
+
 class ServiceArea < ActiveRecord::Base
   # default_scope order('service_areas.sort_order DESC', :id)
 
@@ -11,17 +23,4 @@ class ServiceArea < ActiveRecord::Base
 end
 
 
-
-
-# == Schema Information
-#
-# Table name: service_areas
-#
-#  id         :integer         not null, primary key
-#  market_id  :integer
-#  name       :string(255)
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
-#  sort_order :integer         default(0), not null
-#
 

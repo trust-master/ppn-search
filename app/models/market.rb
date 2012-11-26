@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: markets
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  sort_order :integer          default(0), not null
+#
+
 class Market < ActiveRecord::Base
   # default_scope order('markets.sort_order DESC', :id)
 
@@ -13,15 +24,3 @@ class Market < ActiveRecord::Base
   validates :name, length: { maximum: 255 }, presence: true
   validates :sort_order, presence: true
 end
-
-# == Schema Information
-#
-# Table name: markets
-#
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
-#  sort_order :integer         default(0), not null
-#
-

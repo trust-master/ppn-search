@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: sub_categories
+#
+#  id              :integer          not null, primary key
+#  category_id     :integer
+#  name            :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  sort_order      :integer          default(0), not null
+#  companies_count :integer          default(0), not null
+#
+
 class SubCategory < ActiveRecord::Base
   # default_scope order('sub_categories.sort_order DESC', :id)
 
@@ -18,16 +31,4 @@ end
 
 
 
-# == Schema Information
-#
-# Table name: sub_categories
-#
-#  id              :integer         not null, primary key
-#  category_id     :integer
-#  name            :string(255)
-#  created_at      :datetime        not null
-#  updated_at      :datetime        not null
-#  sort_order      :integer         default(0), not null
-#  companies_count :integer         default(0), not null
-#
 

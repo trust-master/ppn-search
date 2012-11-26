@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: filing_statuses
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class FilingStatus < ActiveRecord::Base
   has_many :business_filings
 
@@ -6,15 +16,4 @@ class FilingStatus < ActiveRecord::Base
 end
 
 
-
-
-# == Schema Information
-#
-# Table name: filing_statuses
-#
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
-#
 

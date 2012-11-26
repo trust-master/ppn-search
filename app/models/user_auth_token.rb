@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: user_auth_tokens
+#
+#  id               :integer          not null, primary key
+#  user_id          :integer
+#  token            :string(255)
+#  type             :string(255)
+#  fullfilled_by_ip :string(255)
+#  fullfilled_at    :datetime
+#  email_sent_at    :datetime
+#  expires_at       :datetime         not null
+#  created_at       :datetime         not null
+#  created_by_ip    :string(255)
+#  updated_at       :datetime         not null
+#
+
 # UserAuthToken model is responsible for auth tokens which will be mailed to new user in the case of
 # a newly created user and/or a password reset. Creating a new UserAuthToken should generate a new
 # token at the same time. This token should be unique in the table context, and it should include a
@@ -78,22 +95,4 @@ class UserAuthToken < ActiveRecord::Base
     UserAuthTokenMailer.send(self.class.name.underscore, self, *args)
   end
 end
-
-
-# == Schema Information
-#
-# Table name: user_auth_tokens
-#
-#  id               :integer         not null, primary key
-#  user_id          :integer
-#  token            :string(255)
-#  type             :string(255)
-#  fullfilled_by_ip :string(255)
-#  fullfilled_at    :datetime
-#  email_sent_at    :datetime
-#  expires_at       :datetime        not null
-#  created_at       :datetime        not null
-#  created_by_ip    :string(255)
-#  updated_at       :datetime        not null
-#
 
