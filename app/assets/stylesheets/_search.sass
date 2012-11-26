@@ -70,13 +70,13 @@
     & > h3
       margin-bottom: 15px
 
-    & > ul
-      list-style: inherit
-      padding-left: 16px
+    .sub_category
+      +normal-links
+      padding: 5px
 
-      li.sub_category
-        +normal-links
-        margin: 5px 0
+      & + .sub_category
+        border-top: 1px solid $light-grey
+
 
   .pagination
     float: right
