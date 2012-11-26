@@ -1,11 +1,7 @@
-module Jobs
-  module Scrapers
-    class AbstractScraper
+class Jobs::Scrapers::AbstractScraper
 
-      def agent
-        @agent ||= ::Mechanize.new
-      end
-
-    end
+  def agent
+    @agent ||= ::Mechanize.new
   end
+
 end

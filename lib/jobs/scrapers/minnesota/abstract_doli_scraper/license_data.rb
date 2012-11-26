@@ -32,7 +32,7 @@ class Jobs::Scrapers::Minnesota::AbstractDOLIScraper::LicenseData
     raise SanityCheckFailedError unless val.is_a?(String)
 
     @hash[:type_id] = LicenseType.where(
-      state_id: Minnesota.id,
+      state_id: Jobs::Scrapers::Minnesota.id,
       name: val.titlecase,
       type: "#{type.to_s.titlecase}LicenseType"
     ).first_or_create!.id

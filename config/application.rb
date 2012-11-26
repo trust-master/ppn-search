@@ -27,13 +27,14 @@ module ServiceProviderPortal
 
     # Activate observers that should always be running.
     config.active_record.observers = %w[
-      user_observer
-      user_auth_token_observer
+      company_observer
+      company_profile_sweeper
+      company_sweeper
+      popular_categories_sweeper
       scrape_observer
       scraped_model_defaults_observer
-      popular_categories_sweeper
-      company_sweeper
-      company_profile_sweeper
+      user_auth_token_observer
+      user_observer
     ]
 
     # generate RSpec tests for views and helpers

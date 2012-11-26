@@ -8,10 +8,11 @@ class Jobs::Scheduler
 
   def perform(*args)
     [PersonalLicense, BusinessLicense, BusinessFiling].each do |model|
-
       model.outdated.all.each(&:fetch)
-
     end
+
+    Jobs::ScheduledCounterUpdater.perform_async
+
 
     self.class.enqueue
   end

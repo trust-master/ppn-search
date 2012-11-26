@@ -36,6 +36,7 @@
 
 class Company < ActiveRecord::Base
   include CompanyActivationRequirements
+  extend EasyArelAccess
 
   attr_accessor :current_sections
   paginates_per 5
@@ -145,14 +146,17 @@ class Company < ActiveRecord::Base
     attr_accessible :visible, as: :administrator
 
   ### Scopes
-    # default_scope includes(:locations, :company_categories, :company_service_areas)
     scope :any_text_field_contains, lambda { |query|
       ids = CompanySearch.search(query).pluck(:company_id)
       where(id: ids.uniq)
     }
     search_methods :any_text_field_contains
 
-    default_scope order('companies.updated_at DESC') # this may need to be looked at later
+    scope :active,  where(active: true)
+    scope :visible, where(visible: true)
+
+    # default_scope includes(:locations, :company_categories, :company_service_areas)
+    scope :sorted, order(t[:updated_at].desc) # this may need to be looked at later
 
   ### Instance Methods
     delegate :name, to: :insurance_state, prefix: true

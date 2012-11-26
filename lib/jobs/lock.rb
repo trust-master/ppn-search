@@ -51,12 +51,15 @@ module Jobs::Lock
 
   def perform_with_lock(*args)
     if self.class.locked?(*args)
-      raise LockedJobError, "Job with args:#{args.inspect}) was locked!"
+      raise LockedJobError, "Job with args:#{args.inspect} was locked!"
 
     else
-      self.class.set_lock(*args)
-      perform_without_lock(*args)
-      self.class.release_lock(*args)
+      begin
+        self.class.set_lock(*args)
+        perform_without_lock(*args)
+      ensure
+        self.class.release_lock(*args)
+      end
     end
   end
 
