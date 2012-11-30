@@ -6,7 +6,7 @@ en:
       contact: Contact Information
 
     index:
-      title: "%{company_name}: Enter your Users here."
+      title: "Enter your Users here."
       table:
         headers:
           name: Name
@@ -20,7 +20,7 @@ en:
         remove_confirmation: Are you sure you want to remove this user? This action can not be undone.
 
     new:
-      title: "%{company_name}: Create User"
+      title: "Create User"
 
     edit:
-      title: "%{company_name}: Edit User"
+      title: "Edit User"

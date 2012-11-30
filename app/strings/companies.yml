@@ -1,15 +1,15 @@
 en:
   companies:
     show:
-      title: '%{company_name}: Profile Preview'
+      title: 'Profile Preview'
     edit:
-      title: '%{company_name}: Edit Profile'
+      title: 'Edit Profile'
     identity:
-      title: '%{company_name}: Tell us about your company.'
+      title: 'Tell us about your company.'
     service:
-      title: '%{company_name}: Tell what you do and where you do it.'
+      title: 'Tell what you do and where you do it.'
     credentials:
-      title: '%{company_name}: The more credentials you add, the better!'
+      title: 'The more credentials you add, the better!'
 
     # the header titles for all fieldsets related to company forms
     fieldsets:

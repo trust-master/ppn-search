@@ -1,11 +1,11 @@
 en:
   discounts:
     new:
-      title: "%{company_name}: Add a new Discount"
+      title: "Add a new Discount"
     edit:
-      title: "%{company_name}: '%{discount_title}' Discount"
+      title: "'%{discount_title}' Discount"
     index:
-      title: "%{company_name}: Offering discounts WILL get you business!"
+      title: "Offering discounts WILL get you business!"
       table:
         headers:
           name: Name
