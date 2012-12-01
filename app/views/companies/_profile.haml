@@ -105,6 +105,10 @@
         = profile_section :licensure do
           .licenses.accordion= render company.all_licenses
 
+      - if company.business_filing.present?
+        = profile_section :business_status do
+          .licenses.accordion= render company.business_filing
+
       - [:affiliations, :associations, :certifications].each do |section|
         - if (associated = company.send(section)).any?
           = profile_section section do

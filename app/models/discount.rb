@@ -41,8 +41,10 @@ class Discount < ActiveRecord::Base
 
   scope :not_expired, where('end_date >= ?', Date.today)
 
-  before_post_process { !! ValidationPatterns::ImageContentTypes.match(attachment.content_type) }
-
+  before_post_process do
+    !self.valid? and
+    !!ValidationPatterns::ImageContentTypes.match(attachment.content_type)
+  end
 end
 
 

@@ -195,7 +195,7 @@ class Company < ActiveRecord::Base
     end
 
     def all_licenses
-      self.business_licenses + self.personal_licenses + self.business_filings
+      self.business_licenses + self.personal_licenses
     end
 
   private

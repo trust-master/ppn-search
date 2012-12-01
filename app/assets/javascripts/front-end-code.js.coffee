@@ -187,7 +187,7 @@
     $('a.lightbox').each ->
       $(this).lightBox()
 
-    $('#licenses, #business_filing, .licensure').on 'click', '.raw_data_message > a', (event)->
+    $('#licenses, .business_status, .licensure').on 'click', '.raw_data_message > a', (event)->
       $(this).parents('.data')
         .find('tbody.raw, tbody.parsed').toggle()
         .find(':visible').scrollTo()
