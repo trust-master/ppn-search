@@ -19,7 +19,7 @@ gem 'redcarpet' # Use Markdown to parse Pages / Email templates
 
 gem 'bcrypt-ruby' # To use ActiveModel has_secure_password
 
-gem 'paperclip', '~> 3.0.4'
+gem 'paperclip', '~> 3.3.0'
 gem 'fog' # Use AWS for Attachment Storage
 
 gem 'cancan' # very nice API for authorization
