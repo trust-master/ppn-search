@@ -14,7 +14,7 @@ class CompaniesController < InheritedResources::Base
   def edit
     super do |format|
       format.html {
-        render(%w[credentials identity service].grep(params['section']).first || 'edit')
+        render(%w[listing capabilities credentials].grep(params['section']).first || 'edit')
       }
     end
   end

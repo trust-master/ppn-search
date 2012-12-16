@@ -11,7 +11,7 @@
 
     - if can? :edit, company
       .actions
-        = include_edit_link edit_company_path(company, section: :identity)
+        = include_edit_link edit_company_path(company, section: :listing)
 
   = cache [:companies, company.id, :profile] do
 

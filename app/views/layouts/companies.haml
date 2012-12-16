@@ -8,8 +8,8 @@
     #col-a
       .sidebar-nav
         = nav_for :companies, include_arrow: true do |menu|
-          = menu.nav_link :identity,      edit_company_path(@company, section: :identity)
-          = menu.nav_link :service,       edit_company_path(@company, section: :service)
+          = menu.nav_link :listing,       edit_company_path(@company, section: :listing)
+          = menu.nav_link :capabilities,  edit_company_path(@company, section: :capabilities)
           = menu.nav_link :credentials,   edit_company_path(@company, section: :credentials)
           -# = menu.nav_link :alerts,        company_alerts_path(@company), proc { controller.controller_name == 'alerts' }, class: :disabled
           = menu.nav_link :discounts,     company_discounts_path(@company), proc { controller.controller_name == 'discounts' }

@@ -3,7 +3,7 @@
 = simple_form_for @company, multipart: true do |form|
   = form.error_notification
 
-  - %w[identity service credentials].each do |section|
+  - %w[listing capabilities credentials].each do |section|
     = render "#{section}_fieldsets", form: form
 
   %fieldset.last#buttons

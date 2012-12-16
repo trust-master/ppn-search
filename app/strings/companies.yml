@@ -4,9 +4,9 @@ en:
       title: 'Profile Preview'
     edit:
       title: 'Edit Profile'
-    identity:
+    listing:
       title: 'Tell us about your company.'
-    service:
+    capabilities:
       title: 'Tell what you do and where you do it.'
     credentials:
       title: 'The more credentials you add, the better!'

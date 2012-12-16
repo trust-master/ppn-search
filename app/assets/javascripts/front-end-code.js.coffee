@@ -125,7 +125,9 @@
 
     # set up the profile preview
     if company_details = $('#company_details')
-      company_details.find('.tabs').tabs()
+      company_details.find('.tabs').tabs
+        select: (event, ui)->
+          $('#company_details .actions a.edit').attr('href', $(ui.panel).data('edit-path'))
       company_details.find('.accordion').accordion
         active: false,
         collapsible: true,

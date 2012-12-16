@@ -1,5 +1,9 @@
 // This file is interpreted in the global context
-// FIXME: Scope this file
+
+#content.companies.show
+  #col-b
+    padding: 15px
+    width: 668px
 
 #company_details
   & > .tabs
@@ -25,7 +29,11 @@
         margin: 6px 0 10px 15px
 
       & > .actions
-        float: right
+        position: absolute
+        top: -50px
+        right: -10px
+        & > a
+          font-size: 16px
 
   // .listing, .capabilities, .credentials, .discounts, .reviews
   .tab

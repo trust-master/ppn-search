@@ -32,11 +32,11 @@
                   = menu.nav_for :profile do |profile|
                     = profile.nav_link :show, company_path(current_user.company)
                     - if can?(:edit, current_user.company)
-                      = profile.nav_link :identity,      edit_company_path(current_user.company, section: :identity)
-                      = profile.nav_link :service,       edit_company_path(current_user.company, section: :service)
-                      = profile.nav_link :credentials,   edit_company_path(current_user.company, section: :credentials)
-                      -# = profile.nav_link :alerts,        company_alerts_path(current_user.company), proc { controller.controller_name == 'alerts' }, class: :disabled
-                      = profile.nav_link :discounts,     company_discounts_path(current_user.company), proc { controller.controller_name == 'discounts' }
+                      = profile.nav_link :listing, edit_company_path(current_user.company, section: :listing)
+                      = profile.nav_link :capabilities, edit_company_path(current_user.company, section: :capabilities)
+                      = profile.nav_link :credentials, edit_company_path(current_user.company, section: :credentials)
+                      -# = profile.nav_link :alerts,       company_alerts_path(current_user.company), proc { controller.controller_name == 'alerts' }, class: :disabled
+                      = profile.nav_link :discounts, company_discounts_path(current_user.company), proc { controller.controller_name == 'discounts' }
                       = profile.nav_link :users, company_users_path(current_user.company), proc { controller.controller_name == 'users' }
               %li#user-nav-account.dropdown
                 = menu.nav_link :account, edit_account_path(section: :basic), proc { controller.controller_name == 'accounts' }, tabindex: 2

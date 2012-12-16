@@ -2,7 +2,7 @@
 
 = simple_form_for @company do |form|
 
-  = render 'identity_fieldsets', form: form
+  = render 'capabilities_fieldsets', form: form
 
   %fieldset.last#buttons
     = link_to t('helpers.cancel'), @company, class: :cancel
