@@ -42,3 +42,6 @@ en:
       success: "<strong>Welcome to Trust Master eHomeManage Search</strong> (Beta)!"
       failure: Something was wrong with your passwords
 
+    inactive:
+      title: Error
+      message: We're sorry. The invitation code in your email has expired. Please contact Trust Master for a new one.

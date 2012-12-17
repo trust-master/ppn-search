@@ -5,8 +5,7 @@ class UserActivationController < ApplicationController
 
   # The show action will be used when fullfilling the activation URL
   def show
-    @token = UserAuthToken.where(token: params[:id]).first!
-    if @token and @token.active?
+    if @token = UserAuthToken.where(token: params[:id]).first! and @token.try(:active?)
       @user = @token.user
     else
       render :inactive, status: :gone # token expired; piss off || try again
@@ -14,8 +13,7 @@ class UserActivationController < ApplicationController
   end
 
   def update
-    @token = UserAuthToken.where(token: params[:id]).first!
-    if @token and @token.active?
+    if @token = UserAuthToken.where(token: params[:id]).first! and @token.try(:active?)
       @user = @token.user
 
       @user.password, @user.password_confirmation =

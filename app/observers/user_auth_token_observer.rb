@@ -5,4 +5,12 @@ class UserAuthTokenObserver < ActiveRecord::Observer
     token.mailer.deliver
   end
 
+  def fullfill!(token)
+    if token.is_a?(UserActivationToken)
+      token.user.try(:activate!)
+
+      AdminMailer.user_activated(token).deliver
+    end
+  end
+
 end

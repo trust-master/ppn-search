@@ -58,11 +58,11 @@ class UserAuthToken < ActiveRecord::Base
     self[:expires_at] ||= 1.week.from_now
   end
 
-  def fullfill! #(ip_address)
+  def fullfill!
     return false if fullfilled?
-    # self[:fullfilled_by_ip] = ip_address
     self[:fullfilled_at] = Time.zone.now
     save!
+    notify_observers :fullfill!
   end
 
   def expire!

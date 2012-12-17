@@ -62,6 +62,11 @@ class User < ActiveRecord::Base
     self.password_resets.create!
   end
 
+  def activate!
+    self.active = true
+    self.save
+  end
+
   # wrapper for StringInquirer
   def role
     @role ||= self[:role] && UserRole.new(self[:role])
