@@ -15,14 +15,20 @@
           = menu.nav_link :discounts,     company_discounts_path(@company), proc { controller.controller_name == 'discounts' }
           = menu.nav_link :users,         company_users_path(@company), proc { controller.controller_name == 'users' }
 
-      .activation_status{class: @company.active? ? :active : :inactive}
-        - if @company.active
+      - if @company.active and @company.visible
+        .activation_status.active
           %h4= t('companies.activation.header.active')
 
-        - else
+      - elsif @company.active
+        .activation_status.active_not_visible
+          %h4= t('companies.activation.header.active_not_visible')
+
+      - else
+        .activation_status.not_active
           %h4= t('companies.activation.header.not_active')
           %ul
             - @company.activation_status.each do |method, state|
+              - next if method == :is_valid?
               %li.criteria{class: state ? 'satisfied' : 'incomplete'}
                 = t("companies.activation.criteria.#{method}")
 

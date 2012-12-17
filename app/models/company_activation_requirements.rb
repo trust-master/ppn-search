@@ -1,6 +1,6 @@
 module CompanyActivationRequirements
   def can_be_activated?
-    CompanyActivationRequirements.criteria.all?{ |method| self.send(method) }
+    activation_status.values.all?
   end
 
   def activation_status
@@ -11,10 +11,14 @@ module CompanyActivationRequirements
   end
 
   def self.criteria
-    CompanyActivationRequirements.private_instance_methods(false).grep(/\Ahas\w+\?\z/)
+    CompanyActivationRequirements.private_instance_methods(false)
   end
 
   private
+
+  def is_valid?
+    valid?
+  end
 
   def has_name?
     name?
@@ -33,11 +37,13 @@ module CompanyActivationRequirements
   end
 
   def has_insurance?
-    insured
+    insured and errors.keys.grep(/\Ainsurance_/).none?
   end
 
   def has_a_valid_business_filing?
-    !! business_filing.try(:fetched?)
+    b = business_filing.tap{|v| p v} and
+    b.fetched?.tap{|v| p v} and
+    (b.status == FilingStatus.where(name: 'Active / In Good Standing').first!).tap{|v| p v} and
+    (b.renewal_due_on + 7 >= Date.today).tap{|v| p v}
   end
-
 end

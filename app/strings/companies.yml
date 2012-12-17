@@ -219,6 +219,9 @@ en:
     activation:
       header:
         active:     "Your profile is active!"
+        active_not_visible: >
+          Your profile is active but wont yet be visible in search results.
+          Please contact Trust Master for more information.
         not_active: "Your profile is incomplete:"
       criteria:
         has_email?:                     Valid email address
