@@ -205,9 +205,10 @@ class Company < ActiveRecord::Base
     def nullify_insurance_fields_if_necessary
       return if self[:insured]
       self[:insurance_state_id]    = nil
-      self[:insurance_certificate] = nil
       self[:insurance_valid_from]  = nil
       self[:insurance_valid_until] = nil
+      self.insurance_certificate = nil
+      return true
     end
 
     def set_active_flag

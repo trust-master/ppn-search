@@ -10,7 +10,7 @@ module SimpleForm
 
     def render
       if has_errors?
-        template.fieldset :errors, false do
+        template.fieldset :errors, show_header: false do
           ActiveSupport::SafeBuffer.new.tap do |output|
             output << template.content_tag(error_notification_tag, error_message, class: :message)
 

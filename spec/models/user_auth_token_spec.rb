@@ -24,7 +24,7 @@ shared_examples 'UserAuthToken' do |association_name|
   describe '#token' do
     it 'generates a 12-byte URL-safe Base64-encoded token before save' do
       # Notice there is no room for '=', here. I want a fully utilized 12-digit base64 string
-      should match(/[0-9a-zA-Z_\-]{12}/)
+      token_object.token.should match(/[0-9a-zA-Z_\-]{12}/)
     end
 
     it 'ensures uniqueness of the token' do
@@ -104,7 +104,7 @@ shared_examples 'UserAuthToken' do |association_name|
 
 end
 
-describe 'UserAuthToken' do
+describe 'UserActivationToken' do
   it_should_behave_like 'UserAuthToken', :auth_tokens
 end
 describe 'PasswordReset' do

@@ -41,9 +41,9 @@ module CompanyActivationRequirements
   end
 
   def has_a_valid_business_filing?
-    b = business_filing.tap{|v| p v} and
-    b.fetched?.tap{|v| p v} and
-    (b.status == FilingStatus.where(name: 'Active / In Good Standing').first!).tap{|v| p v} and
-    (b.renewal_due_on + 7 >= Date.today).tap{|v| p v}
+    b = business_filing and
+        b.fetched? and
+        (b.status == FilingStatus.where(name: 'Active / In Good Standing').first!) and
+        (b.renewal_due_on + 7 >= Date.today)
   end
 end

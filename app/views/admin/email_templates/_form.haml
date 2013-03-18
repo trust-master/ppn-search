@@ -1,6 +1,6 @@
 = simple_form_for [:admin, resource], wrapper: :active_admin do |f|
 
-  = fieldset :inputs, false do
+  = fieldset :inputs, show_header: false do
 
     %ol
       = f.input :body, hint: 'The content of the email. This will be formatted with <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>, and interpretted with <a href="https://github.com/Shopify/liquid/wiki/Liquid-for-Designers">Liquid</a>, for the variables shown below.'.html_safe, input_html: {class: :monospace}

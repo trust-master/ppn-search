@@ -7,7 +7,7 @@
 
   = simple_form_for @token, url: activate_path(@token) do |form|
     = form.simple_fields_for :user, @user do |user|
-      = fieldset :password, false do
+      = fieldset :password, show_header: false do
         %ul
           = user.input :password
           = user.input :password_confirmation

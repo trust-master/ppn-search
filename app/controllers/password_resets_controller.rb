@@ -1,7 +1,7 @@
 class PasswordResetsController < ApplicationController
   authorize_resource
 
-  before_filter :reset_session # just in case
+  #before_filter :reset_session # just in case
 
   # show the form to get email and first name
   def new
@@ -18,7 +18,8 @@ class PasswordResetsController < ApplicationController
       user.password_resets.create!
       render :success
     else
-      redirect_to new_password_reset_path, flash: { error: t(:failure, scope: 'password_resets.new') }
+      flash[:error] = t(:failure, scope: 'password_resets.new')
+      redirect_to new_password_reset_path
     end
   end
 

@@ -3,23 +3,14 @@ class UserAuthTokenMailer < ActionMailer::Base
 
   default from: "#{smtp_settings[:from] || 'Trust Master'} <#{smtp_settings[:user_name] || 'info@trust-master.com'}>"
 
-  def password_reset(token, opts = {})
+  def user_auth_token(token, opts = {})
     setup(token)
     @link = password_reset_url(token)
     pack_token(mail(opts.merge(to: @to)))
   end
-
-  def user_activation_token(token, opts = {})
-    setup(token)
-    @link = activate_url(token)
-    pack_token(mail(opts.merge(to: @to)))
-  end
-
-  def user_reactivation_token(token, opts = {})
-    setup(token)
-    @link = activate_url(token)
-    pack_token(mail(opts.merge(to: @to)))
-  end
+  alias :user_activation_token :user_auth_token
+  alias :user_reactivation_token :user_auth_token
+  alias :password_reset :user_auth_token
 
   private
 

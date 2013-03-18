@@ -1,0 +1,3 @@
+#!/bin/sh
+# This is to start Zeus with Rubymine's formatter patches in the loadpath, which is necessary to use Rubymine to run tests via Zeus
+env RUBYLIB=/opt/RubyMine-5.0/rb/testing/patch/common:/opt/RubyMine-5.0/rb/testing/patch/bdd zeus start

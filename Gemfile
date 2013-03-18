@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
-ruby '1.9.3'
+ruby File.read(File.expand_path('../.ruby-version' , __FILE__)).gsub(/-p\d+\s*\z/, '')
 
-gem 'rails', '~> 3.2.5'
+gem 'rails', '3.2.13.rc2'
 gem 'rack', '>= 1.4.1'
 
 gem 'pg' # Use PostgreSQL
@@ -34,9 +34,6 @@ gem 'simple_form' # Form builder
 gem 'kaminari', # Pagination helpers / scopes
   # path: '../kaminari'
   git: 'https://github.com/rtlong/kaminari.git' # use my fork for I18n action in the helpers
-
-# Connect to CopyCopter for I18n data
-# gem 'copycopter_client' # disabled for the time-being... screwing things up
 
 # Texticle enables easy access to native PGSQL full-text searching, also see
 # https://github.com/Casecommons/pg_search if this one sucks
@@ -129,12 +126,9 @@ group :development do
 
   # https://github.com/guard/guard # http://intridea.com/2011/8/25/hire-a-guard-for-your-project
   gem 'guard', require: false
-  gem 'guard-rails', require: false
   gem 'guard-rspec', require: false
   gem 'guard-annotate', require: false
-  gem 'guard-bundler', require: false
   gem 'guard-cucumber', require: false
-  gem 'guard-spork', require: false
 
   gem 'foreman', require: false
 
@@ -150,27 +144,26 @@ group :development do
 
   # Pry replaces IRB
   gem 'pry-rails' # replace IRB for the rails console, automatically
-  gem 'pry-doc' # the libraries needed to view ruby source method-info in Pry
-  gem 'pry-debugger'
-  gem 'pry-stack_explorer'
+  gem 'pry-doc' # the libraries needed to view ruby source method-info in Pr
 
   gem 'populator' # For seeding my dev DB with fake data
 
   gem 'letter_opener' # Open sent emails in the browser
 
   gem 'brakeman', require: false
+
+  gem 'zeus', require: false
 end
 
 group :development, :test do
   gem 'cucumber-rails', require: false
   gem 'cucumber', require: false
-  gem 'spork', require: false
   gem 'database_cleaner'
   gem 'rspec-rails'
   gem 'factory_girl_rails', require: false
-  gem 'capybara'
-  gem 'launchy'
-  gem 'quiet_assets'
+  #gem 'capybara'
+  #gem 'launchy'
+  #gem 'quiet_assets'
   gem 'faker' # Used in some of the Factories to generate fake data; used in seeds.rb
 end
 
@@ -179,6 +172,11 @@ group :development, :staging do
   gem 'replicate', require: false
   gem 'rack-mini-profiler'
 end
+
+group :debugging do
+  gem 'ruby-debug-ide', github: 'ruby-debug/ruby-debug-ide', require: false
+end
+
 
 # Gems only for certain operating system environments.
 #

@@ -25,3 +25,5 @@ module FormMacros
     I18n.t!(lookups.shift, :scope => :"simple_form.#{namespace}", :default => lookups)
   end
 end
+
+World(FormMacros)

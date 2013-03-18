@@ -4,7 +4,7 @@ Before do |scenario|
   # @tag_names = @current_scenario.instance_variable_get("@tags").tag_names
   # @feature_tag_names = @current_scenario.feature.instance_variable_get("@tags").tag_names
 
-  #reset_email
+  reset_email
   @logger = Rails.respond_to?(:logger) ? Rails.logger : ActionController::Base.logger
 end
 

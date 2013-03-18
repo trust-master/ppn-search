@@ -1,28 +1,6 @@
-# A sample Guardfile
-# More info at https://github.com/guard/guard#readme
+ignore(/\.zeus\.sock/)
 
-guard 'rails' do
-  watch('config/application.rb')
-  watch('config/environment.rb')
-  watch(%r{^config/environments/.+\.rb$})
-  watch(%r{^config/initializers/.+\.rb$})
-  watch(/Gemfile(?:.lock)?/)
-end
-
-guard 'spork', cucumber_env: { 'RAILS_ENV' => 'test' }, rspec_env: { 'RAILS_ENV' => 'test' } do
-  watch(%r{^config/(?:application|environment|routes).rb$})
-  watch(%r{^config/environments/.+\.rb$})
-  watch(%r{^config/initializers/.+\.rb$})
-  watch(/Gemfile(?:.lock)?/)
-  watch('spec/spec_helper.rb') { :rspec }
-  watch(%r{features/support/}) { :cucumber }
-end
-
-guard 'annotate', tests: true, position: :top  do
-  watch( 'db/schema.rb' )
-end
-
-guard 'cucumber', cli: '--profile guard' do
+guard 'cucumber', command_prefix: 'zeus', bundler: false do
   watch(%r{^features/.+\.feature$})
   watch(%r{^(?:app|lib|config)/.+$})
   watch(%r{^features/support/.+$}) { 'features' }
@@ -35,7 +13,7 @@ end
 #   watch(%r{^app/(.+)\.rb$})
 # end
 
-guard 'rspec', :version => 2 do
+guard 'rspec', zeus: true, bundler: false do
   watch(%r{^spec/.+_(?:spec|factory)\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
@@ -60,13 +38,3 @@ guard 'rspec', :version => 2 do
   watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_spec.rb" }
 end
 
-# Add files and commands to this file, like the example:
-#   watch('file/path') { `command(s)` }
-#
-# guard 'shell' do
-#   watch('config/routes.rb') { IO.popen('annotate -r') { |f| puts f.gets } }
-# end
-
-# guard 'bundler' do
-#   watch('Gemfile.lock')
-# end
