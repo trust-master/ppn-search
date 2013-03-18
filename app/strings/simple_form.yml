@@ -70,7 +70,7 @@ en:
       company:
         email: info@company.com
         website_url: http://company.com
-        in_business_since: 2012
+        in_business_since: 2013
 
       search:
         any_text_field_contains: Enter a company name

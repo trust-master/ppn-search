@@ -5,3 +5,5 @@ if Rails.env.development?
     I18n.backend
   )
 end
+
+CURRENT_YEAR=Date.today.year
