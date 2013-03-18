@@ -95,7 +95,7 @@ group :assets do
   gem 'sass-rails' # use SASS to write CSS
   gem 'coffee-rails' # use CoffeeScript to write JS
   gem 'uglifier' # compress JS
-
+  gem 'yui-compressor'
   gem 'jquery-rails' # Inject jQuery into the asset pipeline
 
   # Formalize has some sane defaults for form fields to help them look consistent across multiple platforms
