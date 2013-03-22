@@ -4,10 +4,23 @@
 
 SET statement_timeout = 0;
 SET client_encoding = 'UTF8';
-SET standard_conforming_strings = off;
+SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
-SET escape_string_warning = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
 
 SET search_path = public, pg_catalog;
 
@@ -39,8 +52,8 @@ CREATE TABLE active_admin_comments (
 CREATE SEQUENCE admin_notes_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -76,8 +89,8 @@ CREATE TABLE affiliations (
 CREATE SEQUENCE affiliations_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -113,8 +126,8 @@ CREATE TABLE associations (
 CREATE SEQUENCE associations_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -158,8 +171,8 @@ CREATE TABLE business_filings (
 CREATE SEQUENCE business_filings_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -206,8 +219,8 @@ CREATE TABLE business_licenses (
 CREATE SEQUENCE business_licenses_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -239,8 +252,8 @@ CREATE TABLE categories (
 CREATE SEQUENCE categories_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -279,8 +292,8 @@ CREATE TABLE certifications (
 CREATE SEQUENCE certifications_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -336,8 +349,8 @@ CREATE TABLE companies (
 CREATE SEQUENCE companies_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -368,8 +381,8 @@ CREATE TABLE company_categories (
 CREATE SEQUENCE company_categories_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -455,7 +468,7 @@ CREATE TABLE personal_licenses (
 --
 
 CREATE VIEW company_searches AS
-    (((((((SELECT (companies.id)::text AS company_id, (companies.about)::text AS about, NULL::unknown AS address, NULL::unknown AS application_number, companies.benefits, NULL::unknown AS chief_executive_officer, NULL::unknown AS city, companies.description, NULL::unknown AS doing_business_as, NULL::unknown AS home_jurisdiction, (companies.name)::text AS name, NULL::unknown AS number, (companies.phone_fax)::text AS phone_fax, (companies.phone_main)::text AS phone_main, (companies.phone_mobile)::text AS phone_mobile, NULL::unknown AS phone_number, NULL::unknown AS raw_data, NULL::unknown AS registered_agents, NULL::unknown AS registered_office_address, NULL::unknown AS responsible_person_license_number, companies.specialty, NULL::unknown AS street, NULL::unknown AS street2, NULL::unknown AS title, NULL::unknown AS url, (companies.website_url)::text AS website_url, 'Company'::character varying AS searchable_type, companies.id AS searchable_id FROM companies UNION SELECT (personal_licenses.company_id)::text AS company_id, NULL::unknown AS about, personal_licenses.address, (personal_licenses.application_number)::text AS application_number, NULL::unknown AS benefits, NULL::unknown AS chief_executive_officer, NULL::unknown AS city, NULL::unknown AS description, NULL::unknown AS doing_business_as, NULL::unknown AS home_jurisdiction, (personal_licenses.name)::text AS name, (personal_licenses.number)::text AS number, NULL::unknown AS phone_fax, NULL::unknown AS phone_main, NULL::unknown AS phone_mobile, (personal_licenses.phone_number)::text AS phone_number, personal_licenses.raw_data, NULL::unknown AS registered_agents, NULL::unknown AS registered_office_address, NULL::unknown AS responsible_person_license_number, NULL::unknown AS specialty, NULL::unknown AS street, NULL::unknown AS street2, NULL::unknown AS title, NULL::unknown AS url, NULL::unknown AS website_url, 'PersonalLicense'::character varying AS searchable_type, personal_licenses.id AS searchable_id FROM personal_licenses) UNION SELECT (business_licenses.company_id)::text AS company_id, NULL::unknown AS about, business_licenses.address, (business_licenses.application_number)::text AS application_number, NULL::unknown AS benefits, NULL::unknown AS chief_executive_officer, NULL::unknown AS city, NULL::unknown AS description, (business_licenses.doing_business_as)::text AS doing_business_as, NULL::unknown AS home_jurisdiction, (business_licenses.name)::text AS name, (business_licenses.number)::text AS number, NULL::unknown AS phone_fax, NULL::unknown AS phone_main, NULL::unknown AS phone_mobile, (business_licenses.phone_number)::text AS phone_number, business_licenses.raw_data, NULL::unknown AS registered_agents, NULL::unknown AS registered_office_address, (business_licenses.responsible_person_license_number)::text AS responsible_person_license_number, NULL::unknown AS specialty, NULL::unknown AS street, NULL::unknown AS street2, NULL::unknown AS title, NULL::unknown AS url, NULL::unknown AS website_url, 'BusinessLicense'::character varying AS searchable_type, business_licenses.id AS searchable_id FROM business_licenses) UNION SELECT (business_filings.company_id)::text AS company_id, NULL::unknown AS about, NULL::unknown AS address, NULL::unknown AS application_number, NULL::unknown AS benefits, business_filings.chief_executive_officer, NULL::unknown AS city, NULL::unknown AS description, NULL::unknown AS doing_business_as, (business_filings.home_jurisdiction)::text AS home_jurisdiction, (business_filings.name)::text AS name, (business_filings.number)::text AS number, NULL::unknown AS phone_fax, NULL::unknown AS phone_main, NULL::unknown AS phone_mobile, NULL::unknown AS phone_number, business_filings.raw_data, (business_filings.registered_agents)::text AS registered_agents, business_filings.registered_office_address, NULL::unknown AS responsible_person_license_number, NULL::unknown AS specialty, NULL::unknown AS street, NULL::unknown AS street2, NULL::unknown AS title, NULL::unknown AS url, NULL::unknown AS website_url, 'BusinessFiling'::character varying AS searchable_type, business_filings.id AS searchable_id FROM business_filings) UNION SELECT (affiliations.company_id)::text AS company_id, NULL::unknown AS about, NULL::unknown AS address, NULL::unknown AS application_number, NULL::unknown AS benefits, NULL::unknown AS chief_executive_officer, NULL::unknown AS city, affiliations.description, NULL::unknown AS doing_business_as, NULL::unknown AS home_jurisdiction, (affiliations.name)::text AS name, NULL::unknown AS number, NULL::unknown AS phone_fax, NULL::unknown AS phone_main, NULL::unknown AS phone_mobile, NULL::unknown AS phone_number, NULL::unknown AS raw_data, NULL::unknown AS registered_agents, NULL::unknown AS registered_office_address, NULL::unknown AS responsible_person_license_number, NULL::unknown AS specialty, NULL::unknown AS street, NULL::unknown AS street2, (affiliations.title)::text AS title, (affiliations.url)::text AS url, NULL::unknown AS website_url, 'Affiliation'::character varying AS searchable_type, affiliations.id AS searchable_id FROM affiliations) UNION SELECT (associations.company_id)::text AS company_id, NULL::unknown AS about, NULL::unknown AS address, NULL::unknown AS application_number, NULL::unknown AS benefits, NULL::unknown AS chief_executive_officer, NULL::unknown AS city, associations.description, NULL::unknown AS doing_business_as, NULL::unknown AS home_jurisdiction, (associations.name)::text AS name, NULL::unknown AS number, NULL::unknown AS phone_fax, NULL::unknown AS phone_main, NULL::unknown AS phone_mobile, NULL::unknown AS phone_number, NULL::unknown AS raw_data, NULL::unknown AS registered_agents, NULL::unknown AS registered_office_address, NULL::unknown AS responsible_person_license_number, NULL::unknown AS specialty, NULL::unknown AS street, NULL::unknown AS street2, (associations.title)::text AS title, (associations.url)::text AS url, NULL::unknown AS website_url, 'Association'::character varying AS searchable_type, associations.id AS searchable_id FROM associations) UNION SELECT (certifications.company_id)::text AS company_id, NULL::unknown AS about, NULL::unknown AS address, NULL::unknown AS application_number, NULL::unknown AS benefits, NULL::unknown AS chief_executive_officer, NULL::unknown AS city, certifications.description, NULL::unknown AS doing_business_as, NULL::unknown AS home_jurisdiction, (certifications.name)::text AS name, NULL::unknown AS number, NULL::unknown AS phone_fax, NULL::unknown AS phone_main, NULL::unknown AS phone_mobile, NULL::unknown AS phone_number, NULL::unknown AS raw_data, NULL::unknown AS registered_agents, NULL::unknown AS registered_office_address, NULL::unknown AS responsible_person_license_number, NULL::unknown AS specialty, NULL::unknown AS street, NULL::unknown AS street2, (certifications.title)::text AS title, NULL::unknown AS url, NULL::unknown AS website_url, 'Certification'::character varying AS searchable_type, certifications.id AS searchable_id FROM certifications) UNION SELECT (locations.company_id)::text AS company_id, NULL::unknown AS about, NULL::unknown AS address, NULL::unknown AS application_number, NULL::unknown AS benefits, NULL::unknown AS chief_executive_officer, (locations.city)::text AS city, NULL::unknown AS description, NULL::unknown AS doing_business_as, NULL::unknown AS home_jurisdiction, NULL::unknown AS name, NULL::unknown AS number, NULL::unknown AS phone_fax, NULL::unknown AS phone_main, NULL::unknown AS phone_mobile, NULL::unknown AS phone_number, NULL::unknown AS raw_data, NULL::unknown AS registered_agents, NULL::unknown AS registered_office_address, NULL::unknown AS responsible_person_license_number, NULL::unknown AS specialty, (locations.street)::text AS street, (locations.street2)::text AS street2, NULL::unknown AS title, NULL::unknown AS url, NULL::unknown AS website_url, 'Location'::character varying AS searchable_type, locations.id AS searchable_id FROM locations) UNION SELECT (discounts.company_id)::text AS company_id, NULL::unknown AS about, NULL::unknown AS address, NULL::unknown AS application_number, NULL::unknown AS benefits, NULL::unknown AS chief_executive_officer, NULL::unknown AS city, discounts.description, NULL::unknown AS doing_business_as, NULL::unknown AS home_jurisdiction, NULL::unknown AS name, NULL::unknown AS number, NULL::unknown AS phone_fax, NULL::unknown AS phone_main, NULL::unknown AS phone_mobile, NULL::unknown AS phone_number, NULL::unknown AS raw_data, NULL::unknown AS registered_agents, NULL::unknown AS registered_office_address, NULL::unknown AS responsible_person_license_number, NULL::unknown AS specialty, NULL::unknown AS street, NULL::unknown AS street2, (discounts.title)::text AS title, NULL::unknown AS url, NULL::unknown AS website_url, 'Discount'::character varying AS searchable_type, discounts.id AS searchable_id FROM discounts;
+    (((((((SELECT (companies.id)::text AS company_id, (companies.about)::text AS about, NULL::text AS address, NULL::text AS application_number, companies.benefits, NULL::text AS chief_executive_officer, NULL::text AS city, companies.description, NULL::text AS doing_business_as, NULL::text AS home_jurisdiction, (companies.name)::text AS name, NULL::text AS number, (companies.phone_fax)::text AS phone_fax, (companies.phone_main)::text AS phone_main, (companies.phone_mobile)::text AS phone_mobile, NULL::text AS phone_number, NULL::text AS raw_data, NULL::text AS registered_agents, NULL::text AS registered_office_address, NULL::text AS responsible_person_license_number, companies.specialty, NULL::text AS street, NULL::text AS street2, NULL::text AS title, NULL::text AS url, (companies.website_url)::text AS website_url, 'Company'::character varying AS searchable_type, companies.id AS searchable_id FROM companies UNION SELECT (personal_licenses.company_id)::text AS company_id, NULL::text AS about, personal_licenses.address, (personal_licenses.application_number)::text AS application_number, NULL::text AS benefits, NULL::text AS chief_executive_officer, NULL::text AS city, NULL::text AS description, NULL::text AS doing_business_as, NULL::text AS home_jurisdiction, (personal_licenses.name)::text AS name, (personal_licenses.number)::text AS number, NULL::text AS phone_fax, NULL::text AS phone_main, NULL::text AS phone_mobile, (personal_licenses.phone_number)::text AS phone_number, personal_licenses.raw_data, NULL::text AS registered_agents, NULL::text AS registered_office_address, NULL::text AS responsible_person_license_number, NULL::text AS specialty, NULL::text AS street, NULL::text AS street2, NULL::text AS title, NULL::text AS url, NULL::text AS website_url, 'PersonalLicense'::character varying AS searchable_type, personal_licenses.id AS searchable_id FROM personal_licenses) UNION SELECT (business_licenses.company_id)::text AS company_id, NULL::text AS about, business_licenses.address, (business_licenses.application_number)::text AS application_number, NULL::text AS benefits, NULL::text AS chief_executive_officer, NULL::text AS city, NULL::text AS description, (business_licenses.doing_business_as)::text AS doing_business_as, NULL::text AS home_jurisdiction, (business_licenses.name)::text AS name, (business_licenses.number)::text AS number, NULL::text AS phone_fax, NULL::text AS phone_main, NULL::text AS phone_mobile, (business_licenses.phone_number)::text AS phone_number, business_licenses.raw_data, NULL::text AS registered_agents, NULL::text AS registered_office_address, (business_licenses.responsible_person_license_number)::text AS responsible_person_license_number, NULL::text AS specialty, NULL::text AS street, NULL::text AS street2, NULL::text AS title, NULL::text AS url, NULL::text AS website_url, 'BusinessLicense'::character varying AS searchable_type, business_licenses.id AS searchable_id FROM business_licenses) UNION SELECT (business_filings.company_id)::text AS company_id, NULL::text AS about, NULL::text AS address, NULL::text AS application_number, NULL::text AS benefits, business_filings.chief_executive_officer, NULL::text AS city, NULL::text AS description, NULL::text AS doing_business_as, (business_filings.home_jurisdiction)::text AS home_jurisdiction, (business_filings.name)::text AS name, (business_filings.number)::text AS number, NULL::text AS phone_fax, NULL::text AS phone_main, NULL::text AS phone_mobile, NULL::text AS phone_number, business_filings.raw_data, (business_filings.registered_agents)::text AS registered_agents, business_filings.registered_office_address, NULL::text AS responsible_person_license_number, NULL::text AS specialty, NULL::text AS street, NULL::text AS street2, NULL::text AS title, NULL::text AS url, NULL::text AS website_url, 'BusinessFiling'::character varying AS searchable_type, business_filings.id AS searchable_id FROM business_filings) UNION SELECT (affiliations.company_id)::text AS company_id, NULL::text AS about, NULL::text AS address, NULL::text AS application_number, NULL::text AS benefits, NULL::text AS chief_executive_officer, NULL::text AS city, affiliations.description, NULL::text AS doing_business_as, NULL::text AS home_jurisdiction, (affiliations.name)::text AS name, NULL::text AS number, NULL::text AS phone_fax, NULL::text AS phone_main, NULL::text AS phone_mobile, NULL::text AS phone_number, NULL::text AS raw_data, NULL::text AS registered_agents, NULL::text AS registered_office_address, NULL::text AS responsible_person_license_number, NULL::text AS specialty, NULL::text AS street, NULL::text AS street2, (affiliations.title)::text AS title, (affiliations.url)::text AS url, NULL::text AS website_url, 'Affiliation'::character varying AS searchable_type, affiliations.id AS searchable_id FROM affiliations) UNION SELECT (associations.company_id)::text AS company_id, NULL::text AS about, NULL::text AS address, NULL::text AS application_number, NULL::text AS benefits, NULL::text AS chief_executive_officer, NULL::text AS city, associations.description, NULL::text AS doing_business_as, NULL::text AS home_jurisdiction, (associations.name)::text AS name, NULL::text AS number, NULL::text AS phone_fax, NULL::text AS phone_main, NULL::text AS phone_mobile, NULL::text AS phone_number, NULL::text AS raw_data, NULL::text AS registered_agents, NULL::text AS registered_office_address, NULL::text AS responsible_person_license_number, NULL::text AS specialty, NULL::text AS street, NULL::text AS street2, (associations.title)::text AS title, (associations.url)::text AS url, NULL::text AS website_url, 'Association'::character varying AS searchable_type, associations.id AS searchable_id FROM associations) UNION SELECT (certifications.company_id)::text AS company_id, NULL::text AS about, NULL::text AS address, NULL::text AS application_number, NULL::text AS benefits, NULL::text AS chief_executive_officer, NULL::text AS city, certifications.description, NULL::text AS doing_business_as, NULL::text AS home_jurisdiction, (certifications.name)::text AS name, NULL::text AS number, NULL::text AS phone_fax, NULL::text AS phone_main, NULL::text AS phone_mobile, NULL::text AS phone_number, NULL::text AS raw_data, NULL::text AS registered_agents, NULL::text AS registered_office_address, NULL::text AS responsible_person_license_number, NULL::text AS specialty, NULL::text AS street, NULL::text AS street2, (certifications.title)::text AS title, NULL::text AS url, NULL::text AS website_url, 'Certification'::character varying AS searchable_type, certifications.id AS searchable_id FROM certifications) UNION SELECT (locations.company_id)::text AS company_id, NULL::text AS about, NULL::text AS address, NULL::text AS application_number, NULL::text AS benefits, NULL::text AS chief_executive_officer, (locations.city)::text AS city, NULL::text AS description, NULL::text AS doing_business_as, NULL::text AS home_jurisdiction, NULL::text AS name, NULL::text AS number, NULL::text AS phone_fax, NULL::text AS phone_main, NULL::text AS phone_mobile, NULL::text AS phone_number, NULL::text AS raw_data, NULL::text AS registered_agents, NULL::text AS registered_office_address, NULL::text AS responsible_person_license_number, NULL::text AS specialty, (locations.street)::text AS street, (locations.street2)::text AS street2, NULL::text AS title, NULL::text AS url, NULL::text AS website_url, 'Location'::character varying AS searchable_type, locations.id AS searchable_id FROM locations) UNION SELECT (discounts.company_id)::text AS company_id, NULL::text AS about, NULL::text AS address, NULL::text AS application_number, NULL::text AS benefits, NULL::text AS chief_executive_officer, NULL::text AS city, discounts.description, NULL::text AS doing_business_as, NULL::text AS home_jurisdiction, NULL::text AS name, NULL::text AS number, NULL::text AS phone_fax, NULL::text AS phone_main, NULL::text AS phone_mobile, NULL::text AS phone_number, NULL::text AS raw_data, NULL::text AS registered_agents, NULL::text AS registered_office_address, NULL::text AS responsible_person_license_number, NULL::text AS specialty, NULL::text AS street, NULL::text AS street2, (discounts.title)::text AS title, NULL::text AS url, NULL::text AS website_url, 'Discount'::character varying AS searchable_type, discounts.id AS searchable_id FROM discounts;
 
 
 --
@@ -479,8 +492,8 @@ CREATE TABLE company_service_areas (
 CREATE SEQUENCE company_service_areas_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -511,8 +524,8 @@ CREATE TABLE countries (
 CREATE SEQUENCE countries_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -543,8 +556,8 @@ CREATE TABLE discount_types (
 CREATE SEQUENCE discount_types_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -562,8 +575,8 @@ ALTER SEQUENCE discount_types_id_seq OWNED BY discount_types.id;
 CREATE SEQUENCE discounts_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -608,8 +621,8 @@ CREATE TABLE filing_statuses (
 CREATE SEQUENCE filing_status_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -639,8 +652,8 @@ CREATE TABLE filing_types (
 CREATE SEQUENCE filing_types_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -670,8 +683,8 @@ CREATE TABLE license_statuses (
 CREATE SEQUENCE license_status_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -703,8 +716,8 @@ CREATE TABLE license_types (
 CREATE SEQUENCE license_types_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -722,8 +735,8 @@ ALTER SEQUENCE license_types_id_seq OWNED BY license_types.id;
 CREATE SEQUENCE locations_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -754,8 +767,8 @@ CREATE TABLE markets (
 CREATE SEQUENCE markets_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -790,8 +803,8 @@ CREATE TABLE pages (
 CREATE SEQUENCE pages_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -809,8 +822,8 @@ ALTER SEQUENCE pages_id_seq OWNED BY pages.id;
 CREATE SEQUENCE personal_licenses_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -851,8 +864,8 @@ CREATE TABLE service_areas (
 CREATE SEQUENCE service_areas_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -884,8 +897,8 @@ CREATE TABLE states (
 CREATE SEQUENCE states_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -918,8 +931,8 @@ CREATE TABLE sub_categories (
 CREATE SEQUENCE sub_categories_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -956,8 +969,8 @@ CREATE TABLE user_auth_tokens (
 CREATE SEQUENCE user_auth_tokens_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -998,8 +1011,8 @@ CREATE TABLE users (
 CREATE SEQUENCE users_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -1036,8 +1049,8 @@ CREATE TABLE versions (
 CREATE SEQUENCE versions_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -1052,189 +1065,189 @@ ALTER SEQUENCE versions_id_seq OWNED BY versions.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE active_admin_comments ALTER COLUMN id SET DEFAULT nextval('admin_notes_id_seq'::regclass);
+ALTER TABLE ONLY active_admin_comments ALTER COLUMN id SET DEFAULT nextval('admin_notes_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE affiliations ALTER COLUMN id SET DEFAULT nextval('affiliations_id_seq'::regclass);
+ALTER TABLE ONLY affiliations ALTER COLUMN id SET DEFAULT nextval('affiliations_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE associations ALTER COLUMN id SET DEFAULT nextval('associations_id_seq'::regclass);
+ALTER TABLE ONLY associations ALTER COLUMN id SET DEFAULT nextval('associations_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE business_filings ALTER COLUMN id SET DEFAULT nextval('business_filings_id_seq'::regclass);
+ALTER TABLE ONLY business_filings ALTER COLUMN id SET DEFAULT nextval('business_filings_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE business_licenses ALTER COLUMN id SET DEFAULT nextval('business_licenses_id_seq'::regclass);
+ALTER TABLE ONLY business_licenses ALTER COLUMN id SET DEFAULT nextval('business_licenses_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
+ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE certifications ALTER COLUMN id SET DEFAULT nextval('certifications_id_seq'::regclass);
+ALTER TABLE ONLY certifications ALTER COLUMN id SET DEFAULT nextval('certifications_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE companies ALTER COLUMN id SET DEFAULT nextval('companies_id_seq'::regclass);
+ALTER TABLE ONLY companies ALTER COLUMN id SET DEFAULT nextval('companies_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE company_categories ALTER COLUMN id SET DEFAULT nextval('company_categories_id_seq'::regclass);
+ALTER TABLE ONLY company_categories ALTER COLUMN id SET DEFAULT nextval('company_categories_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE company_service_areas ALTER COLUMN id SET DEFAULT nextval('company_service_areas_id_seq'::regclass);
+ALTER TABLE ONLY company_service_areas ALTER COLUMN id SET DEFAULT nextval('company_service_areas_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE countries ALTER COLUMN id SET DEFAULT nextval('countries_id_seq'::regclass);
+ALTER TABLE ONLY countries ALTER COLUMN id SET DEFAULT nextval('countries_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE discount_types ALTER COLUMN id SET DEFAULT nextval('discount_types_id_seq'::regclass);
+ALTER TABLE ONLY discount_types ALTER COLUMN id SET DEFAULT nextval('discount_types_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE discounts ALTER COLUMN id SET DEFAULT nextval('discounts_id_seq'::regclass);
+ALTER TABLE ONLY discounts ALTER COLUMN id SET DEFAULT nextval('discounts_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE filing_statuses ALTER COLUMN id SET DEFAULT nextval('filing_status_id_seq'::regclass);
+ALTER TABLE ONLY filing_statuses ALTER COLUMN id SET DEFAULT nextval('filing_status_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE filing_types ALTER COLUMN id SET DEFAULT nextval('filing_types_id_seq'::regclass);
+ALTER TABLE ONLY filing_types ALTER COLUMN id SET DEFAULT nextval('filing_types_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE license_statuses ALTER COLUMN id SET DEFAULT nextval('license_status_id_seq'::regclass);
+ALTER TABLE ONLY license_statuses ALTER COLUMN id SET DEFAULT nextval('license_status_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE license_types ALTER COLUMN id SET DEFAULT nextval('license_types_id_seq'::regclass);
+ALTER TABLE ONLY license_types ALTER COLUMN id SET DEFAULT nextval('license_types_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE locations ALTER COLUMN id SET DEFAULT nextval('locations_id_seq'::regclass);
+ALTER TABLE ONLY locations ALTER COLUMN id SET DEFAULT nextval('locations_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE markets ALTER COLUMN id SET DEFAULT nextval('markets_id_seq'::regclass);
+ALTER TABLE ONLY markets ALTER COLUMN id SET DEFAULT nextval('markets_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE pages ALTER COLUMN id SET DEFAULT nextval('pages_id_seq'::regclass);
+ALTER TABLE ONLY pages ALTER COLUMN id SET DEFAULT nextval('pages_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE personal_licenses ALTER COLUMN id SET DEFAULT nextval('personal_licenses_id_seq'::regclass);
+ALTER TABLE ONLY personal_licenses ALTER COLUMN id SET DEFAULT nextval('personal_licenses_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE service_areas ALTER COLUMN id SET DEFAULT nextval('service_areas_id_seq'::regclass);
+ALTER TABLE ONLY service_areas ALTER COLUMN id SET DEFAULT nextval('service_areas_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE states ALTER COLUMN id SET DEFAULT nextval('states_id_seq'::regclass);
+ALTER TABLE ONLY states ALTER COLUMN id SET DEFAULT nextval('states_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE sub_categories ALTER COLUMN id SET DEFAULT nextval('sub_categories_id_seq'::regclass);
+ALTER TABLE ONLY sub_categories ALTER COLUMN id SET DEFAULT nextval('sub_categories_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE user_auth_tokens ALTER COLUMN id SET DEFAULT nextval('user_auth_tokens_id_seq'::regclass);
+ALTER TABLE ONLY user_auth_tokens ALTER COLUMN id SET DEFAULT nextval('user_auth_tokens_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE versions ALTER COLUMN id SET DEFAULT nextval('versions_id_seq'::regclass);
+ALTER TABLE ONLY versions ALTER COLUMN id SET DEFAULT nextval('versions_id_seq'::regclass);
 
 
 --
@@ -1706,8 +1719,6 @@ INSERT INTO schema_migrations (version) VALUES ('20120410205545');
 INSERT INTO schema_migrations (version) VALUES ('20120410221353');
 
 INSERT INTO schema_migrations (version) VALUES ('20120411043701');
-
-INSERT INTO schema_migrations (version) VALUES ('20120411043801');
 
 INSERT INTO schema_migrations (version) VALUES ('20120411043830');
 

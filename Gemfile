@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 ruby File.read(File.expand_path('../.ruby-version' , __FILE__)).gsub(/-p\d+\s*\z/, '')
 
-gem 'rails', '3.2.13.rc2'
+gem 'rails', '3.2.12'
 gem 'rack', '>= 1.4.1'
 
 gem 'pg' # Use PostgreSQL
@@ -41,7 +41,7 @@ gem 'texticle', '2.0.3', require: 'texticle/rails'
 
 gem 'meta_search' # Nifty search scoping tool. Dependency of ActiveAdmin
 
-gem 'squeel' # convience API for AR-scoping
+gem 'squeel', '1.0.13' # convience API for AR-scoping
 
 gem 'counter_culture' # easy counter cache columns
 
