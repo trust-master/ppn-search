@@ -37,7 +37,7 @@ gem 'kaminari', # Pagination helpers / scopes
 
 # Texticle enables easy access to native PGSQL full-text searching, also see
 # https://github.com/Casecommons/pg_search if this one sucks
-gem 'texticle', :require => 'texticle/rails'
+gem 'texticle', '2.0.3', require: 'texticle/rails'
 
 gem 'meta_search' # Nifty search scoping tool. Dependency of ActiveAdmin
 
