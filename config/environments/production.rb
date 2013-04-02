@@ -9,7 +9,7 @@ ServiceProviderPortal::Application.configure do
   config.action_controller.perform_caching = true
 
   # See everything in the log (default is :info)
-  config.log_level = :debug
+  config.log_level = ENV['RAILS_LOG_LEVEL'].presence || :info
 
   # Prepend all log lines with the following tags
   # config.log_tags = [ :subdomain, :uuid ]
@@ -53,15 +53,22 @@ ServiceProviderPortal::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
-  config.static_cache_control = "public, max-age=#{86400*365}"
+  config.static_cache_control = 'public, max-age=%i' % 1.month
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
-  config.action_controller.asset_host = "do4pzk3e3dtn3.cloudfront.net"
+  config.action_controller.asset_host = ENV['ASSET_HOST'].presence
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( ie8.css ie7.css ie.css print.css )
-  config.assets.precompile += %w[ modernizr.min.js ]
-  config.assets.precompile += ['active_admin.css', 'active_admin/print.css', 'active_admin.js']
+  config.assets.precompile += %w[
+      ie8.css
+      ie7.css
+      ie.css
+      print.css
+      modernizr.min.js
+      active_admin.css
+      active_admin/print.css
+      active_admin.js
+  ]
 
   ### Caching ###
   config.action_dispatch.rack_cache = {
@@ -73,20 +80,20 @@ ServiceProviderPortal::Application.configure do
   ### ActionMailer ###
 
   # Disable delivery errors, bad email addresses will be ignored
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.delivery_method = :smtp
   # Set the default url options for ActionMailer (so it knows how to generate URLs, for example)
   config.action_mailer.default_url_options = {
-    host: 'trust-master.herokuapp.com'
+    host: ENV['DOMAIN_NAME']
   }
   config.action_mailer.smtp_settings = {
-    port:                 587,
-    address:              'smtp.gmail.com',
+    port:                 ENV['SMTP_PORT'] || 587,
+    address:              ENV['SMTP_HOST'] || 'smtp.gmail.com',
     user_name:            ENV['SMTP_LOGIN'],
     password:             ENV['SMTP_PASSWORD'],
-    from:                 ENV['SMTP_FROM'],
-    domain:               'trust-master.com',
+    from:                 ENV['SMTP_FROM'] || 'info@trust-master.com',
+    domain:               ENV['SMTP_DOMAIN'] || 'trust-master.com',
     authentication:       :plain,
     enable_starttls_auto: true
   }

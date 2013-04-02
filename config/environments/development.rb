@@ -11,7 +11,7 @@ ServiceProviderPortal::Application.configure do
 
   # Show full error reports and disable caching
   config.consider_all_requests_local = true
-  config.action_controller.perform_caching = true
+  config.action_controller.perform_caching = !! ENV['ENABLE_CACHING']
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -32,7 +32,10 @@ ServiceProviderPortal::Application.configure do
   config.assets.compress = false
 
   # Expands the lines which load the assets
-  config.assets.debug = false
+  config.assets.debug = true
+
+  config.sass.debug_info = true
+  config.sass.style = :nested
 
   # Use digest sums on the end of Asset URLs, for debugging
   # config.assets.digest = true
@@ -40,20 +43,18 @@ ServiceProviderPortal::Application.configure do
   ### ActionMailer ###
 
   # Set the default url options for ActionMailer (so it knows how to generate URLs, for example)
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.default_url_options = { host: 'local-dev.trust-master.herokuapp.com:3000' }
 
   # Send mails to a file within tmp/mails/
-  config.action_mailer.delivery_method = :letter_opener
-  # config.action_mailer.delivery_method = :file
-  # config.action_mailer.file_settings = { location: Rails.root.join('tmp','mails') }
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
+    port:                 ENV['SMTP_PORT'] || 1025,
+    address:              ENV['SMTP_HOST'] || 'localhost',
     user_name:            ENV['SMTP_LOGIN'],
-    from:                 ENV['SMTP_FROM']
+    password:             ENV['SMTP_PASSWORD'],
+    from:                 ENV['SMTP_FROM'] || 'info@trust-master.com',
+    domain:               ENV['SMTP_DOMAIN'] || 'trust-master.com'
   }
-
-  # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = true
 
-  config.sass.debug_info = true
-  config.sass.style = :nested
 end

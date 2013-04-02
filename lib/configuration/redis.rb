@@ -11,28 +11,7 @@ class Redis
   module Configuration
     include BaseConfig
 
-    def redis_configuration_file
-      @redis_configuration_file ||= rails_root.join('config/redis.yml')
-    end
-
-    def redis_defaults
-      @redis_defaults ||= begin
-        defaults = {
-          namespace: rails_env # namespace all redis connections with, for ex. 'production'
-        }
-
-        # Try to load some more defaults from the config/redis.yml file
-        if File.exists?(redis_configuration_file)
-          yml = YAML::load_file(redis_configuration_file)[rails_env].try(:symbolize_keys) rescue {}
-          defaults.update(yml)
-        end
-
-        defaults
-      end
-    end
-
-
-    # This creates a hash which provides lazy-instatiation of the redis settings, based on environment variables
+    # This creates a hash which provides lazy-instantiation of the redis settings, based on environment variables
     # and/or the config file. These settings are then consumed by the default_proc assigned to the ::REDIS
     # constant in initializers/01_redis.rb, and are set up to provide automatic namespacing given the
     # `key`
@@ -40,23 +19,19 @@ class Redis
       @redis_settings ||= ::ActiveSupport::OrderedOptions.new do |hash, key|
         key = key.downcase.to_sym
 
-        # look for ENV vars specifying a URL for Redis. For Resque, it will look for Redis_URL_Resque
-        # and Redis_URL, in that order (case insensitive)
-        keys = ENV.keys.grep(/Redis(togo)?_URL(_#{key})?/i).sort
+        hash[key] = Hash.new.tap do |opts|
 
-        hash[key] = redis_defaults.dup.tap do |opts|
-          # Try to get a url from the environment variables
-          if opts[:url] = ENV.values_at(*keys).compact.last || opts[:url]
-            uri = URI.parse(opts[:url])
-            opts[:host] ||= uri.host
-            opts[:port] ||= uri.port
-            opts[:password] ||= uri.password
+          # look for ENV vars specifying a URL for Redis. For Resque, it will look for Redis_URL_Resque
+          # and Redis_URL, in that order (case insensitive)
+          if keys = ENV.keys.grep(/\ARedis(?:\w+)?_URL(?:_#{key})?\z/i).sort.presence
+            url = ENV.values_at(*keys).compact.last
+            opts.update Redis::Factory.resolve(url)
           end
 
-          # _Add_ the `key` to the namespace, separated by ':'
           key = nil if key == :default
-          opts[:namespace] = [opts[:namespace], key.to_s].compact.join(':').presence
+          opts[:namespace] = [rails_env, opts[:namespace], key.to_s].compact.uniq.join(?:)
         end
+
       end
     end
   end

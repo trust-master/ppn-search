@@ -1,8 +1,8 @@
 source 'http://rubygems.org'
 ruby File.read(File.expand_path('../.ruby-version' , __FILE__)).gsub(/-p\d+\s*\z/, '')
 
-gem 'rails', '3.2.12'
-gem 'rack', '>= 1.4.1'
+gem 'rails', '3.2.13'
+gem 'rack'
 
 gem 'pg' # Use PostgreSQL
 
@@ -110,7 +110,7 @@ group :assets do
   gem 'oily_png' # C extensions for generating PNGs - used by Compass for the CSS sprites
 end
 
-group :production, :staging do
+group :production, :stage do
   gem 'newrelic_rpm'
   gem 'newrelic-redis'
 end
@@ -153,6 +153,9 @@ group :development do
   gem 'brakeman', require: false
 
   gem 'zeus', require: false
+
+  gem 'ruby-debug-ide', github: 'ruby-debug/ruby-debug-ide', require: false
+
 end
 
 group :development, :test do
@@ -168,45 +171,12 @@ group :development, :test do
 end
 
 
-group :development, :staging do
+group :development, :stage do
   gem 'replicate', require: false
   gem 'rack-mini-profiler'
 end
 
-group :debugging do
-  gem 'ruby-debug-ide', github: 'ruby-debug/ruby-debug-ide', require: false
-end
+# The filesystem event and system notifications that Guard wants, for Linux/Unix
+gem 'libnotify',    require: false # Visual notifications
+gem 'rb-inotify',   require: false # inotify support
 
-
-# Gems only for certain operating system environments.
-#
-# Avoid installing those which you don't need by adding, for example, `--without windows:linux`
-# to your `bundle install` command. You should only need do this once, as it will be remembered.
-
-# Linux
-group :linux do
-  # The filesystem event and system notifications that Guard wants, for Linux/Unix
-  gem 'libnotify',    require: false # Visual notifications
-  gem 'rb-inotify',   require: false # inotify support
-end
-
-# Mac OS X
-=begin commented out until we need them, since Heroku does not like these
-group :darwin do
-  # The filesystem event and system notifications that Guard wants, for OS X
-  gem 'growl_notify', require: false # Growl notifications
-  gem 'rb-fsevent', require: false, # FSEvent support
-    git: 'git://github.com/ttilley/rb-fsevent.git',
-    branch: 'pre-compiled-gem-one-off'
-end
-=end
-
-# Windows
-=begin commented out until we need them
-group :windows do
-  # The filesystem event and system notifications that Guard wants, for Windows
-  gem 'rb-notifu',    require: false # Visual notifications
-  gem 'rb-fchange',   require: false # Directory Change Notification support
-  gem 'win32console', require: false # Support for console colors
-end
-=end
