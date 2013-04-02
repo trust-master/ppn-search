@@ -20,13 +20,13 @@ class Redis
         key = key.downcase.to_sym
 
         hash[key] = Hash.new.tap do |opts|
-
+          opts[:url] = 'redis://localhost:6379/'
           # look for ENV vars specifying a URL for Redis. For Resque, it will look for Redis_URL_Resque
           # and Redis_URL, in that order (case insensitive)
-          if keys = ENV.keys.grep(/\ARedis(?:\w+)?_URL(?:_#{key})?\z/i).sort.presence
-            url = ENV.values_at(*keys).compact.last
-            opts.update Redis::Factory.resolve(url)
+          if keys = ENV.keys.grep(/\ARedis(?:\w*)_URL(?:_#{key})?\z/i).sort.presence
+            opts[:url] = ENV.values_at(*keys).compact.last
           end
+          opts.update Redis::Factory.resolve(opts[:url])
 
           key = nil if key == :default
           opts[:namespace] = [rails_env, opts[:namespace], key.to_s].compact.uniq.join(?:)
