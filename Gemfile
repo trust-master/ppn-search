@@ -79,6 +79,7 @@ gem 'active_decorator' # Clean up view logic
 gem 'content_for_in_controllers' # bring content_for into the controller
 
 gem 'airbrake_user_attributes' # send Exceptions to Errbit
+gem 'airbrake', '< 3.1.9'
 
 # Compass provides SASS goodies, and some of it's helpers are used in the app code, so it can't be
 # in the assets group
