@@ -19,15 +19,18 @@ before_fork do |server, worker|
   defined?(ActiveRecord::Base) and
       ActiveRecord::Base.connection.disconnect!
 
-  # The following is only recommended for memory/DB-constrained
-  # installations.  It is not needed if your system can house
-  # twice as many worker_processes as you have configured.
-  #
-  # # This allows a new master process to incrementally
-  # # phase out the old master process with SIGTTOU to avoid a
-  # # thundering herd (especially in the "preload_app false" case)
-  # # when doing a transparent upgrade.  The last worker spawned
-  # # will then kill off the old master process with a SIGQUIT.
+  # Since I couldn't figure out how to establish the Rails cache as Redis-Store, without sticking it
+  # in the app.rb config file and initializing it during boot, let's reconnect now
+  REDIS.each do |key, redis|
+    redis.quit
+    REDIS.delete(key)
+  end
+
+  # This allows a new master process to incrementally
+  # phase out the old master process with SIGTTOU to avoid a
+  # thundering herd (especially in the "preload_app false" case)
+  # when doing a transparent upgrade.  The last worker spawned
+  # will then kill off the old master process with a SIGQUIT.
   old_pid = "#{server.config[:pid]}.oldbin"
   if old_pid != server.pid
      begin
@@ -62,4 +65,10 @@ after_fork do |server, worker|
   # and Redis.  TokyoCabinet file handles are safe to reuse
   # between any number of forked children (assuming your kernel
   # correctly implements pread()/pwrite() system calls)
+
+  Sidekiq.configure_client do |config|
+    config.redis = ServiceProviderPortal::Application.config.redis_settings.sidekiq
+  end
+
+  Rails.cache.reconnect
 end
