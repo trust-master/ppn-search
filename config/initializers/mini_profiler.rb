@@ -14,7 +14,7 @@ if defined?(Rack::MiniProfiler)
   Rack::MiniProfiler.config.tap do |config|
     config.storage_instance = Rack::MiniProfiler::RedisStore.new(redis: REDIS.profiler)
     config.use_existing_jquery = true
-    config.pre_authorize_cb = proc { |env| Rails.env.development? }
+    config.pre_authorize_cb = proc { |env| Rails.env.development? or ENV['ENABLE_RACK_PROFILER'] }
     config.skip_paths ||= []
     config.skip_paths += %w[ /images /javascripts /stylesheets ]
   end

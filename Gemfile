@@ -78,7 +78,7 @@ gem 'active_decorator' # Clean up view logic
 
 gem 'content_for_in_controllers' # bring content_for into the controller
 
-gem 'exceptional' # send Exceptions to Exceptional.io
+gem 'airbrake_user_attributes' # send Exceptions to Errbit
 
 # Compass provides SASS goodies, and some of it's helpers are used in the app code, so it can't be
 # in the assets group
@@ -168,6 +168,10 @@ group :development, :test do
   #gem 'launchy'
   #gem 'quiet_assets'
   gem 'faker' # Used in some of the Factories to generate fake data; used in seeds.rb
+
+  # The filesystem event and system notifications that Guard wants, for Linux/Unix
+  gem 'libnotify',    require: false # Visual notifications
+  gem 'rb-inotify',   require: false # inotify support
 end
 
 
@@ -176,7 +180,4 @@ group :development, :stage do
   gem 'rack-mini-profiler'
 end
 
-# The filesystem event and system notifications that Guard wants, for Linux/Unix
-gem 'libnotify',    require: false # Visual notifications
-gem 'rb-inotify',   require: false # inotify support
 
