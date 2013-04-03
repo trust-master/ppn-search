@@ -50,3 +50,5 @@ _yardoc
 
 # Bundler's binstubs
 bin/
+
+.rbenv-vars
