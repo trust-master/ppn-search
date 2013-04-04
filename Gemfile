@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 ruby File.read(File.expand_path('../.ruby-version' , __FILE__)).gsub(/-p\d+\s*\z/, '')
 
-gem 'rails', '3.2.13'
+gem 'rails', ['~> 3.2.12', '!= 3.2.13']
 gem 'rack'
 
 gem 'pg' # Use PostgreSQL
@@ -109,6 +109,8 @@ group :assets do
   gem 'bourbon'
 
   gem 'oily_png' # C extensions for generating PNGs - used by Compass for the CSS sprites
+
+  gem 'turbo-sprockets-rails3' # attempts to make asset precompilation faster by skipping files that are not changed
 end
 
 group :production, :stage do
