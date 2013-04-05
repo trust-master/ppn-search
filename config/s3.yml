@@ -1,7 +1,0 @@
----
-development: &default
-  bucket: trust-master-ppn-development
-  access_key_id: AKIAJVDZAVC5WN2UH7JQ
-  secret_access_key: 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
-test: *default
-production: *default

@@ -7,13 +7,11 @@ Vagrant::Config.run do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  #config.vm.box = 'ubuntu_12.04'
-  config.vm.box = 'lisausa'
+  config.vm.box = 'ubuntu_12.04'
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  #config.vm.box_url = 'https://dl.dropbox.com/u/1543052/Boxes/UbuntuServer12.04amd64.box'
-  config.vm.box_url = 'http://c684483.r83.cf2.rackcdn.com/lisausa.33f8c06e43f29799929bb34b9c0272b7.box'
+  config.vm.box_url = 'https://dl.dropbox.com/u/1543052/Boxes/UbuntuServer12.04amd64.box'
 
   config.vm.customize ['modifyvm', :id, '--memory', 3072]
 
