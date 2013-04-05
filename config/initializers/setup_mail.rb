@@ -19,7 +19,15 @@ class PreventMailInterceptor
   def intercept
     message.to = original_recipients.grep(ALLOWED_EMAILS).presence || DEFAULT_RECIPIENTS
     message.subject.prepend("[#{Rails.env.to_s}] ")
-    message.body << "\n\n[INTERCEPTED] Original recipients were: #{original_recipients.join(?;)}"
+    notice = "[INTERCEPTED] Original recipients were: #{original_recipients.join(?;)}"
+    message.body.parts.each do |part|
+      case part.content_type
+      when %r[^text/plain]
+        part.body.raw_source << "\n\n--------\n#{notice}"
+      when %r[^text/html]
+        part.body.raw_source << "<p><hr/></p><p>#{notice}</p>".html_safe
+      end
+    end
   end
 
 end
