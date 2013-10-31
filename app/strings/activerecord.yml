@@ -47,8 +47,8 @@ en:
         one: Association
         other: Associations
       discount:
-        one: Discount
-        other: Discounts
+        one: Offer
+        other: Offers
       password_reset_request:
         one: Password Reset Request
         other: Password Reset Requests
@@ -65,8 +65,8 @@ en:
         one: Country
         other: Countries
       discount_type:
-        one: Discount Type
-        other: Discount Types
+        one: Offer Type
+        other: Offer Types
       filing_status:
         one: Filing Status
         other: Filing Status
@@ -139,7 +139,7 @@ en:
       affiliation:
       association:
       discount:
-        type:  Discount Type
+        type:  Offer Type
         image: Attached File
       password_reset:
       password_reset_request:

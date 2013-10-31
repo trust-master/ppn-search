@@ -1,5 +1,5 @@
 ActiveAdmin.register DiscountType do
-  menu label: 'Discounts', priority: 4
+  menu label: 'Offers', priority: 4
 
   before_filter { @skip_sidebar = true }
 
@@ -18,7 +18,7 @@ ActiveAdmin.register DiscountType do
       row :created_at
       row :updated_at
     end
-    panel "Service Providers with Discounts of this Type" do
+    panel "Service Providers with Offers of this Type" do
       table_for type.companies do
         column :name
         column :discounts do |c|

@@ -1,28 +1,28 @@
 en:
   discounts:
     new:
-      title: "Add a new Discount"
+      title: "Add a new Offer"
     edit:
-      title: "'%{discount_title}' Discount"
+      title: "'%{discount_title}' Offer"
     index:
-      title: "Offering discounts WILL get you business!"
+      title: "Product and service offers WILL get you business!"
       table:
         headers:
           name: Name
-          type: Discount Type
+          type: Offer Type
           start_date: Start Date
           end_date: End Date
           actions: Actions
 
-        no_items_message: No discounts. Add one!
+        no_items_message: No offers. Add one!
       actions:
-        add: Create new Discount
-        remove_confirmation: Are you sure you want to delete this discount? This action can not be undone.
+        add: Create new product or service offering
+        remove_confirmation: Are you sure you want to delete this offer? This action can not be undone.
     form:
       actions:
 
     fieldsets:
-      design: Design Your Discount
+      design: Design Your Offer
       location: Location
       scheduling: Scheduling
 
@@ -34,4 +34,4 @@ en:
         indefinite: Happening Now!
       market: Valid in the %{market_name} Market only
       attachment:
-        download: Download Discount
+        download: Download Offer

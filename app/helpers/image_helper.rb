@@ -4,7 +4,7 @@ module ImageHelper
     options.symbolize_keys!
 
     source = name.is_a?(String) ? name.dup : name.to_s
-    source << '.png' unless /.+\.png\Z/.match(source)
+    source << '.png' unless /.+\.(png|jpg)\Z/.match(source)
     src = options[:src] = path_to_image(source)
 
     i18n_data = t(".images.#{name}", raise: true) # raise error if translation data is missing

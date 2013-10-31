@@ -1,8 +1,8 @@
 en:
   user_auth_token_mailer:
     password_reset:
-      subject: 'Reset Your Password [Trust Master eHomeManage Search (Beta)]'
+      subject: 'Reset Your Password [Trust Master AIP SUPPORT (Beta)]'
     user_activation_token:
-      subject: 'Welcome to Trust Master eHomeManage Search (Beta)!'
+      subject: 'Welcome to Trust Master AIP SUPPORT (Beta)!'
     user_reactivation_token:
-      subject: 'Please re-activate your account [Trust Master eHomeManage Search (Beta)]'
+      subject: 'Please re-activate your account [Trust Master AIP SUPPORT (Beta)]'

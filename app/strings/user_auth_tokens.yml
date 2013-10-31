@@ -32,14 +32,14 @@ en:
   user_activation:
 
     show:
-      title: Welcome to Trust Master eHomeManage Search (Beta)!
+      title: Welcome to Trust Master AIP SUPPORT (Beta)!
       instructions: >
         Please choose a login password to continue. It must contain at least 6 characters, including
         at least one letter and one digit. Feel free to use special characters; there is no upper
         limit on length.
 
     update:
-      success: "<strong>Welcome to Trust Master eHomeManage Search</strong> (Beta)!"
+      success: "<strong>Welcome to Trust Master AIP SUPPORT</strong> (Beta)!"
       failure: Something was wrong with your passwords
 
     inactive:

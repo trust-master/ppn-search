@@ -7,7 +7,7 @@ en:
       capabilities: Capabilites
       credentials: Credentials
       alerts:      Alerts
-      discounts:   Discounts
+      discounts:   Offers
       users:       Users
 
     account: &account_nav
