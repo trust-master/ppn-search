@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby File.read(File.expand_path('../.ruby-version' , __FILE__)).gsub(/-p\d+\s*\z/, '')
+ruby '2.1.1'
 
 gem 'rails', ['~> 3.2.12', '!= 3.2.13']
 gem 'rack'
