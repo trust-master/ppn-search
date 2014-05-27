@@ -12,7 +12,7 @@ ActiveAdmin.register Category do
     column :sub_categories do |c|
       c.sub_categories.map{|s| s.name}.join(', ')
     end
-    default_actions
+    actions
   end
 
   show do |c|
@@ -39,6 +39,6 @@ ActiveAdmin.register Category do
       s.input :sort_order
       s.input :_destroy, as: :boolean, label: "Delete this subcategory"
     end
-    f.buttons
+    f.actions
   end
 end

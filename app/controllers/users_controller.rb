@@ -1,7 +1,7 @@
-class UsersController < InheritedResources::Base
+class UsersController < ApplicationController
   # inherited resources
-  belongs_to :company
-  actions :all, except: [:show]
+  # belongs_to :company
+  # actions :all, except: [:show]
 
   # CanCan
   load_and_authorize_resource :company

@@ -1,8 +1,4 @@
 ActiveAdmin.setup do |config|
-
-end
-ActiveAdmin.setup do |config|
-
   # == Site Title
   #
   # Set the title that is displayed on the main layout
@@ -161,8 +157,8 @@ end
 ActiveAdmin::ResourceController.class_eval do
   skip_authorization_check
 
-  append_view_path AdminViewResolver.new
+  # append_view_path AdminViewResolver.new
 
-  with_role :administrator   # InheritedResources
+  # with_role :administrator   # InheritedResources
 end
 

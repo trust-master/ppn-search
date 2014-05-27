@@ -1,17 +1,17 @@
-class SearchController < InheritedResources::Base
+class SearchController < ApplicationController
   respond_to :html, :json
 
-  defaults resource_class: Company, collection_name: 'companies'
-  actions :index
+  # defaults resource_class: Company, collection_name: 'companies'
+  # actions :index
 
   authorize_resource :company_search
 
   def index
-    @search = Company.metasearch(params[:search]) # this is used by the search form builder
+    @search = SearchQuery.new(params.fetch(:search_query, {}))
 
-    index! do |format|
+    respond_to do |format|
       format.html do
-        if collection
+        if params.key?(:search_query)
           render :search
         else
           render :index
@@ -23,21 +23,12 @@ class SearchController < InheritedResources::Base
   protected
 
     def collection
-      if params[:search]
-        @companies ||= end_of_association_chain
-                        .accessible_by(current_ability)
-                        .metasearch(params[:search]).relation
-                        .uniq(true)
-                        .page(params[:page])
-      else
-        nil
-      end
+      @companies ||= @search.companies.accessible_by(current_ability).uniq(true).page(params[:page])
     end
+    helper_method :collection
 
     def popular_categories
       @popular_categories ||= SubCategory.order('companies_count DESC').limit(8).includes(:category)
     end
     helper_method :popular_categories
-
-
 end

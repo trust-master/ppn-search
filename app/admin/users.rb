@@ -42,7 +42,7 @@ ActiveAdmin.register User do
         status_tag('inactive')
       end
     end
-    default_actions
+    actions
   end
 
   show title: :display_name do |c|
@@ -108,7 +108,7 @@ ActiveAdmin.register User do
       f.input :company, hint: 'This is required only when user is a Company Admin'
       f.input :active
     end
-    f.buttons
+    f.actions
   end
 
   member_action :reset_password do

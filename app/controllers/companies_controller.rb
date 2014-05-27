@@ -1,4 +1,4 @@
-class CompaniesController < InheritedResources::Base
+class CompaniesController < ApplicationController
   respond_to :html, :json, :yaml
 
   actions :show, :edit, :update

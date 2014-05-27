@@ -146,11 +146,10 @@ class Company < ActiveRecord::Base
     attr_accessible :visible, as: :administrator
 
   ### Scopes
-    scope :any_text_field_contains, lambda { |query|
-      ids = CompanySearch.search(query).pluck(:company_id)
-      where(id: ids.uniq)
-    }
-    search_methods :any_text_field_contains
+    # scope :any_text_field_contains, lambda { |query|
+    #   ids = CompanySearch.basic_search(query).pluck(:company_id)
+    #   where(id: ids.uniq)
+    # }
 
     scope :active,  where(active: true)
     scope :visible, where(visible: true)

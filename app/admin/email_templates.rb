@@ -11,7 +11,7 @@ ActiveAdmin.register EmailTemplate do
     column :body do |t|
       t.body.truncate(50)
     end
-    default_actions
+    actions
   end
 
   show(title: :display_name) do |t|

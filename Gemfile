@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 ruby '2.1.1'
 
-gem 'rails', ['~> 3.2.12', '!= 3.2.13']
+gem 'rails', '~> 3.2.18'
 gem 'rack'
 
 gem 'pg' # Use PostgreSQL
@@ -17,7 +17,7 @@ gem 'premailer' # make inline the CSS, create text-only versions, more fun stuff
 
 gem 'redcarpet' # Use Markdown to parse Pages / Email templates
 
-gem 'bcrypt-ruby' # To use ActiveModel has_secure_password
+gem 'bcrypt-ruby', '~> 3.0.0' # To use ActiveModel has_secure_password
 
 gem 'paperclip', '~> 3.3.0'
 gem 'fog' # Use AWS for Attachment Storage
@@ -31,23 +31,16 @@ gem 'responders'
 
 gem 'simple_form' # Form builder
 
-gem 'kaminari', # Pagination helpers / scopes
-  # path: '../kaminari'
-  git: 'https://github.com/rtlong/kaminari.git' # use my fork for I18n action in the helpers
+gem 'kaminari' # Pagination helpers / scopes
 
-# Texticle enables easy access to native PGSQL full-text searching, also see
-# https://github.com/Casecommons/pg_search if this one sucks
-gem 'texticle', '2.0.3', require: 'texticle/rails'
+gem 'textacular'
 
-gem 'meta_search' # Nifty search scoping tool. Dependency of ActiveAdmin
-
-gem 'squeel', '1.0.13' # convience API for AR-scoping
+gem 'squeel' # convience API for AR-scoping
 
 gem 'counter_culture' # easy counter cache columns
 
 gem 'activeadmin', # Pretty admin interface made easy
   git: 'https://github.com/rtlong/active_admin.git' # my fork, for various fixes / mods
-  # path: '../active_admin' # use my local copy as I change stuff
 
 gem 'attribute_normalizer' # Normalize attributes before saving (strip, nullify blanks, custom formatting, etc.)
 
@@ -61,12 +54,12 @@ gem 'redis' # Connect to Redis in-memory key/value store
 
 # redis-store provides a full set of stores (Cache, I18n, Session, HTTP Cache). It natively supports
 # object marshalling, timeouts, single or multiple nodes and namespaces.
-git 'https://github.com/jodosha/redis-store.git' do # using the source,
+# git 'https://github.com/jodosha/redis-store.git' do # using the source,
   gem 'redis-store' # wrapper gem
   gem 'redis-rails' # provides a Rails interface to the above
   gem 'redis-i18n' # provides a backend for I18n.
   gem 'redis-rack-cache' # provides a Redis-backed store for Rack::Cache
-end
+# end
 
 gem 'sidekiq'
 
@@ -119,19 +112,19 @@ group :production, :stage do
 end
 
 group :development do
-  gem 'thin', require: false # Use thin instead of Unicorn, in development only
+  # gem 'thin', require: false # Use thin instead of Unicorn, in development only
 
-  gem 'tailor', require: false # check syntax and code-style against a set of rules
-  gem 'checker', require: false
+  # gem 'tailor', require: false # check syntax and code-style against a set of rules
+  # gem 'checker', require: false
 
   # Prints db schema tidbits in all the models, tests, and fixtures, also shows `rake routes` output in routes.rb.
-  gem 'annotate', require: false
+  # gem 'annotate', require: false
 
   # https://github.com/guard/guard # http://intridea.com/2011/8/25/hire-a-guard-for-your-project
-  gem 'guard', require: false
-  gem 'guard-rspec', require: false
-  gem 'guard-annotate', require: false
-  gem 'guard-cucumber', require: false
+  # gem 'guard', require: false
+  # gem 'guard-rspec', require: false
+  # gem 'guard-annotate', require: false
+  # gem 'guard-cucumber', require: false
 
   gem 'foreman', require: false
 
@@ -143,7 +136,7 @@ group :development do
   # Use with `bx railroad -a -i -o full_models.dot -M`
   # gem 'railroad', git: 'https://github.com/kirillrdy/railroad3.git'
 
-  gem 'dnote', require: false # To enumerate all TODO's and FIXME's in the code
+  # gem 'dnote', require: false # To enumerate all TODO's and FIXME's in the code
 
   # Pry replaces IRB
   gem 'pry-rails' # replace IRB for the rails console, automatically
@@ -151,13 +144,13 @@ group :development do
 
   gem 'populator' # For seeding my dev DB with fake data
 
-  gem 'letter_opener' # Open sent emails in the browser
+  # gem 'letter_opener' # Open sent emails in the browser
 
-  gem 'brakeman', require: false
+  # gem 'brakeman', require: false
 
-  gem 'zeus', require: false
+  # gem 'zeus', require: false
 
-  gem 'ruby-debug-ide', github: 'ruby-debug/ruby-debug-ide', require: false
+  # gem 'ruby-debug-ide', github: 'ruby-debug/ruby-debug-ide', require: false
 
 end
 
@@ -173,8 +166,8 @@ group :development, :test do
   gem 'faker' # Used in some of the Factories to generate fake data; used in seeds.rb
 
   # The filesystem event and system notifications that Guard wants, for Linux/Unix
-  gem 'libnotify',    require: false # Visual notifications
-  gem 'rb-inotify',   require: false # inotify support
+  # gem 'libnotify',    require: false # Visual notifications
+  # gem 'rb-inotify',   require: false # inotify support
 end
 
 

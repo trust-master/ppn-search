@@ -1,19 +1,12 @@
 ActiveAdmin.register Company do
   menu priority: 1
 
-  filter :any_text_field, as: :string
-  filter :company_categories_sub_category_id, as: :multiple_select,
-    collection:   proc { SubCategory.includes(:category).all },
-    member_label: proc { |c| [c.category_name, c.name].join(' / ') }
+  # filter :any_text_field, as: :string
+  # filter :company_categories_sub_category_id, as: :multiple_select,
+    # collection:   proc { SubCategory.includes(:category).all },
+    # member_label: proc { |c| [c.category_name, c.name].join(' / ') }
 
   scope :all, :default => true
-
-  # scope :visible do |scope|
-  #   scope.where(visible: true)
-  # end
-  # scope :active do |scope|
-  #   scope.where(active: true)
-  # end
 
   Category.includes(:company_categories).all.each do |category|
     ids = category.company_categories.map(&:company_id).uniq
@@ -51,12 +44,7 @@ ActiveAdmin.register Company do
         status_tag('hidden')
       end
     end
-    default_actions
-
-  end
-  sidebar :notice, only: :index, icon: :bolt do
-    h4 "This search is not complete!"
-    para "It doesn't match the full-text behavior of the search on the main application. It will soon; stay tuned!"
+    actions
   end
 
   show title: :name do |c|
@@ -75,38 +63,23 @@ ActiveAdmin.register Company do
     link_to(t('.view_in_app'), company_path(company))
   end
 
-  # form partial: 'form'
   form do |f|
     f.inputs do
       f.input :name
-      # f.input :active
       f.input :visible
     end
-    f.buttons
+    f.actions
   end
-  sidebar :notice, only: :edit, icon: :info do
-    h4 "This form is not complete!"
-    para "It will match the behavior of the front-end eventually. For now, it exposes the main fields needed to create a new Service Provider, which can be edited in the front-end form. "
-    para "Click 'View in App' above to see that form."
+
+  sidebar :notice, only: :edit do
+    para "Click 'View in App' above to see the full Provider profile page and edit it."
   end
 
   controller do
     skip_authorize_resource
-    authorize_resource Company
-    load_resource Company, except: :index
+    # authorize_resource Company
+    # load_resource Company, except: :index
     attr_accessor :company, :markets, :categories
-    # before_filter ::CompaniesFilters::SetUpMarkets, ::CompaniesFilters::SetUpCategories, only: %w[new edit]
-
-    # def scoped_collection
-    #   if params[:search]
-    #     @companies ||= end_of_association_chain
-    #                     .metasearch(params[:search]).relation
-    #                     .uniq(true)
-    #                     .page(params[:page])
-    #   else
-    #     nil
-    #   end
-    # end
   end
 end
 

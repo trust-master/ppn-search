@@ -8,7 +8,7 @@ ActiveAdmin.register DiscountType do
     column :name do |c|
       link_to c.name, [:admin, c]
     end
-    default_actions
+    actions
   end
 
   show do |type|
@@ -32,6 +32,6 @@ ActiveAdmin.register DiscountType do
 
   form do |f|
     f.inputs :name, :sort_order
-    f.buttons
+    f.actions
   end
 end

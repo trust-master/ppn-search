@@ -11,7 +11,7 @@ ActiveAdmin.register Page do
       link_to p.slug, p.path
     end
     column :name
-    default_actions
+    actions
   end
 
   show(title: :title) do |p|

@@ -18,7 +18,7 @@ ActiveAdmin.register Market do
         end
       end
     end
-    t.default_actions
+    t.actions
   end
 
   show do |c|
@@ -45,6 +45,6 @@ ActiveAdmin.register Market do
       s.input :sort_order
       s.input :_destroy, as: :boolean, label: "Delete this region"
     end
-    f.buttons
+    f.actions
   end
 end

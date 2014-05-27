@@ -26,7 +26,7 @@ class Redis
           if keys = ENV.keys.grep(/\ARedis(?:\w*)_URL(?:_#{key})?\z/i).sort.presence
             opts[:url] = ENV.values_at(*keys).compact.last
           end
-          opts.update Redis::Factory.resolve(opts[:url])
+          opts.update Redis::Store::Factory.resolve(opts[:url])
 
           key = nil if key == :default
           opts[:namespace] = [rails_env, opts[:namespace], key.to_s].compact.uniq.join(?:)

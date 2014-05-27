@@ -16,7 +16,7 @@ REDIS = ActiveSupport::OrderedOptions.new do |hash, key|
     hash[key] = Rails.cache.instance_variable_get(:@data)
 
   when :profiler
-    hash[key] = Redis::Namespace.new(settings[:namespace], redis: Redis.new(settings))
+    hash[key] = Redis::Store::Factory.create(settings)
 
   when :i18n
     hash[key] = I18n.backend[0].instance_variable_get(:@store)
@@ -24,7 +24,7 @@ REDIS = ActiveSupport::OrderedOptions.new do |hash, key|
   else
     # The factory will handle namespacing and marshaling and all kinds of goodies.  For more info,
     # see https://github.com/jodosha/redis-store/blob/master/redis-store/lib/redis/factory.rb
-    hash[key] = Redis::Factory.create(settings)
+    hash[key] = Redis::Store::Factory.create(settings)
 
   end
 end
