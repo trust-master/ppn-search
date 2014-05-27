@@ -52,7 +52,7 @@
             = form_tag(search_index_path, method: :get)  do
               %fieldset
                 -# REFACTOR: This should utilize simpleform and a model-backed set-up. How to set that up without creating a new search model instance with every request? Caching the instance?
-                %input{type: :search, name: 'search[any_text_field_contains]', placeholder: 'Search', value: params['search'].try(:[], 'any_text_field_contains'), tabindex: 1}
+                %input{type: :search, name: 'search_query[query]', placeholder: 'Search', value: params['search_query'].try(:[], 'query'), tabindex: 1}
         - else
           #tagline
             Search. Compare. Confirm. Contact.

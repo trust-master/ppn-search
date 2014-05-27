@@ -5,7 +5,7 @@ class SearchQuery
 
   def initialize(attributes = {})
     @query = attributes[:query]
-    @category_ids = Array(attributes[:category_ids])
+    @category_ids = Array(attributes[:category_ids]).map(&:presence).compact
   end
 
   def companies
@@ -15,7 +15,7 @@ class SearchQuery
         .where('company_categories.sub_category_id' => category_ids)
     end
     if query
-      matching_ids = CompanySearch.basic_search(query).pluck(:company_id)
+      matching_ids = CompanySearch.basic_search(query).map(&:company_id).uniq
       if matching_ids.any?
         scope = scope.where(id: matching_ids)
       else

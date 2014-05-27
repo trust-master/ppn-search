@@ -1,19 +1,23 @@
 ActiveAdmin.register Company do
   menu priority: 1
 
-  # filter :any_text_field, as: :string
-  # filter :company_categories_sub_category_id, as: :multiple_select,
-    # collection:   proc { SubCategory.includes(:category).all },
-    # member_label: proc { |c| [c.category_name, c.name].join(' / ') }
+  filter :name
+  filter :active, as: :select
+  filter :visible, as: :select
+  filter :company_categories_sub_category_id, as: :multiple_select,
+    collection:   proc { SubCategory.includes(:category).all },
+    member_label: proc { |c| [c.category_name, c.name].join(' / ') }
 
-  scope :all, :default => true
+  scope :all, default: true
+  scope :active
 
-  Category.includes(:company_categories).all.each do |category|
-    ids = category.company_categories.map(&:company_id).uniq
-    self.send(:scope, category.name) do |items|
-      items.where(:id => ids)
-    end
-  end
+  # Build scopes for each Category. Disabled now as there are too many categories
+  # Category.includes(:company_categories).all.each do |category|
+  #   ids = category.company_categories.map(&:company_id).uniq
+  #   self.send(:scope, category.name) do |items|
+  #     items.where(:id => ids)
+  #   end
+  # end
 
   batch_action :fetch_license_data do |ids|
     fetchables =  BusinessLicense.where(company_id: ids)
@@ -54,7 +58,6 @@ ActiveAdmin.register Company do
       row :updated_at
       row :visible
       row :active
-
     end
     active_admin_comments
   end

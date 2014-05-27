@@ -4,6 +4,10 @@ ruby '2.1.1'
 gem 'rails', '> 4.0.0'
 gem 'rack'
 
+# Gems for deprecated Rails 3 features
+gem 'rails-observers'
+gem 'protected_attributes'
+
 gem 'pg' # Use PostgreSQL
 
 gem 'unicorn', require: false # Use Unicorn to serve the app
@@ -82,7 +86,7 @@ gem 'sinatra', require: false
 
 # Gems used only for assets and not required in production environments by default.
 group :assets do
-  gem 'sass-rails'
+  gem 'sass-rails', '>= 4.0.3' # version forced to fix interaction bug between sass and sprockets and compass
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'yui-compressor'
@@ -103,31 +107,9 @@ group :production, :stage do
 end
 
 group :development do
-  # gem 'thin', require: false # Use thin instead of Unicorn, in development only
-
-  # gem 'tailor', require: false # check syntax and code-style against a set of rules
-  # gem 'checker', require: false
-
-  # Prints db schema tidbits in all the models, tests, and fixtures, also shows `rake routes` output in routes.rb.
-  # gem 'annotate', require: false
-
-  # https://github.com/guard/guard # http://intridea.com/2011/8/25/hire-a-guard-for-your-project
-  # gem 'guard', require: false
-  # gem 'guard-rspec', require: false
-  # gem 'guard-annotate', require: false
-  # gem 'guard-cucumber', require: false
-
   gem 'foreman', require: false
 
   gem 'sass' # This is here so generators can use it
-
-  # gem 'rack-webconsole' # access the rails console right within the web browser
-
-  # generate graphs to represent Models/Classes in the app
-  # Use with `bx railroad -a -i -o full_models.dot -M`
-  # gem 'railroad', git: 'https://github.com/kirillrdy/railroad3.git'
-
-  # gem 'dnote', require: false # To enumerate all TODO's and FIXME's in the code
 
   # Pry replaces IRB
   gem 'pry-rails' # replace IRB for the rails console, automatically
@@ -135,14 +117,7 @@ group :development do
 
   gem 'populator' # For seeding my dev DB with fake data
 
-  # gem 'letter_opener' # Open sent emails in the browser
-
-  # gem 'brakeman', require: false
-
-  # gem 'zeus', require: false
-
-  # gem 'ruby-debug-ide', github: 'ruby-debug/ruby-debug-ide', require: false
-
+  gem 'spring', require: false
 end
 
 group :development, :test do
@@ -151,20 +126,10 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'rspec-rails'
   gem 'factory_girl_rails', require: false
-  #gem 'capybara'
-  #gem 'launchy'
-  #gem 'quiet_assets'
   gem 'faker' # Used in some of the Factories to generate fake data; used in seeds.rb
-
-  # The filesystem event and system notifications that Guard wants, for Linux/Unix
-  # gem 'libnotify',    require: false # Visual notifications
-  # gem 'rb-inotify',   require: false # inotify support
 end
-
 
 group :development, :stage do
   gem 'replicate', require: false
   gem 'rack-mini-profiler'
 end
-
-

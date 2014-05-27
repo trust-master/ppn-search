@@ -1,8 +1,6 @@
 class CompaniesController < ApplicationController
   respond_to :html, :json, :yaml
 
-  actions :show, :edit, :update
-
   load_and_authorize_resource
 
   attr_accessor :company, :markets, :categories
@@ -12,7 +10,8 @@ class CompaniesController < ApplicationController
   layout 'companies'
 
   def edit
-    super do |format|
+    @company = Company.find(params[:id])
+    respond_to do |format|
       format.html {
         render(%w[listing capabilities credentials].grep(params['section']).first || 'edit')
       }

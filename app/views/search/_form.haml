@@ -1,4 +1,4 @@
-= simple_form_for(@search, url: search_index_path, method: :get, wrapper: :search) do |form|
+= simple_form_for(@search, url: search_index_path, method: :get, wrapper: :search, html: {id: :company_search}) do |form|
   .search_wrap
     = form.input :query, as: :search
     = form.button :submit

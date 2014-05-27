@@ -1,7 +1,5 @@
-module ActiveModel
-  class Name < String
-    def mailer_name
-      '' << self << 'Mailer'
-    end
+ActiveModel::Name.class_eval do
+  def mailer_name
+    '' << self << 'Mailer'
   end
 end

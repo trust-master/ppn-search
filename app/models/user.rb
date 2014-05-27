@@ -20,6 +20,8 @@
 #
 
 class User < ActiveRecord::Base
+  extend EasyArelAccess
+
   ROLES = %w[CompanyAdmin User].freeze
   PROTECTED_ROLES = (%w[Administrator] | ROLES).freeze
   self.inheritance_column = :role
@@ -84,7 +86,7 @@ class User < ActiveRecord::Base
   class << self
     # method used for authentication
     def find_by_email_and_password(email_address, password)
-      user = self.where{ (password_digest != nil) & (email == email_address) }.first
+      user = self.where(t[:password_digest].not_eq(nil)).where(email: email_address).first
       if user and user.authenticate(password)
         return user
       end
