@@ -92,9 +92,6 @@ group :assets do
   gem 'yui-compressor'
   gem 'jquery-rails' # Inject jQuery into the asset pipeline
 
-  # Formalize has some sane defaults for form fields to help them look consistent across multiple platforms
-  gem 'formalize-rails'
-
   # Chosen is still being used, but it's my modified version, so we can't use chosen-rails till my change is merged in
   # gem 'chosen-rails' # chosen provides a nifty jQuery plugin to do empowered <select>s
 
