@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 ruby '2.1.1'
 
-gem 'rails', '~> 3.2.18'
+gem 'rails', '> 4.0.0'
 gem 'rack'
 
 gem 'pg' # Use PostgreSQL
@@ -17,9 +17,9 @@ gem 'premailer' # make inline the CSS, create text-only versions, more fun stuff
 
 gem 'redcarpet' # Use Markdown to parse Pages / Email templates
 
-gem 'bcrypt-ruby', '~> 3.0.0' # To use ActiveModel has_secure_password
+gem 'bcrypt-ruby' # To use ActiveModel has_secure_password
 
-gem 'paperclip', '~> 3.3.0'
+gem 'paperclip'
 gem 'fog' # Use AWS for Attachment Storage
 
 gem 'cancan' # very nice API for authorization
@@ -35,7 +35,7 @@ gem 'kaminari' # Pagination helpers / scopes
 
 gem 'textacular'
 
-gem 'squeel' # convience API for AR-scoping
+# gem 'squeel' # convience API for AR-scoping
 
 gem 'counter_culture' # easy counter cache columns
 
@@ -54,12 +54,10 @@ gem 'redis' # Connect to Redis in-memory key/value store
 
 # redis-store provides a full set of stores (Cache, I18n, Session, HTTP Cache). It natively supports
 # object marshalling, timeouts, single or multiple nodes and namespaces.
-# git 'https://github.com/jodosha/redis-store.git' do # using the source,
-  gem 'redis-store' # wrapper gem
-  gem 'redis-rails' # provides a Rails interface to the above
-  gem 'redis-i18n' # provides a backend for I18n.
-  gem 'redis-rack-cache' # provides a Redis-backed store for Rack::Cache
-# end
+gem 'redis-store' # wrapper gem
+gem 'redis-rails' # provides a Rails interface to the above
+gem 'redis-i18n' # provides a backend for I18n.
+gem 'redis-rack-cache' # provides a Redis-backed store for Rack::Cache
 
 gem 'sidekiq'
 
@@ -72,7 +70,7 @@ gem 'active_decorator' # Clean up view logic
 gem 'content_for_in_controllers' # bring content_for into the controller
 
 gem 'airbrake_user_attributes' # send Exceptions to Errbit
-gem 'airbrake', '< 3.1.9'
+gem 'airbrake'
 
 # Compass provides SASS goodies, and some of it's helpers are used in the app code, so it can't be
 # in the assets group
@@ -82,13 +80,11 @@ gem 'compass-rails'
 gem 'slim'
 gem 'sinatra', require: false
 
-
-
 # Gems used only for assets and not required in production environments by default.
 group :assets do
-  gem 'sass-rails' # use SASS to write CSS
-  gem 'coffee-rails' # use CoffeeScript to write JS
-  gem 'uglifier' # compress JS
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
   gem 'yui-compressor'
   gem 'jquery-rails' # Inject jQuery into the asset pipeline
 
@@ -99,8 +95,6 @@ group :assets do
   gem 'bourbon'
 
   gem 'oily_png' # C extensions for generating PNGs - used by Compass for the CSS sprites
-
-  gem 'turbo-sprockets-rails3' # attempts to make asset precompilation faster by skipping files that are not changed
 end
 
 group :production, :stage do
