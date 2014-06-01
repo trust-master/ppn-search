@@ -39,7 +39,7 @@ class Discount < ActiveRecord::Base
 
   delegate :name, to: :type, prefix: true
 
-  scope :not_expired, where('end_date >= ?', Date.today)
+  scope :not_expired, -> { where('end_date >= ?', Date.today) }
 
   before_post_process do
     !self.valid? and
