@@ -31,6 +31,8 @@ class User < ActiveRecord::Base
   belongs_to :company
   has_many :auth_tokens, class_name: 'UserAuthToken', order: 'user_auth_tokens.created_at DESC'
   has_many :password_resets
+  has_many :activation_tokens, class_name: 'UserActivationToken'
+  has_many :reactivation_tokens, class_name: 'UserReactivationToken'
 
   attr_accessible :first_name, :middle_name, :last_name, :email, :phone, :password, :password_confirmation,
     as: [:user, :administrator, :company_admin]

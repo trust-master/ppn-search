@@ -19,12 +19,15 @@ require 'spec_helper'
 
 shared_examples 'UserAuthToken' do |association_name|
   let(:user) { FactoryGirl.create(:user) }
-  let(:token_object) { user.send(association_name).create }
+
+  let(:token_object) do
+    user.send(association_name).create
+  end
 
   describe '#token' do
     it 'generates a 12-byte URL-safe Base64-encoded token before save' do
       # Notice there is no room for '=', here. I want a fully utilized 12-digit base64 string
-      token_object.token.should match(/[0-9a-zA-Z_\-]{12}/)
+      token_object.token.should match(/\A[0-9a-zA-Z_\-]{12}\z/)
     end
 
     it 'ensures uniqueness of the token' do
@@ -105,7 +108,10 @@ shared_examples 'UserAuthToken' do |association_name|
 end
 
 describe 'UserActivationToken' do
-  it_should_behave_like 'UserAuthToken', :auth_tokens
+  it_should_behave_like 'UserAuthToken', :activation_tokens
+end
+describe 'UserReactivationToken' do
+  it_should_behave_like 'UserAuthToken', :reactivation_tokens
 end
 describe 'PasswordReset' do
   it_should_behave_like 'UserAuthToken', :password_resets
