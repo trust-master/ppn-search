@@ -104,6 +104,7 @@ end
 group :production, :stage do
   gem 'newrelic_rpm'
   gem 'newrelic-redis'
+  gem 'rails_12factor'
 end
 
 group :development do
