@@ -42,38 +42,33 @@ class Company < ActiveRecord::Base
   paginates_per 5
 
   ### Associations
+  has_many :affiliations, dependent: :destroy
+  has_many :associations, dependent: :destroy
+  has_many :certifications, dependent: :destroy
 
-    with_options dependent: :destroy do |company|
-      company.has_many :affiliations
-      company.has_many :associations
-      company.has_many :certifications
+  has_many :discounts, -> { includes(:type) }, dependent: :destroy
 
-      company.has_many :discounts,             include: :type
+  has_many :locations, -> { includes(:state, :country) }, dependent: :destroy
 
-      company.has_many :locations,             include: [:state, :country]
+  has_many :company_categories, -> { includes(sub_category: :category) }, dependent: :destroy
+  has_many :company_service_areas, -> { includes(service_area: :market) }, dependent: :destroy
 
-      company.has_many :company_categories,    include: { sub_category: :category }
-      company.has_many :company_service_areas, include: { service_area: :market }
+  has_many :business_licenses, -> { includes(:issuing_state) }, dependent: :destroy
+  has_many :personal_licenses, -> { includes(:issuing_state) }, dependent: :destroy
+  # this should be has_one, but, due to quirks, it's not (see below)
+  has_many :business_filings, -> { includes(:issuing_state).limit(1).order(:updated_at) }, dependent: :destroy
 
-      company.has_many :business_licenses, include: :issuing_state
-      company.has_many :personal_licenses, include: :issuing_state
-      # this should be has_one, but, due to quirks, it's not (see below)
-      company.has_many :business_filings,  include: :issuing_state, limit: 1, order: 'updated_at'
-    end
+  has_many :sub_categories, -> { uniq.readonly }, through: :company_categories
+  has_many :categories, -> { uniq.readonly }, through: :sub_categories
 
-    with_options uniq: true, readonly: true do |company|
-      company.has_many :sub_categories, through: :company_categories
-      company.has_many :categories,     through: :sub_categories
+  has_many :service_areas, -> { uniq.readonly.includes(:market) }, through: :company_service_areas
+  has_many :markets, -> { uniq.readonly.includes(:service_areas) }, through: :service_areas
 
-      company.has_many :service_areas,  through: :company_service_areas, include: :market
-      company.has_many :markets,        through: :service_areas,         include: :service_areas
-    end
+  has_many :users, dependent: :destroy
 
-    has_many :users, dependent: :destroy
+  belongs_to :insurance_state, class_name: 'State'
 
-    belongs_to :insurance_state, class_name: 'State'
-
-    belongs_to :deleted_by_user, class_name: 'User'
+  belongs_to :deleted_by_user, class_name: 'User'
 
   ### Nested Attributes
 
@@ -151,11 +146,11 @@ class Company < ActiveRecord::Base
     #   where(id: ids.uniq)
     # }
 
-    scope :active,  where(active: true)
-    scope :visible, where(visible: true)
+    scope :active,  -> { where(active: true) }
+    scope :visible, -> { where(visible: true) }
 
     # default_scope includes(:locations, :company_categories, :company_service_areas)
-    scope :sorted, order(t[:updated_at].desc) # this may need to be looked at later
+    scope :sorted, -> { order(t[:updated_at].desc) } # this may need to be looked at later
 
   ### Instance Methods
     delegate :name, to: :insurance_state, prefix: true

@@ -12,7 +12,7 @@
 
 class CompanyServiceArea < ActiveRecord::Base
   belongs_to :company, touch: true
-  belongs_to :service_area, include: :market
+  belongs_to :service_area, -> { includes(:market) }
 
   attr_accessible :service_area_id, :partial_only, as: [:user, :company_admin, :administrator]
   attr_readonly :company_id

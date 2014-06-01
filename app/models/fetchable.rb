@@ -14,7 +14,7 @@ module Fetchable
 
   def self.included(model)
     model.class_eval do
-      scope :fetched, where('fetched_at IS NOT NULL')
+      scope :fetched, -> { where('fetched_at IS NOT NULL') }
     end
   end
 

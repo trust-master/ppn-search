@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   has_paper_trail
 
   belongs_to :company
-  has_many :auth_tokens, class_name: 'UserAuthToken', order: 'user_auth_tokens.created_at DESC'
+  has_many :auth_tokens, -> { order(created_at: :desc) }, class_name: 'UserAuthToken'
   has_many :password_resets
   has_many :activation_tokens, class_name: 'UserActivationToken'
   has_many :reactivation_tokens, class_name: 'UserReactivationToken'
@@ -52,8 +52,8 @@ class User < ActiveRecord::Base
   validates              :password, password: true, allow_nil: true # allow_blank only for pre-activation circumstances
 
   # default_scope includes(:company)
-  scope :sort_by_name_asc,  order('last_name ASC, first_name ASC')
-  scope :sort_by_name_desc, order('last_name DESC, first_name DESC')
+  scope :sort_by_name_asc, -> { order(last_name: :asc, first_name: :asc) }
+  scope :sort_by_name_desc, -> { sort_by_name_asc.reverse_order }
 
   delegate :name, to: :company, prefix: true
 
