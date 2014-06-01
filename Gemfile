@@ -118,6 +118,7 @@ group :development do
   gem 'populator' # For seeding my dev DB with fake data
 
   gem 'spring', require: false
+  gem 'spring-commands-rspec', require: false
 end
 
 group :development, :test do
