@@ -29,6 +29,7 @@ en:
     less_than: "Less Than"
     main_content: "Please implement %{model}#main_content to display content."
     logout: "Logout"
+    errors: "Errors"
     sidebars:
       filters: "Filters"
     pagination:

@@ -98,6 +98,14 @@ ActiveAdmin.register User do
   end
 
   form do |f|
+    f.semantic_errors
+    if f.object.errors.size > 0
+      f.inputs I18n.t("active_admin.errors") do
+        f.object.errors.map { |attribute, error|
+          content_tag(:li, '%s: %s' % [User.human_attribute_name(attribute), error])
+        }.join.html_safe
+      end
+    end
     f.inputs do
       f.input :role, as: :select, collection: user_roles
       f.input :first_name

@@ -48,7 +48,10 @@ class User < ActiveRecord::Base
   validates_presence_of  :first_name, :last_name, :role
   validates_inclusion_of :active, in: [true, false]
 
-  has_secure_password
+  has_secure_password validations: false
+
+  validates_confirmation_of :password, if: lambda { |m| m.password.present? }
+  validates_presence_of     :password_confirmation, if: lambda { |m| m.password.present? }
   validates              :password, password: true, allow_nil: true # allow_blank only for pre-activation circumstances
 
   # default_scope includes(:company)
