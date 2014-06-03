@@ -4,7 +4,7 @@ ActionMailer::Base.default({
 
 class PreventMailInterceptor
   ALLOWED_EMAILS = /@(?:rtlong|trust-master)\.com\z/
-  DEFAULT_RECIPIENTS = ENV['EMAIL_INTERCEPTOR_DEFAULT_RECIPIENTS'].presence.try(:split, ?,) || %w[ ryan@rtlong.com dmodeen@trust-master.com mepennaz@trust-master.com ]
+  DEFAULT_RECIPIENTS = ENV['EMAIL_INTERCEPTOR_DEFAULT_RECIPIENTS'].presence.try(:split, ?,) || %w[ ryan@rtlong.com dmodeen@trust-master.com ]
 
   def self.delivering_email(message)
     new(message).intercept

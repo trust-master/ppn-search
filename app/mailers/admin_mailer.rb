@@ -6,7 +6,7 @@ class AdminMailer < ActionMailer::Base
   def user_activated(token, opts = {})
     @token = token
     @user = token.user
-    mail to: ['Dan Modeen <dmodeen@trust-master.com>', 'Matt Pennaz <mepennaz@trust-master.com>']
+    mail to: ['Dan Modeen <dmodeen@trust-master.com>']
   end
 
 end
