@@ -1,6 +1,6 @@
 # Bundler's machine-specific cache files
 /.bundle
-/vendor/bundle
+/vendor/bundler
 /vendor/cache
 
 # Standard rails exclusions
@@ -47,10 +47,6 @@ _yardoc
 /public/uploads/
 
 *.sublime-workspace
-
-# Bundler's binstubs
-bin/
-
 .rbenv-vars
 vendor/gems
 .vagrant/
