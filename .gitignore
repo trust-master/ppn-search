@@ -21,9 +21,6 @@
 # Compass image sprites
 /app/assets/images/icons-*.png
 
-# KDE dingleberries
-.directory
-
 # Mac OSX dingleberries
 .DS_Store
 .~lock.*
@@ -35,9 +32,6 @@ _yardoc
 # Generated docs
 /doc/
 
-# Titanium/Aptana Studio Project File
-.project
-
 # node-specific foreman config
 /.foreman
 
@@ -46,7 +40,4 @@ _yardoc
 
 /public/uploads/
 
-*.sublime-workspace
 .rbenv-vars
-vendor/gems
-.vagrant/
