@@ -121,6 +121,8 @@ group :development do
 
   gem 'spring', require: false
   gem 'spring-commands-rspec', require: false
+
+  gem 'i18n-debug'
 end
 
 group :development, :test do

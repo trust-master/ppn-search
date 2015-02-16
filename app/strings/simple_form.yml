@@ -72,6 +72,6 @@ en:
         website_url: http://company.com
         in_business_since: 2013
 
-      search:
-        any_text_field_contains: Enter a company name
-        company_categories_sub_category_id_in: Enter a type of product or service
+      search_query:
+        query: Enter a company name
+        category_ids: Enter a type of product or service
