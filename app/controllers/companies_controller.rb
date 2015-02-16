@@ -18,4 +18,16 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def update
+    if @company.update_attributes(params[:company])
+      redirect_to @company
+    else
+      respond_to do |format|
+        format.html {
+          render('edit')
+        }
+      end
+    end
+  end
+
 end
