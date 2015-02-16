@@ -1,0 +1,27 @@
+app:
+  build: .
+  volumes:
+    - './:/app'
+  links:
+    - 'db:db'
+    - 'redis:redis'
+    - 'mailcatcher:smtp'
+
+  command: bin/rails s
+  ports:
+    - "3002:3000"
+  env_file: development.env
+
+# worker:
+#   build: .
+
+mailcatcher:
+  image: schickling/mailcatcher:latest
+  ports:
+    - "2002:1080"
+
+db:
+  image: postgres:9.1
+
+redis:
+  image: dockerfile/redis:latest

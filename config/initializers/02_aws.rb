@@ -8,9 +8,9 @@ ServiceProviderPortal::Application.configure do
   yml_config ||= {} # just so I can still treat the local like a hash, even if the file was not found
 
   config.s3_credentials = hash = HashWithIndifferentAccess.new({
-    bucket:            ENV['AWS_S3_Bucket']            || yml_config['bucket'],
-    access_key_id:     ENV['AWS_S3_Access_Key_ID']     || yml_config['access_key_id'],
-    secret_access_key: ENV['AWS_S3_Secret_Access_Key'] || yml_config['secret_access_key']
+    bucket:            ENV['AWS_S3_BUCKET']            || yml_config['bucket'],
+    access_key_id:     ENV['AWS_ACCESS_KEY_ID']     || yml_config['access_key_id'],
+    secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] || yml_config['secret_access_key']
   }).freeze
 
   unless hash[:bucket] and hash[:access_key_id] and hash[:secret_access_key]

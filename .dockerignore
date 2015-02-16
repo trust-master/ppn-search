@@ -1,0 +1,6 @@
+.git
+tmp
+log
+
+.bundle/config
+*.env

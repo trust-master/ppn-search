@@ -55,9 +55,7 @@ GEM
       activesupport (>= 3.0.0)
     arel (4.0.2)
     attribute_normalizer (1.1.0)
-    bcrypt (3.1.7)
-    bcrypt-ruby (3.1.5)
-      bcrypt (>= 3.1.3)
+    bcrypt (3.1.10)
     bourbon (3.2.3)
       sass (~> 3.2)
       thor
@@ -385,7 +383,7 @@ DEPENDENCIES
   airbrake
   airbrake_user_attributes
   attribute_normalizer
-  bcrypt-ruby
+  bcrypt (~> 3.1.7)
   bourbon
   cancan
   coffee-rails
@@ -425,6 +423,7 @@ DEPENDENCIES
   rails (> 4.0.0)
   rails-observers
   rails_12factor
+  rake
   redcarpet
   redis
   redis-i18n

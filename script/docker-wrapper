@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# This script is meant to be the ENTRYPOINT defined in the Dockerfile, and it's
+# purpose is to translate the Docker links environment variables to ones we want
+# to use in the app.
+
+# if [[ -n $MEMCACHE_PORT_11211_TCP ]]; then
+#   export MEMCACHE_SERVERS="${MEMCACHE_PORT_11211_TCP#tcp://}"
+# fi
+
+if [[ -n $REDIS_PORT_6379_TCP ]]; then
+  export REDIS_URL="redis://${REDIS_PORT_6379_TCP#tcp://}/${REDIS_DB:-0}/${REDIS_NAMESPACE}"
+fi
+
+# if [[ -n $MYSQL_PORT_3306_TCP ]]; then
+#   cp config/database.docker.yml config/database.yml
+# fi
+
+# if [[ -n $SOLR_PORT_8983_TCP ]]; then
+#   case $RAILS_ENV in
+#     ""|development) DEFAULT_SOLR_INDEX_PATH='solr/entity';;
+#     *) DEFAULT_SOLR_INDEX_PATH="solr/entity-${RAILS_ENV}";;
+#   esac
+
+#   export SOLR_URL="http://${SOLR_PORT_8983_TCP#tcp://}/${SOLR_ENV_SOLR_INDEX_PATH:-$DEFAULT_SOLR_INDEX_PATH}"
+# fi
+
+if [[ -n $SMTP_PORT_1025_TCP_ADDR ]]; then
+  export SMTP_HOST="$SMTP_PORT_1025_TCP_ADDR"
+  export SMTP_PORT="$SMTP_PORT_1025_TCP_PORT"
+fi
+exec $@

@@ -1,8 +1,9 @@
 source 'http://rubygems.org'
-ruby '2.1.1'
+ruby '2.2.0'
 
 gem 'rails', '> 4.0.0'
 gem 'rack'
+gem 'rake'
 
 # Gems for deprecated Rails 3 features
 gem 'rails-observers'
@@ -21,7 +22,7 @@ gem 'premailer' # make inline the CSS, create text-only versions, more fun stuff
 
 gem 'redcarpet' # Use Markdown to parse Pages / Email templates
 
-gem 'bcrypt-ruby' # To use ActiveModel has_secure_password
+gem 'bcrypt', '~> 3.1.7' # To use ActiveModel has_secure_password
 
 gem 'paperclip'
 gem 'fog' # Use AWS for Attachment Storage
