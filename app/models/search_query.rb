@@ -14,7 +14,7 @@ class SearchQuery
       scope = scope.includes(:company_categories)
         .where('company_categories.sub_category_id' => category_ids)
     end
-    if query
+    if query.present?
       matching_ids = CompanySearch.basic_search(query).map(&:company_id).uniq
       if matching_ids.any?
         scope = scope.where(id: matching_ids)
