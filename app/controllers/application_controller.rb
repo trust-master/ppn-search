@@ -37,6 +37,8 @@ class ApplicationController < ActionController::Base
   def set_current_user_in_user_model
     # set this to the User.current_user class variable to make sure user updates have
     # access to the who who initated the update
+    #
+    # FIXME: Oh, dear god...
     User.current_user = current_user
   end
 
@@ -53,4 +55,3 @@ class ApplicationController < ActionController::Base
   # alias :user_for_paper_trail :current_user
 
 end
-
