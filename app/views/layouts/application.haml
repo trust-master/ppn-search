@@ -97,7 +97,9 @@
         #trust-logos
           = image 'trust-logos'
 
-    #copyright &copy; #{Time.now.year} #{t('copyright')}
+    #copyright
+      &copy;
+      = t('copyright', year: CURRENT_YEAR)
 
 
     = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'

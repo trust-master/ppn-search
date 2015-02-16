@@ -6,4 +6,4 @@ if Rails.env.development?
   )
 end
 
-CURRENT_YEAR=Date.today.year
+CURRENT_YEAR = Date.today.year
