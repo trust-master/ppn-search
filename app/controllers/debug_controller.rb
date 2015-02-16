@@ -46,4 +46,11 @@ class DebugController < ApplicationController
     session[:enable_test_features] = true
   end
 
+  def clear_cache
+    REDIS[:cache].keys('*').in_groups_of(10, false).each do |keys|
+      REDIS[:cache].del(*keys)
+    end
+    render text: "ok"
+  end
+
 end
